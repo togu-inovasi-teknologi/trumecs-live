@@ -1,0 +1,119 @@
+#member_page,.member_page{
+	$silver:#ECECEC;
+	$platinum:#E5E4E2;
+	$gold:orange;
+	
+	.cardresult{
+		background-color: #fff;
+	    border-radius: 6px;
+	    box-shadow: 0 3px 13px 2px rgba(0,0,0,.45);
+	    margin-bottom: 20px;
+	    moz-box-shadow: 0 3px 13px 2px rgba(0,0,0,.45);
+	    webkit-box-shadow: 0 3px 13px 2px rgba(0,0,0,.45);
+	    a:hover{
+	    	color: grey;text-decoration: none;
+	    }
+	}
+
+	.sidebar_member{
+		.navigation{
+			.btn{
+				    margin-bottom: 10px;
+				font-size: 0.9rem;
+				.icon-nav{
+					width: 23px;
+					float: left;
+    				left: 500px;
+				}
+			}
+		}
+
+	}
+
+	.content{
+		.infoakun{
+			strong{
+				font-size: 0.8rem;
+			}
+			hr{
+				margin-top: 0.5rem;
+				margin-bottom: 0.5rem;
+			}
+		}
+		.historypesanan{
+			table{
+				a{text-decoration: none;}
+			}
+			table.info_billingshipping{
+				td{
+					padding: 0px ;
+					font-size: 0.9rem;
+					border-top:0px solid transparent;
+				}
+			}
+			.nav-tabs{
+				li{
+					a{
+						color: grey;
+					}
+				}
+				li.active{
+					a{
+						color: #373a3c;
+						font-weight: bold;
+					}
+				}
+			}
+		}
+		.formreturn{
+			span.dot{
+				border: 2px dashed orange;
+				color:orange;
+				cursor: pointer;
+				position: absolute;
+			}
+			input[type=file]{
+				opacity:0;cursor:pointer;padding-bottom: 100px;
+			}
+		}
+
+	}
+
+	.label-silver{
+		background-color: $silver;
+		color:grey;
+		margin-left: 0.2rem;
+	}
+	.label-platinum{
+		background-color: $platinum;
+		color:grey;
+		margin-left: 0.2rem;
+	}
+	.label-gold{
+		background-color: $gold;
+		color:white;
+		margin-left: 0.2rem;
+	}
+
+	.radiobutton{
+		label.og.active{
+			background-color: orange;
+			
+		}
+		label.gr.active{
+			background-color: green;
+			color:white;
+		}
+		label.rd.active{
+			background-color: red;
+			color:white;
+		}
+	}
+	i.fa-2{
+		font-size: 2rem;
+	}
+
+}
+@media (max-width: 767px){
+	.content{}
+}

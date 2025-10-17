@@ -1,0 +1,121 @@
+#page_detail{
+	.product{
+		.imgproduct{
+			.img-detail-lg{
+				height: auto;
+			    max-height: 400px;
+			    width: auto;
+			    max-width: 100%;
+			}
+			.img-galery{
+				width: 70px;
+			    margin-left: auto;
+			    margin-right: auto;
+			    display: inline-block;
+				.img-border{
+					border:1px solid grey;
+				}
+			}
+		}
+		.info{
+			img.labelimg{
+				right: 5px;
+			    top: -6px;
+			    position: absolute;
+			}
+			select{
+				display: inline-block;
+				width: 6rem;
+			}
+			.detail-sparepart{
+				.nav-tabs{
+					.nav-item{
+						text-decoration: none;
+						a{
+							color: #373a3c;
+						}
+					}
+					.nav-item.active{
+						background-color: orange;
+						color: white;
+						border-top-left-radius: 4px;
+						border-top-right-radius: 4px;
+						a{
+							color: white;
+						}
+					}
+						
+				}
+				.tab-content{
+					font-size: 0.8rem;
+				}
+			}
+		}
+	}
+
+	.share{
+		vertical-align: middle;
+		.sf{
+            color: #3F59A6;
+        }
+        .st,.sl{
+            color: #1E90FF;
+        }
+        .sg,.sp{
+            color: red;
+        }
+		a{
+			i{
+				font-size: 1.8rem;
+			}
+		}
+	}
+	.list_same_product{
+		.introsame{
+			font-size: 1rem;font-weight: bold;
+		}
+			.hv_product{
+				margin-top: 0.6rem;
+				padding-bottom: 1rem;
+				border:1px solid transparent;
+				hr{
+					    border-top: 1px solid grey;
+				}
+			}
+			a{text-decoration: none;color: black}
+			.infolablepromo{padding:3px 10px 3px 10px;background-color: red;color: white;    font-size: 12px;}
+			.img-center-product{
+			    padding-bottom: 100%;
+			    width: 100%;
+			    margin-bottom: 10px;
+			    background-position: center center;
+			    background-size: cover !important;
+			    height: 0;
+			    cursor: pointer;
+			    background-repeat: no-repeat;
+			}
+			.spanpercent{
+				font-size: 12px;
+			    text-align: right;
+			    right: 15px;
+			    position: absolute;
+			    padding: 0px 10px 0px 10px;
+			    background-color: #F9761E;
+			    color: white;
+			}
+
+			.promo-small{
+				right: 12px;
+			    top: -2px;
+			    position: absolute;
+			}
+			.vhidden{visibility: hidden;}
+			.hv_product:hover{
+				border:1px solid orange;
+				.vhidden{
+					visibility: inherit;
+				}
+			}
+		}
+}
+

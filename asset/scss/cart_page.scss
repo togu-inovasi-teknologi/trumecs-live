@@ -1,0 +1,42 @@
+.cart_page{
+	table{
+		font-size: 0.8rem;
+		tr{
+			td{
+				border-top: 0px solid transparent;
+			}
+		}
+		thead{
+			font-size: 0.9rem;
+		}
+		tbody.table-chart-detail{
+
+			tr{
+				td{
+					padding: 0rem;
+					border-top: 0px solid transparent;
+				}
+			}
+		}
+		a{
+			color: #373a3c;
+			text-decoration: none;
+		}
+		select{
+			border: 0px solid transparent;
+			cursor: pointer;
+		}
+	}
+	#tabtabel{
+		li.active{
+			a{
+				text-decoration: none;color:#373a3c;font-weight: bold;
+			}
+		}
+		li{
+			a{
+				text-decoration: none;color:grey;font-weight: normal;
+			}
+		}
+	}
+}
