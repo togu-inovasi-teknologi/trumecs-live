@@ -1,0 +1,52 @@
+.paginate_button a {
+  color: #fa8420 !important;
+  text-decoration: none;
+}
+.paginate_button {
+  border: none !important;
+}
+.paginate_button:hover {
+  background: none !important;
+  border: none !important;
+}
+
+.disabled a {
+  color: #ccc !important;
+  text-decoration: none;
+}
+
+.paginate_button:active a {
+  color: #999 !important;
+  text-decoration: none;
+}
+
+.card-jenis-produk {
+  background-color: rgba(250, 132, 32, 0.3);
+  cursor: pointer;
+}
+
+.card-jenis-produk img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 10px;
+}
+
+/* store product */
+
+.icon-edit {
+  color: #fa8420;
+  padding: 3px 7px;
+  border: 1px solid #fa8420;
+  border-radius: 50%;
+}
+.icon-delete {
+  color: red;
+  padding: 3px 7px;
+  border: 1px solid red;
+  border-radius: 50%;
+}
+#tablelist-product-mobile_wrapper .row:first-child {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}

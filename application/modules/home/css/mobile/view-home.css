@@ -1,0 +1,118 @@
+.home-banner {
+        position: relative;
+        width: 100%;
+        height: 30vh;
+        background-color: linear-gradient(to right, #333, #666);
+        overflow: hidden;
+    }
+
+    .home-banner img {
+        width: 100%;
+        background: #111;
+    }
+
+    .home-text {
+        position: absolute;
+        top: 50%;
+        left: 25%;
+        width: 50%;
+        height: 50xpx;
+        color: #fff;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+
+    .home-text h1 {
+        font-size: 12px;
+        font-weight: bold;
+        color: #fa8420;
+    }
+
+    .home-text h2 {
+        font-size: 20px;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    .home-text h2 span {
+        font-size: 20px;
+        font-weight: bold;
+        color: #fa8420;
+    }
+
+    .search-home {
+        position: relative;
+        width: 100%;
+        height: 40vh;
+        background-color: linear-gradient(to right, #333, #666);
+        overflow: hidden;
+    }
+
+    .search-home img {
+        width: 100%;
+        height: 300px;
+        background-color: linear-gradient(to right, #333, #666);
+    }
+
+    .input-search {
+        position: absolute;
+        top: 40%;
+        left: 5%;
+        width: 90%;
+        height: 50px;
+        color: #fff;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+
+    .input-search h1 {
+        font-size: 14px;
+        font-weight: bold;
+        color: #fa8420;
+    }
+
+    .input-search h2 {
+        font-size: 18px;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    .input-search input {
+        height: 50px;
+        background-color: #fff;
+    }
+
+    .input-search span {
+        color: #fff;
+    }
+
+    #clockdiv {
+        font-family: sans-serif;
+        color: #fff;
+        display: inline-block;
+        font-weight: 100;
+        text-align: center;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    #clockdiv>span {
+        padding: 5px;
+        border-radius: 10px;
+        background: red;
+        display: inline-block;
+    }
+
+    .card-brand-2 {
+        position: relative;
+        width: 100%;
+        height: 25px;
+    }
+
+    .img-category img {
+        height: 40px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        background-color: #fff;
+    }

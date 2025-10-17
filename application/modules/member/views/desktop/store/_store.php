@@ -1,0 +1,1558 @@
+<!-- info card akun -->
+<?php
+$session = $this->session->all_userdata();
+$sessionmember = $session["member"];
+
+$bannerUtama = [];
+$bannerUtamaMobile = [];
+$banner1 = [];
+$banner1Mobile = [];
+$banner2 = [];
+$banner2Mobile = [];
+if ($stores->banners != null) {
+    foreach ($stores->banners as $contentBanner) {
+        if ($contentBanner->index == 0 && $contentBanner->is_mobile == 0) {
+            $bannerUtama[] =  $contentBanner;
+        }
+        if ($contentBanner->index == 0 && $contentBanner->is_mobile == 1) {
+            $bannerUtamaMobile[] =  $contentBanner;
+        }
+        if ($contentBanner->index == 1 && $contentBanner->is_mobile == 0) {
+            $banner1[] =  $contentBanner;
+        }
+        if ($contentBanner->index == 1 && $contentBanner->is_mobile == 1) {
+            $banner1Mobile[] =  $contentBanner;
+        }
+        if ($contentBanner->index == 2 && $contentBanner->is_mobile == 0) {
+            $banner2[] =  $contentBanner;
+        }
+        if ($contentBanner->index == 2 && $contentBanner->is_mobile == 1) {
+            $banner2Mobile[] =  $contentBanner;
+        }
+    }
+};
+?>
+<div class="row d-flex flex-column gap-3">
+    <div class="col-lg-12 title-desktop">
+        <div class="d-flex-sb align-items-center">
+            <div class="flex flex-column gap-1">
+                <h4 class="fbold title-content">Akun Toko</h4>
+                <h6 class="text-muted f13">Kelola informasi toko Anda untuk mengontrol, melindungi dan mengamankan akun.</h6>
+            </div>
+            <?php foreach ($store as $toko) : ?>
+                <a href="<?= base_url() . $toko['domain'] ?>" target="_blank" class="btn btnnew">Check Toko</a>
+            <?php endforeach ?>
+        </div>
+
+    </div>
+    <div class="col-lg-12">
+        <ul class="nav nav-tabs" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation"><a class="btn btnnew" id="information-tab" data-toggle="tab" data-target="#information" type="button" role="tab" aria-controls="information" aria-selected="true">Informasi</a></li>
+            <li class="nav-item" role="presentation"><a class="btn btnnew" id="store-tab" data-toggle="tab" data-target="#store" type="button" role="tab" aria-controls="store" aria-selected="false">Toko</a></li>
+        </ul>
+    </div>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active in" id="information" role="tabpanel" aria-labelledby="information-tab">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-body p-a-1">
+                                <?php foreach ($store as $key) : ?>
+                                    <div class="row d-flex flex-column gap-2">
+                                        <div class="col-lg-12">
+                                            <div class="d-flex flex-column gap-1">
+                                                <p class="f12">Nama Toko</p>
+                                                <p class="text-dark"><?php echo $key["name"]; ?> </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="d-flex flex-column gap-1">
+                                                <p class="f12">Domain</p>
+                                                <p class="text-dark"><?php echo $key["domain"]; ?> </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="d-flex flex-column gap-1">
+                                                <p class="f12">NPWP</p>
+                                                <p class="text-dark"><?php echo $key["npwp"]; ?> </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="d-flex flex-column gap-1">
+                                                <p class="f12">Email</p>
+                                                <p class="text-dark"><?php echo $key["email"]; ?> </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="d-flex flex-column gap-1">
+                                                <p class="f12">Telepon</p>
+                                                <p class="text-dark"><?php echo $key["phone"]; ?> </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="d-flex flex-column gap-1">
+                                                <p class="f12">PIC Toko</p>
+                                                <p class="text-dark"><?php echo $key["mailing_pic"]; ?> ( <?php echo $key["mailing_position"]; ?> )
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="d-flex flex-column gap-1">
+                                                <p class="f12">Telepon PIC</p>
+                                                <p class="text-dark"><?php echo $key["mailing_phone"]; ?>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="d-flex flex-column gap-1">
+                                                <p class="f12">Alamat</p>
+                                                <p class="text-dark"><?php echo $key["mailing_address"]; ?>, <?php echo $key["nama_city"]; ?>,
+                                                    <?php echo $key["nama_province"]; ?></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="d-flex flex-column gap-1">
+                                                <p class="f12">Deskripsi Toko</p>
+                                                <p class="text-dark"><?php echo nl2br($key["description_id"]); ?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endforeach ?>
+                            </div>
+                            <div class="card-footer">
+                                <button data-target="#edit-toko-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="btn btnnew">Edit Toko</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 text-muted sticky-member">
+                        <div class="card p-a-1">
+                            <div class="row">
+                                <?php foreach ($store as $key) : ?>
+                                    <div class="col-lg-12 text-center">
+                                        <img src=" <?php echo base_url() ?>public/image/store/logo/<?php echo $key["logo"]; ?>" alt="Avatar" class="avatar-setting">
+                                        <input type="text" name="logoBefore" form="formLogo" value="<?= $key["logo"]; ?>" hidden>
+                                    </div>
+                                    <div class="col-lg-12 text-center m-t-1">
+                                        <button data-toggle="modal" data-target="#edit-logo-<?php echo $key["member_id"]; ?>" class="btn btnnew">Edit Logo</button>
+                                    </div>
+                                <?php endforeach ?>
+                                <div class="col-lg-12 m-t-1">
+                                    <span class="alert alert-warning pull-right f12">
+                                        <h5 class="fbold">Catatan!</h5>
+                                        <ul style="margin-left: -20px;">
+                                            <li>Extension yang bisa dipakai .JPG .JPEG .PNG</li>
+                                            <li>Ukuran : 100x100</li>
+                                            <li>Maksimal 5Mb</li>
+                                        </ul>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="store" role="tabpanel" aria-labelledby="store-tab">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body p-a-1">
+                        <?php foreach ($store as $key) : ?>
+                            <div class="row d-flex flex-column gap-3 p-b-0">
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="d-flex flex-column gap-1">
+                                                <div class="d-flex-sb align-items-center">
+                                                    <p class="text-dark f18">Template</p>
+                                                    <a data-target="#edit-template-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Template</a>
+                                                </div>
+                                                <p class="text-dark"><?php echo $key["template"]; ?></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="d-flex-sb align-items-center">
+                                                <p class="text-dark f18">Ganti Warna Text & Background</p>
+                                                <a data-target="#edit-warna-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Warna</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <p class="text-dark f18">Cover</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="d-flex flex-column gap-1">
+                                                <div class="d-flex-sb align-items-center">
+                                                    <p class="f16">Desktop</p>
+                                                    <div class="d-flex gap-2 align-items-center">
+                                                        <a data-target="#edit-cover-desktop-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Cover</a>
+                                                        <a href="<?= base_url() ?>member/store/delete_cover" class="text-danger pointer f16"><i class="fa fa-trash"></i></a>
+                                                    </div>
+                                                </div>
+                                                <img src="<?= $key['cover'] == null ? base_url('public/image/default-cover.png') : base_url('public/image/store/cover/' . $key['cover']); ?>" alt="Default Cover" class="w-100">
+                                                <input form="formCover" type="text" name="nameCover" value="<?= $key['cover'] ?>" hidden>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="d-flex flex-column gap-1">
+                                                <div class="d-flex-sb align-items-center">
+                                                    <p class="f16">Mobile</p>
+                                                    <div class="d-flex gap-2 align-items-center">
+                                                        <a data-target="#edit-cover-mobile-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Cover</a>
+                                                        <a href="<?= base_url() ?>member/store/delete_cover_mobile" data-toggle="modal" class="text-danger pointer f16"><i class="fa fa-trash"></i></a>
+                                                    </div>
+                                                </div>
+                                                <img src="<?= $key['cover_mobile'] == null ? base_url('public/image/default-cover.png') : base_url('public/image/store/cover/' . $key['cover_mobile']); ?>" alt="Default Cover" class="w-100">
+                                                <input form="formCoverMobile" type="text" name="nameCover" value="<?= $key['cover_mobile'] ?>" hidden>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 p-t-2">
+                                            <div class="d-flex-sb align-items-center p-b-1">
+                                                <p class="f16">Deskripsi Cover</p>
+                                                <a data-target="#edit-cover-content-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ubah Deskripsi</a>
+                                            </div>
+                                            <table class="table table-striped f14">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Title</th>
+                                                        <th>Content</th>
+                                                        <th>Image</th>
+                                                        <th>Image Mobile</th>
+                                                        <th>Col Left</th>
+                                                        <th>Col Right</th>
+                                                        <th>Direction Image</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-center va-middle"><?= $stores->title_cover ?></td>
+                                                        <td class="text-center va-middle"><?= $stores->title_content ?></td>
+                                                        <td class="text-center va-middle"><img src="<?= base_url() ?>public/image/store/coverimage/<?= $stores->title_image ?>" alt="image_cover" style="width:50px;"></td>
+                                                        <td class="text-center va-middle"><img src="<?= base_url() ?>public/image/store/coverimage/mobile/<?= $stores->title_image_mobile ?>" alt="image_cover" style="width:50px;"></td>
+                                                        <td class="text-center va-middle"><?= $stores->col_left ?></td>
+                                                        <td class="text-center va-middle"><?= $stores->col_right ?></td>
+                                                        <form id="formToggleDirection">
+                                                            <td class="text-center va-middle">
+                                                                <input data-name="direction_image_cover_toggle" type="checkbox" name="direction_image[]" value="<?= $stores->id ?>" <?= $stores->direction_title_image == 1 ? 'checked' : '' ?> data-toggle="toggle" data-size="xs" data-on="Left" data-off="Right" data-onstyle="primary" data-offstyle="success" data-width="100">
+                                                            </td>
+                                                        </form>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="d-flex-sb align-items-center p-b-1">
+                                                <p class="text-dark f18">Deskripsi tambahan</p>
+                                                <a data-target="#tambah-desc-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Tambah Deskripsi</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <table class="table table-striped f14" style="width:100%;">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width:20%;">Title</th>
+                                                        <th style="width:30%;">Content</th>
+                                                        <th style="width:20%;">Image</th>
+                                                        <th style="width:10%;">Icon</th>
+                                                        <th style="width:8%;">Image/Icon</th>
+                                                        <th style="width:7%;">Direction</th>
+                                                        <th style="width:5%;">action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php foreach ($stores->descriptions as $desc) : ?>
+                                                        <tr>
+                                                            <td><?= $desc->title ?> (<?= $desc->index ?>)</td>
+                                                            <?php $str = str_split($desc->content, 85); ?>
+                                                            <td><?= count($str) > 1 ? $str[0] . ' <a class="color-primary pointer" data-target="#detail-desc-' . $desc->id . '" data-toggle="modal">lihat detail</a>' : $str[0] ?></td>
+                                                            <?php if ($desc->image == null) { ?>
+                                                                <td class="text-center va-middle">
+                                                                    <p>Belum Menambahkan Gambar</p>
+                                                                </td>
+                                                            <?php } else { ?>
+                                                                <td class="text-center va-middle"><img src="<?= base_url() ?>public/image/store/desc/<?= $desc->image ?>" alt="image_desc" style="width:50px;"></td>
+                                                            <?php } ?>
+                                                            <td class="text-center va-middle"><i class="fa fa-<?= $desc->icon ?>"></i></td>
+                                                            <form id="formToggleSwitch">
+                                                                <td class="text-center va-middle">
+                                                                    <input data-name="is_image_toggle" type="checkbox" name="is_image[]" value="<?= $desc->id ?>" <?= $desc->is_image == 1 ? 'checked' : '' ?> data-toggle="toggle" data-size="xs" data-on="Image" data-off="Icon" data-onstyle="primary" data-offstyle="success" data-width="100">
+                                                                </td>
+                                                            </form>
+                                                            <form id="formToggleDirection">
+                                                                <td class="text-center va-middle">
+                                                                    <input data-name="direction_image_toggle" type="checkbox" name="direction_image[]" value="<?= $desc->id ?>" <?= $desc->direction_image == 1 ? 'checked' : '' ?> data-toggle="toggle" data-size="xs" data-on="Left" data-off="Right" data-onstyle="primary" data-offstyle="success" data-width="100">
+                                                                </td>
+                                                            </form>
+                                                            <td class="text-center va-middle">
+                                                                <div class="d-flex gap-2 align-items-center">
+                                                                    <a href="" data-target="#edit-desc-<?= $desc->id ?>" data-toggle="modal" class="text-warning f18"><i class="fa fa-edit"></i></a>
+                                                                    <a href="<?= base_url() ?>member/store/delete_description/<?= $desc->id ?>" class="text-danger f18"><i class="fa fa-trash"></i></a>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <p class="text-dark f18">Banner Utama</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="d-flex flex-column gap-1">
+                                                <div class="d-flex-sb align-items-center">
+                                                    <p class="f16">Desktop</p>
+                                                    <a data-target="#edit-banner-utama-desktop-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
+                                                </div>
+                                                <?php if ($bannerUtama != null) { ?>
+                                                    <div class="d-flex flex-column gap-1">
+                                                        <?php if ($bannerUtama[0]->source != null) { ?>
+                                                            <img src="<?= base_url('public/image/store/banner/' . $bannerUtama[0]->source); ?>" alt="Default Cover" class="w-100">
+                                                        <?php } else { ?>
+                                                            <div class="alert alert-warning">
+                                                                <p class="text-dark">Anda belum menambahkan banner</p>
+                                                            </div>
+                                                        <?php } ?>
+                                                        <a href="<?= base_url('member/store/delete_banner/' . $bannerUtama[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                        <input form="formBannerUtama" type="text" name="nameBannerUtama" value="<?= $bannerUtama[0]->source ?>" hidden>
+                                                    </div>
+                                                <?php } else { ?>
+                                                    <div class="alert alert-warning">
+                                                        <p class="text-dark">Anda belum menambahkan banner</p>
+                                                    </div>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="d-flex flex-column gap-1">
+                                                <div class="d-flex-sb align-items-center">
+                                                    <p class="f16">Mobile</p>
+                                                    <a data-target="#edit-banner-utama-mobile-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
+                                                </div>
+                                                <?php if ($bannerUtamaMobile != null) { ?>
+                                                    <div class="d-flex flex-column gap-1">
+                                                        <img src="<?= base_url('public/image/store/banner/' . $bannerUtamaMobile[0]->source); ?>" alt="Default Cover" class="w-100">
+                                                        <a href="<?= base_url('member/store/delete_banner/' . $bannerUtamaMobile[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                        <input form="formBannerUtamaMobile" type="text" name="nameBannerUtama" value="<?= $bannerUtamaMobile[0]->source ?>" hidden>
+                                                    </div>
+                                                <?php } else { ?>
+                                                    <div class="alert alert-warning">
+                                                        <p class="text-dark">Anda belum menambahkan banner</p>
+                                                    </div>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <p class="f18 text-dark">Banner 1</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="d-flex flex-column gap-1">
+                                                <div class="d-flex-sb align-items-center">
+                                                    <p class="f16">Desktop</p>
+                                                    <a data-target="#edit-banner-1-desktop-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
+                                                </div>
+                                                <?php if ($banner1 != null) { ?>
+                                                    <div class="d-flex flex-column gap-1">
+                                                        <img src="<?= base_url('public/image/store/banner/' . $banner1[0]->source); ?>" alt="Default Cover" class="w-100">
+                                                        <a href="<?= base_url('member/store/delete_banner/' . $banner1[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                        <input form="formBanner1" type="text" name="nameBanner1" value="<?= $banner1[0]->source ?>" hidden>
+                                                    </div>
+                                                <?php } else { ?>
+                                                    <div class="alert alert-warning">
+                                                        <p class="text-dark">Anda belum menambahkan banner</p>
+                                                    </div>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="d-flex flex-column gap-1">
+                                                <div class="d-flex-sb align-items-center">
+                                                    <p class="f16">Mobile</p>
+                                                    <a data-target="#edit-banner-1-mobile-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
+                                                </div>
+                                                <?php if ($banner1Mobile != null) { ?>
+                                                    <div class="d-flex flex-column gap-1">
+                                                        <img src="<?= base_url('public/image/store/banner/' . $banner1Mobile[0]->source); ?>" alt="Default Cover" class="w-100">
+                                                        <a href="<?= base_url('member/store/delete_banner/' . $banner1Mobile[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                        <input form="formBanner1Mobile" type="text" name="nameBanner1" value="<?= $banner1Mobile[0]->source ?>" hidden>
+                                                    </div>
+                                                <?php } else { ?>
+                                                    <div class="alert alert-warning">
+                                                        <p class="text-dark">Anda belum menambahkan banner</p>
+                                                    </div>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <p class="f18 text-dark">Banner 2</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="d-flex flex-column gap-1">
+                                                <div class="d-flex-sb align-items-center">
+                                                    <p class="f16">Desktop</p>
+                                                    <a data-target="#edit-banner-2-desktop-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
+                                                </div>
+                                                <?php if ($banner2 != null) { ?>
+                                                    <div class="d-flex flex-column gap-1">
+                                                        <img src="<?= base_url('public/image/store/banner/' . $banner2[0]->source); ?>" alt="Default Cover" class="w-100">
+                                                        <a href="<?= base_url('member/store/delete_banner/' . $banner2[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                        <input form="formBanner2" type="text" name="nameBanner2" value="<?= $banner2[0]->source ?>" hidden>
+                                                    </div>
+                                                <?php } else { ?>
+                                                    <div class="alert alert-warning">
+                                                        <p class="text-dark">Anda belum menambahkan banner</p>
+                                                    </div>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="d-flex flex-column gap-1">
+                                                <div class="d-flex-sb align-items-center">
+                                                    <p class="f16">Mobile</p>
+                                                    <a data-target="#edit-banner-2-mobile-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
+                                                </div>
+                                                <?php if ($banner2Mobile != null) { ?>
+                                                    <div class="d-flex flex-column gap-1">
+                                                        <img src="<?= base_url('public/image/store/banner/' . $banner2Mobile[0]->source); ?>" alt="Default Cover" class="w-100">
+                                                        <a href="<?= base_url('member/store/delete_banner/' . $banner2Mobile[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                        <input form="formBanner2Mobile" type="text" name="nameBanner2" value="<?= $banner2Mobile[0]->source ?>" hidden>
+                                                    </div>
+                                                <?php } else { ?>
+                                                    <div class="alert alert-warning">
+                                                        <p class="text-dark">Anda belum menambahkan banner</p>
+                                                    </div>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="edit-logo-<?php echo $sessionmember["id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title fbold" id="exampleModalLabel">Edit Foto
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </h4>
+            </div>
+            <form action="<?php echo base_url() ?>member/store/upload_logo_store" method="POST" enctype="multipart/form-data" id="formLogo">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label for="uploadBtn">Logo</label>
+                                    <input type="file" id="uploadBtn" name="logo" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
+                                    <a href="#" id="filetext" name="file" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
+                                </div>
+                                <div class="col-lg-4 text-muted">
+                                    <img src="" class="blah img-fluid" style="max-height: 100px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="d-flex flex-column gap-1">
+                                <p class="f12">NB : </p>
+                                <p class="text-dark">Size : 300 x 300px</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btnnew">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="edit-toko-<?php echo $sessionmember["id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width: 50%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title fbold" id="exampleModalLabel">Edit Toko
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </h4>
+            </div>
+            <form action="<?php echo base_url() ?>member/store/update_store" method="POST" class="settingstore">
+                <?php foreach ($store as $key) : ?>
+                    <div class="modal-body" style="max-height: 50vh; overflow-y:scroll;">
+                        <div class="row d-flex flex-column gap-2">
+                            <div class="col-lg-12">
+                                <input type="hidden" name="id_member" value="<?php echo $sessionmember["id"]; ?>" />
+                                <label for="nameStore">Nama Toko</label>
+                                <input id="nameStore" type="text" name="name" class="form-control" placeholder="Nama Lengkap" value="<?php echo $key["name"]; ?>" required>
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="domain">Domain</label>
+                                <input type="text" name="domain" class="form-control" placeholder="Domain" value="<?php echo $key["domain"]; ?>" required>
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="npwp">NPWP</label>
+                                <input id="npwp" type="text" name="npwp" class="form-control" placeholder="NPWP" value="<?php echo $key["npwp"]; ?>" required>
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="email">Email</label>
+                                <input id="email" type="text" name="company_email" class="form-control" placeholder="Email Perusahaan" value="<?php echo $key["email"]; ?>" required>
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="phone">Telepon</label>
+                                <input id="phone" type="text" name="company_phone" class="form-control" placeholder="Telepon Perusahaan" value="<?php echo $key["phone"]; ?>" required>
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="content">Deskripsi Toko</label>
+                                <textarea type="text" class="form-control" name="description_store"><?= $key["description_id"]; ?></textarea>
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="pic">PIC</label>
+                                <input id="pic" type="text" name="pic" class="form-control" placeholder="PIC Toko" value="<?php echo $key["mailing_pic"]; ?>" required>
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="picPosition">Jabatan PIC</label>
+                                <input id="picPosition" type="text" name="position" class="form-control" placeholder="PIC Toko" value="<?php echo $key["mailing_position"]; ?>" required>
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="picPhone">Nomor Telepon PIC</label>
+                                <input id="picPhone" type="text" name="phone_pic" class="form-control" placeholder="Nomor PIC Toko" value="<?php echo $key["mailing_phone"]; ?>" required>
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="country">Negara</label>
+                                <select id="country" name="country" class="form-control" required value="<?php echo $key["mailing_country"]; ?>">
+                                    <option value="">--Pilih Negara--</option>
+                                    <option value="1" <?= ($key['mailing_country'] == 1) ? "selected" : ""; ?>>Indonesia</option>
+                                    <option value="2" <?= ($key['mailing_country'] == 2) ? "selected" : ""; ?>>Singapura</option>
+                                    <option value="3" <?= ($key['mailing_country'] == 3) ? "selected" : ""; ?>>Malaysia</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="province">Provinsi</label>
+                                <select name="province" class="form-control" required id="<?php echo $key["mailing_province"] ?>">
+                                    <option value="">--Pilih Provinsi--</option>
+                                    <?php foreach ($provinces as $keys) : ?>
+                                        <option value="<?php echo $keys["id"] ?>"><?php echo $keys["name"] ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="district">Kabupaten</label>
+                                <select name="city" class="form-control" required id="<?php echo $key["mailing_city"] ?>">
+                                    <option value="">--Pilih Kabupaten--</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="address">Alamat</label>
+                                <input id="address" type="text" name="address" value="<?php echo $key["mailing_address"] ?>" class="form-control" placeholder="Alamat" required>
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="zipCode">Kode Pos</label>
+                                <input id="zipCode" type="number" name="zipcode" value="<?php echo $key["mailing_zipcode"] ?>" class="form-control" placeholder="Kode Pos" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btnnew">Simpan</button>
+                    </div>
+                <?php endforeach ?>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="edit-cover-content-<?php echo $sessionmember["id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width: 50%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title fbold" id="exampleModalLabel">Edit Deskripsi Cover
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </h4>
+            </div>
+            <form action="<?php echo base_url() ?>member/store/update_title_cover" method="POST" class="settingstore" enctype="multipart/form-data">
+                <div class="modal-body" style="max-height: 50vh; overflow-y:scroll;">
+                    <div class="row d-flex flex-column gap-2">
+                        <div class="col-lg-12">
+                            <label for="title_cover">Title</label>
+                            <input type="text" name="title_cover" class="form-control" placeholder="Title" value="<?= $stores->title_cover; ?>" required>
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="title_content">Content</label>
+                            <input type="text" name="title_content" class="form-control" placeholder="Content" value="<?= $stores->title_content; ?>" required>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-6 d-flex flex-column">
+                                    <label for="colorTitleCover">Warna Title Cover</label>
+                                    <div class="d-flex gap-1 align-items-center">
+                                        <input type="color" name="colorTitleCover" id="colorTitleCover" value="<?= $stores->color_title_cover ?>">
+                                        <input disabled type="text" class="form-control" id="afterColorTitleCover" value="<?= $stores->color_title_cover ?>">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 d-flex flex-column">
+                                    <label for="colorContentCover">Warna Content Cover</label>
+                                    <div class="d-flex gap-1 align-items-center">
+                                        <input type="color" name="colorContentCover" id="colorContentCover" value="<?= $stores->color_title_content ?>">
+                                        <input disabled type="text" class="form-control" id="afterColorContentCover" value="<?= $stores->color_title_content ?>">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label for="uploadBtn">Image</label>
+                                    <input type="file" id="uploadBtn" name="titleImage" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
+                                    <a href="#" id="filetext" name="titleImage" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
+                                </div>
+                                <div class="col-lg-4">
+                                    <p>Gambar Saat Ini</p>
+                                    <img src="<?= base_url() ?>public/image/store/coverimage/<?= $stores->title_image ?>" style="max-height: 100px;">
+                                </div>
+                                <div class="col-lg-4">
+                                    <p>Gambar ganti</p>
+                                    <img src="" id="blah" class="img-fluid" style="max-height: 100px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label for="uploadBtnMobile">Image Mobile</label>
+                                    <input type="file" id="uploadBtnMobile" name="titleImageMobile" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
+                                    <a href="#" id="filetext" name="titleImageMobile" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
+                                </div>
+                                <div class="col-lg-4">
+                                    <p>Gambar Saat Ini</p>
+                                    <img src="<?= base_url() ?>public/image/store/coverimage/mobile/<?= $stores->title_image_mobile ?>" style="max-height: 100px;">
+                                </div>
+                                <div class="col-lg-4">
+                                    <p>Gambar Ganti</p>
+                                    <img src="" id="blahMobile" class="img-fluid" style="max-height: 100px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <label for="col_left">Col Left</label>
+                                    <select name="col_left" id="col_left" class="form-control">
+                                    </select>
+                                    <input type="input" name="value_col_left" id="value_col_left" class="value_col_left" value="<?= $stores->col_left ?? 6 ?>" hidden>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="col_right">Col Right</label>
+                                    <select name="col_right" id="col_right" class="form-control">
+                                    </select>
+                                    <input type="input" name="value_col_right" id="value_col_right" class="value_col_right" value="<?= $stores->col_right ?? 6 ?>" hidden>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="direction_title_image">Direction Image</label>
+                            <select name="direction_title_image" id="direction_title_image" class="form-control">
+                                <option value="0" <?= $stores->direction_title_image == 0 ? 'selected' : '' ?>>Right</option>
+                                <option value="1" <?= $stores->direction_title_image == 1 ? 'selected' : '' ?>>Left</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btnnew">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="edit-template-<?php echo $sessionmember["id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title fbold" id="exampleModalLabel">Ganti Template
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </h4>
+            </div>
+            <form action="<?php echo base_url() ?>member/store/edit_template" method="POST" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="row">
+                        <?php foreach ($store as $value) : ?>
+                            <div class="col-lg-12">
+                                <label for="template">Template</label>
+                                <select name="template" id="template" class="form-control">
+                                    <option value="1" <?= $value['template'] == 1 ? 'selected' : '' ?>>1</option>
+                                    <option value="2" <?= $value['template'] == 2 ? 'selected' : '' ?>>2</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="template_produk">Template Produk</label>
+                                <select name="template_produk" id="template_produk" class="form-control">
+                                    <option value="1" <?= $value['template_produk'] == 1 ? 'selected' : '' ?>>Table</option>
+                                    <option value="2" <?= $value['template_produk'] == 2 ? 'selected' : '' ?>>Image</option>
+                                </select>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btnnew">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="edit-warna-<?php echo $sessionmember["id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title fbold" id="exampleModalLabel">Ganti Warna
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </h4>
+            </div>
+            <form action="<?php echo base_url() ?>member/store/edit_warna_store" method="POST" enctype="multipart/form-data">
+                <div class="modal-body" style="max-height: 50vh; overflow-y:scroll;">
+                    <div class="row d-flex flex-column gap-2">
+                        <?php foreach ($stores->styles as $style) : ?>
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-6 d-flex flex-column">
+                                        <label for="colorNav">Warna NavBar</label>
+                                        <div class="d-flex gap-1 align-items-center">
+                                            <input type="color" name="colorNav" id="colorNav" value="<?= $style->color_nav ?>">
+                                            <input disabled type="text" class="form-control" id="afterColorNav" value="<?= $style->color_nav ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 d-flex flex-column">
+                                        <label for="colorNavText">Warna Text Navbar</label>
+                                        <div class="d-flex gap-1 align-items-center">
+                                            <input type="color" name="colorNavText" id="colorNavText" value="<?= $style->color_nav_text ?>">
+                                            <input disabled type="text" class="form-control" id="afterColorNavText" value="<?= $style->color_nav_text ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-6 d-flex flex-column">
+                                        <label for="colorTextName">Warna Nama Toko</label>
+                                        <div class="d-flex gap-1 align-items-center">
+                                            <input type="color" name="colorTextName" id="colorTextName" value="<?= $style->color_text_name ?>">
+                                            <input disabled type="text" class="form-control" id="afterColorTextName" value="<?= $style->color_text_name ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 d-flex flex-column">
+                                        <label for="colorBg">Warna Background</label>
+                                        <div class="d-flex gap-1 align-items-center">
+                                            <input type="color" name="colorBg" id="colorBg" value="<?= $style->color_bg ?>">
+                                            <input disabled type="text" class="form-control" id="afterColorBg" value="<?= $style->color_bg ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-6 d-flex flex-column">
+                                        <label for="colorTextTitle">Warna Text Title</label>
+                                        <div class="d-flex gap-1 align-items-center">
+                                            <input type="color" name="colorTextTitle" id="colorTextTitle" value="<?= $style->color_text_title ?>">
+                                            <input disabled type="text" class="form-control" id="afterColorTextTitle" value="<?= $style->color_text_title ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 d-flex flex-column">
+                                        <label for="colorTextContent">Warna Text Content</label>
+                                        <div class="d-flex gap-1 align-items-center">
+                                            <input type="color" name="colorTextContent" id="colorTextContent" value="<?= $style->color_text_content ?>">
+                                            <input disabled type="text" class="form-control" id="afterColorTextContent" value="<?= $style->color_text_content ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-6 d-flex flex-column">
+                                        <label for="colorTextNameCategory">Warna Text Name Category</label>
+                                        <div class="d-flex gap-1 align-items-center">
+                                            <input type="color" name="colorTextNameCategory" id="colorTextNameCategory" value="<?= $style->color_text_name_category ?>">
+                                            <input disabled type="text" class="form-control" id="afterColorTextNameCategory" value="<?= $style->color_text_name_category ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 d-flex flex-column">
+                                        <label for="colorCardDescription">Warna Card</label>
+                                        <div class="d-flex gap-1 align-items-center">
+                                            <input type="color" name="colorCardDescription" id="colorCardDescription" value="<?= $style->color_card_description ?>">
+                                            <input disabled type="text" class="form-control" id="afterColorCardDescription" value="<?= $style->color_card_description ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-6 d-flex flex-column">
+                                        <label for="colorCardTitle">Warna Text Title Deskripsi</label>
+                                        <div class="d-flex gap-1 align-items-center">
+                                            <input type="color" name="colorCardTitle" id="colorCardTitle" value="<?= $style->color_card_title ?>">
+                                            <input disabled type="text" class="form-control" id="afterColorCardTitle" value="<?= $style->color_card_title ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 d-flex flex-column">
+                                        <label for="colorCardContent">Warna Text Content Deskripsi</label>
+                                        <div class="d-flex gap-1 align-items-center">
+                                            <input type="color" name="colorCardContent" id="colorCardContent" value="<?= $style->color_card_content ?>">
+                                            <input disabled type="text" class="form-control" id="afterColorCardContent" value="<?= $style->color_card_content ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-6 d-flex flex-column">
+                                        <label for="colorTextNameProduct">Warna Text Product</label>
+                                        <div class="d-flex gap-1 align-items-center">
+                                            <input type="color" name="colorTextNameProduct" id="colorTextNameProduct" value="<?= $style->color_text_name_product ?>">
+                                            <input disabled type="text" class="form-control" id="afterColorTextNameProduct" value="<?= $style->color_text_name_product ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 d-flex flex-column">
+                                        <label for="colorButton">Warna Button</label>
+                                        <div class="d-flex gap-1 align-items-center">
+                                            <input type="color" name="colorButton" id="colorButton" value="<?= $style->color_button ?>">
+                                            <input disabled type="text" class="form-control" id="afterColorButton" value="<?= $style->color_button ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-6 d-flex flex-column">
+                                        <label for="colorCardProduct">Warna Card Product</label>
+                                        <div class="d-flex gap-1 align-items-center">
+                                            <input type="color" name="colorCardProduct" id="colorCardProduct" value="<?= $style->color_card_product ?>">
+                                            <input disabled type="text" class="form-control" id="afterColorCardProduct" value="<?= $style->color_card_product ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 d-flex flex-column">
+                                        <label for="colorTextCardProduct">Warna Text Card Product</label>
+                                        <div class="d-flex gap-1 align-items-center">
+                                            <input type="color" name="colorTextCardProduct" id="colorTextCardProduct" value="<?= $style->color_text_card_product ?>">
+                                            <input disabled type="text" class="form-control" id="afterColorTextCardProduct" value="<?= $style->color_text_card_product ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-6 d-flex flex-column">
+                                        <label for="directionCard">Direction Card</label>
+                                        <div class="d-flex gap-1 align-items-center">
+                                            <select name="directionCard" id="directionCard" class="form-control">
+                                                <option value="1" <?= $style->direction_card == 1 ? 'selected' : '' ?>>Row</option>
+                                                <option value="2" <?= $style->direction_card == 2 ? 'selected' : '' ?>>Column</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 d-flex flex-column">
+                                        <label for="directionTextTitleDescription">Direction Title Card</label>
+                                        <div class="d-flex gap-1 align-items-center">
+                                            <select name="directionTextTitleDescription" id="directionTextTitleDescription" class="form-control">
+                                                <option value="left" <?= $style->direction_text_title_description == 'left' ? 'selected' : '' ?>>left</option>
+                                                <option value="center" <?= $style->direction_text_title_description == 'center' ? 'selected' : '' ?>>center</option>
+                                                <option value="right" <?= $style->direction_text_title_description == 'right' ? 'selected' : '' ?>>right</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btnnew">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="tambah-desc-<?php echo $sessionmember["id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title fbold" id="exampleModalLabel">Tambah Deskripsi
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </h4>
+            </div>
+            <form action="<?php echo base_url() ?>member/store/tambah_description" method="POST" enctype="multipart/form-data" id="formCover">
+                <div class="modal-body" style="max-height: 50vh; overflow-y:scroll;">
+                    <div class="row d-flex flex-column gap-3">
+                        <div class="col-lg-12">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" name="title">
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="title_direction">Direction Title</label>
+                            <select type="text" class="form-control" name="title_direction">
+                                <option value="left" selected>Left</option>
+                                <option value="center">Center</option>
+                                <option value="right">Right</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="content">Content</label>
+                            <textarea type="text" class="form-control" id="contentDescription" name="content"></textarea>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label for="uploadBtn">Image Desc</label>
+                                    <input type="file" id="uploadBtn" name="image_desc" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
+                                    <a href="#" id="filetext" name="image_desc" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
+                                </div>
+                                <div class="col-lg-4 text-muted">
+                                    <img src="" class="blah img-fluid" style="max-height: 100px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="icon">Icon <a href="https://fontawesome.com/v4/icons" target="_blank" class="f12">Cek Icon</a></label>
+                            <input type="text" class="form-control" name="icon">
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="is_image">Tipe yang ingin ditampilkan</label>
+                            <div class="d-flex flex-row gap-3">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="is_image" id="is_image" value="1">
+                                    <label class="form-check-label" for="is_image">Image</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="is_image" id="is_icon" value="0">
+                                    <label class="form-check-label" for="is_icon">Icon</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="index">Index</label>
+                            <input type="text" class="form-control" name="index">
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="direction_image">Direction Image</label>
+                            <select type="text" class="form-control" name="direction_image">
+                                <option value="0">Right</option>
+                                <option value="1">Left</option>
+                            </select>
+                            <small class="text-gray">NB : saat memilih column untuk direction card</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btnnew">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<?php foreach ($stores->descriptions as $modalStore) : ?>
+    <div class="modal fade" id="edit-desc-<?= $modalStore->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title fbold" id="exampleModalLabel">Edit Description
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </h4>
+                </div>
+                <form action="<?php echo base_url() ?>member/store/edit_description/<?= $modalStore->id ?>" method="POST" enctype="multipart/form-data" id="formCover">
+                    <div class="modal-body" style="max-height: 50vh; overflow-y:scroll;">
+                        <div class="row d-flex flex-column gap-2">
+                            <div class="col-lg-12">
+                                <label for="title">Title</label>
+                                <input type="text" class="form-control" name="title" value="<?= $modalStore->title ?>">
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="title_direction">Direction Title</label>
+                                <select type="text" class="form-control" name="title_direction">
+                                    <option value="left" <?= $modalStore->title_direction == 'left' ? 'selected' : '' ?>>Left</option>
+                                    <option value="center" <?= $modalStore->title_direction == 'center' ? 'selected' : '' ?>>Center</option>
+                                    <option value="right" <?= $modalStore->title_direction == 'right' ? 'selected' : '' ?>>Right</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="content">Content</label>
+                                <textarea type="text" class="form-control content-edit-description" data-id="<?= $modalStore->id ?>" id="contentEditDescription-<?= $modalStore->id ?>" name="content"><?= $modalStore->content ?></textarea>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <label for="uploadBtn">Image Desc</label>
+                                        <input type="file" id="uploadBtn" name="image_desc" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
+                                        <a href="#" id="filetext" name="image_desc" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
+                                    </div>
+                                    <div class="col-lg-4 text-muted">
+                                        <img src="" class="blah img-fluid" style="max-height: 100px;">
+                                    </div>
+                                    <input type="hidden" name="nameImage" value="<?= $modalStore->image ?>">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="icon">Icon <a href="https://fontawesome.com/v4/icons" target="_blank" class="f12">Cek Icon</a></label>
+                                <input type="text" class="form-control" name="icon" value="<?= $modalStore->icon ?>">
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="is_image">Tipe yang ingin ditampilkan</label>
+                                <div class="d-flex flex-row gap-3">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="is_image" id="is_image" value="1" <?= $modalStore->is_image == 1 ? 'checked' : '' ?>>
+                                        <label class="form-check-label" for="is_image">Image</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="is_image" id="is_icon" value="0" <?= $modalStore->is_image == 0 ? 'checked' : '' ?>>
+                                        <label class="form-check-label" for="is_icon">Icon</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="index">Index</label>
+                                <input type="text" class="form-control" name="index" value="<?= $modalStore->index ?>">
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="direction_image">Direction Image</label>
+                                <select type="text" class="form-control" name="direction_image">
+                                    <option value="0" <?= $modalStore->direction_image == 0 ? 'selected' : '' ?>>Right</option>
+                                    <option value="1" <?= $modalStore->direction_image == 1 ? 'selected' : '' ?>>Left</option>
+                                </select>
+                                </select>
+                                <small class="text-gray">NB : saat memilih column untuk direction card</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btnnew">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+<?php foreach ($stores->descriptions as $modalDesc) : ?>
+    <div class="modal fade" id="detail-desc-<?= $modalDesc->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title fbold" id="exampleModalLabel">Detail Deskripsi
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row d-flex flex-column gap-2">
+                        <div class="col-lg-12">
+                            <p><?= $modalDesc->content ?></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+<div class="modal fade" id="edit-cover-desktop-<?php echo $sessionmember["id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title fbold" id="exampleModalLabel">Edit Cover
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </h4>
+            </div>
+            <form action="<?php echo base_url() ?>member/store/upload_cover_store" method="POST" enctype="multipart/form-data" id="formCover">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <small>Gambar(.jpg)/File(.pdf)</small>
+                                    <input type="file" id="uploadBtn" name="cover" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
+                                    <a href="#" id="filetext" name="file" type="button" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
+                                </div>
+                                <div class="col-lg-4">
+                                    <p>Gambar Saat Ini</p>
+                                    <img src="<?= base_url() ?>public/image/store/cover/<?= $stores->cover ?>" class="img-fluid" style="max-height: 100px;">
+                                </div>
+                                <div class="col-lg-4">
+                                    <p>Gambar Ganti</p>
+                                    <img src="" class="blah img-fluid" style="max-height: 100px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="d-flex flex-column gap-1">
+                                <p class="f12">NB : </p>
+                                <p class="text-dark">Size : 1440 x 300px</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btnnew">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="edit-cover-mobile-<?php echo $sessionmember["id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title fbold" id="exampleModalLabel">Edit Cover
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </h4>
+            </div>
+            <form action="<?php echo base_url() ?>member/store/upload_cover_store_mobile" method="POST" enctype="multipart/form-data" id="formCoverMobile">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <small>Gambar(.jpg)/File(.pdf)</small>
+                                    <input type="file" id="uploadBtn" name="cover" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
+                                    <a href="#" id="filetext" name="file" type="button" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
+                                </div>
+                                <div class="col-lg-4">
+                                    <p>Gambar Saat Ini</p>
+                                    <img src="<?= base_url() ?>public/image/store/cover/<?= $stores->cover_mobile ?>" class="img-fluid" style="max-height: 100px;">
+                                </div>
+                                <div class="col-lg-4">
+                                    <p>Gambar Ganti</p>
+                                    <img src="" class="blah img-fluid" style="max-height: 100px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="d-flex flex-column gap-1">
+                                <p class="f12">NB : </p>
+                                <p class="text-dark">Size : 390 x 250px</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btnnew">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="edit-banner-utama-desktop-<?php echo $sessionmember["id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title fbold" id="exampleModalLabel">Edit Banner Utama
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </h4>
+            </div>
+            <form action="<?php echo base_url() ?>member/store/upload_banner_utama" method="POST" enctype="multipart/form-data" id="formBannerUtama">
+                <div class="modal-body">
+                    <div class="row d-flex flex-column gap-2">
+                        <div class="col-lg-12">
+                            <input type="text" name="idBanner" value="<?= isset($bannerUtama[0]) ? $bannerUtama[0]->id : '' ?>" hidden>
+                            <label for="link">Link</label>
+                            <select name="link" id="link" class="form-control">
+                                <option value="#">Tidak Ada</option>
+                                <?php foreach ($products as $product) : ?>
+                                    <option value="<?= $product['id'] ?>" <?php if (isset($bannerUtama[0])) {
+                                                                                if ($bannerUtama[0]->link == $product['id']) {
+                                                                                    echo 'selected';
+                                                                                }
+                                                                            }; ?>><?= $product['tittle'] ?> <?= $product['partnumber'] == '' ? '' : '- ' . $product['partnumber'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label for="uploadBtn">Gambar</label>
+                                    <input type="file" id="uploadBtn" name="bannerUtama" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
+                                    <a href="#" id="filetext" name="file" type="button" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
+                                </div>
+                                <?php if (isset($bannerUtama[0])) : ?>
+                                    <div class="col-lg-8">
+                                        <p>Gambar Saat Ini</p>
+                                        <img src="<?= base_url('public/image/store/banner/' . $bannerUtama[0]->source); ?>" alt="Default Cover" style="max-height:100px">
+                                    </div>
+                                <?php endif; ?>
+                                <div class="<?= isset($bannerUtama[0]) ? 'col-lg-offset-4' : '' ?> col-lg-8">
+                                    <p>Gambar Ganti</p>
+                                    <img src="" class="blah img-fluid" style="max-height: 100px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="d-flex flex-column gap-1">
+                                <p class="f12">NB : </p>
+                                <p class="text-dark">Size : 1170 x 400px</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btnnew">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="edit-banner-utama-mobile-<?php echo $sessionmember["id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title fbold" id="exampleModalLabel">Edit Banner Utama
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </h4>
+            </div>
+            <form action="<?php echo base_url() ?>member/store/upload_banner_utama_mobile" method="POST" enctype="multipart/form-data" id="formBannerUtamaMobile">
+                <div class="modal-body">
+                    <div class="row d-flex flex-column gap-2">
+                        <div class="col-lg-12">
+                            <input type="text" name="idBanner" value="<?= isset($bannerUtamaMobile[0]) ? $bannerUtamaMobile[0]->id : '' ?>" hidden>
+                            <label for="link">Link</label>
+                            <select name="link" id="link" class="form-control">
+                                <option value="#">Tidak Ada</option>
+                                <?php foreach ($products as $product) : ?>
+                                    <option value="<?= $product['id'] ?>" <?php if (isset($bannerUtamaMobile[0])) {
+                                                                                if ($bannerUtamaMobile[0]->link == $product['id']) {
+                                                                                    echo 'selected';
+                                                                                }
+                                                                            }; ?>><?= $product['tittle'] ?> <?= $product['partnumber'] == '' ? '' : '- ' . $product['partnumber'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label for="uploadBtn">Gambar</label>
+                                    <input type="file" id="uploadBtn" name="bannerUtama" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
+                                    <a href="#" id="filetext" name="file" type="button" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
+                                </div>
+                                <div class="col-lg-8">
+                                    <p>Gambar Saat Ini</p>
+                                    <img src="<?= base_url('public/image/store/banner/' . $bannerUtamaMobile[0]->source); ?>" alt="Default Cover" style="max-height:100px">
+                                </div>
+                                <div class="col-lg-offset-4 col-lg-8">
+                                    <p>Gambar Ganti</p>
+                                    <img src="" class="blah img-fluid" style="max-height: 100px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="d-flex flex-column gap-1">
+                                <p class="f12">NB : </p>
+                                <p class="text-dark">Size : 360 x 200px</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btnnew">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="edit-banner-1-desktop-<?php echo $sessionmember["id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title fbold" id="exampleModalLabel">Edit Banner 1
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </h4>
+            </div>
+            <form action="<?php echo base_url() ?>member/store/upload_banner_1" method="POST" enctype="multipart/form-data" id="formBanner1">
+                <div class="modal-body">
+                    <div class="row d-flex flex-column gap-2">
+                        <div class="col-lg-12">
+                            <input type="text" name="idBanner" value="<?= isset($banner1[0]) ? $banner1[0]->id : '' ?>" hidden>
+                            <label for="link">Link</label>
+                            <select name="link" id="link" class="form-control">
+                                <option value="#">Tidak Ada</option>
+                                <?php foreach ($products as $product) : ?>
+                                    <option value="<?= $product['id'] ?>" <?php if (isset($banner1[0])) {
+                                                                                if ($banner1[0]->link == $product['id']) {
+                                                                                    echo 'selected';
+                                                                                }
+                                                                            }; ?>><?= $product['tittle'] ?> <?= $product['partnumber'] == '' ? '' : '- ' . $product['partnumber'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label for="uploadBtn">Gambar</label>
+                                    <input type="file" id="uploadBtn" name="banner1" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
+                                    <a href="#" id="filetext" name="file" type="button" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
+                                </div>
+                                <div class="col-lg-8">
+                                    <p>Gambar Saat Ini</p>
+                                    <img src="<?= base_url('public/image/store/banner/' . $banner1[0]->source); ?>" alt="Default Cover" style="max-height:100px">
+                                </div>
+                                <div class="col-lg-offset-4 col-lg-8">
+                                    <p>Gambar Ganti</p>
+                                    <img src="" class="blah img-fluid" style="max-height: 100px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="d-flex flex-column gap-1">
+                                <p class="f12">NB : </p>
+                                <p class="f12">Jika 1 Banner</p>
+                                <p class="text-dark">Size : 1170 x 200px</p>
+                                <p class="f12">Jika 2 Banner</p>
+                                <p class="text-dark">Size : 570 x 200px</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btnnew">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="edit-banner-1-mobile-<?php echo $sessionmember["id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title fbold" id="exampleModalLabel">Edit Banner 1 Mobile
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </h4>
+            </div>
+            <form action="<?php echo base_url() ?>member/store/upload_banner_1_mobile" method="POST" enctype="multipart/form-data" id="formBanner1Mobile">
+                <div class=" modal-body">
+                    <div class="row d-flex flex-column gap-2">
+                        <div class="col-lg-12">
+                            <input type="text" name="idBanner" value="<?= isset($banner1Mobile[0]) ? $banner1Mobile[0]->id : '' ?>" hidden>
+                            <label for="link">Link</label>
+                            <select name="link" id="link" class="form-control">
+                                <option value="#">Tidak Ada</option>
+                                <?php foreach ($products as $product) : ?>
+                                    <option value="<?= $product['id'] ?>" <?php if (isset($banner1Mobile[0])) {
+                                                                                if ($banner1Mobile[0]->link == $product['id']) {
+                                                                                    echo 'selected';
+                                                                                }
+                                                                            }; ?>><?= $product['tittle'] ?> <?= $product['partnumber'] == '' ? '' : '- ' . $product['partnumber'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label for="uploadBtn">Gambar</label>
+                                    <input type="file" id="uploadBtn" name="banner1" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
+                                    <a href="#" id="filetext" name="file" type="button" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
+                                </div>
+                                <div class="col-lg-8">
+                                    <p>Gambar Saat Ini</p>
+                                    <img src="<?= base_url('public/image/store/banner/' . $banner1Mobile[0]->source); ?>" alt="Default Cover" style="max-height:100px">
+                                </div>
+                                <div class="col-lg-offset-4 col-lg-8">
+                                    <p>Gambar Ganti</p>
+                                    <img src="" class="blah img-fluid" style="max-height: 100px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="d-flex flex-column gap-1">
+                                <p class="f12">NB : </p>
+                                <p class="text-dark">Size : 360 x 100px</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btnnew">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="edit-banner-2-desktop-<?php echo $sessionmember["id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title fbold" id="exampleModalLabel">Edit Banner 2
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </h4>
+            </div>
+            <form action="<?php echo base_url() ?>member/store/upload_banner_2" method="POST" enctype="multipart/form-data" id="formBanner2">
+                <div class=" modal-body">
+                    <div class="row d-flex flex-column gap-2">
+                        <div class="col-lg-12">
+                            <input type="text" name="idBanner" value="<?= isset($banner2[0]) ? $banner2[0]->id : '' ?>" hidden>
+                            <label for="link">Link</label>
+                            <select name="link" id="link" class="form-control">
+                                <option value="#">Tidak Ada</option>
+                                <?php foreach ($products as $product) : ?>
+                                    <option value="<?= $product['id'] ?>" <?php if (isset($banner2[0])) {
+                                                                                if ($banner2[0]->link == $product['id']) {
+                                                                                    echo 'selected';
+                                                                                }
+                                                                            }; ?>><?= $product['tittle'] ?> <?= $product['partnumber'] == '' ? '' : '- ' . $product['partnumber'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label for="uploadBtn">Gambar</label>
+                                    <input type="file" id="uploadBtn" name="banner2" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
+                                    <a href="#" id="filetext" name="file" type="button" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
+                                </div>
+                                <div class="col-lg-8">
+                                    <p>Gambar Saat Ini</p>
+                                    <img src="<?= base_url('public/image/store/banner/' . $banner2[0]->source); ?>" alt="Default Cover" style="max-height:100px">
+                                </div>
+                                <div class="col-lg-offset-4 col-lg-8">
+                                    <p>Gambar Ganti</p>
+                                    <img src="" class="blah img-fluid" style="max-height: 100px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="d-flex flex-column gap-1">
+                                <p class="f12">NB : </p>
+                                <p class="f12">Jika 1 Banner</p>
+                                <p class="text-dark">Size : 1170 x 200px</p>
+                                <p class="f12">Jika 2 Banner</p>
+                                <p class="text-dark">Size : 570 x 200px</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btnnew">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="edit-banner-2-mobile-<?php echo $sessionmember["id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title fbold" id="exampleModalLabel">Edit Banner 2 Mobile
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </h4>
+            </div>
+            <form action="<?php echo base_url() ?>member/store/upload_banner_2_mobile" method="POST" enctype="multipart/form-data" id="formBanner2Mobile">
+                <div class=" modal-body">
+                    <div class="row d-flex flex-column gap-2">
+                        <div class="col-lg-12">
+                            <input type="text" name="idBanner" value="<?= isset($banner2Mobile[0]) ? $banner2Mobile[0]->id : '' ?>" hidden>
+                            <label for="link">Link</label>
+                            <select name="link" id="link" class="form-control">
+                                <option value="#">Tidak Ada</option>
+                                <?php foreach ($products as $product) : ?>
+                                    <option value="<?= $product['id'] ?>" <?php if (isset($banner2Mobile[0])) {
+                                                                                if ($banner2Mobile[0]->link == $product['id']) {
+                                                                                    echo 'selected';
+                                                                                }
+                                                                            }; ?>><?= $product['tittle'] ?> <?= $product['partnumber'] == '' ? '' : '- ' . $product['partnumber'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label for="uploadBtn">Gambar</label>
+                                    <input type="file" id="uploadBtn" name="banner2" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
+                                    <a href="#" id="filetext" name="file" type="button" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
+                                </div>
+                                <div class="col-lg-8">
+                                    <p>Gambar Saat Ini</p>
+                                    <img src="<?= base_url('public/image/store/banner/' . $banner2Mobile[0]->source); ?>" alt="Default Cover" style="max-height:100px">
+                                </div>
+                                <div class="col-lg-offset-4 col-lg-8">
+                                    <p>Gambar Ganti</p>
+                                    <img src="" class="blah img-fluid" style="max-height: 100px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="d-flex flex-column gap-1">
+                                <p class="f12">NB : </p>
+                                <p class="text-dark">Size : 360 x 100px</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btnnew">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

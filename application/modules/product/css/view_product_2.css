@@ -1,0 +1,17 @@
+.bg-highlight {
+  background-color: rgb(241, 241, 241);
+}
+.color-highlight {
+  color: rgb(241, 241, 241);
+}
+.breadcrumb {
+  font-size: 0.8rem;
+}
+
+.rate {
+  display: flex;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  grid-column-gap: 0.5rem;
+  overflow: hidden; /* Hide the overflow */
+  position: relative;
+}

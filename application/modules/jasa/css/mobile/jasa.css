@@ -1,0 +1,12 @@
+.card-jasa h6{
+display: inline-block;
+font-size: 15px;
+font-weight: 700;
+color: black;
+text-align: center;
+}
+.card-jasa img{
+    padding: 10px 20px;
+    width: 100px;
+    height: 80px;
+}

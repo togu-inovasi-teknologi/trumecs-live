@@ -1,0 +1,80 @@
+.gradient-black-white {
+  background-image: linear-gradient(to right, black, white);
+}
+.container-fluid::after,
+.container::after {
+  /*content: none !important;
+  display: none !important;*/
+}
+
+.bg-card-mechanic {
+  background-color: #fafafa;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.image-container {
+  position: relative; /* Membuat container sebagai referensi posisi */
+  height: 180px; /* Tinggi sesuai kebutuhan */
+  width: 200px; /* Lebar sesuai kebutuhan */
+  overflow: hidden; /* Menyembunyikan bagian gambar yang keluar dari container */
+  background-color: transparent; /* Sesuaikan sesuai desain */
+}
+.image-container-mobile {
+  position: relative; /* Membuat container sebagai referensi posisi */
+  height: 100px; /* Tinggi sesuai kebutuhan */
+  width: 140px; /* Lebar sesuai kebutuhan */
+  overflow: hidden; /* Menyembunyikan bagian gambar yang keluar dari container */
+  background-color: transparent; /* Sesuaikan sesuai desain */
+}
+
+.image-full {
+  position: absolute; /* Membuat gambar mengikuti posisi relatif container */
+  top: 50%; /* Memindahkan gambar ke tengah secara vertikal */
+  left: 50%; /* Memindahkan gambar ke tengah secara horizontal */
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Memastikan pusat gambar berada di tengah container */
+  height: 100%; /* Memastikan gambar memenuhi tinggi container */
+  width: auto; /* Biarkan lebar menyesuaikan proporsi gambar */
+  min-width: 100%; /* Memastikan gambar selalu memenuhi lebar container */
+}
+
+.slick-dots {
+  position: absolute;
+  bottom: -45px;
+  display: block;
+  width: fit-content !important;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+.border-orange {
+  border: 1px solid #ff9800;
+}
+
+#img-gallery {
+  cursor: pointer;
+  transition: 0.3s;
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  object-position: center;
+}
+
+#img-gallery-mobile {
+  cursor: pointer;
+  transition: 0.3s;
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  object-position: center;
+}
+
+#img-gallery:hover {
+  opacity: 0.7;
+}

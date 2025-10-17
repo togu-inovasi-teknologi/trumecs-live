@@ -1,0 +1,40 @@
+<?php 
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+$lang['label_spesifikasi'] = '规范化';
+$lang['label_pengiriman'] = '交付';
+$lang['label_deskripsi'] = '产品描述';
+$lang['label_detail_produk'] = '产品详情';
+$lang['attr_partnumber'] = '零件号';
+$lang['attr_minimum_pembelian'] = '最少数量';
+$lang['attr_kategori'] = '类别';
+$lang['attr_merk'] = '品牌';
+$lang['attr_berat'] = '体重';
+$lang['attr_kemasan'] = '包装';
+$lang['attr_grade'] = '等级';
+$lang['attr_garansi'] = '保修';
+$lang['attr_ketersediaan'] = '可用性';
+$lang['attr_est_pengiriman'] = '预计交货';
+$lang['attr_stok'] = '库存';
+$lang['attr_dikirim_dari'] = '交付自';
+$lang['attr_merk_unit'] = '单位品牌';
+$lang['attr_type_unit'] = '单位类型';
+$lang['judul_produk_terkait'] = '相关产品';
+$lang['judul_informasi_terkait'] = '相关信息';
+$lang['judul_cta'] = '有兴趣';
+$lang['judul_sub_cta'] = '问一下';
+$lang['konten_sub_cta'] = '将此商品与其他商品一​​起添加到购物车。然后发送您的报价询价。';
+$lang['label_input_qty'] = '设置数量';
+$lang['label_qty_tersisa'] = '剩余';
+$lang['label_cta_kontak'] = '或者直接通过询问';
+$lang['seo_title'] = '卖';
+$lang['seo_description'] = '卖出 %s。访问 Trumecs.com 以获得最优惠的价格';
+$lang['judul_video'] = '视频';
+$lang['info_indent_judul'] = '还没有';
+$lang['info_indent_konten'] = '请注册以获得更快的采购流程';
+$lang['info_indent_kontak'] = '此产品暂无，如需请联系客服。';
+
+$lang['seo_title_halaman_buy'] = '询价';
+$lang['seo_description_halaman_buy'] = '请求 %s 的报价。访问 Trumecs.com 以获得最优惠的价格';
+$lang['judul_halaman_buy'] = '告诉我们你需要什么？';
+$lang['subjudul_halaman_buy'] = '请填写下表';

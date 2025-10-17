@@ -1,0 +1,120 @@
+.blinking {
+  animation: blinkingText 1.2s infinite;
+}
+
+.__highlight_price {
+  padding: 5px 10px;
+}
+
+@keyframes blinkingText {
+  0% {
+    color: #000;
+  }
+
+  49% {
+    color: #000;
+  }
+
+  60% {
+    color: transparent;
+  }
+
+  99% {
+    color: transparent;
+  }
+
+  100% {
+    color: #000;
+  }
+}
+
+.cod-button.active,
+.cbd-button.active {
+  background: #fa8420;
+  color: #fff !important;
+}
+
+.ticket {
+  position: relative;
+  box-sizing: border-box;
+  width: auto;
+  margin: 15px auto 15px;
+  padding: 10px;
+  border-radius: 10px;
+  background: #fbfbfb;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+.ticket-active {
+  background: #fa8420;
+  color: #fff;
+}
+
+.ticket.ticket-active:before {
+  top: -5px;
+  background: radial-gradient(
+      circle,
+      transparent,
+      transparent 50%,
+      #fa8420 50%,
+      #fa8420 100%
+    ) -7px -8px/16px 16px repeat-x;
+}
+
+.ticket.ticket-active:after {
+  bottom: -5px;
+  background: radial-gradient(
+      circle,
+      transparent,
+      transparent 50%,
+      #fa8420 50%,
+      #fa8420 100%
+    ) -7px -2px/16px 16px repeat-x;
+}
+
+.ticket:before,
+.ticket:after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  height: 6px;
+  width: 95%;
+}
+
+.ticket:before {
+  top: -5px;
+  background: radial-gradient(
+      circle,
+      transparent,
+      transparent 50%,
+      #fbfbfb 50%,
+      #fbfbfb 100%
+    ) -7px -8px/16px 16px repeat-x;
+}
+
+.ticket:after {
+  bottom: -5px;
+  background: radial-gradient(
+      circle,
+      transparent,
+      transparent 50%,
+      #fbfbfb 50%,
+      #fbfbfb 100%
+    ) -7px -2px/16px 16px repeat-x;
+}
+
+.ticket__content {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.ticket-active .ticket__content .ticket__text {
+  color: #fff !important;
+}
+
+.ticket__text {
+  width: auto;
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-weight: 900;
+  color: #333;
+}

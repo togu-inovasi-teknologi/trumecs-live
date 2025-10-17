@@ -1,0 +1,119 @@
+.submenu-category {
+  padding: 2rem 0;
+}
+
+.submenu-category-item {
+  padding: 0.5rem;
+  border: 1px solid #eee;
+  transition: all 0.3s ease;
+  height: 90px;
+  position: relative;
+  background: #f6f6f7;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.submenu-category-item:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+}
+.submenu-category-item.active {
+  background: #e0f7fa;
+  border-color: #4dd0e1;
+  box-shadow: 0 5px 15px rgba(77, 208, 225, 0.3);
+}
+
+.submenu-category-item.active::after {
+  content: "✓";
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+  color: #4dd0e1;
+  font-weight: bold;
+}
+
+.submenu-category-item p {
+  z-index: 2;
+}
+
+.submenu-category-item img {
+  max-height: 120px;
+  object-fit: cover;
+  margin: 0 auto;
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  z-index: 1;
+}
+
+.brand-category {
+  padding: 2rem 0;
+}
+
+.brand-category-item {
+  padding: 0.2rem;
+  border: 1px solid #eee;
+  transition: all 0.3s ease;
+  position: relative;
+  background: #f6f6f7;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.brand-category-item:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+}
+
+.brand-category-item.active {
+  background: #e0f7fa;
+  border-color: #4dd0e1;
+  box-shadow: 0 5px 15px rgba(77, 208, 225, 0.3);
+}
+
+.brand-category-item.active::after {
+  content: "✓";
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+  color: #4dd0e1;
+  font-weight: bold;
+}
+
+.brand-category-item img {
+  height: 50px;
+}
+
+.float {
+  position: fixed;
+  bottom: 40px;
+  color: white;
+  background-color: black;
+  right: 9%;
+  width: 50% !important;
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  z-index: 9999;
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 60px;
+  color: white;
+  right: 15px;
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  z-index: 9999;
+}
