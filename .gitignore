@@ -57,5 +57,3 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /public/image/prospek/*
 /public/tmp/*
 /public
-/asset
-/export
