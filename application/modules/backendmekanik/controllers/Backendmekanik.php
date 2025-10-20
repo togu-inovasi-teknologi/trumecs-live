@@ -21,7 +21,7 @@ class Backendmekanik extends MX_Controller
         $data["js"] = array('/modules/backendmekanik/js/backendmekanik.js', base_url() . "asset/js/select2.min.js");
         $data['css'] = [base_url() . "asset/css/select2.min.css"];
         $data['content'] = 'listMekanik';
-        $this->load->view('backend/template_front1', $data);
+        $this->load->view('backend/template_front', $data);
     }
     public function detail_mekanik($id)
     {
@@ -37,7 +37,7 @@ class Backendmekanik extends MX_Controller
         $data['mechanic_file'] = $this->Mechanic_model->getProductFile($id);
         $data['mechanic_gallery'] = $this->Mechanic_model->getGalleryExpert($id);
         $data['content'] = 'detailMekanik';
-        $this->load->view('backend/template_front1', $data);
+        $this->load->view('backend/template_front', $data);
     }
     public function add_mekanik()
     {
@@ -49,7 +49,7 @@ class Backendmekanik extends MX_Controller
         $data["js"] = array('/modules/backendmekanik/js/backendmekanik.js', base_url() . "asset/js/select2.min.js");
         $data['css'] = [base_url() . "asset/css/select2.min.css"];
         $data['content'] = 'addMekanik';
-        $this->load->view('backend/template_front1', $data);
+        $this->load->view('backend/template_front', $data);
     }
 
     public function organizationList()
@@ -318,7 +318,7 @@ class Backendmekanik extends MX_Controller
         $data["js"] = array('/modules/backendmekanik/js/backendmekanik.js', base_url() . "asset/js/select2.min.js");
         $data['css'] = [base_url() . "asset/css/select2.min.css"];
         $data['content'] = 'editMekanik';
-        $this->load->view('backend/template_front1', $data);
+        $this->load->view('backend/template_front', $data);
     }
     public function editMekanik($id)
     {

@@ -86,7 +86,7 @@ class Home extends MX_Controller
             $data["css"] = array(base_url() . 'asset/css/input_tag.css', base_url() . 'asset/css/algolia_autocomplete.css', base_url() . 'asset/css/drag_file.css', base_url() . 'asset/js/slick/slick.scss', base_url() . 'asset/css/cari_page.css', base_url() . 'asset/css/table_compare.css', '/modules/home/css/mobile/landpage.css', "/modules/member/css/member.css");
         }
 
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function shareComparasion()
@@ -289,7 +289,7 @@ class Home extends MX_Controller
             $data["css"] = array(base_url() . 'asset/js/slick/slick.scss', base_url() . 'asset/css/cari_page.css', "/modules/home/css/mobile/view-home.css");
         }
 
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function used()
@@ -334,7 +334,7 @@ class Home extends MX_Controller
             $data["css"] = array(base_url() . 'asset/js/slick/slick.scss', base_url() . 'asset/css/cari_page.css');
         }
 
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function landingpage()
@@ -345,7 +345,7 @@ class Home extends MX_Controller
     public function notfound404()
     {
         $data['content'] = 'notfound404';
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function sendwa()
@@ -379,7 +379,7 @@ class Home extends MX_Controller
         } else {
             $data['content'] = 'mobile/introduction';
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function vcard($name)

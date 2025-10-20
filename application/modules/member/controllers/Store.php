@@ -57,7 +57,7 @@ class Store extends MX_Controller
             $data["contentmember"] = "/mobile/store/_store_status";
         }
 
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function verification()
@@ -78,7 +78,7 @@ class Store extends MX_Controller
 
 
 
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function verification_store()
@@ -154,7 +154,7 @@ class Store extends MX_Controller
             $data['content'] = '/mobile/view_member';
             $data["contentmember"] = "/mobile/store/_verification_send";
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function store()
@@ -180,7 +180,7 @@ class Store extends MX_Controller
             $data['content'] = '/mobile/view_member';
             $data["contentmember"] = "/mobile/store/_store";
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function store_register()
@@ -378,7 +378,7 @@ class Store extends MX_Controller
             $data['content'] = '/mobile/view_member';
             $data["contentmember"] = "/mobile/store/_store_product";
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function getProductStore()
@@ -436,7 +436,7 @@ class Store extends MX_Controller
             $data['content'] = '/mobile/view_member';
             $data["contentmember"] = "/mobile/store/_store_addproduct";
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
 
@@ -466,7 +466,7 @@ class Store extends MX_Controller
             $data['content'] = '/mobile/view_member';
             $data["contentmember"] = "/mobile/store/_store_addproduct_jasa";
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
     public function store_addproduct_barang()
     {
@@ -485,7 +485,7 @@ class Store extends MX_Controller
             $data['content'] = '/mobile/view_member';
             $data["contentmember"] = "/mobile/store/_store_addproduct_barang";
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
     public function store_addproduct_rental()
     {
@@ -503,7 +503,7 @@ class Store extends MX_Controller
             $data['content'] = '/mobile/view_member';
             $data["contentmember"] = "/mobile/store/_store_addproduct_rental";
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
     public function setting()
     {
@@ -522,7 +522,7 @@ class Store extends MX_Controller
             $data["js"] = array(base_url() . "asset/js/validator/validator.js", base_url() . "asset/js/member_page.js", "modules/member/js/store/mobile/store.js");
         }
         $data["seotitle"] = "Member Area Trumecs";
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
     public function saldo()
     {
@@ -547,7 +547,7 @@ class Store extends MX_Controller
             $data['content'] = '/mobile/view_member';
             $data["contentmember"] = "/mobile/store/_listreferralstore";
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
     public function upload_produk()
     {

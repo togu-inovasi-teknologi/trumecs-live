@@ -68,7 +68,7 @@ class Bulk extends MX_Controller
         } else {
             $data['content'] = 'mobile/form_v3';
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     function toBulk()
@@ -96,7 +96,7 @@ class Bulk extends MX_Controller
     public function getAutocompleteProduct()
     {
         $this->load->model("c/c_model");
-        
+
         $keyword = $this->input->post('keyword');
         /*
         $data = $this->db->select("p.*, p.id as id")
@@ -112,32 +112,32 @@ class Bulk extends MX_Controller
             ->group_by("id")
             ->get()->result_array();
         */
-        
+
         $data["datasearch"] = array(
-			'tittle' => $keyword,
-			'partnumber' => $keyword,
-			'physicnumber' => $keyword,
-			'minp' => 0,
-			'maxp' => 999999999999999
-		);
+            'tittle' => $keyword,
+            'partnumber' => $keyword,
+            'physicnumber' => $keyword,
+            'minp' => 0,
+            'maxp' => 999999999999999
+        );
 
-		$data["datasearchor_like"] = array(
-			'tittle' => $keyword,
-			'partnumber' => $keyword,
-			'physicnumber' => $keyword
-		);
+        $data["datasearchor_like"] = array(
+            'tittle' => $keyword,
+            'partnumber' => $keyword,
+            'physicnumber' => $keyword
+        );
 
-		$data["datawhere"] = array(
-			'year' => NULL,
-			'promo' => NULL,
-			'cucigudang' => NULL,
-			'brand' => NULL,
-			'component' => NULL,
-			'component_type' => NULL,
-			'tipe' => NULL,
-			'quality' => NULL,
-		);
-            
+        $data["datawhere"] = array(
+            'year' => NULL,
+            'promo' => NULL,
+            'cucigudang' => NULL,
+            'brand' => NULL,
+            'component' => NULL,
+            'component_type' => NULL,
+            'tipe' => NULL,
+            'quality' => NULL,
+        );
+
         $data = $this->c_model->fetch_product(10, 0, $data["datasearch"], $data["datasearchor_like"], $data["datawhere"]);
 
         echo json_encode($data);
@@ -285,7 +285,7 @@ class Bulk extends MX_Controller
 
             $source['name'] = $nama;
             $source['phone'] = $no_telp;
-             $source['email'] = $this->input->post('email');
+            $source['email'] = $this->input->post('email');
             $source['province'] = $this->input->post('province');
             $source['district'] = $this->input->post("regency");
             $source['city'] = $this->input->post("district");
@@ -347,7 +347,7 @@ class Bulk extends MX_Controller
         } else {
             $data['content'] = 'mobile/success';
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function login()

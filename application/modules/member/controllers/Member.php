@@ -55,7 +55,7 @@ class Member extends MX_Controller
             $data["contentmember"] = "mobile/member/_akunpembeli";
         }
         $data["seotitle"] = "Member Area Trumecs";
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function session_store()
@@ -102,7 +102,7 @@ class Member extends MX_Controller
         $data["seotitle"] =  $this->lang->line("seo_title_signin", FALSE) . " - Trumecs.com";
         $data["seokeywords"] = "jual sparepart truk, promo sparepart,login";
         $data["seodescription"] = $this->lang->line("seo_description_signin", FALSE);
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function login_google()
@@ -166,7 +166,7 @@ class Member extends MX_Controller
         $data["js"] = array(base_url() . "asset/js/validator/validator.js", base_url() . "asset/js/member_page.js");
         $data["css"] = array(base_url() . "asset/css/member_page.css");
         $data['content'] = 'form_reset_page';
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function resetpassword()
@@ -334,7 +334,7 @@ class Member extends MX_Controller
         $data["css"] = array(base_url() . "asset/css/member_page.css");
         $data["js"] = array(base_url() . "asset/js/validator/validator.js", base_url() . "asset/js/member_page.js", base_url() . "asset/datatables/jquery.dataTables.min.js", base_url() . "asset/datatables/dataTables.bootstrap.min.js", "/modules/member/js/member/member.js");
         $data['content'] = 'signup_page';
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function indata()
@@ -414,7 +414,7 @@ class Member extends MX_Controller
     {
         $data["css"] = array(base_url() . "asset/css/member_page.css");
         $data['content'] = 'form_reset_page';
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function regex($value)
@@ -476,7 +476,7 @@ class Member extends MX_Controller
         $data["contentmember"] = "mobile/member/_settingakunpembeli";
         $data["js"] = array(base_url() . "asset/js/validator/validator.js", "modules/member/js/member/mobile/member.js");
         $data["seotitle"] = "Member Area Trumecs";
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function updatemember()
@@ -635,7 +635,7 @@ class Member extends MX_Controller
         $session = $this->session->all_userdata();
         $sessionmember = $session["member"];
         $data["store"] = $this->store_model->checkstore($sessionmember["id"]);
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function history_order($value = '')
@@ -662,7 +662,7 @@ class Member extends MX_Controller
             redirect(base_url() . 'member/notification');
             exit();
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function invoice($value = '')
@@ -712,7 +712,7 @@ class Member extends MX_Controller
             $data['content'] = 'mobile/view_member';
             $data["contentmember"] = "mobile/member/_confirmation_list";
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function confirmation_edit($value = '')
@@ -749,7 +749,7 @@ class Member extends MX_Controller
             $data["contentmember"] = "/mobile/member/_confirmation_edit";
         }
 
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function confirmation()
@@ -783,7 +783,7 @@ class Member extends MX_Controller
 
         #$data["listorder"]= $this->member_model->get_orderhistoryall($where);
         $data["listorder"] = $this->member_model->getorderdetailv_2($where);
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function confirmationwait()
@@ -962,7 +962,7 @@ class Member extends MX_Controller
         $where = array('idmember' => $sessionmember["id"]);
 
         $data["listcomplaint"] = $this->member_model->getclaim($where);
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function formreturn()
@@ -992,7 +992,7 @@ class Member extends MX_Controller
         $where = array('idmember' => $sessionmember["id"], "status !=" => "unpaid");
 
         $data["listorder"] = $this->member_model->get_orderhistoryall($where);
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function formgetproduct()
@@ -1173,7 +1173,7 @@ class Member extends MX_Controller
         $where = array('idmember' => $sessionmember["id"]);
 
         $data["list"] = $this->member_model->getcomplaintwarranty($where);
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function formwarranty()
@@ -1205,7 +1205,7 @@ class Member extends MX_Controller
         $where = array('idmember' => $sessionmember["id"], "status !=" => "unpaid");
 
         $data["listorder"] = $this->member_model->get_orderhistoryall($where);
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function formgetproductwarranty()
@@ -1383,7 +1383,7 @@ class Member extends MX_Controller
             $data['content'] = 'mobile/view_testimonial';
         }
         $data["testimonial"] = $this->member_model->gettestimonial();
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function testimoniallist()
@@ -1403,7 +1403,7 @@ class Member extends MX_Controller
             $data['content'] = 'mobile/view_member';
         }
         $data["testimonial"] = $this->member_model->gettestimonial($ses["member"]["id"]);
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function testimonialform()
@@ -1425,7 +1425,7 @@ class Member extends MX_Controller
             $data['content'] = 'mobile/view_member';
         }
         $data["testimonial"] = $this->member_model->gettestimonial($ses["member"]["id"]);
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function senttestimonial()
@@ -1505,7 +1505,7 @@ class Member extends MX_Controller
         $data["verifybysms"] = $ccc["forverifybyphone"];
         $data['content'] = 'verifybyphoneform';
         $data["js"] = array(base_url() . "asset/js/verifybyphoneform.js");
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function sentsms()
@@ -1609,7 +1609,7 @@ class Member extends MX_Controller
 
         $data['content'] = 'view_member';
         $data["contentmember"] = "member/_listpenawaran";
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function meeting()
@@ -1625,7 +1625,7 @@ class Member extends MX_Controller
 
         $data['content'] = 'view_member';
         $data["contentmember"] = "member/_listmeeting";
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function tender()
@@ -1640,7 +1640,7 @@ class Member extends MX_Controller
         $data['tender'] = $this->member_model->get_tender($sessionmember["id"]);
         $data['content'] = 'view_member';
         $data["contentmember"] = "member/_listtender";
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function get_detail_penawaran()
@@ -1675,7 +1675,7 @@ class Member extends MX_Controller
             $data['content'] = '/mobile/view_member';
             $data["contentmember"] = "/mobile/member/_listreferral";
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
     public function saldoHistory()
     {
@@ -1699,7 +1699,7 @@ class Member extends MX_Controller
             $data["contentmember"] = "/mobile/member/_listreferral_history";
             $data["js"] = array(base_url() . "asset/js/validator/validator.js", base_url() . "asset/js/member_page.js", base_url() . "asset/js/trumecs.effect.js",  "/modules/member/js/member/saldoHistory.js");
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function getSaldoHistory()
@@ -1790,7 +1790,7 @@ class Member extends MX_Controller
             $data['content'] = '/mobile/view_member';
             $data["contentmember"] = "/mobile/member/_formwithdrawal";
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function setwithdraw()
@@ -1858,7 +1858,7 @@ class Member extends MX_Controller
         $data['detail'] = $this->member_model->get_tender($sessionmember["id"]);
         $data['content'] = 'view_member';
         $data["contentmember"] = "member/_detailwithdraw";
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function referral_detail($id)
@@ -1873,7 +1873,7 @@ class Member extends MX_Controller
         $data['referral'] = $this->member_model->get_tender($sessionmember["id"]);
         $data['content'] = 'view_member';
         $data["contentmember"] = "member/_detailreferral";
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function bulk()
@@ -1940,7 +1940,7 @@ class Member extends MX_Controller
             $data['content'] = '/mobile/view_member';
             $data["contentmember"] = "/mobile/member/_bulk";
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
     public function bulkJson()
     {
@@ -1977,7 +1977,7 @@ class Member extends MX_Controller
             $data['content'] = '/mobile/view_member';
             $data["contentmember"] = "/mobile/member/_bulk_history";
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     function bulk_save()
@@ -2154,7 +2154,7 @@ class Member extends MX_Controller
             $data['content'] = '/mobile/view_member';
             $data["contentmember"] = "mobile/member/_buat_toko";
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function formBuatToko()
@@ -2174,7 +2174,7 @@ class Member extends MX_Controller
             $data['content'] = '/mobile/view_member';
             $data["contentmember"] = "mobile/member/_form_buat_toko";
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function getBulk()

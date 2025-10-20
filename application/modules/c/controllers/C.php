@@ -32,7 +32,7 @@ class C extends MX_Controller
 	}
 	function _remap($param)
 	{
-		
+
 		$this->init($param);
 	}
 
@@ -103,7 +103,7 @@ class C extends MX_Controller
 	{
 		// var_dump($this->uri->segment(1));
 		// die;
-		
+
 		$this->data["idcomponent"] = "";
 		$this->data["idsub"] = "";
 		$this->data["idtype"] = "";
@@ -112,8 +112,8 @@ class C extends MX_Controller
 		$this->data['category'] = $this->c_model->get_category();
 
 		if ($this->uri->segment(1) == "c" || $this->uri->segment(1) == "cari") {
-		
-			
+
+
 			$this->check_type(); /* Pencarian all */
 
 			$this->set_copy();
@@ -225,14 +225,14 @@ class C extends MX_Controller
 			$this->_search_component();
 			/* }; */
 
-			
+
 			$this->data["links"] = $this->pagination->create_links();
 		} elseif ($this->uri->segment(2) == "") {
-			
+
 			redirect(base_url());
 		}
 
-		
+
 
 		$this->stringtitle = "Daftar harga ";
 		$this->stringtitle .= ($this->namecomponent != "") ? $this->namecomponent . " " : "";
@@ -324,6 +324,6 @@ class C extends MX_Controller
 		$this->data["js"] = array(base_url() . "asset/js/number/jquery.number.min.js", base_url() . 'asset/js/cari.js');
 		$this->data['content'] = 'view_c';
 
-		$this->load->view('front/template_front1', $this->data);
+		$this->load->view('front/template_front', $this->data);
 	}
 }

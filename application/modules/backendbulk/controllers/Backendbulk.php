@@ -20,9 +20,9 @@ class Backendbulk extends MX_Controller
         ];
         $data['list'] = $this->M_Backendbulk->get_all();
         $data['content'] = 'v_admin';
-        $this->load->view('backend/template_front1', $data);
+        $this->load->view('backend/template_front', $data);
     }
-    
+
     public function supplier()
     {
         $data["js"] = array(
@@ -33,9 +33,9 @@ class Backendbulk extends MX_Controller
         ];
         $data['list'] = $this->M_Backendbulk->get_all();
         $data['content'] = 'v_admin_supplier';
-        $this->load->view('backend/template_front1', $data);
+        $this->load->view('backend/template_front', $data);
     }
-    
+
     public function items()
     {
         $data["js"] = array(
@@ -46,21 +46,21 @@ class Backendbulk extends MX_Controller
         ];
         $data['list'] = $this->M_Backendbulk->get_all_item();
         $data['content'] = 'v_admin_item';
-        $this->load->view('backend/template_front1', $data);
+        $this->load->view('backend/template_front', $data);
     }
 
     public function array_multidimensional_search($value, $array)
     {
         $return = [];
         foreach ($array as $key => $data) {
-            if($value == $data){
+            if ($value == $data) {
                 array_push($return, $key);
             }
         }
 
         return $return;
     }
-    
+
     public function create($type)
     {
         $data["js"] = array(
@@ -69,10 +69,10 @@ class Backendbulk extends MX_Controller
             base_url() . "asset/js/slick/slick.min.js",
             "https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"
         );
-        
+
         $data["css"] = array(
             "https://unpkg.com/dropzone@5/dist/min/dropzone.min.css"
-            );
+        );
         $session = $this->session->all_userdata();
         $sessionadmin = array_key_exists("admin", $session) ? $session["admin"] : null;
         $data['session'] = $type;
@@ -86,13 +86,12 @@ class Backendbulk extends MX_Controller
         $this->form_validation->set_rules('contact_id', 'Kontak', 'required');
         $this->form_validation->set_rules('company_id', 'Company ID', 'required');
         $this->form_validation->set_rules('text_rfq', 'Keterangan Permintaan', 'required');
-        if($this->form_validation->run() == FALSE)
-        {
-            $this->load->view('backend/template_front1', $data);
-        }else{
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('backend/template_front', $data);
+        } else {
 
-            
-            
+
+
             $this->load->model('address/address_model');
             $this->load->model('contact/contact_model');
 
@@ -125,26 +124,26 @@ class Backendbulk extends MX_Controller
             $sourcing['updated_at'] = date('Y-m-d H:i:s');
             $sourcing['type'] = $type;
             $sourcing['contact_id'] = $contactModel->id;
-            $sourcing['inc_ppn'] = $this->input->post('inc_ppn') ?? 0 ;
+            $sourcing['inc_ppn'] = $this->input->post('inc_ppn') ?? 0;
             $sourcing['inc_ongkir'] = $this->input->post('inc_ongkir') ?? 0;
 
             $this->db->insert('sourcing', $sourcing);
-            
+
             $sourcing_id = $this->db->insert_id();
 
 
             $sourcingItems = [];
 
-            
+
             $qty = $this->input->post('qty');
             $uom = $this->input->post('uom');
             $prices = $this->input->post('price');
             $productIds = $this->input->post('id_items');
             $items = $this->input->post('items');
             $notes = $this->input->post('notes');
-           
+
             foreach ($items as $key => $value) {
-                if(!empty($value)){
+                if (!empty($value)) {
                     $sourcingItems[] = [
                         'sourcing_id' => $sourcing_id,
                         'items' => $value,
@@ -159,7 +158,6 @@ class Backendbulk extends MX_Controller
                         'updated_by' => $sessionadmin['id'],
                     ];
                 }
-
             }
 
             foreach ($sourcingItems as $key => $value) {
@@ -172,40 +170,35 @@ class Backendbulk extends MX_Controller
             $qty_supplier = $this->input->post('qty_supplier');
             $price_supplier = $this->input->post('price_supplier');
             $source_product_id = $this->input->post('source_item_id');
-            
-            if(!empty($source_product_id)){
-            $sourcing_item_source = [];
-            
-            foreach ($sourcingItems as $key => $value) {
-                
-                $search = $this->array_multidimensional_search($value['product_id'], $source_product_id);
-                
-                if(!empty($search)){
-                    foreach ($search as $valueKey) {
-                        $data = [
-                            'sourcing_item_supplier' => $source_item_supplier[$valueKey],
-                            'sourcing_item' => $value['id'],
-                            'qty' => $qty_supplier[$valueKey],
-                            'price' => $price_supplier[$valueKey],
-                        ];
-                        array_push($sourcing_item_source, $data);
+
+            if (!empty($source_product_id)) {
+                $sourcing_item_source = [];
+
+                foreach ($sourcingItems as $key => $value) {
+
+                    $search = $this->array_multidimensional_search($value['product_id'], $source_product_id);
+
+                    if (!empty($search)) {
+                        foreach ($search as $valueKey) {
+                            $data = [
+                                'sourcing_item_supplier' => $source_item_supplier[$valueKey],
+                                'sourcing_item' => $value['id'],
+                                'qty' => $qty_supplier[$valueKey],
+                                'price' => $price_supplier[$valueKey],
+                            ];
+                            array_push($sourcing_item_source, $data);
+                        }
                     }
-                   
                 }
-                
+
+                $this->db->insert_batch('sourcing_item_source', $sourcing_item_source);
             }
 
-            $this->db->insert_batch('sourcing_item_source',$sourcing_item_source);
-
-            }
-            
             $files = $this->input->post('files');
             $this->M_Backendbulk->save_file($files, $sourcing_id);
-            
-           return redirect(base_url('/backendbulk/'.($type == 'buyer' ? '' : 'supplier')));
-        }
 
-        
+            return redirect(base_url('/backendbulk/' . ($type == 'buyer' ? '' : 'supplier')));
+        }
     }
 
 
@@ -215,25 +208,26 @@ class Backendbulk extends MX_Controller
             base_url() . 'asset/backend/js/list-bulk.js',
             "https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"
         );
-        
+
         $data["css"] = array(
             "https://unpkg.com/dropzone@5/dist/min/dropzone.min.css"
-            );
-            
+        );
+
         $data['detail'] = $this->M_Backendbulk->get_detail($id_prospek);
         $data['file'] = $this->M_Backendbulk->get_file($id_prospek);
         $data['items'] = $this->M_Backendbulk->get_item($id_prospek);
         $data['item_source'] = $this->M_Backendbulk->get_item_source($id_prospek);
-        
-        $data['content'] = $data['detail']->type == 'buyer' ? 'detail_admin':'detail_admin_sourcing';
+
+        $data['content'] = $data['detail']->type == 'buyer' ? 'detail_admin' : 'detail_admin_sourcing';
         $this->M_Backendbulk->view_prospek($id_prospek);
-        $this->load->view('backend/template_front1', $data);
+        $this->load->view('backend/template_front', $data);
     }
-    
-    public function add_files($sourcing_id){
+
+    public function add_files($sourcing_id)
+    {
         $files = $this->input->post('files');
         $this->M_Backendbulk->save_file($files, $sourcing_id);
-        return redirect(base_url('/backendbulk/detail/'.$sourcing_id));
+        return redirect(base_url('/backendbulk/detail/' . $sourcing_id));
     }
 
     // public function get_new()
@@ -302,8 +296,8 @@ class Backendbulk extends MX_Controller
         $notes = $this->input->post('notes[]');
         $sourcingNotes = $this->input->post('sourcing_notes');
         $internalNotes = $this->input->post('internal_notes');
-        
-        if($nameItems != null){
+
+        if ($nameItems != null) {
             $this->db->trans_start();
             foreach ($nameItems as $key => $listItem) {
                 $items = array(
@@ -326,8 +320,8 @@ class Backendbulk extends MX_Controller
                 );
                 $this->M_Backendbulk->saveItemLog($log);
             }
-            
-            
+
+
 
             if ($this->input->post('isi_note_admin') == null || '') {
                 $commentLog = array(
@@ -346,29 +340,29 @@ class Backendbulk extends MX_Controller
                 );
                 $this->M_Backendbulk->saveCommentLog($commentLog, $this->input->post('comment_id'));
             };
-            
+
             $this->db->trans_complete();
-            
+
             if ($this->db->trans_status() == TRUE) {
                 $this->session->set_flashdata('message-success', 'Berhasil');
             };
         }
-        
+
         $include = array(
-                "inc_ppn" => $inc_ppn,
-                "inc_ongkir" => $inc_ongkir,
-                'admin_note' => $this->input->post('admin_note'),
-                'sourcing_notes' => $sourcingNotes,
-                'internal_notes' => $internalNotes,
-                'updated_at' => $date,
-                'viewed' => 2,
-                'status' => 1,
-            );
-            
+            "inc_ppn" => $inc_ppn,
+            "inc_ongkir" => $inc_ongkir,
+            'admin_note' => $this->input->post('admin_note'),
+            'sourcing_notes' => $sourcingNotes,
+            'internal_notes' => $internalNotes,
+            'updated_at' => $date,
+            'viewed' => 2,
+            'status' => 1,
+        );
+
         $this->M_Backendbulk->updateSourcing($id_prospek, $include);
         redirect('backendbulk/detail/' . $id_prospek);
     }
-    
+
     public function send_nego($id_prospek)
     {
         $session = $this->session->all_userdata();
@@ -387,24 +381,24 @@ class Backendbulk extends MX_Controller
         $qtyInt = str_replace('.', '', $qty);
         $uom = $this->input->post('uom[]');
         $notes = $this->input->post('notes[]');
-        
+
         //var_dump($priceItems);
-       
+
         $this->db->trans_start();
         foreach ($list_id as $key => $listId) {
             //if ($priceAwal[$key] != $priceNego[$key]) {
-                if ($priceAwal[$key] != $priceItems[$key]) {  // Masukkan ke price log
-                    $log = array(
-                        'sourcing_item_id' => $listId,
-                        'price' => $priceItemsInt[$key],
-                        'created_at' => $date,
-                        'created_by' => $admin_id,
-                    );
-                    $this->M_Backendbulk->saveItemLog($log);
-                };
-                
-                
-                /*if ($priceNego[$key] == $priceItems[$key]) { // Status selesai/deal
+            if ($priceAwal[$key] != $priceItems[$key]) {  // Masukkan ke price log
+                $log = array(
+                    'sourcing_item_id' => $listId,
+                    'price' => $priceItemsInt[$key],
+                    'created_at' => $date,
+                    'created_by' => $admin_id,
+                );
+                $this->M_Backendbulk->saveItemLog($log);
+            };
+
+
+            /*if ($priceNego[$key] == $priceItems[$key]) { // Status selesai/deal
                     $source = array(
                         'price' => $priceItemsInt[$key],
                         'price_nego' => $priceNegoInt[$key],
@@ -421,22 +415,22 @@ class Backendbulk extends MX_Controller
                         'status' => 3,
                     );
                 } else {  */                                          // Status negosiasi
-                    $source = array(
-                        'price' => $priceItemsInt[$key] == 0 ? $priceAwalInt[$key] : $priceItemsInt[$key],
-                        'price_nego' =>  $priceStatus[$key] == 0 || $priceStatus[$key] == 2 ? null : $priceNegoInt[$key],
-                        'updated_at' => $date,
-                        'updated_by' => $admin_id,
-                        'status' => $priceStatus[$key],
-                        'qty' => $qtyInt[$key],
-                        'uom' => $uom[$key],
-                        'notes' => $notes[$key]
-                    );
-                //};
-               
-                $this->M_Backendbulk->updateItem($source, $listId);
+            $source = array(
+                'price' => $priceItemsInt[$key] == 0 ? $priceAwalInt[$key] : $priceItemsInt[$key],
+                'price_nego' =>  $priceStatus[$key] == 0 || $priceStatus[$key] == 2 ? null : $priceNegoInt[$key],
+                'updated_at' => $date,
+                'updated_by' => $admin_id,
+                'status' => $priceStatus[$key],
+                'qty' => $qtyInt[$key],
+                'uom' => $uom[$key],
+                'notes' => $notes[$key]
+            );
+            //};
+
+            $this->M_Backendbulk->updateItem($source, $listId);
             //}
         };
-        
+
         $this->M_Backendbulk->save_item_supplier($list_id);
         $include = array(
             'viewed' => 2,
@@ -451,7 +445,7 @@ class Backendbulk extends MX_Controller
         };
         redirect('backendbulk/detail/' . $id_prospek);
     }
-    
+
     public function rfqDone($id_prospek)
     {
         $date = date('Y-m-d H:i:s');
@@ -468,224 +462,222 @@ class Backendbulk extends MX_Controller
         };
         redirect('backendbulk/detail/' . $id_prospek);
     }
-    
-    function ambil_data(){
+
+    function ambil_data()
+    {
 
         $draw = $_REQUEST['draw'];
         $length = $_REQUEST['length'];
         $start = $_REQUEST['start'];
         $search = $_REQUEST['search']["value"];
-        $this->db->where('type','buyer');
+        $this->db->where('type', 'buyer');
         $total = $this->db->count_all_results("sourcing");
-        
-        
+
+
         $output = array();
         $output['draw'] = $draw;
         $output['recordsTotal'] = $output['recordsFiltered'] = $total;
         $output['data'] = array();
-        
-        $this->db->limit($length,$start);
-        
-        if($_REQUEST['order'][0]['column'] == '0'):
-			$this->db->order_by('sourcing.id', $_REQUEST['order'][0]['dir']);
-		endif;
-		
-		if($_REQUEST['order'][0]['column'] == '2'):
-			$this->db->order_by('name_member', $_REQUEST['order'][0]['dir']);
-		endif;
-		
-		if($_REQUEST['order'][0]['column'] == '1'):
-			$this->db->order_by('nama_rfq', $_REQUEST['order'][0]['dir']);
-		endif;
-		
-		if($_REQUEST['order'][0]['column'] == '4'):
-			$this->db->order_by('created_at', $_REQUEST['order'][0]['dir']);
-		endif;
-		
-		if($_REQUEST['order'][0]['column'] == '3'):
-			$this->db->order_by('sourcing.company', $_REQUEST['order'][0]['dir']);
-		endif;
-		
-		
-		if($search != ""){
+
+        $this->db->limit($length, $start);
+
+        if ($_REQUEST['order'][0]['column'] == '0'):
+            $this->db->order_by('sourcing.id', $_REQUEST['order'][0]['dir']);
+        endif;
+
+        if ($_REQUEST['order'][0]['column'] == '2'):
+            $this->db->order_by('name_member', $_REQUEST['order'][0]['dir']);
+        endif;
+
+        if ($_REQUEST['order'][0]['column'] == '1'):
+            $this->db->order_by('nama_rfq', $_REQUEST['order'][0]['dir']);
+        endif;
+
+        if ($_REQUEST['order'][0]['column'] == '4'):
+            $this->db->order_by('created_at', $_REQUEST['order'][0]['dir']);
+        endif;
+
+        if ($_REQUEST['order'][0]['column'] == '3'):
+            $this->db->order_by('sourcing.company', $_REQUEST['order'][0]['dir']);
+        endif;
+
+
+        if ($search != "") {
             $this->db->or_like("sourcing.name", $search);
             $this->db->or_like('sourcing.company', $search);
             $this->db->or_like('sourcing.nama_rfq', $search);
         }
-		
-		$this->db->select('*, sourcing.id AS id, sourcing.status as status, sourcing.name as name_member');
+
+        $this->db->select('*, sourcing.id AS id, sourcing.status as status, sourcing.name as name_member');
         $this->db->where('sourcing.type', 'buyer');
         $this->db->join('member', 'sourcing.member_id = member.id', 'left');
-        $query = $this->db->get('sourcing');    
-        
+        $query = $this->db->get('sourcing');
+
         //echo $query->num_rows();
-        
+
         //echo $this->db->last_query();
-        
-        if($search!=""){
+
+        if ($search != "") {
             $this->db->or_like("sourcing.name", $search);
             $this->db->or_like('sourcing.company', $search);
             $this->db->or_like('sourcing.nama_rfq', $search);
-            $this->db->where('sourcing.type','buyer');
-
+            $this->db->where('sourcing.type', 'buyer');
         }
-        
+
         $this->db->select('*, sourcing.id AS id, sourcing.status as status, sourcing.name as name_member');
-        $this->db->join('member', 'sourcing.member_id = member.id','left');
+        $this->db->join('member', 'sourcing.member_id = member.id', 'left');
         $jum = $this->db->get('sourcing');
         $output['recordsTotal'] = $output['recordsFiltered'] = $jum->num_rows();
 
         foreach ($query->result() as $item) {
-       
-            $output['data'][]=array(
-                '<a class="text-primary" href="'.site_url('backendbulk/detail/' . $item->id).'">'.$item->id.'</a>',
-                '<a class="text-primary" href="'.site_url('member/bulkPdf/' . $item->id).'"target="_blank">'.$item->nama_rfq.'</a>',
-                '<a class="text-primary" href="'.site_url('backendbulk/detail/' . $item->id).'">'.$item->name_member. ($item->viewed == '0' ? '<span class="label label-success" style="font-weight:bold">new</span>' : '').'</a>',
+
+            $output['data'][] = array(
+                '<a class="text-primary" href="' . site_url('backendbulk/detail/' . $item->id) . '">' . $item->id . '</a>',
+                '<a class="text-primary" href="' . site_url('member/bulkPdf/' . $item->id) . '"target="_blank">' . $item->nama_rfq . '</a>',
+                '<a class="text-primary" href="' . site_url('backendbulk/detail/' . $item->id) . '">' . $item->name_member . ($item->viewed == '0' ? '<span class="label label-success" style="font-weight:bold">new</span>' : '') . '</a>',
                 $item->company,
-                '<span class="text-muted">'.date("d M y", $item->created_at).'</span>',
-                '<span class="text-muted">'.$item->province.'</span>',
-                '<span class="text-muted">'.$item->phone.'</span>',
+                '<span class="text-muted">' . date("d M y", $item->created_at) . '</span>',
+                '<span class="text-muted">' . $item->province . '</span>',
+                '<span class="text-muted">' . $item->phone . '</span>',
                 ucfirst($item->type),
                 $item->status == 0 ? 'Belum di Proses' : ($item->status == 1 ? 'Sudah Kirim' : ($item->status == 2 ? 'Nego' : 'Selesai'))
             );
-        
         }
 
         echo json_encode($output);
-
     }
-    
-    function ambil_data_supplier(){
 
-        $draw=$_REQUEST['draw'];
-        $length=$_REQUEST['length'];
-        $start=$_REQUEST['start'];
-        $search=$_REQUEST['search']["value"];
-        $this->db->where('type','supplier');
-        $total=$this->db->count_all_results("sourcing");
-        
-        
-        $output=array();
-        $output['draw']=$draw;
-        $output['recordsTotal']=$output['recordsFiltered']=$total;
-        $output['data']=array();
-        if($search!=""){
-            $this->db->or_like("sourcing.name",$search);
-            $this->db->or_like("sourcing.company",$search);
-            $this->db->or_like("sourcing.nama_rfq",$search);
+    function ambil_data_supplier()
+    {
+
+        $draw = $_REQUEST['draw'];
+        $length = $_REQUEST['length'];
+        $start = $_REQUEST['start'];
+        $search = $_REQUEST['search']["value"];
+        $this->db->where('type', 'supplier');
+        $total = $this->db->count_all_results("sourcing");
+
+
+        $output = array();
+        $output['draw'] = $draw;
+        $output['recordsTotal'] = $output['recordsFiltered'] = $total;
+        $output['data'] = array();
+        if ($search != "") {
+            $this->db->or_like("sourcing.name", $search);
+            $this->db->or_like("sourcing.company", $search);
+            $this->db->or_like("sourcing.nama_rfq", $search);
         }
-        $this->db->limit($length,$start);
-        if($_REQUEST['order'][0]['column'] == '0'):
-			$this->db->order_by('sourcing.id',$_REQUEST['order'][0]['dir']);
-		endif;
-		if($_REQUEST['order'][0]['column'] == '2'):
-			$this->db->order_by('sourcing.name',$_REQUEST['order'][0]['dir']);
-		endif;
-		if($_REQUEST['order'][0]['column'] == '1'):
-			$this->db->order_by('nama_rfq',$_REQUEST['order'][0]['dir']);
-		endif;
-		if($_REQUEST['order'][0]['column'] == '4'):
-			$this->db->order_by('created_at',$_REQUEST['order'][0]['dir']);
-		endif;
-		if($_REQUEST['order'][0]['column'] == '3'):
-			$this->db->order_by('sourcing.company',$_REQUEST['order'][0]['dir']);
-		endif;
-		$this->db->select('*, sourcing.id AS id, sourcing.status as status, sourcing.name as name_member');
+        $this->db->limit($length, $start);
+        if ($_REQUEST['order'][0]['column'] == '0'):
+            $this->db->order_by('sourcing.id', $_REQUEST['order'][0]['dir']);
+        endif;
+        if ($_REQUEST['order'][0]['column'] == '2'):
+            $this->db->order_by('sourcing.name', $_REQUEST['order'][0]['dir']);
+        endif;
+        if ($_REQUEST['order'][0]['column'] == '1'):
+            $this->db->order_by('nama_rfq', $_REQUEST['order'][0]['dir']);
+        endif;
+        if ($_REQUEST['order'][0]['column'] == '4'):
+            $this->db->order_by('created_at', $_REQUEST['order'][0]['dir']);
+        endif;
+        if ($_REQUEST['order'][0]['column'] == '3'):
+            $this->db->order_by('sourcing.company', $_REQUEST['order'][0]['dir']);
+        endif;
+        $this->db->select('*, sourcing.id AS id, sourcing.status as status, sourcing.name as name_member');
         $this->db->join('member', 'sourcing.member_id = member.id', 'left');
-        $this->db->where('sourcing.type','supplier');
-        $query=$this->db->get('sourcing');
-        if($search!=""){
-       
-        $this->db->or_like("sourcing.name",$search);
-        $this->db->or_like("sourcing.company",$search);
-        $this->db->or_like("sourcing.nama_rfq",$search);
-        $this->db->where('type','supplier');
-        
-        $jum=$this->db->get('sourcing');
-        $output['recordsTotal']=$output['recordsFiltered']=$jum->num_rows();
+        $this->db->where('sourcing.type', 'supplier');
+        $query = $this->db->get('sourcing');
+        if ($search != "") {
+
+            $this->db->or_like("sourcing.name", $search);
+            $this->db->or_like("sourcing.company", $search);
+            $this->db->or_like("sourcing.nama_rfq", $search);
+            $this->db->where('type', 'supplier');
+
+            $jum = $this->db->get('sourcing');
+            $output['recordsTotal'] = $output['recordsFiltered'] = $jum->num_rows();
         }
 
         foreach ($query->result() as $item) {
-       
-            $output['data'][]=array(
-                '<a class="text-primary" href="'.site_url('backendbulk/detail/' . $item->id).'">'.$item->id.'</a>',
-                '<a class="text-primary" href="'.site_url('member/bulkPdf/' . $item->id).'"target="_blank">'.$item->nama_rfq.'</a>',
-                '<a class="text-primary" href="'.site_url('backendbulk/detail/' . $item->id).'">'.$item->name_member. ($item->viewed == '0' ? '<span class="label label-success" style="font-weight:bold">new</span>' : '').'</a>',
+
+            $output['data'][] = array(
+                '<a class="text-primary" href="' . site_url('backendbulk/detail/' . $item->id) . '">' . $item->id . '</a>',
+                '<a class="text-primary" href="' . site_url('member/bulkPdf/' . $item->id) . '"target="_blank">' . $item->nama_rfq . '</a>',
+                '<a class="text-primary" href="' . site_url('backendbulk/detail/' . $item->id) . '">' . $item->name_member . ($item->viewed == '0' ? '<span class="label label-success" style="font-weight:bold">new</span>' : '') . '</a>',
                 $item->company,
-                '<span class="text-muted">'.date("d M y", $item->created_at).'</span>',
-                '<span class="text-muted">'.$item->province.'</span>',
-                '<span class="text-muted">'.$item->phone.'</span>',
+                '<span class="text-muted">' . date("d M y", $item->created_at) . '</span>',
+                '<span class="text-muted">' . $item->province . '</span>',
+                '<span class="text-muted">' . $item->phone . '</span>',
                 ucfirst($item->type),
                 $item->status == 0 ? 'Belum di Proses' : ($item->status == 1 ? 'Sudah Kirim' : ($item->status == 2 ? 'Nego' : 'Selesai'))
             );
-        
         }
 
         echo json_encode($output);
-
     }
-    
-    function ambil_data_item(){
 
-        $draw=$_REQUEST['draw'];
-        $length=$_REQUEST['length'];
-        $start=$_REQUEST['start'];
-        $search=$_REQUEST['search']["value"];
-        $this->db->where('s.type','buyer')
-            ->join('sourcing s','si.sourcing_id = s.id');
-        $total=$this->db->count_all_results("sourcing_item si");
-        
-        
-        $output=array();
-        $output['draw']=$draw;
-        $output['recordsTotal']=$output['recordsFiltered']=$total;
-        $output['data']=array();
-        
-        if($search!=""){
-            $this->db->or_like("s.company",$search);
-            $this->db->or_like("s.province",$search);
-            $this->db->or_like("si.items",$search);
+    function ambil_data_item()
+    {
+
+        $draw = $_REQUEST['draw'];
+        $length = $_REQUEST['length'];
+        $start = $_REQUEST['start'];
+        $search = $_REQUEST['search']["value"];
+        $this->db->where('s.type', 'buyer')
+            ->join('sourcing s', 'si.sourcing_id = s.id');
+        $total = $this->db->count_all_results("sourcing_item si");
+
+
+        $output = array();
+        $output['draw'] = $draw;
+        $output['recordsTotal'] = $output['recordsFiltered'] = $total;
+        $output['data'] = array();
+
+        if ($search != "") {
+            $this->db->or_like("s.company", $search);
+            $this->db->or_like("s.province", $search);
+            $this->db->or_like("si.items", $search);
         }
-        
-        $this->db->limit($length,$start);
-        if($_REQUEST['order'][0]['column'] == '0'):
-			$this->db->order_by('s.id',$_REQUEST['order'][0]['dir']);
-		endif;
-		if($_REQUEST['order'][0]['column'] == '2'):
-			$this->db->order_by('nama_rfq',$_REQUEST['order'][0]['dir']);
-		endif;
-		if($_REQUEST['order'][0]['column'] == '1'):
-			$this->db->order_by('company',$_REQUEST['order'][0]['dir']);
-		endif;
-		if($_REQUEST['order'][0]['column'] == '4'):
-			$this->db->order_by('province',$_REQUEST['order'][0]['dir']);
-		endif;
-		if($_REQUEST['order'][0]['column'] == '3'):
-			$this->db->order_by('items',$_REQUEST['order'][0]['dir']);
-		endif;
-		
-		$this->db->select('*, s.id as id, si.uom as uom, si.qty as qty, COUNT(DISTINCT(sis.id)) as status');
-        $this->db->where('s.type','buyer')
-            ->join('sourcing s','si.sourcing_id = s.id')
-            ->join('sourcing_item_source sis','sis.sourcing_item = si.id','left')
+
+        $this->db->limit($length, $start);
+        if ($_REQUEST['order'][0]['column'] == '0'):
+            $this->db->order_by('s.id', $_REQUEST['order'][0]['dir']);
+        endif;
+        if ($_REQUEST['order'][0]['column'] == '2'):
+            $this->db->order_by('nama_rfq', $_REQUEST['order'][0]['dir']);
+        endif;
+        if ($_REQUEST['order'][0]['column'] == '1'):
+            $this->db->order_by('company', $_REQUEST['order'][0]['dir']);
+        endif;
+        if ($_REQUEST['order'][0]['column'] == '4'):
+            $this->db->order_by('province', $_REQUEST['order'][0]['dir']);
+        endif;
+        if ($_REQUEST['order'][0]['column'] == '3'):
+            $this->db->order_by('items', $_REQUEST['order'][0]['dir']);
+        endif;
+
+        $this->db->select('*, s.id as id, si.uom as uom, si.qty as qty, COUNT(DISTINCT(sis.id)) as status');
+        $this->db->where('s.type', 'buyer')
+            ->join('sourcing s', 'si.sourcing_id = s.id')
+            ->join('sourcing_item_source sis', 'sis.sourcing_item = si.id', 'left')
             ->group_by('si.id');
-        $query=$this->db->get('sourcing_item si');
-        if($search!=""){
-       
-        $this->db->or_like("s.company",$search);
-        $this->db->or_like("s.province",$search);
-        $this->db->or_like("si.items",$search);
-       
-        $this->db->where('s.type','buyer')
-            ->join('sourcing s','si.sourcing_id = s.id');
-        $jum=$this->db->get('sourcing_item si');
-        $output['recordsTotal']=$output['recordsFiltered']=$jum->num_rows();
+        $query = $this->db->get('sourcing_item si');
+        if ($search != "") {
+
+            $this->db->or_like("s.company", $search);
+            $this->db->or_like("s.province", $search);
+            $this->db->or_like("si.items", $search);
+
+            $this->db->where('s.type', 'buyer')
+                ->join('sourcing s', 'si.sourcing_id = s.id');
+            $jum = $this->db->get('sourcing_item si');
+            $output['recordsTotal'] = $output['recordsFiltered'] = $jum->num_rows();
         }
 
         foreach ($query->result() as $item) {
-       
-            $output['data'][]=array(
-                '<a class="text-primary" href="'.site_url('backendbulk/detail/' . $item->id).'">'.$item->id.'</a>',
+
+            $output['data'][] = array(
+                '<a class="text-primary" href="' . site_url('backendbulk/detail/' . $item->id) . '">' . $item->id . '</a>',
                 $item->company,
                 $item->nama_rfq,
                 $item->items,
@@ -694,11 +686,8 @@ class Backendbulk extends MX_Controller
                 $item->uom,
                 $item->status
             );
-        
         }
 
         echo json_encode($output);
-
     }
-    
 }

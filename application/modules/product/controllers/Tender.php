@@ -28,6 +28,6 @@ class Tender extends MX_Controller
             $data['content'] = 'tender_mobile';
         }
 
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 }

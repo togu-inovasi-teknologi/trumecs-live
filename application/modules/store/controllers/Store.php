@@ -30,23 +30,23 @@ class Store extends MX_Controller
 
     public function index()
     {
-        if($this->uri->segment(1) == 'trumecs-bazaar') {
-           $this->load->model("product/m_polling");
-    	    $data['participant'] = array(
-                    'session_id' => session_id(),
-                    //'email' => $post['email'],
-                    //'phone' => $post['phone'],
-                    //'feedback' => $post['feedback'],
-                    'referrer' => isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null,
-                    'ga' => $this->input->cookie('_ga'),
-                    'id_polling' => 9,
-                    'created' => time()
-                );
+        if ($this->uri->segment(1) == 'trumecs-bazaar') {
+            $this->load->model("product/m_polling");
+            $data['participant'] = array(
+                'session_id' => session_id(),
+                //'email' => $post['email'],
+                //'phone' => $post['phone'],
+                //'feedback' => $post['feedback'],
+                'referrer' => isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null,
+                'ga' => $this->input->cookie('_ga'),
+                'id_polling' => 9,
+                'created' => time()
+            );
             //$data['id_polling'] = 1;
             //$data['answer'] = $post['answer'];
-            if($this->m_polling->check_session($data)){
+            if ($this->m_polling->check_session($data)) {
                 $this->m_polling->saveanswer($data);
-            } 
+            }
         }
         $this->storeModel->productCategories();
         $data["css"] = array("/modules/store/css/store-view.css");
@@ -64,7 +64,7 @@ class Store extends MX_Controller
             $data['content'] = 'mobile/view_store';
             $data['tabContent'] = 'mobile/view_store_information';
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
 
@@ -152,7 +152,7 @@ class Store extends MX_Controller
 
         $data['current_url'] = current_url() . (isset($_GET['category']) ? '?category=' . $_GET['category'] : '');
 
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
     public function getProducts()
     {

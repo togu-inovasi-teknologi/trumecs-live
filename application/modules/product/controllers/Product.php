@@ -11,7 +11,7 @@ class Product extends MX_Controller
     function __construct()
     {
 
-       
+
         // Call the Model constructor
         parent::__construct();
         $this->load->model("product_model");
@@ -31,8 +31,8 @@ class Product extends MX_Controller
 
         $data["data_product"] = $this->product_model->getproduct($url);
 
-    
-    
+
+
         if (empty($data["data_product"])) {
             redirect(base_url());
         }
@@ -68,7 +68,7 @@ class Product extends MX_Controller
         }
 
 
-        $data["seotitle"] = $this->lang->line('seo_title', FALSE) . " " . $data["data_product"][0]["tittle"].' | Trumecs';
+        $data["seotitle"] = $this->lang->line('seo_title', FALSE) . " " . $data["data_product"][0]["tittle"] . ' | Trumecs';
         $data["seokeywords"] = "jual sparepart truk,sparepart truk," . $str_keyword;
         $data["seodescription"] = sprintf($this->lang->line('seo_description', FALSE), $data["data_product"][0]["tittle"]);
         $data["seoimage"] = $file_exists;
@@ -85,7 +85,7 @@ class Product extends MX_Controller
             "parent" => $parent
         );
 
-        
+
         $arrayname = explode(" ", trim($data["data_product"][0]["tittle"]) . " " . $namebrand . " " . $namecomponent);
         $data["sameproduct"] = $this->product_model->getsameproduct($arrayname, $productgalery, $data["data_product"][0]["brand_id"]);
         $data["relatedarticle"] = $this->article_model->getsameartikel(trim($data["data_product"][0]["tittle"]) . " " . $namebrand . " " . $namebrandunit . " " . $namecomponent . " " . $nametype);
@@ -100,7 +100,7 @@ class Product extends MX_Controller
         }
 
 
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     private function getcategory($id)
@@ -117,21 +117,21 @@ class Product extends MX_Controller
         $id_array = array_search($id, array_column($CATEGORY_ALL, 'id'));
         $id_parent = $CATEGORY_ALL[$id_array]["parent"];
         $id_array_parent = array_search($id_parent, array_column($CATEGORY_ALL, 'id'));
-        
-        if($id_array_parent==''){
+
+        if ($id_array_parent == '') {
             return [];
-        }else{
+        } else {
             $cat[] = $CATEGORY_ALL[$id_array_parent]["name"];
             if ($CATEGORY_ALL[$id_array_parent]["parent"] != 0) {
                 $id_parent = $CATEGORY_ALL[$id_array_parent]["parent"];
                 $id_array = array_search($id_parent, array_column($CATEGORY_ALL, 'id'));
                 $cat[] = $CATEGORY_ALL[$id_array]["name"];
-    
+
                 if ($CATEGORY_ALL[$id_array]["parent"] != 0) {
                     $id_parent = $CATEGORY_ALL[$id_array]["parent"];
                     $id_array_parent = array_search($id_parent, array_column($CATEGORY_ALL, 'id'));
                     $cat[] = $CATEGORY_ALL[$id_array_parent]["name"];
-    
+
                     if ($CATEGORY_ALL[$id_array_parent]["parent"] != 0) {
                         $id_parent = $CATEGORY_ALL[$id_array_parent]["parent"];
                         $id_array_parent = array_search($id_parent, array_column($CATEGORY_ALL, 'id'));
@@ -152,7 +152,7 @@ class Product extends MX_Controller
             }
         }
 
-        
+
 
         //return $idparent;
     }
@@ -212,6 +212,6 @@ class Product extends MX_Controller
             $data['content'] = 'view_product_mobile';
         }
 
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 }

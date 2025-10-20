@@ -21,7 +21,7 @@ class Backendrental extends MX_Controller
         $data["js"] = array('/modules/backendrental/js/backendrental.js');
         $data['css'] = ['/modules/backendrental/css/backendrental.css'];
         $data['content'] = 'listRental';
-        $this->load->view('backend/template_front1', $data);
+        $this->load->view('backend/template_front', $data);
     }
     public function add_rental()
     {
@@ -31,7 +31,7 @@ class Backendrental extends MX_Controller
         $data["js"] = array('/modules/backendrental/js/backendrental.js', base_url() . "asset/js/select2.min.js");
         $data['css'] = ['/modules/backendrental/css/backendrental.css', base_url() . "asset/css/select2.min.css"];
         $data['content'] = 'addRental';
-        $this->load->view('backend/template_front1', $data);
+        $this->load->view('backend/template_front', $data);
     }
 
     public function attributeList()
@@ -187,7 +187,7 @@ class Backendrental extends MX_Controller
         $data["js"] = array('/modules/backendrental/js/backendrental.js', base_url() . "asset/js/select2.min.js");
         $data['css'] = ['/modules/backendrental/css/backendrental.css', base_url() . "asset/css/select2.min.css"];
         $data['content'] = 'detailRental';
-        $this->load->view('backend/template_front1', $data);
+        $this->load->view('backend/template_front', $data);
     }
     public function edit_rental($id)
     {
@@ -200,7 +200,7 @@ class Backendrental extends MX_Controller
         $data["js"] = array('/modules/backendrental/js/backendrental.js', base_url() . "asset/js/select2.min.js");
         $data['css'] = ['/modules/backendrental/css/backendrental.css', base_url() . "asset/css/select2.min.css"];
         $data['content'] = 'editRental';
-        $this->load->view('backend/template_front1', $data);
+        $this->load->view('backend/template_front', $data);
     }
 
     public function editRental($id)

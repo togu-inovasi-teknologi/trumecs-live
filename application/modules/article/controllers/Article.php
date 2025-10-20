@@ -132,6 +132,6 @@ class article extends MX_Controller
 			$data["js"] =  array("/modules/tab/js/tabs.js", '/modules/article/js/desktop/article_page.js', base_url() . "asset/js/jquery.elevateZoom.js", base_url() . "asset/js/detail_product.js", base_url() . "asset/js/slick/slick.min.js", "/modules/bulk/js/bulk.js");
 		}
 		$data['content'] = $content;
-		$this->load->view('front/template_front1', $data);
+		$this->load->view('front/template_front', $data);
 	}
 }

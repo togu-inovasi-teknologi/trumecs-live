@@ -214,13 +214,13 @@ class Prospek extends MX_Controller
         $data['product'] = $this->product_model->getproduct($id_product);
         $data['content'] = 'success';
 
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function tender_success()
     {
         $data['content'] = 'tender_success';
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function get_regencies()
@@ -260,24 +260,25 @@ class Prospek extends MX_Controller
         //echo json_encode($data);
         echo json_encode($data);
     }
-    
-    public function feedback() {
+
+    public function feedback()
+    {
         $post = $this->input->post();
-        
+
         $data['participant'] = array(
-                'session_id' => $this->input->cookie('ci_session'),
-                'email' => $post['email'],
-                'phone' => $post['phone'],
-                'feedback' => $post['feedback'],
-                'referrer' => $_SERVER['HTTP_REFERER'],
-                'ga' => $this->input->cookie('_ga'),
-                'id_polling' => 1,
-                'created' => time()
-            );
+            'session_id' => $this->input->cookie('ci_session'),
+            'email' => $post['email'],
+            'phone' => $post['phone'],
+            'feedback' => $post['feedback'],
+            'referrer' => $_SERVER['HTTP_REFERER'],
+            'ga' => $this->input->cookie('_ga'),
+            'id_polling' => 1,
+            'created' => time()
+        );
         $data['id_polling'] = 1;
         $data['answer'] = $post['answer'];
         $this->m_polling->saveanswer($data);
-        
+
         $this->session->set_flashdata('message_feedback', 'Terimakasih atas partisipasi anda!');
         redirect($_SERVER['HTTP_REFERER']);
     }

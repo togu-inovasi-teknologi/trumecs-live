@@ -30,7 +30,7 @@ class Backendconfirm extends MX_Controller
 
         //$data["js"] = array(base_url().'asset/backend/js/list.order.js' );
         $data['content'] = 'list_order';
-        $this->load->view('backend/template_front1', $data);
+        $this->load->view('backend/template_front', $data);
     }
 
 
@@ -117,7 +117,7 @@ class Backendconfirm extends MX_Controller
 
         $data["detailconfirm"]['order']['listdetail'];
         $data['content'] = 'detail';
-        $this->load->view('backend/template_front1', $data);
+        $this->load->view('backend/template_front', $data);
     }
 
     public function updateconfirm()
@@ -212,7 +212,7 @@ class Backendconfirm extends MX_Controller
 
         //$data["js"] = array(base_url().'asset/backend/js/list.order.js' );
         $data['content'] = 'list_withdraw';
-        $this->load->view('backend/template_front1', $data);
+        $this->load->view('backend/template_front', $data);
     }
 
     function ambil_data_withdraw()
@@ -297,7 +297,7 @@ class Backendconfirm extends MX_Controller
 
         //$data["detail"]['order']['listdetail'];
         $data['content'] = 'detail_withdraw';
-        $this->load->view('backend/template_front1', $data);
+        $this->load->view('backend/template_front', $data);
     }
 
     public function update_withdraw()

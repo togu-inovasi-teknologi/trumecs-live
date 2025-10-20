@@ -60,7 +60,7 @@ class Jasa extends MX_Controller
             $data["js"] = array(base_url() . 'asset/js/slick/slick.min.js', "/modules/home/js/homemobile.js");
             $data["css"] = array(base_url() . 'asset/js/slick/slick.scss', base_url() . 'asset/css/cari_page.css', '/modules/home/css/mobile/landpage.css', "/modules/jasa/css/mobile/jasa.css", base_url() . 'asset/css/template.css');
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
     public function page()
     {
@@ -74,6 +74,6 @@ class Jasa extends MX_Controller
             $data["js"] = array(base_url() . 'asset/js/slick/slick.min.js', "/modules/home/js/homemobile.js");
             $data["css"] = array(base_url() . 'asset/js/slick/slick.scss', base_url() . 'asset/css/cari_page.css', '/modules/home/css/mobile/landpage.css', "/modules/jasa/css/mobile/jasa.css", base_url() . 'asset/css/template.css');
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 }

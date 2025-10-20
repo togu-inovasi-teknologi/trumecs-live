@@ -29,15 +29,15 @@ class Category extends MX_Controller
 
         if (!$this->agent->is_mobile()) {
             $data['content'] = 'desktop/main';
-            $data["js"] = ["/modules/category/js/desktop/main-datatable.js", base_url() . "asset/js/validator/validator.js", base_url() . "asset/js/input_tag.js", base_url() . 'asset/js/drag_file.js', "/modules/tab/js/tabs.js", base_url() . 'asset/js/slick/slick.min.js',"https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.js"];
-            $data["css"] = ["/modules/category/css/desktop/main.css", base_url() . 'asset/css/table_compare.css', base_url() . 'asset/css/input_tag.css', base_url() . 'asset/css/algolia_autocomplete.css', base_url() . 'asset/css/drag_file.css', base_url() . 'asset/js/slick/slick.scss', base_url() . 'asset/css/cari_page.css',"https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.css"];
+            $data["js"] = ["/modules/category/js/desktop/main-datatable.js", base_url() . "asset/js/validator/validator.js", base_url() . "asset/js/input_tag.js", base_url() . 'asset/js/drag_file.js', "/modules/tab/js/tabs.js", base_url() . 'asset/js/slick/slick.min.js', "https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.js"];
+            $data["css"] = ["/modules/category/css/desktop/main.css", base_url() . 'asset/css/table_compare.css', base_url() . 'asset/css/input_tag.css', base_url() . 'asset/css/algolia_autocomplete.css', base_url() . 'asset/css/drag_file.css', base_url() . 'asset/js/slick/slick.scss', base_url() . 'asset/css/cari_page.css', "https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.css"];
         } else {
             $data['content'] = 'mobile/main';
-            $data["js"] = ["/modules/category/js/mobile/main-datatable.js", base_url() . "asset/js/validator/validator.js", base_url() . "asset/js/input_tag.js", base_url() . 'asset/js/drag_file.js', "/modules/tab/js/tabs.js", base_url() . 'asset/js/slick/slick.min.js',"https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.js"];
-            $data["css"] = ["/modules/category/css/mobile/main.css", base_url() . 'asset/css/table_compare.css', base_url() . 'asset/css/input_tag.css', base_url() . 'asset/css/algolia_autocomplete.css', base_url() . 'asset/css/drag_file.css', base_url() . 'asset/js/slick/slick.scss', base_url() . 'asset/css/cari_page.css',"https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.css"];
+            $data["js"] = ["/modules/category/js/mobile/main-datatable.js", base_url() . "asset/js/validator/validator.js", base_url() . "asset/js/input_tag.js", base_url() . 'asset/js/drag_file.js', "/modules/tab/js/tabs.js", base_url() . 'asset/js/slick/slick.min.js', "https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.js"];
+            $data["css"] = ["/modules/category/css/mobile/main.css", base_url() . 'asset/css/table_compare.css', base_url() . 'asset/css/input_tag.css', base_url() . 'asset/css/algolia_autocomplete.css', base_url() . 'asset/css/drag_file.css', base_url() . 'asset/js/slick/slick.scss', base_url() . 'asset/css/cari_page.css', "https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.css"];
         }
 
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
 

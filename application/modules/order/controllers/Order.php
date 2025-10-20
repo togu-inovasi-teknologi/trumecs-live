@@ -45,7 +45,7 @@ class Order extends MX_Controller
             $data['content'] = 'member/mobile/view_member';
             $data["contentmember"] = "member/mobile/member/_confirmation_list";
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function detail($id)
@@ -74,7 +74,7 @@ class Order extends MX_Controller
             $data['content'] = 'member/mobile/view_member';
             $data["contentmember"] = "mobile/order_detail";
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
 

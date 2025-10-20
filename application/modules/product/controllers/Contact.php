@@ -78,7 +78,7 @@ class Contact extends MX_Controller
 
 
         //echo "string";
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
     private function getcategory($id)
     {

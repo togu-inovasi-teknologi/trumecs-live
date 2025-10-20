@@ -51,7 +51,7 @@ class Rental extends MX_Controller
             $data["js"] = array(base_url() . 'asset/js/slick/slick.min.js', "/modules/rental/js/rental.js");
             $data["css"] = array(base_url() . 'asset/js/slick/slick.scss', base_url() . 'asset/css/cari_page.css', '/modules/home/css/mobile/rental.css', "/modules/rental/css/mobile/rental.css");
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function list($url)
@@ -72,7 +72,7 @@ class Rental extends MX_Controller
             $data["js"] = array(base_url() . 'asset/js/slick/slick.min.js', "/modules/rental/js/rental.js");
             $data["css"] = array(base_url() . 'asset/js/slick/slick.scss', base_url() . 'asset/css/cari_page.css', '/modules/home/css/mobile/rental.css', "/modules/rental/css/mobile/rental.css");
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function detail($id)
@@ -103,7 +103,7 @@ class Rental extends MX_Controller
             $data["js"] = array(base_url() . 'asset/js/slick/slick.min.js', "/modules/rental/js/rental.js");
             $data["css"] = array(base_url() . 'asset/js/slick/slick.scss', base_url() . 'asset/css/cari_page.css', '/modules/home/css/mobile/rental.css', "/modules/rental/css/mobile/rental.css");
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function page()
@@ -120,6 +120,6 @@ class Rental extends MX_Controller
             $data["js"] = array(base_url() . 'asset/js/slick/slick.min.js', "/modules/rental/js/rental.js");
             $data["css"] = array(base_url() . 'asset/js/slick/slick.scss', base_url() . 'asset/css/cari_page.css', '/modules/home/css/mobile/rental.css', "/modules/rental/css/mobile/rental.css");
         }
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 }

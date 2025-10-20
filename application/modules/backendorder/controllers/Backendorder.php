@@ -35,66 +35,61 @@ class Backendorder extends MX_Controller
 
         //$data["js"] = array(base_url().'asset/backend/js/list.order.js' );
         $data['content'] = 'list_order';
-        $this->load->view('backend/template_front1', $data);
+        $this->load->view('backend/template_front', $data);
     }
     // public function set_delivery($iduniq)
     // {
     //     $order = $this->db->get_where('order', ['iduniq' => $iduniq])->row_array();
-      
+
     //     $data['order'] = $order;
     //     $data['content'] = 'confirm_pengiriman';
     //     $data['js'] = ['modules/backendorder/js/shipping_set.js'];
-    //     $this->load->view('backend/template_front1', $data);
-        
+    //     $this->load->view('backend/template_front', $data);
+
     // }
 
     public function save_delivery()
     {
-       
+
         $resi = $this->input->post("shipping_resi");
         $iduniq = $this->input->post('unique');
 
-        if(empty($resi) && $_FILES['file_delivery']['error'] == 4){
+        if (empty($resi) && $_FILES['file_delivery']['error'] == 4) {
 
-            $this->session->set_flashdata('error_save_delivery_data','Masukan Resi Pengiriman Atau Bukti Dokument Pengiriman');
+            $this->session->set_flashdata('error_save_delivery_data', 'Masukan Resi Pengiriman Atau Bukti Dokument Pengiriman');
 
             redirect('backendorder/set_delivery/' . $iduniq);
-
-            
-        }else{
-            if(do_upload_file('file_delivery', 'order')){
+        } else {
+            if (do_upload_file('file_delivery', 'order')) {
                 $data['status'] = 'delivery';
                 $data['file_delivery'] = $this->upload->data('file_name');
                 $data['shipping_resi'] = $this->input->post("shipping_resi");
                 $data['id'] = $this->input->post("order_id");
-            
+
 
                 $orderModel = new Order_model($data);
-        
+
                 $orderModel->db_set();
 
 
-                if($orderModel->save($data) > 0){
+                if ($orderModel->save($data) > 0) {
                     redirect('backendorder/detail/' . $iduniq);
-                }else{
+                } else {
                     $this->session->set_flashdata('error_save_delivery_data', 'failed uploaded file');
                     redirect('backendorder/detail/' . $iduniq);
                 }
-            }else{
+            } else {
                 $this->session->set_flashdata('error_save_delivery_data', $this->upload->display_errors());
                 redirect('backendorder/detail/' . $iduniq);
             }
-            
         }
-        
-        
     }
 
     public function get_city()
     {
         $province_name = $this->input->post("province_name");
         $province = $this->db->get_where('provinces', ['name' => $province_name])->row_array();
-        
+
         $city = $this->db->get_where('regencies', ['province_id' => $province['id']])->result_array();
 
         echo json_encode($city);
@@ -198,13 +193,13 @@ class Backendorder extends MX_Controller
         ];
         $data['js'] = [
             "/modules/member/js/member/member.js",
-            "/modules/backendorder/js/detail.js", 
+            "/modules/backendorder/js/detail.js",
             // base_url() . "asset/js/select2.min.js",
             // base_url() . "asset/backend/js/create-order.js",
         ];
 
         $data['content'] = 'detail/print';
-        $this->load->view('backend/template_front1', $data);
+        $this->load->view('backend/template_front', $data);
     }
 
 
@@ -215,14 +210,14 @@ class Backendorder extends MX_Controller
         $model = new etx_model();
         $model->where(['iduniq' => $uniqid])->get()->single()->with(['items', 'buyer', 'supplier']);
         $data["detail"] = $model;
-      
+
         $data['css'] = [
             "/modules/backendorder/css/detail.css",
             base_url() . "asset/css/select2.min.css",
         ];
         $data['js'] = [
             "/modules/member/js/member/member.js",
-            "/modules/backendorder/js/detail.js", 
+            "/modules/backendorder/js/detail.js",
             // base_url() . "asset/js/select2.min.js",
             // base_url() . "asset/backend/js/create-order.js",
         ];
@@ -231,21 +226,18 @@ class Backendorder extends MX_Controller
         $data['agent'] = $this->etx_model->get_agent($model->referral_code);
         $data['marketing'] = $this->etx_model->get_marketing($model->marketing_id);
         $data['marketing_setting'] = $this->db->get_where('setting', ['name' => 'marketing_fee'])->row_array();
-        
+
         if (empty($data["detail"])) {
             $this->session->set_flashdata('message', 'Pesanan tidak ada di database');
             redirect(base_url() . "backendorder/?status=all");
             exit();
         }
-       
+
         $data['content'] = 'detail';
-        $this->load->view('backend/template_front1', $data);
+        $this->load->view('backend/template_front', $data);
     }
 
-    public function sourcing_order()
-    {
-
-    }
+    public function sourcing_order() {}
 
     public function create()
     {
@@ -253,8 +245,7 @@ class Backendorder extends MX_Controller
         $sourcing_id = $this->uri->segment(3);
         $sourcingModel = null;
 
-        if($sourcing_id != null)
-        {
+        if ($sourcing_id != null) {
 
             $this->load->model('member/sourcing_model');
 
@@ -265,13 +256,14 @@ class Backendorder extends MX_Controller
             $query_total_selling_price = 'SUM(si.price * sis.qty)';
             $query_ppn_in = 'SUM(sis.price * 0.11 * sis.qty)';
             $query_ppn_out = 'SUM(si.price * 0.11 * sis.qty)';
-            $query_gross_profit = '('. $query_total_selling_price .' + '. $query_ppn_out .') - ('. $query_total_buying_price .' + '. $query_ppn_in .')';
+            $query_gross_profit = '(' . $query_total_selling_price . ' + ' . $query_ppn_out . ') - (' . $query_total_buying_price . ' + ' . $query_ppn_in . ')';
 
-            $query_persentation = '(('. $query_gross_profit .' - '. $query_ppn_in .' + '. $query_ppn_out .') / '. $query_total_selling_price .' ) * 100';
+            $query_persentation = '((' . $query_gross_profit . ' - ' . $query_ppn_in . ' + ' . $query_ppn_out . ') / ' . $query_total_selling_price . ' ) * 100';
 
             $sourcingModel->select([
-                's.*','s.address as sourcing_address',
-                'SUM(sis.qty) as total_quantity', 
+                's.*',
+                's.address as sourcing_address',
+                'SUM(sis.qty) as total_quantity',
                 $query_total_buying_price . ' as total_buying_price',
                 $query_total_selling_price . ' as total_price',
                 $query_ppn_in . ' as ppn_in',
@@ -280,22 +272,21 @@ class Backendorder extends MX_Controller
                 $query_persentation . ' as total_persentation',
             ]);
             $sourcingModel->join([
-                [ 
-                    'table' => 'sourcing_item si', 
+                [
+                    'table' => 'sourcing_item si',
                     'on' => 'si.sourcing_id = s.id',
                 ],
-                [ 
-                    'table' => 'sourcing_item_source sis', 
+                [
+                    'table' => 'sourcing_item_source sis',
                     'on' => 'sis.sourcing_item = si.id',
                 ],
             ]);
             $sourcingModel->where(['s.id' => $sourcing_id]);
 
-           
+
 
             $sourcingModel->get()->with(['items', 'address', 'contact', 'company']);
-           
-        }   
+        }
 
         $this->load->model('backendprospek/M_Prospek');
         $data["css"] = array(
@@ -313,7 +304,7 @@ class Backendorder extends MX_Controller
             // base_url() . "asset/js/slick/slick.min.js",
             '/modules/backendorder/js/create.js',
         );
-       
+
         $this->db->reset_query();
         $data['sourcing'] = $sourcingModel;
         $data['provinsi'] = $this->M_Prospek->get_provinsi();
@@ -326,41 +317,36 @@ class Backendorder extends MX_Controller
         $data['marketing_fee'] = $this->db->get_where('setting', ['name' => 'marketing_fee'])->row();
         $session = $this->session->all_userdata();
         $sessionadmin = array_key_exists("admin", $session) ? $session["admin"] : '';
-        
+
         $data['admin'] = $sessionadmin;
-        if($sourcingModel != null)
-        {
-            if($sourcingModel->type == 'buyer')
-            {
+        if ($sourcingModel != null) {
+            if ($sourcingModel->type == 'buyer') {
                 $this->form_validation->set_rules($this->etx_model->configRulesBuyer);
                 $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
-                
+
                 foreach ($sourcingModel->items as $key => $value) {
-                    
-                    $this->form_validation->set_rules('id_produk['. $key .']', 'Produk', 'required');
-                    $this->form_validation->set_rules('weight['. $key .']', 'Berat Produk', 'required', [
+
+                    $this->form_validation->set_rules('id_produk[' . $key . ']', 'Produk', 'required');
+                    $this->form_validation->set_rules('weight[' . $key . ']', 'Berat Produk', 'required', [
                         'required' => 'Berat Produk Harus Diisi.'
                     ]);
-                   
                 }
             }
-            
         }
-       
+
 
         if ($this->form_validation->run() == FALSE) {
             $data['content'] = 'form_order';
-            $this->load->view('backend/template_front1', $data);
-        }else{
-            
-        //    "backendorder/store
+            $this->load->view('backend/template_front', $data);
+        } else {
+
+            //    "backendorder/store
             $order['iduniq'] = generate_orderId();
             $order['time'] = date('d-m-Y');
             $order['status'] = $this->input->post('status');
 
-            if($sourcingModel->type == 'buyer')
-            {
-                
+            if ($sourcingModel->type == 'buyer') {
+
                 $order['billing_name'] = $sourcingModel->name;
                 $order['billing_company'] = $sourcingModel->company->name;
                 $order['billing_address'] = $sourcingModel->company->billing_address;
@@ -382,11 +368,11 @@ class Backendorder extends MX_Controller
                 $order['shipping_resi'] = $this->input->post('shipping_resi');
                 $order['comment'] = $this->input->post('comment');
                 $order['ppn'] = 0;
-                
+
                 $order['payment_total'] = $this->input->post('total');
                 $order['sourcing_buyer'] = $this->input->post('sourcing_buyer');
 
-            
+
 
                 $items = $this->input->post('id_produk');
                 $product_names = $this->input->post('product_names');
@@ -402,7 +388,7 @@ class Backendorder extends MX_Controller
                 }
 
                 $order['referral_code'] = $this->input->post('referral_code');
-                $order['referal_amount'] =((int) $this->input->post('referal_persentase') / 100) * $gross;
+                $order['referal_amount'] = ((int) $this->input->post('referal_persentase') / 100) * $gross;
                 $order['referal_persentase'] = $this->input->post('referal_persentase');
 
                 $order['cashback_to_buyer'] = $this->input->post('cashback_to_buyer');
@@ -420,7 +406,7 @@ class Backendorder extends MX_Controller
                 $order['file_delivery'] = do_upload_file_return_file_name('file_delivery', 'order');
                 $order['file_receive'] = do_upload_file_return_file_name('file_receive', 'order');
 
-               
+
                 $this->db->insert('order', $order);
                 $id_order = $this->db->insert_id();
 
@@ -452,14 +438,12 @@ class Backendorder extends MX_Controller
                 // die;
 
                 $this->db->insert_batch('order_detail', $produk);
-                return redirect('backendorder/detail/' . $order['iduniq'] );
+                return redirect('backendorder/detail/' . $order['iduniq']);
             }
         }
-
-        
     }
 
-    
+
 
     public function updateorder()
     {
@@ -546,7 +530,7 @@ class Backendorder extends MX_Controller
         $memberId = $this->input->post('idmember');
 
 
-        if($memberId < 1){
+        if ($memberId < 1) {
             $this->db->insert('member', ['name' => $name, 'email' => $email]);
             $memberId = $this->db->insert_id();
         }
@@ -628,12 +612,12 @@ class Backendorder extends MX_Controller
 
     public function set_referal($iduniq)
     {
-        
+
         $data['referral_code'] = $this->input->post('referal_code');
         $data['referal_persentase'] = $this->input->post('referal_persentase');
         $data['cashback_persentase'] = $this->input->post('cashback_presentase');
         $data['cashback_to_buyer'] = isset($_POST['cashback_to_buyer']) ? 1 : 0;
-        
+
         $this->db->where('iduniq', $iduniq);
         $this->db->update('order', $data);
 
@@ -646,10 +630,10 @@ class Backendorder extends MX_Controller
     }
     public function set_marketing($iduniq)
     {
-        
+
         $data['marketing_id'] = $this->input->post('marketing_id');
         $data['marketing_persentase'] = $this->input->post('marketing_persentase');
-        
+
         $this->db->where('iduniq', $iduniq);
         $this->db->update('order', $data);
 
@@ -662,31 +646,30 @@ class Backendorder extends MX_Controller
         $order_id = $this->input->post('order_id');
 
         $dataOrder = $this->etx_model->getorder(['id' => $order_id]);
-       
-        if(do_upload_file('file_receive', 'order')){
+
+        if (do_upload_file('file_receive', 'order')) {
 
 
             $order['id'] = $this->input->post('order_id');
             $order['file_receive'] = $this->upload->data('file_name');
             $order['status'] = 'complete';
-            
+
 
 
             $orderModel = new Order_model($order);
 
             $orderModel->db_set();
 
-            if($orderModel->save($order) > 0){
+            if ($orderModel->save($order) > 0) {
                 $this->etx_model->check_referral(['id' => $order_id]);
                 $this->etx_model->check_cashback(['id' => $order_id]);
                 $this->etx_model->check_marketing(['id' => $order_id]);
                 redirect('/backendorder/detail/' . $dataOrder['iduniq']);
-            }else{
+            } else {
                 $this->session->set_flashdata('error_uploaded_po', 'failed uploaded file');
                 redirect('/backendorder/detail/' . $dataOrder['iduniq']);
             }
-            
-        }else{
+        } else {
             $this->session->set_flashdata('error_uploaded_po', $this->upload->display_errors());
             redirect('/backendorder/detail/' . $dataOrder['iduniq']);
         }

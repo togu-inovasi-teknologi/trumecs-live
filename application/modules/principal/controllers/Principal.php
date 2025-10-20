@@ -28,7 +28,7 @@ class Principal extends MX_Controller
             $data['content'] = 'index_mobile';
         }
 
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function partnership()
@@ -46,7 +46,7 @@ class Principal extends MX_Controller
             $data['content'] = 'partnership_mobile';
         }
 
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     function form()
@@ -89,7 +89,7 @@ class Principal extends MX_Controller
             $data['content'] = 'mobile/form_mobile';
         }
 
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     function save()
@@ -143,7 +143,7 @@ class Principal extends MX_Controller
     function save_email()
     {
 
-       
+
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message-error', 'Anda tidak memasukkan email dengan benar');
@@ -156,7 +156,7 @@ class Principal extends MX_Controller
         $this->m_principal->save($data);
         $this->session->set_flashdata('message', 'Terimakasih sudah mengisi untuk menjadi Principal kami.');
 
-       
+
         redirect('principal/form');
     }
 
@@ -173,7 +173,7 @@ class Principal extends MX_Controller
     public function success()
     {
         $data['content'] = 'success';
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function register()
@@ -191,7 +191,7 @@ class Principal extends MX_Controller
             $data['content'] = 'mobile/form_mobile_register';
         }
 
-        $this->load->view('front/template_front1', $data);
+        $this->load->view('front/template_front', $data);
     }
 
     public function principal_register()
@@ -199,7 +199,7 @@ class Principal extends MX_Controller
 
         $session = $this->session->all_userdata();
 
-        if($session != null && isset($session['member']) &&  $session['member'] != null){
+        if ($session != null && isset($session['member']) &&  $session['member'] != null) {
             redirect('member');
         }
 
@@ -208,26 +208,25 @@ class Principal extends MX_Controller
         $email = $this->input->post('email');
 
         $captcha = $this->input->post('g-recaptcha-response');
-        if(empty($captcha))
-        {
+        if (empty($captcha)) {
             $this->session->set_flashdata('message', 'Invalid Captcha!!');
             redirect('principal/form#campign-seller');
         }
         $verify = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=6LcuyIoUAAAAAJC6C-2pI482rf-DAU_PEF2nsf2y&response=" . $captcha . "&remoteip=" . $_SERVER['REMOTE_ADDR']);
         $response = json_decode($verify, true);
 
-        if($response['success'] != '1'){
+        if ($response['success'] != '1') {
             $this->session->set_flashdata('message', 'Captcha Error!!');
             redirect('principal/form#campign-seller');
         }
 
         $data['Company'] = $companyName;
         $data['email'] = $email;
-        $data['expired_verification'] = strtotime("". date("Y-m-d H:i:s") ." +1 day");
+        $data['expired_verification'] = strtotime("" . date("Y-m-d H:i:s") . " +1 day");
 
         $member = $this->db->get_where('member', ['email' => $email])->row_array();
 
-        if($member != null){
+        if ($member != null) {
 
             $this->session->set_flashdata('message', 'Anda Sudah Terdaftar, Silahkan Login!');
             redirect('principal/form#campign-seller');
@@ -236,9 +235,9 @@ class Principal extends MX_Controller
         $this->db->insert("member", $data);
         $data['id'] = $this->db->insert_id();
 
-        if($data['id'] > 0){
+        if ($data['id'] > 0) {
             $data['verification_link'] =  base_url() . 'principal/verification/' . $data['id'];
-        
+
             $from = "no-reply@trumecs.com";
             $password = "no-reply#trumecs#123abc";
             $to = $email;
@@ -257,12 +256,10 @@ class Principal extends MX_Controller
             set_cookie($cookie);
 
             redirect('principal/register_success');
-        }else{
+        } else {
             $this->session->set_flashdata('message', 'Failed Registration Principal');
             redirect('principal/form#campign-seller');
         }
-
-        
     }
 
 
@@ -273,9 +270,8 @@ class Principal extends MX_Controller
         } else {
             $data['content'] = 'principal/mobile/mail_send_success';
         }
-        
+
         $this->load->view('front/_template_success', $data);
-        
     }
 
     public function verification($id)
@@ -283,24 +279,24 @@ class Principal extends MX_Controller
         $member = $this->member_model->getmember(['member.id' => $id]);
 
 
-        if($member == null){
+        if ($member == null) {
             redirect('404_override');
         }
-     
-        if(strtolower($member[0]['status']) == 'active'){
+
+        if (strtolower($member[0]['status']) == 'active') {
             redirect('principal/form');
         }
 
         $expiredVerfication = strtotime(date("Y-m-d H:i:s", $member[0]['expired_verification']));
         $dateNow = strtotime("now");
-        if($dateNow < $expiredVerfication){
+        if ($dateNow < $expiredVerfication) {
             $data['verification_at'] = strtotime("now");
             $data['status'] = 'active';
-            
+
             $this->db->where('id', $id);
             $updated = $this->db->update('member', $data);
-           
-            
+
+
             $this->load->helper('cookie');
 
             $cookie['name'] = 'principal_form';
@@ -313,23 +309,19 @@ class Principal extends MX_Controller
             set_cookie($cookie);
 
             redirect('principal/dataequipment');
-
-
-        }else{
+        } else {
             redirect('/404_override');
         }
-        
-
     }
 
     public function dataequipment()
     {
 
-        if(!isset($_COOKIE['principal_form'])){
+        if (!isset($_COOKIE['principal_form'])) {
             redirect('/');
         }
 
-        if(empty($_COOKIE['principal_form'])){
+        if (empty($_COOKIE['principal_form'])) {
             redirect('/');
         }
 
@@ -348,16 +340,15 @@ class Principal extends MX_Controller
         $this->form_validation->set_rules('product', 'Product', 'required');
         $this->form_validation->set_rules('g-recaptcha-response', 'recaptcha', 'required');
 
-       
 
-        if ($this->form_validation->run() == FALSE)
-        {
+
+        if ($this->form_validation->run() == FALSE) {
             $data['member'] = json_decode($_COOKIE['principal_form']);
-        
+
             $data["seotitle"] = $this->lang->line('seo_title_principal');
             $data["seokeywords"] = "jual sparepart truk,sparepart truk";
             $data["seodescription"] = $this->lang->line('seo_description_principal');
-    
+
             $data["css"] = array(base_url() . "asset/css/page_detail.css", base_url() . "asset/js/slick/slick.css", base_url() . "asset/js/slick/slick-theme.css", "/modules/principal/css/principal.css");
             $data["js"] = array(base_url() . "asset/js/slick/slick.min.js", "/modules/principal/js/principal_form_complete.js");
             $data['user_data'] = [];
@@ -367,10 +358,8 @@ class Principal extends MX_Controller
                 $data['content'] = 'mobile/principal_form_complete';
             }
 
-            $this->load->view('front/template_front1', $data);
-        }
-        else
-        {
+            $this->load->view('front/template_front', $data);
+        } else {
             $id = $this->input->post("id");
             $member['name'] = $this->input->post('name');
             $member['email'] = $this->input->post('email');
@@ -380,7 +369,7 @@ class Principal extends MX_Controller
             $member['company_email'] = $this->input->post('company_email');
             $member['company_phone'] = $this->input->post('company_phone');
             $this->db->where('id', $id);
-            if($this->db->update('member', $member)){
+            if ($this->db->update('member', $member)) {
                 $principal['company'] = $this->input->post('company');
                 $principal['name'] = $this->input->post('name');
                 $principal['product'] = $this->input->post('product');
@@ -389,7 +378,7 @@ class Principal extends MX_Controller
                 $principal['phone'] = $this->input->post('phone');
                 $principal['create_at'] = time();
                 $principal['country'] = $this->input->post('country');
-               
+
                 $this->db->insert('principal', $principal);
 
                 $Loginmember = array("Loginmember" => 'TRUE');
@@ -399,7 +388,7 @@ class Principal extends MX_Controller
                 $this->session->set_userdata("member", $data);
 
                 unset($_COOKIE['principal_form']);
-                
+
                 $cookie['name'] = 'principal_form';
                 $cookie['value'] = '';
                 $cookie['expire'] = 0;
@@ -407,9 +396,7 @@ class Principal extends MX_Controller
                 set_cookie($cookie);
 
                 redirect('member');
-                
-
-            }else{
+            } else {
                 $this->session->set_flashdata('failed_updating_member', '<div class="alert alert-danger" role="alert">Gagal Pendaftaran Principal, Coba Lagi</div>');
                 $this->form_validation->run(false);
                 redirect('principal/dataequipment');
