@@ -1,9 +1,9 @@
 <?php
 //if ($this->agent->is_mobile()): 
-    $host = "https://$_SERVER[HTTP_HOST]";
-    if ($host=="https://trumecs.com") {
-        redirect("http://www.trumecs.com$_SERVER[REQUEST_URI]",'location',301);
-    } 
+$host = "https://$_SERVER[HTTP_HOST]";
+if ($host == "https://trumecs.com") {
+    redirect("http://www.trumecs.com$_SERVER[REQUEST_URI]", 'location', 301);
+}
 //endif ;
 $obj_language = get_language();
 
@@ -64,7 +64,9 @@ $this->db->reset_query();
 $contact = $this->db->where('id', $ida)->get("admin")->result_array();
 ?>
 <!DOCTYPE html>
-<html lang="<?php $lang = get_language(); echo $lang['code'] ?>">
+<html lang="<?php $lang = get_language();
+            echo $lang['code'] ?>">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -79,7 +81,7 @@ $contact = $this->db->where('id', $ida)->get("admin")->result_array();
         <link rel="stylesheet" href="<?php echo base_url() ?>asset/css/bootstrap.4-alpha.css">
     <?php endif ?>
     <link rel="stylesheet" href="<?php echo base_url() ?>asset/css/template.css">
-    <?php   
+    <?php
     if (isset($css)) {
         $minicss = $this->minifile->create($css, 'css');
         echo '<link rel="stylesheet" href="' . base_url("asset/core/css/" . $minicss) . '" />';
@@ -249,6 +251,7 @@ $contact = $this->db->where('id', $ida)->get("admin")->result_array();
         }
     </style>
 </head>
+
 <body onunload="testUnload()" url="<?php echo "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ?>" baseurl="<?php echo base_url() ?>">
     <!-- Google Tag Manager (noscript) -->
     <!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TVC4G9C" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
@@ -283,7 +286,7 @@ $contact = $this->db->where('id', $ida)->get("admin")->result_array();
 
 
     <?php if (!$this->agent->is_mobile()) {
-        $this->load->view("front/_footerdesktop_new");
+        $this->load->view("front/_footerdesktop");
     } else {
         $this->load->view("front/_footermobile_new");
     } ?>
@@ -366,4 +369,5 @@ $contact = $this->db->where('id', $ida)->get("admin")->result_array();
         })(jQuery)
     </script>
 </body>
+
 </html>
