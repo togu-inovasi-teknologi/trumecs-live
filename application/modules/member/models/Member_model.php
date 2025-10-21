@@ -106,26 +106,58 @@ class Member_model extends CI_Model
             return false;
         }
     }
+
     public function insertGoogle($data)
     {
-        $this->db->insert("member", $data);
+        // Cek duplikat email dulu
+        $this->db->where('email', $data['email']);
+        $existing = $this->db->get('member')->row();
 
-        if ($this->db->affected_rows() > 0) {
-            return $this->db->insert_id();
+        if ($existing) {
+            // Update existing user dengan google ID
+            $this->db->where('id', $existing->id);
+            $this->db->update('member', array('id_google' => $data['id_google']));
+            return $existing->id;
         } else {
-            return false;
+            // Insert baru
+            $this->db->insert('member', $data);
+            return $this->db->insert_id();
         }
     }
+
     public function insert($data)
     {
-        $data = $this->db->get_where('member', $data)->row();
-        if ($data) {
-            return $data->id;
+        // Cek duplikat berdasarkan EMAIL saja (bukan semua field)
+        $this->db->where('email', $data['email']);
+        $existing = $this->db->get('member')->row();
+
+        if ($existing) {
+            return $existing->id;
         } else {
             $this->db->insert("member", $data);
             return $this->db->insert_id();
         }
     }
+
+    // Tambahkan method untuk cek by email saja
+    public function get_by_email($email)
+    {
+        $this->db->where('email', $email);
+        return $this->db->get('member')->row();
+    }
+
+    public function get_by_google_id($google_id)
+    {
+        $this->db->where('id_google', $google_id);
+        return $this->db->get('member')->row();
+    }
+
+    public function get_by_id($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->get('member')->row();
+    }
+
     public function edit_member($id, $data)
     {
         $this->db->where($id)

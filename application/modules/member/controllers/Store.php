@@ -15,6 +15,11 @@ class Store extends MX_Controller
         $this->load->model("product/product_model");
         $this->load->model("category/category_model");
         $this->load->model("c/c_model");
+        $this->load->language("form");
+        $this->load->language("note");
+        $this->load->language("button");
+        $this->load->language("modal");
+        $this->load->language("partnership");
         $this->load->library('encryption');
     }
     public function index()

@@ -228,31 +228,84 @@ $(document).ready(function () {
     });
   });
 });
+// $(document).ready(function () {
+//   var valueColL = $(".value_col_left").val() || 6;
+//   var valueColR = $(".value_col_right").val() || 6;
+
+//   function populateDropdown(dropdownId, nilai) {
+//     $(`#${dropdownId}`).empty();
+
+//     for (let i = 1; i <= 11; i++) {
+//       const option = $(`<option value="${i}">${i}</option>`);
+//       if (parseInt(i) === parseInt(nilai)) {
+//         option.prop("selected", true);
+//       }
+//       $(`#${dropdownId}`).append(option);
+//     }
+//   }
+
+//   function calculateOtherDropdown(selectedValue, dropdownId) {
+//     const otherDropdownId =
+//       dropdownId === "col_left" ? "col_right" : "col_left";
+//     $(`#${otherDropdownId}`).val(12 - selectedValue);
+//   }
+
+//   populateDropdown("col_left", valueColL);
+//   populateDropdown("col_right", valueColR);
+
+//   $("#col_left, #col_right").change(function () {
+//     const selectedValue = $(this).val();
+//     const dropdownId = this.id;
+//     const otherDropdownId =
+//       dropdownId === "col_left" ? "col_right" : "col_left";
+
+//     const calculatedValue = Math.min(Math.max(12 - selectedValue, 1), 11);
+//     $(`#${otherDropdownId}`).val(calculatedValue);
+//     $("#value_col_left").val($("#col_left").val());
+//     $("#value_col_right").val($("#col_right").val());
+//   });
+// });
+
 $(document).ready(function () {
-  var valueColL = $(".value_col_left").val() || 6;
-  var valueColR = $(".value_col_right").val() || 6;
+  console.log("Document ready - mulai eksekusi");
+
+  // Debug: Cek apakah elemen ada
+  console.log("Value col left element:", $("#value_col_left").length);
+  console.log("Value col right element:", $("#value_col_right").length);
+  console.log("Dropdown left element:", $("#col_left").length);
+  console.log("Dropdown right element:", $("#col_right").length);
+
+  var valueColL = $("#value_col_left").val() || 6;
+  var valueColR = $("#value_col_right").val() || 6;
+
+  console.log("Nilai yang didapat:", valueColL, valueColR);
 
   function populateDropdown(dropdownId, nilai) {
-    $(`#${dropdownId}`).empty();
+    console.log(`Populating ${dropdownId} with value:`, nilai);
+    const $dropdown = $(`#${dropdownId}`);
+
+    if ($dropdown.length === 0) {
+      console.error(`Dropdown #${dropdownId} tidak ditemukan!`);
+      return;
+    }
+
+    $dropdown.empty();
 
     for (let i = 1; i <= 11; i++) {
       const option = $(`<option value="${i}">${i}</option>`);
       if (parseInt(i) === parseInt(nilai)) {
         option.prop("selected", true);
       }
-      $(`#${dropdownId}`).append(option);
+      $dropdown.append(option);
     }
-  }
 
-  function calculateOtherDropdown(selectedValue, dropdownId) {
-    const otherDropdownId =
-      dropdownId === "col_left" ? "col_right" : "col_left";
-    $(`#${otherDropdownId}`).val(12 - selectedValue);
+    console.log(`Dropdown ${dropdownId} berhasil diisi`);
   }
 
   populateDropdown("col_left", valueColL);
   populateDropdown("col_right", valueColR);
 
+  // Event handler change
   $("#col_left, #col_right").change(function () {
     const selectedValue = $(this).val();
     const dropdownId = this.id;

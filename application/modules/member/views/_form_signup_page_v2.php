@@ -20,9 +20,9 @@
             <label class="f12 fbold"><?php echo $this->lang->line("label_captcha", FALSE); ?></label>
             <div class="g-recaptcha" data-sitekey="6LcuyIoUAAAAAP1jwHjM_tSsmhn_KYMifBEPJfD0"></div>
         </div>
-        <div class="d-flex gap-1 f14">
-            <p class=" m-a-0">Sudah Punya Akun?</p>
-            <a href="#" class="login-button m-a-0 "><?php echo $this->lang->line("tombol_masuk", FALSE); ?></a>
+        <div class="d-flex gap-1 f12">
+            <p class="m-a-0">Sudah Punya Akun?</p>
+            <a href="#" class="login-button m-a-0"><?php echo $this->lang->line("tombol_masuk", FALSE); ?></a>
         </div>
         <button class="form-control btn btnnew btn-block" type="submit"><?php echo $this->lang->line("tombol_daftar", FALSE); ?></button>
         <!-- <div class="d-flex flex-column gap-1 align-items-center">

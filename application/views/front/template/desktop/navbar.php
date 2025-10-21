@@ -47,13 +47,13 @@ $sessionmember = isset($session["member"]) ? $session["member"] : array('id' => 
                         <p><small><strong>atau</strong></small></p>
                     </div>
                     <div class="col-lg-3 p-a-0">
-                        <a href="<?php echo site_url("bulk"); ?>" class="btn btnnew f16 radius-lg-new" style="font-family:'Lato'" >Infokan Kebutuhanmu</a>
+                        <a href="<?php echo site_url("bulk"); ?>" class="btn btnnew f16 radius-lg-new" style="font-family:'Lato'">Infokan Kebutuhanmu</a>
                     </div>
                 </div>
             </div>
             <div class="col-lg">
                 <div class="menu-kanan-atas" style="text-align:end;">
-                    <a href="<?php echo base_url() ?>cart" style="margin-right:20px;">
+                    <a href="<?php echo base_url() ?>cart" class="m-r-1 f24">
                         <small class="label label-danger f12 badge"><?php echo count($this->cart->contents()) ?></small>
                         <i class="fa fa-shopping-cart"></i>
                     </a>
@@ -64,11 +64,11 @@ $sessionmember = isset($session["member"]) ? $session["member"] : array('id' => 
                         $fotomember = $member["avatar"];
                         $foto = (explode(':', $fotomember));
                     ?>
-                        <a href="<?php echo base_url() ?>chat" style="margin-right:20px;">
+                        <a href="<?php echo base_url() ?>chat" class="m-r-1 f24">
                             <small class="label label-danger f12 badge"><?php echo count($this->cart->contents()) ?></small>
                             <i class="fa fa-commenting-o"></i>
                         </a>
-                        <a href="<?php echo base_url() ?>notification" style="margin-right:20px;">
+                        <a href="<?php echo base_url() ?>notification" class="m-r-1 f24">
                             <small class="label label-danger f12 badge"><?php echo count($this->cart->contents()) ?></small>
                             <i class="fa fa-bell"></i>
                         </a>

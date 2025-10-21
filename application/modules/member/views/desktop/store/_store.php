@@ -129,23 +129,29 @@ if ($stores->banners != null) {
                         <div class="card p-a-1">
                             <div class="row">
                                 <?php foreach ($store as $key) : ?>
-                                    <div class="col-lg-12 text-center">
-                                        <img src=" <?php echo base_url() ?>public/image/store/logo/<?php echo $key["logo"]; ?>" alt="Avatar" class="avatar-setting">
-                                        <input type="text" name="logoBefore" form="formLogo" value="<?= $key["logo"]; ?>" hidden>
+                                    <div class="col-lg text-center">
+                                        <?php if ($key["logo"] !== null) { ?>
+                                            <img src=" <?php echo base_url() ?>public/image/store/logo/<?php echo $key["logo"]; ?>" alt="Avatar" class="avatar-setting">
+                                            <input type="text" name="logoBefore" form="formLogo" value="<?= $key["logo"]; ?>" hidden>
+                                        <?php } else { ?>
+                                            <img src="<?= $key["avatar"] == null ? base_url() . "public/image/noimage.png" : base_url() . "public/image/member/" . $key["avatar"] ?> " alt="Avatar" class="avatar-setting">
+                                        <?php } ?>
                                     </div>
-                                    <div class="col-lg-12 text-center m-t-1">
+                                    <div class="col-lg text-center m-t-1">
                                         <button data-toggle="modal" data-target="#edit-logo-<?php echo $key["member_id"]; ?>" class="btn btnnew">Edit Logo</button>
                                     </div>
                                 <?php endforeach ?>
-                                <div class="col-lg-12 m-t-1">
-                                    <span class="alert alert-warning pull-right f12">
-                                        <h5 class="fbold">Catatan!</h5>
-                                        <ul style="margin-left: -20px;">
-                                            <li>Extension yang bisa dipakai .JPG .JPEG .PNG</li>
-                                            <li>Ukuran : 100x100</li>
-                                            <li>Maksimal 5Mb</li>
+                            </div>
+                            <div class="row m-t-1">
+                                <div class="col-lg">
+                                    <div class="alert alert-warning f12">
+                                        <h6 class="fbold"><?= $this->lang->line('note', FALSE); ?></h6>
+                                        <ul class="mb-0" style="margin-left: -20px;">
+                                            <li><?= $this->lang->line('notePicture1', FALSE); ?></li>
+                                            <li><?= $this->lang->line('notePicture2', FALSE); ?></li>
+                                            <li><?= $this->lang->line('notePicture3', FALSE); ?></li>
                                         </ul>
-                                    </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -665,14 +671,16 @@ if ($stores->banners != null) {
                                 <div class="col-lg-6">
                                     <label for="col_left">Col Left</label>
                                     <select name="col_left" id="col_left" class="form-control">
+
                                     </select>
-                                    <input type="input" name="value_col_left" id="value_col_left" class="value_col_left" value="<?= $stores->col_left ?? 6 ?>" hidden>
+                                    <input type="hidden" name="value_col_left" id="value_col_left" class="value_col_left" value="<?= $stores->col_left ?? 6 ?>">
                                 </div>
                                 <div class="col-lg-6">
                                     <label for="col_right">Col Right</label>
                                     <select name="col_right" id="col_right" class="form-control">
+
                                     </select>
-                                    <input type="input" name="value_col_right" id="value_col_right" class="value_col_right" value="<?= $stores->col_right ?? 6 ?>" hidden>
+                                    <input type="hidden" name="value_col_right" id="value_col_right" class="value_col_right" value="<?= $stores->col_right ?? 6 ?>">
                                 </div>
                             </div>
                         </div>

@@ -114,35 +114,76 @@ class Member extends MX_Controller
         $client->setClientSecret($clientGoogle['client_secret']);
         $client->setRedirectUri($clientGoogle['redirect_uri']);
         $client->addScope($clientGoogle['scopes']);
+
         if ($code = $this->input->get('code')) {
-            $token = $client->fetchAccessTokenWithAuthCode($code);
-            $client->setAccessToken($token);
-            $oauth = new Oauth2($client);
-            $user_info = $oauth->userinfo->get();
-            $whereIdGoogle = array('member.id_google' => $user_info['id']);
-            $member["datauser"] = $this->member_model->getmember($whereIdGoogle);
-            $infoMember = $member["datauser"][0];
-            $infoMember['Loginmember'] = "TRUE";
-            if ($this->member_model->alreadyRegister("id_google", $user_info['id'])) {
-                $this->session->set_userdata('member', $infoMember);
-            } else {
-                $datejoin = date("d-m-Y");
-                $dateupdate = date("Y-m-d H:i:s");
-                $data['id_google'] = $user_info->id;
-                $data['name'] = $user_info->name;
-                $data['email'] = $user_info->email;
-                $data['avatar'] = (isset($user_info['picture'])) ? $user_info['picture'] : '';
-                $data['datejoin'] = $datejoin;
-                $data['updated_at'] = $dateupdate;
-                $data['status'] = "active";
-                $data['level'] = "silver";
-                $data['point'] = 0;
-                $this->member_model->insertGoogle($data);
+            try {
+                $token = $client->fetchAccessTokenWithAuthCode($code);
+                $client->setAccessToken($token);
+
+                $oauth = new Oauth2($client);
+                $user_info = $oauth->userinfo->get();
+
+                // Pastikan kita dealing dengan object
+                if (is_object($user_info)) {
+                    // Approach 1: Use object syntax
+                    $google_id = $user_info->id;
+                    $name = $user_info->name;
+                    $email = $user_info->email;
+                    $avatar = $user_info->picture ?? '';
+                } else {
+                    // Approach 2: Use array syntax  
+                    $google_id = $user_info['id'];
+                    $name = $user_info['name'];
+                    $email = $user_info['email'];
+                    $avatar = $user_info['picture'] ?? '';
+                }
+
+                $whereIdGoogle = array('member.id_google' => $google_id);
+                $member_data = $this->member_model->getmember($whereIdGoogle);
+
+                if (!empty($member_data)) {
+                    $infoMember = $member_data[0];
+
+                    // Pastikan infoMember adalah object atau array
+                    if (is_object($infoMember)) {
+                        $infoMember->Loginmember = "TRUE";
+                    } else {
+                        $infoMember['Loginmember'] = "TRUE";
+                    }
+
+                    $this->session->set_userdata('member', $infoMember);
+                } else {
+                    $data = array(
+                        'id_google' => $google_id,
+                        'name' => $name,
+                        'email' => $email,
+                        'password' => md5($email),
+                        'avatar' => $avatar,
+                        'datejoin' => date("d-m-Y"),
+                        'updated_at' => date("Y-m-d H:i:s"),
+                        'status' => "active",
+                        'level' => "silver",
+                        'point' => 0,
+                        'md5' => md5($email),
+                        'kodeverifybyphone' => substr(md5($email), 4, 8)
+                    );
+
+                    $this->member_model->insertGoogle($data);
+                }
+
+                $loginData = array(
+                    'email' => $email,
+                    'password' => $email,
+                );
+                $this->checkmember($loginData);
+            } catch (Exception $e) {
+                log_message('error', 'Google login error: ' . $e->getMessage());
+                $this->session->set_flashdata('message-failed', 'Login dengan Google gagal');
+                redirect(base_url() . 'member/login');
             }
-            redirect(base_url() . 'member');;
         } else {
             $url = $client->createAuthUrl();
-            header('Location:' . filter_var($url, FILTER_SANITIZE_URL));
+            redirect($url);
         }
     }
 
@@ -208,34 +249,87 @@ class Member extends MX_Controller
         }
     }
 
-    public function checkmember()
+    // public function checkmember()
+    // {
+    //     $this->form_validation->set_rules('password', 'Password', 'required');
+    //     $this->form_validation->set_rules('email', 'Email', 'required');
+    //     if ($this->form_validation->run() == FALSE) {
+    //         $this->session->set_flashdata('message-failed', 'Email/Password yang anda masukkan salah.');
+    //         redirect(base_url() . 'member/login');
+    //     } else {
+    //         $last_page = $this->input->post('last_page');
+    //         $must_page = base_url() . "cart/shipping";
+    //         $data = array(
+    //             'email' => $this->input->post('email'),
+    //             'password' => md5($this->input->post('password')),
+    //         );
+    //         $data["datauser"] = $this->member_model->getmember($data);
+    //         if (empty($data["datauser"])) {
+    //             $this->session->set_flashdata('message-failed', 'Email/Password yang anda masukkan salah.');
+    //             redirect('member/login');
+    //         } else {
+    //             $Loginmember = array("Loginmember" => 'TRUE');
+    //             $data = array_merge($data["datauser"]["0"], $Loginmember);
+    //             $this->session->set_userdata("member", $data);
+    //             if ($last_page == $must_page) {
+    //                 redirect(base_url() . "cart/shipping");
+    //             } else {
+    //                 redirect(base_url() . "member/login");
+    //             }
+    //         }
+    //     }
+    // }
+
+    public function checkmember($loginData = null)
     {
-        $this->form_validation->set_rules('password', 'Password', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required');
-        if ($this->form_validation->run() == FALSE) {
-            $this->session->set_flashdata('message-failed', 'Email/Password yang anda masukkan salah.');
-            redirect(base_url() . 'member/login');
-        } else {
-            $last_page = $this->input->post('last_page');
-            $must_page = base_url() . "cart/shipping";
-            $data = array(
+        // Support untuk direct call dari Google login
+        if ($loginData === null) {
+            $this->form_validation->set_rules('password', 'Password', 'required');
+            $this->form_validation->set_rules('email', 'Email', 'required');
+
+            if ($this->form_validation->run() == FALSE) {
+                $this->session->set_flashdata('message-failed', 'Email/Password yang anda masukkan salah.');
+                redirect(base_url() . 'member/login');
+                return;
+            }
+
+            $loginData = array(
                 'email' => $this->input->post('email'),
                 'password' => md5($this->input->post('password')),
             );
-            $data["datauser"] = $this->member_model->getmember($data);
+        }
+
+        $data["datauser"] = $this->member_model->getmember($loginData);
+
+        if (empty($data["datauser"])) {
+            // Coba login dengan password = email (untuk Google login)
+            $googleLoginData = array(
+                'email' => $loginData['email'],
+                'password' => md5($loginData['email']) // Untuk Google login, password = md5(email)
+            );
+
+            $data["datauser"] = $this->member_model->getmember($googleLoginData);
+
             if (empty($data["datauser"])) {
                 $this->session->set_flashdata('message-failed', 'Email/Password yang anda masukkan salah.');
-                redirect('member/login');
-            } else {
-                $Loginmember = array("Loginmember" => 'TRUE');
-                $data = array_merge($data["datauser"]["0"], $Loginmember);
-                $this->session->set_userdata("member", $data);
-                if ($last_page == $must_page) {
-                    redirect(base_url() . "cart/shipping");
-                } else {
-                    redirect(base_url() . "member/login");
-                }
+                redirect(base_url() . 'member/login');
+                return;
             }
+        }
+
+        $Loginmember = array("Loginmember" => 'TRUE');
+        $user_data = array_merge($data["datauser"][0], $Loginmember);
+        $this->session->set_userdata("member", $user_data);
+
+        // Check last page untuk redirect
+        $last_page = $this->input->post('last_page');
+        $must_page = base_url() . "cart/shipping";
+
+        if ($last_page == $must_page) {
+            redirect(base_url() . "cart/shipping");
+        } else {
+            // Redirect ke dashboard member, BUKAN login page
+            redirect(base_url() . "member");
         }
     }
 
@@ -337,38 +431,114 @@ class Member extends MX_Controller
         $this->load->view('front/template_front', $data);
     }
 
+    // public function indata()
+    // {
+    //     $this->form_validation->set_rules('name', 'Name', 'required');
+    //     $this->form_validation->set_rules('password', 'Password', 'required');
+    //     $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+    //     if ($this->form_validation->run($this) == FALSE) {
+    //         $this->session->set_flashdata('message-failed', 'Data Anda tidak lengkap, Silahkan ulangi pengisian form dengan benar.'); //.validation_errors()
+    //         redirect(base_url() . 'member/login');
+    //     } else {
+    //         $email = $this->input->post('email');
+    //         $data["datauser"] = array(
+    //             'email' => $email
+    //         );
+    //         $data["datauser"] = $this->member_model->getmember($data["datauser"]);
+    //         if (count($data["datauser"]) > 0) {
+    //             $this->session->set_flashdata('message-failed', 'Email Anda sudah terdaftar');
+    //             redirect(base_url() . 'member/login');
+    //             exit();
+    //         }
+    //         $captcha = $this->input->post('g-recaptcha-response');
+    //         if (isset($captcha)) {
+    //             $captcha =  $captcha;
+    //         }
+    //         $verify = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=6LcuyIoUAAAAAJC6C-2pI482rf-DAU_PEF2nsf2y&response=" . $captcha . "&remoteip=" . $_SERVER['REMOTE_ADDR']);
+    //         $response = json_decode($verify, true);
+    //         if ($response['success'] != '1') {
+    //             $this->session->set_flashdata('message-failed', 'Anda terdeteksi sebagai robot');
+    //             redirect(base_url() . 'member/login');
+    //         } else {
+    //             $md5email = md5($email);
+    //             $data["dataall"] = array(
+    //                 'id_google' => null,
+    //                 'name' => $this->input->post('name'),
+    //                 'email' => $email,
+    //                 'password' => md5($this->input->post('password')),
+    //                 'status' => 'active',
+    //                 'level' => 'silver',
+    //                 'point' => '0',
+    //                 'datejoin' => date("d-m-Y"),
+    //                 'md5' => md5($email),
+    //                 'kodeverifybyphone' => substr(md5($email), 4, 8)
+    //             );
+    //             $dataemail['md5'] = $md5email;
+    //             //sent email to new member
+    //             $from = "no-reply@trumecs.com";
+    //             $password = "no-reply#trumecs#123abc";
+    //             $to = $email;
+    //             $subject = "Aktifasi Member";
+    //             $message = $this->load->view('email/email-to-new-account', $dataemail, true);
+
+    //             $emailstatus = $this->emailer->sent($from, $password, $to, $subject, $message);
+    //             if ($emailstatus = true) {
+
+    //                 $this->member_model->set($data["dataall"]);
+    //                 $this->member_model->insert($data["dataall"]);
+
+    //                 $xxx["forverifybyphone"] = array('phone' => $this->input->post('phone'), 'email' => $this->input->post('email'), 'md5' => md5($this->input->post('email')), 'kodeverifybyphone' => substr(md5($this->input->post('email')), 4, 8));
+
+    //                 $flashdata = $xxx;
+    //                 $loginData = array(
+    //                     'email' => $email,
+    //                     'password' => $this->input->post('password'),
+    //                 );
+    //                 $this->session->set_userdata($flashdata);
+    //                 $this->checkmember($loginData);
+    //             } else {
+    //                 $this->session->set_flashdata('message-failed', 'Email yang anda masukkan tidak benar');
+    //                 redirect(base_url() . 'member/login');
+    //             }
+    //         }
+    //     }
+    // }
+
     public function indata()
     {
         $this->form_validation->set_rules('name', 'Name', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+
         if ($this->form_validation->run($this) == FALSE) {
-            $this->session->set_flashdata('message-failed', 'Data Anda tidak lengkap, Silahkan ulangi pengisian form dengan benar.'); //.validation_errors()
+            $this->session->set_flashdata('message-failed', 'Data Anda tidak lengkap, Silahkan ulangi pengisian form dengan benar.');
             redirect(base_url() . 'member/login');
         } else {
             $email = $this->input->post('email');
-            $data["datauser"] = array(
-                'email' => $email
-            );
-            $data["datauser"] = $this->member_model->getmember($data["datauser"]);
-            if (count($data["datauser"]) > 0) {
+
+            // Cek duplikat email saja (bukan semua field)
+            $existing_member = $this->member_model->get_by_email($email);
+            if ($existing_member) {
                 $this->session->set_flashdata('message-failed', 'Email Anda sudah terdaftar');
                 redirect(base_url() . 'member/login');
                 exit();
             }
+
             $captcha = $this->input->post('g-recaptcha-response');
             if (isset($captcha)) {
-                $captcha =  $captcha;
+                $captcha = $captcha;
             }
+
             $verify = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=6LcuyIoUAAAAAJC6C-2pI482rf-DAU_PEF2nsf2y&response=" . $captcha . "&remoteip=" . $_SERVER['REMOTE_ADDR']);
             $response = json_decode($verify, true);
+
             if ($response['success'] != '1') {
                 $this->session->set_flashdata('message-failed', 'Anda terdeteksi sebagai robot');
                 redirect(base_url() . 'member/login');
             } else {
                 $md5email = md5($email);
-                $data["dataall"] = array(
-                    'id_google' => 0,
+                $data_insert = array(
+                    'id_google' => null,
                     'name' => $this->input->post('name'),
                     'email' => $email,
                     'password' => md5($this->input->post('password')),
@@ -376,34 +546,47 @@ class Member extends MX_Controller
                     'level' => 'silver',
                     'point' => '0',
                     'datejoin' => date("d-m-Y"),
-                    'md5' => md5($email),
-                    'kodeverifybyphone' => substr(md5($email), 4, 8)
+                    'md5' => $md5email,
+                    'kodeverifybyphone' => substr($md5email, 4, 8)
                 );
-                $dataemail['md5'] = $md5email;
-                //sent email to new member
-                $from = "no-reply@trumecs.com";
-                $password = "no-reply#trumecs#123abc";
-                $to = $email;
-                $subject = "Aktifasi Member";
-                $message = $this->load->view('email/email-to-new-account', $dataemail, true);
 
-                $emailstatus = $this->emailer->sent($from, $password, $to, $subject, $message);
-                if ($emailstatus = true) {
+                // Hanya panggil INSERT saja, bukan set() dan insert()
+                $member_id = $this->member_model->insert($data_insert);
 
-                    $this->member_model->set($data["dataall"]);
-                    $this->member_model->insert($data["dataall"]);
+                if ($member_id > 0) {
+                    // Prepare data email
+                    $dataemail['md5'] = $md5email;
 
-                    $xxx["forverifybyphone"] = array('phone' => $this->input->post('phone'), 'email' => $this->input->post('email'), 'md5' => md5($this->input->post('email')), 'kodeverifybyphone' => substr(md5($this->input->post('email')), 4, 8));
+                    // Sent email to new member
+                    $from = "no-reply@trumecs.com";
+                    $password = "no-reply#trumecs#123abc";
+                    $to = $email;
+                    $subject = "Aktifasi Member";
+                    $message = $this->load->view('email/email-to-new-account', $dataemail, true);
 
-                    $flashdata = $xxx;
-                    $loginData = array(
-                        'email' => $email,
-                        'password' => $this->input->post('password'),
-                    );
-                    $this->session->set_userdata($flashdata);
-                    $this->checkmember($loginData);
+                    $emailstatus = $this->emailer->sent($from, $password, $to, $subject, $message);
+
+                    if ($emailstatus) {
+                        $flashdata = array(
+                            'phone' => $this->input->post('phone'),
+                            'email' => $email,
+                            'md5' => $md5email,
+                            'kodeverifybyphone' => substr($md5email, 4, 8)
+                        );
+
+                        $this->session->set_userdata($flashdata);
+
+                        $loginData = array(
+                            'email' => $email,
+                            'password' => $this->input->post('password'),
+                        );
+                        $this->checkmember($loginData);
+                    } else {
+                        $this->session->set_flashdata('message-failed', 'Gagal mengirim email aktivasi');
+                        redirect(base_url() . 'member/login');
+                    }
                 } else {
-                    $this->session->set_flashdata('message-failed', 'Email yang anda masukkan tidak benar');
+                    $this->session->set_flashdata('message-failed', 'Gagal membuat akun baru');
                     redirect(base_url() . 'member/login');
                 }
             }
