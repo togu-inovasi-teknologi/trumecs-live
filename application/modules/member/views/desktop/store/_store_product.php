@@ -4,15 +4,15 @@ $session = $this->session->all_userdata();
 $sessionmember = $session["member"];
 ?>
 <div class="row d-flex flex-column gap-3">
-	<div class="col-lg-12 d-flex-sb align-items-center">
+	<div class="col-lg d-flex-sb align-items-center">
 		<h3 class="fbold">Produk</h3>
 		<a href="<?php echo base_url() ?>member/store/store_addproduct" class="btn btnnew">Tambah
 			Produk</a>
 	</div>
-	<div class="col-lg-12">
+	<div class="col-lg">
 		<div class="card p-a-1 f14">
-			<div class="row">
-				<div class="col-lg-12 table-responsive">
+			<div class="row p-x-1">
+				<div class="col-lg table-responsive">
 					<input type="hidden" name="store" value="<?= $store[0]['id'] ?>">
 					<table class="table table-bordered table-striped f14" style="width: 100%; vertical-align:middle;" id="tablelist-product">
 						<thead>

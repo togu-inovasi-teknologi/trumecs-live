@@ -713,16 +713,16 @@ if ($stores->banners != null) {
             </div>
             <form action="<?php echo base_url() ?>member/store/edit_template" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
-                    <div class="row">
+                    <div class="row p-x-1">
                         <?php foreach ($store as $value) : ?>
-                            <div class="col-lg-12">
+                            <div class="col-lg">
                                 <label for="template">Template</label>
                                 <select name="template" id="template" class="form-control">
                                     <option value="1" <?= $value['template'] == 1 ? 'selected' : '' ?>>1</option>
                                     <option value="2" <?= $value['template'] == 2 ? 'selected' : '' ?>>2</option>
                                 </select>
                             </div>
-                            <div class="col-lg-12">
+                            <div class="col-lg">
                                 <label for="template_produk">Template Produk</label>
                                 <select name="template_produk" id="template_produk" class="form-control">
                                     <option value="1" <?= $value['template_produk'] == 1 ? 'selected' : '' ?>>Table</option>
@@ -752,9 +752,9 @@ if ($stores->banners != null) {
             </div>
             <form action="<?php echo base_url() ?>member/store/edit_warna_store" method="POST" enctype="multipart/form-data">
                 <div class="modal-body" style="max-height: 50vh; overflow-y:scroll;">
-                    <div class="row d-flex flex-column gap-2">
+                    <div class="row d-flex flex-column gap-2 p-x-1">
                         <?php foreach ($stores->styles as $style) : ?>
-                            <div class="col-lg-12">
+                            <div class="col-lg">
                                 <div class="row">
                                     <div class="col-lg-6 d-flex flex-column">
                                         <label for="colorNav">Warna NavBar</label>
@@ -772,7 +772,7 @@ if ($stores->banners != null) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12">
+                            <div class="col-lg">
                                 <div class="row">
                                     <div class="col-lg-6 d-flex flex-column">
                                         <label for="colorTextName">Warna Nama Toko</label>
@@ -790,7 +790,7 @@ if ($stores->banners != null) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12">
+                            <div class="col-lg">
                                 <div class="row">
                                     <div class="col-lg-6 d-flex flex-column">
                                         <label for="colorTextTitle">Warna Text Title</label>
@@ -808,7 +808,7 @@ if ($stores->banners != null) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12">
+                            <div class="col-lg">
                                 <div class="row">
                                     <div class="col-lg-6 d-flex flex-column">
                                         <label for="colorTextNameCategory">Warna Text Name Category</label>
@@ -826,7 +826,7 @@ if ($stores->banners != null) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12">
+                            <div class="col-lg">
                                 <div class="row">
                                     <div class="col-lg-6 d-flex flex-column">
                                         <label for="colorCardTitle">Warna Text Title Deskripsi</label>
@@ -844,7 +844,7 @@ if ($stores->banners != null) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12">
+                            <div class="col-lg">
                                 <div class="row">
                                     <div class="col-lg-6 d-flex flex-column">
                                         <label for="colorTextNameProduct">Warna Text Product</label>
@@ -862,7 +862,7 @@ if ($stores->banners != null) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12">
+                            <div class="col-lg">
                                 <div class="row">
                                     <div class="col-lg-6 d-flex flex-column">
                                         <label for="colorCardProduct">Warna Card Product</label>
@@ -880,7 +880,7 @@ if ($stores->banners != null) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12">
+                            <div class="col-lg">
                                 <div class="row">
                                     <div class="col-lg-6 d-flex flex-column">
                                         <label for="directionCard">Direction Card</label>
@@ -1116,8 +1116,8 @@ if ($stores->banners != null) {
             </div>
             <form action="<?php echo base_url() ?>member/store/upload_cover_store" method="POST" enctype="multipart/form-data" id="formCover">
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-12">
+                    <div class="row p-x-1 d-flex flex-column gap-1">
+                        <div class="col-lg">
                             <div class="row">
                                 <div class="col-lg-4">
                                     <small>Gambar(.jpg)/File(.pdf)</small>
@@ -1134,7 +1134,7 @@ if ($stores->banners != null) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-12">
+                        <div class="col-lg">
                             <div class="d-flex flex-column gap-1">
                                 <p class="f12">NB : </p>
                                 <p class="text-dark">Size : 1440 x 300px</p>
@@ -1162,8 +1162,8 @@ if ($stores->banners != null) {
             </div>
             <form action="<?php echo base_url() ?>member/store/upload_cover_store_mobile" method="POST" enctype="multipart/form-data" id="formCoverMobile">
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-12">
+                    <div class="row d-flex flex-column gap-1 p-x-1">
+                        <div class="col-lg">
                             <div class="row">
                                 <div class="col-lg-4">
                                     <small>Gambar(.jpg)/File(.pdf)</small>
@@ -1180,7 +1180,7 @@ if ($stores->banners != null) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-12">
+                        <div class="col-lg">
                             <div class="d-flex flex-column gap-1">
                                 <p class="f12">NB : </p>
                                 <p class="text-dark">Size : 390 x 250px</p>

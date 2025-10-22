@@ -4,20 +4,20 @@ $session = $this->session->all_userdata();
 $sessionmember = $session["member"];
 ?>
 <div class="row m-b-1">
-    <div class="col-lg-12" id="tambah-produk">
+    <div class="col-lg" id="tambah-produk">
         <h3 class="fbold">Tambah Produk</h3>
     </div>
 </div>
 <div class="infoakun">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg">
             <div id="pilih-jenis-produk">
                 <div class="card">
                     <div class="card-header">
                         <h5 class="fbold">Pilih Jenis Produk</h5>
                     </div>
                     <div class="card-body p-a-1">
-                        <div class="row">
+                        <div class="row d-flex p-x-1">
                             <div class="col-lg-4">
                                 <div class="card p-t-1 text-center card-jenis-produk pj-produk" data-title="Pilih Jenis Produk" data-hint="Objek fisik yang dapat dibeli, dijual, atau diperdagangkan." data-value="is_sell">
                                     <img src="<?php echo base_url(); ?>public/icon/icon-barang.png" alt="Barang">
