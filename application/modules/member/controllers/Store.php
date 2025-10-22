@@ -169,6 +169,9 @@ class Store extends MX_Controller
         $sessionmember = $session["member"];
         $data["store"] = $this->store_model->checkstore($sessionmember["id"]);
         $data["stores"] = new Store_model(['domain' => $data["store"][0]['domain']]);
+
+        // var_dump($data);
+        // die;
         $data["products"] = $this->store_model->getProduct($data["store"][0]['id']);
         $data["provinces"] = $this->member_model->getprovinces();
         $this->securitylog->cekloginmember();
@@ -177,7 +180,7 @@ class Store extends MX_Controller
             base_url() . 'asset/backend/dist/js/tinymce/tinymce.min.js',
         );
         $data["css"] = array(base_url() . "asset/css/member_page.css", base_url() . 'asset/backend/dist/js/tinymce/skins/lightgray/skin.min.css',);
-        $data["js"] = array(base_url() . "asset/js/validator/validator.js", base_url() . "asset/js/member_page.js", "/modules/member/js/store/store.js");
+        $data["js"] = array("/modules/member/js/store/store.js", base_url() . "asset/js/validator/validator.js", base_url() . "asset/js/member_page.js");
         if (!$this->agent->is_mobile()) {
             $data['content'] = '/desktop/view_member';
             $data["contentmember"] = "/desktop/store/_store";

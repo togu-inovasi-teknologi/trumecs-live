@@ -673,14 +673,14 @@ if ($stores->banners != null) {
                                     <select name="col_left" id="col_left" class="form-control">
 
                                     </select>
-                                    <input type="hidden" name="value_col_left" id="value_col_left" class="value_col_left" value="<?= $stores->col_left ?? 6 ?>">
+                                    <input type="hidden" name="value_col_left" id="value_col_left" class="value_col_left" value="<?= $stores->col_left == 0 ? 6 : $stores->col_left ?>">
                                 </div>
                                 <div class="col-lg-6">
                                     <label for="col_right">Col Right</label>
                                     <select name="col_right" id="col_right" class="form-control">
 
                                     </select>
-                                    <input type="hidden" name="value_col_right" id="value_col_right" class="value_col_right" value="<?= $stores->col_right ?? 6 ?>">
+                                    <input type="hidden" name="value_col_right" id="value_col_right" class="value_col_right" value="<?= $stores->col_right == 0 ? 6 : $stores->col_right ?>">
                                 </div>
                             </div>
                         </div>
