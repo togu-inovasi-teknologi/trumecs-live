@@ -30,6 +30,7 @@ class Store extends MX_Controller
     }
     public function session_member()
     {
+        $this->securitylog->cekloginmember();
         $session = $this->session->all_userdata();
         $sessionmember = $session["member"];
         $where = array('member.id' => $sessionmember["id"]);
@@ -38,6 +39,7 @@ class Store extends MX_Controller
     }
     public function session_store()
     {
+        $this->securitylog->cekloginmember();
         $session = $this->session->all_userdata();
         $sessionmember = $session["member"];
 
@@ -47,8 +49,8 @@ class Store extends MX_Controller
 
     public function status()
     {
+        $this->securitylog->cekloginmember();
         $this->load->model('company/company_model');
-
         $session = $this->session->all_userdata();
         $sessionmember = $session["member"];
         $data["store"] = $this->store_model->checkstore($sessionmember["id"]);
@@ -67,6 +69,7 @@ class Store extends MX_Controller
 
     public function verification()
     {
+        $this->securitylog->cekloginmember();
         $session = $this->session->all_userdata();
         $sessionmember = $session["member"];
         $data["store"] = $this->store_model->checkstore($sessionmember["id"]);
@@ -88,7 +91,7 @@ class Store extends MX_Controller
 
     public function verification_store()
     {
-
+        $this->securitylog->cekloginmember();
         if ($_POST['jenis_usaha'] == "1") {
 
             $principal['name'] = $_POST['name'];
@@ -144,7 +147,7 @@ class Store extends MX_Controller
 
     public function verification_send()
     {
-
+        $this->securitylog->cekloginmember();
         // var_dump($this->session->flashdata());
         // die;
 
@@ -164,6 +167,7 @@ class Store extends MX_Controller
 
     public function store()
     {
+        $this->securitylog->cekloginmember();
         $this->db->reset_query();
         $session = $this->session->all_userdata();
         $sessionmember = $session["member"];
@@ -174,7 +178,6 @@ class Store extends MX_Controller
         // die;
         $data["products"] = $this->store_model->getProduct($data["store"][0]['id']);
         $data["provinces"] = $this->member_model->getprovinces();
-        $this->securitylog->cekloginmember();
         $data["member"] = $this->session_member();
         $data["distjs"] = array(
             base_url() . 'asset/backend/dist/js/tinymce/tinymce.min.js',
@@ -193,6 +196,7 @@ class Store extends MX_Controller
 
     public function store_register()
     {
+        $this->securitylog->cekloginmember();
         $data["member"] = $this->session_member();
         $this->form_validation->set_rules('name', 'Name Toko', 'required');
         $this->form_validation->set_rules('domain', 'Domain', 'required');
@@ -312,6 +316,7 @@ class Store extends MX_Controller
     }
     public function edit_template()
     {
+        $this->securitylog->cekloginmember();
         $data["member"] = $this->session_member();
         $store = $this->store_model->checkstore($data['member'][0]['id']);
         $where = array('id' => $store[0]['id']);
@@ -327,6 +332,7 @@ class Store extends MX_Controller
     }
     public function edit_warna_store()
     {
+        $this->securitylog->cekloginmember();
         $colorNav = $this->input->post('colorNav');
         $colorNavText = $this->input->post('colorNavText');
         $colorTextName = $this->input->post('colorTextName');
@@ -459,9 +465,9 @@ class Store extends MX_Controller
 
     public function store_addproduct_jasa()
     {
+        $this->securitylog->cekloginmember();
         $data["member"] = $this->session_member();
         $datastore = $this->session_store();
-        $this->securitylog->cekloginmember();
         $category = $this->category_model->treeBack();
         $data['category'] = $category;
         $data["css"] = array(base_url() . "asset/datatables/dataTables.bootstrap.css", base_url() . "asset/datatables/jquery.dataTables.min.css", base_url() . "asset/css/member_page.css", "/modules/member/css/store.css");
@@ -497,9 +503,9 @@ class Store extends MX_Controller
     }
     public function store_addproduct_rental()
     {
+        $this->securitylog->cekloginmember();
         $data["member"] = $this->session_member();
         $datastore = $this->session_store();
-        $this->securitylog->cekloginmember();
         $data['category'] = $this->c_model->get_category();
         $data["css"] = array(base_url() . "asset/datatables/dataTables.bootstrap.css", base_url() . "asset/datatables/jquery.dataTables.min.css", base_url() . "asset/css/member_page.css", "/modules/member/css/store.css");
         $data["js"] = array(base_url() . "asset/datatables/jquery.dataTables.min.js", base_url() . "asset/datatables/dataTables.bootstrap.min.js", base_url() . "asset/js/validator/validator.js", base_url() . "asset/js/member_page.js", "/modules/member/js/store/store.js", base_url() . "asset/backend/js/form.product.js");

@@ -125,68 +125,6 @@ $(document).ready(function () {
   });
 });
 
-// tinyMCE.baseURL = base_url + "asset/backend/dist/js/tinymce/";
-
-// $(document).ready(function () {
-//   tinymce.init({
-//     plugins: "table",
-//     selector: "#contentDescription",
-//     menubar: false,
-//     relative_urls: false,
-//     remove_script_host: false,
-//     height: "200",
-//     paste_block_drop: false,
-//     paste_data_images: true,
-//     paste_as_text: true,
-//     license_key: "gpl",
-//     toolbar: [
-//       "undo redo | styleselect table | alignleft aligncenter alignjustify alignright bold italic bullist numlist",
-//     ],
-//   });
-//   tinymce.init({
-//     plugins: "table",
-//     selector: "#storeDescription",
-//     menubar: false,
-//     relative_urls: false,
-//     remove_script_host: false,
-//     height: "200",
-//     paste_block_drop: false,
-//     paste_data_images: true,
-//     paste_as_text: true,
-//     license_key: "gpl",
-//     toolbar: [
-//       "undo redo | styleselect table | alignleft aligncenter alignright bold italic bullist numlist",
-//     ],
-//   });
-//   function initTinyMCE(selector, id) {
-//     tinymce.init({
-//       plugins: "table",
-//       selector: selector,
-//       menubar: false,
-//       relative_urls: false,
-//       remove_script_host: false,
-//       height: "200",
-//       paste_block_drop: false,
-//       paste_data_images: true,
-//       paste_as_text: true,
-//       license_key: "gpl",
-//       toolbar: [
-//         "undo redo | styleselect table | alignleft aligncenter alignjustify alignright bold italic bullist numlist",
-//       ],
-//       setup: function (editor) {
-//         editor.on("init", function () {
-//           editor.setContent($("#contentEditDescription-" + id).val());
-//         });
-//       },
-//     });
-//   }
-
-//   $(".content-edit-description").each(function () {
-//     var id = $(this).data("id");
-//     initTinyMCE("#contentEditDescription-" + id, id);
-//   });
-// });
-
 $(document).ready(function () {
   var maxHeight = 75;
   var isExpanded = [];
@@ -281,40 +219,65 @@ $(document).ready(function () {
     });
   });
 });
-// $(document).ready(function () {
-//   var valueColL = $(".value_col_left").val() || 6;
-//   var valueColR = $(".value_col_right").val() || 6;
 
-//   function populateDropdown(dropdownId, nilai) {
-//     $(`#${dropdownId}`).empty();
+tinyMCE.baseURL = base_url + "asset/backend/dist/js/tinymce/";
 
-//     for (let i = 1; i <= 11; i++) {
-//       const option = $(`<option value="${i}">${i}</option>`);
-//       if (parseInt(i) === parseInt(nilai)) {
-//         option.prop("selected", true);
-//       }
-//       $(`#${dropdownId}`).append(option);
-//     }
-//   }
+$(document).ready(function () {
+  tinymce.init({
+    plugins: "table",
+    selector: "#contentDescription",
+    menubar: false,
+    relative_urls: false,
+    remove_script_host: false,
+    height: "200",
+    paste_block_drop: false,
+    paste_data_images: true,
+    paste_as_text: true,
+    license_key: "gpl",
+    toolbar: [
+      "undo redo | styleselect table | alignleft aligncenter alignjustify alignright bold italic bullist numlist",
+    ],
+  });
+  tinymce.init({
+    plugins: "table",
+    selector: "#storeDescription",
+    menubar: false,
+    relative_urls: false,
+    remove_script_host: false,
+    height: "200",
+    paste_block_drop: false,
+    paste_data_images: true,
+    paste_as_text: true,
+    license_key: "gpl",
+    toolbar: [
+      "undo redo | styleselect table | alignleft aligncenter alignright bold italic bullist numlist",
+    ],
+  });
+  function initTinyMCE(selector, id) {
+    tinymce.init({
+      plugins: "table",
+      selector: selector,
+      menubar: false,
+      relative_urls: false,
+      remove_script_host: false,
+      height: "200",
+      paste_block_drop: false,
+      paste_data_images: true,
+      paste_as_text: true,
+      license_key: "gpl",
+      toolbar: [
+        "undo redo | styleselect table | alignleft aligncenter alignjustify alignright bold italic bullist numlist",
+      ],
+      setup: function (editor) {
+        editor.on("init", function () {
+          editor.setContent($("#contentEditDescription-" + id).val());
+        });
+      },
+    });
+  }
 
-//   function calculateOtherDropdown(selectedValue, dropdownId) {
-//     const otherDropdownId =
-//       dropdownId === "col_left" ? "col_right" : "col_left";
-//     $(`#${otherDropdownId}`).val(12 - selectedValue);
-//   }
-
-//   populateDropdown("col_left", valueColL);
-//   populateDropdown("col_right", valueColR);
-
-//   $("#col_left, #col_right").change(function () {
-//     const selectedValue = $(this).val();
-//     const dropdownId = this.id;
-//     const otherDropdownId =
-//       dropdownId === "col_left" ? "col_right" : "col_left";
-
-//     const calculatedValue = Math.min(Math.max(12 - selectedValue, 1), 11);
-//     $(`#${otherDropdownId}`).val(calculatedValue);
-//     $("#value_col_left").val($("#col_left").val());
-//     $("#value_col_right").val($("#col_right").val());
-//   });
-// });
+  $(".content-edit-description").each(function () {
+    var id = $(this).data("id");
+    initTinyMCE("#contentEditDescription-" + id, id);
+  });
+});

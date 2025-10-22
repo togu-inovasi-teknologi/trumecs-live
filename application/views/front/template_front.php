@@ -316,7 +316,7 @@ $contact = $this->db->where('id', $ida)->get("admin")->result_array();
     </script>
     <!--<script src="https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.js"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
-
+    <script src="/asset/backend/dist/js/tinymce/tinymce.min.js"></script>
     <script>
         var base_url = $("body").attr("baseurl");
     </script>
