@@ -57,10 +57,10 @@ html {
   color: #fff;
   z-index: 4;
 }
-
+/* 
 a:focus {
   background: red;
-} /* testing links*/
+} testing links */
 
 .main-table tbody tr th:first-child {
   position: -webkit-sticky;

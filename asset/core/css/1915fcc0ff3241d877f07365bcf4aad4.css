@@ -1,4 +1,92 @@
-:root {
+.store-logo {
+  width: 100px;
+  height: 100px;
+}
+
+.store-menu-tab .nav-item.active {
+  color: var(--color-primary);
+}
+.store-menu-tab .nav-link {
+  background-color: transparent;
+  border: none;
+}
+.store-menu-tab .nav-link:focus {
+  outline: 0px auto -webkit-focus-ring-color;
+}
+
+.store-header  {
+  margin-top: 1.5rem;
+}
+
+.store-information {
+margin-top: 1.5rem;
+  height: 300px;
+}
+
+.store-content .banner-decoration {
+  height: 500px;
+}
+
+.nav-menu > .nav-link {
+  color: black !important;
+}
+
+.nav-menu > .active {
+  background-color: var(--color-primary) !important;
+  color: white !important;
+}
+
+@media only screen and (max-width: 768px) {
+ /* nav {
+    background-color: white !important;
+  }*/
+  .slick-dots {
+    display: block !important;
+    position: static !important;
+    text-align: left !important;
+  }
+
+  .slick-dots li {
+    margin: 0px !important;
+  }
+
+  #content {
+    padding: 0px !important;
+  }
+  .store-header .store-information {
+    height: 200px;
+    margin-top: 1.5rem;
+  }
+  .store-logo {
+    width: 70px;
+    height: 70px;
+  }
+
+  .store-menu-tab .nav {
+    background-color: white;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+  }
+
+  .store-menu-tab a {
+    font-size: 12px;
+    width: 100%;
+    text-align: center;
+    font-weight: normal;
+  }
+
+  .store-content .banner-decoration {
+    height: 200px;
+  }
+
+  .form-filter {
+    font-size: 12px !important;
+  }
+
+  .product-filter {
+    padding-left: 1.9rem;
+  }
+}:root {
   --icon-grey: #bdbdbd;
   --color-highlight: #f1f1f1;
   --text-grey: #828282;
@@ -2669,16 +2757,23 @@ nav .container-fluid .row {
   background: #f8f9fa;
   border-right: 1px solid #e5e5e5;
   border-radius: 8px 0 0 8px;
-  position: relative;
 }
 
 .menu-item-store {
-  position: static; /* Ubah dari relative ke static */
   border-bottom: 1px solid #e9ecef;
+  transition: background-color 0.2s ease;
 }
 
 .menu-item-store:last-child {
   border-bottom: none;
+}
+
+.menu-item-store.active {
+  background: #007bff;
+}
+
+.menu-item-store.active > a {
+  color: white;
 }
 
 .menu-item-store > a {
@@ -2689,9 +2784,6 @@ nav .container-fluid .row {
   color: #333;
   text-decoration: none;
   font-size: 14px;
-  transition: all 0.2s ease;
-  position: relative;
-  z-index: 1;
 }
 
 .menu-item-store:hover > a {
@@ -2710,39 +2802,75 @@ nav .container-fluid .row {
   transform: translateX(2px);
 }
 
-/* Submenu Styles - POSISI FIXED DI AREA KANAN */
-.mega-submenu-store {
-  display: none;
-  position: absolute;
-  left: 240px; /* Sesuai lebar sidebar */
-  top: 0;
-  width: 660px; /* 900px - 240px */
-  height: 100%; /* FULL HEIGHT */
+/* Content Area */
+.menu-content {
+  flex: 1;
+  position: relative;
   background: white;
-  flex-direction: column;
-  border-left: 1px solid #e5e5e5;
   border-radius: 0 8px 8px 0;
-  z-index: 2;
+  overflow: hidden;
 }
 
-/* SUBMENU MUNCUL SAAT HOVER - INI YANG PENTING */
-.menu-item-store:hover .mega-submenu-store {
+/* Placeholder */
+.submenu-placeholder {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+
+.submenu-placeholder.active {
   display: flex;
 }
 
-/* Header Submenu - SELALU DI ATAS */
+.placeholder-content {
+  text-align: center;
+  color: #999;
+}
+
+.placeholder-content i {
+  font-size: 48px;
+  margin-bottom: 16px;
+  color: #ddd;
+}
+
+.placeholder-content p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Submenu Styles */
+.mega-submenu-store {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  background: white;
+}
+
+.mega-submenu-store.active {
+  display: flex;
+}
+
+/* Header Submenu */
 .submenu-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 20px;
+  padding: 20px 24px;
   border-bottom: 1px solid #e5e5e5;
   background: white;
   position: sticky;
   top: 0;
   z-index: 10;
-  height: 46px; /* Fixed height */
-  box-sizing: border-box;
 }
 
 .header-left {
@@ -2781,18 +2909,15 @@ nav .container-fluid .row {
   font-size: 10px;
 }
 
-/* Submenu Content - SCROLLABLE DI BAWAH HEADER */
+/* Submenu Content */
 .submenu-content-store {
   flex: 1;
   overflow-y: auto;
   padding: 0;
-  height: calc(100% - 70px); /* Tinggi total dikurangi header */
 }
 
 .section-store {
   padding: 20px 24px;
-  height: 100%;
-  box-sizing: border-box;
 }
 
 .section-store ul {
@@ -2802,8 +2927,6 @@ nav .container-fluid .row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 8px;
-  height: 100%;
-  align-content: start;
 }
 
 .list-kategori-atas-store {
@@ -2814,7 +2937,6 @@ nav .container-fluid .row {
   border-radius: 4px;
   transition: all 0.2s ease;
   font-size: 13px;
-  text-align: center;
 }
 
 .list-kategori-atas-store:hover {
@@ -2862,11 +2984,6 @@ nav .container-fluid .row {
     width: 200px;
   }
 
-  .mega-submenu-store {
-    left: 200px;
-    width: 500px;
-  }
-
   .section-store ul {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -2892,18 +3009,6 @@ nav .container-fluid .row {
     width: 100%;
     border-right: none;
     border-bottom: 1px solid #eee;
-  }
-
-  .mega-submenu-store {
-    position: static;
-    width: 100%;
-    height: auto;
-    border-left: none;
-    border-top: 1px solid #eee;
-  }
-
-  .submenu-content-store {
-    height: auto;
   }
 
   .section-store ul {

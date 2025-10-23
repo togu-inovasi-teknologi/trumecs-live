@@ -20,41 +20,68 @@ if ($this->storeModel->styles != null) {
                 </a>
             </div>
             <div class="col-lg-8 d-flex-sb align-items-center">
-                <div class="dropdown">
-                    <a style=" color:<?= $style[0]->color_nav_text == null ? '#fff' : $style[0]->color_nav_text  ?>;text-decoration:none;" class=" dropdown-toggle b-t-10" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-bars" style="vertical-align:middle;margin-right:10px;"></span>
-                        <?php echo $this->lang->line('kategori', FALSE); ?> </a>
-                    <ul class=" dropdown-menu" style="z-index: 99999999" aria-labelledby="navbarDropdown">
-                        <li>
-                            <div class="mega-menu">
-                                <ul>
-                                    <?php foreach ($kategori as $item) : ?>
-                                        <li class="menu-item menu-1">
-                                            <a href="<?php echo base_url(); ?>c/<?php echo $item['url'] ?>">
-                                                <?php echo $item['name'] ?>
-                                                <i class="fa fa-angle-right pull-right"></i></a>
-                                            <div class="mega-submenu">
-                                                <h2 style="position: sticky;position: -webkit-sticky;top:0;z-index: 2;background-color:#fff">
+                <div class="dropdown-store">
+                    <a style="color:<?= $style[0]->color_nav_text == null ? '#fff' : $style[0]->color_nav_text ?>;text-decoration:none;"
+                        class="dropdown-toggle-store dropdown-toggle"
+                        href="#"
+                        id="navbarDropdown"
+                        role="button"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+                        <span class="fa fa-bars" style="vertical-align:middle;margin-right:10px;"></span>
+                        <?php echo $this->lang->line('kategori', FALSE); ?>
+                    </a>
+
+                    <div class="dropdown-menu-store dropdown-menu" aria-labelledby="navbarDropdown">
+                        <div class="mega-menu-store">
+                            <!-- Sidebar Kategori - HANYA SATU FOREACH -->
+                            <div class="menu-sidebar">
+                                <?php foreach ($kategori as $item) : ?>
+                                    <div class="menu-item-store">
+                                        <a href="<?php echo base_url(); ?>c/<?php echo $item['url'] ?>">
+                                            <?php echo $item['name'] ?>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+
+                                        <!-- SUBMENU DI DALAM MENU ITEM -->
+                                        <div class="mega-submenu-store">
+                                            <div class="submenu-header">
+                                                <div class="header-left">
                                                     <img src="<?php echo base_url() ?>public/icon/category/icon-<?php echo $item['url']; ?>.svg" />
-                                                    <?php echo $item['name'] ?>
-                                                </h2>
-                                                <div class="submenu-content">
-                                                    <div class="section">
-                                                        <ul>
-                                                            <?php $kategoris = $this->M_general->getcategori(['parent' => $item['id']]); ?>
+                                                    <h3><?php echo $item['name'] ?></h3>
+                                                </div>
+                                                <a href="<?php echo base_url(); ?>c/<?php echo $item['url'] ?>" class="see-all">
+                                                    Lihat Semua <i class="fa fa-chevron-right"></i>
+                                                </a>
+                                            </div>
+                                            <div class="submenu-content-store">
+                                                <div class="section-store">
+                                                    <ul>
+                                                        <?php $kategoris = $this->M_general->getcategori(['parent' => $item['id']]); ?>
+                                                        <?php if (!empty($kategoris)): ?>
                                                             <?php foreach ($kategoris as $items) : ?>
-                                                                <li style="background:#fff"><a alt="Jual Komponen <?php echo $items['name'] ?>" href="<?php echo base_url(); ?>c/<?php echo $item['url'] . '/' . $items['url'] ?>" class="list-kategori-atas"><?php echo $items['name'] ?></a>
+                                                                <li>
+                                                                    <a href="<?php echo base_url(); ?>c/<?php echo $item['url'] . '/' . $items['url'] ?>"
+                                                                        class="list-kategori-atas-store">
+                                                                        <?php echo $items['name'] ?>
+                                                                    </a>
                                                                 </li>
                                                             <?php endforeach; ?>
-                                                        </ul>
-                                                    </div>
+                                                        <?php else: ?>
+                                                            <li class="no-subcategory">
+                                                                <p>Tidak ada subkategori</p>
+                                                            </li>
+                                                        <?php endif; ?>
+                                                    </ul>
                                                 </div>
                                             </div>
-                                        </li>
-                                    <?php endforeach; ?>
-                                </ul>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
                             </div>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
                 <a style=" color:<?= $style[0]->color_nav_text == null ? '#fff' : $style[0]->color_nav_text  ?>;text-decoration:none;" href="<?php echo site_url('article'); ?>" class=" <?php echo ($this->uri->segment(1) == "article") ? "forange" : ""; ?>"><?php echo $this->lang->line('artikel', FALSE); ?></a>
                 <a style="color:<?= $style[0]->color_nav_text == null ? '#fff' : $style[0]->color_nav_text  ?>;text-decoration:none;" href=" <?php echo site_url('promo'); ?>" class=" <?php echo ($this->uri->segment(1) == "promo") ? "forange" : ""; ?>"><?php echo $this->lang->line('promo', FALSE) ?></a>
@@ -127,3 +154,23 @@ if ($this->storeModel->styles != null) {
         </div>
     </div>
 </nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropdownStore = document.querySelector('.dropdown-store');
+        const dropdownToggle = document.querySelector('.dropdown-toggle-store');
+
+        // Toggle main dropdown
+        dropdownToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            dropdownStore.classList.toggle('show');
+        });
+
+        // Close dropdown ketika klik di luar
+        document.addEventListener('click', function(e) {
+            if (!dropdownStore.contains(e.target)) {
+                dropdownStore.classList.remove('show');
+            }
+        });
+    });
+</script>
