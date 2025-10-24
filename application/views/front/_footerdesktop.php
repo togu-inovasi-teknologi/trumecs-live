@@ -1,4 +1,4 @@
-<footer>
+<footer class="m-t-1">
     <?php
     $session = $this->session->all_userdata();
     $sessionmember = isset($session["member"]) ? $session["member"] : array('id' => null);
