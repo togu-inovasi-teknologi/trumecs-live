@@ -12,14 +12,14 @@ if ($this->storeModel->styles != null) {
                     <div class="store-info d-flex p-t-1 flex-column align-items-center gap-3">
                         <div class="t-info-store d-flex flex-column align-items-center gap-2">
                             <?php if ($this->storeModel->direction_title_image == 1) : ?>
-                                <img src="<?= base_url() ?>/public/image/store/coverimage/mobile/<?= $this->storeModel->title_image_mobile ?>" alt="title image mobile" style="width:80px">
+                                <img src="<?= base_url() ?>/public/image/store/coverimage/mobile/<?= $this->storeModel->title_image_mobile ?>" alt="" style="width:80px">
                             <?php endif; ?>
                             <div class="d-flex flex-column gap-0 align-items-center">
                                 <p itemprop="slogan" class="font-weight-bold f24 m-b-1 m-t-3" style="color: <?= $this->storeModel->color_title_cover ?>;"><?= $this->storeModel->title_cover ?></p>
-                                <p class="text-center fbold f16 m-b-1" style="color: <?= $this->storeModel->color_title_content ?>;"><?= $this->storeModel->title_content ?></p>
+                                <!-- <p class="text-center fbold f16 m-b-1" style="color: <?= $this->storeModel->color_title_content ?>;"><?= $this->storeModel->title_content ?></p> -->
                             </div>
                             <?php if ($this->storeModel->direction_title_image == 0) : ?>
-                                <img src="<?= base_url() ?>/public/image/store/coverimage/mobile/<?= $this->storeModel->title_image_mobile ?>" alt="title image mobile" style="width:70%">
+                                <img src="<?= base_url() ?>/public/image/store/coverimage/mobile/<?= $this->storeModel->title_image_mobile ?>" alt="" style="width:70%">
                             <?php endif; ?>
 
 

@@ -55,6 +55,12 @@
             width: 100%;
             height: 100vh;
         }
+
+        .clearfix {
+            display: block;
+            content: "";
+            clear: both;
+        }
     </style>
 </head>
 
@@ -89,6 +95,7 @@
                 $this->load->view($content);
             } ?>
         </div>
+        <div class="clearfix"></div>
     </div>
     <!--<footer>
         <div class="container">
@@ -170,40 +177,48 @@
             ordering: true,
             processing: true,
             serverSide: true,
-            order: [[0, 'desc']],
+            order: [
+                [0, 'desc']
+            ],
             ajax: {
                 url: "<?php echo base_url('backendbulk/ambil_data') ?>",
                 type: 'POST',
             }
         });
-        
+
         $("#table-sourcing").DataTable({
             ordering: true,
             processing: true,
             serverSide: true,
-            order: [[0, 'desc']],
+            order: [
+                [0, 'desc']
+            ],
             ajax: {
                 url: "<?php echo base_url('backendbulk/ambil_data_supplier') ?>",
                 type: 'POST',
             }
         });
-        
+
         $("#table-sourcing-item").DataTable({
             ordering: true,
             processing: true,
             serverSide: true,
-            order: [[0, 'desc']],
+            order: [
+                [0, 'desc']
+            ],
             ajax: {
                 url: "<?php echo base_url('backendbulk/ambil_data_item') ?>",
                 type: 'POST',
             }
         });
-        
+
         $("#table-artikel").DataTable({
             ordering: true,
             processing: true,
             serverSide: true,
-            order: [[1, 'desc']],
+            order: [
+                [1, 'desc']
+            ],
             ajax: {
                 url: "<?php echo base_url('backendartikel/ambil_data') ?>",
                 type: 'POST',

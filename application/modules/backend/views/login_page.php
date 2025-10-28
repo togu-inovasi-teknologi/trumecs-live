@@ -32,18 +32,17 @@
 
 <body>
 
-    <div class="container">
+    <!-- <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading text-center">
                         <img src="<?php echo base_url() ?>public/image/logonew.png" width="200px">
                         <h3 class="panel-title">Please Sign In</h3>
-                        <?php echo ($this->session->flashdata('message') == "")? "" : 
-                                '<div class="alert alert-warning">'.
-                                $this->session->flashdata('message').
-                                '</div>'
-                                 ; ?> 
+                        <?php echo ($this->session->flashdata('message') == "") ? "" :
+                            '<div class="alert alert-warning">' .
+                            $this->session->flashdata('message') .
+                            '</div>'; ?>
                     </div>
                     <div class="panel-body">
                         <form role="form" action="<?php echo base_url() ?>backend/cek" method="POST">
@@ -54,8 +53,47 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" name="password" type="password" value="">
                                 </div>
-                                <!-- Change this to a button or input when using this as a form -->
+                                Change this to a button or input when using this as a form
                                 <button href="index.html" class="btn btn-lg btn-success btn-block">Login</button>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading text-center">
+                        <img src="<?php echo base_url() ?>public/image/logonew.png" width="160" class="m-b-1">
+                        <h4 class="font-weight-light mb-0">Welcome Back</h4>
+                    </div>
+                    <div class="panel-body">
+                        <?php echo ($this->session->flashdata('message') == "") ? "" :
+                            '<div class="alert alert-warning alert-dismissible fade show small" role="alert">' .
+                            $this->session->flashdata('message') .
+                            '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button></div>'; ?>
+
+                        <form role="form" action="<?php echo base_url() ?>backend/cek" method="POST">
+                            <fieldset>
+                                <div class="form-group">
+                                    <span class="input-group-text bg-light">
+                                        <i class="fa fa-envelope text-muted"></i>
+                                    </span>
+                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <span class="input-group-text bg-light">
+                                        <i class="fa fa-lock text-muted"></i>
+                                    </span>
+                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                </div>
+                                <button href="index.html" class="btn btn-lg btn-primary btn-block">Login</button>
                             </fieldset>
                         </form>
                     </div>

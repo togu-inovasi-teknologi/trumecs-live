@@ -63,8 +63,8 @@ $firtsname = explode(" ", $ses["admin"]["nameadmin"]);
 
 
     #sidebar {
-        min-width: 200px;
-        max-width: 200px;
+        min-width: 250px;
+        max-width: 250px;
         height: 100vh;
         background: #000000;
         color: #fff !important;
