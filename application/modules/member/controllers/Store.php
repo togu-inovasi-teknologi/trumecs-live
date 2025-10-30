@@ -173,10 +173,9 @@ class Store extends MX_Controller
         $sessionmember = $session["member"];
         $data["store"] = $this->store_model->checkstore($sessionmember["id"]);
         $data["stores"] = new Store_model(['domain' => $data["store"][0]['domain']]);
-
-        // var_dump($data);
-        // die;
         $data["products"] = $this->store_model->getProduct($data["store"][0]['id']);
+        // var_dump($data["products"]);
+        // die;
         $data["provinces"] = $this->member_model->getprovinces();
         $data["member"] = $this->session_member();
         $data["distjs"] = array(
@@ -644,6 +643,7 @@ class Store extends MX_Controller
             "tittle" => $this->input->post("nama_barang"),
             "jenisproduct" => $parent != 0 ? $categoriParent[0]['name'] : $categori[0]['name'],
             "brand" => $this->input->post("merek_barang"),
+            "component" => $jenis,
             "description" => $this->input->post("description_barang"),
             "quality" => $this->input->post("kondisi_barang"),
             "unit" => $this->input->post("satuan_barang"),

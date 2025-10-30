@@ -1,3 +1,165 @@
+#member_page .cardresult,
+.member_page .cardresult {
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 3px 13px 2px rgba(0, 0, 0, 0.45);
+  margin-bottom: 20px;
+  moz-box-shadow: 0 3px 13px 2px rgba(0, 0, 0, 0.45);
+  webkit-box-shadow: 0 3px 13px 2px rgba(0, 0, 0, 0.45);
+}
+#member_page .cardresult a:hover,
+.member_page .cardresult a:hover {
+  color: grey;
+  text-decoration: none;
+}
+#member_page .sidebar_member .navigation .btn,
+.member_page .sidebar_member .navigation .btn {
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+#member_page .sidebar_member .navigation .btn .icon-nav,
+.member_page .sidebar_member .navigation .btn .icon-nav {
+  width: 23px;
+  float: left;
+  left: 500px;
+}
+#member_page .content .infoakun strong,
+.member_page .content .infoakun strong {
+  font-size: 0.8rem;
+}
+#member_page .content .infoakun hr,
+.member_page .content .infoakun hr {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+#member_page .content .historypesanan table a,
+.member_page .content .historypesanan table a {
+  text-decoration: none;
+}
+#member_page .content .historypesanan table.info_billingshipping td,
+.member_page .content .historypesanan table.info_billingshipping td {
+  padding: 0px;
+  font-size: 0.9rem;
+  border-top: 0px solid transparent;
+}
+#member_page .content .historypesanan .nav-tabs li a,
+.member_page .content .historypesanan .nav-tabs li a {
+  color: grey;
+}
+#member_page .content .historypesanan .nav-tabs li.active a,
+.member_page .content .historypesanan .nav-tabs li.active a {
+  color: #373a3c;
+  font-weight: bold;
+}
+#member_page .content .formreturn span.dot,
+.member_page .content .formreturn span.dot {
+  border: 2px dashed orange;
+  color: orange;
+  cursor: pointer;
+  position: absolute;
+}
+#member_page .content .formreturn input[type="file"],
+.member_page .content .formreturn input[type="file"] {
+  opacity: 0;
+  cursor: pointer;
+  padding-bottom: 100px;
+}
+#member_page .label-silver,
+.member_page .label-silver {
+  background-color: #ececec;
+  color: grey;
+  margin-left: 0.2rem;
+}
+#member_page .label-platinum,
+.member_page .label-platinum {
+  background-color: #e5e4e2;
+  color: grey;
+  margin-left: 0.2rem;
+}
+#member_page .label-gold,
+.member_page .label-gold {
+  background-color: orange;
+  color: white;
+  margin-left: 0.2rem;
+}
+#member_page .radiobutton label.og.active,
+.member_page .radiobutton label.og.active {
+  background-color: orange;
+}
+#member_page .radiobutton label.gr.active,
+.member_page .radiobutton label.gr.active {
+  background-color: green;
+  color: white;
+}
+#member_page .radiobutton label.rd.active,
+.member_page .radiobutton label.rd.active {
+  background-color: red;
+  color: white;
+}
+#member_page i.fa-2,
+.member_page i.fa-2 {
+  font-size: 2rem;
+}
+
+/* new css */
+
+#member_page .newlabel-gold,
+.member_page .newlabel-gold {
+  background-color: orange;
+  color: white;
+  margin-left: 0.2rem;
+}.paginate_button a {
+  color: #fa8420 !important;
+  text-decoration: none;
+}
+.paginate_button {
+  border: none !important;
+}
+.paginate_button:hover {
+  background: none !important;
+  border: none !important;
+}
+
+.disabled a {
+  color: #ccc !important;
+  text-decoration: none;
+}
+
+.paginate_button:active a {
+  color: #999 !important;
+  text-decoration: none;
+}
+
+.card-jenis-produk {
+  background-color: rgba(250, 132, 32, 0.3);
+  cursor: pointer;
+}
+
+.card-jenis-produk img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 10px;
+}
+
+/* store product */
+
+.icon-edit {
+  color: #fa8420;
+  padding: 3px 7px;
+  border: 1px solid #fa8420;
+  border-radius: 50%;
+}
+.icon-delete {
+  color: red;
+  padding: 3px 7px;
+  border: 1px solid red;
+  border-radius: 50%;
+}
+#tablelist-product-mobile_wrapper .row:first-child {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
 :root {
   --icon-grey: #bdbdbd;
   --color-highlight: #f1f1f1;
@@ -1545,10 +1707,6 @@ a.fblack {
 /* width */
 .fullScreen {
   min-height: 100vh;
-}
-
-.h-80-vh {
-  min-height: 80vh;
 }
 
 .col-lg-1--5 {

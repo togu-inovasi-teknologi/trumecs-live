@@ -205,23 +205,23 @@ $this->load->helper('text');
             </div>
         <?php endif; ?>
     </div>
-    <?php if($this->uri->segment(1) == 'trumecs-bazaar'): ?>
-    <div class="container p-y-3">
-        <h3 class="text-center fbold">Download Price List Trumecs Bazaar!</h3>
-        <div class="row m-t-2 text-center">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="col-xs-12 p-a-2" style="box-shadow: 1px 1px 8px rgba(0,0,0,.3); border-radius:10px">
-                    <h4 class="text-center fbold m-b-2">Daftar Harga Lengkap</h4>
-                    <p>Dapatkan katalog dan daftar harga lengkap semua produk yang ada di Trumecs Bazaar</p>
-                    <button id="sph-bazaar" class="atas btn btn-lg btn-danger m-t-2 col-xs-12" style="border-radius:20px">Download Price List Trumecs Bazaar</button>
-                    <br />
+    <?php if ($this->uri->segment(1) == 'trumecs-bazaar'): ?>
+        <div class="container p-y-3">
+            <h3 class="text-center fbold">Download Price List Trumecs Bazaar!</h3>
+            <div class="row m-t-2 text-center">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="col-xs-12 p-a-2" style="box-shadow: 1px 1px 8px rgba(0,0,0,.3); border-radius:10px">
+                        <h4 class="text-center fbold m-b-2">Daftar Harga Lengkap</h4>
+                        <p>Dapatkan katalog dan daftar harga lengkap semua produk yang ada di Trumecs Bazaar</p>
+                        <button id="sph-bazaar" class="atas btn btn-lg btn-danger m-t-2 col-xs-12" style="border-radius:20px">Download Price List Trumecs Bazaar</button>
+                        <br />
+                    </div>
                 </div>
+                <div class="clearfix"></div>
+                <br />
+                <small></small>
             </div>
-            <div class="clearfix"></div>
-            <br/>
-            <small></small>
         </div>
-    </div>
     <?php endif; ?>
     <div class="row m-y-2 d-flex flex-column gap-2">
         <div class="col-lg-12">
@@ -235,7 +235,7 @@ $this->load->helper('text');
                     ?>
                         <div class="row card p-x-2 p-y-1 d-flex align-items-center" style="background:<?= $style[0]->color_card_product == null ? '#fff' : $style[0]->color_card_product ?>; border-radius:10px !important;">
                             <div class="col-lg-4 text-center">
-                                <a href="<?php echo site_url("product/".$kategori['id']."/".preg_replace("/[^a-zA-Z0-9]/", "-", ucwords(strtolower($kategori["tittle"])))); ?>">
+                                <a href="<?php echo site_url("product/" . $kategori['id'] . "/" . preg_replace("/[^a-zA-Z0-9]/", "-", ucwords(strtolower($kategori["tittle"])))); ?>">
                                     <!--<img src="<?= base_url() ?>public/image/product/<?= $kategori['img'] ?>" alt="<?= $kategori['tittle'] ?>" style="height:300px;max-width:100%">-->
                                     <?php
                                     $lfp = strlen($kategori["img"]);
@@ -247,13 +247,13 @@ $this->load->helper('text');
                             </div>
                             <div class="col-lg-8 d-flex-sb flex-column">
                                 <div class="d-flex flex-column gap-3 m-b-2" style="color:<?= $style[0]->color_text_card_product == null ? '#fff' : $style[0]->color_text_card_product ?>;">
-                                    
-                                    <a class="f32 fbold" href="<?php echo site_url("product/".$kategori['id']."/".preg_replace("/[^a-zA-Z0-9]/", "-", ucwords(strtolower($kategori["tittle"])))); ?>"><?= $kategori['tittle'] ?></a>
+
+                                    <a class="f32 fbold" href="<?php echo site_url("product/" . $kategori['id'] . "/" . preg_replace("/[^a-zA-Z0-9]/", "-", ucwords(strtolower($kategori["tittle"])))); ?>"><?= $kategori['tittle'] ?></a>
                                     <p class="f18" style="text-align:left;"><?= word_limiter($kategori['description'], 50) ?></p>
                                 </div>
                                 <div class="d-flex flex-row gap-3">
                                     <a href="<?= $this->uri->segment(2) == 'epcm' || $this->uri->segment(2) == 'service-vehicle' || $this->uri->segment(2) == 'chemicals' ? base_url('product' . $kategori['id']) : 'https://wa.me/+6285176912338?text=' . $kategori['tittle'] ?>" class="btn btn-success text-white text-center shadow" style="border-radius:5px;">
-                                        <p class="f16 fbold">Rp <?php echo number_format($kategori['price_promo'] != 0 && $kategori['price_promo'] != null ? $kategori['price_promo'] : $kategori['price'], 0, ',', '.' ) ?></p>
+                                        <p class="f16 fbold">Rp <?php echo number_format($kategori['price_promo'] != 0 && $kategori['price_promo'] != null ? $kategori['price_promo'] : $kategori['price'], 0, ',', '.') ?></p>
                                     </a>
                                     <?php if ($kategori['file'] != null) : ?>
                                         <a target="_blank" href="<?= base_url() ?>public/produk/file/<?= $kategori['file'] ?>" class="btn btn-warning text-center shadow" style="border-radius:5px;">
@@ -299,7 +299,8 @@ $this->load->helper('text');
                                             <tr itemprop="itemListElement" itemscope itemtype="https://schema.org/Product">
                                                 <td style="padding:0.3rem;"><a itemprop="url" href=" <?= base_url() ?>product/<?= $kategori['id'] ?>" class="fbold" style="color:<?= $style[0]->color_text_name_product == null ? '#fa8420' : $style[0]->color_text_name_product ?>"><span itemprop="name"><?= $kategori['tittle'] ?></span></a></td>
                                                 <td style="padding:0.3rem;">
-                                                    <p class="text-center"><?= $category->name//$kategori['nama_kategori'] ?></p>
+                                                    <p class="text-center"><?= $category->name //$kategori['nama_kategori'] 
+                                                                            ?></p>
                                                 </td>
                                                 <td style="padding:0.3rem;">
                                                     <p itemprop="brand" itemprop="name" hidden><?= $kategori['brand'] ?></p>
@@ -323,75 +324,75 @@ $this->load->helper('text');
         <?php endforeach; ?>
     </div>
 </div>
-<?php if($this->uri->segment(1) == 'trumecs-bazaar'): ?>
-<div class="container p-y-3">
-    <h3 class="text-center fbold">Download Price List Trumecs Bazaar!</h3>
-    <div class="row m-t-2 text-center">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="col-xs-12 p-a-2" style="box-shadow: 1px 1px 8px rgba(0,0,0,.3); border-radius:10px">
-                <h4 class="text-center fbold m-b-2">Daftar Harga Lengkap</h4>
-                <p>Dapatkan katalog dan daftar harga lengkap semua produk yang ada di Trumecs Bazaar</p>
-                <button id="sph-bazaar" class="bawah btn btn-lg btn-danger m-t-2 col-xs-12" style="border-radius:20px">Download Price List Trumecs Bazaar</button>
-                <br />
+<?php if ($this->uri->segment(1) == 'trumecs-bazaar'): ?>
+    <div class="container p-y-3">
+        <h3 class="text-center fbold">Download Price List Trumecs Bazaar!</h3>
+        <div class="row m-t-2 text-center">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="col-xs-12 p-a-2" style="box-shadow: 1px 1px 8px rgba(0,0,0,.3); border-radius:10px">
+                    <h4 class="text-center fbold m-b-2">Daftar Harga Lengkap</h4>
+                    <p>Dapatkan katalog dan daftar harga lengkap semua produk yang ada di Trumecs Bazaar</p>
+                    <button id="sph-bazaar" class="bawah btn btn-lg btn-danger m-t-2 col-xs-12" style="border-radius:20px">Download Price List Trumecs Bazaar</button>
+                    <br />
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            <small></small>
+        </div>
+    </div>
+    <div id="modal-bazaar" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Download Bazaar Price List</h5>
+                </div>
+                <div class="clearfix"></div>
+                <div class="modal-body">
+                    <form id="form-bazaar" method="POST" action="<?php echo site_url("promo/bazaar") ?>">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        Nama
+                                    </label>
+                                    <input type="text" name="name" class="form-control" required="required" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        Nama Usaha
+                                    </label>
+                                    <input type="text" name="company" class="form-control" />
+                                    <small class="form-help">Isi perorangan bila perorangan</small>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        Lokasi / Rencana dikirim ke
+                                    </label>
+                                    <input type="text" name="location" class="form-control" required="required" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        Nomor Telepon / WA
+                                    </label>
+                                    <input type="text" name="phone" class="form-control" required="required" />
+                                    <input type="hidden" name="type" value="bazaar" />
+                                </div>
+                            </div>
+                            <div class="col-xs-7">
+                                <img src="<?php echo base_url("public/banner/iklan/trumecs-bazaar-offer.png"); ?>" width="100%" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="clearfix"></div>
+                <div class="modal-footer">
+                    <button type="submit" form="form-bazaar" class="btn btn-danger tag-btn-dl-bazaar">Download</button>
+                    <button type="button" class="btn btn-secondary tag-btn-cancel-bazaar" data-dismiss="modal">Batal</button>
+                </div>
             </div>
         </div>
-        <div class="clearfix"></div>
-        <br/>
-        <small></small>
     </div>
-</div>
-<div id="modal-bazaar" class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Download Bazaar Price List</h5>
-      </div>
-      <div class="clearfix"></div>
-      <div class="modal-body">
-            <form id="form-bazaar" method="POST" action="<?php echo site_url("promo/bazaar") ?>">
-            <div class="row">
-                <div class="col-xs-5">
-                    <div class="form-group">
-                        <label class="form-label">
-                            Nama
-                        </label>
-                        <input type="text" name="name" class="form-control" required="required" />
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">
-                            Nama Usaha
-                        </label>
-                        <input type="text" name="company" class="form-control" />
-                        <small class="form-help">Isi perorangan bila perorangan</small>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">
-                            Lokasi / Rencana dikirim ke
-                        </label>
-                        <input type="text" name="location" class="form-control" required="required" />
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">
-                            Nomor Telepon / WA
-                        </label>
-                        <input type="text" name="phone" class="form-control" required="required" />
-                        <input type="hidden" name="type" value="bazaar" />
-                    </div>
-                </div>
-                <div class="col-xs-7">
-                    <img src="<?php echo base_url("public/banner/iklan/trumecs-bazaar-offer.png"); ?>" width="100%" />
-                </div>
-            </div>
-            </form>
-      </div>
-      <div class="clearfix"></div>
-      <div class="modal-footer">
-        <button type="submit" form="form-bazaar" class="btn btn-danger tag-btn-dl-bazaar">Download</button>
-        <button type="button" class="btn btn-secondary tag-btn-cancel-bazaar" data-dismiss="modal">Batal</button>
-      </div>
-    </div>
-  </div>
-</div>
 <?php endif; ?>
 <script>
     function readmore() {

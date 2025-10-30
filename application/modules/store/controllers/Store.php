@@ -49,8 +49,8 @@ class Store extends MX_Controller
             }
         }
         $this->storeModel->productCategories();
-        $data["css"] = array("/modules/store/css/store-view.css");
-        $data["js"] = array("/modules/store/js/store-view.js");
+        $data["css"] = array("/modules/store/css/store-view.css", base_url() . "asset/datatables/dataTables.bootstrap.css", base_url() . "asset/datatables/jquery.dataTables.min.css");
+        $data["js"] = array("/modules/store/js/store-view.js", base_url() . "asset/datatables/jquery.dataTables.min.js", base_url() . "asset/datatables/dataTables.bootstrap.min.js");
         $data['tabs'] = [
             '<a class="nav-link font-weight-bold active" href="' . base_url($this->domain) . '">Informasi</a>',
             '<a class="nav-link font-weight-bold" href="' . base_url($this->domain . '/products') . '">Produk</a>',

@@ -40,18 +40,18 @@ if ($stores->banners != null) {
                 <h6 class="text-muted f13">Kelola informasi toko Anda untuk mengontrol, melindungi dan mengamankan akun.</h6>
             </div>
             <?php foreach ($store as $toko) : ?>
-                <a href="<?= base_url() . $toko['domain'] ?>" target="_blank" class="btn btnnew">Check Toko</a>
+                <a href="<?= base_url() . $toko['domain'] ?>" target="_blank" class="btn btnnew">Preview Toko</a>
             <?php endforeach ?>
         </div>
 
     </div>
     <div class="col-lg-12">
-        <ul class="nav nav-tabs" id="pills-tab" role="tablist">
+        <ul class="nav nav-tabs" id="homeTab" role="tablist">
             <li class="nav-item" role="presentation"><a class="btn btnnew" id="information-tab" data-toggle="tab" data-target="#information" type="button" role="tab" aria-controls="information" aria-selected="true">Informasi</a></li>
             <li class="nav-item" role="presentation"><a class="btn btnnew" id="store-tab" data-toggle="tab" data-target="#store" type="button" role="tab" aria-controls="store" aria-selected="false">Toko</a></li>
         </ul>
     </div>
-    <div class="tab-content" id="myTabContent">
+    <div class="tab-content" id="homeTabContent">
         <div class="tab-pane fade show active in" id="information" role="tabpanel" aria-labelledby="information-tab">
             <div class="col-lg-12">
                 <div class="row">
@@ -162,296 +162,383 @@ if ($stores->banners != null) {
         <div class="tab-pane fade" id="store" role="tabpanel" aria-labelledby="store-tab">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-body p-a-1">
-                        <?php foreach ($store as $key) : ?>
-                            <div class="row d-flex flex-column gap-3 p-b-0">
-                                <div class="col-lg-12">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="d-flex flex-column gap-1">
-                                                <div class="d-flex-sb align-items-center">
-                                                    <p class="text-dark f18">Template</p>
-                                                    <a data-target="#edit-template-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Template</a>
-                                                </div>
-                                                <p class="text-dark"><?php echo $key["template"]; ?></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="d-flex-sb align-items-center">
-                                                <p class="text-dark f18">Ganti Warna Text & Background</p>
-                                                <a data-target="#edit-warna-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Warna</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="row">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs" id="storeTab" role="tablist">
+                            <li class="nav-item" role="presentation"><a class="btn btnnew active" id="desktop-store-tab" data-toggle="tab" data-target="#desktop-store" type="button" role="tab" aria-controls="desktop-store" aria-selected="true">Desktop</a></li>
+                            <li class="nav-item" role="presentation"><a class="btn btnnew" id="mobile-store-tab" data-toggle="tab" data-target="#mobile-store" type="button" role="tab" aria-controls="mobile-store" aria-selected="false">Mobile</a></li>
+                            <li class="nav-item" role="presentation"><a class="btn btnnew" id="description-store-tab" data-toggle="tab" data-target="#description-store" type="button" role="tab" aria-controls="description-store" aria-selected="false">Deskripsi</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content" id="storeTabContent">
+                        <div class="tab-pane fade show active in" id="desktop-store" role="tabpanel" aria-labelledby="desktop-store-tab">
+                            <div class="card-body p-a-1">
+                                <?php foreach ($store as $key) : ?>
+                                    <div class="row d-flex flex-column gap-3 p-b-0">
                                         <div class="col-lg-12">
-                                            <p class="text-dark f18">Cover</p>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="d-flex flex-column gap-1">
-                                                <div class="d-flex-sb align-items-center">
-                                                    <p class="f16">Desktop</p>
-                                                    <div class="d-flex gap-2 align-items-center">
-                                                        <a data-target="#edit-cover-desktop-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Cover</a>
-                                                        <a href="<?= base_url() ?>member/store/delete_cover" class="text-danger pointer f16"><i class="fa fa-trash"></i></a>
-                                                    </div>
-                                                </div>
-                                                <img src="<?= $key['cover'] == null ? base_url('public/image/default-cover.png') : base_url('public/image/store/cover/' . $key['cover']); ?>" alt="Default Cover" class="w-100">
-                                                <input form="formCover" type="text" name="nameCover" value="<?= $key['cover'] ?>" hidden>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="d-flex flex-column gap-1">
-                                                <div class="d-flex-sb align-items-center">
-                                                    <p class="f16">Mobile</p>
-                                                    <div class="d-flex gap-2 align-items-center">
-                                                        <a data-target="#edit-cover-mobile-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Cover</a>
-                                                        <a href="<?= base_url() ?>member/store/delete_cover_mobile" data-toggle="modal" class="text-danger pointer f16"><i class="fa fa-trash"></i></a>
-                                                    </div>
-                                                </div>
-                                                <img src="<?= $key['cover_mobile'] == null ? base_url('public/image/default-cover.png') : base_url('public/image/store/cover/' . $key['cover_mobile']); ?>" alt="Default Cover" class="w-100">
-                                                <input form="formCoverMobile" type="text" name="nameCover" value="<?= $key['cover_mobile'] ?>" hidden>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 p-t-2">
-                                            <div class="d-flex-sb align-items-center p-b-1">
-                                                <p class="f16">Deskripsi Cover</p>
-                                                <a data-target="#edit-cover-content-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ubah Deskripsi</a>
-                                            </div>
-                                            <table class="table table-striped f14">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Title</th>
-                                                        <th>Content</th>
-                                                        <th>Image</th>
-                                                        <th>Image Mobile</th>
-                                                        <th>Col Left</th>
-                                                        <th>Col Right</th>
-                                                        <th>Direction Image</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="text-center va-middle"><?= $stores->title_cover ?></td>
-                                                        <td class="text-center va-middle"><?= $stores->title_content ?></td>
-                                                        <td class="text-center va-middle"><img src="<?= base_url() ?>public/image/store/coverimage/<?= $stores->title_image ?>" alt="image_cover" style="width:50px;"></td>
-                                                        <td class="text-center va-middle"><img src="<?= base_url() ?>public/image/store/coverimage/mobile/<?= $stores->title_image_mobile ?>" alt="image_cover" style="width:50px;"></td>
-                                                        <td class="text-center va-middle"><?= $stores->col_left ?></td>
-                                                        <td class="text-center va-middle"><?= $stores->col_right ?></td>
-                                                        <form id="formToggleDirection">
-                                                            <td class="text-center va-middle">
-                                                                <input data-name="direction_image_cover_toggle" type="checkbox" name="direction_image[]" value="<?= $stores->id ?>" <?= $stores->direction_title_image == 1 ? 'checked' : '' ?> data-toggle="toggle" data-size="xs" data-on="Left" data-off="Right" data-onstyle="primary" data-offstyle="success" data-width="100">
-                                                            </td>
-                                                        </form>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="d-flex-sb align-items-center p-b-1">
-                                                <p class="text-dark f18">Deskripsi tambahan</p>
-                                                <a data-target="#tambah-desc-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Tambah Deskripsi</a>
-                                            </div>
+                                            <h4 class="fbold">Desktop</h4>
                                         </div>
                                         <div class="col-lg-12">
-                                            <table class="table table-striped f14" style="width:100%;">
-                                                <thead>
-                                                    <tr>
-                                                        <th style="width:20%;">Title</th>
-                                                        <th style="width:30%;">Content</th>
-                                                        <th style="width:20%;">Image</th>
-                                                        <th style="width:10%;">Icon</th>
-                                                        <th style="width:8%;">Image/Icon</th>
-                                                        <th style="width:7%;">Direction</th>
-                                                        <th style="width:5%;">action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php foreach ($stores->descriptions as $desc) : ?>
-                                                        <tr>
-                                                            <td><?= $desc->title ?> (<?= $desc->index ?>)</td>
-                                                            <?php $str = str_split($desc->content, 85); ?>
-                                                            <td><?= count($str) > 1 ? $str[0] . ' <a class="color-primary pointer" data-target="#detail-desc-' . $desc->id . '" data-toggle="modal">lihat detail</a>' : $str[0] ?></td>
-                                                            <?php if ($desc->image == null) { ?>
-                                                                <td class="text-center va-middle">
-                                                                    <p>Belum Menambahkan Gambar</p>
-                                                                </td>
-                                                            <?php } else { ?>
-                                                                <td class="text-center va-middle"><img src="<?= base_url() ?>public/image/store/desc/<?= $desc->image ?>" alt="image_desc" style="width:50px;"></td>
-                                                            <?php } ?>
-                                                            <td class="text-center va-middle"><i class="fa fa-<?= $desc->icon ?>"></i></td>
-                                                            <form id="formToggleSwitch">
-                                                                <td class="text-center va-middle">
-                                                                    <input data-name="is_image_toggle" type="checkbox" name="is_image[]" value="<?= $desc->id ?>" <?= $desc->is_image == 1 ? 'checked' : '' ?> data-toggle="toggle" data-size="xs" data-on="Image" data-off="Icon" data-onstyle="primary" data-offstyle="success" data-width="100">
-                                                                </td>
-                                                            </form>
-                                                            <form id="formToggleDirection">
-                                                                <td class="text-center va-middle">
-                                                                    <input data-name="direction_image_toggle" type="checkbox" name="direction_image[]" value="<?= $desc->id ?>" <?= $desc->direction_image == 1 ? 'checked' : '' ?> data-toggle="toggle" data-size="xs" data-on="Left" data-off="Right" data-onstyle="primary" data-offstyle="success" data-width="100">
-                                                                </td>
-                                                            </form>
-                                                            <td class="text-center va-middle">
-                                                                <div class="d-flex gap-2 align-items-center">
-                                                                    <a href="" data-target="#edit-desc-<?= $desc->id ?>" data-toggle="modal" class="text-warning f18"><i class="fa fa-edit"></i></a>
-                                                                    <a href="<?= base_url() ?>member/store/delete_description/<?= $desc->id ?>" class="text-danger f18"><i class="fa fa-trash"></i></a>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    <?php endforeach; ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <p class="text-dark f18">Banner Utama</p>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="d-flex flex-column gap-1">
-                                                <div class="d-flex-sb align-items-center">
-                                                    <p class="f16">Desktop</p>
-                                                    <a data-target="#edit-banner-utama-desktop-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
-                                                </div>
-                                                <?php if ($bannerUtama != null) { ?>
+                                            <div class="row">
+                                                <div class="col-lg-6">
                                                     <div class="d-flex flex-column gap-1">
-                                                        <?php if ($bannerUtama[0]->source != null) { ?>
-                                                            <img src="<?= base_url('public/image/store/banner/' . $bannerUtama[0]->source); ?>" alt="Default Cover" class="w-100">
+                                                        <div class="d-flex-sb align-items-center">
+                                                            <p class="text-dark f18">Template</p>
+                                                            <a data-target="#edit-template-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Template</a>
+                                                        </div>
+                                                        <p class="text-dark"><?php echo $key["template"]; ?></p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="d-flex-sb align-items-center">
+                                                        <p class="text-dark f18">Ganti Warna Text & Background</p>
+                                                        <a data-target="#edit-warna-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Warna</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <p class="text-dark f18">Cover</p>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="d-flex flex-column gap-1">
+                                                        <div class="d-flex-sb align-items-center">
+                                                            <p class="f16">Desktop</p>
+                                                            <div class="d-flex gap-2 align-items-center">
+                                                                <a data-target="#edit-cover-desktop-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Cover</a>
+                                                                <a href="<?= base_url() ?>member/store/delete_cover" class="text-danger pointer f16"><i class="fa fa-trash"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <img src="<?= $key['cover'] == null ? base_url('public/image/default-cover.png') : base_url('public/image/store/cover/' . $key['cover']); ?>" alt="Default Cover" class="w-100">
+                                                        <input form="formCover" type="text" name="nameCover" value="<?= $key['cover'] ?>" hidden>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <p class="text-dark f18">Banner Utama</p>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="d-flex flex-column gap-1">
+                                                        <div class="d-flex-sb align-items-center">
+                                                            <p class="f16">Desktop</p>
+                                                            <a data-target="#edit-banner-utama-desktop-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
+                                                        </div>
+                                                        <?php if ($bannerUtama != null) { ?>
+                                                            <div class="d-flex flex-column gap-1">
+                                                                <?php if ($bannerUtama[0]->source != null) { ?>
+                                                                    <img src="<?= base_url('public/image/store/banner/' . $bannerUtama[0]->source); ?>" alt="Default Cover" class="w-100">
+                                                                <?php } else { ?>
+                                                                    <div class="alert alert-warning">
+                                                                        <p class="text-dark">Anda belum menambahkan banner</p>
+                                                                    </div>
+                                                                <?php } ?>
+                                                                <a href="<?= base_url('member/store/delete_banner/' . $bannerUtama[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                                <input form="formBannerUtama" type="text" name="nameBannerUtama" value="<?= $bannerUtama[0]->source ?>" hidden>
+                                                            </div>
                                                         <?php } else { ?>
                                                             <div class="alert alert-warning">
                                                                 <p class="text-dark">Anda belum menambahkan banner</p>
                                                             </div>
                                                         <?php } ?>
-                                                        <a href="<?= base_url('member/store/delete_banner/' . $bannerUtama[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
-                                                        <input form="formBannerUtama" type="text" name="nameBannerUtama" value="<?= $bannerUtama[0]->source ?>" hidden>
                                                     </div>
-                                                <?php } else { ?>
-                                                    <div class="alert alert-warning">
-                                                        <p class="text-dark">Anda belum menambahkan banner</p>
-                                                    </div>
-                                                <?php } ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="d-flex flex-column gap-1">
-                                                <div class="d-flex-sb align-items-center">
-                                                    <p class="f16">Mobile</p>
-                                                    <a data-target="#edit-banner-utama-mobile-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
                                                 </div>
-                                                <?php if ($bannerUtamaMobile != null) { ?>
-                                                    <div class="d-flex flex-column gap-1">
-                                                        <img src="<?= base_url('public/image/store/banner/' . $bannerUtamaMobile[0]->source); ?>" alt="Default Cover" class="w-100">
-                                                        <a href="<?= base_url('member/store/delete_banner/' . $bannerUtamaMobile[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
-                                                        <input form="formBannerUtamaMobile" type="text" name="nameBannerUtama" value="<?= $bannerUtamaMobile[0]->source ?>" hidden>
-                                                    </div>
-                                                <?php } else { ?>
-                                                    <div class="alert alert-warning">
-                                                        <p class="text-dark">Anda belum menambahkan banner</p>
-                                                    </div>
-                                                <?php } ?>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="row">
                                         <div class="col-lg-12">
-                                            <p class="f18 text-dark">Banner 1</p>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="d-flex flex-column gap-1">
-                                                <div class="d-flex-sb align-items-center">
-                                                    <p class="f16">Desktop</p>
-                                                    <a data-target="#edit-banner-1-desktop-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <p class="f18 text-dark">Banner 1</p>
                                                 </div>
-                                                <?php if ($banner1 != null) { ?>
+                                                <div class="col-lg-12">
                                                     <div class="d-flex flex-column gap-1">
-                                                        <img src="<?= base_url('public/image/store/banner/' . $banner1[0]->source); ?>" alt="Default Cover" class="w-100">
-                                                        <a href="<?= base_url('member/store/delete_banner/' . $banner1[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
-                                                        <input form="formBanner1" type="text" name="nameBanner1" value="<?= $banner1[0]->source ?>" hidden>
+                                                        <div class="d-flex-sb align-items-center">
+                                                            <p class="f16">Desktop</p>
+                                                            <a data-target="#edit-banner-1-desktop-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
+                                                        </div>
+                                                        <?php if ($banner1 != null) { ?>
+                                                            <div class="d-flex flex-column gap-1">
+                                                                <img src="<?= base_url('public/image/store/banner/' . $banner1[0]->source); ?>" alt="Default Cover" class="w-100">
+                                                                <a href="<?= base_url('member/store/delete_banner/' . $banner1[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                                <input form="formBanner1" type="text" name="nameBanner1" value="<?= $banner1[0]->source ?>" hidden>
+                                                            </div>
+                                                        <?php } else { ?>
+                                                            <div class="alert alert-warning">
+                                                                <p class="text-dark">Anda belum menambahkan banner</p>
+                                                            </div>
+                                                        <?php } ?>
                                                     </div>
-                                                <?php } else { ?>
-                                                    <div class="alert alert-warning">
-                                                        <p class="text-dark">Anda belum menambahkan banner</p>
-                                                    </div>
-                                                <?php } ?>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <div class="d-flex flex-column gap-1">
-                                                <div class="d-flex-sb align-items-center">
-                                                    <p class="f16">Mobile</p>
-                                                    <a data-target="#edit-banner-1-mobile-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
-                                                </div>
-                                                <?php if ($banner1Mobile != null) { ?>
-                                                    <div class="d-flex flex-column gap-1">
-                                                        <img src="<?= base_url('public/image/store/banner/' . $banner1Mobile[0]->source); ?>" alt="Default Cover" class="w-100">
-                                                        <a href="<?= base_url('member/store/delete_banner/' . $banner1Mobile[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
-                                                        <input form="formBanner1Mobile" type="text" name="nameBanner1" value="<?= $banner1Mobile[0]->source ?>" hidden>
-                                                    </div>
-                                                <?php } else { ?>
-                                                    <div class="alert alert-warning">
-                                                        <p class="text-dark">Anda belum menambahkan banner</p>
-                                                    </div>
-                                                <?php } ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="row">
                                         <div class="col-lg-12">
-                                            <p class="f18 text-dark">Banner 2</p>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="d-flex flex-column gap-1">
-                                                <div class="d-flex-sb align-items-center">
-                                                    <p class="f16">Desktop</p>
-                                                    <a data-target="#edit-banner-2-desktop-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <p class="f18 text-dark">Banner 2</p>
                                                 </div>
-                                                <?php if ($banner2 != null) { ?>
+                                                <div class="col-lg-12">
                                                     <div class="d-flex flex-column gap-1">
-                                                        <img src="<?= base_url('public/image/store/banner/' . $banner2[0]->source); ?>" alt="Default Cover" class="w-100">
-                                                        <a href="<?= base_url('member/store/delete_banner/' . $banner2[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
-                                                        <input form="formBanner2" type="text" name="nameBanner2" value="<?= $banner2[0]->source ?>" hidden>
+                                                        <div class="d-flex-sb align-items-center">
+                                                            <p class="f16">Desktop</p>
+                                                            <a data-target="#edit-banner-2-desktop-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
+                                                        </div>
+                                                        <?php if ($banner2 != null) { ?>
+                                                            <div class="d-flex flex-column gap-1">
+                                                                <img src="<?= base_url('public/image/store/banner/' . $banner2[0]->source); ?>" alt="Default Cover" class="w-100">
+                                                                <a href="<?= base_url('member/store/delete_banner/' . $banner2[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                                <input form="formBanner2" type="text" name="nameBanner2" value="<?= $banner2[0]->source ?>" hidden>
+                                                            </div>
+                                                        <?php } else { ?>
+                                                            <div class="alert alert-warning">
+                                                                <p class="text-dark">Anda belum menambahkan banner</p>
+                                                            </div>
+                                                        <?php } ?>
                                                     </div>
-                                                <?php } else { ?>
-                                                    <div class="alert alert-warning">
-                                                        <p class="text-dark">Anda belum menambahkan banner</p>
-                                                    </div>
-                                                <?php } ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="d-flex flex-column gap-1">
-                                                <div class="d-flex-sb align-items-center">
-                                                    <p class="f16">Mobile</p>
-                                                    <a data-target="#edit-banner-2-mobile-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
                                                 </div>
-                                                <?php if ($banner2Mobile != null) { ?>
-                                                    <div class="d-flex flex-column gap-1">
-                                                        <img src="<?= base_url('public/image/store/banner/' . $banner2Mobile[0]->source); ?>" alt="Default Cover" class="w-100">
-                                                        <a href="<?= base_url('member/store/delete_banner/' . $banner2Mobile[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
-                                                        <input form="formBanner2Mobile" type="text" name="nameBanner2" value="<?= $banner2Mobile[0]->source ?>" hidden>
-                                                    </div>
-                                                <?php } else { ?>
-                                                    <div class="alert alert-warning">
-                                                        <p class="text-dark">Anda belum menambahkan banner</p>
-                                                    </div>
-                                                <?php } ?>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                <?php endforeach ?>
                             </div>
-                        <?php endforeach ?>
+                        </div>
+                        <div class="tab-pane fade" id="mobile-store" role="tabpanel" aria-labelledby="mobile-store-tab">
+                            <div class="card-body p-a-1">
+                                <?php foreach ($store as $key) : ?>
+                                    <div class="row d-flex flex-column gap-3 p-b-0">
+                                        <div class="col-lg-12">
+                                            <h4 class="fbold">Mobile</h4>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="d-flex flex-column gap-1">
+                                                        <div class="d-flex-sb align-items-center">
+                                                            <p class="text-dark f18">Template</p>
+                                                            <a data-target="#edit-template-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Template</a>
+                                                        </div>
+                                                        <p class="text-dark"><?php echo $key["template"]; ?></p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="d-flex-sb align-items-center">
+                                                        <p class="text-dark f18">Ganti Warna Text & Background</p>
+                                                        <a data-target="#edit-warna-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Warna</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <p class="text-dark f18">Cover</p>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="d-flex flex-column gap-1">
+                                                        <div class="d-flex-sb align-items-center">
+                                                            <p class="f16">Mobile</p>
+                                                            <div class="d-flex gap-2 align-items-center">
+                                                                <a data-target="#edit-cover-mobile-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Cover</a>
+                                                                <a href="<?= base_url() ?>member/store/delete_cover_mobile" data-toggle="modal" class="text-danger pointer f16"><i class="fa fa-trash"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <img src="<?= $key['cover_mobile'] == null ? base_url('public/image/default-cover.png') : base_url('public/image/store/cover/' . $key['cover_mobile']); ?>" alt="Default Cover" class="w-100">
+                                                        <input form="formCoverMobile" type="text" name="nameCover" value="<?= $key['cover_mobile'] ?>" hidden>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <p class="text-dark f18">Banner Utama</p>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="d-flex flex-column gap-1">
+                                                        <div class="d-flex-sb align-items-center">
+                                                            <p class="f16">Mobile</p>
+                                                            <a data-target="#edit-banner-utama-mobile-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
+                                                        </div>
+                                                        <?php if ($bannerUtamaMobile != null) { ?>
+                                                            <div class="d-flex flex-column gap-1">
+                                                                <img src="<?= base_url('public/image/store/banner/' . $bannerUtamaMobile[0]->source); ?>" alt="Default Cover" class="w-100">
+                                                                <a href="<?= base_url('member/store/delete_banner/' . $bannerUtamaMobile[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                                <input form="formBannerUtamaMobile" type="text" name="nameBannerUtama" value="<?= $bannerUtamaMobile[0]->source ?>" hidden>
+                                                            </div>
+                                                        <?php } else { ?>
+                                                            <div class="alert alert-warning">
+                                                                <p class="text-dark">Anda belum menambahkan banner</p>
+                                                            </div>
+                                                        <?php } ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <p class="f18 text-dark">Banner 1</p>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="d-flex flex-column gap-1">
+                                                        <div class="d-flex-sb align-items-center">
+                                                            <p class="f16">Mobile</p>
+                                                            <a data-target="#edit-banner-1-mobile-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
+                                                        </div>
+                                                        <?php if ($banner1Mobile != null) { ?>
+                                                            <div class="d-flex flex-column gap-1">
+                                                                <img src="<?= base_url('public/image/store/banner/' . $banner1Mobile[0]->source); ?>" alt="Default Cover" class="w-100">
+                                                                <a href="<?= base_url('member/store/delete_banner/' . $banner1Mobile[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                                <input form="formBanner1Mobile" type="text" name="nameBanner1" value="<?= $banner1Mobile[0]->source ?>" hidden>
+                                                            </div>
+                                                        <?php } else { ?>
+                                                            <div class="alert alert-warning">
+                                                                <p class="text-dark">Anda belum menambahkan banner</p>
+                                                            </div>
+                                                        <?php } ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <p class="f18 text-dark">Banner 2</p>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="d-flex flex-column gap-1">
+                                                        <div class="d-flex-sb align-items-center">
+                                                            <p class="f16">Mobile</p>
+                                                            <a data-target="#edit-banner-2-mobile-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
+                                                        </div>
+                                                        <?php if ($banner2Mobile != null) { ?>
+                                                            <div class="d-flex flex-column gap-1">
+                                                                <img src="<?= base_url('public/image/store/banner/' . $banner2Mobile[0]->source); ?>" alt="Default Cover" class="w-100">
+                                                                <a href="<?= base_url('member/store/delete_banner/' . $banner2Mobile[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                                <input form="formBanner2Mobile" type="text" name="nameBanner2" value="<?= $banner2Mobile[0]->source ?>" hidden>
+                                                            </div>
+                                                        <?php } else { ?>
+                                                            <div class="alert alert-warning">
+                                                                <p class="text-dark">Anda belum menambahkan banner</p>
+                                                            </div>
+                                                        <?php } ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endforeach ?>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="description-store" role="tabpanel" aria-labelledby="description-store-tab">
+                            <div class="card-body p-a-1">
+                                <?php foreach ($store as $key) : ?>
+                                    <div class="row d-flex flex-column gap-3 p-b-0">
+                                        <div class="col-lg-12">
+                                            <h4 class="fbold">Deskripsi</h4>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="d-flex-sb align-items-center p-b-1">
+                                                        <p class="f16">Deskripsi Cover</p>
+                                                        <a data-target="#edit-cover-content-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ubah Deskripsi</a>
+                                                    </div>
+                                                    <table class="table table-striped f14">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Title</th>
+                                                                <th>Content</th>
+                                                                <th>Image</th>
+                                                                <th>Image Mobile</th>
+                                                                <th>Col Left</th>
+                                                                <th>Col Right</th>
+                                                                <th>Direction Image</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="text-center va-middle"><?= $stores->title_cover ?></td>
+                                                                <td class="text-center va-middle"><?= $stores->title_content ?></td>
+                                                                <td class="text-center va-middle"><img src="<?= base_url() ?>public/image/store/coverimage/<?= $stores->title_image ?>" alt="image_cover" style="width:50px;"></td>
+                                                                <td class="text-center va-middle"><img src="<?= base_url() ?>public/image/store/coverimage/mobile/<?= $stores->title_image_mobile ?>" alt="image_cover" style="width:50px;"></td>
+                                                                <td class="text-center va-middle"><?= $stores->col_left ?></td>
+                                                                <td class="text-center va-middle"><?= $stores->col_right ?></td>
+                                                                <form id="formToggleDirection">
+                                                                    <td class="text-center va-middle">
+                                                                        <input data-name="direction_image_cover_toggle" type="checkbox" name="direction_image[]" value="<?= $stores->id ?>" <?= $stores->direction_title_image == 1 ? 'checked' : '' ?> data-toggle="toggle" data-size="xs" data-on="Left" data-off="Right" data-onstyle="primary" data-offstyle="success" data-width="100">
+                                                                    </td>
+                                                                </form>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="d-flex-sb align-items-center p-b-1">
+                                                        <p class="text-dark f18">Deskripsi tambahan</p>
+                                                        <a data-target="#tambah-desc-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Tambah Deskripsi</a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <table class="table table-striped f14" style="width:100%;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="width:20%;">Title</th>
+                                                                <th style="width:30%;">Content</th>
+                                                                <th style="width:20%;">Image</th>
+                                                                <th style="width:10%;">Icon</th>
+                                                                <th style="width:8%;">Image/Icon</th>
+                                                                <th style="width:7%;">Direction</th>
+                                                                <th style="width:5%;">action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php foreach ($stores->descriptions as $desc) : ?>
+                                                                <tr>
+                                                                    <td><?= $desc->title ?> (<?= $desc->index ?>)</td>
+                                                                    <?php $str = str_split($desc->content, 85); ?>
+                                                                    <td><?= count($str) > 1 ? $str[0] . ' <a class="color-primary pointer" data-target="#detail-desc-' . $desc->id . '" data-toggle="modal">lihat detail</a>' : $str[0] ?></td>
+                                                                    <?php if ($desc->image == null) { ?>
+                                                                        <td class="text-center va-middle">
+                                                                            <p>Belum Menambahkan Gambar</p>
+                                                                        </td>
+                                                                    <?php } else { ?>
+                                                                        <td class="text-center va-middle"><img src="<?= base_url() ?>public/image/store/desc/<?= $desc->image ?>" alt="image_desc" style="width:50px;"></td>
+                                                                    <?php } ?>
+                                                                    <td class="text-center va-middle"><i class="fa fa-<?= $desc->icon ?>"></i></td>
+                                                                    <form id="formToggleSwitch">
+                                                                        <td class="text-center va-middle">
+                                                                            <input data-name="is_image_toggle" type="checkbox" name="is_image[]" value="<?= $desc->id ?>" <?= $desc->is_image == 1 ? 'checked' : '' ?> data-toggle="toggle" data-size="xs" data-on="Image" data-off="Icon" data-onstyle="primary" data-offstyle="success" data-width="100">
+                                                                        </td>
+                                                                    </form>
+                                                                    <form id="formToggleDirection">
+                                                                        <td class="text-center va-middle">
+                                                                            <input data-name="direction_image_toggle" type="checkbox" name="direction_image[]" value="<?= $desc->id ?>" <?= $desc->direction_image == 1 ? 'checked' : '' ?> data-toggle="toggle" data-size="xs" data-on="Left" data-off="Right" data-onstyle="primary" data-offstyle="success" data-width="100">
+                                                                        </td>
+                                                                    </form>
+                                                                    <td class="text-center va-middle">
+                                                                        <div class="d-flex gap-2 align-items-center">
+                                                                            <a href="" data-target="#edit-desc-<?= $desc->id ?>" data-toggle="modal" class="text-warning f18"><i class="fa fa-edit"></i></a>
+                                                                            <a href="<?= base_url() ?>member/store/delete_description/<?= $desc->id ?>" class="text-danger f18"><i class="fa fa-trash"></i></a>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            <?php endforeach; ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endforeach ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1172,7 +1259,7 @@ if ($stores->banners != null) {
                                 </div>
                                 <div class="col-lg-4">
                                     <p>Gambar Saat Ini</p>
-                                    <img src="<?= base_url() ?>public/image/store/cover/<?= $stores->cover_mobile ?>" class="img-fluid" style="max-height: 100px;">
+                                    <img src="<?= $stores->cover_mobile == null ? base_url('public/image/default-cover.png') : base_url('public/image/store/cover/' . $stores->cover_mobile); ?>" class="img-fluid" style="max-height: 100px;">
                                 </div>
                                 <div class="col-lg-4">
                                     <p>Gambar Ganti</p>
@@ -1233,7 +1320,7 @@ if ($stores->banners != null) {
                                 <?php if (isset($bannerUtama[0])) : ?>
                                     <div class="col-lg-8">
                                         <p>Gambar Saat Ini</p>
-                                        <img src="<?= base_url('public/image/store/banner/' . $bannerUtama[0]->source); ?>" alt="Default Cover" style="max-height:100px">
+                                        <img src=<?= $bannerUtama[0]->source == null ? base_url('public/image/default-cover.png') : base_url('public/image/store/banner/' . $bannerUtama[0]->source); ?>" alt="Default Cover" style="max-height:100px">
                                     </div>
                                 <?php endif; ?>
                                 <div class="<?= isset($bannerUtama[0]) ? 'col-lg-offset-4' : '' ?> col-lg-8">

@@ -33,7 +33,7 @@ $levelmember = $sessionmember["level"];
         text-decoration: none;
     }
 </style>
-<div class="container m-y-1">
+<div class="container m-y-1 h-80-vh">
     <div class="row">
         <?php echo ($this->session->flashdata('message-success') == "") ? "" :
             '<div class="alert alert-success d-flex-sb align-items-center alert-dismissible" role="alert">' .

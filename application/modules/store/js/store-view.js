@@ -17,7 +17,7 @@ $(document).ready(function () {
       //   data: { categoryId: categoryId },
       // },
       // processing: true,
-      // serverSide: true,
+      // // serverSide: true,
       // // Add other DataTable options as needed
     });
   });
@@ -73,10 +73,10 @@ $(document).ready(function () {
         $(this).text("Lihat selengkapnya");
       }
     });
-    $("#sph-bazaar").click(function(){
+    $("#sph-bazaar").click(function () {
       $("#form-bazaar").trigger("reset");
       $("#modal-bazaar").modal("show");
-  });
+    });
   });
 
   // $(".catalog").each(function (i, val) {

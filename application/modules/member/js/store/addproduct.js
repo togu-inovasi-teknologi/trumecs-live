@@ -13,6 +13,9 @@ $(".input-upload").change(function (e) {
     reader.readAsDataURL(file);
   }
 });
+$('select[name="merek_barang"]').append(
+  `<option value="-">Pilih Jenis Produk Terlebih dahulu...</option>`
+);
 
 $('select[name="jenis_barang"').change(function (e) {
   e.preventDefault();
