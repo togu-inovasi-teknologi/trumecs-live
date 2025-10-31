@@ -218,88 +218,101 @@ if ($stores->banners != null) {
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="row">
-                                                <div class="col-lg-12">
-                                                    <p class="text-dark f18">Banner Utama</p>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <div class="d-flex flex-column gap-1">
-                                                        <div class="d-flex-sb align-items-center">
-                                                            <p class="f16">Desktop</p>
-                                                            <a data-target="#edit-banner-utama-desktop-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
+                                                <div class="col-lg-4">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <p class="text-dark f18">Banner Utama</p>
                                                         </div>
-                                                        <?php if ($bannerUtama != null) { ?>
+                                                        <div class="col-lg-12">
                                                             <div class="d-flex flex-column gap-1">
-                                                                <?php if ($bannerUtama[0]->source != null) { ?>
-                                                                    <img src="<?= base_url('public/image/store/banner/' . $bannerUtama[0]->source); ?>" alt="Default Cover" class="w-100">
+                                                                <div class="d-flex-sb align-items-center">
+                                                                    <p class="f16">Desktop</p>
+                                                                    <a data-target="#edit-banner-utama-desktop-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
+                                                                </div>
+                                                                <?php if ($bannerUtama != null) { ?>
+                                                                    <div class="d-flex flex-column gap-1">
+                                                                        <?php if ($bannerUtama[0]->source != null) { ?>
+                                                                            <img src="<?= base_url('public/image/store/banner/' . $bannerUtama[0]->source); ?>" alt="Default Cover" class="w-100">
+                                                                        <?php } else { ?>
+                                                                            <div class="alert alert-warning">
+                                                                                <p class="text-dark">Anda belum menambahkan banner</p>
+                                                                            </div>
+                                                                        <?php } ?>
+                                                                        <a href="<?= base_url('member/store/delete_banner/' . $bannerUtama[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                                        <input form="formBannerUtama" type="text" name="nameBannerUtama" value="<?= $bannerUtama[0]->source ?>" hidden>
+                                                                    </div>
                                                                 <?php } else { ?>
                                                                     <div class="alert alert-warning">
                                                                         <p class="text-dark">Anda belum menambahkan banner</p>
                                                                     </div>
                                                                 <?php } ?>
-                                                                <a href="<?= base_url('member/store/delete_banner/' . $bannerUtama[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
-                                                                <input form="formBannerUtama" type="text" name="nameBannerUtama" value="<?= $bannerUtama[0]->source ?>" hidden>
                                                             </div>
-                                                        <?php } else { ?>
-                                                            <div class="alert alert-warning">
-                                                                <p class="text-dark">Anda belum menambahkan banner</p>
-                                                            </div>
-                                                        <?php } ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <p class="f18 text-dark">Banner 1</p>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <div class="d-flex flex-column gap-1">
-                                                        <div class="d-flex-sb align-items-center">
-                                                            <p class="f16">Desktop</p>
-                                                            <a data-target="#edit-banner-1-desktop-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
                                                         </div>
-                                                        <?php if ($banner1 != null) { ?>
-                                                            <div class="d-flex flex-column gap-1">
-                                                                <img src="<?= base_url('public/image/store/banner/' . $banner1[0]->source); ?>" alt="Default Cover" class="w-100">
-                                                                <a href="<?= base_url('member/store/delete_banner/' . $banner1[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
-                                                                <input form="formBanner1" type="text" name="nameBanner1" value="<?= $banner1[0]->source ?>" hidden>
-                                                            </div>
-                                                        <?php } else { ?>
-                                                            <div class="alert alert-warning">
-                                                                <p class="text-dark">Anda belum menambahkan banner</p>
-                                                            </div>
-                                                        <?php } ?>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <p class="f18 text-dark">Banner 2</p>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <div class="d-flex flex-column gap-1">
-                                                        <div class="d-flex-sb align-items-center">
-                                                            <p class="f16">Desktop</p>
-                                                            <a data-target="#edit-banner-2-desktop-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
+                                                <div class="col-lg-4">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <p class="f18 text-dark">Banner 1</p>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="d-flex flex-column gap-1">
+                                                                        <div class="d-flex-sb align-items-center">
+                                                                            <p class="f16">Desktop</p>
+                                                                            <a data-target="#edit-banner-1-desktop-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
+                                                                        </div>
+                                                                        <?php if ($banner1 != null) { ?>
+                                                                            <div class="d-flex flex-column gap-1">
+                                                                                <img src="<?= base_url('public/image/store/banner/' . $banner1[0]->source); ?>" alt="Default Cover" class="w-100">
+                                                                                <a href="<?= base_url('member/store/delete_banner/' . $banner1[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                                                <input form="formBanner1" type="text" name="nameBanner1" value="<?= $banner1[0]->source ?>" hidden>
+                                                                            </div>
+                                                                        <?php } else { ?>
+                                                                            <div class="alert alert-warning">
+                                                                                <p class="text-dark">Anda belum menambahkan banner</p>
+                                                                            </div>
+                                                                        <?php } ?>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <?php if ($banner2 != null) { ?>
-                                                            <div class="d-flex flex-column gap-1">
-                                                                <img src="<?= base_url('public/image/store/banner/' . $banner2[0]->source); ?>" alt="Default Cover" class="w-100">
-                                                                <a href="<?= base_url('member/store/delete_banner/' . $banner2[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
-                                                                <input form="formBanner2" type="text" name="nameBanner2" value="<?= $banner2[0]->source ?>" hidden>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <p class="f18 text-dark">Banner 2</p>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="d-flex flex-column gap-1">
+                                                                        <div class="d-flex-sb align-items-center">
+                                                                            <p class="f16">Desktop</p>
+                                                                            <a data-target="#edit-banner-2-desktop-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
+                                                                        </div>
+                                                                        <?php if ($banner2 != null) { ?>
+                                                                            <div class="d-flex flex-column gap-1">
+                                                                                <img src="<?= base_url('public/image/store/banner/' . $banner2[0]->source); ?>" alt="Default Cover" class="w-100">
+                                                                                <a href="<?= base_url('member/store/delete_banner/' . $banner2[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                                                <input form="formBanner2" type="text" name="nameBanner2" value="<?= $banner2[0]->source ?>" hidden>
+                                                                            </div>
+                                                                        <?php } else { ?>
+                                                                            <div class="alert alert-warning">
+                                                                                <p class="text-dark">Anda belum menambahkan banner</p>
+                                                                            </div>
+                                                                        <?php } ?>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        <?php } else { ?>
-                                                            <div class="alert alert-warning">
-                                                                <p class="text-dark">Anda belum menambahkan banner</p>
-                                                            </div>
-                                                        <?php } ?>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
                                 <?php endforeach ?>
                             </div>
@@ -810,14 +823,14 @@ if ($stores->banners != null) {
                                         <input class="form-check-input" type="radio" name="template" id="template1" value="1" <?= $value['template'] == 1 ? 'checked' : '' ?>>
                                         <label class="form-check-label" for="template1">
                                             <div class="text-left">Template 1</div>
-                                            <img src="<?= base_url() ?>public/template/template-1.png" class="img-fluid rounded border border-dark" style="max-height: 250px;">
+                                            <img src="<?= base_url() ?>public/template/template-1.png" class="img-fluid rounded" style="max-height: 250px;border:1px solid black;">
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline m-r-1">
                                         <input class="form-check-input" type="radio" name="template" id="template2" value="2" <?= $value['template'] == 2 ? 'checked' : '' ?>>
                                         <label class="form-check-label" for="template2">
                                             <div class="text-left">Template 2</div>
-                                            <img src="<?= base_url() ?>public/template/template-2.png" class="img-fluid rounded border border-dark" style="max-height: 250px;">
+                                            <img src="<?= base_url() ?>public/template/template-2.png" class="img-fluid rounded" style="max-height: 250px;border:1px solid black;">
                                         </label>
                                     </div>
                                 </div>
@@ -828,20 +841,16 @@ if ($stores->banners != null) {
                                     <input class="form-check-input" type="radio" name="template_produk" id="template_produk1" value="1" <?= $value['template_produk'] == 1 ? 'checked' : '' ?>>
                                     <label class="form-check-label" for="template_produk1">
                                         <div class="text-left">Template Table Produk</div>
-                                        <img src="<?= base_url() ?>public/template/table-product.png" class="img-fluid rounded border border-dark" style="max-height: 220px;">
+                                        <img src="<?= base_url() ?>public/template/table-product.png" class="img-fluid rounded" style="max-height: 220px;border:1px solid black;">
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="template_produk" id="template_produk2" value="2" <?= $value['template_produk'] == 2 ? 'checked' : '' ?>>
                                     <label class="form-check-label" for="template_produk2">
                                         <div class="text-left">Template Card Produk</div>
-                                        <img src="<?= base_url() ?>public/template/card-product.png" class="img-fluid rounded border border-dark" style="max-height: 220px;">
+                                        <img src="<?= base_url() ?>public/template/card-product.png" class="img-fluid rounded" style="max-height: 220px;border:1px solid black;">
                                     </label>
                                 </div>
-                                <select name="template_produk" id="template_produk" class="form-control">
-                                    <option value="1" <?= $value['template_produk'] == 1 ? 'selected' : '' ?>>Table</option>
-                                    <option value="2" <?= $value['template_produk'] == 2 ? 'selected' : '' ?>>Image</option>
-                                </select>
                             </div>
                         <?php endforeach; ?>
                     </div>
