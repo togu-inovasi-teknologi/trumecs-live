@@ -549,7 +549,7 @@ if ($stores->banners != null) {
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fbold" id="exampleModalLabel">Edit Foto
+                <h4 class="modal-title fbold" id="exampleModalLabel">Edit Logo
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -557,15 +557,16 @@ if ($stores->banners != null) {
             </div>
             <form action="<?php echo base_url() ?>member/store/upload_logo_store" method="POST" enctype="multipart/form-data" id="formLogo">
                 <div class="modal-body">
-                    <div class="row">
+                    <div class="row d-flex flex-column">
                         <div class="col-lg-12">
-                            <div class="row">
+                            <div class="row d-flex">
                                 <div class="col-lg-4">
                                     <label for="uploadBtn">Logo</label>
                                     <input type="file" id="uploadBtn" name="logo" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
                                     <a href="#" id="filetext" name="file" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
                                 </div>
-                                <div class="col-lg-4 text-muted">
+                                <div class="col-lg-8">
+                                    <p>Preview Gambar</p>
                                     <img src="" class="blah img-fluid" style="max-height: 100px;">
                                 </div>
                             </div>
@@ -731,7 +732,7 @@ if ($stores->banners != null) {
                                     <img src="<?= base_url() ?>public/image/store/coverimage/<?= $stores->title_image ?>" style="max-height: 100px;">
                                 </div>
                                 <div class="col-lg-4">
-                                    <p>Gambar ganti</p>
+                                    <p>Preview Gambar</p>
                                     <img src="" id="blah" class="img-fluid" style="max-height: 100px;">
                                 </div>
                             </div>
@@ -748,7 +749,7 @@ if ($stores->banners != null) {
                                     <img src="<?= base_url() ?>public/image/store/coverimage/mobile/<?= $stores->title_image_mobile ?>" style="max-height: 100px;">
                                 </div>
                                 <div class="col-lg-4">
-                                    <p>Gambar Ganti</p>
+                                    <p>Preview Gambar</p>
                                     <img src="" id="blahMobile" class="img-fluid" style="max-height: 100px;">
                                 </div>
                             </div>
@@ -799,18 +800,44 @@ if ($stores->banners != null) {
                 </h4>
             </div>
             <form action="<?php echo base_url() ?>member/store/edit_template" method="POST" enctype="multipart/form-data">
-                <div class="modal-body">
-                    <div class="row p-x-1">
+                <div class="modal-body" style="max-height: 50vh; overflow-y:scroll;">
+                    <div class="row p-x-1 d-flex flex-column gap-2">
                         <?php foreach ($store as $value) : ?>
-                            <div class="col-lg">
-                                <label for="template">Template</label>
-                                <select name="template" id="template" class="form-control">
-                                    <option value="1" <?= $value['template'] == 1 ? 'selected' : '' ?>>1</option>
-                                    <option value="2" <?= $value['template'] == 2 ? 'selected' : '' ?>>2</option>
-                                </select>
+                            <div class="col-lg d-flex flex-column gap-1 align-items-start">
+                                <label class="d-block fbold f18">Template</label>
+                                <div class="col-lg d-flex gap-3 align-items-start">
+                                    <div class="form-check form-check-inline m-r-1">
+                                        <input class="form-check-input" type="radio" name="template" id="template1" value="1" <?= $value['template'] == 1 ? 'checked' : '' ?>>
+                                        <label class="form-check-label" for="template1">
+                                            <div class="text-left">Template 1</div>
+                                            <img src="<?= base_url() ?>public/template/template-1.png" class="img-fluid rounded border border-dark" style="max-height: 250px;">
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline m-r-1">
+                                        <input class="form-check-input" type="radio" name="template" id="template2" value="2" <?= $value['template'] == 2 ? 'checked' : '' ?>>
+                                        <label class="form-check-label" for="template2">
+                                            <div class="text-left">Template 2</div>
+                                            <img src="<?= base_url() ?>public/template/template-2.png" class="img-fluid rounded border border-dark" style="max-height: 250px;">
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-lg">
-                                <label for="template_produk">Template Produk</label>
+                            <div class="col-lg d-flex flex-column gap-1">
+                                <label for="template_produk" class="fbold f18">Template Produk</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="template_produk" id="template_produk1" value="1" <?= $value['template_produk'] == 1 ? 'checked' : '' ?>>
+                                    <label class="form-check-label" for="template_produk1">
+                                        <div class="text-left">Template Table Produk</div>
+                                        <img src="<?= base_url() ?>public/template/table-product.png" class="img-fluid rounded border border-dark" style="max-height: 220px;">
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="template_produk" id="template_produk2" value="2" <?= $value['template_produk'] == 2 ? 'checked' : '' ?>>
+                                    <label class="form-check-label" for="template_produk2">
+                                        <div class="text-left">Template Card Produk</div>
+                                        <img src="<?= base_url() ?>public/template/card-product.png" class="img-fluid rounded border border-dark" style="max-height: 220px;">
+                                    </label>
+                                </div>
                                 <select name="template_produk" id="template_produk" class="form-control">
                                     <option value="1" <?= $value['template_produk'] == 1 ? 'selected' : '' ?>>Table</option>
                                     <option value="2" <?= $value['template_produk'] == 2 ? 'selected' : '' ?>>Image</option>
@@ -1216,7 +1243,7 @@ if ($stores->banners != null) {
                                     <img src="<?= base_url() ?>public/image/store/cover/<?= $stores->cover ?>" class="img-fluid" style="max-height: 100px;">
                                 </div>
                                 <div class="col-lg-4">
-                                    <p>Gambar Ganti</p>
+                                    <p>Preview Gambar</p>
                                     <img src="" class="blah img-fluid" style="max-height: 100px;">
                                 </div>
                             </div>
@@ -1262,7 +1289,7 @@ if ($stores->banners != null) {
                                     <img src="<?= $stores->cover_mobile == null ? base_url('public/image/default-cover.png') : base_url('public/image/store/cover/' . $stores->cover_mobile); ?>" class="img-fluid" style="max-height: 100px;">
                                 </div>
                                 <div class="col-lg-4">
-                                    <p>Gambar Ganti</p>
+                                    <p>Preview Gambar</p>
                                     <img src="" class="blah img-fluid" style="max-height: 100px;">
                                 </div>
                             </div>
@@ -1318,13 +1345,13 @@ if ($stores->banners != null) {
                                     <a href="#" id="filetext" name="file" type="button" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
                                 </div>
                                 <?php if (isset($bannerUtama[0])) : ?>
-                                    <div class="col-lg-8">
+                                    <div class="col-lg-4">
                                         <p>Gambar Saat Ini</p>
-                                        <img src=<?= $bannerUtama[0]->source == null ? base_url('public/image/default-cover.png') : base_url('public/image/store/banner/' . $bannerUtama[0]->source); ?>" alt="Default Cover" style="max-height:100px">
+                                        <img src="<?= $bannerUtama[0]->source == null ? base_url('public/image/default-cover.png') : base_url('public/image/store/banner/' . $bannerUtama[0]->source); ?>" alt="Default Cover" style="max-height:100px">
                                     </div>
                                 <?php endif; ?>
-                                <div class="<?= isset($bannerUtama[0]) ? 'col-lg-offset-4' : '' ?> col-lg-8">
-                                    <p>Gambar Ganti</p>
+                                <div class="col-lg-4">
+                                    <p>Preview Gambar</p>
                                     <img src="" class="blah img-fluid" style="max-height: 100px;">
                                 </div>
                             </div>
@@ -1379,12 +1406,14 @@ if ($stores->banners != null) {
                                     <input type="file" id="uploadBtn" name="bannerUtama" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
                                     <a href="#" id="filetext" name="file" type="button" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
                                 </div>
-                                <div class="col-lg-8">
-                                    <p>Gambar Saat Ini</p>
-                                    <img src="<?= base_url('public/image/store/banner/' . $bannerUtamaMobile[0]->source); ?>" alt="Default Cover" style="max-height:100px">
-                                </div>
-                                <div class="col-lg-offset-4 col-lg-8">
-                                    <p>Gambar Ganti</p>
+                                <?php if (isset($bannerUtamaMobile[0])) : ?>
+                                    <div class="col-lg-4">
+                                        <p>Gambar Saat Ini</p>
+                                        <img src="<?= base_url('public/image/store/banner/' . $bannerUtamaMobile[0]->source); ?>" alt="Default Cover" style="max-height:100px">
+                                    </div>
+                                <?php endif; ?>
+                                <div class="col-lg-4">
+                                    <p>Preview Gambar</p>
                                     <img src="" class="blah img-fluid" style="max-height: 100px;">
                                 </div>
                             </div>
@@ -1439,12 +1468,14 @@ if ($stores->banners != null) {
                                     <input type="file" id="uploadBtn" name="banner1" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
                                     <a href="#" id="filetext" name="file" type="button" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
                                 </div>
-                                <div class="col-lg-8">
-                                    <p>Gambar Saat Ini</p>
-                                    <img src="<?= base_url('public/image/store/banner/' . $banner1[0]->source); ?>" alt="Default Cover" style="max-height:100px">
-                                </div>
-                                <div class="col-lg-offset-4 col-lg-8">
-                                    <p>Gambar Ganti</p>
+                                <?php if (isset($banner1[0])) : ?>
+                                    <div class="col-lg-4">
+                                        <p>Gambar Saat Ini</p>
+                                        <img src="<?= $banner1[0]->source == null ? base_url('public/image/default-cover.png') : base_url('public/image/store/banner/' . $banner1[0]->source); ?>" alt="Default Cover" style="max-height:100px">
+                                    </div>
+                                <?php endif; ?>
+                                <div class="col-lg-4">
+                                    <p>Preview Gambar</p>
                                     <img src="" class="blah img-fluid" style="max-height: 100px;">
                                 </div>
                             </div>
@@ -1502,12 +1533,14 @@ if ($stores->banners != null) {
                                     <input type="file" id="uploadBtn" name="banner1" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
                                     <a href="#" id="filetext" name="file" type="button" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
                                 </div>
-                                <div class="col-lg-8">
-                                    <p>Gambar Saat Ini</p>
-                                    <img src="<?= base_url('public/image/store/banner/' . $banner1Mobile[0]->source); ?>" alt="Default Cover" style="max-height:100px">
-                                </div>
-                                <div class="col-lg-offset-4 col-lg-8">
-                                    <p>Gambar Ganti</p>
+                                <?php if (isset($banner1Mobile[0])) : ?>
+                                    <div class="col-lg-4">
+                                        <p>Gambar Saat Ini</p>
+                                        <img src="<?= base_url('public/image/store/banner/' . $banner1Mobile[0]->source); ?>" alt="Default Cover" style="max-height:100px">
+                                    </div>
+                                <?php endif; ?>
+                                <div class="col-lg-4">
+                                    <p>Preview Gambar</p>
                                     <img src="" class="blah img-fluid" style="max-height: 100px;">
                                 </div>
                             </div>
@@ -1562,12 +1595,14 @@ if ($stores->banners != null) {
                                     <input type="file" id="uploadBtn" name="banner2" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
                                     <a href="#" id="filetext" name="file" type="button" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
                                 </div>
-                                <div class="col-lg-8">
-                                    <p>Gambar Saat Ini</p>
-                                    <img src="<?= base_url('public/image/store/banner/' . $banner2[0]->source); ?>" alt="Default Cover" style="max-height:100px">
-                                </div>
-                                <div class="col-lg-offset-4 col-lg-8">
-                                    <p>Gambar Ganti</p>
+                                <?php if (isset($banner2[0])) : ?>
+                                    <div class="col-lg-4">
+                                        <p>Gambar Saat Ini</p>
+                                        <img src="<?= base_url('public/image/store/banner/' . $banner2[0]->source); ?>" alt="Default Cover" style="max-height:100px">
+                                    </div>
+                                <?php endif; ?>
+                                <div class="col-lg-4">
+                                    <p>Preview Gambar</p>
                                     <img src="" class="blah img-fluid" style="max-height: 100px;">
                                 </div>
                             </div>
@@ -1625,12 +1660,14 @@ if ($stores->banners != null) {
                                     <input type="file" id="uploadBtn" name="banner2" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
                                     <a href="#" id="filetext" name="file" type="button" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
                                 </div>
-                                <div class="col-lg-8">
-                                    <p>Gambar Saat Ini</p>
-                                    <img src="<?= base_url('public/image/store/banner/' . $banner2Mobile[0]->source); ?>" alt="Default Cover" style="max-height:100px">
-                                </div>
-                                <div class="col-lg-offset-4 col-lg-8">
-                                    <p>Gambar Ganti</p>
+                                <?php if (isset($banner2Mobile[0])) : ?>
+                                    <div class="col-lg-4">
+                                        <p>Gambar Saat Ini</p>
+                                        <img src="<?= base_url('public/image/store/banner/' . $banner2Mobile[0]->source); ?>" alt="Default Cover" style="max-height:100px">
+                                    </div>
+                                <?php endif; ?>
+                                <div class="col-lg-4">
+                                    <p>Preview Gambar</p>
                                     <img src="" class="blah img-fluid" style="max-height: 100px;">
                                 </div>
                             </div>

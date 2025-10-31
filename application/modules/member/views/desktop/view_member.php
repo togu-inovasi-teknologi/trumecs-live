@@ -99,7 +99,7 @@ $levelmember = $sessionmember["level"];
                                         <?php } ?>
                                         <h6 class="p-a-0 m-a-0"><?php echo $namemember; ?></h6>
                                     </div>
-                                    <i class="fa fa-angle-right"></i>
+                                    <p class="forange">Member <i class="fa fa-angle-right"></i></p>
                                 </li>
                             <?php endforeach ?>
                         </a>
@@ -117,7 +117,7 @@ $levelmember = $sessionmember["level"];
                                             <img src="<?php echo base_url(); ?>public/image/store/logo/<?php echo $key["logo"]; ?>" alt="logo" class="foto-desktop">
                                             <?php echo count($str) > 1 ? $str[0] . "..." : $str[0]; ?>
                                         </div>
-                                        <i class="fa fa-angle-right"></i>
+                                        <p class="forange">Toko <i class="fa fa-angle-right"></i></p>
                                     </li>
                                 </a>
                             <?php endforeach ?>

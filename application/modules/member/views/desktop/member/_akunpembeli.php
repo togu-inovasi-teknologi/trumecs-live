@@ -140,12 +140,14 @@ $format = new Date();
 			</div>
 			<form action="<?php echo base_url() ?>member/upload_foto_member" method="POST" enctype="multipart/form-data">
 				<div class="modal-body">
-					<div class="row">
+					<div class="row d-flex gap-0">
 						<div class="col-lg-4">
+							<label for="uploadBtn">Gambar Profile</label>
 							<input type="file" id="uploadBtn" name="images" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
 							<a href="#" id="filetext" name="file" class="btn btnnew" style="margin-top:-50px;cursor: pointer;"><?= $this->lang->line('buttonChoiceFile'); ?></a>
 						</div>
-						<div class="col-lg-4">
+						<div class="col-lg-8">
+							<p>Preview Gambar</p>
 							<img src="" class="blah img-fluid" style="max-height: 100px;">
 						</div>
 					</div>
