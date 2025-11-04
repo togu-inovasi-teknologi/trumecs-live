@@ -365,78 +365,82 @@ if ($stores->banners != null) {
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="row">
-                                                <div class="col-lg-12">
-                                                    <p class="text-dark f18">Banner Utama</p>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <div class="d-flex flex-column gap-1">
-                                                        <div class="d-flex-sb align-items-center">
-                                                            <p class="f16">Mobile</p>
-                                                            <a data-target="#edit-banner-utama-mobile-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
+                                                <div class="col-lg-4">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <p class="text-dark f18">Banner Utama</p>
                                                         </div>
-                                                        <?php if ($bannerUtamaMobile != null) { ?>
+                                                        <div class="col-lg-12">
                                                             <div class="d-flex flex-column gap-1">
-                                                                <img src="<?= base_url('public/image/store/banner/' . $bannerUtamaMobile[0]->source); ?>" alt="Default Cover" class="w-100">
-                                                                <a href="<?= base_url('member/store/delete_banner/' . $bannerUtamaMobile[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
-                                                                <input form="formBannerUtamaMobile" type="text" name="nameBannerUtama" value="<?= $bannerUtamaMobile[0]->source ?>" hidden>
+                                                                <div class="d-flex-sb align-items-center">
+                                                                    <p class="f16">Mobile</p>
+                                                                    <a data-target="#edit-banner-utama-mobile-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
+                                                                </div>
+                                                                <?php if ($bannerUtamaMobile != null) { ?>
+                                                                    <div class="d-flex flex-column gap-1">
+                                                                        <img src="<?= base_url('public/image/store/banner/' . $bannerUtamaMobile[0]->source); ?>" alt="Default Cover" class="w-100">
+                                                                        <a href="<?= base_url('member/store/delete_banner/' . $bannerUtamaMobile[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                                        <input form="formBannerUtamaMobile" type="text" name="nameBannerUtama" value="<?= $bannerUtamaMobile[0]->source ?>" hidden>
+                                                                    </div>
+                                                                <?php } else { ?>
+                                                                    <div class="alert alert-warning">
+                                                                        <p class="text-dark">Anda belum menambahkan banner</p>
+                                                                    </div>
+                                                                <?php } ?>
                                                             </div>
-                                                        <?php } else { ?>
-                                                            <div class="alert alert-warning">
-                                                                <p class="text-dark">Anda belum menambahkan banner</p>
-                                                            </div>
-                                                        <?php } ?>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <p class="f18 text-dark">Banner 1</p>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <div class="d-flex flex-column gap-1">
-                                                        <div class="d-flex-sb align-items-center">
-                                                            <p class="f16">Mobile</p>
-                                                            <a data-target="#edit-banner-1-mobile-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
+                                                <div class="col-lg-4">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <p class="f18 text-dark">Banner 1</p>
                                                         </div>
-                                                        <?php if ($banner1Mobile != null) { ?>
+                                                        <div class="col-lg-12">
                                                             <div class="d-flex flex-column gap-1">
-                                                                <img src="<?= base_url('public/image/store/banner/' . $banner1Mobile[0]->source); ?>" alt="Default Cover" class="w-100">
-                                                                <a href="<?= base_url('member/store/delete_banner/' . $banner1Mobile[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
-                                                                <input form="formBanner1Mobile" type="text" name="nameBanner1" value="<?= $banner1Mobile[0]->source ?>" hidden>
+                                                                <div class="d-flex-sb align-items-center">
+                                                                    <p class="f16">Mobile</p>
+                                                                    <a data-target="#edit-banner-1-mobile-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
+                                                                </div>
+                                                                <?php if ($banner1Mobile != null) { ?>
+                                                                    <div class="d-flex flex-column gap-1">
+                                                                        <img src="<?= base_url('public/image/store/banner/' . $banner1Mobile[0]->source); ?>" alt="Default Cover" class="w-100">
+                                                                        <a href="<?= base_url('member/store/delete_banner/' . $banner1Mobile[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                                        <input form="formBanner1Mobile" type="text" name="nameBanner1" value="<?= $banner1Mobile[0]->source ?>" hidden>
+                                                                    </div>
+                                                                <?php } else { ?>
+                                                                    <div class="alert alert-warning">
+                                                                        <p class="text-dark">Anda belum menambahkan banner</p>
+                                                                    </div>
+                                                                <?php } ?>
                                                             </div>
-                                                        <?php } else { ?>
-                                                            <div class="alert alert-warning">
-                                                                <p class="text-dark">Anda belum menambahkan banner</p>
-                                                            </div>
-                                                        <?php } ?>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <p class="f18 text-dark">Banner 2</p>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <div class="d-flex flex-column gap-1">
-                                                        <div class="d-flex-sb align-items-center">
-                                                            <p class="f16">Mobile</p>
-                                                            <a data-target="#edit-banner-2-mobile-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
+                                                <div class="col-lg-4">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <p class="f18 text-dark">Banner 2</p>
                                                         </div>
-                                                        <?php if ($banner2Mobile != null) { ?>
+                                                        <div class="col-lg-12">
                                                             <div class="d-flex flex-column gap-1">
-                                                                <img src="<?= base_url('public/image/store/banner/' . $banner2Mobile[0]->source); ?>" alt="Default Cover" class="w-100">
-                                                                <a href="<?= base_url('member/store/delete_banner/' . $banner2Mobile[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
-                                                                <input form="formBanner2Mobile" type="text" name="nameBanner2" value="<?= $banner2Mobile[0]->source ?>" hidden>
+                                                                <div class="d-flex-sb align-items-center">
+                                                                    <p class="f16">Mobile</p>
+                                                                    <a data-target="#edit-banner-2-mobile-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Banner</a>
+                                                                </div>
+                                                                <?php if ($banner2Mobile != null) { ?>
+                                                                    <div class="d-flex flex-column gap-1">
+                                                                        <img src="<?= base_url('public/image/store/banner/' . $banner2Mobile[0]->source); ?>" alt="Default Cover" class="w-100">
+                                                                        <a href="<?= base_url('member/store/delete_banner/' . $banner2Mobile[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                                        <input form="formBanner2Mobile" type="text" name="nameBanner2" value="<?= $banner2Mobile[0]->source ?>" hidden>
+                                                                    </div>
+                                                                <?php } else { ?>
+                                                                    <div class="alert alert-warning">
+                                                                        <p class="text-dark">Anda belum menambahkan banner</p>
+                                                                    </div>
+                                                                <?php } ?>
                                                             </div>
-                                                        <?php } else { ?>
-                                                            <div class="alert alert-warning">
-                                                                <p class="text-dark">Anda belum menambahkan banner</p>
-                                                            </div>
-                                                        <?php } ?>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -574,7 +578,7 @@ if ($stores->banners != null) {
                         <div class="col-lg-12">
                             <div class="row d-flex">
                                 <div class="col-lg-4">
-                                    <label for="uploadBtn">Logo</label>
+                                    <label class="fbold" for="uploadBtn">Logo</label>
                                     <input type="file" id="uploadBtn" name="logo" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
                                     <a href="#" id="filetext" name="file" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
                                 </div>
@@ -616,43 +620,43 @@ if ($stores->banners != null) {
                         <div class="row d-flex flex-column gap-2">
                             <div class="col-lg-12">
                                 <input type="hidden" name="id_member" value="<?php echo $sessionmember["id"]; ?>" />
-                                <label for="nameStore">Nama Toko</label>
+                                <label class="fbold" for="nameStore">Nama Toko</label>
                                 <input id="nameStore" type="text" name="name" class="form-control" placeholder="Nama Lengkap" value="<?php echo $key["name"]; ?>" required>
                             </div>
                             <div class="col-lg-12">
-                                <label for="domain">Domain</label>
+                                <label class="fbold" for="domain">Domain</label>
                                 <input type="text" name="domain" class="form-control" placeholder="Domain" value="<?php echo $key["domain"]; ?>" required>
                             </div>
                             <div class="col-lg-12">
-                                <label for="npwp">NPWP</label>
+                                <label class="fbold" for="npwp">NPWP</label>
                                 <input id="npwp" type="text" name="npwp" class="form-control" placeholder="NPWP" value="<?php echo $key["npwp"]; ?>" required>
                             </div>
                             <div class="col-lg-12">
-                                <label for="email">Email</label>
+                                <label class="fbold" for="email">Email</label>
                                 <input id="email" type="text" name="company_email" class="form-control" placeholder="Email Perusahaan" value="<?php echo $key["email"]; ?>" required>
                             </div>
                             <div class="col-lg-12">
-                                <label for="phone">Telepon</label>
+                                <label class="fbold" for="phone">Telepon</label>
                                 <input id="phone" type="text" name="company_phone" class="form-control" placeholder="Telepon Perusahaan" value="<?php echo $key["phone"]; ?>" required>
                             </div>
                             <div class="col-lg-12">
-                                <label for="content">Deskripsi Toko</label>
+                                <label class="fbold" for="content">Deskripsi Toko</label>
                                 <textarea type="text" class="form-control" name="description_store"><?= $key["description_id"]; ?></textarea>
                             </div>
                             <div class="col-lg-12">
-                                <label for="pic">PIC</label>
+                                <label class="fbold" for="pic">PIC</label>
                                 <input id="pic" type="text" name="pic" class="form-control" placeholder="PIC Toko" value="<?php echo $key["mailing_pic"]; ?>" required>
                             </div>
                             <div class="col-lg-12">
-                                <label for="picPosition">Jabatan PIC</label>
+                                <label class="fbold" for="picPosition">Jabatan PIC</label>
                                 <input id="picPosition" type="text" name="position" class="form-control" placeholder="PIC Toko" value="<?php echo $key["mailing_position"]; ?>" required>
                             </div>
                             <div class="col-lg-12">
-                                <label for="picPhone">Nomor Telepon PIC</label>
+                                <label class="fbold" for="picPhone">Nomor Telepon PIC</label>
                                 <input id="picPhone" type="text" name="phone_pic" class="form-control" placeholder="Nomor PIC Toko" value="<?php echo $key["mailing_phone"]; ?>" required>
                             </div>
                             <div class="col-lg-12">
-                                <label for="country">Negara</label>
+                                <label class="fbold" for="country">Negara</label>
                                 <select id="country" name="country" class="form-control" required value="<?php echo $key["mailing_country"]; ?>">
                                     <option value="">--Pilih Negara--</option>
                                     <option value="1" <?= ($key['mailing_country'] == 1) ? "selected" : ""; ?>>Indonesia</option>
@@ -661,7 +665,7 @@ if ($stores->banners != null) {
                                 </select>
                             </div>
                             <div class="col-lg-12">
-                                <label for="province">Provinsi</label>
+                                <label class="fbold" for="province">Provinsi</label>
                                 <select name="province" class="form-control" required id="<?php echo $key["mailing_province"] ?>">
                                     <option value="">--Pilih Provinsi--</option>
                                     <?php foreach ($provinces as $keys) : ?>
@@ -670,17 +674,17 @@ if ($stores->banners != null) {
                                 </select>
                             </div>
                             <div class="col-lg-12">
-                                <label for="district">Kabupaten</label>
+                                <label class="fbold" for="district">Kabupaten</label>
                                 <select name="city" class="form-control" required id="<?php echo $key["mailing_city"] ?>">
                                     <option value="">--Pilih Kabupaten--</option>
                                 </select>
                             </div>
                             <div class="col-lg-12">
-                                <label for="address">Alamat</label>
+                                <label class="fbold" for="address">Alamat</label>
                                 <input id="address" type="text" name="address" value="<?php echo $key["mailing_address"] ?>" class="form-control" placeholder="Alamat" required>
                             </div>
                             <div class="col-lg-12">
-                                <label for="zipCode">Kode Pos</label>
+                                <label class="fbold" for="zipCode">Kode Pos</label>
                                 <input id="zipCode" type="number" name="zipcode" value="<?php echo $key["mailing_zipcode"] ?>" class="form-control" placeholder="Kode Pos" required>
                             </div>
                         </div>
@@ -708,24 +712,28 @@ if ($stores->banners != null) {
                 <div class="modal-body" style="max-height: 50vh; overflow-y:scroll;">
                     <div class="row d-flex flex-column gap-2">
                         <div class="col-lg-12">
-                            <label for="title_cover">Title</label>
-                            <input type="text" name="title_cover" class="form-control" placeholder="Title" value="<?= $stores->title_cover; ?>" required>
-                        </div>
-                        <div class="col-lg-12">
-                            <label for="title_content">Content</label>
-                            <input type="text" name="title_content" class="form-control" placeholder="Content" value="<?= $stores->title_content; ?>" required>
-                        </div>
-                        <div class="col-lg-12">
                             <div class="row">
-                                <div class="col-lg-6 d-flex flex-column">
-                                    <label for="colorTitleCover">Warna Title Cover</label>
+                                <div class="col-lg-8">
+                                    <label class="fbold" for="title_cover">Title</label>
+                                    <input type="text" name="title_cover" class="form-control" placeholder="Title" value="<?= $stores->title_cover; ?>" required>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label class="fbold" for="colorTitleCover">Warna Text Title Cover</label>
                                     <div class="d-flex gap-1 align-items-center">
                                         <input type="color" name="colorTitleCover" id="colorTitleCover" value="<?= $stores->color_title_cover ?>">
                                         <input disabled type="text" class="form-control" id="afterColorTitleCover" value="<?= $stores->color_title_cover ?>">
                                     </div>
                                 </div>
-                                <div class="col-lg-6 d-flex flex-column">
-                                    <label for="colorContentCover">Warna Content Cover</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <label class="fbold" for="title_content">Content</label>
+                                    <input type="text" name="title_content" class="form-control" placeholder="Content" value="<?= $stores->title_content; ?>" required>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label class="fbold" for="colorContentCover">Warna Content Cover</label>
                                     <div class="d-flex gap-1 align-items-center">
                                         <input type="color" name="colorContentCover" id="colorContentCover" value="<?= $stores->color_title_content ?>">
                                         <input disabled type="text" class="form-control" id="afterColorContentCover" value="<?= $stores->color_title_content ?>">
@@ -733,10 +741,11 @@ if ($stores->banners != null) {
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-lg-12">
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <label for="uploadBtn">Image</label>
+                                    <label class="fbold" for="uploadBtn">Image</label>
                                     <input type="file" id="uploadBtn" name="titleImage" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
                                     <a href="#" id="filetext" name="titleImage" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
                                 </div>
@@ -753,7 +762,7 @@ if ($stores->banners != null) {
                         <div class="col-lg-12">
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <label for="uploadBtnMobile">Image Mobile</label>
+                                    <label class="fbold" for="uploadBtnMobile">Image Mobile</label>
                                     <input type="file" id="uploadBtnMobile" name="titleImageMobile" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
                                     <a href="#" id="filetext" name="titleImageMobile" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
                                 </div>
@@ -770,14 +779,14 @@ if ($stores->banners != null) {
                         <div class="col-lg-12">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <label for="col_left">Col Left</label>
+                                    <label class="fbold" for="col_left">Col Left</label>
                                     <select name="col_left" id="col_left" class="form-control">
 
                                     </select>
                                     <input type="hidden" name="value_col_left" id="value_col_left" class="value_col_left" value="<?= $stores->col_left == 0 ? 6 : $stores->col_left ?>">
                                 </div>
                                 <div class="col-lg-6">
-                                    <label for="col_right">Col Right</label>
+                                    <label class="fbold" for="col_right">Col Right</label>
                                     <select name="col_right" id="col_right" class="form-control">
 
                                     </select>
@@ -786,7 +795,7 @@ if ($stores->banners != null) {
                             </div>
                         </div>
                         <div class="col-lg-12">
-                            <label for="direction_title_image">Direction Image</label>
+                            <label class="fbold" for="direction_title_image">Direction Image</label>
                             <select name="direction_title_image" id="direction_title_image" class="form-control">
                                 <option value="0" <?= $stores->direction_title_image == 0 ? 'selected' : '' ?>>Right</option>
                                 <option value="1" <?= $stores->direction_title_image == 1 ? 'selected' : '' ?>>Left</option>
@@ -821,14 +830,14 @@ if ($stores->banners != null) {
                                 <div class="col-lg d-flex gap-3 align-items-start">
                                     <div class="form-check form-check-inline m-r-1">
                                         <input class="form-check-input" type="radio" name="template" id="template1" value="1" <?= $value['template'] == 1 ? 'checked' : '' ?>>
-                                        <label class="form-check-label" for="template1">
+                                        <label class="form-check-label fbold" for="template1">
                                             <div class="text-left">Template 1</div>
                                             <img src="<?= base_url() ?>public/template/template-1.png" class="img-fluid rounded" style="max-height: 250px;border:1px solid black;">
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline m-r-1">
                                         <input class="form-check-input" type="radio" name="template" id="template2" value="2" <?= $value['template'] == 2 ? 'checked' : '' ?>>
-                                        <label class="form-check-label" for="template2">
+                                        <label class="form-check-label fbold" for="template2">
                                             <div class="text-left">Template 2</div>
                                             <img src="<?= base_url() ?>public/template/template-2.png" class="img-fluid rounded" style="max-height: 250px;border:1px solid black;">
                                         </label>
@@ -839,14 +848,14 @@ if ($stores->banners != null) {
                                 <label for="template_produk" class="fbold f18">Template Produk</label>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="template_produk" id="template_produk1" value="1" <?= $value['template_produk'] == 1 ? 'checked' : '' ?>>
-                                    <label class="form-check-label" for="template_produk1">
+                                    <label class="form-check-label fbold" for="template_produk1">
                                         <div class="text-left">Template Table Produk</div>
                                         <img src="<?= base_url() ?>public/template/table-product.png" class="img-fluid rounded" style="max-height: 220px;border:1px solid black;">
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="template_produk" id="template_produk2" value="2" <?= $value['template_produk'] == 2 ? 'checked' : '' ?>>
-                                    <label class="form-check-label" for="template_produk2">
+                                    <label class="form-check-label fbold" for="template_produk2">
                                         <div class="text-left">Template Card Produk</div>
                                         <img src="<?= base_url() ?>public/template/card-product.png" class="img-fluid rounded" style="max-height: 220px;border:1px solid black;">
                                     </label>
@@ -880,14 +889,14 @@ if ($stores->banners != null) {
                             <div class="col-lg">
                                 <div class="row">
                                     <div class="col-lg-6 d-flex flex-column">
-                                        <label for="colorNav">Warna NavBar</label>
+                                        <label class="fbold" for="colorNav">Warna NavBar</label>
                                         <div class="d-flex gap-1 align-items-center">
                                             <input type="color" name="colorNav" id="colorNav" value="<?= $style->color_nav ?>">
                                             <input disabled type="text" class="form-control" id="afterColorNav" value="<?= $style->color_nav ?>">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 d-flex flex-column">
-                                        <label for="colorNavText">Warna Text Navbar</label>
+                                        <label class="fbold" for="colorNavText">Warna Text Navbar</label>
                                         <div class="d-flex gap-1 align-items-center">
                                             <input type="color" name="colorNavText" id="colorNavText" value="<?= $style->color_nav_text ?>">
                                             <input disabled type="text" class="form-control" id="afterColorNavText" value="<?= $style->color_nav_text ?>">
@@ -898,14 +907,14 @@ if ($stores->banners != null) {
                             <div class="col-lg">
                                 <div class="row">
                                     <div class="col-lg-6 d-flex flex-column">
-                                        <label for="colorTextName">Warna Nama Toko</label>
+                                        <label class="fbold" for="colorTextName">Warna Nama Toko</label>
                                         <div class="d-flex gap-1 align-items-center">
                                             <input type="color" name="colorTextName" id="colorTextName" value="<?= $style->color_text_name ?>">
                                             <input disabled type="text" class="form-control" id="afterColorTextName" value="<?= $style->color_text_name ?>">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 d-flex flex-column">
-                                        <label for="colorBg">Warna Background</label>
+                                        <label class="fbold" for="colorBg">Warna Background</label>
                                         <div class="d-flex gap-1 align-items-center">
                                             <input type="color" name="colorBg" id="colorBg" value="<?= $style->color_bg ?>">
                                             <input disabled type="text" class="form-control" id="afterColorBg" value="<?= $style->color_bg ?>">
@@ -916,14 +925,14 @@ if ($stores->banners != null) {
                             <div class="col-lg">
                                 <div class="row">
                                     <div class="col-lg-6 d-flex flex-column">
-                                        <label for="colorTextTitle">Warna Text Title</label>
+                                        <label class="fbold" for="colorTextTitle">Warna Text Title</label>
                                         <div class="d-flex gap-1 align-items-center">
                                             <input type="color" name="colorTextTitle" id="colorTextTitle" value="<?= $style->color_text_title ?>">
                                             <input disabled type="text" class="form-control" id="afterColorTextTitle" value="<?= $style->color_text_title ?>">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 d-flex flex-column">
-                                        <label for="colorTextContent">Warna Text Content</label>
+                                        <label class="fbold" for="colorTextContent">Warna Text Content</label>
                                         <div class="d-flex gap-1 align-items-center">
                                             <input type="color" name="colorTextContent" id="colorTextContent" value="<?= $style->color_text_content ?>">
                                             <input disabled type="text" class="form-control" id="afterColorTextContent" value="<?= $style->color_text_content ?>">
@@ -934,14 +943,14 @@ if ($stores->banners != null) {
                             <div class="col-lg">
                                 <div class="row">
                                     <div class="col-lg-6 d-flex flex-column">
-                                        <label for="colorTextNameCategory">Warna Text Name Category</label>
+                                        <label class="fbold" for="colorTextNameCategory">Warna Text Name Category</label>
                                         <div class="d-flex gap-1 align-items-center">
                                             <input type="color" name="colorTextNameCategory" id="colorTextNameCategory" value="<?= $style->color_text_name_category ?>">
                                             <input disabled type="text" class="form-control" id="afterColorTextNameCategory" value="<?= $style->color_text_name_category ?>">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 d-flex flex-column">
-                                        <label for="colorCardDescription">Warna Card</label>
+                                        <label class="fbold" for="colorCardDescription">Warna Card</label>
                                         <div class="d-flex gap-1 align-items-center">
                                             <input type="color" name="colorCardDescription" id="colorCardDescription" value="<?= $style->color_card_description ?>">
                                             <input disabled type="text" class="form-control" id="afterColorCardDescription" value="<?= $style->color_card_description ?>">
@@ -952,14 +961,14 @@ if ($stores->banners != null) {
                             <div class="col-lg">
                                 <div class="row">
                                     <div class="col-lg-6 d-flex flex-column">
-                                        <label for="colorCardTitle">Warna Text Title Deskripsi</label>
+                                        <label class="fbold" for="colorCardTitle">Warna Text Title Deskripsi</label>
                                         <div class="d-flex gap-1 align-items-center">
                                             <input type="color" name="colorCardTitle" id="colorCardTitle" value="<?= $style->color_card_title ?>">
                                             <input disabled type="text" class="form-control" id="afterColorCardTitle" value="<?= $style->color_card_title ?>">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 d-flex flex-column">
-                                        <label for="colorCardContent">Warna Text Content Deskripsi</label>
+                                        <label class="fbold" for="colorCardContent">Warna Text Content Deskripsi</label>
                                         <div class="d-flex gap-1 align-items-center">
                                             <input type="color" name="colorCardContent" id="colorCardContent" value="<?= $style->color_card_content ?>">
                                             <input disabled type="text" class="form-control" id="afterColorCardContent" value="<?= $style->color_card_content ?>">
@@ -970,14 +979,14 @@ if ($stores->banners != null) {
                             <div class="col-lg">
                                 <div class="row">
                                     <div class="col-lg-6 d-flex flex-column">
-                                        <label for="colorTextNameProduct">Warna Text Product</label>
+                                        <label class="fbold" for="colorTextNameProduct">Warna Text Product</label>
                                         <div class="d-flex gap-1 align-items-center">
                                             <input type="color" name="colorTextNameProduct" id="colorTextNameProduct" value="<?= $style->color_text_name_product ?>">
                                             <input disabled type="text" class="form-control" id="afterColorTextNameProduct" value="<?= $style->color_text_name_product ?>">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 d-flex flex-column">
-                                        <label for="colorButton">Warna Button</label>
+                                        <label class="fbold" for="colorButton">Warna Button</label>
                                         <div class="d-flex gap-1 align-items-center">
                                             <input type="color" name="colorButton" id="colorButton" value="<?= $style->color_button ?>">
                                             <input disabled type="text" class="form-control" id="afterColorButton" value="<?= $style->color_button ?>">
@@ -988,14 +997,14 @@ if ($stores->banners != null) {
                             <div class="col-lg">
                                 <div class="row">
                                     <div class="col-lg-6 d-flex flex-column">
-                                        <label for="colorCardProduct">Warna Card Product</label>
+                                        <label class="fbold" for="colorCardProduct">Warna Card Product</label>
                                         <div class="d-flex gap-1 align-items-center">
                                             <input type="color" name="colorCardProduct" id="colorCardProduct" value="<?= $style->color_card_product ?>">
                                             <input disabled type="text" class="form-control" id="afterColorCardProduct" value="<?= $style->color_card_product ?>">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 d-flex flex-column">
-                                        <label for="colorTextCardProduct">Warna Text Card Product</label>
+                                        <label class="fbold" for="colorTextCardProduct">Warna Text Card Product</label>
                                         <div class="d-flex gap-1 align-items-center">
                                             <input type="color" name="colorTextCardProduct" id="colorTextCardProduct" value="<?= $style->color_text_card_product ?>">
                                             <input disabled type="text" class="form-control" id="afterColorTextCardProduct" value="<?= $style->color_text_card_product ?>">
@@ -1006,7 +1015,7 @@ if ($stores->banners != null) {
                             <div class="col-lg">
                                 <div class="row">
                                     <div class="col-lg-6 d-flex flex-column">
-                                        <label for="directionCard">Direction Card</label>
+                                        <label class="fbold" for="directionCard">Direction Card</label>
                                         <div class="d-flex gap-1 align-items-center">
                                             <select name="directionCard" id="directionCard" class="form-control">
                                                 <option value="1" <?= $style->direction_card == 1 ? 'selected' : '' ?>>Row</option>
@@ -1015,7 +1024,7 @@ if ($stores->banners != null) {
                                         </div>
                                     </div>
                                     <div class="col-lg-6 d-flex flex-column">
-                                        <label for="directionTextTitleDescription">Direction Title Card</label>
+                                        <label class="fbold" for="directionTextTitleDescription">Direction Text Title Description</label>
                                         <div class="d-flex gap-1 align-items-center">
                                             <select name="directionTextTitleDescription" id="directionTextTitleDescription" class="form-control">
                                                 <option value="left" <?= $style->direction_text_title_description == 'left' ? 'selected' : '' ?>>left</option>
@@ -1052,11 +1061,11 @@ if ($stores->banners != null) {
                 <div class="modal-body" style="max-height: 50vh; overflow-y:scroll;">
                     <div class="row d-flex flex-column gap-3">
                         <div class="col-lg-12">
-                            <label for="title">Title</label>
+                            <label class="fbold" for="title">Title</label>
                             <input type="text" class="form-control" name="title">
                         </div>
                         <div class="col-lg-12">
-                            <label for="title_direction">Direction Title</label>
+                            <label class="fbold" for="title_direction">Direction Title</label>
                             <select type="text" class="form-control" name="title_direction">
                                 <option value="left" selected>Left</option>
                                 <option value="center">Center</option>
@@ -1064,13 +1073,13 @@ if ($stores->banners != null) {
                             </select>
                         </div>
                         <div class="col-lg-12">
-                            <label for="content">Content</label>
+                            <label class="fbold" for="content">Content</label>
                             <textarea type="text" class="form-control" id="contentDescription" name="content"></textarea>
                         </div>
                         <div class="col-lg-12">
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <label for="uploadBtn">Image Desc</label>
+                                    <label class="fbold" for="uploadBtn">Image Desc</label>
                                     <input type="file" id="uploadBtn" name="image_desc" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
                                     <a href="#" id="filetext" name="image_desc" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
                                 </div>
@@ -1080,28 +1089,28 @@ if ($stores->banners != null) {
                             </div>
                         </div>
                         <div class="col-lg-12">
-                            <label for="icon">Icon <a href="https://fontawesome.com/v4/icons" target="_blank" class="f12">Cek Icon</a></label>
+                            <label for="icon">Icon <a href="https://fontawesome.com/v4/icons" target="_blank" class="f12 fbold">Cek Icon</a></label>
                             <input type="text" class="form-control" name="icon">
                         </div>
                         <div class="col-lg-12">
-                            <label for="is_image">Tipe yang ingin ditampilkan</label>
+                            <label class="fbold" for="is_image">Tipe yang ingin ditampilkan</label>
                             <div class="d-flex flex-row gap-3">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="is_image" id="is_image" value="1">
-                                    <label class="form-check-label" for="is_image">Image</label>
+                                    <label class="form-check-label fbold" for="is_image">Image</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="is_image" id="is_icon" value="0">
-                                    <label class="form-check-label" for="is_icon">Icon</label>
+                                    <label class="form-check-label fbold" for="is_icon">Icon</label>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-12">
-                            <label for="index">Index</label>
+                            <label class="fbold" for="index">Index</label>
                             <input type="text" class="form-control" name="index">
                         </div>
                         <div class="col-lg-12">
-                            <label for="direction_image">Direction Image</label>
+                            <label class="fbold" for="direction_image">Direction Image</label>
                             <select type="text" class="form-control" name="direction_image">
                                 <option value="0">Right</option>
                                 <option value="1">Left</option>
@@ -1133,11 +1142,11 @@ if ($stores->banners != null) {
                     <div class="modal-body" style="max-height: 50vh; overflow-y:scroll;">
                         <div class="row d-flex flex-column gap-2">
                             <div class="col-lg-12">
-                                <label for="title">Title</label>
+                                <label class="fbold" for="title">Title</label>
                                 <input type="text" class="form-control" name="title" value="<?= $modalStore->title ?>">
                             </div>
                             <div class="col-lg-12">
-                                <label for="title_direction">Direction Title</label>
+                                <label class="fbold" for="title_direction">Direction Title</label>
                                 <select type="text" class="form-control" name="title_direction">
                                     <option value="left" <?= $modalStore->title_direction == 'left' ? 'selected' : '' ?>>Left</option>
                                     <option value="center" <?= $modalStore->title_direction == 'center' ? 'selected' : '' ?>>Center</option>
@@ -1145,13 +1154,13 @@ if ($stores->banners != null) {
                                 </select>
                             </div>
                             <div class="col-lg-12">
-                                <label for="content">Content</label>
+                                <label class="fbold" for="content">Content</label>
                                 <textarea type="text" class="form-control content-edit-description" data-id="<?= $modalStore->id ?>" id="contentEditDescription-<?= $modalStore->id ?>" name="content"><?= $modalStore->content ?></textarea>
                             </div>
                             <div class="col-lg-12">
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <label for="uploadBtn">Image Desc</label>
+                                        <label class="fbold" for="uploadBtn">Image Desc</label>
                                         <input type="file" id="uploadBtn" name="image_desc" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
                                         <a href="#" id="filetext" name="image_desc" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
                                     </div>
@@ -1162,28 +1171,28 @@ if ($stores->banners != null) {
                                 </div>
                             </div>
                             <div class="col-lg-12">
-                                <label for="icon">Icon <a href="https://fontawesome.com/v4/icons" target="_blank" class="f12">Cek Icon</a></label>
+                                <label class="fbold" for="icon">Icon <a href="https://fontawesome.com/v4/icons" target="_blank" class="f12">Cek Icon</a></label>
                                 <input type="text" class="form-control" name="icon" value="<?= $modalStore->icon ?>">
                             </div>
                             <div class="col-lg-12">
-                                <label for="is_image">Tipe yang ingin ditampilkan</label>
+                                <label class="fbold" for="is_image">Tipe yang ingin ditampilkan</label>
                                 <div class="d-flex flex-row gap-3">
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="is_image" id="is_image" value="1" <?= $modalStore->is_image == 1 ? 'checked' : '' ?>>
-                                        <label class="form-check-label" for="is_image">Image</label>
+                                        <label class="form-check-label fbold" for="is_image">Image</label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="is_image" id="is_icon" value="0" <?= $modalStore->is_image == 0 ? 'checked' : '' ?>>
-                                        <label class="form-check-label" for="is_icon">Icon</label>
+                                        <label class="form-check-label fbold" for="is_icon">Icon</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-12">
-                                <label for="index">Index</label>
+                                <label class="fbold" for="index">Index</label>
                                 <input type="text" class="form-control" name="index" value="<?= $modalStore->index ?>">
                             </div>
                             <div class="col-lg-12">
-                                <label for="direction_image">Direction Image</label>
+                                <label class="fbold" for="direction_image">Direction Image</label>
                                 <select type="text" class="form-control" name="direction_image">
                                     <option value="0" <?= $modalStore->direction_image == 0 ? 'selected' : '' ?>>Right</option>
                                     <option value="1" <?= $modalStore->direction_image == 1 ? 'selected' : '' ?>>Left</option>
@@ -1334,7 +1343,7 @@ if ($stores->banners != null) {
                     <div class="row d-flex flex-column gap-2">
                         <div class="col-lg-12">
                             <input type="text" name="idBanner" value="<?= isset($bannerUtama[0]) ? $bannerUtama[0]->id : '' ?>" hidden>
-                            <label for="link">Link</label>
+                            <label class="fbold" for="link">Link</label>
                             <select name="link" id="link" class="form-control">
                                 <option value="#">Tidak Ada</option>
                                 <?php foreach ($products as $product) : ?>
@@ -1349,7 +1358,7 @@ if ($stores->banners != null) {
                         <div class="col-lg-12">
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <label for="uploadBtn">Gambar</label>
+                                    <label class="fbold" for="uploadBtn">Gambar</label>
                                     <input type="file" id="uploadBtn" name="bannerUtama" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
                                     <a href="#" id="filetext" name="file" type="button" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
                                 </div>
@@ -1396,7 +1405,7 @@ if ($stores->banners != null) {
                     <div class="row d-flex flex-column gap-2">
                         <div class="col-lg-12">
                             <input type="text" name="idBanner" value="<?= isset($bannerUtamaMobile[0]) ? $bannerUtamaMobile[0]->id : '' ?>" hidden>
-                            <label for="link">Link</label>
+                            <label class="fbold" for="link">Link</label>
                             <select name="link" id="link" class="form-control">
                                 <option value="#">Tidak Ada</option>
                                 <?php foreach ($products as $product) : ?>
@@ -1411,7 +1420,7 @@ if ($stores->banners != null) {
                         <div class="col-lg-12">
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <label for="uploadBtn">Gambar</label>
+                                    <label class="fbold" for="uploadBtn">Gambar</label>
                                     <input type="file" id="uploadBtn" name="bannerUtama" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
                                     <a href="#" id="filetext" name="file" type="button" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
                                 </div>
@@ -1458,7 +1467,7 @@ if ($stores->banners != null) {
                     <div class="row d-flex flex-column gap-2">
                         <div class="col-lg-12">
                             <input type="text" name="idBanner" value="<?= isset($banner1[0]) ? $banner1[0]->id : '' ?>" hidden>
-                            <label for="link">Link</label>
+                            <label class="fbold" for="link">Link</label>
                             <select name="link" id="link" class="form-control">
                                 <option value="#">Tidak Ada</option>
                                 <?php foreach ($products as $product) : ?>
@@ -1473,7 +1482,7 @@ if ($stores->banners != null) {
                         <div class="col-lg-12">
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <label for="uploadBtn">Gambar</label>
+                                    <label class="fbold" for="uploadBtn">Gambar</label>
                                     <input type="file" id="uploadBtn" name="banner1" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
                                     <a href="#" id="filetext" name="file" type="button" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
                                 </div>
@@ -1523,7 +1532,7 @@ if ($stores->banners != null) {
                     <div class="row d-flex flex-column gap-2">
                         <div class="col-lg-12">
                             <input type="text" name="idBanner" value="<?= isset($banner1Mobile[0]) ? $banner1Mobile[0]->id : '' ?>" hidden>
-                            <label for="link">Link</label>
+                            <label class="fbold" for="link">Link</label>
                             <select name="link" id="link" class="form-control">
                                 <option value="#">Tidak Ada</option>
                                 <?php foreach ($products as $product) : ?>
@@ -1538,7 +1547,7 @@ if ($stores->banners != null) {
                         <div class="col-lg-12">
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <label for="uploadBtn">Gambar</label>
+                                    <label class="fbold" for="uploadBtn">Gambar</label>
                                     <input type="file" id="uploadBtn" name="banner1" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
                                     <a href="#" id="filetext" name="file" type="button" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
                                 </div>
@@ -1585,7 +1594,7 @@ if ($stores->banners != null) {
                     <div class="row d-flex flex-column gap-2">
                         <div class="col-lg-12">
                             <input type="text" name="idBanner" value="<?= isset($banner2[0]) ? $banner2[0]->id : '' ?>" hidden>
-                            <label for="link">Link</label>
+                            <label class="fbold" for="link">Link</label>
                             <select name="link" id="link" class="form-control">
                                 <option value="#">Tidak Ada</option>
                                 <?php foreach ($products as $product) : ?>
@@ -1600,7 +1609,7 @@ if ($stores->banners != null) {
                         <div class="col-lg-12">
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <label for="uploadBtn">Gambar</label>
+                                    <label class="fbold" for="uploadBtn">Gambar</label>
                                     <input type="file" id="uploadBtn" name="banner2" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
                                     <a href="#" id="filetext" name="file" type="button" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
                                 </div>
@@ -1650,7 +1659,7 @@ if ($stores->banners != null) {
                     <div class="row d-flex flex-column gap-2">
                         <div class="col-lg-12">
                             <input type="text" name="idBanner" value="<?= isset($banner2Mobile[0]) ? $banner2Mobile[0]->id : '' ?>" hidden>
-                            <label for="link">Link</label>
+                            <label class="fbold" for="link">Link</label>
                             <select name="link" id="link" class="form-control">
                                 <option value="#">Tidak Ada</option>
                                 <?php foreach ($products as $product) : ?>
@@ -1665,7 +1674,7 @@ if ($stores->banners != null) {
                         <div class="col-lg-12">
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <label for="uploadBtn">Gambar</label>
+                                    <label class="fbold" for="uploadBtn">Gambar</label>
                                     <input type="file" id="uploadBtn" name="banner2" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
                                     <a href="#" id="filetext" name="file" type="button" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
                                 </div>
