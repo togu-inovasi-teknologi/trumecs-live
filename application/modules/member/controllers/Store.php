@@ -319,12 +319,17 @@ class Store extends MX_Controller
         $data["member"] = $this->session_member();
         $store = $this->store_model->checkstore($data['member'][0]['id']);
         $where = array('id' => $store[0]['id']);
+        $direction_card = $this->input->post('direction_card');
 
         $dataTemplate = array(
             'template' => $this->input->post('template'),
             'template_produk' => $this->input->post('template_produk'),
         );
+        $dataWarna = array(
+            'direction_card' => $direction_card,
+        );
         $this->store_model->update($where, $dataTemplate);
+        $this->store_style->update($where['id'], $dataWarna);
         $this->session->set_flashdata('message-success', 'Perubahan template berhasil di update');
         redirect(base_url() . 'member/store/store');
         exit();
@@ -342,8 +347,6 @@ class Store extends MX_Controller
         $colorTextNameProduct = $this->input->post('colorTextNameProduct');
         $colorCardDescription = $this->input->post('colorCardDescription');
         $colorButton = $this->input->post('colorButton');
-        $directionCard = $this->input->post('directionCard');
-        $directionTextTitleDescription = $this->input->post('directionTextTitleDescription');
         $colorCardTitle = $this->input->post('colorCardTitle');
         $colorCardContent = $this->input->post('colorCardContent');
         $colorCardProduct = $this->input->post('colorCardProduct');
@@ -364,8 +367,6 @@ class Store extends MX_Controller
             'color_card_title' => $colorCardTitle,
             'color_card_content' => $colorCardContent,
             'color_button' => $colorButton,
-            'direction_card' => $directionCard,
-            'direction_text_title_description' => $directionTextTitleDescription,
             'color_card_product' => $colorCardProduct,
             'color_text_card_product' => $colorTextCardProduct,
         );

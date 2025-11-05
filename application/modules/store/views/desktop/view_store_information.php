@@ -95,7 +95,7 @@ $this->load->helper('text');
                                                 <p class="f72"><i class="fa fa-<?= $description->icon ?>"></i></p>
                                             <?php } ?>
                                             <div id="text-description" class="d-flex flex-column gap-2">
-                                                <p class="f20 fbold text-<?= $style[0]->direction_text_title_description ?>" style="color:<?= $style[0]->color_card_title == null ? '#fa8420' : $style[0]->color_card_title ?>"><?= $description->title ?></p>
+                                                <p class="f20 fbold text-<?= $description->title_direction ?>" style="color:<?= $style[0]->color_card_title == null ? '#fa8420' : $style[0]->color_card_title ?>"><?= $description->title ?></p>
                                                 <p style="color: <?= $style[0]->color_card_content == null ? '#fff' : $style[0]->color_card_content ?> !important ;"><?= $description->content ?></p>
                                             </div>
                                         </div>

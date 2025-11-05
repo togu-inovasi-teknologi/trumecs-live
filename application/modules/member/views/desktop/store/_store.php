@@ -185,7 +185,8 @@ if ($stores->banners != null) {
                                                             <p class="text-dark f18">Template</p>
                                                             <a data-target="#edit-template-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Template</a>
                                                         </div>
-                                                        <p class="text-dark"><?php echo $key["template"]; ?></p>
+                                                        <div class="text-left">Template <?php echo $key["template"]; ?></div>
+                                                        <img src="<?= base_url() ?>public/template/template-layout-member/template-<?php echo $key["template"]; ?>.png" class="img-fluid rounded" style="max-height: max-content;border:1px solid black;">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -323,25 +324,6 @@ if ($stores->banners != null) {
                                     <div class="row d-flex flex-column gap-3 p-b-0">
                                         <div class="col-lg-12">
                                             <h4 class="fbold">Mobile</h4>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="d-flex flex-column gap-1">
-                                                        <div class="d-flex-sb align-items-center">
-                                                            <p class="text-dark f18">Template</p>
-                                                            <a data-target="#edit-template-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Template</a>
-                                                        </div>
-                                                        <p class="text-dark"><?php echo $key["template"]; ?></p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="d-flex-sb align-items-center">
-                                                        <p class="text-dark f18">Ganti Warna Text & Background</p>
-                                                        <a data-target="#edit-warna-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Warna</a>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="row">
@@ -714,11 +696,11 @@ if ($stores->banners != null) {
                         <div class="col-lg-12">
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <label class="fbold" for="title_cover">Title</label>
+                                    <label class="fbold f18" for="title_cover">Title</label>
                                     <input type="text" name="title_cover" class="form-control" placeholder="Title" value="<?= $stores->title_cover; ?>" required>
                                 </div>
                                 <div class="col-lg-4">
-                                    <label class="fbold" for="colorTitleCover">Warna Text Title Cover</label>
+                                    <label class="fbold f18" for="colorTitleCover">Warna Text Title Cover</label>
                                     <div class="d-flex gap-1 align-items-center">
                                         <input type="color" name="colorTitleCover" id="colorTitleCover" value="<?= $stores->color_title_cover ?>">
                                         <input disabled type="text" class="form-control" id="afterColorTitleCover" value="<?= $stores->color_title_cover ?>">
@@ -729,11 +711,11 @@ if ($stores->banners != null) {
                         <div class="col-lg-12">
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <label class="fbold" for="title_content">Content</label>
+                                    <label class="fbold f18" for="title_content">Content</label>
                                     <input type="text" name="title_content" class="form-control" placeholder="Content" value="<?= $stores->title_content; ?>" required>
                                 </div>
                                 <div class="col-lg-4">
-                                    <label class="fbold" for="colorContentCover">Warna Content Cover</label>
+                                    <label class="fbold f18" for="colorContentCover">Warna Content Cover</label>
                                     <div class="d-flex gap-1 align-items-center">
                                         <input type="color" name="colorContentCover" id="colorContentCover" value="<?= $stores->color_title_content ?>">
                                         <input disabled type="text" class="form-control" id="afterColorContentCover" value="<?= $stores->color_title_content ?>">
@@ -741,20 +723,19 @@ if ($stores->banners != null) {
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-lg-12">
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <label class="fbold" for="uploadBtn">Image</label>
+                                    <label class="fbold f18" for="uploadBtn">Image</label>
                                     <input type="file" id="uploadBtn" name="titleImage" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
                                     <a href="#" id="filetext" name="titleImage" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
                                 </div>
                                 <div class="col-lg-4">
-                                    <p>Gambar Saat Ini</p>
+                                    <p class="fbold">Gambar Saat Ini</p>
                                     <img src="<?= base_url() ?>public/image/store/coverimage/<?= $stores->title_image ?>" style="max-height: 100px;">
                                 </div>
                                 <div class="col-lg-4">
-                                    <p>Preview Gambar</p>
+                                    <p class="fbold">Preview Gambar</p>
                                     <img src="" id="blah" class="img-fluid" style="max-height: 100px;">
                                 </div>
                             </div>
@@ -762,45 +743,63 @@ if ($stores->banners != null) {
                         <div class="col-lg-12">
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <label class="fbold" for="uploadBtnMobile">Image Mobile</label>
+                                    <label class="fbold f18" for="uploadBtnMobile">Image Mobile</label>
                                     <input type="file" id="uploadBtnMobile" name="titleImageMobile" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
                                     <a href="#" id="filetext" name="titleImageMobile" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
                                 </div>
                                 <div class="col-lg-4">
-                                    <p>Gambar Saat Ini</p>
+                                    <p class="fbold">Gambar Saat Ini</p>
                                     <img src="<?= base_url() ?>public/image/store/coverimage/mobile/<?= $stores->title_image_mobile ?>" style="max-height: 100px;">
                                 </div>
                                 <div class="col-lg-4">
-                                    <p>Preview Gambar</p>
+                                    <p class="fbold">Preview Gambar</p>
                                     <img src="" id="blahMobile" class="img-fluid" style="max-height: 100px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 d-flex flex-column gap-1">
+                            <label for="direction_title_image" class="fbold f18">Template Card Deskripsi</label>
+                            <div class="d-flex">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="direction_title_image" id="direction_title_image1" value="0" <?= $stores->direction_title_image == 0 ? 'checked' : '' ?>>
+                                    <label class="form-check-label" for="direction_title_image1">
+                                        <div class="text-left">Template Image Cover Right</div>
+                                        <img src="<?= base_url() ?>public/template/template-layout-member/direction_title_image_right.png" class="img-fluid rounded" style="max-height: 220px;border:1px solid black;">
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="direction_title_image" id="direction_title_image2" value="1" <?= $stores->direction_title_image == 1 ? 'checked' : '' ?>>
+                                    <label class="form-check-label" for="direction_title_image2">
+                                        <div class="text-left">Template Image Cover Left</div>
+                                        <img src="<?= base_url() ?>public/template/template-layout-member/direction_title_image_left.png" class="img-fluid rounded" style="max-height: 220px;border:1px solid black;">
+                                    </label>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <label class="fbold" for="col_left">Col Left</label>
+                                <div class="col-lg-12">
+                                    <h5 class="fbold">Atur Lebar Kolom</h4>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label class="fbold" for="col_left">Lebar Kolom Kiri</label>
                                     <select name="col_left" id="col_left" class="form-control">
-
                                     </select>
                                     <input type="hidden" name="value_col_left" id="value_col_left" class="value_col_left" value="<?= $stores->col_left == 0 ? 6 : $stores->col_left ?>">
                                 </div>
-                                <div class="col-lg-6">
-                                    <label class="fbold" for="col_right">Col Right</label>
+                                <div class="col-lg-4">
+                                    <label class="fbold" for="col_right">Lebar Kolom Kanan</label>
                                     <select name="col_right" id="col_right" class="form-control">
-
                                     </select>
                                     <input type="hidden" name="value_col_right" id="value_col_right" class="value_col_right" value="<?= $stores->col_right == 0 ? 6 : $stores->col_right ?>">
                                 </div>
+                                <div class="col-lg-4">
+                                    <label class="fbold" for="col_right">Contoh</label>
+                                    <img src="<?= base_url() ?>public/template/template-layout-member/column_cover.png" class="img-fluid rounded" style="max-height: 250px;border:1px solid black;">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <label class="fbold" for="direction_title_image">Direction Image</label>
-                            <select name="direction_title_image" id="direction_title_image" class="form-control">
-                                <option value="0" <?= $stores->direction_title_image == 0 ? 'selected' : '' ?>>Right</option>
-                                <option value="1" <?= $stores->direction_title_image == 1 ? 'selected' : '' ?>>Left</option>
-                            </select>
-                        </div>
+                        </div>.
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -830,16 +829,16 @@ if ($stores->banners != null) {
                                 <div class="col-lg d-flex gap-3 align-items-start">
                                     <div class="form-check form-check-inline m-r-1">
                                         <input class="form-check-input" type="radio" name="template" id="template1" value="1" <?= $value['template'] == 1 ? 'checked' : '' ?>>
-                                        <label class="form-check-label fbold" for="template1">
+                                        <label class="form-check-label" for="template1">
                                             <div class="text-left">Template 1</div>
-                                            <img src="<?= base_url() ?>public/template/template-1.png" class="img-fluid rounded" style="max-height: 250px;border:1px solid black;">
+                                            <img src="<?= base_url() ?>public/template/template-layout-member/template-1.png" class="img-fluid rounded" style="max-height: 250px;border:1px solid black;">
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline m-r-1">
                                         <input class="form-check-input" type="radio" name="template" id="template2" value="2" <?= $value['template'] == 2 ? 'checked' : '' ?>>
-                                        <label class="form-check-label fbold" for="template2">
+                                        <label class="form-check-label" for="template2">
                                             <div class="text-left">Template 2</div>
-                                            <img src="<?= base_url() ?>public/template/template-2.png" class="img-fluid rounded" style="max-height: 250px;border:1px solid black;">
+                                            <img src="<?= base_url() ?>public/template/template-layout-member/template-2.png" class="img-fluid rounded" style="max-height: 250px;border:1px solid black;">
                                         </label>
                                     </div>
                                 </div>
@@ -848,17 +847,38 @@ if ($stores->banners != null) {
                                 <label for="template_produk" class="fbold f18">Template Produk</label>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="template_produk" id="template_produk1" value="1" <?= $value['template_produk'] == 1 ? 'checked' : '' ?>>
-                                    <label class="form-check-label fbold" for="template_produk1">
+                                    <label class="form-check-label" for="template_produk1">
                                         <div class="text-left">Template Table Produk</div>
-                                        <img src="<?= base_url() ?>public/template/table-product.png" class="img-fluid rounded" style="max-height: 220px;border:1px solid black;">
+                                        <img src="<?= base_url() ?>public/template/template-layout-member/table-product.png" class="img-fluid rounded" style="max-height: 220px;border:1px solid black;">
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="template_produk" id="template_produk2" value="2" <?= $value['template_produk'] == 2 ? 'checked' : '' ?>>
-                                    <label class="form-check-label fbold" for="template_produk2">
+                                    <label class="form-check-label" for="template_produk2">
                                         <div class="text-left">Template Card Produk</div>
-                                        <img src="<?= base_url() ?>public/template/card-product.png" class="img-fluid rounded" style="max-height: 220px;border:1px solid black;">
+                                        <img src="<?= base_url() ?>public/template/template-layout-member/card-product.png" class="img-fluid rounded" style="max-height: 220px;border:1px solid black;">
                                     </label>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                        <?php foreach ($stores->styles as $style) : ?>
+                            <div class="col-lg d-flex flex-column gap-1">
+                                <label for="direction_card" class="fbold f18">Template Card Deskripsi</label>
+                                <div class="d-flex">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="direction_card" id="direction_card1" value="1" <?= $style->direction_card == 1 ? 'checked' : '' ?>>
+                                        <label class="form-check-label" for="direction_card1">
+                                            <div class="text-left">Template Row</div>
+                                            <img src="<?= base_url() ?>public/template/template-layout-member/direction_card_row.png" class="img-fluid rounded" style="max-height: 220px;border:1px solid black;">
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="direction_card" id="direction_card2" value="2" <?= $style->direction_card == 2 ? 'checked' : '' ?>>
+                                        <label class="form-check-label" for="direction_card2">
+                                            <div class="text-left">Template Column</div>
+                                            <img src="<?= base_url() ?>public/template/template-layout-member/direction_card_column.png" class="img-fluid rounded" style="max-height: 220px;border:1px solid black;">
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -1012,30 +1032,6 @@ if ($stores->banners != null) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg">
-                                <div class="row">
-                                    <div class="col-lg-6 d-flex flex-column">
-                                        <label class="fbold" for="directionCard">Direction Card</label>
-                                        <div class="d-flex gap-1 align-items-center">
-                                            <select name="directionCard" id="directionCard" class="form-control">
-                                                <option value="1" <?= $style->direction_card == 1 ? 'selected' : '' ?>>Row</option>
-                                                <option value="2" <?= $style->direction_card == 2 ? 'selected' : '' ?>>Column</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 d-flex flex-column">
-                                        <label class="fbold" for="directionTextTitleDescription">Direction Text Title Description</label>
-                                        <div class="d-flex gap-1 align-items-center">
-                                            <select name="directionTextTitleDescription" id="directionTextTitleDescription" class="form-control">
-                                                <option value="left" <?= $style->direction_text_title_description == 'left' ? 'selected' : '' ?>>left</option>
-                                                <option value="center" <?= $style->direction_text_title_description == 'center' ? 'selected' : '' ?>>center</option>
-                                                <option value="right" <?= $style->direction_text_title_description == 'right' ? 'selected' : '' ?>>right</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -1061,11 +1057,11 @@ if ($stores->banners != null) {
                 <div class="modal-body" style="max-height: 50vh; overflow-y:scroll;">
                     <div class="row d-flex flex-column gap-3">
                         <div class="col-lg-12">
-                            <label class="fbold" for="title">Title</label>
+                            <label class="fbold f18" for="title">Title</label>
                             <input type="text" class="form-control" name="title">
                         </div>
                         <div class="col-lg-12">
-                            <label class="fbold" for="title_direction">Direction Title</label>
+                            <label class="fbold f18" for="title_direction">Direction Title</label>
                             <select type="text" class="form-control" name="title_direction">
                                 <option value="left" selected>Left</option>
                                 <option value="center">Center</option>
@@ -1073,13 +1069,13 @@ if ($stores->banners != null) {
                             </select>
                         </div>
                         <div class="col-lg-12">
-                            <label class="fbold" for="content">Content</label>
+                            <label class="fbold f18" for="content">Content</label>
                             <textarea type="text" class="form-control" id="contentDescription" name="content"></textarea>
                         </div>
                         <div class="col-lg-12">
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <label class="fbold" for="uploadBtn">Image Desc</label>
+                                    <label class="fbold f18" for="uploadBtn">Image Desc</label>
                                     <input type="file" id="uploadBtn" name="image_desc" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
                                     <a href="#" id="filetext" name="image_desc" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
                                 </div>
@@ -1089,33 +1085,44 @@ if ($stores->banners != null) {
                             </div>
                         </div>
                         <div class="col-lg-12">
-                            <label for="icon">Icon <a href="https://fontawesome.com/v4/icons" target="_blank" class="f12 fbold">Cek Icon</a></label>
+                            <label for="icon">Icon <a href="https://fontawesome.com/v4/icons" target="_blank" class="f18 fbold">Cek Icon</a></label>
                             <input type="text" class="form-control" name="icon">
                         </div>
                         <div class="col-lg-12">
-                            <label class="fbold" for="is_image">Tipe yang ingin ditampilkan</label>
+                            <label class="fbold f18" for="is_image">Tipe yang ingin ditampilkan</label>
                             <div class="d-flex flex-row gap-3">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="is_image" id="is_image" value="1">
-                                    <label class="form-check-label fbold" for="is_image">Image</label>
+                                    <label class="form-check-label" for="is_image">Image</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="is_image" id="is_icon" value="0">
-                                    <label class="form-check-label fbold" for="is_icon">Icon</label>
+                                    <label class="form-check-label" for="is_icon">Icon</label>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-12">
-                            <label class="fbold" for="index">Index</label>
+                            <label class="fbold f18" for="index">Index</label>
                             <input type="text" class="form-control" name="index">
                         </div>
-                        <div class="col-lg-12">
-                            <label class="fbold" for="direction_image">Direction Image</label>
-                            <select type="text" class="form-control" name="direction_image">
-                                <option value="0">Right</option>
-                                <option value="1">Left</option>
-                            </select>
-                            <small class="text-gray">NB : saat memilih column untuk direction card</small>
+                        <div class="col-lg-12 d-flex flex-column gap-1 align-items-start">
+                            <label class="d-block d-flex flex-column fbold f18">Direction Image <small class="fred">NB : Jika ingin mengubah ini Harus memilih template card column pada template desktop</small></label>
+                            <div class="col-lg d-flex gap-3 align-items-start">
+                                <div class="form-check form-check-inline m-r-1">
+                                    <input class="form-check-input" type="radio" name="direction_image" id="direction_image1" value="0" checked>
+                                    <label class="form-check-label" for="direction_image1">
+                                        <div class="text-left">Template Image Right</div>
+                                        <img src="<?= base_url() ?>public/template/template-layout-member/direction_image_right.png" class="img-fluid rounded" style="max-height: 250px;border:1px solid black;">
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline m-r-1">
+                                    <input class="form-check-input" type="radio" name="direction_image" id="direction_image2" value="1">
+                                    <label class=" form-check-label" for="direction_image2">
+                                        <div class="text-left">Template Image Left</div>
+                                        <img src="<?= base_url() ?>public/template/template-layout-member/direction_image_left.png" class="img-fluid rounded" style="max-height: 250px;border:1px solid black;">
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1142,11 +1149,11 @@ if ($stores->banners != null) {
                     <div class="modal-body" style="max-height: 50vh; overflow-y:scroll;">
                         <div class="row d-flex flex-column gap-2">
                             <div class="col-lg-12">
-                                <label class="fbold" for="title">Title</label>
+                                <label class="fbold f18" for="title">Title</label>
                                 <input type="text" class="form-control" name="title" value="<?= $modalStore->title ?>">
                             </div>
                             <div class="col-lg-12">
-                                <label class="fbold" for="title_direction">Direction Title</label>
+                                <label class="fbold f18" for="title_direction">Direction Title</label>
                                 <select type="text" class="form-control" name="title_direction">
                                     <option value="left" <?= $modalStore->title_direction == 'left' ? 'selected' : '' ?>>Left</option>
                                     <option value="center" <?= $modalStore->title_direction == 'center' ? 'selected' : '' ?>>Center</option>
@@ -1154,13 +1161,13 @@ if ($stores->banners != null) {
                                 </select>
                             </div>
                             <div class="col-lg-12">
-                                <label class="fbold" for="content">Content</label>
+                                <label class="fbold f18" for="content">Content</label>
                                 <textarea type="text" class="form-control content-edit-description" data-id="<?= $modalStore->id ?>" id="contentEditDescription-<?= $modalStore->id ?>" name="content"><?= $modalStore->content ?></textarea>
                             </div>
                             <div class="col-lg-12">
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <label class="fbold" for="uploadBtn">Image Desc</label>
+                                        <label class="fbold f18" for="uploadBtn">Image Desc</label>
                                         <input type="file" id="uploadBtn" name="image_desc" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
                                         <a href="#" id="filetext" name="image_desc" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
                                     </div>
@@ -1171,34 +1178,44 @@ if ($stores->banners != null) {
                                 </div>
                             </div>
                             <div class="col-lg-12">
-                                <label class="fbold" for="icon">Icon <a href="https://fontawesome.com/v4/icons" target="_blank" class="f12">Cek Icon</a></label>
+                                <label class="fbold f18" for="icon">Icon <a href="https://fontawesome.com/v4/icons" target="_blank" class="f12">Cek Icon</a></label>
                                 <input type="text" class="form-control" name="icon" value="<?= $modalStore->icon ?>">
                             </div>
                             <div class="col-lg-12">
-                                <label class="fbold" for="is_image">Tipe yang ingin ditampilkan</label>
+                                <label class="fbold f18" for="is_image">Tipe yang ingin ditampilkan</label>
                                 <div class="d-flex flex-row gap-3">
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="is_image" id="is_image" value="1" <?= $modalStore->is_image == 1 ? 'checked' : '' ?>>
-                                        <label class="form-check-label fbold" for="is_image">Image</label>
+                                        <label class="form-check-label" for="is_image">Image</label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="is_image" id="is_icon" value="0" <?= $modalStore->is_image == 0 ? 'checked' : '' ?>>
-                                        <label class="form-check-label fbold" for="is_icon">Icon</label>
+                                        <label class="form-check-label" for="is_icon">Icon</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-12">
-                                <label class="fbold" for="index">Index</label>
+                                <label class="fbold f18" for="index">Index</label>
                                 <input type="text" class="form-control" name="index" value="<?= $modalStore->index ?>">
                             </div>
-                            <div class="col-lg-12">
-                                <label class="fbold" for="direction_image">Direction Image</label>
-                                <select type="text" class="form-control" name="direction_image">
-                                    <option value="0" <?= $modalStore->direction_image == 0 ? 'selected' : '' ?>>Right</option>
-                                    <option value="1" <?= $modalStore->direction_image == 1 ? 'selected' : '' ?>>Left</option>
-                                </select>
-                                </select>
-                                <small class="text-gray">NB : saat memilih column untuk direction card</small>
+                            <div class="col-lg-12 d-flex flex-column gap-1 align-items-start">
+                                <label class="d-block d-flex flex-column fbold f18">Direction Image <small class="fred">NB : Jika ingin mengubah ini Harus memilih template card column pada template desktop</small></label>
+                                <div class="col-lg d-flex gap-3 align-items-start">
+                                    <div class="form-check form-check-inline m-r-1">
+                                        <input class="form-check-input" type="radio" name="direction_image" id="direction_image1" value="0" <?= $modalStore->direction_image == 0  ? 'checked' : '' ?>>
+                                        <label class="form-check-label" for="direction_image1">
+                                            <div class="text-left">Template Image Right</div>
+                                            <img src="<?= base_url() ?>public/template/template-layout-member/direction_image_right.png" class="img-fluid rounded" style="max-height: 250px;border:1px solid black;">
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline m-r-1">
+                                        <input class="form-check-input" type="radio" name="direction_image" id="direction_image2" value="1" <?= $modalStore->direction_image == 1 ? 'checked' : '' ?>>
+                                        <label class=" form-check-label" for="direction_image2">
+                                            <div class="text-left">Template Image Left</div>
+                                            <img src="<?= base_url() ?>public/template/template-layout-member/direction_image_left.png" class="img-fluid rounded" style="max-height: 250px;border:1px solid black;">
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
