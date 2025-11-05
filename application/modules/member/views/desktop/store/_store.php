@@ -218,6 +218,45 @@ if ($stores->banners != null) {
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
+                                            <h4 class="fbold">Deskripsi</h4>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="d-flex-sb align-items-center p-b-1">
+                                                        <p class="f16">Deskripsi Cover Desktop</p>
+                                                        <a data-target="#edit-cover-content-desktop-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ubah Deskripsi</a>
+                                                    </div>
+                                                    <table class="table table-striped f14">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Title</th>
+                                                                <th>Content</th>
+                                                                <th>Image</th>
+                                                                <th>Col Left</th>
+                                                                <th>Col Right</th>
+                                                                <th>Direction Image</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="text-center va-middle"><?= $stores->title_cover ?></td>
+                                                                <td class="text-center va-middle"><?= $stores->title_content ?></td>
+                                                                <td class="text-center va-middle"><img src="<?= base_url() ?>public/image/store/coverimage/<?= $stores->title_image ?>" alt="image_cover" style="width:50px;"></td>
+                                                                <td class="text-center va-middle"><?= $stores->col_left ?></td>
+                                                                <td class="text-center va-middle"><?= $stores->col_right ?></td>
+                                                                <form id="formToggleDirection">
+                                                                    <td class="text-center va-middle">
+                                                                        <input data-name="direction_image_cover_toggle" type="checkbox" name="direction_image[]" value="<?= $stores->id ?>" <?= $stores->direction_title_image == 1 ? 'checked' : '' ?> data-toggle="toggle" data-size="xs" data-on="Left" data-off="Right" data-onstyle="primary" data-offstyle="success" data-width="100">
+                                                                    </td>
+                                                                </form>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
                                             <div class="row">
                                                 <div class="col-lg-4">
                                                     <div class="row">
@@ -346,6 +385,35 @@ if ($stores->banners != null) {
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
+                                            <h4 class="fbold">Deskripsi</h4>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="d-flex-sb align-items-center p-b-1">
+                                                        <p class="f18 fbold">Deskripsi Cover Mobile</p>
+                                                        <a data-target="#edit-cover-content-mobile-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ubah Deskripsi</a>
+                                                    </div>
+                                                    <table class="table table-striped f14">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Title</th>
+                                                                <th>Content</th>
+                                                                <th>Image</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="text-center va-middle"><?= $stores->title_cover ?></td>
+                                                                <td class="text-center va-middle"><?= $stores->title_content ?></td>
+                                                                <td class="text-center va-middle"><img src="<?= base_url() ?>public/image/store/coverimage/mobile/<?= $stores->title_image_mobile ?>" alt="image_cover" style="width:50px;"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
                                             <div class="row">
                                                 <div class="col-lg-4">
                                                     <div class="row">
@@ -436,51 +504,10 @@ if ($stores->banners != null) {
                                 <?php foreach ($store as $key) : ?>
                                     <div class="row d-flex flex-column gap-3 p-b-0">
                                         <div class="col-lg-12">
-                                            <h4 class="fbold">Deskripsi</h4>
-                                        </div>
-                                        <div class="col-lg-12">
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <div class="d-flex-sb align-items-center p-b-1">
-                                                        <p class="f16">Deskripsi Cover</p>
-                                                        <a data-target="#edit-cover-content-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ubah Deskripsi</a>
-                                                    </div>
-                                                    <table class="table table-striped f14">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Title</th>
-                                                                <th>Content</th>
-                                                                <th>Image</th>
-                                                                <th>Image Mobile</th>
-                                                                <th>Col Left</th>
-                                                                <th>Col Right</th>
-                                                                <th>Direction Image</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td class="text-center va-middle"><?= $stores->title_cover ?></td>
-                                                                <td class="text-center va-middle"><?= $stores->title_content ?></td>
-                                                                <td class="text-center va-middle"><img src="<?= base_url() ?>public/image/store/coverimage/<?= $stores->title_image ?>" alt="image_cover" style="width:50px;"></td>
-                                                                <td class="text-center va-middle"><img src="<?= base_url() ?>public/image/store/coverimage/mobile/<?= $stores->title_image_mobile ?>" alt="image_cover" style="width:50px;"></td>
-                                                                <td class="text-center va-middle"><?= $stores->col_left ?></td>
-                                                                <td class="text-center va-middle"><?= $stores->col_right ?></td>
-                                                                <form id="formToggleDirection">
-                                                                    <td class="text-center va-middle">
-                                                                        <input data-name="direction_image_cover_toggle" type="checkbox" name="direction_image[]" value="<?= $stores->id ?>" <?= $stores->direction_title_image == 1 ? 'checked' : '' ?> data-toggle="toggle" data-size="xs" data-on="Left" data-off="Right" data-onstyle="primary" data-offstyle="success" data-width="100">
-                                                                    </td>
-                                                                </form>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="d-flex-sb align-items-center p-b-1">
-                                                        <p class="text-dark f18">Deskripsi tambahan</p>
+                                                        <p class="text-dark f18 fbold">Deskripsi tambahan</p>
                                                         <a data-target="#tambah-desc-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Tambah Deskripsi</a>
                                                     </div>
                                                 </div>
@@ -680,7 +707,7 @@ if ($stores->banners != null) {
         </div>
     </div>
 </div>
-<div class="modal fade" id="edit-cover-content-<?php echo $sessionmember["id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit-cover-content-desktop-<?php echo $sessionmember["id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document" style="width: 50%;">
         <div class="modal-content">
             <div class="modal-header">
@@ -800,6 +827,76 @@ if ($stores->banners != null) {
                             </div>
                         </div>.
 
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btnnew">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="edit-cover-content-mobile-<?php echo $sessionmember["id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width: 50%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title fbold" id="exampleModalLabel">Edit Deskripsi Cover Mobile
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </h4>
+            </div>
+            <form action="<?php echo base_url() ?>member/store/update_title_cover_mobile" method="POST" class="settingstore" enctype="multipart/form-data">
+                <div class="modal-body" style="max-height: 50vh; overflow-y:scroll;">
+                    <div class="row d-flex flex-column gap-2">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <label class="fbold f18" for="title_cover_mobile">Title</label>
+                                    <input type="text" name="title_cover_mobile" class="form-control" placeholder="Title" value="<?= $stores->title_cover_mobile; ?>" required>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label class="fbold f18" for="colorTitleCoverMobile">Warna Text Title Cover</label>
+                                    <div class="d-flex gap-1 align-items-center">
+                                        <input type="color" name="colorTitleCoverMobile" id="colorTitleCoverMobile" value="<?= $stores->color_title_cover_mobile ?>">
+                                        <input disabled type="text" class="form-control" id="afterColorTitleCoverMobile" value="<?= $stores->color_title_cover_mobile ?>">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <label class="fbold f18" for="title_content_mobile">Content</label>
+                                    <input type="text" name="title_content_mobile" class="form-control" placeholder="Content" value="<?= $stores->title_content_mobile; ?>" required>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label class="fbold f18" for="colorContentCoverMobile">Warna Content Cover</label>
+                                    <div class="d-flex gap-1 align-items-center">
+                                        <input type="color" name="colorContentCoverMobile" id="colorContentCoverMobile" value="<?= $stores->color_title_content_mobile ?>">
+                                        <input disabled type="text" class="form-control" id="afterColorContentCoverMobile" value="<?= $stores->color_title_content_mobile ?>">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label class="fbold f18" for="uploadBtn">Image</label>
+                                    <input type="file" id="uploadBtn" name="titleImageMobile" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
+                                    <a href="#" id="filetext" name="titleImageMobile" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
+                                </div>
+                                <div class="col-lg-4">
+                                    <p class="fbold">Gambar Saat Ini</p>
+                                    <img src="<?= base_url() ?>public/image/store/coverimage/<?= $stores->title_image ?>" style="max-height: 100px;">
+                                </div>
+                                <div class="col-lg-4">
+                                    <p class="fbold">Preview Gambar</p>
+                                    <img src="" id="blah" class="img-fluid" style="max-height: 100px;">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -1073,6 +1170,21 @@ if ($stores->banners != null) {
                             <textarea type="text" class="form-control" id="contentDescription" name="content"></textarea>
                         </div>
                         <div class="col-lg-12">
+                            <label class="fbold f18" for="is_image">Tipe yang ingin ditampilkan</label>
+                            <div class="d-flex flex-row gap-3">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="is_image" id="is_image" value="1" checked>
+                                    <label class="form-check-label" for="is_image">Image</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="is_image" id="is_icon" value="0">
+                                    <label class="form-check-label" for="is_icon">Icon</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Div untuk Image -->
+                        <div class="col-lg-12 image-section">
                             <div class="row">
                                 <div class="col-lg-4">
                                     <label class="fbold f18" for="uploadBtn">Image Desc</label>
@@ -1084,23 +1196,13 @@ if ($stores->banners != null) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-12">
+
+                        <!-- Div untuk Icon -->
+                        <div class="col-lg-12 icon-section">
                             <label for="icon">Icon <a href="https://fontawesome.com/v4/icons" target="_blank" class="f18 fbold">Cek Icon</a></label>
-                            <input type="text" class="form-control" name="icon">
+                            <input type="text" class="form-control" name="icon" placeholder="Contoh: star, user, heart">
                         </div>
-                        <div class="col-lg-12">
-                            <label class="fbold f18" for="is_image">Tipe yang ingin ditampilkan</label>
-                            <div class="d-flex flex-row gap-3">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="is_image" id="is_image" value="1">
-                                    <label class="form-check-label" for="is_image">Image</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="is_image" id="is_icon" value="0">
-                                    <label class="form-check-label" for="is_icon">Icon</label>
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="col-lg-12">
                             <label class="fbold f18" for="index">Index</label>
                             <input type="text" class="form-control" name="index">
@@ -1165,6 +1267,19 @@ if ($stores->banners != null) {
                                 <textarea type="text" class="form-control content-edit-description" data-id="<?= $modalStore->id ?>" id="contentEditDescription-<?= $modalStore->id ?>" name="content"><?= $modalStore->content ?></textarea>
                             </div>
                             <div class="col-lg-12">
+                                <label class="fbold f18" for="is_image">Tipe yang ingin ditampilkan</label>
+                                <div class="d-flex flex-row gap-3">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="is_image" id="is_image" value="1" <?= $modalStore->is_image == 1 ? 'checked' : '' ?>>
+                                        <label class="form-check-label" for="is_image">Image</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="is_image" id="is_icon" value="0" <?= $modalStore->is_image == 0 ? 'checked' : '' ?>>
+                                        <label class="form-check-label" for="is_icon">Icon</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 image-section">
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <label class="fbold f18" for="uploadBtn">Image Desc</label>
@@ -1177,22 +1292,9 @@ if ($stores->banners != null) {
                                     <input type="hidden" name="nameImage" value="<?= $modalStore->image ?>">
                                 </div>
                             </div>
-                            <div class="col-lg-12">
+                            <div class="col-lg-12 icon-section">
                                 <label class="fbold f18" for="icon">Icon <a href="https://fontawesome.com/v4/icons" target="_blank" class="f12">Cek Icon</a></label>
                                 <input type="text" class="form-control" name="icon" value="<?= $modalStore->icon ?>">
-                            </div>
-                            <div class="col-lg-12">
-                                <label class="fbold f18" for="is_image">Tipe yang ingin ditampilkan</label>
-                                <div class="d-flex flex-row gap-3">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="is_image" id="is_image" value="1" <?= $modalStore->is_image == 1 ? 'checked' : '' ?>>
-                                        <label class="form-check-label" for="is_image">Image</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="is_image" id="is_icon" value="0" <?= $modalStore->is_image == 0 ? 'checked' : '' ?>>
-                                        <label class="form-check-label" for="is_icon">Icon</label>
-                                    </div>
-                                </div>
                             </div>
                             <div class="col-lg-12">
                                 <label class="fbold f18" for="index">Index</label>

@@ -174,7 +174,7 @@ class Store extends MX_Controller
         $data["store"] = $this->store_model->checkstore($sessionmember["id"]);
         $data["stores"] = new Store_model(['domain' => $data["store"][0]['domain']]);
         $data["products"] = $this->store_model->getProduct($data["store"][0]['id']);
-        // var_dump($data["products"]);
+        // var_dump($data["stores"]);
         // die;
         $data["provinces"] = $this->member_model->getprovinces();
         $data["member"] = $this->session_member();
@@ -264,7 +264,6 @@ class Store extends MX_Controller
                     'color_card_title' => '#000000',
                     'color_card_content' => '#000000',
                     'direction_card' => 1,
-                    'direction_text_title_description' => 'center',
                     'color_button' => '#000000',
                     'color_card_product' => '#fa8420',
                     'color_text_card_product' => '#ffffff',
@@ -1025,6 +1024,31 @@ class Store extends MX_Controller
                 $dataUpdate['title_image'] = $dataImage["file_name"];
             }
         }
+        $dataUpdate['title_cover'] = $title;
+        $dataUpdate['color_title_cover'] = $colorTitle;
+        $dataUpdate['title_content'] = $content;
+        $dataUpdate['color_title_content'] = $colorContent;
+        $dataUpdate['col_left'] = $col_left;
+        $dataUpdate['col_right'] = $col_right;
+        $dataUpdate['direction_title_image'] = $direction_title_image;
+
+        $this->store_model->update($where, $dataUpdate);
+        $this->db->trans_complete();
+        $this->session->set_flashdata('message-success', 'Deskripsi Cover Desktop Berhasil Diubah');
+        redirect(base_url() . "member/store/store");
+    }
+    public function update_title_cover_mobile()
+    {
+        $titleMobile = $this->input->post('title_cover_mobile');
+        $colorTitleMobile = $this->input->post('colorTitleCoverMobile');
+        $contentMobile = $this->input->post('title_content_mobile');
+        $colorContentMobile = $this->input->post('colorContentCoverMobile');
+        $data["member"] = $this->session_member();
+        $store = $this->store_model->checkstore($data['member'][0]['id']);
+        $where = array('id' => $store[0]['id']);
+        $key = bin2hex($this->encryption->create_key(20));
+        $this->load->library('upload', $config);
+        $this->db->trans_start();
 
         if (!empty($_FILES['titleImageMobile']['name'])) {
             $configMobile['upload_path'] = './public/image/store/coverimage/mobile/';
@@ -1043,17 +1067,14 @@ class Store extends MX_Controller
                 $dataUpdate['title_image_mobile'] = $dataImageMobile["file_name"];
             }
         }
-        $dataUpdate['title_cover'] = $title;
-        $dataUpdate['color_title_cover'] = $colorTitle;
-        $dataUpdate['title_content'] = $content;
-        $dataUpdate['color_title_content'] = $colorContent;
-        $dataUpdate['col_left'] = $col_left;
-        $dataUpdate['col_right'] = $col_right;
-        $dataUpdate['direction_title_image'] = $direction_title_image;
+        $dataUpdate['title_cover_mobile'] = $titleMobile;
+        $dataUpdate['color_title_cover_mobile'] = $colorTitleMobile;
+        $dataUpdate['title_content_mobile'] = $contentMobile;
+        $dataUpdate['color_title_content_mobile'] = $colorContentMobile;
 
         $this->store_model->update($where, $dataUpdate);
         $this->db->trans_complete();
-        $this->session->set_flashdata('message-success', 'Deskripsi Cover Berhasil Diubah');
+        $this->session->set_flashdata('message-success', 'Deskripsi Cover Mobile Berhasil Diubah');
         redirect(base_url() . "member/store/store");
     }
 

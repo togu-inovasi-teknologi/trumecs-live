@@ -55,6 +55,14 @@ $(document).ready(function () {
     var color = $(this).val();
     $("#afterColorContentCover").val(color);
   });
+  $("#colorTitleCoverMobile").change(function () {
+    var color = $(this).val();
+    $("#afterColorTitleCoverMobile").val(color);
+  });
+  $("#colorContentCoverMobile").change(function () {
+    var color = $(this).val();
+    $("#afterColorContentCoverMobile").val(color);
+  });
   $("#colorCardProduct").change(function () {
     var color = $(this).val();
     $("#afterColorCardProduct").val(color);
@@ -279,5 +287,55 @@ $(document).ready(function () {
   $(".content-edit-description").each(function () {
     var id = $(this).data("id");
     initTinyMCE("#contentEditDescription-" + id, id);
+  });
+});
+
+$(document).ready(function () {
+  // Fungsi untuk mengatur tampilan berdasarkan pilihan radio
+  function toggleInputs() {
+    var selectedValue = $('input[name="is_image"]:checked').val();
+
+    if (selectedValue == "1") {
+      // Jika memilih Image
+      $(".col-lg-12").has('input[name="image_desc"]').show();
+      $(".col-lg-12").has('input[name="icon"]').hide();
+      $("#uploadBtn").prop("required", true);
+      $('input[name="icon"]').prop("required", false);
+    } else if (selectedValue == "0") {
+      // Jika memilih Icon
+      $(".col-lg-12").has('input[name="image_desc"]').hide();
+      $(".col-lg-12").has('input[name="icon"]').show();
+      $("#uploadBtn").prop("required", false);
+      $('input[name="icon"]').prop("required", true);
+    }
+  }
+
+  // Event handler untuk perubahan radio button
+  $('input[name="is_image"]').change(function () {
+    toggleInputs();
+  });
+
+  // Inisialisasi tampilan awal
+  toggleInputs();
+
+  // Preview image saat memilih file
+  $("#uploadBtn").change(function () {
+    readURL(this);
+  });
+
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $(".blah").attr("src", e.target.result);
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  // Trigger click pada file input ketika tombol "Pilih file" diklik
+  $("#filetext").click(function () {
+    $("#uploadBtn").click();
+    return false;
   });
 });

@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Store_model extends CI_Model
 {
-    public $id, $name, $domain, $npwp, $email, $phone, $mailing_address, $mailing_pic, $mailing_position, $mailing_phone, $mailing_city, $mailing_province, $mailing_zipcode, $mailing_country, $description_id, $created_at, $created_by, $verified, $description_en, $description_zh, $logo, $cover, $template, $template_produk, $cover_mobile, $title_cover, $color_title_cover, $title_content, $color_title_content, $title_image, $title_image_mobile, $col_left, $col_right, $direction_title_image;
+    public $id, $name, $domain, $npwp, $email, $phone, $mailing_address, $mailing_pic, $mailing_position, $mailing_phone, $mailing_city, $mailing_province, $mailing_zipcode, $mailing_country, $description_id, $created_at, $created_by, $verified, $description_en, $description_zh, $logo, $cover, $template, $template_produk, $cover_mobile, $title_cover, $title_cover_mobile, $color_title_cover, $color_title_cover_mobile, $title_content, $title_content_mobile, $color_title_content, $color_title_content_mobile, $title_image, $title_image_mobile, $col_left, $col_right, $direction_title_image;
     public $countAllProduct = 0;
     public $all_products = [];
     public $categories = [];
@@ -99,12 +99,20 @@ class Store_model extends CI_Model
             $this->template_produk = $data['template_produk'];
         if (array_key_exists('title_cover', $data))
             $this->title_cover = $data['title_cover'];
+        if (array_key_exists('title_cover_mobile', $data))
+            $this->title_cover_mobile = $data['title_cover_mobile'];
         if (array_key_exists('title_content', $data))
             $this->title_content = $data['title_content'];
+        if (array_key_exists('title_content_mobile', $data))
+            $this->title_content_mobile = $data['title_content_mobile'];
         if (array_key_exists('color_title_cover', $data))
             $this->color_title_cover = $data['color_title_cover'];
+        if (array_key_exists('color_title_cover_mobile', $data))
+            $this->color_title_cover_mobile = $data['color_title_cover_mobile'];
         if (array_key_exists('color_title_content', $data))
             $this->color_title_content = $data['color_title_content'];
+        if (array_key_exists('color_title_content_mobile', $data))
+            $this->color_title_content_mobile = $data['color_title_content_mobile'];
         if (array_key_exists('title_image', $data))
             $this->title_image = $data['title_image'];
         if (array_key_exists('title_image_mobile', $data))
