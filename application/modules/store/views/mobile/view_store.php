@@ -15,8 +15,10 @@ if ($this->storeModel->styles != null) {
                                 <img src="<?= base_url() ?>/public/image/store/coverimage/mobile/<?= $this->storeModel->title_image_mobile ?>" alt="" style="width:80px">
                             <?php endif; ?>
                             <div class="d-flex flex-column gap-0 align-items-center">
-                                <p itemprop="slogan" class="font-weight-bold f24 m-b-1 m-t-3" style="color: <?= $this->storeModel->color_title_cover ?>;"><?= $this->storeModel->title_cover ?></p>
-                                <!-- <p class="text-center fbold f16 m-b-1" style="color: <?= $this->storeModel->color_title_content ?>;"><?= $this->storeModel->title_content ?></p> -->
+                                <p itemprop="slogan" class="font-weight-bold f24 m-b-1 m-t-3" style="color: <?= $this->storeModel->color_title_cover_mobile ?>;"><?= $this->storeModel->title_cover_mobile ?></p>
+                                <?php if ($this->storeModel->title_content_mobile !== null) : ?>
+                                    <p class="text-center fbold f16 m-b-1" style="color: <?= $this->storeModel->color_title_content_mobile ?>;"><?= $this->storeModel->title_content_mobile ?></p>
+                                <?php endif; ?>
                             </div>
                             <?php if ($this->storeModel->direction_title_image == 0) : ?>
                                 <img src="<?= base_url() ?>/public/image/store/coverimage/mobile/<?= $this->storeModel->title_image_mobile ?>" alt="" style="width:70%">

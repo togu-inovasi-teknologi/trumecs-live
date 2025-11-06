@@ -60,7 +60,7 @@ $this->load->helper('text');
                                             <div class="<?= $description->direction_image == 0 ? 'col-lg-offset-2' : '' ?> col-lg-4">
                                                 <div id="text-description" class="d-flex flex-column gap-2">
                                                     <p class="f22 fbold text-<?= $description->title_direction ?>" style="color:<?= $style[0]->color_card_title == null ? '#fa8420' : $style[0]->color_card_title ?>"><?= $description->title ?></p>
-                                                    <p style="color: <?= $style[0]->color_card_content == null ? '#fff' : $style[0]->color_card_content ?> !important ;"><?= $description->content ?></p>
+                                                    <div style="color: <?= $style[0]->color_card_content == null ? '#fff' : $style[0]->color_card_content ?> !important ;"><?= $description->content ?></div>
                                                 </div>
                                             </div>
                                             <?php if ($description->direction_image == 0) : ?>
@@ -96,7 +96,7 @@ $this->load->helper('text');
                                             <?php } ?>
                                             <div id="text-description" class="d-flex flex-column gap-2">
                                                 <p class="f20 fbold text-<?= $description->title_direction ?>" style="color:<?= $style[0]->color_card_title == null ? '#fa8420' : $style[0]->color_card_title ?>"><?= $description->title ?></p>
-                                                <p style="color: <?= $style[0]->color_card_content == null ? '#fff' : $style[0]->color_card_content ?> !important ;"><?= $description->content ?></p>
+                                                <div style="color: <?= $style[0]->color_card_content == null ? '#fff' : $style[0]->color_card_content ?> !important ;"><?= $description->content ?></div>
                                             </div>
                                         </div>
                                     </div>

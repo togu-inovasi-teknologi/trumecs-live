@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Store_style_model extends CI_Model
 {
-    public $id, $color_text_content, $color_text_title, $store_id, $color_nav, $color_nav_text, $color_text_name, $color_bg, $color_text_name_category, $color_card_description, $color_card_title, $color_card_content, $color_text_name_product, $direction_card, $direction_text_title_description, $color_button, $color_card_product, $color_text_card_product;
+    public $id, $color_text_content, $color_text_title, $store_id, $color_nav, $color_nav_text, $color_bg, $color_text_name_category, $color_card_description, $color_card_title, $color_card_content, $color_text_name_product, $direction_card, $direction_text_title_description, $color_button, $color_card_product, $color_text_card_product;
 
 
     function __construct($data = [])
@@ -30,8 +30,6 @@ class Store_style_model extends CI_Model
             $this->color_nav = $data['color_nav'];
         if (array_key_exists('color_nav_text', $data))
             $this->color_nav_text = $data['color_nav_text'];
-        if (array_key_exists('color_text_name', $data))
-            $this->color_text_name = $data['color_text_name'];
         if (array_key_exists('color_text_name_category', $data))
             $this->color_text_name_category = $data['color_text_name_category'];
         if (array_key_exists('color_text_name_product', $data))

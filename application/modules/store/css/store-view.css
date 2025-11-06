@@ -14,12 +14,7 @@
   outline: 0px auto -webkit-focus-ring-color;
 }
 
-.store-header  {
-  margin-top: 1.5rem;
-}
-
 .store-information {
-margin-top: 1.5rem;
   height: 300px;
 }
 
@@ -37,7 +32,7 @@ margin-top: 1.5rem;
 }
 
 @media only screen and (max-width: 768px) {
- /* nav {
+  /* nav {
     background-color: white !important;
   }*/
   .slick-dots {
@@ -55,7 +50,7 @@ margin-top: 1.5rem;
   }
   .store-header .store-information {
     height: 200px;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
   }
   .store-logo {
     width: 70px;

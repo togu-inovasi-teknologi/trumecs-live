@@ -14,12 +14,7 @@
   outline: 0px auto -webkit-focus-ring-color;
 }
 
-.store-header  {
-  margin-top: 1.5rem;
-}
-
 .store-information {
-margin-top: 1.5rem;
   height: 300px;
 }
 
@@ -37,7 +32,7 @@ margin-top: 1.5rem;
 }
 
 @media only screen and (max-width: 768px) {
- /* nav {
+  /* nav {
     background-color: white !important;
   }*/
   .slick-dots {
@@ -86,7 +81,8 @@ margin-top: 1.5rem;
   .product-filter {
     padding-left: 1.9rem;
   }
-}div.dataTables_length label {
+}
+div.dataTables_length label {
 	font-weight: normal;
 	text-align: left;
 	white-space: nowrap;

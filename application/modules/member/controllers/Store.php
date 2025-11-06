@@ -255,7 +255,6 @@ class Store extends MX_Controller
                     'color_nav' => '#000000',
                     'color_nav_text' => '#ffffff',
                     'color_bg' => '#ffffff',
-                    'color_text_name' => '#ffffff',
                     'color_text_name_category' => '#fa8420',
                     'color_text_name_product' => '#fa8420',
                     'color_text_title' => '#000000',
@@ -356,7 +355,6 @@ class Store extends MX_Controller
         $dataWarna = array(
             'color_nav' => $colorNav,
             'color_nav_text' => $colorNavText,
-            'color_text_name' => $colorTextName,
             'color_bg' => $colorBg,
             'color_text_title' => $colorTextTitle,
             'color_text_content' => $colorTextContent,

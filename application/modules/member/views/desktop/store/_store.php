@@ -404,8 +404,8 @@ if ($stores->banners != null) {
                                                         </thead>
                                                         <tbody>
                                                             <tr>
-                                                                <td class="text-center va-middle"><?= $stores->title_cover ?></td>
-                                                                <td class="text-center va-middle"><?= $stores->title_content ?></td>
+                                                                <td class="text-center va-middle"><?= $stores->title_cover_mobile ?></td>
+                                                                <td class="text-center va-middle"><?= $stores->title_content_mobile ?></td>
                                                                 <td class="text-center va-middle"><img src="<?= base_url() ?>public/image/store/coverimage/mobile/<?= $stores->title_image_mobile ?>" alt="image_cover" style="width:50px;"></td>
                                                             </tr>
                                                         </tbody>
@@ -763,24 +763,7 @@ if ($stores->banners != null) {
                                 </div>
                                 <div class="col-lg-4">
                                     <p class="fbold">Preview Gambar</p>
-                                    <img src="" id="blah" class="img-fluid" style="max-height: 100px;">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <label class="fbold f18" for="uploadBtnMobile">Image Mobile</label>
-                                    <input type="file" id="uploadBtnMobile" name="titleImageMobile" class="form-control" style="opacity: 0;filter: alpha(opacity=0);cursor: pointer;">
-                                    <a href="#" id="filetext" name="titleImageMobile" class="btn btnnew" style="margin-top:-50px;cursor: pointer;">Pilih file</a>
-                                </div>
-                                <div class="col-lg-4">
-                                    <p class="fbold">Gambar Saat Ini</p>
-                                    <img src="<?= base_url() ?>public/image/store/coverimage/mobile/<?= $stores->title_image_mobile ?>" style="max-height: 100px;">
-                                </div>
-                                <div class="col-lg-4">
-                                    <p class="fbold">Preview Gambar</p>
-                                    <img src="" id="blahMobile" class="img-fluid" style="max-height: 100px;">
+                                    <img src="" class="blah img-fluid" style="max-height: 100px;">
                                 </div>
                             </div>
                         </div>
@@ -889,11 +872,11 @@ if ($stores->banners != null) {
                                 </div>
                                 <div class="col-lg-4">
                                     <p class="fbold">Gambar Saat Ini</p>
-                                    <img src="<?= base_url() ?>public/image/store/coverimage/<?= $stores->title_image ?>" style="max-height: 100px;">
+                                    <img src="<?= base_url() ?>public/image/store/coverimage/mobile/<?= $stores->title_image_mobile ?>" style="max-height: 100px;">
                                 </div>
                                 <div class="col-lg-4">
                                     <p class="fbold">Preview Gambar</p>
-                                    <img src="" id="blah" class="img-fluid" style="max-height: 100px;">
+                                    <img src="" class="blah img-fluid" style="max-height: 100px;">
                                 </div>
                             </div>
                         </div>
@@ -1024,13 +1007,6 @@ if ($stores->banners != null) {
                             <div class="col-lg">
                                 <div class="row">
                                     <div class="col-lg-6 d-flex flex-column">
-                                        <label class="fbold" for="colorTextName">Warna Nama Toko</label>
-                                        <div class="d-flex gap-1 align-items-center">
-                                            <input type="color" name="colorTextName" id="colorTextName" value="<?= $style->color_text_name ?>">
-                                            <input disabled type="text" class="form-control" id="afterColorTextName" value="<?= $style->color_text_name ?>">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 d-flex flex-column">
                                         <label class="fbold" for="colorBg">Warna Background</label>
                                         <div class="d-flex gap-1 align-items-center">
                                             <input type="color" name="colorBg" id="colorBg" value="<?= $style->color_bg ?>">
@@ -1067,7 +1043,7 @@ if ($stores->banners != null) {
                                         </div>
                                     </div>
                                     <div class="col-lg-6 d-flex flex-column">
-                                        <label class="fbold" for="colorCardDescription">Warna Card</label>
+                                        <label class="fbold" for="colorCardDescription">Warna Border Card Deskripsi</label>
                                         <div class="d-flex gap-1 align-items-center">
                                             <input type="color" name="colorCardDescription" id="colorCardDescription" value="<?= $style->color_card_description ?>">
                                             <input disabled type="text" class="form-control" id="afterColorCardDescription" value="<?= $style->color_card_description ?>">
