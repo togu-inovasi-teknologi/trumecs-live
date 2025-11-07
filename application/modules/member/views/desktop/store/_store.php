@@ -986,17 +986,51 @@ if ($stores->banners != null) {
                 <div class="modal-body" style="max-height: 50vh; overflow-y:scroll;">
                     <div class="row d-flex flex-column gap-2 p-x-1">
                         <?php foreach ($stores->styles as $style) : ?>
+
                             <div class="col-lg">
                                 <div class="row">
                                     <div class="col-lg-6 d-flex flex-column">
-                                        <label class="fbold" for="colorNav">Warna NavBar</label>
+                                        <label class="fbold f11" for="colorBg">Warna Background</label>
+                                        <div class="d-flex gap-1 align-items-center">
+                                            <input type="color" name="colorBg" id="colorBg" value="<?= $style->color_bg ?>">
+                                            <input disabled type="text" class="form-control" id="afterColorBg" value="<?= $style->color_bg ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 d-flex flex-column">
+                                        <label class="fbold f11" for="colorTextContent">Warna Text Content</label>
+                                        <div class="d-flex gap-1 align-items-center">
+                                            <input type="color" name="colorTextContent" id="colorTextContent" value="<?= $style->color_text_content ?>">
+                                            <input disabled type="text" class="form-control" id="afterColorTextContent" value="<?= $style->color_text_content ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 d-flex flex-column">
+                                        <label class="fbold f11" for="colorTextTitle">Warna Text Title</label>
+                                        <div class="d-flex gap-1 align-items-center">
+                                            <input type="color" name="colorTextTitle" id="colorTextTitle" value="<?= $style->color_text_title ?>">
+                                            <input disabled type="text" class="form-control" id="afterColorTextTitle" value="<?= $style->color_text_title ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 d-flex flex-column">
+                                        <label class="fbold f11" for="colorButton">Warna Button</label>
+                                        <div class="d-flex gap-1 align-items-center">
+                                            <input type="color" name="colorButton" id="colorButton" value="<?= $style->color_button ?>">
+                                            <input disabled type="text" class="form-control" id="afterColorButton" value="<?= $style->color_button ?>">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg">
+                                <div class="row">
+                                    <div class="col-lg-6 d-flex flex-column">
+                                        <label class="fbold f11" for="colorNav">Warna NavBar</label>
                                         <div class="d-flex gap-1 align-items-center">
                                             <input type="color" name="colorNav" id="colorNav" value="<?= $style->color_nav ?>">
                                             <input disabled type="text" class="form-control" id="afterColorNav" value="<?= $style->color_nav ?>">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 d-flex flex-column">
-                                        <label class="fbold" for="colorNavText">Warna Text Navbar</label>
+                                        <label class="fbold f11" for="colorNavText">Warna Text Navbar</label>
                                         <div class="d-flex gap-1 align-items-center">
                                             <input type="color" name="colorNavText" id="colorNavText" value="<?= $style->color_nav_text ?>">
                                             <input disabled type="text" class="form-control" id="afterColorNavText" value="<?= $style->color_nav_text ?>">
@@ -1006,62 +1040,23 @@ if ($stores->banners != null) {
                             </div>
                             <div class="col-lg">
                                 <div class="row">
-                                    <div class="col-lg-6 d-flex flex-column">
-                                        <label class="fbold" for="colorBg">Warna Background</label>
-                                        <div class="d-flex gap-1 align-items-center">
-                                            <input type="color" name="colorBg" id="colorBg" value="<?= $style->color_bg ?>">
-                                            <input disabled type="text" class="form-control" id="afterColorBg" value="<?= $style->color_bg ?>">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg">
-                                <div class="row">
-                                    <div class="col-lg-6 d-flex flex-column">
-                                        <label class="fbold" for="colorTextTitle">Warna Text Title</label>
-                                        <div class="d-flex gap-1 align-items-center">
-                                            <input type="color" name="colorTextTitle" id="colorTextTitle" value="<?= $style->color_text_title ?>">
-                                            <input disabled type="text" class="form-control" id="afterColorTextTitle" value="<?= $style->color_text_title ?>">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 d-flex flex-column">
-                                        <label class="fbold" for="colorTextContent">Warna Text Content</label>
-                                        <div class="d-flex gap-1 align-items-center">
-                                            <input type="color" name="colorTextContent" id="colorTextContent" value="<?= $style->color_text_content ?>">
-                                            <input disabled type="text" class="form-control" id="afterColorTextContent" value="<?= $style->color_text_content ?>">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg">
-                                <div class="row">
-                                    <div class="col-lg-6 d-flex flex-column">
-                                        <label class="fbold" for="colorTextNameCategory">Warna Text Name Category</label>
-                                        <div class="d-flex gap-1 align-items-center">
-                                            <input type="color" name="colorTextNameCategory" id="colorTextNameCategory" value="<?= $style->color_text_name_category ?>">
-                                            <input disabled type="text" class="form-control" id="afterColorTextNameCategory" value="<?= $style->color_text_name_category ?>">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 d-flex flex-column">
-                                        <label class="fbold" for="colorCardDescription">Warna Border Card Deskripsi</label>
+
+                                    <div class="col-lg-4 d-flex flex-column">
+                                        <label class="fbold f11" for="colorCardDescription">Warna Border Card Deskripsi</label>
                                         <div class="d-flex gap-1 align-items-center">
                                             <input type="color" name="colorCardDescription" id="colorCardDescription" value="<?= $style->color_card_description ?>">
                                             <input disabled type="text" class="form-control" id="afterColorCardDescription" value="<?= $style->color_card_description ?>">
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-lg">
-                                <div class="row">
-                                    <div class="col-lg-6 d-flex flex-column">
-                                        <label class="fbold" for="colorCardTitle">Warna Text Title Deskripsi</label>
+                                    <div class="col-lg-4 d-flex flex-column">
+                                        <label class="fbold f11" for="colorCardTitle">Warna Text Title Deskripsi</label>
                                         <div class="d-flex gap-1 align-items-center">
                                             <input type="color" name="colorCardTitle" id="colorCardTitle" value="<?= $style->color_card_title ?>">
                                             <input disabled type="text" class="form-control" id="afterColorCardTitle" value="<?= $style->color_card_title ?>">
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 d-flex flex-column">
-                                        <label class="fbold" for="colorCardContent">Warna Text Content Deskripsi</label>
+                                    <div class="col-lg-4 d-flex flex-column">
+                                        <label class="fbold f11" for="colorCardContent">Warna Text Content Deskripsi</label>
                                         <div class="d-flex gap-1 align-items-center">
                                             <input type="color" name="colorCardContent" id="colorCardContent" value="<?= $style->color_card_content ?>">
                                             <input disabled type="text" class="form-control" id="afterColorCardContent" value="<?= $style->color_card_content ?>">
@@ -1071,33 +1066,35 @@ if ($stores->banners != null) {
                             </div>
                             <div class="col-lg">
                                 <div class="row">
+
                                     <div class="col-lg-6 d-flex flex-column">
-                                        <label class="fbold" for="colorTextNameProduct">Warna Text Product</label>
+                                        <label class="fbold f11" for="colorTextNameCategory">Warna Text Name Category</label>
                                         <div class="d-flex gap-1 align-items-center">
-                                            <input type="color" name="colorTextNameProduct" id="colorTextNameProduct" value="<?= $style->color_text_name_product ?>">
-                                            <input disabled type="text" class="form-control" id="afterColorTextNameProduct" value="<?= $style->color_text_name_product ?>">
+                                            <input type="color" name="colorTextNameCategory" id="colorTextNameCategory" value="<?= $style->color_text_name_category ?>">
+                                            <input disabled type="text" class="form-control" id="afterColorTextNameCategory" value="<?= $style->color_text_name_category ?>">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 d-flex flex-column">
-                                        <label class="fbold" for="colorButton">Warna Button</label>
+                                        <label class="fbold f11" for="colorTextNameProduct">Warna Text Product</label>
                                         <div class="d-flex gap-1 align-items-center">
-                                            <input type="color" name="colorButton" id="colorButton" value="<?= $style->color_button ?>">
-                                            <input disabled type="text" class="form-control" id="afterColorButton" value="<?= $style->color_button ?>">
+                                            <input type="color" name="colorTextNameProduct" id="colorTextNameProduct" value="<?= $style->color_text_name_product ?>">
+                                            <input disabled type="text" class="form-control" id="afterColorTextNameProduct" value="<?= $style->color_text_name_product ?>">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg">
                                 <div class="row">
+
                                     <div class="col-lg-6 d-flex flex-column">
-                                        <label class="fbold" for="colorCardProduct">Warna Card Product</label>
+                                        <label class="fbold f11" for="colorCardProduct">Warna Card Product</label>
                                         <div class="d-flex gap-1 align-items-center">
                                             <input type="color" name="colorCardProduct" id="colorCardProduct" value="<?= $style->color_card_product ?>">
                                             <input disabled type="text" class="form-control" id="afterColorCardProduct" value="<?= $style->color_card_product ?>">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 d-flex flex-column">
-                                        <label class="fbold" for="colorTextCardProduct">Warna Text Card Product</label>
+                                        <label class="fbold f11" for="colorTextCardProduct">Warna Text Card Product</label>
                                         <div class="d-flex gap-1 align-items-center">
                                             <input type="color" name="colorTextCardProduct" id="colorTextCardProduct" value="<?= $style->color_text_card_product ?>">
                                             <input disabled type="text" class="form-control" id="afterColorTextCardProduct" value="<?= $style->color_text_card_product ?>">
