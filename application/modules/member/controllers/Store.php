@@ -1041,6 +1041,7 @@ class Store extends MX_Controller
         $colorTitleMobile = $this->input->post('colorTitleCoverMobile');
         $contentMobile = $this->input->post('title_content_mobile');
         $colorContentMobile = $this->input->post('colorContentCoverMobile');
+        $direction_title_image_mobile = $this->input->post('direction_title_image_mobile');
         $data["member"] = $this->session_member();
         $store = $this->store_model->checkstore($data['member'][0]['id']);
         $where = array('id' => $store[0]['id']);
@@ -1069,6 +1070,7 @@ class Store extends MX_Controller
         $dataUpdate['color_title_cover_mobile'] = $colorTitleMobile;
         $dataUpdate['title_content_mobile'] = $contentMobile;
         $dataUpdate['color_title_content_mobile'] = $colorContentMobile;
+        $dataUpdate['direction_title_image_mobile'] = $direction_title_image_mobile;
 
         $this->store_model->update($where, $dataUpdate);
         $this->db->trans_complete();

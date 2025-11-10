@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Store_model extends CI_Model
 {
-    public $id, $name, $domain, $npwp, $email, $phone, $mailing_address, $mailing_pic, $mailing_position, $mailing_phone, $mailing_city, $mailing_province, $mailing_zipcode, $mailing_country, $description_id, $created_at, $created_by, $verified, $description_en, $description_zh, $logo, $cover, $template, $template_produk, $cover_mobile, $title_cover, $title_cover_mobile, $color_title_cover, $color_title_cover_mobile, $title_content, $title_content_mobile, $color_title_content, $color_title_content_mobile, $title_image, $title_image_mobile, $col_left, $col_right, $direction_title_image;
+    public $id, $name, $domain, $npwp, $email, $phone, $mailing_address, $mailing_pic, $mailing_position, $mailing_phone, $mailing_city, $mailing_province, $mailing_zipcode, $mailing_country, $description_id, $created_at, $created_by, $verified, $description_en, $description_zh, $logo, $cover, $template, $template_produk, $cover_mobile, $title_cover, $title_cover_mobile, $color_title_cover, $color_title_cover_mobile, $title_content, $title_content_mobile, $color_title_content, $color_title_content_mobile, $title_image, $title_image_mobile, $col_left, $col_right, $direction_title_image, $direction_title_image_mobile;
     public $countAllProduct = 0;
     public $all_products = [];
     public $categories = [];
@@ -123,6 +123,8 @@ class Store_model extends CI_Model
             $this->col_right = $data['col_right'];
         if (array_key_exists('direction_title_image', $data))
             $this->direction_title_image = $data['direction_title_image'];
+        if (array_key_exists('direction_title_image_mobile', $data))
+            $this->direction_title_image_mobile = $data['direction_title_image_mobile'];
 
         if (array_key_exists('category', $data))
             $this->category = $data['category'];

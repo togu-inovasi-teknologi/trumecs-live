@@ -11,16 +11,16 @@ if ($this->storeModel->styles != null) {
                 <div class="col-lg-12 store-information d-flex align-items-center justify-content-center" style="background-image:url(<?= $this->storeModel->cover_mobile == null ? base_url('public/image/default-cover.png') : base_url('public/image/store/cover/' . $this->storeModel->cover_mobile) ?>);background-size: cover; height:250px; ">
                     <div class="store-info d-flex p-t-1 flex-column align-items-center gap-3">
                         <div class="t-info-store d-flex flex-column align-items-center gap-2">
-                            <?php if ($this->storeModel->direction_title_image == 1) : ?>
-                                <img src="<?= base_url() ?>/public/image/store/coverimage/mobile/<?= $this->storeModel->title_image_mobile ?>" alt="" style="width:80px">
+                            <?php if ($this->storeModel->direction_title_image_mobile == 1) : ?>
+                                <img src="<?= base_url() ?>/public/image/store/coverimage/mobile/<?= $this->storeModel->title_image_mobile ?>" alt="" style="width:70%" class="m-t-1">
                             <?php endif; ?>
                             <div class="d-flex flex-column gap-0 align-items-center">
-                                <p itemprop="slogan" class="font-weight-bold f24 m-b-1 m-t-3" style="color: <?= $this->storeModel->color_title_cover_mobile ?>;"><?= $this->storeModel->title_cover_mobile ?></p>
+                                <p itemprop="slogan" class="font-weight-bold f24 m-b-1 <?= $this->storeModel->direction_title_image_mobile == 1 ? "" : "m-t-3" ?>" style="color: <?= $this->storeModel->color_title_cover_mobile ?>;"><?= $this->storeModel->title_cover_mobile ?></p>
                                 <?php if ($this->storeModel->title_content_mobile !== null) : ?>
                                     <p class="text-center fbold f16 m-b-1" style="color: <?= $this->storeModel->color_title_content_mobile ?>;"><?= $this->storeModel->title_content_mobile ?></p>
                                 <?php endif; ?>
                             </div>
-                            <?php if ($this->storeModel->direction_title_image == 0) : ?>
+                            <?php if ($this->storeModel->direction_title_image_mobile == 0) : ?>
                                 <img src="<?= base_url() ?>/public/image/store/coverimage/mobile/<?= $this->storeModel->title_image_mobile ?>" alt="" style="width:70%">
                             <?php endif; ?>
 
