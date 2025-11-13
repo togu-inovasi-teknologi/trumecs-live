@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Attribute_model extends CI_Model
+class attribute_model extends CI_Model
 {
 
     private $table = 'attribute';
