@@ -47,6 +47,7 @@ class Backend extends MX_Controller
             $data["datauser"] = $this->backend_model->getadmin($data);
             if (empty($data["datauser"])) {
                 $this->session->set_flashdata('message', 'Email/Password yang anda masukkan salah.');
+                redirect(base_url() . "backend/login");
                 //echo "Salah";
             } else {
                 $loginmember = array("Loginadmin" => 'TRUE');

@@ -8,16 +8,21 @@
     <?php $this->load->view("front/_favicon"); ?>
     <title>Admin Trumecs</title>
     <!-- Bootstrap Core CSS -->
-    <?php if (1 == 2) : ?>
+    <!-- <?php if (1 == 2) : ?>
         <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
     <?php else : ?>
         <link rel="stylesheet" href="<?php echo base_url() ?>asset/css/bootstrap.4-alpha.css">
-    <?php endif ?>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/bootstrap.offcanvas.min.css">
-    <link rel="stylesheet" href="<?php echo base_url() ?>asset/css/template.backend.css">
+    <?php endif ?> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
     <link href="<?php echo base_url(); ?>asset/datatables/dataTables.bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/font-awesome-animation.css">
+    <link href="<?php echo base_url(); ?>asset/datatables/jquery.dataTables.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"> -->
+    <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/bootstrap.offcanvas.min.css"> -->
+    <!-- <link rel="stylesheet" href="<?php echo base_url() ?>asset/css/template.backend.css"> -->
     <?php
 
     if (isset($css_cdn) && is_array($css_cdn)) {
@@ -30,13 +35,11 @@
         echo '<link rel="stylesheet" href="' . base_url("asset/core/css/" . $minicss) . '" />';
     }
     ?>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/bootstrap.offcanvas.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/font-awesome-animation.css">
+
     <meta http-equiv="expires" content="Mon, 4 Jul 2016 05:00:00 GMT" />
     <!-- page specific plugin styles-->
 
-    <link href="<?php echo base_url(); ?>asset/datatables/jquery.dataTables.min.css" rel="stylesheet">
+
     <!-- Custom CSS -->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -53,13 +56,45 @@
         .wrapper {
             display: flex;
             width: 100%;
+            min-height: 100vh;
             height: 100vh;
+            /* Tambahkan ini */
+            overflow: hidden;
+            /* Tambahkan ini */
         }
 
-        .clearfix {
-            display: block;
-            content: "";
-            clear: both;
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            background-color: #f8f9fa;
+            height: 100vh;
+            /* Tambahkan ini */
+        }
+
+        .content-area {
+            padding: 20px;
+            min-height: calc(100vh - 40px);
+            /* Sesuaikan dengan padding */
+        }
+
+        @media (max-width: 768px) {
+            .wrapper {
+                flex-direction: column;
+                height: auto;
+                /* Reset height untuk mobile */
+                min-height: 100vh;
+            }
+
+            .main-content {
+                height: auto;
+                /* Reset height untuk mobile */
+            }
+
+            .content-area {
+                padding: 15px;
+                min-height: auto;
+                /* Reset untuk mobile */
+            }
         }
     </style>
 </head>
@@ -73,29 +108,25 @@
             $this->load->view("backend/_navmobile");
         } ?>
         <!-- END Navigation -->
-        <div class="m-y-2" style="overflow-y: scroll;">
-            <?php if ($this->agent->is_mobile()) : ?><div class="col-md-12 m-y-2 ">
-                    <div class="clearfix"></div>
-                </div><?php endif ?>
-            <!--<div class="col-md-3">
-                    <?php if (!$this->agent->is_mobile()) {
-                        //$this->load->view("backend/_menuadmin");
-                    } ?>
-                </div>-->
 
-            <div class="container">
+        <div class="main-content">
+            <?php if ($this->agent->is_mobile()) : ?>
+                <div class="p-3"></div> <!-- Spacer for mobile -->
+            <?php endif; ?>
+
+            <div class="content-area">
+                <!-- Flash Message -->
                 <?php echo ($this->session->flashdata('message') == "") ? "" :
-                    '<div class="alert alert-warning alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' .
+                    '<div class="alert alert-warning alert-dismissible fade show mb-4" role="alert">' .
                     $this->session->flashdata('message') .
-                    '</div>'; ?>
-            </div>
-            <?php if (isset($content)) {
+                    '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'; ?>
 
-                $this->load->view($content);
-            } ?>
+                <!-- Main Content -->
+                <?php if (isset($content)) {
+                    $this->load->view($content);
+                } ?>
+            </div>
         </div>
-        <div class="clearfix"></div>
     </div>
     <!--<footer>
         <div class="container">
@@ -103,21 +134,15 @@
         </div>
     </footer>-->
 
-    <?php
 
-    $javascript = array(base_url() . "asset/js/jquery.js", base_url() . 'asset/js/bootstrap.min.js', base_url() . 'asset/js/bootstrap-toolkit.min.js', base_url() . 'asset/js/bootstrap.offcanvas.min.js');
-    foreach ($javascript as $dt_javascript) {
-        echo '<script src="' . $dt_javascript . '"></script>';
-    }
-    ?>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
     <script src="<?php echo base_url(); ?>asset/datatables/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url(); ?>asset/datatables/dataTables.bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js">
-    </script>
-    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/d64235c5d9.js" crossorigin="anonymous"></script>
 
     <?php
     if (isset($distjs)) {
@@ -137,6 +162,8 @@
     ?>
 
     <script>
+        var base_url = $("body").attr("baseurl");
+
         $(function() {
             $("#example1").DataTable();
         });
@@ -382,10 +409,6 @@
             display: none !important;
         }
     </style>
-
-    <script>
-        var base_url = $("body").attr("baseurl");
-    </script>
 </body>
 
 </html>

@@ -9,6 +9,8 @@ class Backendproduct extends MX_Controller
         parent::__construct();
         $this->securitylog->cekadmin();
         $this->load->model("etx_product");
+        $this->load->model("grade_model");
+        $this->load->model("attribute_model");
     }
     public function index()
     {
@@ -191,7 +193,8 @@ class Backendproduct extends MX_Controller
             }
         }
 
-        $data["js"] = array(base_url() . 'asset/backend/js/form.product.js');
+        $data["js"] = array('/modules/backendproduct/js/form.product.js');
+        $data["css"] = array('/modules/backendproduct/css/form.css');
         $this->load->view('backend/template_front', $data);
     }
 
@@ -464,8 +467,181 @@ class Backendproduct extends MX_Controller
     public function categori()
     {
         $data['content'] = 'category';
-        $data['js'] = array(base_url() . 'asset/backend/js/categor.product.js');
+        $data['js'] = array('/modules/backendproduct/js/category.product.js');
+        $data['grades'] = $this->grade_model->getgrade();
+        $data['attributes'] = $this->etx_product->getattribute();
         $this->load->view('backend/template_front', $data);
+    }
+
+    public function gradeAjaxList()
+    {
+        $start = $this->input->post('start');
+        $length = $this->input->post('length');
+        $search = $this->input->post('search')['value'];
+        $order = $this->input->post('order')[0];
+
+        $list = $this->grade_model->get_datatables($start, $length, $search, $order);
+        $data = array();
+        $no = $start;
+
+        foreach ($list as $grade) {
+            $no++;
+            $row = array();
+            $row[] = $no;
+            $row[] = $grade->grade;
+            $row[] = $grade->type == 0 ? 'Produk' : 'Mekanik';
+            $row[] = '
+            <button type="button" class="btn btn-warning btn-sm edit" data-id="' . $grade->id . '" data-grade="' . $grade->grade . '" data-type="' . $grade->type . '">
+                <i class="fas fa-edit"></i> Edit
+            </button>
+            <button type="button" class="btn btn-danger btn-sm delete" data-id="' . $grade->id . '">
+                <i class="fas fa-trash"></i> Delete
+            </button>
+        ';
+
+            $data[] = $row;
+        }
+
+        $output = array(
+            "draw" => $this->input->post('draw'),
+            "recordsTotal" => $this->grade_model->count_all(),
+            "recordsFiltered" => $this->grade_model->count_filtered($search),
+            "data" => $data,
+        );
+
+        echo json_encode($output);
+    }
+
+    public function gradeAjaxAdd()
+    {
+
+        $data = array(
+            'grade' => $this->input->post('grade'),
+            'type' => $this->input->post('type')
+        );
+
+        $insert = $this->grade_model->insert_grade($data);
+
+        if ($insert) {
+            echo json_encode(array("status" => true, "message" => "Grade added successfully"));
+        } else {
+            echo json_encode(array("status" => false, "message" => "Failed to add grade"));
+        }
+    }
+
+    public function gradeAjaxUpdate()
+    {
+
+        $id = $this->input->post('id');
+        $data = array(
+            'grade' => $this->input->post('grade'),
+            'type' => $this->input->post('type')
+        );
+
+        $update = $this->grade_model->update_grade($id, $data);
+
+        if ($update) {
+            echo json_encode(array("status" => true, "message" => "Grade updated successfully"));
+        } else {
+            echo json_encode(array("status" => false, "message" => "Failed to update grade"));
+        }
+    }
+
+    // Delete grade
+    public function gradeAjaxDelete()
+    {
+        $id = $this->input->post('id');
+        $delete = $this->grade_model->delete_grade($id);
+
+        if ($delete) {
+            echo json_encode(array("status" => true, "message" => "Grade deleted successfully"));
+        } else {
+            echo json_encode(array("status" => false, "message" => "Failed to delete grade"));
+        }
+    }
+
+    public function attributeAjaxList()
+    {
+        $start = $this->input->post('start');
+        $length = $this->input->post('length');
+        $search = $this->input->post('search')['value'];
+        $order = $this->input->post('order')[0];
+
+        $list = $this->attribute_model->get_datatables($start, $length, $search, $order);
+        $data = array();
+        $no = $start;
+
+        foreach ($list as $attribute) {
+            $no++;
+            $row = array();
+            $row[] = $no;
+            $row[] = $attribute->name;
+            $row[] = '
+            <button type="button" class="btn btn-warning btn-sm edit" data-id="' . $attribute->id . '" data-attribute="' . $attribute->name . '">
+                <i class="fas fa-edit"></i> Edit
+            </button>
+            <button type="button" class="btn btn-danger btn-sm delete" data-id="' . $attribute->id . '">
+                <i class="fas fa-trash"></i> Delete
+            </button>
+        ';
+
+            $data[] = $row;
+        }
+
+        $output = array(
+            "draw" => $this->input->post('draw'),
+            "recordsTotal" => $this->attribute_model->count_all(),
+            "recordsFiltered" => $this->attribute_model->count_filtered($search),
+            "data" => $data,
+        );
+
+        echo json_encode($output);
+    }
+
+    public function attributeAjaxAdd()
+    {
+
+        $data = array(
+            'name' => $this->input->post('name'),
+        );
+
+        $insert = $this->attribute_model->insert_attribute($data);
+
+        if ($insert) {
+            echo json_encode(array("status" => true, "message" => "attribute added successfully"));
+        } else {
+            echo json_encode(array("status" => false, "message" => "Failed to add attribute"));
+        }
+    }
+
+    public function attributeAjaxUpdate()
+    {
+
+        $id = $this->input->post('id');
+        $data = array(
+            'name' => $this->input->post('name'),
+        );
+
+        $update = $this->attribute_model->update_attribute($id, $data);
+
+        if ($update) {
+            echo json_encode(array("status" => true, "message" => "attribute updated successfully"));
+        } else {
+            echo json_encode(array("status" => false, "message" => "Failed to update attribute"));
+        }
+    }
+
+    // Delete attribute
+    public function attributeAjaxDelete()
+    {
+        $id = $this->input->post('id');
+        $delete = $this->attribute_model->delete_attribute($id);
+
+        if ($delete) {
+            echo json_encode(array("status" => true, "message" => "attribute deleted successfully"));
+        } else {
+            echo json_encode(array("status" => false, "message" => "Failed to delete attribute"));
+        }
     }
 
     public function addcategory()
