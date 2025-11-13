@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class grade_model extends CI_Model
+class Grade_model extends CI_Model
 {
 
     private $table = 'grade';
