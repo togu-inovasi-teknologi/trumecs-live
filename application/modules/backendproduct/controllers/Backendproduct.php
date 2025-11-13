@@ -9,8 +9,8 @@ class Backendproduct extends MX_Controller
         parent::__construct();
         $this->securitylog->cekadmin();
         $this->load->model("etx_product");
-        $this->load->model("grade_model");
-        $this->load->model("attribute_model");
+        $this->load->model("backendproduct/grade_model");
+        $this->load->model("backendproduct/attribute_model");
     }
     public function index()
     {
