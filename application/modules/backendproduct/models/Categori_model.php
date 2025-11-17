@@ -14,7 +14,7 @@ class categori_model extends CI_Model
     // Get all main categories (parent = 0, is_brand = 0)
     public function get_main_categories()
     {
-        return $this->db->where(['parent' => 0, 'is_brand' => 0])
+        return $this->db->where(['is_brand' => 0])
             ->get($this->table)
             ->result();
     }
@@ -279,7 +279,7 @@ class categori_model extends CI_Model
         if ($type) {
             switch ($type) {
                 case 'main_category':
-                    $this->db->where(['parent' => 0, 'is_brand' => 0]);
+                    $this->db->where(['is_brand' => 0, 'parent_brand' => 0]);
                     break;
                 case 'sub_category':
                     $this->db->where('parent !=', 0);
@@ -352,21 +352,53 @@ class categori_model extends CI_Model
     public function get_parent_info($category_id)
     {
         $category = $this->get_categori_by_id($category_id);
-        $info = '';
+        if (!$category) return '';
 
-        if ($category->parent_brand != 0) {
-            $brand = $this->get_categori_by_id($category->parent_brand);
-            $subsub = $this->get_categori_by_id($category->parent);
-            $info = 'Brand: ' . ($brand ? $brand->name : 'Unknown') .
-                ' | Category: ' . ($subsub ? $subsub->name : 'Unknown');
-        } elseif ($category->parent != 0) {
-            $parent = $this->get_categori_by_id($category->parent);
-            $info = 'Parent: ' . ($parent ? $parent->name : 'Unknown');
-        } else {
-            $info = 'Main Category';
+        $type = $this->get_category_type_info($category_id);
+
+        switch ($type) {
+            case 'main_category':
+                return $category->name; // 1 baris: nama kategori
+
+            case 'sub_category':
+                $parent = $this->get_categori_by_id($category->parent);
+                if ($parent) {
+                    return '<div>' . $category->name . '</div>' .
+                        '<div>' . $parent->name . '</div>';
+                }
+                return $category->name;
+
+            case 'subsub_category':
+                $parent_sub = $this->get_categori_by_id($category->parent);
+                if ($parent_sub) {
+                    $parent_main = $this->get_categori_by_id($parent_sub->parent);
+                    if ($parent_main) {
+                        return '<div>' . $category->name . '</div>' .
+                            '<div>' . $parent_main->name . ' - ' . $parent_sub->name . '</div>';
+                    }
+                    return '<div>' . $category->name . '</div>' .
+                        '<div>' . $parent_sub->name . '</div>';
+                }
+                return $category->name;
+
+            case 'brand':
+                return $category->name; // 1 baris: nama brand
+
+            case 'model':
+                $brand = $this->get_categori_by_id($category->parent_brand);
+                $subsub_category = $this->get_categori_by_id($category->parent);
+                if ($brand && $subsub_category) {
+                    $parent_sub = $this->get_categori_by_id($subsub_category->parent);
+                    $parent_main = $this->get_categori_by_id($parent_sub->parent);
+
+                    return '<div>' . $category->name . '</div>' .
+                        '<div>' . $brand->name . ' - ' . $parent_main->name . ' - ' . $parent_sub->name . ' - ' . $subsub_category->name . '</div>';
+                }
+                return $category->name;
+
+            default:
+                return $category->name;
         }
-
-        return $info;
     }
 
     // Existing methods...

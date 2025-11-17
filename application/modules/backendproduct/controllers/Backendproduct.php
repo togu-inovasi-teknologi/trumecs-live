@@ -678,14 +678,7 @@ class Backendproduct extends MX_Controller
             $row[] = ($categori->img != null)
                 ? '<img src="' . base_url() . '/public/upload/categori/' . $categori->img . '" class="img-thumbnail" style="max-height: 50px;">'
                 :  '<img src="' . base_url() . '/public/image/noimage.png' . '" class="img-thumbnail" style="max-height: 50px;">';
-            $row[] = $categori->name;
-
-            // Tambahkan info parent/type
             $row[] = $this->categori_model->get_parent_info($categori->id);
-
-            // Tambahkan type badge
-            $type_info = $this->categori_model->get_category_type_info($categori->id);
-            $row[] = '<p class="fbold f16">' . ucfirst(str_replace('_', ' ', $type_info)) . '</p>';
 
             $row[] = '
         <button type="button" class="btn btn-warning btn-sm edit" data-id="' . $categori->id . '" data-categori="' . $categori->name . '">

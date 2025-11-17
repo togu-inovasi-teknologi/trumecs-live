@@ -396,7 +396,8 @@ $(document).ready(function () {
       { data: 0, orderable: false },
       { data: 1 },
       { data: 2 },
-      { data: 3, orderable: false },
+      { data: 3 },
+      { data: 4, orderable: false },
     ],
     order: [[0, "asc"]],
   });
@@ -412,7 +413,8 @@ $(document).ready(function () {
       { data: 0, orderable: false },
       { data: 1 },
       { data: 2 },
-      { data: 3, orderable: false },
+      { data: 3 },
+      { data: 4, orderable: false },
     ],
     order: [[0, "asc"]],
   });
@@ -428,7 +430,8 @@ $(document).ready(function () {
       { data: 0, orderable: false },
       { data: 1 },
       { data: 2 },
-      { data: 3, orderable: false },
+      { data: 3 },
+      { data: 4, orderable: false },
     ],
     order: [[0, "asc"]],
   });

@@ -63,8 +63,6 @@
 															<th>No</th>
 															<th>Image</th>
 															<th>Nama Categori</th>
-															<th>Parent</th>
-															<th>Type</th>
 															<th>Actions</th>
 														</tr>
 													</thead>
@@ -99,8 +97,6 @@
 															<th>No</th>
 															<th>Image</th>
 															<th>Nama Brand</th>
-															<th>Parent</th>
-															<th>Type</th>
 															<th>Actions</th>
 														</tr>
 													</thead>
@@ -127,24 +123,23 @@
 													</button>
 												</div>
 											</div>
+											<div class="col-lg-12">
+												<table id="modelTable" class="table table-striped table-bordered">
+													<thead>
+														<tr>
+															<th>No</th>
+															<th>Image</th>
+															<th>Nama Model</th>
+															<th>Actions</th>
+														</tr>
+													</thead>
+													<tbody>
+													</tbody>
+												</table>
+											</div>
 										</div>
 									</div>
-									<div class="col-lg-12">
-										<table id="modelTable" class="table table-striped table-bordered">
-											<thead>
-												<tr>
-													<th>No</th>
-													<th>Image</th>
-													<th>Nama Model</th>
-													<th>Parent</th>
-													<th>Type</th>
-													<th>Actions</th>
-												</tr>
-											</thead>
-											<tbody>
-											</tbody>
-										</table>
-									</div>
+
 								</div>
 							</div>
 						</div>
@@ -361,5 +356,11 @@
 	/* Toast animation */
 	.toast {
 		transition: transform 0.3s ease-in-out;
+	}
+
+	.category-line {
+		line-height: 1.2;
+		margin-bottom: 2px;
+		font-size: 14px;
 	}
 </style>
