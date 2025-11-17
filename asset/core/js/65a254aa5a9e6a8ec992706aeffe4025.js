@@ -389,7 +389,7 @@ $(document).ready(function () {
     processing: true,
     serverSide: true,
     ajax: {
-      url: base_url + "backendproduct/subsubCategoriesAjaxList",
+      url: base_url + "backendproduct/mainCategoriesAjaxList",
       type: "POST",
     },
     columns: [

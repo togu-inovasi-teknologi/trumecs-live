@@ -385,47 +385,11 @@ $(document).ready(function () {
 // categori table
 
 $(document).ready(function () {
-  var tableCategori = $("#categoriTable").DataTable({
+  var table = $("#categoriTable").DataTable({
     processing: true,
     serverSide: true,
     ajax: {
-      url: base_url + "backendproduct/subsubCategoriesAjaxList",
-      type: "POST",
-    },
-    columns: [
-      { data: 0, orderable: false },
-      { data: 1 },
-      { data: 2 },
-      { data: 3 },
-      { data: 4 },
-      { data: 5, orderable: false },
-    ],
-    order: [[0, "asc"]],
-  });
-
-  var tableBrand = $("#brandTable").DataTable({
-    processing: true,
-    serverSide: true,
-    ajax: {
-      url: base_url + "backendproduct/brandsAjaxList",
-      type: "POST",
-    },
-    columns: [
-      { data: 0, orderable: false },
-      { data: 1 },
-      { data: 2 },
-      { data: 3 },
-      { data: 4 },
-      { data: 5, orderable: false },
-    ],
-    order: [[0, "asc"]],
-  });
-
-  var tableModel = $("#modelTable").DataTable({
-    processing: true,
-    serverSide: true,
-    ajax: {
-      url: base_url + "backendproduct/modelsAjaxList",
+      url: base_url + "backendproduct/mainCategoriesAjaxList",
       type: "POST",
     },
     columns: [

@@ -11,6 +11,7 @@ class Backendproduct extends MX_Controller
         $this->load->model("etx_product");
         $this->load->model("backendproduct/grade_model");
         $this->load->model("backendproduct/attribute_model");
+        $this->load->model("backendproduct/categori_model");
     }
     public function index()
     {
@@ -642,6 +643,96 @@ class Backendproduct extends MX_Controller
         } else {
             echo json_encode(array("status" => false, "message" => "Failed to delete attribute"));
         }
+    }
+
+    public function categoriAjaxList($type = null)
+    {
+        $start = $this->input->post('start');
+        $length = $this->input->post('length');
+        $search = $this->input->post('search')['value'];
+        $order = $this->input->post('order')[0];
+
+        // Jika type dari parameter, override POST
+        if ($type) {
+            $_POST['type'] = $type;
+        }
+
+        $type = $this->input->post('type');
+
+        // Gunakan method dengan filter type
+        if ($type) {
+            $list = $this->categori_model->get_datatables_by_type($start, $length, $search, $order, $type);
+            $recordsFiltered = $this->categori_model->count_filtered_by_type($search, $type);
+        } else {
+            $list = $this->categori_model->get_datatables($start, $length, $search, $order);
+            $recordsFiltered = $this->categori_model->count_filtered($search);
+        }
+
+        $data = array();
+        $no = $start;
+
+        foreach ($list as $categori) {
+            $no++;
+            $row = array();
+            $row[] = $no;
+            $row[] = ($categori->img != null)
+                ? '<img src="' . base_url() . '/public/upload/categori/' . $categori->img . '" class="img-thumbnail" style="max-height: 50px;">'
+                :  '<img src="' . base_url() . '/public/image/noimage.png' . '" class="img-thumbnail" style="max-height: 50px;">';
+            $row[] = $categori->name;
+
+            // Tambahkan info parent/type
+            $row[] = $this->categori_model->get_parent_info($categori->id);
+
+            // Tambahkan type badge
+            $type_info = $this->categori_model->get_category_type_info($categori->id);
+            $row[] = '<p class="fbold f16">' . ucfirst(str_replace('_', ' ', $type_info)) . '</p>';
+
+            $row[] = '
+        <button type="button" class="btn btn-warning btn-sm edit" data-id="' . $categori->id . '" data-categori="' . $categori->name . '">
+            <i class="fas fa-edit"></i> Edit
+        </button>
+        <button type="button" class="btn btn-danger btn-sm delete" data-id="' . $categori->id . '">
+            <i class="fas fa-trash"></i> Delete
+        </button>
+    ';
+
+            $data[] = $row;
+        }
+
+        $output = array(
+            "draw" => $this->input->post('draw'),
+            "recordsTotal" => $this->categori_model->count_all(),
+            "recordsFiltered" => $recordsFiltered,
+            "data" => $data,
+        );
+
+        echo json_encode($output);
+    }
+
+    // Method khusus untuk masing-masing type
+    public function mainCategoriesAjaxList()
+    {
+        $this->categoriAjaxList('main_category');
+    }
+
+    public function subCategoriesAjaxList()
+    {
+        $this->categoriAjaxList('sub_category');
+    }
+
+    public function subsubCategoriesAjaxList()
+    {
+        $this->categoriAjaxList('subsub_category');
+    }
+
+    public function brandsAjaxList()
+    {
+        $this->categoriAjaxList('brand');
+    }
+
+    public function modelsAjaxList()
+    {
+        $this->categoriAjaxList('model');
     }
 
     public function addcategory()

@@ -389,7 +389,7 @@ $(document).ready(function () {
     processing: true,
     serverSide: true,
     ajax: {
-      url: base_url + "backendproduct/subsubCategoriesAjaxList",
+      url: base_url + "backendproduct/mainCategoriesAjaxList",
       type: "POST",
     },
     columns: [
@@ -407,7 +407,7 @@ $(document).ready(function () {
     processing: true,
     serverSide: true,
     ajax: {
-      url: base_url + "backendproduct/brandsAjaxList",
+      url: base_url + "backendproduct/modelsAjaxList",
       type: "POST",
     },
     columns: [
@@ -425,7 +425,7 @@ $(document).ready(function () {
     processing: true,
     serverSide: true,
     ajax: {
-      url: base_url + "backendproduct/modelsAjaxList",
+      url: base_url + "backendproduct/brandsAjaxList",
       type: "POST",
     },
     columns: [
