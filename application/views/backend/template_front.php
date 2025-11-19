@@ -15,7 +15,8 @@
     <?php endif ?> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
-    <link href="<?php echo base_url(); ?>asset/datatables/dataTables.bootstrap.css" rel="stylesheet">
+    <!-- <link href="<?php echo base_url(); ?>asset/datatables/dataTables.bootstrap.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.5/css/dataTables.dataTables.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/font-awesome-animation.css">
     <link href="<?php echo base_url(); ?>asset/datatables/jquery.dataTables.min.css" rel="stylesheet">
@@ -137,10 +138,15 @@
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script
+        src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script> -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
-    <script src="<?php echo base_url(); ?>asset/datatables/jquery.dataTables.min.js"></script>
-    <script src="<?php echo base_url(); ?>asset/datatables/dataTables.bootstrap.min.js"></script>
+    <!-- <script src="<?php echo base_url(); ?>asset/datatables/jquery.dataTables.min.js"></script>
+    <script src="<?php echo base_url(); ?>asset/datatables/dataTables.bootstrap.min.js"></script> -->
+    <script src="https://cdn.datatables.net/2.3.5/js/dataTables.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/d64235c5d9.js" crossorigin="anonymous"></script>
 

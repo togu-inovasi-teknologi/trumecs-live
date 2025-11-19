@@ -401,38 +401,6 @@ $(document).ready(function () {
     order: [[0, "asc"]],
   });
 
-  var tableCategoriExpert = $("#categoriExpertTable").DataTable({
-    processing: true,
-    serverSide: true,
-    ajax: {
-      url: base_url + "backendproduct/mainCategoriesExpertAjaxList",
-      type: "POST",
-    },
-    columns: [
-      { data: 0, orderable: false },
-      { data: 1 },
-      { data: 2 },
-      { data: 3, orderable: false },
-    ],
-    order: [[0, "asc"]],
-  });
-
-  var tableCategoriRent = $("#categoriRentTable").DataTable({
-    processing: true,
-    serverSide: true,
-    ajax: {
-      url: base_url + "backendproduct/mainCategoriesRentAjaxList",
-      type: "POST",
-    },
-    columns: [
-      { data: 0, orderable: false },
-      { data: 1 },
-      { data: 2 },
-      { data: 3, orderable: false },
-    ],
-    order: [[0, "asc"]],
-  });
-
   // Add form submission
   $("#addFormCategori").on("submit", function (e) {
     e.preventDefault();

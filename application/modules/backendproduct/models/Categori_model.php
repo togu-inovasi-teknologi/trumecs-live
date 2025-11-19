@@ -14,7 +14,21 @@ class categori_model extends CI_Model
     // Get all main categories (parent = 0, is_brand = 0)
     public function get_main_categories()
     {
-        return $this->db->where(['is_brand' => 0])
+        return $this->db->where(['parent' => 0, 'is_brand' => 0, 'etc' => 0])
+            ->get($this->table)
+            ->result();
+    }
+
+    public function get_main_categories_expert()
+    {
+        return $this->db->where(['parent' => 0, 'is_brand' => 0, 'etc' => 1])
+            ->get($this->table)
+            ->result();
+    }
+
+    public function get_main_categories_rent()
+    {
+        return $this->db->where(['parent' => 0, 'is_brand' => 0, 'etc' => 2])
             ->get($this->table)
             ->result();
     }
@@ -279,7 +293,13 @@ class categori_model extends CI_Model
         if ($type) {
             switch ($type) {
                 case 'main_category':
-                    $this->db->where(['is_brand' => 0, 'parent_brand' => 0]);
+                    $this->db->where(['is_brand' => 0, 'parent_brand' => 0, 'etc' => 0]);
+                    break;
+                case 'main_category_expert':
+                    $this->db->where(['is_brand' => 0, 'parent_brand' => 0, 'etc' => 1]);
+                    break;
+                case 'main_category_rent':
+                    $this->db->where(['is_brand' => 0, 'parent_brand' => 0, 'etc' => 2]);
                     break;
                 case 'sub_category':
                     $this->db->where('parent !=', 0);
@@ -363,8 +383,8 @@ class categori_model extends CI_Model
             case 'sub_category':
                 $parent = $this->get_categori_by_id($category->parent);
                 if ($parent) {
-                    return '<div>' . $category->name . '</div>' .
-                        '<div>' . $parent->name . '</div>';
+                    return '<div class="fbold">' . $category->name . '</div>' .
+                        '<div class="text-muted fs-6">' . $parent->name . '</div>';
                 }
                 return $category->name;
 
@@ -373,11 +393,11 @@ class categori_model extends CI_Model
                 if ($parent_sub) {
                     $parent_main = $this->get_categori_by_id($parent_sub->parent);
                     if ($parent_main) {
-                        return '<div>' . $category->name . '</div>' .
-                            '<div>' . $parent_main->name . ' - ' . $parent_sub->name . '</div>';
+                        return '<div class="fbold">' . $category->name . '</div>' .
+                            '<div class="text-muted fs-6">' . $parent_main->name . ' - ' . $parent_sub->name . '</div>';
                     }
-                    return '<div>' . $category->name . '</div>' .
-                        '<div>' . $parent_sub->name . '</div>';
+                    return '<div class="fbold">' . $category->name . '</div>' .
+                        '<div class="text-muted fs-6">' . $parent_sub->name . '</div>';
                 }
                 return $category->name;
 
@@ -391,8 +411,8 @@ class categori_model extends CI_Model
                     $parent_sub = $this->get_categori_by_id($subsub_category->parent);
                     $parent_main = $this->get_categori_by_id($parent_sub->parent);
 
-                    return '<div>' . $category->name . '</div>' .
-                        '<div>' . $brand->name . ' - ' . $parent_main->name . ' - ' . $parent_sub->name . ' - ' . $subsub_category->name . '</div>';
+                    return '<div class="fbold">' . $category->name . '</div>' .
+                        '<div class="text-muted fs-6">'  . $parent_main->name . ' - ' . $parent_sub->name . ' - ' . $subsub_category->name . ' - ' .  $brand->name . '</div>';
                 }
                 return $category->name;
 
@@ -478,10 +498,31 @@ class categori_model extends CI_Model
         return $this->db->update($this->table, $data);
     }
 
-    public function delete_categori($id)
+    public function get_image_path($category_id)
     {
-        $this->db->where('id', $id);
-        return $this->db->delete($this->table);
+        $category = $this->get_categori_by_id($category_id);
+        return $category ? $category->img : null;
+    }
+
+    // Delete category dengan handle image
+    public function delete_categori($category_id)
+    {
+        // Get image name sebelum delete
+        $image_name = $this->get_image_path($category_id);
+
+        // Delete dari database
+        $this->db->where('id', $category_id);
+        $result = $this->db->delete($this->table);
+
+        // Jika delete berhasil dan ada image, hapus file
+        if ($result && $image_name) {
+            $image_path = FCPATH . 'public/upload/categori/' . $image_name;
+            if (file_exists($image_path)) {
+                unlink($image_path);
+            }
+        }
+
+        return $result;
     }
 
     public function insert_categori($data)

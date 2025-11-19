@@ -191,7 +191,7 @@ $(".btnxxadd").on("click", function () {
 // grade jquery
 
 $(document).ready(function () {
-  var tableGrade = $("#gradeTable").DataTable({
+  var table = $("#gradeTable").DataTable({
     processing: true,
     serverSide: true,
     ajax: {
@@ -220,7 +220,7 @@ $(document).ready(function () {
         if (response.status) {
           $("#add-grade").modal("hide");
           $("#addFormGrade")[0].reset();
-          tableGrade.ajax.reload();
+          table.ajax.reload();
           showSuccessToast(response.message);
         } else {
           showErrorToast(response.message);
@@ -254,7 +254,7 @@ $(document).ready(function () {
       success: function (response) {
         if (response.status) {
           $("#edit-grade").modal("hide");
-          tableGrade.ajax.reload();
+          table.ajax.reload();
           showSuccessToast(response.message);
         } else {
           showErrorToast(response.message);
@@ -275,7 +275,7 @@ $(document).ready(function () {
         dataType: "json",
         success: function (response) {
           if (response.status) {
-            tableGrade.ajax.reload();
+            table.ajax.reload();
             showSuccessToast(response.message);
           } else {
             showErrorToast(response.message);
@@ -289,7 +289,7 @@ $(document).ready(function () {
 // attribute jquery
 
 $(document).ready(function () {
-  var tableAttribute = $("#attributeTable").DataTable({
+  var table = $("#attributeTable").DataTable({
     processing: true,
     serverSide: true,
     ajax: {
@@ -317,7 +317,7 @@ $(document).ready(function () {
         if (response.status) {
           $("#add-attribute").modal("hide");
           $("#addFormAttribute")[0].reset();
-          tableAttribute.ajax.reload();
+          table.ajax.reload();
           showSuccessToast(response.message);
         } else {
           showErrorToast(response.message);
@@ -350,7 +350,7 @@ $(document).ready(function () {
       success: function (response) {
         if (response.status) {
           $("#edit-attribute").modal("hide");
-          tableAttribute.ajax.reload();
+          table.ajax.reload();
           showSuccessToast(response.message);
         } else {
           showErrorToast(response.message);
@@ -371,7 +371,7 @@ $(document).ready(function () {
         dataType: "json",
         success: function (response) {
           if (response.status) {
-            tableAttribute.ajax.reload();
+            table.ajax.reload();
             showSuccessToast(response.message);
           } else {
             showErrorToast(response.message);
@@ -401,138 +401,6 @@ $(document).ready(function () {
     order: [[0, "asc"]],
   });
 
-  var tableCategoriExpert = $("#categoriExpertTable").DataTable({
-    processing: true,
-    serverSide: true,
-    ajax: {
-      url: base_url + "backendproduct/mainCategoriesExpertAjaxList",
-      type: "POST",
-    },
-    columns: [
-      { data: 0, orderable: false },
-      { data: 1 },
-      { data: 2 },
-      { data: 3, orderable: false },
-    ],
-    order: [[0, "asc"]],
-  });
-
-  var tableCategoriRent = $("#categoriRentTable").DataTable({
-    processing: true,
-    serverSide: true,
-    ajax: {
-      url: base_url + "backendproduct/mainCategoriesRentAjaxList",
-      type: "POST",
-    },
-    columns: [
-      { data: 0, orderable: false },
-      { data: 1 },
-      { data: 2 },
-      { data: 3, orderable: false },
-    ],
-    order: [[0, "asc"]],
-  });
-
-  // Add form submission
-  $("#addFormCategori").on("submit", function (e) {
-    e.preventDefault();
-
-    $.ajax({
-      url: base_url + "backendproduct/categoriAjaxAdd",
-      type: "POST",
-      data: $(this).serialize(),
-      dataType: "json",
-      success: function (response) {
-        if (response.status) {
-          $("#add-categori").modal("hide");
-          $("#addFormCategori")[0].reset();
-          tableCategori.ajax.reload();
-          showSuccessToast(response.message);
-        } else {
-          showErrorToast(response.message);
-        }
-      },
-    });
-  });
-
-  $("#addFormSubCategori").on("submit", function (e) {
-    e.preventDefault();
-
-    var formData = $(this).serialize();
-
-    $.ajax({
-      url: base_url + "backendproduct/addSubCategori",
-      type: "POST",
-      data: formData,
-      dataType: "json",
-      success: function (response) {
-        if (response.status) {
-          $("#add-subcategori").modal("hide");
-          $("#addFormSubCategori")[0].reset();
-
-          // Reset select2 jika digunakan
-          if ($.fn.select2) {
-            $("#mainCategori").val("").trigger("change");
-          }
-
-          alert(response.message);
-          table.ajax.reload(); // Reload datatable
-        } else {
-          alert(response.message);
-        }
-      },
-      error: function (xhr, status, error) {
-        alert("Error: " + error);
-      },
-    });
-  });
-
-  $("#add-subcategori").on("hidden.bs.modal", function () {
-    $("#addFormSubCategori")[0].reset();
-    if ($.fn.select2) {
-      $("#mainCategori").val("").trigger("change");
-    }
-  });
-
-  function loadMainCategories() {
-    $.ajax({
-      url: base_url + "backendproduct/getMainCategories",
-      type: "GET",
-      dataType: "json",
-      success: function (response) {
-        if (response.status) {
-          var select = $("#mainCategori");
-          select.empty(); // Kosongkan dulu
-          select.append('<option value="">Pilih Kategori Utama</option>');
-          $.each(response.data, function (index, category) {
-            select.append(
-              '<option value="' +
-                category.id +
-                '">' +
-                category.name +
-                "</option>"
-            );
-          });
-        } else {
-          alert("Failed to load categories");
-        }
-      },
-      error: function (xhr, status, error) {
-        alert("Error loading categories: " + error);
-      },
-    });
-  }
-
-  // Panggil function ketika modal dibuka
-  $("#add-subcategori").on("show.bs.modal", function () {
-    loadMainCategories();
-  });
-
-  // Atau panggil ketika page load
-  $(document).ready(function () {
-    loadMainCategories();
-  });
-
   var tableBrand = $("#brandTable").DataTable({
     processing: true,
     serverSide: true,
@@ -547,58 +415,6 @@ $(document).ready(function () {
       { data: 3, orderable: false },
     ],
     order: [[0, "asc"]],
-  });
-
-  $("#addFormBrand").on("submit", function (e) {
-    e.preventDefault();
-
-    var formData = new FormData(this); // Ini yang penting untuk handle file
-
-    $.ajax({
-      url: base_url + "backendproduct/brandAjaxAdd",
-      type: "POST",
-      data: formData,
-      processData: false, // Penting untuk FormData
-      contentType: false, // Penting untuk FormData
-      dataType: "json",
-      success: function (response) {
-        if (response.status) {
-          // Success
-          $("#add-brand").modal("hide");
-          $("#addFormBrand")[0].reset();
-          $(".blah").attr("src", ""); // Reset preview
-          showSuccessToast(response.message);
-          // Reload datatable jika perlu
-          // table.ajax.reload();
-        } else {
-          showErrorToast(response.message);
-        }
-      },
-      error: function (xhr, status, error) {
-        showErrorToast(response.message);
-      },
-    });
-  });
-
-  $("#brandTable").on("click", ".delete", function () {
-    if (confirm("Are you sure you want to delete this brand?")) {
-      var id = $(this).data("id");
-
-      $.ajax({
-        url: base_url + "backendproduct/brandAjaxDelete",
-        type: "POST",
-        data: { id: id },
-        dataType: "json",
-        success: function (response) {
-          if (response.status) {
-            tableBrand.ajax.reload();
-            showSuccessToast(response.message);
-          } else {
-            showErrorToast(response.message);
-          }
-        },
-      });
-    }
   });
 
   var tableModel = $("#modelTable").DataTable({
@@ -616,6 +432,28 @@ $(document).ready(function () {
     ],
     order: [[0, "asc"]],
   });
+
+  // Add form submission
+  // $("#addFormAttribute").on("submit", function (e) {
+  //   e.preventDefault();
+
+  //   $.ajax({
+  //     url: base_url + "backendproduct/attributeAjaxAdd",
+  //     type: "POST",
+  //     data: $(this).serialize(),
+  //     dataType: "json",
+  //     success: function (response) {
+  //       if (response.status) {
+  //         $("#add-attribute").modal("hide");
+  //         $("#addFormAttribute")[0].reset();
+  //         table.ajax.reload();
+  //         showSuccessToast(response.message);
+  //       } else {
+  //         showErrorToast(response.message);
+  //       }
+  //     },
+  //   });
+  // });
 
   // Edit button click
   // $("#attributeTable").on("click", ".edit", function () {
