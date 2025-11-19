@@ -176,6 +176,32 @@
 															</tbody>
 														</table>
 													</div>
+													<div class="modal fade" id="add-subcategori-expert" tabindex="-1">
+														<div class="modal-dialog">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h5 class="modal-title">Add New Sub Expert</h5>
+																	<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+																</div>
+																<form id="addFormSubCategoriExpert">
+																	<div class="modal-body">
+																		<div class="my-3">
+																			<label for="mainCategoriExpert" class="form-label fw-bold">Kategori Utama</label>
+																			<select name="mainCategoriExpertId" id="mainCategoriExpert" class="form-control"></select>
+																		</div>
+																		<div class="my-3">
+																			<label for="subCategori" class="form-label fw-bold">Nama Sub Kategori Expert</label>
+																			<input type="text" class="form-control" id="subCategori" name="name" required>
+																		</div>
+																	</div>
+																	<div class="modal-footer">
+																		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+																		<button type="submit" class="btn btn-primary">Save</button>
+																	</div>
+																</form>
+															</div>
+														</div>
+													</div>
 												</div>
 												<div class="tab-pane fade" id="rent-tab-pane" role="tabpanel" aria-labelledby="rent-tab" tabindex="0">
 													<div class="col-lg-12 d-flex justify-content-between align-items-center">
@@ -202,6 +228,32 @@
 															<tbody>
 															</tbody>
 														</table>
+													</div>
+													<div class="modal fade" id="add-subcategori-rent" tabindex="-1">
+														<div class="modal-dialog">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h5 class="modal-title">Add New Sub Rent</h5>
+																	<button typgit e="button" class="btn-close" data-bs-dismiss="modal"></button>
+																</div>
+																<form id="addFormSubCategoriRent">
+																	<div class="modal-body">
+																		<div class="my-3">
+																			<label for="mainCategoriRent" class="form-label fw-bold">Kategori Utama</label>
+																			<select name="mainCategoriRentId" id="mainCategoriRent" class="form-control"></select>
+																		</div>
+																		<div class="my-3">
+																			<label for="subCategori" class="form-label fw-bold">Nama Sub Kategori Rent</label>
+																			<input type="text" class="form-control" id="subCategori" name="name" required>
+																		</div>
+																	</div>
+																	<div class="modal-footer">
+																		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+																		<button type="submit" class="btn btn-primary">Save</button>
+																	</div>
+																</form>
+															</div>
+														</div>
 													</div>
 												</div>
 											</div>

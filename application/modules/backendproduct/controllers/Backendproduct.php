@@ -908,6 +908,36 @@ class Backendproduct extends MX_Controller
         echo json_encode(array("status" => true, "data" => $categories));
     }
 
+    public function getMainCategoriesExpert()
+    {
+        $main_categories = $this->categori_model->get_main_categories_expert();
+
+        $categories = array();
+        foreach ($main_categories as $category) {
+            $categories[] = array(
+                'id' => $category->id,
+                'name' => $category->name
+            );
+        }
+
+        echo json_encode(array("status" => true, "data" => $categories));
+    }
+
+    public function getMainCategoriesRent()
+    {
+        $main_categories = $this->categori_model->get_main_categories_rent();
+
+        $categories = array();
+        foreach ($main_categories as $category) {
+            $categories[] = array(
+                'id' => $category->id,
+                'name' => $category->name
+            );
+        }
+
+        echo json_encode(array("status" => true, "data" => $categories));
+    }
+
     public function addSubCategori()
     {
         // Validasi
@@ -949,9 +979,53 @@ class Backendproduct extends MX_Controller
         $this->categoriAjaxList('main_category_expert');
     }
 
+    public function subCategoriesExpertAjaxAdd()
+    {
+
+        $data = array(
+            'name' => $this->input->post('name'),
+            'url' => preg_replace("/[^a-zA-Z0-9\-]/", "", str_replace(" ", "-", $this->input->post('name'))),
+            'parent' => $this->input->post('mainCategoriExpertId'),
+            'parent_brand' => 0,
+            'etc' => 1,
+            'is_brand' => 0,
+            'is_tag' => 0,
+        );
+
+        $insert = $this->categori_model->insert_categori($data);
+
+        if ($insert) {
+            echo json_encode(array("status" => true, "message" => "Sub Categori Expert added successfully"));
+        } else {
+            echo json_encode(array("status" => false, "message" => "Failed to add Sub Categori Expert"));
+        }
+    }
+
     public function mainCategoriesRentAjaxList()
     {
         $this->categoriAjaxList('main_category_rent');
+    }
+
+    public function subCategoriesRentAjaxAdd()
+    {
+
+        $data = array(
+            'name' => $this->input->post('name'),
+            'url' => preg_replace("/[^a-zA-Z0-9\-]/", "", str_replace(" ", "-", $this->input->post('name'))),
+            'parent' => $this->input->post('mainCategoriRentId'),
+            'parent_brand' => 0,
+            'etc' => 2,
+            'is_brand' => 0,
+            'is_tag' => 0,
+        );
+
+        $insert = $this->categori_model->insert_categori($data);
+
+        if ($insert) {
+            echo json_encode(array("status" => true, "message" => "Sub Categori Rent added successfully"));
+        } else {
+            echo json_encode(array("status" => false, "message" => "Failed to add Sub Categori Rent"));
+        }
     }
 
     public function subCategoriesAjaxList()

@@ -401,27 +401,6 @@ $(document).ready(function () {
     order: [[0, "asc"]],
   });
 
-  $("#addFormCategori").on("submit", function (e) {
-    e.preventDefault();
-
-    $.ajax({
-      url: base_url + "backendproduct/categoriAjaxAdd",
-      type: "POST",
-      data: $(this).serialize(),
-      dataType: "json",
-      success: function (response) {
-        if (response.status) {
-          $("#add-categori").modal("hide");
-          $("#addFormCategori")[0].reset();
-          tableCategori.ajax.reload();
-          showSuccessToast(response.message);
-        } else {
-          showErrorToast(response.message);
-        }
-      },
-    });
-  });
-
   $("#addFormSubCategori").on("submit", function (e) {
     e.preventDefault();
 
@@ -592,64 +571,26 @@ $(document).ready(function () {
     order: [[0, "asc"]],
   });
 
-  $("#addFormSubCategoriRent").on("submit", function (e) {
+  // Add form submission
+  $("#addFormCategori").on("submit", function (e) {
     e.preventDefault();
 
     $.ajax({
-      url: base_url + "backendproduct/subCategoriesRentAjaxAdd",
+      url: base_url + "backendproduct/categoriAjaxAdd",
       type: "POST",
       data: $(this).serialize(),
       dataType: "json",
       success: function (response) {
         if (response.status) {
-          $("#add-subcategori-rent").modal("hide");
-          $("#addFormSubCategoriRent")[0].reset();
-          tableCategoriRent.ajax.reload();
+          $("#add-categori").modal("hide");
+          $("#addFormCategori")[0].reset();
+          tableCategori.ajax.reload();
           showSuccessToast(response.message);
         } else {
           showErrorToast(response.message);
         }
       },
     });
-  });
-
-  function loadMainCategoriesRent() {
-    $.ajax({
-      url: base_url + "backendproduct/getMainCategoriesRent",
-      type: "GET",
-      dataType: "json",
-      success: function (response) {
-        if (response.status) {
-          var select = $("#mainCategoriRent");
-          select.empty(); // Kosongkan dulu
-          select.append('<option value="">Pilih Kategori Utama</option>');
-          $.each(response.data, function (index, category) {
-            select.append(
-              '<option value="' +
-                category.id +
-                '">' +
-                category.name +
-                "</option>"
-            );
-          });
-        } else {
-          showErrorToast("Failed to load categories");
-        }
-      },
-      error: function (xhr, status, error) {
-        showErrorToast("Error loading categories: " + error);
-      },
-    });
-  }
-
-  // Panggil function ketika modal dibuka
-  $("#add-subcategori-rent").on("show.bs.modal", function () {
-    loadMainCategoriesRent();
-  });
-
-  // Atau panggil ketika page load
-  $(document).ready(function () {
-    loadMainCategoriesRent();
   });
 
   var tableBrand = $("#brandTable").DataTable({
