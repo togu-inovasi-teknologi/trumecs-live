@@ -1,4 +1,4 @@
-<footer class="m-t-1">
+<footer class="mt-3">
     <?php
     $session = $this->session->all_userdata();
     $sessionmember = isset($session["member"]) ? $session["member"] : array('id' => null);
@@ -6,75 +6,75 @@
     ?>
     <?php else : ?>
         <div class="container-fluid" style="max-width:1500px;">
-            <div class="row p-a-1">
+            <div class="row p-3">
                 <div class="col-lg-12 text-center">
-                    <p class="f24" style="color: #fff;"><?php echo $this->lang->line('perluas_bisnis', FALSE) ?> <a href="<?php echo base_url() ?>member/login" class="btn btnnew"><?php echo $this->lang->line('tombol_bergabung_sekarang', FALSE) ?></a></p>
+                    <p class="fs-4" style="color: #fff;"><?php echo $this->lang->line('perluas_bisnis', FALSE) ?> <a href="<?php echo base_url() ?>member/login" class="btn btn-primary"><?php echo $this->lang->line('tombol_bergabung_sekarang', FALSE) ?></a></p>
                 </div>
             </div>
-            <hr class="m-a-0" style="border-top:1px solid #666;" />
+            <hr class="m-0" style="border-top:1px solid #666;" />
         </div>
     <?php endif ?>
     <div class="container-fluid" style="max-width:1500px;">
-        <div class="row p-x-1 m-a-0 p-a-0">
+        <div class="row px-2 mx-0 py-0">
             <div class="col-lg-3" style="color: #fff;">
-                <div class="logo m-t-1">
+                <div class="logo mt-3">
                     <a href="<?php echo base_url() ?>">
                         <img src="<?php echo base_url() ?>public/image/logofooternew.png" alt="Logo Trumecs Footer">
                     </a>
                 </div>
-                <p class="fbold m-t-1 m-b-1 f18"><?php echo $this->lang->line('ikuti_kami', FALSE) ?></p>
-                <a href="https://www.linkedin.com/company/trumecs" target="_blank" rel="noreferrer"><i class="fa fa-linkedin-square icon-footer"></i></a>
-                <a href="https://www.instagram.com/trumecs" target="_blank" rel="noreferrer"><i class="fa fa-instagram icon-footer"></i></a>
-                <a href="https://www.facebook.com/trumecsid" target="_blank" rel="noreferrer"><i class="fa fa-facebook-square icon-footer"></i></a>
-                <a href="https://twitter.com/trumecs" target="_blank" rel="noreferrer"><i class="fa fa-twitter icon-footer"></i></a>
-                <a href="https://www.youtube.com/@trumecs" target="_blank" rel="noreferrer"><i class="fa fa-youtube-play icon-footer"></i></a>
+                <p class="fw-bold mt-3 mb-3 fs-5"><?php echo $this->lang->line('ikuti_kami', FALSE) ?></p>
+                <a href="https://www.linkedin.com/company/trumecs" target="_blank" rel="noreferrer"><i class="fab fa-linkedin icon-footer"></i></a>
+                <a href="https://www.instagram.com/trumecs" target="_blank" rel="noreferrer"><i class="fab fa-instagram icon-footer"></i></a>
+                <a href="https://www.facebook.com/trumecsid" target="_blank" rel="noreferrer"><i class="fab fa-facebook-square icon-footer"></i></a>
+                <a href="https://twitter.com/trumecs" target="_blank" rel="noreferrer"><i class="fab fa-twitter icon-footer"></i></a>
+                <a href="https://www.youtube.com/@trumecs" target="_blank" rel="noreferrer"><i class="fab fa-youtube icon-footer"></i></a>
             </div>
-            <div class="col-lg-3 m-t-1" style="color: #fff;">
-                <p class="fw-bold f18"><?php echo $this->lang->line('hubungi_kami', FALSE) ?></p>
-                <div class="contact-info m-t-1">
-                    <div class="contact-item d-flex align-items-center m-b-1">
+            <div class="col-lg-3 mt-3" style="color: #fff;">
+                <p class="fw-bold fs-5"><?php echo $this->lang->line('hubungi_kami', FALSE) ?></p>
+                <div class="contact-info mt-3">
+                    <div class="contact-item d-flex align-items-center mb-3">
                         <div class="me-3">
-                            <i class="fa fa-whatsapp icon-footer"></i>
+                            <i class="fab fa-whatsapp icon-footer"></i>
                         </div>
                         <div>
                             <a href="https://wa.me/<?php echo "+" . platform_contact('whatsapp') ?>" target="_blank" rel="noopener noreferrer">
-                                <p class="f14 mb-0" style="color:#fff;">+<?php echo platform_contact('whatsapp') ?></p>
+                                <p class="fs-6 mb-0" style="color:#fff;">+<?php echo platform_contact('whatsapp') ?></p>
                             </a>
                         </div>
                     </div>
-                    <div class="contact-item d-flex align-items-center m-b-1">
+                    <div class="contact-item d-flex align-items-center mb-3">
                         <div class="me-3">
-                            <i class="fa fa-envelope icon-footer"></i>
+                            <i class="fas fa-envelope icon-footer"></i>
                         </div>
                         <div>
                             <a href="mailto:<?php echo platform_contact('email') ?>" target="_blank" rel="noopener noreferrer">
-                                <p class="f14 mb-0" style="color:#fff;"><?php echo platform_contact('email') ?></p>
+                                <p class="fs-6 mb-0" style="color:#fff;"><?php echo platform_contact('email') ?></p>
                             </a>
                         </div>
                     </div>
 
-                    <div class="contact-item d-flex align-items-start m-b-1">
+                    <div class="contact-item d-flex align-items-start mb-3">
                         <div class="me-3">
-                            <i class="fa fa-map-marker icon-footer"></i>
+                            <i class="fas fa-map-marker-alt icon-footer"></i>
                         </div>
                         <div>
                             <a href="https://goo.gl/maps/a4emSqqX4qWaQikG7" target="_blank" rel="noopener noreferrer">
-                                <p class="f14 mb-0" style="color:#fff;"><?php echo platform_contact('address') ?></p>
+                                <p class="fs-6 mb-0" style="color:#fff;"><?php echo platform_contact('address') ?></p>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 m-t-1">
-                <p class="f20 fbold text-right" style="color:#fff;"><?php echo $this->lang->line('ragu_trumecs', FALSE) ?></p>
-                <div class="row m-t-2 m-b-2 p-a-0">
+            <div class="col-lg-6 mt-3">
+                <p class="fs-4 fw-bold text-end" style="color:#fff;"><?php echo $this->lang->line('ragu_trumecs', FALSE) ?></p>
+                <div class="row mt-4 mb-4 py-0">
                     <div class="col-lg-6">
-                        <i class="fa fa-book icon-footer m-b-2"></i>
-                        <p class="fbold f18" style="color:#fff;"><?php echo $this->lang->line('pelajari_trumecs') ?></p>
-                        <p class="f12" style="color:#fff;"><?php echo $this->lang->line('pelajari_trumecs_isi', FALSE) ?></p>
-                        <a href="<?php echo base_url() ?>page" class="btn btnnew"><?php echo $this->lang->line('tombol_baca_dulu', FALSE) ?></a>
+                        <i class="fas fa-book icon-footer mb-3"></i>
+                        <p class="fw-bold fs-5" style="color:#fff;"><?php echo $this->lang->line('pelajari_trumecs') ?></p>
+                        <p class="fs-6" style="color:#fff;"><?php echo $this->lang->line('pelajari_trumecs_isi', FALSE) ?></p>
+                        <a href="<?php echo base_url() ?>page" class="btn btn-primary"><?php echo $this->lang->line('tombol_baca_dulu', FALSE) ?></a>
                     </div>
-                    <div class="col-lg-6 text-right">
+                    <div class="col-lg-6 text-end">
                         <form action="_footerdesktop_new.php" method="POST">
                             <?php $userEmail = "";
                             if (isset($_POST['subscribe'])) {
@@ -85,45 +85,46 @@
                                     $sender = "From: muhammadramdhanaditya@gmail.com";
                                     if (mail($userEmail, $subject, $message, $sender)) {
                             ?>
-                                        <div class="alert">
+                                        <div class="alert alert-success">
                                             <?php echo "Terimakasih telah berlangganan" ?>
                                         </div>
                                     <?php
                                         $userEmail = "";
                                     } else { ?>
-                                        <div class="alert">
+                                        <div class="alert alert-success">
                                             <?php echo "Terimakasih telah berlangganan" ?>
                                         </div>
                                     <?php
                                     }
                                 } else { ?>
-                                    <div class="alert ">
+                                    <div class="alert alert-danger">
                                         <?php echo " $userEmail bukan email yang aktif" ?>
                                     </div>
                             <?php
                                 }
                             } ?>
-                            <i class="fa fa-envelope icon-footer m-b-2"></i>
-                            <p class="fbold f18" style="color:#fff;"><?php echo $this->lang->line('info_trumecs', FALSE) ?></p>
-                            <p class="f12" style="color:#fff;"><?php echo $this->lang->line('info_trumecs_isi', FALSE) ?></p>
-                            <div class="input-group input-group-md pull-left" style="width:100%;">
-                                <input type="text" class="form-control" placeholder="<?php echo $this->lang->line('placeholder_email_anda', FALSE) ?>" value="<?php echo $userEmail ?>" style="border-radius:0;" required>
-                                <div name="subscribe" class="input-group-addon btn search-button fbold" id="searchbuttontemplate" style="background:#fa8420; color:#fff;">
+                            <i class="fas fa-envelope icon-footer mb-3"></i>
+                            <p class="fw-bold fs-5" style="color:#fff;"><?php echo $this->lang->line('info_trumecs', FALSE) ?></p>
+                            <p class="fs-6" style="color:#fff;"><?php echo $this->lang->line('info_trumecs_isi', FALSE) ?></p>
+                            <div class="input-group input-group-lg" style="width:100%;">
+                                <input type="email" name="email" class="form-control" placeholder="<?php echo $this->lang->line('placeholder_email_anda', FALSE) ?>" value="<?php echo $userEmail ?>" style="border-radius:0;" required>
+                                <button type="submit" name="subscribe" class="btn search-button fw-bold" style="background:#fa8420; color:#fff; border-radius:0;">
                                     <?php echo $this->lang->line('tombol_kirim', FALSE) ?>
-                                </div>
+                                </button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <div class=" row m-t-2" style="padding:6px 15px; background-color:black;">
-            <div class="col-lg-12 m-t-2">
+        <div class="row mt-4" style="padding:6px 15px; background-color:black;">
+            <div class="col-lg-12 mt-4">
                 <p class="text-center" style="color: #fff;">Trumecs.com © 2022 | Tiyasa Makmur Perkasa</p>
             </div>
         </div>
     </div>
 </footer>
+
 <style>
     .logo a img {
         width: 200px;
@@ -145,5 +146,16 @@
 
     .contact-item a:hover p {
         color: #fa8420 !important;
+    }
+
+    .btn-primary {
+        background-color: #fa8420;
+        border-color: #fa8420;
+        border-radius: 0;
+    }
+
+    .btn-primary:hover {
+        background-color: #e6761a;
+        border-color: #e6761a;
     }
 </style>

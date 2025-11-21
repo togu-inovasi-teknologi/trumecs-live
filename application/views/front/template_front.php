@@ -75,11 +75,13 @@ $contact = $this->db->where('id', $ida)->get("admin")->result_array();
     <?php $this->load->view("front/_favicon"); ?>
     <!-- Bootstrap Core CSS -->
     <!--link  rel="stylesheet" href="<?php echo base_url(); ?>asset/css/bootstrap.min.css" -->
-    <?php if (1 == 2) : ?>
-        <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
+    <?php if ($this->uri->segment(1) == "article") : ?>
+        <!-- <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css"> -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <?php else : ?>
         <link rel="stylesheet" href="<?php echo base_url() ?>asset/css/bootstrap.4-alpha.css">
     <?php endif ?>
+
     <link rel="stylesheet" href="<?php echo base_url() ?>asset/css/template.css">
     <?php
     if (isset($css)) {
@@ -89,8 +91,8 @@ $contact = $this->db->where('id', $ida)->get("admin")->result_array();
     ?>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap" rel="stylesheet">
     <link href="<?php echo base_url("asset/fonts/Lato-Regular.ttf") ?>" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/bootstrap.offcanvas.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/bootstrap.offcanvas.min.css"> -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/font-awesome-animation.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>asset/js/slick/slick.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>asset/js/slick/slick-theme.css">
@@ -303,20 +305,23 @@ $contact = $this->db->where('id', $ida)->get("admin")->result_array();
     </div>
     <?php $this->load->view("front/popup_ads"); ?>
     <?php
-    $javascript = array(base_url() . "asset/js/jquery.js", base_url() . 'asset/js/bootstrap.min.js', base_url() . 'asset/js/bootstrap-toolkit.min.js', base_url() . 'asset/js/slick/slick.min.js', base_url() . 'asset/js/bootstrap.offcanvas.min.js');
+    $javascript = array(base_url() . 'asset/js/slick/slick.min.js');
     foreach ($javascript as $dt_javascript) {
         echo '<script type="text/javascript" src="' . $dt_javascript . '"></script>';
     }
     ?>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/d64235c5d9.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="<?php echo base_url() ?>asset/js/trumecs.effect.js"></script>
     <script type="text/javascript" src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js">
     </script>
-    <!--<script src="https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.js"></script>-->
+    <!-- <script src="https://cdn.datatables.net/2.3.5/js/dataTables.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
     <script src="/asset/backend/dist/js/tinymce/tinymce.min.js"></script>
+
     <script>
         var base_url = $("body").attr("baseurl");
     </script>

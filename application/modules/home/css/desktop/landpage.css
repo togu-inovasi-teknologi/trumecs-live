@@ -555,3 +555,8 @@ body section div.container {
   top: 0;
   overflow: hidden;
 }
+
+.bg-menu-big-4 {
+  background: #f6f6f7;
+  border: 1px solid #eee;
+}

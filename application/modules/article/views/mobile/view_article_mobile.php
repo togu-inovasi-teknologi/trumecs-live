@@ -16,7 +16,7 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                     <li><a class="f12 forange" href="<?php echo base_url() ?>">Home</a></li>
                     <li><a class="12 forange" href="<?php echo base_url() ?>article">Artikel</a></li>
                     <?php if (!empty($data_page)) : ?>
-                    <li class="f12"><?php echo $key["title"]; ?></li>
+                        <li class="f12"><?php echo $key["title"]; ?></li>
                     <?php endif ?>
                 </ol>
             </div>
@@ -42,13 +42,46 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                         <meta itemprop="height" content="800">
                         <img alt="<?php echo $key["title"]; ?>" title="<?php echo $key["title"]; ?> - trumecs"
                             class="img-responsive"
-                            src="<?= isset($img_base_url) ? $img_base_url : base_url() ?>timthumb?h=600&src=<?php echo isset($img_base_url) ? $img_base_url: base_url() ?>public/image/artikel/<?php echo $key["img"] ?>"
+                            src="<?= isset($img_base_url) ? $img_base_url : base_url() ?>timthumb?h=600&src=<?php echo isset($img_base_url) ? $img_base_url : base_url() ?>public/image/artikel/<?php echo $key["img"] ?>"
                             style="max-height:500px;">
                     </div>
                 </div>
                 <div class="row m-y-md">
                     <div class="col-lg-12">
-                        <?php echo $key["value"] ?>
+                        <!-- <?php echo $key["value"] ?> -->
+                        <?php
+                        $full = explode("</p>", $key["value"]);
+                        foreach ($full as $key => $item) {
+                            $clean = trim(strip_tags($item));
+                            $clean = preg_replace('/[\t\n\r\0\x0B]/', '', $clean);
+                            $clean = preg_replace('/([\s])\1+/', '', $clean);
+
+
+
+
+                            if ($key % 4 == 0 && $key > 0) {
+                        ?>
+                                <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8875911463210576"
+                                    crossorigin="anonymous"></script>
+                                <ins class="adsbygoogle"
+                                    style="display:block; text-align:center;"
+                                    data-ad-layout="in-article"
+                                    data-ad-format="fluid"
+                                    data-ad-client="ca-pub-8875911463210576"
+                                    data-ad-slot="7819820972"></ins>
+                                <script>
+                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script> -->
+                                <?php foreach ($sameproduct as $product) : ?>
+                                    <?php $this->load->view('product/_item_product_home_mobile.php', array('key' => $product, 'img_base_url' => 'https://trumecs.com/')); ?>
+                                <?php endforeach; ?>
+                        <?php
+                            }
+                            echo $clean . "</br>";
+                            // echo $item . " " . strlen($clean) . "</p>";
+                        }
+                        // echo $key["value"]
+                        ?>
                     </div>
                 </div>
             </div>
@@ -60,9 +93,9 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                                 <div class="col-lg-12">
                                     <p class="f20 fbold"><?= $this->lang->line('label_trending'); ?></p>
                                 </div>
-                                <?php foreach($dataTrendingNews as $article) : ?>
-                                <a href="<?php echo base_url() ?>article/<?php echo $article['url'] ?>"
-                                    class="color-black"><?= $this->load->view('_article_row_small', ['artikel' => $article]) ?></a>
+                                <?php foreach ($dataTrendingNews as $article) : ?>
+                                    <a href="<?php echo base_url() ?>article/<?php echo $article['url'] ?>"
+                                        class="color-black"><?= $this->load->view('_article_row_small', ['artikel' => $article]) ?></a>
                                 <?php endforeach; ?>
                             </div>
                         </div>
@@ -73,9 +106,9 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                                 <div class="col-lg-12">
                                     <p class="f20 fbold"><?= $this->lang->line('artikel_terkait'); ?></p>
                                 </div>
-                                <?php foreach($sameartikel as $same) : ?>
-                                <a href="<?php echo base_url() ?>article/<?php echo $same['url'] ?>"
-                                    class="color-black"><?= $this->load->view('_article_row_small', ['artikel' => $same]) ?></a>
+                                <?php foreach ($sameartikel as $same) : ?>
+                                    <a href="<?php echo base_url() ?>article/<?php echo $same['url'] ?>"
+                                        class="color-black"><?= $this->load->view('_article_row_small', ['artikel' => $same]) ?></a>
                                 <?php endforeach; ?>
                             </div>
                         </div>
@@ -109,17 +142,17 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
             </div>
         </div>
         <div class="row slick-product-article">
-            <?php foreach($sameproduct as $product) : ?>
-            <?php $this->load->view('product/_item_product_home_mobile.php', array('key' => $product, 'img_base_url' => 'https://trumecs.com/')); ?>
+            <?php foreach ($sameproduct as $product) : ?>
+                <?php $this->load->view('product/_item_product_home_mobile.php', array('key' => $product, 'img_base_url' => 'https://trumecs.com/')); ?>
             <?php endforeach; ?>
         </div>
     </div>
 </section>
 
 <style>
-.hr-dashed {
-    border-top: 2px dashed white;
-}
+    .hr-dashed {
+        border-top: 2px dashed white;
+    }
 </style>
 
 <!-- <?php if ($this->agent->is_mobile()) : ?>
@@ -134,7 +167,7 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
 							</div>
 						<?php endif ?> -->
 <?php if (!$this->agent->is_mobile()) : ?>
-<!-- <div class="col-lg-4 col-lg-6 col-sm-7 col-xs-7" style="float: right;">
+    <!-- <div class="col-lg-4 col-lg-6 col-sm-7 col-xs-7" style="float: right;">
 							<div class="card panel-kotak panel-default">
 							<div class="card-heading"><?php echo $this->lang->line('artikel_terkait') ?></div>
 							

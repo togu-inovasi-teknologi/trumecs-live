@@ -1,10 +1,10 @@
 <?php $this->load->model("general/General_model", 'M_general'); ?>
-<?php $kategori = $this->M_general->getcategori(["parent" => 0, "is_brand" => 0]); ?>
+<?php $kategori = $this->M_general->getcategori(["parent" => 0, "is_brand" => 0, "etc" => 0]); ?>
 
 <div class="d-flex gap-1">
     <?php foreach ($kategori as $item) : ?>
-        <div class="kategori">
-            <a class="dropdown-toggle fbold" href="#" id="navbarDropdown-<?php echo $item['id'] ?>" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="dropdown kategori">
+            <a class="dropdown-toggle fw-bold" href="#" id="navbarDropdown-<?php echo $item['id'] ?>" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <?php echo $item['name'] ?>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown-<?php echo $item['id'] ?>">
@@ -16,21 +16,21 @@
                         </h5>
                         <div class="menu-content">
                             <div class="section">
-                                <ul>
+                                <ul class="list-unstyled">
                                     <?php $kategoris = $this->M_general->getcategori(['parent' => $item['id']]); ?>
                                     <?php if (count($kategoris) > 0): ?>
                                         <?php foreach ($kategoris as $items) : ?>
                                             <li>
                                                 <a alt="Jual Komponen <?php echo $items['name'] ?>"
                                                     href="<?php echo base_url(); ?>c/<?php echo $item['url'] . '/' . $items['url'] ?>"
-                                                    class="list-kategori-atas">
+                                                    class="list-kategori-atas text-decoration-none">
                                                     <?php echo $items['name'] ?>
                                                 </a>
                                             </li>
                                         <?php endforeach; ?>
                                     <?php else: ?>
                                         <li>
-                                            <div class="alert alert-warning text-center">
+                                            <div class="alert alert-warning text-center mb-0">
                                                 <i class="fas fa-info-circle me-2"></i>
                                                 Kategori ini belum memiliki sub kategori.
                                             </div>
@@ -51,11 +51,11 @@
                                     <?php if (count($subkategoris) > 0): ?>
                                         <div class="section">
                                             <h6 class="text-primary"><?php echo $items['name'] ?></h6>
-                                            <ul>
+                                            <ul class="list-unstyled">
                                                 <?php foreach ($subkategoris as $subitem) : ?>
                                                     <li>
                                                         <a href="<?php echo base_url(); ?>c/<?php echo $item['url'] . '/' . $items['url'] . '/' . $subitem['url'] ?>"
-                                                            class="list-kategori-atas">
+                                                            class="list-kategori-atas text-decoration-none">
                                                             <?php echo $subitem['name'] ?>
                                                         </a>
                                                     </li>
@@ -75,39 +75,39 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Add hover effects for better UX
-        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+        // Enable hover for dropdowns
+        const dropdowns = document.querySelectorAll('.dropdown');
 
-        dropdownToggles.forEach(toggle => {
-            toggle.addEventListener('mouseenter', function() {
-                const dropdownMenu = this.nextElementSibling;
-                if (dropdownMenu && dropdownMenu.classList.contains('dropdown-menu')) {
-                    dropdownMenu.classList.add('show');
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('mouseenter', function() {
+                const dropdownMenu = this.querySelector('.dropdown-menu');
+                if (dropdownMenu) {
+                    const bsDropdown = bootstrap.Dropdown.getOrCreateInstance(this.querySelector('.dropdown-toggle'));
+                    bsDropdown.show();
                 }
             });
 
-            toggle.addEventListener('mouseleave', function() {
-                const dropdownMenu = this.nextElementSibling;
-                // Use setTimeout to allow moving cursor to dropdown
-                setTimeout(() => {
-                    if (dropdownMenu && dropdownMenu.classList.contains('dropdown-menu') &&
-                        !dropdownMenu.matches(':hover')) {
-                        dropdownMenu.classList.remove('show');
-                    }
-                }, 100);
-            });
-        });
-
-        // Keep dropdown open when hovering over it
-        const dropdownMenus = document.querySelectorAll('.dropdown-menu');
-        dropdownMenus.forEach(menu => {
-            menu.addEventListener('mouseenter', function() {
-                this.classList.add('show');
+            dropdown.addEventListener('mouseleave', function() {
+                const dropdownMenu = this.querySelector('.dropdown-menu');
+                if (dropdownMenu && !dropdownMenu.matches(':hover')) {
+                    const bsDropdown = bootstrap.Dropdown.getOrCreateInstance(this.querySelector('.dropdown-toggle'));
+                    bsDropdown.hide();
+                }
             });
 
-            menu.addEventListener('mouseleave', function() {
-                this.classList.remove('show');
-            });
+            // Keep dropdown open when hovering over menu
+            const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+            if (dropdownMenu) {
+                dropdownMenu.addEventListener('mouseenter', function() {
+                    const bsDropdown = bootstrap.Dropdown.getOrCreateInstance(dropdown.querySelector('.dropdown-toggle'));
+                    bsDropdown.show();
+                });
+
+                dropdownMenu.addEventListener('mouseleave', function() {
+                    const bsDropdown = bootstrap.Dropdown.getOrCreateInstance(dropdown.querySelector('.dropdown-toggle'));
+                    bsDropdown.hide();
+                });
+            }
         });
     });
 </script>

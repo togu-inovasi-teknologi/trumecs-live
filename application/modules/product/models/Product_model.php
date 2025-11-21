@@ -33,12 +33,12 @@ class Product_model extends CI_Model
         }
 
         $attribute = $this->db->select('*')
-                              ->from('product_attribute pa')
-                              ->join('attribute a', 'a.id = pa.attribute_id')
-                              ->join('product p', 'p.id = pa.product_id')
-                              ->where('pa.product_id', $return[0]['id'])
-                              ->get()
-                              ->result_array();
+            ->from('product_attribute pa')
+            ->join('attribute a', 'a.id = pa.attribute_id')
+            ->join('product p', 'p.id = pa.product_id')
+            ->where('pa.product_id', $return[0]['id'])
+            ->get()
+            ->result_array();
 
         $return[0]['attribute'] = $attribute;
 
@@ -59,49 +59,49 @@ class Product_model extends CI_Model
 
 
 
-    public function getsameproduct($value, $id, $brand_id = null)
+    public function getsameproduct($value, $id,  $limit = 10, $brand_id = null)
     {
-        $this->db->limit(10)
+        $this->db->limit($limit)
             ->from("product");
-            
-        if($brand_id == null):
-        $array = array();
-        $asb = '';
-        $akhir = count($value) - 1;
-        
 
-        foreach ($value as $key => $v) {
-            /*!empty($key)?
+        if ($brand_id == null):
+            $array = array();
+            $asb = '';
+            $akhir = count($value) - 1;
+
+
+            foreach ($value as $key => $v) {
+                /*!empty($key)?
             $this->db->or_like_in("tittle",$key) : "";*/
-            $ses = $this->db->escape_str(preg_replace("/[^A-Za-z0-9 ]/", '', $v));
-            $asb .= " or tittle LIKE '%" . $ses . "%'";
-        }
-
-        $string_query = "";
-        $sql_query = "";
-        foreach ($value as $q) {
-            $q = $this->db->escape_str(preg_replace("/[^A-Za-z0-9 ]/", '', $q));
-            if ($q != '') {
-                $string_query .= ", " . $q . "";
-                $sql_query .= "+ MATCH(`tittle`, `description`) AGAINST('" . $q . "*' IN BOOLEAN MODE) ";
+                $ses = $this->db->escape_str(preg_replace("/[^A-Za-z0-9 ]/", '', $v));
+                $asb .= " or tittle LIKE '%" . $ses . "%'";
             }
-        }
 
-        $this->db->select("*, product.id AS id, product.img AS img, SUM(MATCH(`tittle`, `description`) AGAINST('" . implode(" ", $this->db->escape_str(preg_replace("/[^A-Za-z0-9 ]/", ' ', $value))) . "') " . $sql_query . ")  AS score");
-        $this->db->order_by("score", "DESC");
-        $this->db->where("( product.id = '' " . $asb . ") AND status='show'");
+            $string_query = "";
+            $sql_query = "";
+            foreach ($value as $q) {
+                $q = $this->db->escape_str(preg_replace("/[^A-Za-z0-9 ]/", '', $q));
+                if ($q != '') {
+                    $string_query .= ", " . $q . "";
+                    $sql_query .= "+ MATCH(`tittle`, `description`) AGAINST('" . $q . "*' IN BOOLEAN MODE) ";
+                }
+            }
+
+            $this->db->select("*, product.id AS id, product.img AS img, SUM(MATCH(`tittle`, `description`) AGAINST('" . implode(" ", $this->db->escape_str(preg_replace("/[^A-Za-z0-9 ]/", ' ', $value))) . "') " . $sql_query . ")  AS score");
+            $this->db->order_by("score", "DESC");
+            $this->db->where("( product.id = '' " . $asb . ") AND status='show'");
         else:
-        $this->db->select("product.*, categori.name AS brand_name, grade.grade AS grade_name");
-        $this->db->where("brand", $brand_id);    
-        $this->db->where("status", "show");
-        $this->db->order_by("product.id", RAND());
+            $this->db->select("product.*, categori.name AS brand_name, grade.grade AS grade_name");
+            $this->db->where("brand", $brand_id);
+            $this->db->where("status", "show");
+            $this->db->order_by("product.id", RAND());
         endif;
-        
+
         $this->db->join('grade', 'grade.id = product.quality', 'left');
         $this->db->join('categori', 'categori.id = product.brand', 'left');
         $this->db->group_by('product.id');
         $this->db->where_not_in("product.id", $id);
-        
+
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -134,6 +134,4 @@ class Product_model extends CI_Model
 
         return $query;
     }
-
-    
 }

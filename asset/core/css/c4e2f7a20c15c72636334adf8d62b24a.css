@@ -1,3 +1,178 @@
+span.file-custom:after {
+  content: attr(data-content) "";
+}
+
+.card {
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-header {
+  border-radius: 12px 12px 0 0 !important;
+  border: none;
+}
+
+.form-label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.form-control,
+.form-select {
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
+}
+
+.input-group-text {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+}
+
+.btn {
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+  border: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+}
+
+.text-muted {
+  font-size: 0.875rem;
+}
+
+.bg-light {
+  background-color: #f8f9fa !important;
+}
+
+/* Required field indicator */
+.text-danger {
+  color: #dc3545 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card-body {
+    padding: 1rem;
+  }
+
+  .btn-lg {
+    padding: 0.75rem 1.5rem;
+  }
+}
+.modal-content {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.modal-header {
+  border: none;
+  padding: 1.5rem;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.modal-footer {
+  border-top: 1px solid #e9ecef;
+  padding: 1rem 1.5rem;
+}
+
+/* Button Styling dengan Text Putih saat Hover */
+.hover-white {
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.hover-white:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+  color: white !important;
+}
+
+/* Button Warning (Orange) */
+.btn-warning.hover-white {
+  background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+  color: #000;
+}
+
+.btn-warning.hover-white:hover {
+  background: linear-gradient(135deg, #e0a800 0%, #c69500 100%);
+  color: white !important;
+}
+
+/* Button Outline Primary */
+.btn-outline-primary.hover-white {
+  border: 2px solid #0d6efd;
+  color: #0d6efd;
+  background: white;
+}
+
+.btn-outline-primary.hover-white:hover {
+  background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+  color: white !important;
+  border-color: #0d6efd;
+}
+
+/* Pastikan semua text dalam button menjadi putih saat hover */
+.hover-white:hover,
+.hover-white:hover .fw-bold,
+.hover-white:hover h6,
+.hover-white:hover small {
+  color: white !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .modal-dialog {
+    margin: 1rem;
+  }
+
+  .modal-body {
+    padding: 1rem;
+  }
+
+  .btn {
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-content {
+  animation: fadeIn 0.3s ease;
+}
 :root {
   --icon-grey: #bdbdbd;
   --color-highlight: #f1f1f1;
