@@ -60,5 +60,5 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 
 # Google Sheets API
 application/libraries/Spreadsheetapi.php
-asset/insite/spreadsheetapi-trumecs-6aa60a7a7de6.json
+asset/insite/credentials-trumecs.json
 asset/insite/*.json
