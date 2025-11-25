@@ -58,7 +58,8 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /public/tmp/*
 
 /application/config/database.php
-/application/config/config.php
-/application/libraries/Spreadsheetapi.php
+/application/config/config.
 
-/asset/insite/spreadsheetapi-trumecs-6aa60a7a7de6.json
+application/libraries/Spreadsheetapi.php
+asset/insite/spreadsheetapi-trumecs-6aa60a7a7de6.json
+asset/insite/*.json

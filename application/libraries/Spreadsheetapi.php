@@ -12,7 +12,8 @@ class Spreadsheetapi
 
     public function __construct()
     {
-        $credentialsPath = FCPATH . 'asset/insite/spreadsheetapi-trumecs-6aa60a7a7de6.json';
+        $this->loadEnvFile();
+        $credentialsPath = FCPATH . getenv('GOOGLE_SHEET_PATH');
 
         if (!file_exists($credentialsPath)) {
             throw new Exception('Credentials file not found: ' . $credentialsPath);
@@ -30,7 +31,29 @@ class Spreadsheetapi
         // $this->client->addScope(Sheets::SPREADSHEETS);
 
         $this->service = new Sheets($this->client);
-        $this->spreadsheetId = '1Kj5oswiHgGsAQGWzCQ64QqM8Ns6ib5cPScqdTPvPW60';
+        $this->spreadsheetId = getenv('GOOGLE_SHEET_ID');
+    }
+    private function loadEnvFile()
+    {
+        $envFile = FCPATH . '.env';
+        if (file_exists($envFile)) {
+            $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            foreach ($lines as $line) {
+                if (strpos(trim($line), '#') === 0) continue; // Skip comments
+
+                list($key, $value) = explode('=', $line, 2);
+                $key = trim($key);
+                $value = trim($value);
+
+                // Remove quotes if present
+                $value = trim($value, '"\'');
+
+                if (!putenv("$key=$value")) {
+                    $_ENV[$key] = $value;
+                    $_SERVER[$key] = $value;
+                }
+            }
+        }
     }
 
     public function read($sheet, $range)
