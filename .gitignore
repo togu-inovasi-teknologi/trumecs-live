@@ -3,7 +3,6 @@
 .hg
 .vscode
 
-
 application/cache/*
 !application/cache/index.html
 
@@ -45,7 +44,6 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /public/image/complaint/*
 /public/image/cucigudang/*
 /public/image/galery/*
-/public/image/imageslide/*
 /public/image/landing-page-1/*
 /public/image/member/*
 /public/image/page/*
@@ -58,8 +56,9 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /public/tmp/*
 
 /application/config/database.php
-/application/config/config.
+/application/config/config.php
 
+# Google Sheets API
 application/libraries/Spreadsheetapi.php
 asset/insite/spreadsheetapi-trumecs-6aa60a7a7de6.json
 asset/insite/*.json
