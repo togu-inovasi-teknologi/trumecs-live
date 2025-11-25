@@ -81,11 +81,11 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                                 echo $item . "</p>";
                                 if ($paragraph_count == $middle_position && !empty($sameproduct)) {
                             ?>
-                                    <div class="card rounded-4 mt-2 mb-4 border-none">
+                                    <div class="card mt-5 mb-5 border-none">
                                         <div class="card-body p-0">
                                             <div class="row g-0">
                                                 <!-- Section Kiri: Teks dan Kategori -->
-                                                <div class="col-md-4 bg-light p-4">
+                                                <div class="col-md-4 p-4 rounded-start-4" style="background-color: #efefef;">
                                                     <div class="d-flex flex-column h-100 justify-content-center">
                                                         <div>
                                                             <h4 class="card-title fw-bold mb-3">Temukan berbagai macam barang di <a href="/" class="text-orange">Trumecs.com</a></h3>
@@ -101,7 +101,7 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-8 bg-light p-4">
+                                                <div class="col-md-8 p-4 rounded-end-4" style="background-color: #efefef;">
                                                     <div class="position-relative">
                                                         <div class="d-flex gap-3 overflow-auto">
                                                             <?php foreach ($sameproduct as $product) : ?>
@@ -147,8 +147,8 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
             </div>
 
             <div class="col-lg-4">
-                <div class="sticky-top">
-                    <div class="card border-0 shadow-sm mb-4">
+                <div class="sticky-top d-flex flex-column gap-3">
+                    <div class="card border-0 shadow-sm">
                         <div class="card-header bg-white border-0 py-3">
                             <h5 class="fw-bold mb-0"><?= $this->lang->line('label_trending'); ?></h5>
                         </div>
@@ -163,6 +163,16 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                         </div>
                     </div>
 
+                    <div class="col-lg menu-big-4-bawah-base">
+                        <div class="p-1 kiri" style="background:#F6F6F7; border: 1px solid #eee;">
+                            <div class="content p-4">
+                                <h3 class="fbold">MAINTENANCE</h3>
+                                <h6 class="fgray f14">Availability of your units is our priority</h6>
+                                <a href="#" data-google-tag="maintenance" class="menu-big-4-button" style="width: fit-content;">Apply</a>
+                            </div>
+                            <img src="/public/landing/pic/maintenance.png" alt="maintenance" class="img-fluid w-100"></img>
+                        </div>
+                    </div>
                     <div class="card border-0 shadow-sm">
                         <div class="card-header bg-white border-0 py-3">
                             <h5 class="fw-bold mb-0"><?= $this->lang->line('artikel_terkait'); ?></h5>
@@ -175,6 +185,16 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                                     </a>
                                 <?php endforeach; ?>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-lg menu-big-4-bawah-base">
+                        <div class="p-1 kanan" style="background:#F6F6F7; border: 1px solid #eee;">
+                            <div class="content p-4">
+                                <h3 class="fbold">CONSTRUCTION</h3>
+                                <h6 class="fgray f14">Engineering, Construction and procurement</h6>
+                                <a href="#" data-google-tag="construction" class="menu-big-4-button" style="width: fit-content;">Consult Now!</a>
+                            </div>
+                            <img src="/public/landing/pic/construction.png" alt="construction" class="img-fluid"></img>
                         </div>
                     </div>
                 </div>
