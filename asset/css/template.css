@@ -913,6 +913,9 @@ div.buttonbuy {
 .text-dark {
   color: black;
 }
+.text-orange {
+  color: var(--color-primary) !important;
+}
 
 .tru-member-silver {
   background: linear-gradient(
@@ -1151,9 +1154,6 @@ div.buttonbuy {
   flex-direction: column !important;
 }
 /* new css */
-.btn {
-  border-radius: 0;
-}
 .sticky {
   position: -webkit-sticky;
   position: sticky;
@@ -1599,9 +1599,6 @@ a.fblack {
 }
 
 /* button */
-.btn {
-  border-radius: 0;
-}
 
 .btn-orange {
   background: #fa8420;
@@ -1939,10 +1936,6 @@ store .btn-login {
 }
 
 /* card */
-.card {
-  border-radius: 0 !important;
-  margin-bottom: 0;
-}
 
 .card-shadow:hover {
   box-shadow: 2px 2px 2px 2px #999;

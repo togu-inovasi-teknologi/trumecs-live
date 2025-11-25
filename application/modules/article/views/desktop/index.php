@@ -28,7 +28,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-10 text-center mb-4">
                 <h4 class="fw-bold mb-3">Kirim Permintaan Barang Lebih Mudah dan Cepat</h4>
-                <p class="text-muted fs-5">Dengan <a href="/" class="text-warning">Trumecs</a>, proses pengadaan barang menjadi lebih efisien</p>
+                <p class="text-muted fs-5">Dengan <a href="/" class="text-orange">Trumecs</a>, proses pengadaan barang menjadi lebih efisien</p>
             </div>
             <div class="col-lg-12">
                 <div class="card border-0 shadow-lg p-4">

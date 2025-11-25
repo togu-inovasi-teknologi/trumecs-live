@@ -44,7 +44,7 @@
     </div>
 </div> -->
 
-<div class="<?= isset($class) ? $class : 'col-lg-3 mb-4' ?>">
+<div class="<?= isset($class) ? $class : 'col-lg-12 mb-4' ?>">
     <div class="card shadow-sm h-100 d-flex flex-column" style="border-radius: 0;">
         <a class="<?php echo $this->uri->segment(1) == '' ? 'random-product' : 'related-product' ?> text-decoration-none d-flex flex-column h-100" itemprop="url"
             href="<?php echo base_url() ?>product/<?php echo $key["id"] ?>/<?php echo preg_replace("/[^a-zA-Z0-9]/", "-", ucwords(strtolower($key["tittle"]))) ?>">
