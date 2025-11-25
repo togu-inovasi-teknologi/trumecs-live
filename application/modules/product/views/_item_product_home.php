@@ -45,7 +45,7 @@
 </div> -->
 
 <div class="<?= isset($class) ? $class : 'col-lg-2--4' ?>">
-    <div class="card shadow-sm h-100 d-flex flex-column" style="border-radius: 0;">
+    <div class="card card-product-home shadow-sm h-100 d-flex flex-column" style="border-radius: 0;">
         <a class="<?php echo $this->uri->segment(1) == '' ? 'random-product' : 'related-product' ?> text-decoration-none d-flex flex-column h-100" itemprop="url"
             href="<?php echo base_url() ?>product/<?php echo $key["id"] ?>/<?php echo preg_replace("/[^a-zA-Z0-9]/", "-", ucwords(strtolower($key["tittle"]))) ?>">
             <?php
@@ -111,11 +111,11 @@
 </div>
 
 <style>
-    .card {
+    .card-product-home {
         transition: all 0.3s ease;
     }
 
-    .card:hover {
+    .card-product-home:hover {
         transform: translateY(-2px);
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
     }

@@ -600,8 +600,7 @@ class timthumb
 		imagealphablending($canvas, false);
 
 		if (strlen($canvas_color) == 3) { //if is 3-char notation, edit string into 6-char notation
-			$canvas_color = DEFAULT_CC;
-			// $canvas_color =  str_repeat(substr($canvas_color, 0, 1), 2) . str_repeat(substr($canvas_color, 1, 1), 2) . str_repeat(substr($canvas_color, 2, 1), 2);
+			$canvas_color =  str_repeat(substr($canvas_color, 0, 1), 2) . str_repeat(substr($canvas_color, 1, 1), 2) . str_repeat(substr($canvas_color, 2, 1), 2);
 		} else if (strlen($canvas_color) != 6) {
 			$canvas_color = DEFAULT_CC; // on error return default canvas color
 		}
@@ -614,8 +613,7 @@ class timthumb
 		// If is a png and PNG_IS_TRANSPARENT is false then remove the alpha transparency 
 		// (and if is set a canvas color show it in the background)
 		if (preg_match('/^image\/png$/i', $mimeType) && !PNG_IS_TRANSPARENT && $canvas_trans) {
-			// $color = imagecolorallocatealpha($canvas, $canvas_color_R, $canvas_color_G, $canvas_color_B, 127);
-			$color = imagecolorallocatealpha($canvas, $canvas_color_R, $canvas_color_G, $canvas_color_B, 0);
+			$color = imagecolorallocatealpha($canvas, $canvas_color_R, $canvas_color_G, $canvas_color_B, 127);
 		} else {
 			$color = imagecolorallocatealpha($canvas, $canvas_color_R, $canvas_color_G, $canvas_color_B, 0);
 		}

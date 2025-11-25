@@ -27,7 +27,7 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
     <div class="container">
         <div class="row g-4">
             <div class="col-lg-8">
-                <article class="card border-0 shadow-sm">
+                <article class="card border-0">
                     <div class="card-body p-4">
                         <meta itemscope itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" itemid="<?php echo base_url() ?>article" />
 
@@ -81,7 +81,7 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                                 echo $item . "</p>";
                                 if ($paragraph_count == $middle_position && !empty($sameproduct)) {
                             ?>
-                                    <div class="card rounded-4 shadow mt-2 mb-4">
+                                    <div class="card rounded-4 mt-2 mb-4 border-none">
                                         <div class="card-body p-0">
                                             <div class="row g-0">
                                                 <!-- Section Kiri: Teks dan Kategori -->
