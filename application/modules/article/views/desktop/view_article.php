@@ -85,24 +85,23 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                                         <div class="card-body p-0">
                                             <div class="row g-0">
                                                 <!-- Section Kiri: Teks dan Kategori -->
-                                                <div class="col-md-6 bg-light p-4">
+                                                <div class="col-md-4 bg-light p-4">
                                                     <div class="d-flex flex-column h-100 justify-content-center">
                                                         <div>
-                                                            <h1 class="card-title fw-bold mb-3">Temukan berbagai macam barang di <a href="/" class="text-orange">Trumecs.com</a></h1>
-                                                            <?php
-                                                            shuffle($kategori);
-                                                            $random_categories = array_slice($kategori, 0, 2);
-                                                            foreach ($random_categories as $category) :
-                                                            ?>
-                                                                <a href="<?php echo base_url(); ?>c/<?php echo $category['url'] ?>" class="btn btn-sm btn-success">
-                                                                    <?= $category['name'] ?>
-                                                                </a>
-                                                            <?php endforeach ?>
+                                                            <h4 class="card-title fw-bold mb-3">Temukan berbagai macam barang di <a href="/" class="text-orange">Trumecs.com</a></h3>
+                                                                <?php
+                                                                shuffle($kategori);
+                                                                $random_categories = array_slice($kategori, 0, 2);
+                                                                foreach ($random_categories as $category) :
+                                                                ?>
+                                                                    <a href="<?php echo base_url(); ?>c/<?php echo $category['url'] ?>" class="btn btn-sm btn-success">
+                                                                        <?= $category['name'] ?>
+                                                                    </a>
+                                                                <?php endforeach ?>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6 bg-light p-4">
-                                                    <h6 class="text-dark mb-3">Produk Rekomendasi kami :</h6>
+                                                <div class="col-md-8 bg-light p-4">
                                                     <div class="position-relative">
                                                         <div class="d-flex gap-3 overflow-auto">
                                                             <?php foreach ($sameproduct as $product) : ?>

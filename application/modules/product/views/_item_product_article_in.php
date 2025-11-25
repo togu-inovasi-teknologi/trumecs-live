@@ -75,7 +75,7 @@
             <!-- Content Section - Flex grow untuk push button ke bawah -->
             <div class="flex-grow-1 d-flex flex-column px-2 py-3">
                 <!-- Title dengan line clamp -->
-                <p itemprop="name" class="fs-6 text-dark mb-2 line-clamp-3" style="min-height: 4.5rem;">
+                <p itemprop="name" class="f12 text-dark mb-2 line-clamp-3" style="min-height: 3rem;">
                     <?php echo ucwords($key["tittle"]) ?>
                 </p>
 

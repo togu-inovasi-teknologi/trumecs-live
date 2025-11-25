@@ -7,6 +7,8 @@ $lfp = strlen($key["img"]);
 $ext = substr($key["img"], $lfp - 4);
 is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.png" : $key["img"];
 ?>
+<?php $this->load->model("general/General_model", 'M_general'); ?>
+<?php $kategori = $this->M_general->getcategori(["parent" => 0, "is_brand" => 0, "etc" => 0]); ?>
 <div class="section breadcrumb" id="breadcrumb">
     <div class="container">
         <div class="row">
@@ -47,40 +49,104 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                     </div>
                 </div>
                 <div class="row m-y-md">
-                    <div class="col-lg-12">
-                        <!-- <?php echo $key["value"] ?> -->
+                    <div class="article-content">
                         <?php
                         $full = explode("</p>", $key["value"]);
-                        foreach ($full as $key => $item) {
+                        $paragraph_count = 0;
+
+                        foreach ($full as $item) {
                             $clean = trim(strip_tags($item));
+                            $clean = preg_replace('/&nbsp;/', ' ', $clean);
                             $clean = preg_replace('/[\t\n\r\0\x0B]/', '', $clean);
                             $clean = preg_replace('/([\s])\1+/', '', $clean);
 
+                            if (empty($clean)) {
+                                echo $item . "</p>";
+                                continue;
+                            }
 
+                            $paragraph_count++;
 
-
-                            if ($key % 4 == 0 && $key > 0) {
+                            echo $item . "</p>";
+                            if ($paragraph_count % 5 == 0 && !empty($sameproduct)) {
                         ?>
-                                <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8875911463210576"
-                                    crossorigin="anonymous"></script>
-                                <ins class="adsbygoogle"
-                                    style="display:block; text-align:center;"
-                                    data-ad-layout="in-article"
-                                    data-ad-format="fluid"
-                                    data-ad-client="ca-pub-8875911463210576"
-                                    data-ad-slot="7819820972"></ins>
-                                <script>
-                                    (adsbygoogle = window.adsbygoogle || []).push({});
-                                </script> -->
-                                <?php foreach ($sameproduct as $product) : ?>
-                                    <?php $this->load->view('product/_item_product_home_mobile.php', array('key' => $product, 'img_base_url' => 'https://trumecs.com/')); ?>
-                                <?php endforeach; ?>
+                                <!-- Versi Mobile -->
+                                <div class="card rounded-4 shadow mt-2 mb-4 d-block d-md-none">
+                                    <div class="card-body p-3">
+                                        <!-- Header -->
+                                        <div class="text-center mb-3">
+                                            <h4 class="fw-bold mb-2">Temukan berbagai macam barang di <a href="/" class="text-orange">Trumecs.com</a></h4>
+                                        </div>
+
+                                        <!-- Kategori -->
+                                        <div class="text-center mb-3">
+                                            <h6 class="text-dark mb-2">Kategori:</h6>
+                                            <div class="d-flex flex-wrap gap-2 justify-content-center">
+                                                <?php
+                                                shuffle($kategori);
+                                                $random_categories = array_slice($kategori, 0, 2);
+                                                foreach ($random_categories as $category) :
+                                                ?>
+                                                    <a href="<?php echo base_url(); ?>c/<?php echo $category['url'] ?>" class="btn btn-sm btn-success px-3">
+                                                        <?= $category['name'] ?>
+                                                    </a>
+                                                <?php endforeach ?>
+                                            </div>
+                                        </div>
+
+                                        <!-- Produk Rekomendasi -->
+                                        <div class="mt-3">
+                                            <h6 class="text-dark mb-3 text-center">Produk Rekomendasi kami:</h6>
+                                            <div class="d-flex gap-2 overflow-auto pb-2">
+                                                <?php foreach ($sameproduct as $product) : ?>
+                                                    <div class="flex-shrink-0" style="width: 160px;">
+                                                        <?php $this->load->view('product/_item_product_article_in.php', array('key' => $product, 'img_base_url' => 'https://trumecs.com/')); ?>
+                                                    </div>
+                                                <?php endforeach; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Versi Desktop (tetap pertahankan yang lama) -->
+                                <div class="card rounded-4 shadow mt-2 mb-4 d-none d-md-block">
+                                    <div class="card-body p-0">
+                                        <div class="row g-0">
+                                            <!-- Section Kiri: Teks dan Kategori -->
+                                            <div class="col-md-6 bg-light p-4">
+                                                <div class="d-flex flex-column h-100 justify-content-center">
+                                                    <div>
+                                                        <h1 class="card-title fw-bold mb-3">Temukan berbagai macam barang di <a href="/" class="text-orange">Trumecs.com</a></h1>
+                                                        <?php
+                                                        shuffle($kategori);
+                                                        $random_categories = array_slice($kategori, 0, 2);
+                                                        foreach ($random_categories as $category) :
+                                                        ?>
+                                                            <a href="<?php echo base_url(); ?>c/<?php echo $category['url'] ?>" class="btn btn-sm btn-success">
+                                                                <?= $category['name'] ?>
+                                                            </a>
+                                                        <?php endforeach ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 bg-light p-4">
+                                                <h6 class="text-dark mb-3">Produk Rekomendasi kami :</h6>
+                                                <div class="position-relative">
+                                                    <div class="d-flex gap-3 overflow-auto">
+                                                        <?php foreach ($sameproduct as $product) : ?>
+                                                            <div class="flex-shrink-0" style="width: 180px;">
+                                                                <?php $this->load->view('product/_item_product_article_in.php', array('key' => $product, 'img_base_url' => 'https://trumecs.com/')); ?>
+                                                            </div>
+                                                        <?php endforeach; ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                         <?php
                             }
-                            echo $clean . "</br>";
-                            // echo $item . " " . strlen($clean) . "</p>";
                         }
-                        // echo $key["value"]
                         ?>
                     </div>
                 </div>

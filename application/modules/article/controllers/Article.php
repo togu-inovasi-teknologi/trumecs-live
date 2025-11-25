@@ -111,7 +111,7 @@ class article extends MX_Controller
 			$data["seoimage"] = "timthumb?h=600&src=" . base_url() . "public/image/artikel/" . $key["img"];
 			$data["seokeywords"] = $key["seo_key"];
 			$data["seodescription"] = $key["discription_seo"];
-			$data["sameproduct"] = $this->product_model->getsameproduct(explode(' ', $key["title"]), 1, 3);
+			$data["sameproduct"] = $this->product_model->getsameproduct(explode(' ', $key["title"]), 1, 4);
 			$data["sameproductdown"] = $this->product_model->getsameproduct(explode(' ', $key["title"]), 1);
 		}
 		$data['search_placeholder'] = $this->lang->line("placeholder_article", FALSE);

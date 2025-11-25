@@ -91,12 +91,12 @@ $contact = $this->db->where('id', $ida)->get("admin")->result_array();
     ?>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap" rel="stylesheet">
     <link href="<?php echo base_url("asset/fonts/Lato-Regular.ttf") ?>" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-    <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/bootstrap.offcanvas.min.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/bootstrap.offcanvas.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/font-awesome-animation.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>asset/js/slick/slick.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>asset/js/slick/slick-theme.css">
-    <!--<link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.css" />-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <?php
     if (isset($css_cdn)) {
@@ -305,7 +305,7 @@ $contact = $this->db->where('id', $ida)->get("admin")->result_array();
     </div>
     <?php $this->load->view("front/popup_ads"); ?>
     <?php
-    $javascript = array(base_url() . 'asset/js/slick/slick.min.js');
+    $javascript = array(base_url() . "asset/js/jquery.js", base_url() . 'asset/js/bootstrap.min.js', base_url() . 'asset/js/bootstrap-toolkit.min.js', base_url() . 'asset/js/slick/slick.min.js', base_url() . 'asset/js/bootstrap.offcanvas.min.js');
     foreach ($javascript as $dt_javascript) {
         echo '<script type="text/javascript" src="' . $dt_javascript . '"></script>';
     }
