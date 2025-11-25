@@ -21,14 +21,8 @@ class Spreadsheetapi
 
         $this->client = new Client();
 
-        // Method 1: Set auth config langsung (recommended)
         $this->client->setAuthConfig($credentialsPath);
         $this->client->addScope(Sheets::SPREADSHEETS);
-
-        // Atau Method 2: Dengan application default credentials
-        // putenv('GOOGLE_APPLICATION_CREDENTIALS=' . $credentialsPath);
-        // $this->client->useApplicationDefaultCredentials();
-        // $this->client->addScope(Sheets::SPREADSHEETS);
 
         $this->service = new Sheets($this->client);
         $this->spreadsheetId = getenv('GOOGLE_SHEET_ID');
