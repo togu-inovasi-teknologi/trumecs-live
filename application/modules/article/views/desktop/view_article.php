@@ -53,6 +53,18 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                             $full = explode("</p>", $key["value"]);
                             $paragraph_count = 0;
 
+                            // Filter hanya paragraf yang tidak kosong
+                            $non_empty_paragraphs = array_filter($full, function ($item) {
+                                $clean = trim(strip_tags($item));
+                                $clean = preg_replace('/&nbsp;/', ' ', $clean);
+                                $clean = preg_replace('/[\t\n\r\0\x0B]/', '', $clean);
+                                $clean = preg_replace('/([\s])\1+/', '', $clean);
+                                return !empty($clean);
+                            });
+
+                            $total_paragraphs = count($non_empty_paragraphs);
+                            $middle_position = ceil($total_paragraphs / 2);
+
                             foreach ($full as $item) {
                                 $clean = trim(strip_tags($item));
                                 $clean = preg_replace('/&nbsp;/', ' ', $clean);
@@ -67,7 +79,7 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                                 $paragraph_count++;
 
                                 echo $item . "</p>";
-                                if ($paragraph_count % 5 == 0 && !empty($sameproduct)) {
+                                if ($paragraph_count == $middle_position && !empty($sameproduct)) {
                             ?>
                                     <div class="card rounded-4 shadow mt-2 mb-4">
                                         <div class="card-body p-0">
