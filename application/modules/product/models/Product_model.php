@@ -134,4 +134,22 @@ class Product_model extends CI_Model
 
         return $query;
     }
+
+    public function get_all_products()
+    {
+        $this->db->select('
+        id,
+        tittle,
+        partnumber,
+        sku_number,
+        stock,
+        unit,
+        description,
+        price,
+        status,
+        store_id,
+        updated_at
+    ');
+        return $this->db->get('product')->result();
+    }
 }

@@ -12,6 +12,7 @@ class Backendproduct extends MX_Controller
         $this->load->model("backendproduct/grade_model");
         $this->load->model("backendproduct/attribute_model");
         $this->load->model("backendproduct/categori_model");
+        $this->load->model("product/product_model");
     }
     public function index()
     {
@@ -20,7 +21,11 @@ class Backendproduct extends MX_Controller
     }
     public function listall()
     {
+        //$multi = $this->googleapi->write('ARTICLE', 'A2:B2', ["Truk Mercedes Benz bersistem Auto Pilot akan hadir di tahun 2020","Mercedes Benz sudah resmi menguji truk Mercedes Benz baru mereka yang dilengkapi dengan sistem autonomous seperti pada mobil konsep F105. Pengujian dilakukan di jalan tol Jerman yang terkenal, Autobahn. Rutenya adalah Denkendorf sampai bandara Stuttgart, lalu kembali lagi ke tempat semula. begitulah lansiran dari autonetmagz."]);
 
+        // $multi = $this->spreadsheetapi->readAll('Product-List');
+        // var_dump($multi);
+        // die;
         $this->securitylog->cekadmin();
 
         $name = $this->input->get("nama");
@@ -71,6 +76,26 @@ class Backendproduct extends MX_Controller
         $data["js"] = array(base_url() . 'asset/backend/js/list.product.js');
         $data['content'] = 'list_product';
         $this->load->view('backend/template_front', $data);
+    }
+
+    public function syncProductFromSheetToDB()
+    {
+
+        $result = $this->spreadsheetapi->syncProductsFromSheetToDB('Product-list');
+
+        if ($result['success']) {
+            $this->session->set_flashdata(
+                'success',
+                'Berhasil Sync '
+            );
+        } else {
+            $this->session->set_flashdata(
+                'error',
+                'Gagal sync: '
+            );
+        }
+
+        redirect('backendproduct/listall');
     }
 
     function ambil_data()
