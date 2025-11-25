@@ -34,9 +34,6 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /tests/tests/
 /tests/results/
 
-
-/application/config.php
-/application/database.php
 /cache/*
 /public/filequotation/*
 /public/image/artikel/*
@@ -56,7 +53,6 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /public/tmp/*
 
 /application/config/database.php
-/application/config/config.php
 
 # Google Sheets API
 application/libraries/Spreadsheetapi.php
