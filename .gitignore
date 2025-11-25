@@ -52,8 +52,6 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /public/image/prospek/*
 /public/tmp/*
 
-/application/config/database.php
-
 # Google Sheets API
 application/libraries/Spreadsheetapi.php
 asset/insite/credentials-trumecs.json
