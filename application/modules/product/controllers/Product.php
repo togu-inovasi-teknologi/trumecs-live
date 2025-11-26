@@ -88,6 +88,7 @@ class Product extends MX_Controller
 
         $arrayname = explode(" ", trim($data["data_product"][0]["tittle"]) . " " . $namebrand . " " . $namecomponent);
         $data["sameproduct"] = $this->product_model->getsameproduct($arrayname, $productgalery, $data["data_product"][0]["brand_id"]);
+
         $data["relatedarticle"] = $this->article_model->getsameartikel(trim($data["data_product"][0]["tittle"]) . " " . $namebrand . " " . $namebrandunit . " " . $namecomponent . " " . $nametype);
         $data["discussion"] = $this->product_model->getdiscussion($data["data_product"][0]["id"]);
 
