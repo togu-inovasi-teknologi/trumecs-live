@@ -11,9 +11,6 @@ application/logs/*
 
 !application/*/.htaccess
 
-application/config/google.php
-composer.lock
-
 user_guide_src/build/*
 user_guide_src/cilexer/build/*
 user_guide_src/cilexer/dist/*
