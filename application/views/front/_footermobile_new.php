@@ -1,5 +1,5 @@
 <footer>
-    <div class="container-fluid bg-black py-3">
+    <div class="container-fluid bg-black py-3 mt-2">
         <div class="row flex-column gy-3 align-items-start">
             <?php
             $session = $this->session->all_userdata();
