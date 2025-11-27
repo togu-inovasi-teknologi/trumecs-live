@@ -54,107 +54,120 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                 <div class="row m-y-md">
                     <div class="article-content">
                         <?php
-                        $full = explode("</p>", $key["value"]);
-                        $paragraph_count = 0;
+                        // Gunakan DOMDocument untuk parsing yang akurat
+                        $dom = new DOMDocument();
+                        @$dom->loadHTML('<div>' . $key["value"] . '</div>', LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
-                        // Filter hanya paragraf yang tidak kosong
-                        $non_empty_paragraphs = array_filter($full, function ($item) {
-                            $clean = trim(strip_tags($item));
+                        $xpath = new DOMXPath($dom);
+
+                        // Cari semua paragraf yang TIDAK berada dalam table/ul/ol
+                        $paragraphs = $xpath->query('//p[not(ancestor::table) and not(ancestor::ul) and not(ancestor::ol)]');
+
+                        $valid_paragraphs = [];
+                        foreach ($paragraphs as $paragraph) {
+                            $clean = trim($paragraph->textContent);
                             $clean = preg_replace('/&nbsp;/', ' ', $clean);
                             $clean = preg_replace('/[\t\n\r\0\x0B]/', '', $clean);
                             $clean = preg_replace('/([\s])\1+/', '', $clean);
-                            return !empty($clean);
-                        });
 
-                        $total_paragraphs = count($non_empty_paragraphs);
+                            if (!empty($clean)) {
+                                $valid_paragraphs[] = $paragraph;
+                            }
+                        }
+
+                        $total_paragraphs = count($valid_paragraphs);
                         $middle_position = ceil($total_paragraphs / 2);
                         $first_position = ceil($total_paragraphs * 0.25);
                         $last_position = ceil($total_paragraphs * 0.75);
+                        $paragraph_count = 0;
 
-                        foreach ($full as $item) {
-                            $clean = trim(strip_tags($item));
-                            $clean = preg_replace('/&nbsp;/', ' ', $clean);
-                            $clean = preg_replace('/[\t\n\r\0\x0B]/', '', $clean);
-                            $clean = preg_replace('/([\s])\1+/', '', $clean);
+                        // Iterasi melalui semua node dalam DOM
+                        foreach ($dom->documentElement->childNodes as $node) {
+                            echo $dom->saveHTML($node);
 
-                            if (empty($clean)) {
-                                echo $item . "</p>";
-                                continue;
-                            }
+                            // Cek jika node ini adalah paragraf valid
+                            if ($node instanceof DOMElement && $node->nodeName === 'p') {
+                                $clean = trim($node->textContent);
+                                $clean = preg_replace('/&nbsp;/', ' ', $clean);
+                                $clean = preg_replace('/[\t\n\r\0\x0B]/', '', $clean);
+                                $clean = preg_replace('/([\s])\1+/', '', $clean);
 
-                            $paragraph_count++;
+                                if (!empty($clean)) {
 
-                            echo $item . "</p>";
 
-                            // POSISI 1/4 (25%)
-                            if ($paragraph_count == $first_position && !empty($sameproduct)) {
+                                    $paragraph_count++;
+
+                                    // POSISI 1/4 (25%)
+                                    if ($paragraph_count == $middle_position && !empty($sameproduct)) {
                         ?>
-                                <div class="card mt-3 mb-2 border-0">
-                                    <div class="card-body p-3 rounded-3" style="background-color: #f8f9fa;">
-                                        <div class="row g-3">
-                                            <!-- Split Layout untuk 1/4 position -->
-                                            <div class="col-5">
-                                                <div class="d-flex flex-column h-100 justify-content-center">
-                                                    <h6 class="fw-bold mb-2 fs-6 mb-1">Temukan berbagai macam barang di <a href="/" class="text-orange text-decoration-none">Trumecs.com</a></h6>
-                                                    <div class="d-flex gap-2">
-                                                        <?php
-                                                        shuffle($kategori);
-                                                        $random_categories = array_slice($kategori, 0, 2);
-                                                        foreach ($random_categories as $category) :
-                                                        ?>
-                                                            <a href="<?php echo base_url(); ?>c/<?php echo $category['url'] ?>"
-                                                                class="p-2 f10 text-white text-decoration-none rounded-3" style="background-color: green;">
-                                                                <?= $category['name'] ?>
-                                                            </a>
-                                                        <?php endforeach ?>
+                                        <div class="card mt-3 mb-2 border-0">
+                                            <div class="card-body p-3 rounded-3" style="background-color: #f8f9fa;">
+                                                <div class="row g-3">
+                                                    <!-- Split Layout untuk 1/4 position -->
+                                                    <div class="col-5">
+                                                        <div class="d-flex flex-column h-100 justify-content-center">
+                                                            <h6 class="fw-bold mb-2 fs-6 mb-1">Temukan berbagai macam barang di <a href="/" class="text-orange text-decoration-none">Trumecs.com</a></h6>
+                                                            <div class="d-flex gap-2">
+                                                                <?php
+                                                                shuffle($kategori);
+                                                                $random_categories = array_slice($kategori, 0, 2);
+                                                                foreach ($random_categories as $category) :
+                                                                ?>
+                                                                    <a href="<?php echo base_url(); ?>c/<?php echo $category['url'] ?>"
+                                                                        class="p-2 f10 text-white text-decoration-none rounded-3" style="background-color: green;">
+                                                                        <?= $category['name'] ?>
+                                                                    </a>
+                                                                <?php endforeach ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <div class="d-flex gap-2 overflow-auto">
+                                                            <?php foreach ($sameproduct as $product) : ?>
+                                                                <div class="flex-shrink-0" style="width: 120px;">
+                                                                    <?php $this->load->view('article/product/mobile/_item_product_article_in.php', array('key' => $product, 'img_base_url' => 'https://trumecs.com/')); ?>
+                                                                </div>
+                                                            <?php endforeach; ?>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-7">
-                                                <div class="d-flex gap-2 overflow-auto">
-                                                    <?php foreach ($sameproduct as $product) : ?>
-                                                        <div class="flex-shrink-0" style="width: 120px;">
-                                                            <?php $this->load->view('article/product/mobile/_item_product_article_in.php', array('key' => $product, 'img_base_url' => 'https://trumecs.com/')); ?>
-                                                        </div>
-                                                    <?php endforeach; ?>
+                                        </div>
+                                    <?php
+                                    }
+
+                                    // POSISI TENGAH (50%)
+                                    if ($paragraph_count == $first_position) {
+                                    ?>
+                                        <div class="col-lg">
+                                            <div class="p-1" style="background:#F6F6F7; border: 1px solid #eee;">
+                                                <div class="p-4">
+                                                    <h3 class="fbold">MAINTENANCE</h3>
+                                                    <h6 class="fgray f14">Availability of your units is our priority</h6>
+                                                    <a href="#" data-google-tag="maintenance" style="width: fit-content;">Apply</a>
                                                 </div>
+                                                <img src="/public/landing/pic/maintenance.png" alt="maintenance" class="img-fluid w-100"></img>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            <?php
-                            }
+                                    <?php
+                                    }
 
-                            // POSISI TENGAH (50%)
-                            if ($paragraph_count == $middle_position && !empty($sameproduct)) {
-                            ?>
-                                <div class="col-lg">
-                                    <div class="p-1" style="background:#F6F6F7; border: 1px solid #eee;">
-                                        <div class="p-4">
-                                            <h3 class="fbold">MAINTENANCE</h3>
-                                            <h6 class="fgray f14">Availability of your units is our priority</h6>
-                                            <a href="#" data-google-tag="maintenance" style="width: fit-content;">Apply</a>
+                                    // POSISI 3/4 (75%)
+                                    if ($paragraph_count == $last_position) {
+                                    ?>
+                                        <div class="col-lg">
+                                            <div class="p-1 " style="background:#F6F6F7; border: 1px solid #eee;">
+                                                <div class="content p-4">
+                                                    <h3 class="fbold">CONSTRUCTION</h3>
+                                                    <h6 class="fgray f14">Engineering, Construction and procurement</h6>
+                                                    <a href="#" data-google-tag="construction" style="width: fit-content;">Consult Now!</a>
+                                                </div>
+                                                <img src="/public/landing/pic/construction.png" alt="construction" class="img-fluid"></img>
+                                            </div>
                                         </div>
-                                        <img src="/public/landing/pic/maintenance.png" alt="maintenance" class="img-fluid w-100"></img>
-                                    </div>
-                                </div>
-                            <?php
-                            }
-
-                            // POSISI 3/4 (75%)
-                            if ($paragraph_count == $last_position && !empty($sameproduct)) {
-                            ?>
-                                <div class="col-lg">
-                                    <div class="p-1 " style="background:#F6F6F7; border: 1px solid #eee;">
-                                        <div class="content p-4">
-                                            <h3 class="fbold">CONSTRUCTION</h3>
-                                            <h6 class="fgray f14">Engineering, Construction and procurement</h6>
-                                            <a href="#" data-google-tag="construction" style="width: fit-content;">Consult Now!</a>
-                                        </div>
-                                        <img src="/public/landing/pic/construction.png" alt="construction" class="img-fluid"></img>
-                                    </div>
-                                </div>
                         <?php
+                                    }
+                                }
                             }
                         }
                         ?>

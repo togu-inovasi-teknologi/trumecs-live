@@ -50,72 +50,85 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
 
                         <div class="article-content">
                             <?php
-                            $full = explode("</p>", $key["value"]);
+                            // Gunakan DOMDocument untuk parsing yang akurat
+                            $dom = new DOMDocument();
+                            @$dom->loadHTML('<div>' . $key["value"] . '</div>', LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+
+                            $xpath = new DOMXPath($dom);
+
+                            // Cari semua paragraf yang TIDAK berada dalam table/ul/ol
+                            $paragraphs = $xpath->query('//p[not(ancestor::table) and not(ancestor::ul) and not(ancestor::ol)]');
+
+                            $valid_paragraphs = [];
+                            foreach ($paragraphs as $paragraph) {
+                                $clean = trim($paragraph->textContent);
+                                $clean = preg_replace('/&nbsp;/', ' ', $clean);
+                                $clean = preg_replace('/[\t\n\r\0\x0B]/', '', $clean);
+                                $clean = preg_replace('/([\s])\1+/', '', $clean);
+
+                                if (!empty($clean)) {
+                                    $valid_paragraphs[] = $paragraph;
+                                }
+                            }
+
+                            $total_paragraphs = count($valid_paragraphs);
+                            $middle_position = ceil($total_paragraphs / 2);
                             $paragraph_count = 0;
 
-                            // Filter hanya paragraf yang tidak kosong
-                            $non_empty_paragraphs = array_filter($full, function ($item) {
-                                $clean = trim(strip_tags($item));
-                                $clean = preg_replace('/&nbsp;/', ' ', $clean);
-                                $clean = preg_replace('/[\t\n\r\0\x0B]/', '', $clean);
-                                $clean = preg_replace('/([\s])\1+/', '', $clean);
-                                return !empty($clean);
-                            });
+                            // Iterasi melalui semua node dalam DOM
+                            foreach ($dom->documentElement->childNodes as $node) {
+                                echo $dom->saveHTML($node);
 
-                            $total_paragraphs = count($non_empty_paragraphs);
-                            $middle_position = ceil($total_paragraphs / 2);
+                                // Cek jika node ini adalah paragraf valid
+                                if ($node instanceof DOMElement && $node->nodeName === 'p') {
+                                    $clean = trim($node->textContent);
+                                    $clean = preg_replace('/&nbsp;/', ' ', $clean);
+                                    $clean = preg_replace('/[\t\n\r\0\x0B]/', '', $clean);
+                                    $clean = preg_replace('/([\s])\1+/', '', $clean);
 
-                            foreach ($full as $item) {
-                                $clean = trim(strip_tags($item));
-                                $clean = preg_replace('/&nbsp;/', ' ', $clean);
-                                $clean = preg_replace('/[\t\n\r\0\x0B]/', '', $clean);
-                                $clean = preg_replace('/([\s])\1+/', '', $clean);
+                                    if (!empty($clean)) {
 
-                                if (empty($clean)) {
-                                    echo $item . "</p>";
-                                    continue;
-                                }
 
-                                $paragraph_count++;
-
-                                echo $item . "</p>";
-                                if ($paragraph_count == $middle_position && !empty($sameproduct)) {
+                                        $paragraph_count++;
+                                        if ($paragraph_count == $middle_position && !empty($sameproduct)) {
                             ?>
-                                    <div class="card mt-5 mb-5 border-none">
-                                        <div class="card-body p-0">
-                                            <div class="row g-0">
-                                                <!-- Section Kiri: Teks dan Kategori -->
-                                                <div class="col-md-4 p-4 rounded-start-4" style="background-color: #efefef;">
-                                                    <div class="d-flex flex-column h-100 justify-content-center">
-                                                        <div>
-                                                            <h4 class="card-title fw-bold mb-3">Temukan berbagai macam barang di <a href="/" class="text-orange text-decoration-none">Trumecs.com</a></h3>
-                                                                <?php
-                                                                shuffle($kategori);
-                                                                $random_categories = array_slice($kategori, 0, 2);
-                                                                foreach ($random_categories as $category) :
-                                                                ?>
-                                                                    <a href="<?php echo base_url(); ?>c/<?php echo $category['url'] ?>" class="btn btn-sm btn-success">
-                                                                        <?= $category['name'] ?>
-                                                                    </a>
-                                                                <?php endforeach ?>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-8 p-4 rounded-end-4" style="background-color: #efefef;">
-                                                    <div class="position-relative">
-                                                        <div class="d-flex gap-3 overflow-auto">
-                                                            <?php foreach ($sameproduct as $product) : ?>
-                                                                <div class="flex-shrink-0" style="width: 180px;">
-                                                                    <?php $this->load->view('article/product/desktop/_item_product_article_in.php', array('key' => $product, 'img_base_url' => 'https://trumecs.com/')); ?>
+                                            <div class="card mt-5 mb-5 border-none">
+                                                <div class="card-body p-0">
+                                                    <div class="row g-0">
+                                                        <!-- Section Kiri: Teks dan Kategori -->
+                                                        <div class="col-md-4 p-4 rounded-start-4" style="background-color: #efefef;">
+                                                            <div class="d-flex flex-column h-100 justify-content-center">
+                                                                <div>
+                                                                    <h4 class="card-title fw-bold mb-3">Temukan berbagai macam barang di <a href="/" class="text-orange text-decoration-none">Trumecs.com</a></h3>
+                                                                        <?php
+                                                                        shuffle($kategori);
+                                                                        $random_categories = array_slice($kategori, 0, 2);
+                                                                        foreach ($random_categories as $category) :
+                                                                        ?>
+                                                                            <a href="<?php echo base_url(); ?>c/<?php echo $category['url'] ?>" class="btn btn-sm btn-success">
+                                                                                <?= $category['name'] ?>
+                                                                            </a>
+                                                                        <?php endforeach ?>
                                                                 </div>
-                                                            <?php endforeach; ?>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-8 p-4 rounded-end-4" style="background-color: #efefef;">
+                                                            <div class="position-relative">
+                                                                <div class="d-flex gap-3 overflow-auto">
+                                                                    <?php foreach ($sameproduct as $product) : ?>
+                                                                        <div class="flex-shrink-0" style="width: 180px;">
+                                                                            <?php $this->load->view('article/product/desktop/_item_product_article_in.php', array('key' => $product, 'img_base_url' => 'https://trumecs.com/')); ?>
+                                                                        </div>
+                                                                    <?php endforeach; ?>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
                             <?php
+                                        }
+                                    }
                                 }
                             }
                             ?>
