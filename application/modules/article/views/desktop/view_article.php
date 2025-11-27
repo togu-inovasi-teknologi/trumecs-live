@@ -88,7 +88,7 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                                                 <div class="col-md-4 p-4 rounded-start-4" style="background-color: #efefef;">
                                                     <div class="d-flex flex-column h-100 justify-content-center">
                                                         <div>
-                                                            <h4 class="card-title fw-bold mb-3">Temukan berbagai macam barang di <a href="/" class="text-orange">Trumecs.com</a></h3>
+                                                            <h4 class="card-title fw-bold mb-3">Temukan berbagai macam barang di <a href="/" class="text-orange text-decoration-none">Trumecs.com</a></h3>
                                                                 <?php
                                                                 shuffle($kategori);
                                                                 $random_categories = array_slice($kategori, 0, 2);
@@ -106,7 +106,7 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                                                         <div class="d-flex gap-3 overflow-auto">
                                                             <?php foreach ($sameproduct as $product) : ?>
                                                                 <div class="flex-shrink-0" style="width: 180px;">
-                                                                    <?php $this->load->view('product/_item_product_article_in.php', array('key' => $product, 'img_base_url' => 'https://trumecs.com/')); ?>
+                                                                    <?php $this->load->view('article/product/desktop/_item_product_article_in.php', array('key' => $product, 'img_base_url' => 'https://trumecs.com/')); ?>
                                                                 </div>
                                                             <?php endforeach; ?>
                                                         </div>
@@ -163,12 +163,12 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                         </div>
                     </div>
 
-                    <div class="col-lg menu-big-4-bawah-base">
-                        <div class="p-1 kiri" style="background:#F6F6F7; border: 1px solid #eee;">
-                            <div class="content p-4">
+                    <div class="col-lg">
+                        <div class="p-1" style="background:#F6F6F7; border: 1px solid #eee;">
+                            <div class="p-4">
                                 <h3 class="fbold">MAINTENANCE</h3>
                                 <h6 class="fgray f14">Availability of your units is our priority</h6>
-                                <a href="#" data-google-tag="maintenance" class="menu-big-4-button" style="width: fit-content;">Apply</a>
+                                <a href="#" data-google-tag="maintenance" style="width: fit-content;">Apply</a>
                             </div>
                             <img src="/public/landing/pic/maintenance.png" alt="maintenance" class="img-fluid w-100"></img>
                         </div>
@@ -187,12 +187,12 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg menu-big-4-bawah-base">
-                        <div class="p-1 kanan" style="background:#F6F6F7; border: 1px solid #eee;">
+                    <div class="col-lg">
+                        <div class="p-1 " style="background:#F6F6F7; border: 1px solid #eee;">
                             <div class="content p-4">
                                 <h3 class="fbold">CONSTRUCTION</h3>
                                 <h6 class="fgray f14">Engineering, Construction and procurement</h6>
-                                <a href="#" data-google-tag="construction" class="menu-big-4-button" style="width: fit-content;">Consult Now!</a>
+                                <a href="#" data-google-tag="construction" style="width: fit-content;">Consult Now!</a>
                             </div>
                             <img src="/public/landing/pic/construction.png" alt="construction" class="img-fluid"></img>
                         </div>
@@ -228,7 +228,7 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
         </div>
         <div class="row g-4">
             <?php foreach ($sameproductdown as $product) : ?>
-                <?php $this->load->view('product/_item_product_home.php', array('key' => $product, 'img_base_url' => 'https://trumecs.com/')); ?>
+                <?php $this->load->view('article/product/desktop/_item_product_article_related.php', array('key' => $product, 'img_base_url' => 'https://trumecs.com/')); ?>
             <?php endforeach; ?>
         </div>
     </div>

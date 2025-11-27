@@ -14,13 +14,16 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
         <div class="row">
             <div class="col-lg-12">
                 <div class="space40"></div>
-                <ol class="breadcrumb p-x-0">
-                    <li><a class="f12 forange" href="<?php echo base_url() ?>">Home</a></li>
-                    <li><a class="12 forange" href="<?php echo base_url() ?>article">Artikel</a></li>
-                    <?php if (!empty($data_page)) : ?>
-                        <li class="f12"><?php echo $key["title"]; ?></li>
-                    <?php endif ?>
-                </ol>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb p-x-0">
+                        <li class="breadcrumb-item">
+                            <a class="f12 forange text-decoration-none" href="<?php echo base_url() ?>">Home</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a class="f12 forange text-decoration-none" href="<?php echo base_url() ?>article">Artikel</a>
+                        </li>
+                    </ol>
+                </nav>
             </div>
         </div>
     </div>
@@ -54,6 +57,20 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                         $full = explode("</p>", $key["value"]);
                         $paragraph_count = 0;
 
+                        // Filter hanya paragraf yang tidak kosong
+                        $non_empty_paragraphs = array_filter($full, function ($item) {
+                            $clean = trim(strip_tags($item));
+                            $clean = preg_replace('/&nbsp;/', ' ', $clean);
+                            $clean = preg_replace('/[\t\n\r\0\x0B]/', '', $clean);
+                            $clean = preg_replace('/([\s])\1+/', '', $clean);
+                            return !empty($clean);
+                        });
+
+                        $total_paragraphs = count($non_empty_paragraphs);
+                        $middle_position = ceil($total_paragraphs / 2);
+                        $first_position = ceil($total_paragraphs * 0.25);
+                        $last_position = ceil($total_paragraphs * 0.75);
+
                         foreach ($full as $item) {
                             $clean = trim(strip_tags($item));
                             $clean = preg_replace('/&nbsp;/', ' ', $clean);
@@ -68,80 +85,73 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                             $paragraph_count++;
 
                             echo $item . "</p>";
-                            if ($paragraph_count % 5 == 0 && !empty($sameproduct)) {
+
+                            // POSISI 1/4 (25%)
+                            if ($paragraph_count == $first_position && !empty($sameproduct)) {
                         ?>
-                                <!-- Versi Mobile -->
-                                <div class="card rounded-4 shadow mt-2 mb-4 d-block d-md-none">
-                                    <div class="card-body p-3">
-                                        <!-- Header -->
-                                        <div class="text-center mb-3">
-                                            <h4 class="fw-bold mb-2">Temukan berbagai macam barang di <a href="/" class="text-orange">Trumecs.com</a></h4>
-                                        </div>
-
-                                        <!-- Kategori -->
-                                        <div class="text-center mb-3">
-                                            <h6 class="text-dark mb-2">Kategori:</h6>
-                                            <div class="d-flex flex-wrap gap-2 justify-content-center">
-                                                <?php
-                                                shuffle($kategori);
-                                                $random_categories = array_slice($kategori, 0, 2);
-                                                foreach ($random_categories as $category) :
-                                                ?>
-                                                    <a href="<?php echo base_url(); ?>c/<?php echo $category['url'] ?>" class="btn btn-sm btn-success px-3">
-                                                        <?= $category['name'] ?>
-                                                    </a>
-                                                <?php endforeach ?>
-                                            </div>
-                                        </div>
-
-                                        <!-- Produk Rekomendasi -->
-                                        <div class="mt-3">
-                                            <h6 class="text-dark mb-3 text-center">Produk Rekomendasi kami:</h6>
-                                            <div class="d-flex gap-2 overflow-auto pb-2">
-                                                <?php foreach ($sameproduct as $product) : ?>
-                                                    <div class="flex-shrink-0" style="width: 160px;">
-                                                        <?php $this->load->view('product/_item_product_article_in.php', array('key' => $product, 'img_base_url' => 'https://trumecs.com/')); ?>
-                                                    </div>
-                                                <?php endforeach; ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Versi Desktop (tetap pertahankan yang lama) -->
-                                <div class="card rounded-4 shadow mt-2 mb-4 d-none d-md-block">
-                                    <div class="card-body p-0">
-                                        <div class="row g-0">
-                                            <!-- Section Kiri: Teks dan Kategori -->
-                                            <div class="col-md-6 bg-light p-4">
+                                <div class="card mt-3 mb-2 border-0">
+                                    <div class="card-body p-3 rounded-3" style="background-color: #f8f9fa;">
+                                        <div class="row g-3">
+                                            <!-- Split Layout untuk 1/4 position -->
+                                            <div class="col-5">
                                                 <div class="d-flex flex-column h-100 justify-content-center">
-                                                    <div>
-                                                        <h1 class="card-title fw-bold mb-3">Temukan berbagai macam barang di <a href="/" class="text-orange">Trumecs.com</a></h1>
+                                                    <h6 class="fw-bold mb-2 fs-6 mb-1">Temukan berbagai macam barang di <a href="/" class="text-orange text-decoration-none">Trumecs.com</a></h6>
+                                                    <div class="d-flex gap-2">
                                                         <?php
                                                         shuffle($kategori);
                                                         $random_categories = array_slice($kategori, 0, 2);
                                                         foreach ($random_categories as $category) :
                                                         ?>
-                                                            <a href="<?php echo base_url(); ?>c/<?php echo $category['url'] ?>" class="btn btn-sm btn-success">
+                                                            <a href="<?php echo base_url(); ?>c/<?php echo $category['url'] ?>"
+                                                                class="p-2 f10 text-white text-decoration-none rounded-3" style="background-color: green;">
                                                                 <?= $category['name'] ?>
                                                             </a>
                                                         <?php endforeach ?>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 bg-light p-4">
-                                                <h6 class="text-dark mb-3">Produk Rekomendasi kami :</h6>
-                                                <div class="position-relative">
-                                                    <div class="d-flex gap-3 overflow-auto">
-                                                        <?php foreach ($sameproduct as $product) : ?>
-                                                            <div class="flex-shrink-0" style="width: 180px;">
-                                                                <?php $this->load->view('product/_item_product_article_in.php', array('key' => $product, 'img_base_url' => 'https://trumecs.com/')); ?>
-                                                            </div>
-                                                        <?php endforeach; ?>
-                                                    </div>
+                                            <div class="col-7">
+                                                <div class="d-flex gap-2 overflow-auto">
+                                                    <?php foreach ($sameproduct as $product) : ?>
+                                                        <div class="flex-shrink-0" style="width: 120px;">
+                                                            <?php $this->load->view('article/product/mobile/_item_product_article_in.php', array('key' => $product, 'img_base_url' => 'https://trumecs.com/')); ?>
+                                                        </div>
+                                                    <?php endforeach; ?>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                            <?php
+                            }
+
+                            // POSISI TENGAH (50%)
+                            if ($paragraph_count == $middle_position && !empty($sameproduct)) {
+                            ?>
+                                <div class="col-lg">
+                                    <div class="p-1" style="background:#F6F6F7; border: 1px solid #eee;">
+                                        <div class="p-4">
+                                            <h3 class="fbold">MAINTENANCE</h3>
+                                            <h6 class="fgray f14">Availability of your units is our priority</h6>
+                                            <a href="#" data-google-tag="maintenance" style="width: fit-content;">Apply</a>
+                                        </div>
+                                        <img src="/public/landing/pic/maintenance.png" alt="maintenance" class="img-fluid w-100"></img>
+                                    </div>
+                                </div>
+                            <?php
+                            }
+
+                            // POSISI 3/4 (75%)
+                            if ($paragraph_count == $last_position && !empty($sameproduct)) {
+                            ?>
+                                <div class="col-lg">
+                                    <div class="p-1 " style="background:#F6F6F7; border: 1px solid #eee;">
+                                        <div class="content p-4">
+                                            <h3 class="fbold">CONSTRUCTION</h3>
+                                            <h6 class="fgray f14">Engineering, Construction and procurement</h6>
+                                            <a href="#" data-google-tag="construction" style="width: fit-content;">Consult Now!</a>
+                                        </div>
+                                        <img src="/public/landing/pic/construction.png" alt="construction" class="img-fluid"></img>
                                     </div>
                                 </div>
                         <?php
@@ -151,30 +161,34 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 sticky">
-                <div class="row">
+            <div class="col-lg-12">
+                <div class="row g-3">
                     <div class="col-lg-12">
                         <div class="card">
-                            <div class="row d-flex flex-column gap-3 p-a-1 article-list">
-                                <div class="col-lg-12">
-                                    <p class="f20 fbold"><?= $this->lang->line('label_trending'); ?></p>
+                            <div class="card-body d-flex flex-column gap-3 p-3 article-list">
+                                <div class="col-12">
+                                    <p class="f20 fbold mb-0"><?= $this->lang->line('label_trending'); ?></p>
                                 </div>
                                 <?php foreach ($dataTrendingNews as $article) : ?>
                                     <a href="<?php echo base_url() ?>article/<?php echo $article['url'] ?>"
-                                        class="color-black"><?= $this->load->view('_article_row_small', ['artikel' => $article]) ?></a>
+                                        class="text-decoration-none text-dark">
+                                        <?= $this->load->view('_article_row_small', ['artikel' => $article]) ?>
+                                    </a>
                                 <?php endforeach; ?>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="card">
-                            <div class="row d-flex flex-column gap-3 p-a-1 article-list">
-                                <div class="col-lg-12">
-                                    <p class="f20 fbold"><?= $this->lang->line('artikel_terkait'); ?></p>
+                            <div class="card-body d-flex flex-column gap-3 p-3 article-list">
+                                <div class="col-12">
+                                    <p class="f20 fbold mb-0"><?= $this->lang->line('artikel_terkait'); ?></p>
                                 </div>
                                 <?php foreach ($sameartikel as $same) : ?>
                                     <a href="<?php echo base_url() ?>article/<?php echo $same['url'] ?>"
-                                        class="color-black"><?= $this->load->view('_article_row_small', ['artikel' => $same]) ?></a>
+                                        class="text-decoration-none text-dark">
+                                        <?= $this->load->view('_article_row_small', ['artikel' => $same]) ?>
+                                    </a>
                                 <?php endforeach; ?>
                             </div>
                         </div>
@@ -187,13 +201,13 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
 </section>
 <section class="request-form" id="request-form">
     <div class="container">
-        <div class="row m-y-lg d-flex flex-column gap-3">
-            <div class="col-lg-12">
-                <p class="f46 fbold">Tidak menemukan barang? kirim permintaan sekarang!</p>
+        <div class="row flex-column gap-3 m-y-lg">
+            <div class="col-12">
+                <p class="f46 fbold mb-0">Tidak menemukan barang? kirim permintaan sekarang!</p>
             </div>
-            <div class="col-lg-12">
-                <div class="card p-a-1">
-                    <?= $this->load->view('bulk/desktop/form_v2') ?>
+            <div class="col-12">
+                <div class="card p-3">
+                    <?= $this->load->view('bulk/mobile/form_v2') ?>
                 </div>
             </div>
         </div>
@@ -207,9 +221,9 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                 <h4 class="fbold"><?php echo $this->lang->line('judul_produk_terkait', FALSE); ?></h4>
             </div>
         </div>
-        <div class="row slick-product-article">
+        <div class="row g-2">
             <?php foreach ($sameproduct as $product) : ?>
-                <?php $this->load->view('product/_item_product_home_mobile.php', array('key' => $product, 'img_base_url' => 'https://trumecs.com/')); ?>
+                <?php $this->load->view('article/product/mobile/_item_product_article_related.php', array('key' => $product, 'img_base_url' => 'https://trumecs.com/')); ?>
             <?php endforeach; ?>
         </div>
     </div>
