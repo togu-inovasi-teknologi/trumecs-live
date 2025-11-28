@@ -30,24 +30,24 @@
             </div>
 
             <!-- Content Section - Flex grow untuk push button ke bawah -->
-            <div class="flex-grow-1 d-flex flex-column px-3" style="min-height: 100px;">
+            <div class="flex-grow-1 d-flex flex-column mt-2 px-3" style="min-height: 100px;">
                 <!-- Title dengan line clamp -->
-                <p itemprop="name" class="f12 text-dark mb-2 line-clamp-3" style="min-height: 3rem;">
+                <p itemprop="name" class="f8 text-dark mb-2 line-clamp-3" style="min-height: 3rem;">
                     <?php echo ucwords($key["tittle"]) ?>
                 </p>
 
                 <!-- Discount & Price -->
                 <?php if ($key["price_promo"] != 0 && $percent < 100): ?>
-                    <p class="fs-6 fw-bold text-danger mb-1">
+                    <p class="f11 fw-bold text-danger mb-1">
                         <?php echo ceil(100 - $percent) ?><small>%</small>
-                        <span class="fs-6 text-muted ms-1">
+                        <span class="f11 text-muted ms-1">
                             <small><s><?php echo "Rp " . number_format($pricepromo, 0, ',', '.'); ?></s></small>
                         </span>
                     </p>
                 <?php endif; ?>
 
                 <!-- Current Price -->
-                <p class="f8 fw-bold text-dark mb-1">
+                <p class="f11 fw-bold text-dark mb-1">
                     <span itemprop="priceCurrency" content="IDR">Rp</span>
                     <span itemprop="price">
                         <?php echo number_format(($key["price_promo"] == "0") ? $key["price"] : $key["price_promo"], 0, ",", "."); ?>

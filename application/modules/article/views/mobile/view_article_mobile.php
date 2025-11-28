@@ -139,7 +139,7 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                                     // POSISI TENGAH (50%)
                                     if ($paragraph_count == $first_position) {
                                     ?>
-                                        <div class="col-lg my-2">
+                                        <!-- <div class="col-lg my-2">
                                             <div class="p-1" style="background:#F6F6F7; border: 1px solid #eee;">
                                                 <div class="p-4">
                                                     <h3 class="fbold">MAINTENANCE</h3>
@@ -148,14 +148,14 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                                                 </div>
                                                 <img src="/public/landing/pic/maintenance.png" alt="maintenance" class="img-fluid w-100"></img>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     <?php
                                     }
 
                                     // POSISI 3/4 (75%)
                                     if ($paragraph_count == $last_position) {
                                     ?>
-                                        <div class="col-lg my-2">
+                                        <!-- <div class="col-lg my-2">
                                             <div class="p-1 " style="background:#F6F6F7; border: 1px solid #eee;">
                                                 <div class="content p-4">
                                                     <h3 class="fbold">CONSTRUCTION</h3>
@@ -164,7 +164,7 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                                                 </div>
                                                 <img src="/public/landing/pic/construction.png" alt="construction" class="img-fluid"></img>
                                             </div>
-                                        </div>
+                                        </div> -->
                         <?php
                                     }
                                 }
