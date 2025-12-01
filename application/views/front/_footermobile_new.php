@@ -316,7 +316,7 @@
 
             <div class="row m-b-3 m-a-0" style="padding:6px 15px; background-color:black;">
                 <div class="col-xs-12">
-                    <h6 class="text-center f10" style="color: #fff;">Trumecs.com © 2022 | Trisindo Raya Utama</h6>
+                    <h6 class="text-center f10" style="color: #fff;">Trumecs.com © 2022 | Tiyasa Makmur Perkasa</h6>
                 </div>
             </div>
         </div>

@@ -145,55 +145,24 @@ $(document).ready(function () {
 
   // Delete button click
   $("#gradeTable").on("click", ".delete", function () {
-    var id = $(this).data("id");
-    var name = $(this).data("name") || "this grade";
-    Swal.fire({
-      title: "Delete grade?",
-      html: `Are you sure you want to delete <strong>${name}</strong>?<br><small class="text-danger">This action cannot be undone.</small>`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "Cancel",
-      showLoaderOnConfirm: true,
-      preConfirm: () => {
-        return new Promise((resolve) => {
-          $.ajax({
-            url: base_url + "backendproduct/gradeAjaxDelete",
-            type: "POST",
-            data: { id: id },
-            dataType: "json",
-            success: function (response) {
-              resolve(response);
-            },
-            error: function () {
-              resolve({ status: false, message: "Network error" });
-            },
-          });
-        });
-      },
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if (result.value.status) {
-          tableGrade.ajax.reload();
-          Swal.fire({
-            icon: "success",
-            title: "Deleted!",
-            text: result.value.message,
-            timer: 2000,
-            showConfirmButton: false,
-          });
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: result.value.message,
-          });
-        }
-      }
-    });
+    if (confirm("Are you sure you want to delete this grade?")) {
+      var id = $(this).data("id");
+
+      $.ajax({
+        url: base_url + "backendproduct/gradeAjaxDelete",
+        type: "POST",
+        data: { id: id },
+        dataType: "json",
+        success: function (response) {
+          if (response.status) {
+            tableGrade.ajax.reload();
+            showSuccessToast(response.message);
+          } else {
+            showErrorToast(response.message);
+          }
+        },
+      });
+    }
   });
 });
 
@@ -272,55 +241,24 @@ $(document).ready(function () {
 
   // Delete button click
   $("#attributeTable").on("click", ".delete", function () {
-    var id = $(this).data("id");
-    var name = $(this).data("name") || "this attribute";
-    Swal.fire({
-      title: "Delete Attribute?",
-      html: `Are you sure you want to delete <strong>${name}</strong>?<br><small class="text-danger">This action cannot be undone.</small>`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "Cancel",
-      showLoaderOnConfirm: true,
-      preConfirm: () => {
-        return new Promise((resolve) => {
-          $.ajax({
-            url: base_url + "backendproduct/attributeAjaxDelete",
-            type: "POST",
-            data: { id: id },
-            dataType: "json",
-            success: function (response) {
-              resolve(response);
-            },
-            error: function () {
-              resolve({ status: false, message: "Network error" });
-            },
-          });
-        });
-      },
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if (result.value.status) {
-          tableAttribute.ajax.reload();
-          Swal.fire({
-            icon: "success",
-            title: "Deleted!",
-            text: result.value.message,
-            timer: 2000,
-            showConfirmButton: false,
-          });
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: result.value.message,
-          });
-        }
-      }
-    });
+    if (confirm("Are you sure you want to delete this attribute?")) {
+      var id = $(this).data("id");
+
+      $.ajax({
+        url: base_url + "backendproduct/attributeAjaxDelete",
+        type: "POST",
+        data: { id: id },
+        dataType: "json",
+        success: function (response) {
+          if (response.status) {
+            tableAttribute.ajax.reload();
+            showSuccessToast(response.message);
+          } else {
+            showErrorToast(response.message);
+          }
+        },
+      });
+    }
   });
 });
 
@@ -354,9 +292,9 @@ $(document).ready(function () {
                 grade.id +
                 '">' +
                 grade.grade +
-                " (" +
+                "( " +
                 grade.type +
-                ")" +
+                " )" +
                 "</option>"
             );
           });
@@ -366,92 +304,6 @@ $(document).ready(function () {
       },
       error: function (xhr, status, error) {
         showErrorToast("Error loading grade: " + error);
-      },
-    });
-  }
-
-  function loadGrades() {
-    $.ajax({
-      url: base_url + "backendproduct/getGrades",
-      type: "GET",
-      dataType: "json",
-      success: function (response) {
-        if (response.status) {
-          var select = $("#select2-grade");
-          select.empty(); // Kosongkan dulu
-          select.append('<option value="">Pilih Grade</option>');
-          $.each(response.data, function (index, grade) {
-            select.append(
-              '<option value="' +
-                grade.id +
-                '">' +
-                grade.grade +
-                " (" +
-                grade.type +
-                ")" +
-                "</option>"
-            );
-          });
-        } else {
-          showErrorToast("Failed to load grade");
-        }
-      },
-      error: function (xhr, status, error) {
-        showErrorToast("Error loading grade: " + error);
-      },
-    });
-  }
-
-  function loadBrands() {
-    $.ajax({
-      url: base_url + "backendproduct/getBrands",
-      type: "GET",
-      dataType: "json",
-      success: function (response) {
-        if (response.status) {
-          var select = $("#select2-brand");
-          select.empty(); // Kosongkan dulu
-          select.append('<option value="">Pilih Brand</option>');
-          $.each(response.data, function (index, brand) {
-            select.append(
-              '<option value="' + brand.id + '">' + brand.name + "</option>"
-            );
-          });
-        } else {
-          showErrorToast("Failed to load grade");
-        }
-      },
-      error: function (xhr, status, error) {
-        showErrorToast("Error loading grade: " + error);
-      },
-    });
-  }
-
-  function loadAttributes() {
-    $.ajax({
-      url: base_url + "backendproduct/getAttributes",
-      type: "GET",
-      dataType: "json",
-      success: function (response) {
-        if (response.status) {
-          var select = $("#select2-attribute");
-          select.empty(); // Kosongkan dulu
-          select.append('<option value="">Pilih Attribute</option>');
-          $.each(response.data, function (index, attribute) {
-            select.append(
-              '<option value="' +
-                attribute.id +
-                '">' +
-                attribute.name +
-                "</option>"
-            );
-          });
-        } else {
-          showErrorToast("Failed to load attribute");
-        }
-      },
-      error: function (xhr, status, error) {
-        showErrorToast("Error loading attribute: " + error);
       },
     });
   }
@@ -460,8 +312,6 @@ $(document).ready(function () {
   $("#add-categori").on("shown.bs.modal", function () {
     initSelect2();
     loadGrades();
-    loadBrands();
-    loadAttributes();
   });
 
   // Reset select2 saat modal ditutup
@@ -471,21 +321,6 @@ $(document).ready(function () {
       .trigger("change");
   });
 
-  $("#fileupload").on("change", function () {
-    var file = this.files[0];
-    if (file) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $("#imagePreview").html(
-          '<img src="' +
-            e.target.result +
-            '" class="img-thumbnail" style="max-width: 150px;">'
-        );
-      };
-      reader.readAsDataURL(file);
-    }
-  });
-
   // Form submission
   $("#addFormCategori").on("submit", function (e) {
     e.preventDefault();
@@ -493,7 +328,10 @@ $(document).ready(function () {
     // Pastikan data select2 terbawa
     var formData = new FormData(this);
 
-    // Untuk debuggin
+    // Untuk debugging
+    console.log("Grade:", $(".select2-grade").val());
+    console.log("Brand:", $(".select2-brand").val());
+    console.log("Attribute:", $(".select2-attribute").val());
 
     // AJAX submission...
   });
@@ -901,7 +739,7 @@ $(document).ready(function () {
           $(".blah").attr("src", ""); // Reset preview
           showSuccessToast(response.message);
           // Reload datatable jika perlu
-          table.ajax.reload();
+          // table.ajax.reload();
         } else {
           showErrorToast(response.message);
         }
@@ -912,151 +750,25 @@ $(document).ready(function () {
     });
   });
 
-  $(document).on("click", ".edit-brand", function () {
-    var id = $(this).data("id");
-    var name = $(this).data("name");
-    var image = $(this).data("image");
+  $("#brandTable").on("click", ".delete", function () {
+    if (confirm("Are you sure you want to delete this brand?")) {
+      var id = $(this).data("id");
 
-    // Set nilai ke form edit
-    $("#edit_id").val(id);
-    $("#edit_brand").val(name);
-
-    // Set preview gambar jika ada
-    if (image && image !== "null" && image !== "") {
-      var imageUrl = base_url + "public/upload/categori/" + image;
-      $("#edit-brand .blah").attr("src", imageUrl).show();
-    } else {
-      $("#edit-brand .blah").attr("src", "").hide();
-    }
-
-    // Buka modal edit
-    $("#edit-brand").modal("show");
-  });
-
-  // Preview gambar saat memilih file baru
-  $("#edit_logoBrand").on("change", function () {
-    readURL(this, "#edit-brand .blah");
-  });
-
-  // Custom file upload trigger untuk edit form
-  $("#edit-brand #filetext").on("click", function (e) {
-    e.preventDefault();
-    $("#edit_logoBrand").click();
-  });
-
-  // Form submission untuk edit
-  $("#editFormBrand").on("submit", function (e) {
-    e.preventDefault();
-
-    var formData = new FormData(this);
-
-    // Tampilkan loading
-    $('button[type="submit"]', this)
-      .prop("disabled", true)
-      .html('<span class="spinner-border spinner-border-sm"></span> Saving...');
-
-    $.ajax({
-      url: base_url + "backendproduct/brandAjaxUpdate",
-      type: "POST",
-      data: formData,
-      processData: false,
-      contentType: false,
-      dataType: "json",
-      success: function (response) {
-        if (response.status) {
-          // Success
-          $("#edit-brand").modal("hide");
-          $("#editFormBrand")[0].reset();
-          $(".blah").attr("src", "").hide();
-          showSuccessToast(response.message);
-          if (typeof table !== "undefined") {
-            table.ajax.reload();
+      $.ajax({
+        url: base_url + "backendproduct/brandAjaxDelete",
+        type: "POST",
+        data: { id: id },
+        dataType: "json",
+        success: function (response) {
+          if (response.status) {
+            tableBrand.ajax.reload();
+            showSuccessToast(response.message);
+          } else {
+            showErrorToast(response.message);
           }
-        } else {
-          showErrorToast(response.message);
-        }
-      },
-      error: function (xhr, status, error) {
-        showErrorToast("Error: " + error);
-      },
-      complete: function () {
-        $('button[type="submit"]', "#editFormBrand")
-          .prop("disabled", false)
-          .html("Save");
-      },
-    });
-  });
-
-  // Reset form ketika modal edit ditutup
-  $("#edit-brand").on("hidden.bs.modal", function () {
-    $("#editFormBrand")[0].reset();
-    $("#editModal .blah").attr("src", "").hide();
-    $("#edit_id").val("");
-  });
-
-  // Fungsi untuk preview gambar
-  function readURL(input, previewSelector) {
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $(previewSelector).attr("src", e.target.result).show();
-      };
-      reader.readAsDataURL(input.files[0]);
+        },
+      });
     }
-  }
-
-  $("#brandTable").on("click", ".delete-brand", function () {
-    var id = $(this).data("id");
-    var name = $(this).data("name") || "this brand";
-    var button = $(this); // Simpan reference ke tombol
-
-    Swal.fire({
-      title: "Delete Brand?",
-      html: `Are you sure you want to delete <strong>${name}</strong>?<br><small class="text-danger">This action cannot be undone.</small>`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "Cancel",
-      showLoaderOnConfirm: true,
-      preConfirm: () => {
-        return new Promise((resolve) => {
-          $.ajax({
-            url: base_url + "backendproduct/brandAjaxDelete",
-            type: "POST",
-            data: { id: id },
-            dataType: "json",
-            success: function (response) {
-              resolve(response);
-            },
-            error: function () {
-              resolve({ status: false, message: "Network error" });
-            },
-          });
-        });
-      },
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if (result.value.status) {
-          tableBrand.ajax.reload();
-          Swal.fire({
-            icon: "success",
-            title: "Deleted!",
-            text: result.value.message,
-            timer: 2000,
-            showConfirmButton: false,
-          });
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: result.value.message,
-          });
-        }
-      }
-    });
   });
 
   var tableModel = $("#modelTable").DataTable({

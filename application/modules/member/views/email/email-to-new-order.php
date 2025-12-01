@@ -11,7 +11,7 @@
         Sebelum tanggal <?php echo $expireddate ?>.<br>
         Ke Rekening :<br>
         No Rekening : 156-00-0557953-9<br>
-        Atas Nama : PT. TRISINDO RAYA UTAMA<br>
+        Atas Nama : PT. Tiyasa Makmur Perkasa<br>
         Bank : Bank Madiri KCP BEKASI GRANDMALL<br><br>
 
         Setelah melakukan pembayaran, Anda harus melakukan

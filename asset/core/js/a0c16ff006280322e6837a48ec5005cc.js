@@ -145,10 +145,10 @@ $(document).ready(function () {
 
   // Delete button click
   $("#gradeTable").on("click", ".delete", function () {
-    var id = $(this).data("id");
+     var id = $(this).data("id");
     var name = $(this).data("name") || "this grade";
     Swal.fire({
-      title: "Delete grade?",
+      title: "Delete Attribute?",
       html: `Are you sure you want to delete <strong>${name}</strong>?<br><small class="text-danger">This action cannot be undone.</small>`,
       icon: "warning",
       showCancelButton: true,
@@ -194,7 +194,6 @@ $(document).ready(function () {
         }
       }
     });
-  });
 });
 
 // attribute jquery

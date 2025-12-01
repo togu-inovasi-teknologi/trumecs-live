@@ -58,7 +58,7 @@
             $totalItems = count($categories);
             $cols = 4;
             foreach ($categories as $index => $i) :
-                if ($index < 7):
+                if ($index < 9):
                     if ($index % $cols === 0) {
                         echo '<div class="row d-flex justify-content-center m-b-8px gap-2 w-100 m-a-0">';
                     }

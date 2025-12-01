@@ -6,7 +6,7 @@ if (!function_exists('main_categories')) {
     {
         $CI = &get_instance();
         $CI->load->model('general/general_model');
-        return $CI->general_model->getcategori(["parent" => 0, "is_brand" => 0, "etc" => 0]);
+        return $CI->general_model->getcategori(["parent" => 0, "is_brand" => 0]);
     }
 
     function base_production_url($url)

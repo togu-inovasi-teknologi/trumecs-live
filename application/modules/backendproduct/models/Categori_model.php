@@ -19,24 +19,9 @@ class categori_model extends CI_Model
             ->result();
     }
 
-    public function get_main_categories_expert()
-    {
-        return $this->db->where(['parent' => 0, 'is_brand' => 0, 'etc' => 1])
-            ->get($this->table)
-            ->result();
-    }
-
-    public function get_main_categories_rent()
-    {
-        return $this->db->where(['parent' => 0, 'is_brand' => 0, 'etc' => 2])
-            ->get($this->table)
-            ->result();
-    }
-
-    // Get sub categories by parent ID
     public function get_sub_categories($parent_id)
     {
-        return $this->db->where(['parent' => $parent_id, 'is_brand' => 0])
+        return $this->db->where(['parent' => $parent_id, 'is_brand' => 0, 'etc' => 0])
             ->get($this->table)
             ->result();
     }
@@ -44,12 +29,27 @@ class categori_model extends CI_Model
     // Get subsub categories by parent ID (sub category)
     public function get_subsub_categories($parent_id)
     {
-        return $this->db->where(['parent' => $parent_id, 'is_brand' => 0])
+        return $this->db->where(['parent' => $parent_id, 'is_brand' => 0, 'etc' => 0])
             ->get($this->table)
             ->result();
     }
 
-    // Get all brands (parent = 0, is_brand = 1)
+    public function get_main_categories_jasa()
+    {
+        return $this->db->where(['parent' => 0, 'is_brand' => 0])
+            ->where('etc !=', 0)
+            ->get($this->table)
+            ->result();
+    }
+
+    public function get_sub_categories_jasa($parent_id)
+    {
+        return $this->db->where(['parent' => $parent_id, 'is_brand' => 0])
+            ->where('etc !=', 0)
+            ->get($this->table)
+            ->result();
+    }
+
     public function get_brands()
     {
         return $this->db->where(['parent' => 0, 'is_brand' => 1])
@@ -295,11 +295,8 @@ class categori_model extends CI_Model
                 case 'main_category':
                     $this->db->where(['is_brand' => 0, 'parent_brand' => 0, 'etc' => 0]);
                     break;
-                case 'main_category_expert':
-                    $this->db->where(['is_brand' => 0, 'parent_brand' => 0, 'etc' => 1]);
-                    break;
-                case 'main_category_rent':
-                    $this->db->where(['is_brand' => 0, 'parent_brand' => 0, 'etc' => 2]);
+                case 'main_category_jasa':
+                    $this->db->where(['is_brand' => 0, 'parent_brand' => 0])->where('etc !=', 0);
                     break;
                 case 'sub_category':
                     $this->db->where('parent !=', 0);

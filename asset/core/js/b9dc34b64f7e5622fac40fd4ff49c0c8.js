@@ -145,55 +145,24 @@ $(document).ready(function () {
 
   // Delete button click
   $("#gradeTable").on("click", ".delete", function () {
-    var id = $(this).data("id");
-    var name = $(this).data("name") || "this grade";
-    Swal.fire({
-      title: "Delete grade?",
-      html: `Are you sure you want to delete <strong>${name}</strong>?<br><small class="text-danger">This action cannot be undone.</small>`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "Cancel",
-      showLoaderOnConfirm: true,
-      preConfirm: () => {
-        return new Promise((resolve) => {
-          $.ajax({
-            url: base_url + "backendproduct/gradeAjaxDelete",
-            type: "POST",
-            data: { id: id },
-            dataType: "json",
-            success: function (response) {
-              resolve(response);
-            },
-            error: function () {
-              resolve({ status: false, message: "Network error" });
-            },
-          });
-        });
-      },
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if (result.value.status) {
-          tableGrade.ajax.reload();
-          Swal.fire({
-            icon: "success",
-            title: "Deleted!",
-            text: result.value.message,
-            timer: 2000,
-            showConfirmButton: false,
-          });
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: result.value.message,
-          });
-        }
-      }
-    });
+    if (confirm("Are you sure you want to delete this grade?")) {
+      var id = $(this).data("id");
+
+      $.ajax({
+        url: base_url + "backendproduct/gradeAjaxDelete",
+        type: "POST",
+        data: { id: id },
+        dataType: "json",
+        success: function (response) {
+          if (response.status) {
+            tableGrade.ajax.reload();
+            showSuccessToast(response.message);
+          } else {
+            showErrorToast(response.message);
+          }
+        },
+      });
+    }
   });
 });
 
@@ -273,9 +242,9 @@ $(document).ready(function () {
   // Delete button click
   $("#attributeTable").on("click", ".delete", function () {
     var id = $(this).data("id");
-    var name = $(this).data("name") || "this attribute";
+    var name = $(this).data("name") || "this brand";
     Swal.fire({
-      title: "Delete Attribute?",
+      title: "Delete Brand?",
       html: `Are you sure you want to delete <strong>${name}</strong>?<br><small class="text-danger">This action cannot be undone.</small>`,
       icon: "warning",
       showCancelButton: true,
@@ -304,7 +273,7 @@ $(document).ready(function () {
     }).then((result) => {
       if (result.isConfirmed) {
         if (result.value.status) {
-          tableAttribute.ajax.reload();
+          tableBrand.ajax.reload();
           Swal.fire({
             icon: "success",
             title: "Deleted!",

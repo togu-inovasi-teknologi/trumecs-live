@@ -502,10 +502,6 @@ class Backendproduct extends MX_Controller
     public function addcategory()
     {
         $this->form_validation->set_rules('name', 'Name', 'required');
-        //$this->form_validation->set_rules('grade[]', 'Grade', 'required');
-        //$this->form_validation->set_rules('merk[]', 'Merk', 'required');
-        $this->form_validation->set_rules('parent', 'Parent', 'required');
-        $id = $this->input->post("id");
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message', 'Tidak ada data yang di inputkan , coba ulangi lagi');
             redirect(base_url() . "backendproduct/categori");
@@ -514,7 +510,6 @@ class Backendproduct extends MX_Controller
         $datainput = array(
             'name' => $this->input->post('name'),
             'url' => preg_replace("/[^a-zA-Z0-9]\-/", "", str_replace(" ", "-", $this->input->post('name'))),
-            'parent' => $this->input->post('parent')
         );
 
         if (empty($_FILES['fileupload']['name'])) {
@@ -528,7 +523,7 @@ class Backendproduct extends MX_Controller
             redirect(base_url() . "backendproduct/categori");
             exit();
         } else {
-            $config['upload_path'] = './public/image/icon/upload/';
+            $config['upload_path'] = './public/upload/categori/';
             $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
             $config['file_name'] = microtime() . ".png";
 
@@ -546,7 +541,7 @@ class Backendproduct extends MX_Controller
                 $namenewfile = $data["file_name"];
                 $dataaddimg = array('img' => $namenewfile);
                 $alldatainput = array_merge($datainput, $dataaddimg);
-                $this->etx_product->addcategory($alldatainput, $where);
+                $this->etx_product->addcategory($alldatainput);
                 $idcategory = $this->db->insert_id();
                 $this->etx_product->setcategorygrade($this->input->post('grade[]'), $idcategory);
                 $this->etx_product->setcategorybrand($this->input->post('merk[]'), $idcategory);
@@ -711,7 +706,7 @@ class Backendproduct extends MX_Controller
             <button type="button" class="btn btn-warning btn-sm edit" data-id="' . $grade->id . '" data-grade="' . $grade->grade . '" data-type="' . $grade->type . '">
                 <i class="fas fa-edit"></i>
             </button>
-            <button type="button" class="btn btn-danger btn-sm delete" data-id="' . $grade->id . '">
+            <button type="button" class="btn btn-danger btn-sm delete" data-id="' . $grade->id . '" data-name="' . $grade->grade . '">
                 <i class="fas fa-trash"></i>
             </button>
         ';
@@ -797,7 +792,7 @@ class Backendproduct extends MX_Controller
             <button type="button" class="btn btn-warning btn-sm edit" data-id="' . $attribute->id . '" data-attribute="' . $attribute->name . '">
                 <i class="fas fa-edit"></i>
             </button>
-            <button type="button" class="btn btn-danger btn-sm delete" data-id="' . $attribute->id . '">
+            <button type="button" class="btn btn-danger btn-sm delete" data-id="' . $attribute->id . '" data-name="' . $attribute->name . '">
                 <i class="fas fa-trash"></i>
             </button>
         ';
@@ -884,6 +879,8 @@ class Backendproduct extends MX_Controller
             $recordsFiltered = $this->categori_model->count_filtered($search);
         }
 
+
+
         $data = array();
         $no = $start;
 
@@ -895,8 +892,22 @@ class Backendproduct extends MX_Controller
                 ? '<img src="' . base_url() . '/public/upload/categori/' . $categori->img . '" class="img-thumbnail" style="max-height: 50px;">'
                 :  '<img src="' . base_url() . '/public/image/noimage.png' . '" class="img-thumbnail" style="max-height: 50px;">';
             $row[] = $this->categori_model->get_parent_info($categori->id);
-
-            $row[] = '
+            if ($type == 'brand') {
+                $action =  '
+    <button type="button" class="btn btn-warning btn-sm edit-brand" 
+            data-id="' . $categori->id . '" 
+            data-name="' . $categori->name . '"
+            data-image="' . $categori->img . '">
+        <i class="fas fa-edit"></i>
+    </button>
+    <button type="button" class="btn btn-danger btn-sm delete-brand" 
+            data-id="' . $categori->id . '"
+            data-name="' . $categori->name . '">
+        <i class="fas fa-trash"></i>
+    </button>
+';
+            } else {
+                $action = '
         <button type="button" class="btn btn-warning btn-sm edit" data-id="' . $categori->id . '" data-categori="' . $categori->name . '">
             <i class="fas fa-edit"></i>
         </button>
@@ -904,6 +915,8 @@ class Backendproduct extends MX_Controller
             <i class="fas fa-trash"></i>
         </button>
     ';
+            }
+            $row[] = $action;
 
             $data[] = $row;
         }
@@ -933,9 +946,70 @@ class Backendproduct extends MX_Controller
         echo json_encode(array("status" => true, "data" => $categories));
     }
 
-    public function getMainCategoriesExpert()
+    public function getGrades()
     {
-        $main_categories = $this->categori_model->get_main_categories_expert();
+        $grades = $this->grade_model->getgrade();
+
+        $main_grade = array();
+        foreach ($grades as $grade) {
+            $main_grade[] = array(
+                'id' => $grade->id,
+                'grade' => $grade->grade,
+                'type' => $grade->type == 0 ? "product" : "mekanik"
+            );
+        }
+
+        echo json_encode(array("status" => true, "data" => $main_grade));
+    }
+
+    public function getBrands()
+    {
+        $brands = $this->categori_model->get_brands();
+
+        $main_brands = array();
+        foreach ($brands as $brand) {
+            $main_brands[] = array(
+                'id' => $brand->id,
+                'name' => $brand->name
+            );
+        }
+
+        echo json_encode(array("status" => true, "data" => $main_brands));
+    }
+
+    public function getAttributes()
+    {
+        $attributes = $this->attribute_model->getattribute();
+
+        $main_attributes = array();
+        foreach ($attributes as $attribute) {
+            $main_attributes[] = array(
+                'id' => $attribute->id,
+                'name' => $attribute->name,
+            );
+        }
+
+        echo json_encode(array("status" => true, "data" => $main_attributes));
+    }
+
+    public function getSubCategories($parent_id)
+    {
+        $sub_categories = $this->categori_model->get_sub_categories($parent_id);
+
+        $categories = array();
+        foreach ($sub_categories as $category) {
+            $categories[] = array(
+                'id' => $category->id,
+                'name' => $category->name
+            );
+        }
+
+        echo json_encode(array("status" => true, "data" => $categories));
+    }
+
+    public function getMainCategoriesJasa()
+    {
+        $main_categories = $this->categori_model->get_main_categories_jasa();
 
         $categories = array();
         foreach ($main_categories as $category) {
@@ -948,12 +1022,12 @@ class Backendproduct extends MX_Controller
         echo json_encode(array("status" => true, "data" => $categories));
     }
 
-    public function getMainCategoriesRent()
+    public function getSubCategoriesJasa($parent_id)
     {
-        $main_categories = $this->categori_model->get_main_categories_rent();
+        $sub_categories = $this->categori_model->get_sub_categories_jasa($parent_id);
 
         $categories = array();
-        foreach ($main_categories as $category) {
+        foreach ($sub_categories as $category) {
             $categories[] = array(
                 'id' => $category->id,
                 'name' => $category->name
@@ -999,18 +1073,18 @@ class Backendproduct extends MX_Controller
         $this->categoriAjaxList('main_category');
     }
 
-    public function mainCategoriesExpertAjaxList()
+    public function mainCategoriesJasaAjaxList()
     {
-        $this->categoriAjaxList('main_category_expert');
+        $this->categoriAjaxList('main_category_jasa');
     }
 
-    public function subCategoriesExpertAjaxAdd()
+    public function subCategoriesJasaAjaxAdd()
     {
 
         $data = array(
             'name' => $this->input->post('name'),
             'url' => preg_replace("/[^a-zA-Z0-9\-]/", "", str_replace(" ", "-", $this->input->post('name'))),
-            'parent' => $this->input->post('mainCategoriExpertId'),
+            'parent' => $this->input->post('mainCategoriJasaId'),
             'parent_brand' => 0,
             'etc' => 1,
             'is_brand' => 0,
@@ -1020,38 +1094,12 @@ class Backendproduct extends MX_Controller
         $insert = $this->categori_model->insert_categori($data);
 
         if ($insert) {
-            echo json_encode(array("status" => true, "message" => "Sub Categori Expert added successfully"));
+            echo json_encode(array("status" => true, "message" => "Sub Categori Jasa added successfully"));
         } else {
-            echo json_encode(array("status" => false, "message" => "Failed to add Sub Categori Expert"));
+            echo json_encode(array("status" => false, "message" => "Failed to add Sub Categori Jasa"));
         }
     }
 
-    public function mainCategoriesRentAjaxList()
-    {
-        $this->categoriAjaxList('main_category_rent');
-    }
-
-    public function subCategoriesRentAjaxAdd()
-    {
-
-        $data = array(
-            'name' => $this->input->post('name'),
-            'url' => preg_replace("/[^a-zA-Z0-9\-]/", "", str_replace(" ", "-", $this->input->post('name'))),
-            'parent' => $this->input->post('mainCategoriRentId'),
-            'parent_brand' => 0,
-            'etc' => 2,
-            'is_brand' => 0,
-            'is_tag' => 0,
-        );
-
-        $insert = $this->categori_model->insert_categori($data);
-
-        if ($insert) {
-            echo json_encode(array("status" => true, "message" => "Sub Categori Rent added successfully"));
-        } else {
-            echo json_encode(array("status" => false, "message" => "Failed to add Sub Categori Rent"));
-        }
-    }
 
     public function subCategoriesAjaxList()
     {
@@ -1110,6 +1158,73 @@ class Backendproduct extends MX_Controller
                     echo json_encode(array("status" => false, "message" => "Failed to add Brand"));
                 }
             }
+        }
+    }
+
+    public function brandAjaxUpdate()
+    {
+        // Validasi input
+        $this->form_validation->set_rules('id', 'ID', 'required|numeric');
+        $this->form_validation->set_rules('name', 'Name', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            echo json_encode(array(
+                "status" => false,
+                "message" => validation_errors()
+            ));
+            return;
+        }
+
+        $id = $this->input->post('id');
+        $data = array(
+            'name' => $this->input->post('name'),
+            'url' => preg_replace("/[^a-zA-Z0-9]\-/", "", str_replace(" ", "-", $this->input->post('name'))),
+        );
+
+        // Cek apakah ada file yang diupload
+        if (!empty($_FILES['logoBrand']['name'])) {
+            // Konfigurasi upload
+            $config['upload_path'] = './public/upload/categori/';
+            $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
+            $config['file_name'] = time() . '_' . rand(1000, 9999) . '.png';
+            $config['max_size'] = 1024; // 1MB
+            $config['max_width'] = 1000;
+            $config['max_height'] = 1000;
+            $config['overwrite'] = false;
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('logoBrand')) {
+                echo json_encode(array(
+                    "status" => false,
+                    "message" => 'Upload gagal: ' . $this->upload->display_errors()
+                ));
+                return;
+            } else {
+                // Hapus file lama jika ada
+                $old_image = $this->categori_model->get_image_path($id);
+                if ($old_image && file_exists('./public/upload/categori/' . $old_image)) {
+                    unlink('./public/upload/categori/' . $old_image);
+                }
+
+                $upload_data = $this->upload->data();
+                $data['img'] = $upload_data['file_name'];
+            }
+        }
+
+        // Update data
+        $update = $this->categori_model->update_categori($id, $data);
+
+        if ($update) {
+            echo json_encode(array(
+                "status" => true,
+                "message" => "Brand updated successfully"
+            ));
+        } else {
+            echo json_encode(array(
+                "status" => false,
+                "message" => "Failed to update brand"
+            ));
         }
     }
 

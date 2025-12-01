@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 $lang['trumecs_is'] = 'Mechanical Marketplace';
 $lang['trumecs_tagline'] = 'Temukan Kepraktisan Belanja Produk Mekanikal Bersama Kami';
-$lang['trumecs_description'] = 'TRUMECS, platform milik PT. Trisindo Raya Utama, menyediakan produk dan komponen mekanikal berkualitas tinggi dengan harga kompetitif. Kami mempermudah belanja dengan layanan pengiriman yang efisien, memberikan solusi terpercaya bagi industri dan stakeholder untuk mendapatkan produk yang bermutu dan keamanan dalam bertransaksi';
+$lang['trumecs_description'] = 'TRUMECS, platform milik PT. Tiyasa Makmur Perkasa, menyediakan produk dan komponen mekanikal berkualitas tinggi dengan harga kompetitif. Kami mempermudah belanja dengan layanan pengiriman yang efisien, memberikan solusi terpercaya bagi industri dan stakeholder untuk mendapatkan produk yang bermutu dan keamanan dalam bertransaksi';
 $lang['why_trumecs'] = 'KENAPA';
 $lang['must_trumecs'] = 'HARUS';
 $lang['why_must_trumecs'] = 'raih peluang bisnis tanpa batas bersama Trumecs!
