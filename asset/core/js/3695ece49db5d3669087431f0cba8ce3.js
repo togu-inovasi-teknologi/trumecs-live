@@ -3,6 +3,7 @@ var idprn = "";
 var idctr = "";
 var txtctr = "";
 var img = "";
+
 // grade jquery
 
 var tableCategori = $("#categoriTable").DataTable({
@@ -560,8 +561,8 @@ $(document).ready(function () {
       url: base_url + "backendproduct/categoriAjaxAdd",
       type: "POST",
       data: formData,
-      processData: false,
-      contentType: false,
+      processData: false, // Penting untuk FormData
+      contentType: false, // Penting untuk FormData
       dataType: "json",
       success: function (response) {
         if (response.status) {
@@ -616,95 +617,105 @@ $(document).ready(function () {
   });
 
   function loadCategoryData(id) {
-    return new Promise(function (resolve, reject) {
-      $.ajax({
-        url: base_url + "backendproduct/getCategoryById/" + id,
-        type: "GET",
-        dataType: "json",
-        success: function (response) {
-          console.log("Response dari server:", response);
+    $.ajax({
+      url: base_url + "backendproduct/getCategoryById/" + id,
+      type: "GET",
+      dataType: "json",
+      success: function (response) {
+        console.log("Response dari server:", response); // Debugging
+        if (response.status) {
+          var category = response.data;
+          console.log("Category data:", category); // Debugging
+          console.log("Grades:", category.grades); // Debugging
+          console.log("Brands:", category.brands); // Debugging
+          console.log("Attributes:", category.attributes); // Debugging
 
-          if (response.status) {
-            var category = response.data;
+          // Set nilai form
+          $("#edit_category_id").val(category.id);
+          $("#edit_name").val(category.name);
+          $("#edit_etc").val(category.etc || "0");
 
-            // Set nilai form
-            $("#edit_category_id").val(category.id);
-            $("#edit_name").val(category.name);
-            $("#edit_etc").val(category.etc || "0");
-
-            // Tampilkan info gambar saat ini
-            if (category.img) {
-              var imageUrl =
-                base_url + "public/upload/categori/" + category.img;
-              $("#edit_image_category").html(
-                '<div class="alert alert-info p-2">' +
-                  'Gambar saat ini: <a href="' +
-                  imageUrl +
-                  '" target="_blank">' +
-                  category.img +
-                  "</a></div>"
-              );
-              $("#edit_image_category_value").val(category.img);
-              $("#edit_imagePreview").html(
-                '<img src="' +
-                  imageUrl +
-                  '" class="img-thumbnail" style="max-width: 150px;">'
-              );
-            } else {
-              $("#edit_image_category").html(
-                '<div class="alert alert-warning p-2">Tidak ada gambar</div>'
-              );
-            }
-
-            // Set nilai select2 untuk grade
-            if (category.grades && category.grades.length > 0) {
-              console.log(
-                "Setting grades:",
-                category.grades.map((g) => g.id)
-              );
-              var gradeIds = category.grades.map(function (grade) {
-                return grade.id.toString();
-              });
-              $("#edit_select2-grade").val(gradeIds).trigger("change");
-            }
-
-            // Set nilai select2 untuk brand
-            if (category.brands && category.brands.length > 0) {
-              console.log(
-                "Setting brands:",
-                category.brands.map((b) => b.id)
-              );
-              var brandIds = category.brands.map(function (brand) {
-                return brand.id.toString();
-              });
-              $("#edit_select2-brand").val(brandIds).trigger("change");
-            }
-
-            // Set nilai select2 untuk attribute
-            if (category.attributes && category.attributes.length > 0) {
-              console.log(
-                "Setting attributes:",
-                category.attributes.map((a) => a.id)
-              );
-              var attributeIds = category.attributes.map(function (attr) {
-                return attr.id.toString();
-              });
-              $("#edit_select2-attribute").val(attributeIds).trigger("change");
-            }
-
-            // PENTING: Resolve promise setelah semua selesai
-            console.log("Category data loaded successfully");
-            resolve(); // ✅ TAMBAHKAN INI
+          // Tampilkan info gambar saat ini
+          if (category.img) {
+            var imageUrl = base_url + "public/upload/categori/" + category.img;
+            $("#current_image_info").html(
+              '<div class="alert alert-info p-2">' +
+                'Gambar saat ini: <a href="' +
+                imageUrl +
+                '" target="_blank">' +
+                category.img +
+                "</a>" +
+                "</div>"
+            );
+            $("#edit_imagePreview").html(
+              '<img src="' +
+                imageUrl +
+                '" class="img-thumbnail" style="max-width: 150px;">'
+            );
           } else {
-            console.error("Server error:", response.message);
-            reject(response.message);
+            $("#current_image_info").html(
+              '<div class="alert alert-warning p-2">Tidak ada gambar</div>'
+            );
           }
-        },
-        error: function (xhr, status, error) {
-          console.error("AJAX Error:", xhr.responseText);
-          reject(error);
-        },
-      });
+
+          // Set nilai select2 untuk grade
+          if (category.grades && category.grades.length > 0) {
+            console.log(
+              "Setting grades:",
+              category.grades.map((g) => g.id)
+            ); // Debugging
+            var gradeIds = category.grades.map(function (grade) {
+              return grade.id.toString();
+            });
+            $("#edit_select2-grade").val(gradeIds).trigger("change");
+          }
+
+          // Set nilai select2 untuk brand
+          if (category.brands && category.brands.length > 0) {
+            console.log(
+              "Setting brands:",
+              category.brands.map((b) => b.id)
+            ); // Debugging
+            var brandIds = category.brands.map(function (brand) {
+              return brand.id.toString();
+            });
+            $("#edit_select2-brand").val(brandIds).trigger("change");
+          }
+
+          // Set nilai select2 untuk attribute
+          if (category.attributes && category.attributes.length > 0) {
+            console.log(
+              "Setting attributes:",
+              category.attributes.map((a) => a.id)
+            ); // Debugging
+            var attributeIds = category.attributes.map(function (attr) {
+              return attr.id.toString();
+            });
+            $("#edit_select2-attribute").val(attributeIds).trigger("change");
+          }
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Error!",
+            text: response.message,
+          });
+        }
+      },
+      error: function (xhr, status, error) {
+        console.error("AJAX Error:", xhr.responseText); // Debugging
+        try {
+          var jsonResponse = JSON.parse(xhr.responseText);
+          console.error("Parsed error:", jsonResponse);
+        } catch (e) {
+          console.error("Response bukan JSON:", xhr.responseText);
+        }
+
+        Swal.fire({
+          icon: "error",
+          title: "Error!",
+          text: "Error loading category data: " + error,
+        });
+      },
     });
   }
 
@@ -716,7 +727,7 @@ $(document).ready(function () {
       placeholder: "Pilih opsi...",
       allowClear: true,
       closeOnSelect: false,
-      dropdownParent: $("#edit-categori .modal-content"),
+      dropdownParent: $("#edit-categori"),
     });
   }
 
@@ -808,7 +819,7 @@ $(document).ready(function () {
             placeholder: "Pilih opsi...",
             allowClear: true,
             closeOnSelect: false,
-            dropdownParent: $("#edit-categori .modal-content"),
+            dropdownParent: $("#edit-categori"),
           });
           resolve();
         })
@@ -818,11 +829,16 @@ $(document).ready(function () {
     });
   }
 
+  // $("#edit-categori").on("show.bs.modal", function () {
+  //   initSelect2Edit();
+  //   loadSelectDataForEdit();
+  // });
+
   // Event saat modal edit ditutup
   $("#edit-categori").on("hidden.bs.modal", function () {
     // Reset form
     $("#editFormCategori")[0].reset();
-    $("#edit_image_category").empty();
+    $("#current_image_info").empty();
     $("#edit_imagePreview").empty();
 
     // Reset select2
@@ -834,27 +850,17 @@ $(document).ready(function () {
   $(document).on("click", ".edit-categori", function () {
     var categoryId = $(this).data("id");
 
-    // 1. Init Select2 DULU (tanpa modal)
-    initSelect2Edit();
+    // Kosongkan dulu select2
+    $(
+      "#edit_select2-grade, #edit_select2-brand, #edit_select2-attribute"
+    ).empty();
 
-    // 2. Load data select2 dan tunggu selesai
-    loadSelectDataForEdit()
-      .then(function () {
-        // 3. Load category data
-        return loadCategoryData(categoryId);
-      })
-      .then(function () {
-        // 4. BARU tampilkan modal setelah semua siap
-        $("#edit-categori").modal("show");
-      })
-      .catch(function (error) {
-        console.error("Error:", error);
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "Gagal memuat data. Silakan coba lagi.",
-        });
-      });
+    // Load data select2 terlebih dahulu, baru load data kategori
+    loadSelectDataForEdit().then(function () {
+      // Setelah data select2 dimuat, baru buka modal dan load data kategori
+      $("#edit-categori").modal("show");
+      loadCategoryData(categoryId);
+    });
   });
 
   $("#edit_fileupload").on("change", function () {
@@ -934,7 +940,7 @@ $(document).ready(function () {
 
           // Reset preview
           $("#edit_imagePreview").empty();
-          $("#edit_image_category").empty();
+          $("#current_image_info").empty();
 
           // Reload DataTables
           if (typeof tableCategori !== "undefined") {
@@ -968,115 +974,6 @@ $(document).ready(function () {
         // Restore button
         submitBtn.prop("disabled", false).html(originalText);
       },
-    });
-  });
-
-  $("#categoriTable").on("click", ".delete-categori", function () {
-    var id = $(this).data("id");
-    var name = $(this).data("name") || "this categori";
-    var button = $(this);
-
-    Swal.fire({
-      title: "Delete Brand?",
-      html: `Are you sure you want to delete <strong>${name}</strong>?<br><small class="text-danger">This action cannot be undone.</small>`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "Cancel",
-      showLoaderOnConfirm: true,
-      preConfirm: () => {
-        return new Promise((resolve) => {
-          $.ajax({
-            url: base_url + "backendproduct/categoriAjaxDelete",
-            type: "POST",
-            data: { id: id },
-            dataType: "json",
-            success: function (response) {
-              resolve(response);
-            },
-            error: function () {
-              resolve({ status: false, message: "Network error" });
-            },
-          });
-        });
-      },
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if (result.value.status) {
-          tableBrand.ajax.reload();
-          Swal.fire({
-            icon: "success",
-            title: "Deleted!",
-            text: result.value.message,
-            timer: 2000,
-            showConfirmButton: false,
-          });
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: result.value.message,
-          });
-        }
-      }
-    });
-  });
-
-  $("#categoriJasaTable").on("click", ".delete-categori", function () {
-    var id = $(this).data("id");
-    var name = $(this).data("name") || "this categori";
-    var button = $(this);
-
-    Swal.fire({
-      title: "Delete Brand?",
-      html: `Are you sure you want to delete <strong>${name}</strong>?<br><small class="text-danger">This action cannot be undone.</small>`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "Cancel",
-      showLoaderOnConfirm: true,
-      preConfirm: () => {
-        return new Promise((resolve) => {
-          $.ajax({
-            url: base_url + "backendproduct/categoriAjaxDelete",
-            type: "POST",
-            data: { id: id },
-            dataType: "json",
-            success: function (response) {
-              resolve(response);
-            },
-            error: function () {
-              resolve({ status: false, message: "Network error" });
-            },
-          });
-        });
-      },
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if (result.value.status) {
-          tableCategori.ajax.reload();
-          tableCategoriJasa.ajax.reload();
-          Swal.fire({
-            icon: "success",
-            title: "Deleted!",
-            text: result.value.message,
-            timer: 2000,
-            showConfirmButton: false,
-          });
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: result.value.message,
-          });
-        }
-      }
     });
   });
 });
@@ -1117,52 +1014,6 @@ $(document).ready(function () {
     }
   });
 
-  $("#fileuploadSubEdit").on("change", function () {
-    var file = this.files[0];
-    if (file) {
-      if (file.size > 1024 * 1024) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "File terlalu besar. Maksimal 1MB",
-        });
-        $(this).val("");
-        return;
-      }
-
-      var validTypes = ["image/jpeg", "image/jpg", "image/png"];
-      if (!validTypes.includes(file.type)) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "Format File tidak didukung. Hanya JPG, JPEG, PNG",
-        });
-        $(this).val("");
-        return;
-      }
-
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $("#imagePreviewSubEdit").html(
-          '<img src="' +
-            e.target.result +
-            '" class="img-thumbnail" style="max-width: 150px;">' +
-            '<div class="mt-1 text-success small">New Image Preview</div>'
-        );
-
-        // Update hidden value jika user upload gambar baru
-        $("#edit_image_subcategory_value").val("");
-      };
-      reader.readAsDataURL(file);
-    } else {
-      // Jika file dihapus, load kembali gambar saat ini
-      var categoryId = $("#edit_subcategori_id").val();
-      if (categoryId) {
-        loadSubCategoryImage(categoryId);
-      }
-    }
-  });
-
   $("#fileuploadSubSub").on("change", function () {
     var file = this.files[0];
     if (file) {
@@ -1198,7 +1049,7 @@ $(document).ready(function () {
     }
   });
 
-  $("#fileuploadSubSubEdit").on("change", function () {
+  $("#fileuploadSubJasa").on("change", function () {
     var file = this.files[0];
     if (file) {
       if (file.size > 1024 * 1024) {
@@ -1223,7 +1074,42 @@ $(document).ready(function () {
       }
       var reader = new FileReader();
       reader.onload = function (e) {
-        $("#imagePreviewSubSubEdit").html(
+        $("#imagePreviewSubJasa").html(
+          '<img src="' +
+            e.target.result +
+            '" class="img-thumbnail" style="max-width: 150px;">'
+        );
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  $("#fileuploadSubSubJasa").on("change", function () {
+    var file = this.files[0];
+    if (file) {
+      if (file.size > 1024 * 1024) {
+        Swal.fire({
+          icon: "error",
+          title: "Error!",
+          text: "File terlalu besar. Maksimal 1MB",
+        });
+        $(this).val("");
+        return;
+      }
+
+      var validTypes = ["image/jpeg", "image/jpg", "image/png"];
+      if (!validTypes.includes(file.type)) {
+        Swal.fire({
+          icon: "error",
+          title: "Error!",
+          text: "Format file tidak didukung. Hanya JPG, JPEG, PNG",
+        });
+        $(this).val("");
+        return;
+      }
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $("#imagePreviewSubSubJasa").html(
           '<img src="' +
             e.target.result +
             '" class="img-thumbnail" style="max-width: 150px;">'
@@ -1248,8 +1134,8 @@ $(document).ready(function () {
       url: base_url + "backendproduct/addSubCategoriAjax",
       type: "POST",
       data: formData,
-      processData: false,
-      contentType: false,
+      processData: false, // Penting untuk FormData
+      contentType: false, // Penting untuk FormData
       dataType: "json",
       success: function (response) {
         if (response.status) {
@@ -1265,7 +1151,7 @@ $(document).ready(function () {
           tableCategori.ajax.reload(); // Reload datatable
           Swal.fire({
             icon: "success",
-            title: "Edit Sub Categori!",
+            title: "Edit Grade!",
             text: response.message,
             timer: 2000,
             showConfirmButton: false,
@@ -1296,14 +1182,6 @@ $(document).ready(function () {
     $("#imagePreviewSub").empty();
     $("#mainCategori").val("");
     $("#subCategori").prop("disabled", true).val("");
-  });
-
-  $("#edit-subcategori").on("hidden.bs.modal", function () {
-    $("#editFormSubCategori")[0].reset();
-    $("#imagePreviewSubEdit").empty();
-    $("#mainCategoriEdit").val("");
-    $("#subCategoriEdit").prop("disabled", true).val("");
-    $("#edit_subcategori_id").val("");
   });
 
   function loadMainCategories() {
@@ -1397,208 +1275,6 @@ $(document).ready(function () {
     loadMainCategories();
   });
 
-  $(document).on("click", ".edit-subcategori", function () {
-    var categoryId = $(this).data("id");
-    var categoryName = $(this).data("name");
-    var categoryParent = $(this).data("parent");
-
-    // Reset form terlebih dahulu
-    $("#editFormSubCategori")[0].reset();
-    $("#imagePreviewSubEdit").empty();
-    $("#edit_image_subcategory").empty();
-    $("#mainCategoriEdit").empty();
-    $("#subCategoriEdit").prop("disabled", true).val("");
-
-    // Set hidden ID
-    $("#edit_subcategori_id").val(categoryId);
-
-    // Tampilkan modal terlebih dahulu
-    $("#edit-subcategori").modal("show");
-
-    // 1. Load main categories untuk dropdown
-    $.ajax({
-      url: base_url + "backendproduct/getMainCategories",
-      type: "GET",
-      dataType: "json",
-      success: function (response) {
-        if (response.status) {
-          var select = $("#mainCategoriEdit");
-          select.empty();
-          select.append('<option value="">Pilih Kategori Utama</option>');
-          $.each(response.data, function (index, category) {
-            select.append(
-              '<option value="' +
-                category.id +
-                '">' +
-                category.name +
-                "</option>"
-            );
-          });
-
-          // Set parent yang sudah ada
-          if (categoryParent) {
-            select.val(categoryParent).trigger("change");
-          }
-
-          // Enable input nama
-          $("#subCategoriEdit").prop("disabled", false).val(categoryName);
-
-          // 2. Load gambar kategori
-          loadSubCategoryImage(categoryId);
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error!",
-            text: response.message || "Failed to load categories",
-          });
-        }
-      },
-      error: function (xhr, status, error) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "Error loading categories: " + error,
-        });
-      },
-    });
-  });
-
-  // Function untuk load gambar kategori
-  function loadSubCategoryImage(categoryId) {
-    $.ajax({
-      url: base_url + "backendproduct/getCategoryById/" + categoryId, // Gunakan endpoint yang benar
-      type: "GET",
-      dataType: "json",
-      success: function (response) {
-        console.log("Image response:", response);
-        if (response.status && response.data) {
-          var data = response.data;
-
-          // Tampilkan gambar saat ini jika ada
-          if (data.img) {
-            var imageUrl = base_url + "public/upload/categori/" + data.img;
-            $("#edit_image_subcategory").html(
-              '<div class="alert alert-info p-2">' +
-                'Current image: <a href="' +
-                imageUrl +
-                '" target="_blank">' +
-                data.img +
-                "</a></div>"
-            );
-            $("#edit_image_subcategory_value").val(data.img);
-
-            $("#imagePreviewSubEdit").html(
-              '<img src="' +
-                imageUrl +
-                '" class="img-thumbnail" style="max-width: 150px;">' +
-                '<div class="mt-1 text-muted small">Current Image</div>'
-            );
-          } else {
-            $("#edit_image_subcategory").html(
-              '<div class="alert alert-warning p-2">No image available</div>'
-            );
-            $("#imagePreviewSubEdit").html(
-              '<div class="text-muted">No image available</div>'
-            );
-          }
-        }
-      },
-      error: function (xhr, status, error) {
-        console.log("Error loading image:", error);
-        $("#imagePreviewSubEdit").html(
-          '<div class="text-danger">Failed to load image</div>'
-        );
-      },
-    });
-  }
-
-  $("#editFormSubCategori").on("submit", function (e) {
-    e.preventDefault();
-
-    // Validasi form
-    var mainCategory = $("#mainCategoriEdit").val();
-    var subCategoryName = $("#subCategoriEdit").val();
-
-    if (!mainCategory) {
-      Swal.fire({
-        icon: "error",
-        title: "Error!",
-        text: "Pilih Kategori Utama terlebih dahulu",
-      });
-      return;
-    }
-
-    if (!subCategoryName.trim()) {
-      Swal.fire({
-        icon: "error",
-        title: "Error!",
-        text: "Nama Sub Kategori tidak boleh kosong",
-      });
-      $("#subCategoriEdit").focus();
-      return;
-    }
-
-    var formData = new FormData(this);
-
-    var submitBtn = $(this).find('button[type="submit"]');
-    var originalText = submitBtn.html();
-    submitBtn
-      .prop("disabled", true)
-      .html(
-        '<span class="spinner-border spinner-border-sm"></span> Updating...'
-      );
-
-    $.ajax({
-      url: base_url + "backendproduct/updateSubCategoriAjax",
-      type: "POST",
-      data: formData,
-      processData: false,
-      contentType: false,
-      dataType: "json",
-      success: function (response) {
-        if (response.status) {
-          $("#edit-subcategori").modal("hide");
-          $("#editFormSubCategori")[0].reset();
-          $("#imagePreviewSubEdit").empty();
-
-          // Reload datatable
-          if (typeof tableCategori !== "undefined") {
-            tableCategori.ajax.reload();
-          }
-
-          // Jika ada tabel sub category, reload juga
-          if (typeof tableSubCategori !== "undefined") {
-            tableSubCategori.ajax.reload();
-          }
-
-          Swal.fire({
-            icon: "success",
-            title: "Success!",
-            text: response.message,
-            timer: 2000,
-            showConfirmButton: false,
-          });
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error!",
-            text: response.message,
-          });
-        }
-      },
-      error: function (xhr, status, error) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "Error: " + error,
-        });
-      },
-      complete: function () {
-        submitBtn.prop("disabled", false).html(originalText);
-      },
-    });
-  });
-
   $("#mainCategori").on("change", function () {
     var mainCategoryId = $(this).val();
     var select = $("#subCategori");
@@ -1606,16 +1282,6 @@ $(document).ready(function () {
       select.prop("disabled", false);
     } else {
       select.empty().prop("disabled", true);
-    }
-  });
-
-  $("#mainCategoriEdit").on("change", function () {
-    var mainCategoryId = $(this).val();
-    var input = $("#subCategoriEdit");
-    if (mainCategoryId) {
-      input.prop("disabled", false);
-    } else {
-      input.prop("disabled", true);
     }
   });
 
@@ -1633,8 +1299,8 @@ $(document).ready(function () {
       url: base_url + "backendproduct/addSubSubCategoriAjax",
       type: "POST",
       data: formData,
-      processData: false,
-      contentType: false,
+      processData: false, // Penting untuk FormData
+      contentType: false, // Penting untuk FormData
       dataType: "json",
       success: function (response) {
         if (response.status) {
@@ -1713,196 +1379,22 @@ $(document).ready(function () {
     $("#subCategoriSub").prop("disabled", true).val("");
   });
 
-  $("#fileuploadSubJasa").on("change", function () {
-    var file = this.files[0];
-    if (file) {
-      if (file.size > 1024 * 1024) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "File terlalu besar. Maksimal 1MB",
-        });
-        $(this).val("");
-        return;
-      }
-
-      var validTypes = ["image/jpeg", "image/jpg", "image/png"];
-      if (!validTypes.includes(file.type)) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "Format File tidak didukung. Hanya JPG, JPEG, PNG",
-        });
-        $(this).val("");
-        return;
-      }
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $("#imagePreviewSubJasa").html(
-          '<img src="' +
-            e.target.result +
-            '" class="img-thumbnail" style="max-width: 150px;">'
-        );
-      };
-      reader.readAsDataURL(file);
-    }
-  });
-
-  $("#fileuploadSubJasaEdit").on("change", function () {
-    var file = this.files[0];
-    if (file) {
-      if (file.size > 1024 * 1024) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "File terlalu besar. Maksimal 1MB",
-        });
-        $(this).val("");
-        return;
-      }
-
-      var validTypes = ["image/jpeg", "image/jpg", "image/png"];
-      if (!validTypes.includes(file.type)) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "Format File tidak didukung. Hanya JPG, JPEG, PNG",
-        });
-        $(this).val("");
-        return;
-      }
-
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $("#imagePreviewSubJasaEdit").html(
-          '<img src="' +
-            e.target.result +
-            '" class="img-thumbnail" style="max-width: 150px;">' +
-            '<div class="mt-1 text-success small">New Image Preview</div>'
-        );
-
-        // Update hidden value jika user upload gambar baru
-        $("#edit_image_subcategory_jasa_value").val("");
-      };
-      reader.readAsDataURL(file);
-    } else {
-      // Jika file dihapus, load kembali gambar saat ini
-      var categoryId = $("#edit_subcategori_jasa_id").val();
-      if (categoryId) {
-        loadSubCategoryJasaImage(categoryId);
-      }
-    }
-  });
-
-  function loadSubCategoryJasaImage(categoryId) {
-    $.ajax({
-      url: base_url + "backendproduct/getCategoryById/" + categoryId, // Gunakan endpoint yang benar
-      type: "GET",
-      dataType: "json",
-      success: function (response) {
-        console.log("Image response:", response);
-        if (response.status && response.data) {
-          var data = response.data;
-
-          // Tampilkan gambar saat ini jika ada
-          if (data.img) {
-            var imageUrl = base_url + "public/upload/categori/" + data.img;
-            $("#edit_image_subcategory_jasa").html(
-              '<div class="alert alert-info p-2">' +
-                'Current image: <a href="' +
-                imageUrl +
-                '" target="_blank">' +
-                data.img +
-                "</a></div>"
-            );
-            $("#edit_image_subcategory_jasa_value").val(data.img);
-
-            $("#imagePreviewSubJasaEdit").html(
-              '<img src="' +
-                imageUrl +
-                '" class="img-thumbnail" style="max-width: 150px;">' +
-                '<div class="mt-1 text-muted small">Current Image</div>'
-            );
-          } else {
-            $("#edit_image_subcategory_jasa").html(
-              '<div class="alert alert-warning p-2">No image available</div>'
-            );
-            $("#imagePreviewSubJasaEdit").html(
-              '<div class="text-muted">No image available</div>'
-            );
-          }
-        }
-      },
-      error: function (xhr, status, error) {
-        console.log("Error loading image:", error);
-        $("#imagePreviewSubJasaEdit").html(
-          '<div class="text-danger">Failed to load image</div>'
-        );
-      },
-    });
-  }
-
-  $("#fileuploadSubSubJasa").on("change", function () {
-    var file = this.files[0];
-    if (file) {
-      if (file.size > 1024 * 1024) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "File terlalu besar. Maksimal 1MB",
-        });
-        $(this).val("");
-        return;
-      }
-
-      var validTypes = ["image/jpeg", "image/jpg", "image/png"];
-      if (!validTypes.includes(file.type)) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "Format file tidak didukung. Hanya JPG, JPEG, PNG",
-        });
-        $(this).val("");
-        return;
-      }
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $("#imagePreviewSubSubJasa").html(
-          '<img src="' +
-            e.target.result +
-            '" class="img-thumbnail" style="max-width: 150px;">'
-        );
-      };
-      reader.readAsDataURL(file);
-    }
-  });
-
   $("#addFormSubCategoriJasa").on("submit", function (e) {
     e.preventDefault();
-    var formData = new FormData(this);
-
-    var submitBtn = $(this).find('button[type="submit"]');
-    var originalText = submitBtn.html();
-    submitBtn
-      .prop("disabled", true)
-      .html('<span class="spinner-border spinner-border-sm"></span> Saving...');
 
     $.ajax({
       url: base_url + "backendproduct/subCategoriesJasaAjaxAdd",
       type: "POST",
-      data: formData,
-      processData: false,
-      contentType: false,
+      data: $(this).serialize(),
       dataType: "json",
       success: function (response) {
         if (response.status) {
           $("#add-subcategori-jasa").modal("hide");
           $("#addFormSubCategoriJasa")[0].reset();
-          $("#imagePreviewSubJasa").empty();
           tableCategoriJasa.ajax.reload();
           Swal.fire({
             icon: "success",
-            title: "Edit Sub Categori Jasa!",
+            title: "Edit Grade!",
             text: response.message,
             timer: 2000,
             showConfirmButton: false,
@@ -1914,16 +1406,6 @@ $(document).ready(function () {
             text: response.message,
           });
         }
-      },
-      error: function (xhr, status, error) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "Error: " + error,
-        });
-      },
-      complete: function () {
-        submitBtn.prop("disabled", false).html(originalText);
       },
     });
   });
@@ -2019,72 +1501,6 @@ $(document).ready(function () {
     loadMainCategoriesJasa();
   });
 
-  $(document).on("click", ".edit-subcategori-jasa", function () {
-    var categoryId = $(this).data("id");
-    var categoryName = $(this).data("name");
-    var categoryParent = $(this).data("parent");
-
-    // Reset form terlebih dahulu
-    $("#editFormSubCategoriJasa")[0].reset();
-    $("#imagePreviewSubJasaEdit").empty();
-    $("#edit_image_subcategory").empty();
-    $("#mainCategoriEdit").empty();
-    $("#subCategoriEdit").prop("disabled", true).val("");
-
-    // Set hidden ID
-    $("#edit_subcategori_id").val(categoryId);
-
-    // Tampilkan modal terlebih dahulu
-    $("#edit-subcategori").modal("show");
-
-    // 1. Load main categories untuk dropdown
-    $.ajax({
-      url: base_url + "backendproduct/getMainCategories",
-      type: "GET",
-      dataType: "json",
-      success: function (response) {
-        if (response.status) {
-          var select = $("#mainCategoriEdit");
-          select.empty();
-          select.append('<option value="">Pilih Kategori Utama</option>');
-          $.each(response.data, function (index, category) {
-            select.append(
-              '<option value="' +
-                category.id +
-                '">' +
-                category.name +
-                "</option>"
-            );
-          });
-
-          // Set parent yang sudah ada
-          if (categoryParent) {
-            select.val(categoryParent).trigger("change");
-          }
-
-          // Enable input nama
-          $("#subCategoriEdit").prop("disabled", false).val(categoryName);
-
-          // 2. Load gambar kategori
-          loadSubCategoryImage(categoryId);
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error!",
-            text: response.message || "Failed to load categories",
-          });
-        }
-      },
-      error: function (xhr, status, error) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "Error loading categories: " + error,
-        });
-      },
-    });
-  });
-
   $("#add-subsubcategori-jasa").on("show.bs.modal", function () {
     loadMainCategoriesJasa();
   });
@@ -2123,57 +1539,6 @@ $(document).ready(function () {
     }
   });
 
-  $("#addFormSubSubCategoriJasa").on("submit", function (e) {
-    e.preventDefault();
-    var formData = new FormData(this);
-
-    var submitBtn = $(this).find('button[type="submit"]');
-    var originalText = submitBtn.html();
-    submitBtn
-      .prop("disabled", true)
-      .html('<span class="spinner-border spinner-border-sm"></span> Saving...');
-
-    $.ajax({
-      url: base_url + "backendproduct/addSubSubCategoriJasaAjax",
-      type: "POST",
-      data: formData,
-      processData: false,
-      contentType: false,
-      dataType: "json",
-      success: function (response) {
-        if (response.status) {
-          $("#add-subsubcategori-jasa").modal("hide");
-          $("#addFormSubSubCategoriJasa")[0].reset();
-          $("#imagePreviewSubSubJasa").empty();
-          tableCategoriJasa.ajax.reload();
-          Swal.fire({
-            icon: "success",
-            title: "Edit Sub Sub Categori Jasa!",
-            text: response.message,
-            timer: 2000,
-            showConfirmButton: false,
-          });
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error!",
-            text: response.message,
-          });
-        }
-      },
-      error: function (xhr, status, error) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "Error: " + error,
-        });
-      },
-      complete: function () {
-        submitBtn.prop("disabled", false).html(originalText);
-      },
-    });
-  });
-
   $("#addFormBrand").on("submit", function (e) {
     e.preventDefault();
 
@@ -2183,8 +1548,8 @@ $(document).ready(function () {
       url: base_url + "backendproduct/brandAjaxAdd",
       type: "POST",
       data: formData,
-      processData: false,
-      contentType: false,
+      processData: false, // Penting untuk FormData
+      contentType: false, // Penting untuk FormData
       dataType: "json",
       success: function (response) {
         if (response.status) {

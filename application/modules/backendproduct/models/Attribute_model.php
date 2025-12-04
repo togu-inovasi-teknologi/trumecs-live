@@ -17,6 +17,16 @@ class attribute_model extends CI_Model
         return $this->db->get('attribute')->result();
     }
 
+    public function get_attribute_by_categori($category_id)
+    {
+        return $this->db->select('a.*')
+            ->from('category_attribute ca')
+            ->join('attribute a', 'ca.attribute_id = a.id')
+            ->where('ca.category_id', $category_id)
+            ->get()
+            ->result();
+    }
+
     // Get all grades for DataTables
     public function get_datatables($start, $length, $search, $order)
     {

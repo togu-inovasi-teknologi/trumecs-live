@@ -95,7 +95,7 @@ class Backendproduct extends MX_Controller
             );
         }
 
-        redirect('backendproduct/listall');
+        // redirect('backendproduct/listall');
     }
 
     function ambil_data()
@@ -499,61 +499,6 @@ class Backendproduct extends MX_Controller
         $this->load->view('backend/template_front', $data);
     }
 
-    public function addcategory()
-    {
-        $this->form_validation->set_rules('name', 'Name', 'required');
-        if ($this->form_validation->run() == FALSE) {
-            $this->session->set_flashdata('message', 'Tidak ada data yang di inputkan , coba ulangi lagi');
-            redirect(base_url() . "backendproduct/categori");
-            exit();
-        }
-        $datainput = array(
-            'name' => $this->input->post('name'),
-            'url' => preg_replace("/[^a-zA-Z0-9]\-/", "", str_replace(" ", "-", $this->input->post('name'))),
-        );
-
-        if (empty($_FILES['fileupload']['name'])) {
-            $alldatainput = array_merge($datainput);
-            $this->etx_product->addcategory($datainput);
-            $idcategory = $this->db->insert_id();
-            $this->etx_product->setcategorygrade($this->input->post('grade[]'), $idcategory);
-            $this->etx_product->setcategorybrand($this->input->post('merk[]'), $idcategory);
-            $this->etx_product->setcategoryattribute($this->input->post('attribute[]'), $idcategory);
-            $this->session->set_flashdata('message', 'Kategori di tambah, tanpa gambar');
-            redirect(base_url() . "backendproduct/categori");
-            exit();
-        } else {
-            $config['upload_path'] = './public/upload/categori/';
-            $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
-            $config['file_name'] = microtime() . ".png";
-
-            $config['max_size'] = '1000';
-            $config['max_width']  = '1000';
-            $config['max_height']  = '1000';
-            $this->load->library('upload', $config);
-            $this->upload->initialize($config);
-            if (! $this->upload->do_upload("fileupload")) {
-                $this->session->set_flashdata('message', 'Gambar tidak bisa di upload ' . $this->upload->display_errors());
-                redirect(base_url() . "backendproduct/categori");
-                exit();
-            } else {
-                $data = $this->upload->data();
-                $namenewfile = $data["file_name"];
-                $dataaddimg = array('img' => $namenewfile);
-                $alldatainput = array_merge($datainput, $dataaddimg);
-                $this->etx_product->addcategory($alldatainput);
-                $idcategory = $this->db->insert_id();
-                $this->etx_product->setcategorygrade($this->input->post('grade[]'), $idcategory);
-                $this->etx_product->setcategorybrand($this->input->post('merk[]'), $idcategory);
-                $this->etx_product->setcategoryattribute($this->input->post('attribute[]'), $idcategory);
-                $this->session->set_flashdata('message', 'Kategori di tambah');
-                redirect(base_url() . "backendproduct/categori");
-                exit();
-            }
-        }
-
-        redirect(base_url() . 'backendproduct/categori');
-    }
 
     public function hapuscategory()
     {
@@ -749,7 +694,6 @@ class Backendproduct extends MX_Controller
             'grade' => $this->input->post('grade'),
             'type' => $this->input->post('type')
         );
-
         $update = $this->grade_model->update_grade($id, $data);
 
         if ($update) {
@@ -870,7 +814,6 @@ class Backendproduct extends MX_Controller
 
         $type = $this->input->post('type');
 
-        // Gunakan method dengan filter type
         if ($type) {
             $list = $this->categori_model->get_datatables_by_type($start, $length, $search, $order, $type);
             $recordsFiltered = $this->categori_model->count_filtered_by_type($search, $type);
@@ -906,15 +849,75 @@ class Backendproduct extends MX_Controller
         <i class="fas fa-trash"></i>
     </button>
 ';
-            } else {
+            } elseif (($type == "main_category" || $type == "main_category_jasa") && $categori->parent == 0) {
                 $action = '
-        <button type="button" class="btn btn-warning btn-sm edit" data-id="' . $categori->id . '" data-categori="' . $categori->name . '">
+        <button type="button" class="btn btn-warning btn-sm edit-categori" data-id="' . $categori->id . '" data-categori="' . $categori->name . '">
             <i class="fas fa-edit"></i>
         </button>
-        <button type="button" class="btn btn-danger btn-sm delete" data-id="' . $categori->id . '">
+        <button type="button" class="btn btn-danger btn-sm delete-categori" data-id="' . $categori->id . '" data-name="' . $categori->name . '">
             <i class="fas fa-trash"></i>
         </button>
     ';
+            } else {
+                $category_type = $this->categori_model->get_category_type_info($categori->id);
+                if ($category_type == 'sub_category') {
+                    // Ini benar-benar sub category (level 1)
+                    $action = '
+                    <button type="button" class="btn btn-warning btn-sm edit-subcategori" 
+                            data-id="' . $categori->id . '" 
+                            data-name="' . $categori->name . '"
+                            data-parent="' . $categori->parent . '">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm delete-subcategori" 
+                            data-id="' . $categori->id . '" 
+                            data-name="' . $categori->name . '">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                ';
+                } elseif ($category_type == 'subsub_category') {
+                    $action = '
+                    <button type="button" class="btn btn-warning btn-sm edit-subsubcategori" 
+                            data-id="' . $categori->id . '" 
+                            data-name="' . $categori->name . '"
+                            data-parent="' . $categori->parent . '">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm delete-subsubcategori" 
+                            data-id="' . $categori->id . '" 
+                            data-name="' . $categori->name . '">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                ';
+                } elseif ($category_type == 'sub_category_jasa') {
+                    $action = '
+                    <button type="button" class="btn btn-warning btn-sm edit-subcategori-jasa" 
+                            data-id="' . $categori->id . '" 
+                            data-name="' . $categori->name . '"
+                            data-parent="' . $categori->parent . '">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm delete-subcategori-jasa" 
+                            data-id="' . $categori->id . '" 
+                            data-name="' . $categori->name . '">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                ';
+                } elseif ($category_type == 'subsub_category_jasa') {
+                    $action = '
+                    <button type="button" class="btn btn-warning btn-sm edit-subsubcategori-jasa" 
+                            data-id="' . $categori->id . '" 
+                            data-name="' . $categori->name . '"
+                            data-parent="' . $categori->parent . '">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm delete-subsubcategori-jasa" 
+                            data-id="' . $categori->id . '" 
+                            data-name="' . $categori->name . '">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                ';
+                }
             }
             $row[] = $action;
 
@@ -931,6 +934,121 @@ class Backendproduct extends MX_Controller
         echo json_encode($output);
     }
 
+    public function categoriAjaxAdd()
+    {
+        $datainput = array(
+            'name' => $this->input->post('name'),
+            'url' => preg_replace("/[^a-zA-Z0-9]\-/", "", str_replace(" ", "-", $this->input->post('name'))),
+            'etc' => $this->input->post('etc'),
+            'parent' => 0,
+            'parent_brand' => 0
+        );
+
+        if (empty($_FILES['fileupload']['name'])) {
+            $alldatainput = array_merge($datainput);
+            $addcategory = $this->categori_model->insert_categori($datainput);
+            $idcategory = $this->db->insert_id();
+            $this->etx_product->setcategorygrade($this->input->post('grade[]'), $idcategory);
+            $this->etx_product->setcategorybrand($this->input->post('merk[]'), $idcategory);
+            $this->etx_product->setcategoryattribute($this->input->post('attribute[]'), $idcategory);
+            if ($addcategory) {
+                echo json_encode(array("status" => true, "message" => "Categori Added successfully without pic"));
+            } else {
+                echo json_encode(array("status" => false, "message" => "Failed to add Categori"));
+            }
+        } else {
+            $config['upload_path'] = './public/upload/categori/';
+            $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
+            $config['file_name'] = microtime() . ".png";
+
+            $config['max_size'] = '1000';
+            $config['max_width']  = '1000';
+            $config['max_height']  = '1000';
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if (! $this->upload->do_upload("fileupload")) {
+                echo json_encode(array("status" => false, "message" => "Failed to upload pic"));
+            } else {
+                $data = $this->upload->data();
+                $namenewfile = $data["file_name"];
+                $dataaddimg = array('img' => $namenewfile);
+                $alldatainput = array_merge($datainput, $dataaddimg);
+                $addcategory = $this->categori_model->insert_categori($alldatainput);
+                $idcategory = $this->db->insert_id();
+                $this->etx_product->setcategorygrade($this->input->post('grade[]'), $idcategory);
+                $this->etx_product->setcategorybrand($this->input->post('merk[]'), $idcategory);
+                $this->etx_product->setcategoryattribute($this->input->post('attribute[]'), $idcategory);
+                if ($addcategory) {
+                    echo json_encode(array("status" => true, "message" => "Categori Added successfully"));
+                } else {
+                    echo json_encode(array("status" => false, "message" => "Failed to add Categori"));
+                }
+            }
+        }
+    }
+
+    public function categoriAjaxUpdate()
+    {
+        $id = $this->input->post('id');
+        $datainput = array(
+            'name' => $this->input->post('name'),
+            'url' => preg_replace("/[^a-zA-Z0-9]\-/", "", str_replace(" ", "-", $this->input->post('name'))),
+            'etc' => $this->input->post('etc'),
+        );
+        if (empty($_FILES['fileuploadEdit']['name'])) {
+            $dataaddimg = array('img' => (($this->input->post('edit_image_category_value')) == "") ? '' : $this->input->post('edit_image_category_value'));
+            $alldatainput = array_merge($datainput, $dataaddimg);
+            $updatecategori = $this->categori_model->update_categori($id, $alldatainput);
+            $this->etx_product->setcategorygrade($this->input->post('grade[]'), $id);
+            $this->etx_product->setcategorybrand($this->input->post('merk[]'), $id);
+            $this->etx_product->setcategoryattribute($this->input->post('attribute[]'), $id);
+            if ($updatecategori) {
+                echo json_encode(array("status" => true, "message" => "Categori Updated successfully without uploaded new pic"));
+            } else {
+                echo json_encode(array("status" => false, "message" => "Failed to update Categori"));
+            }
+        } else {
+            $config['upload_path'] = './public/upload/categori/';
+            $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
+            $config['file_name'] = microtime() . ".jpg";
+            $config['encrypt_name'] = TRUE;
+            $config['max_size'] = '1000';
+            $config['max_width']  = '1000';
+            $config['max_height']  = '1000';
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if (! $this->upload->do_upload("fileuploadEdit")) {
+                echo json_encode(array("status" => false, "message" => "Failed to upload pic"));
+            } else {
+                $data = $this->upload->data();
+                $namenewfile = $data["file_name"];
+                $dataaddimg = array('img' => $namenewfile);
+                $alldatainput = array_merge($datainput, $dataaddimg);
+                $updatecategori = $this->categori_model->update_categori($id, $alldatainput);
+                $this->etx_product->setcategorygrade($this->input->post('grade[]'), $id);
+                $this->etx_product->setcategorybrand($this->input->post('merk[]'), $id);
+                $this->etx_product->setcategoryattribute($this->input->post('attribute[]'), $id);
+                if ($updatecategori) {
+                    echo json_encode(array("status" => true, "message" => "Categori Updated successfully"));
+                } else {
+                    echo json_encode(array("status" => false, "message" => "Failed to update Categori"));
+                }
+            }
+        }
+    }
+
+    public function categoriAjaxDelete()
+    {
+        $id = $this->input->post('id');
+        $delete = $this->categori_model->delete_categori($id);
+
+        if ($delete) {
+            echo json_encode(array("status" => true, "message" => "Categori deleted successfully"));
+        } else {
+            echo json_encode(array("status" => false, "message" => "Failed to delete Categori"));
+        }
+    }
+
     public function getMainCategories()
     {
         $main_categories = $this->categori_model->get_main_categories();
@@ -944,6 +1062,43 @@ class Backendproduct extends MX_Controller
         }
 
         echo json_encode(array("status" => true, "data" => $categories));
+    }
+
+    public function getCategoryById($id)
+    {
+
+        // Pastikan ID valid
+        if (empty($id) || !is_numeric($id)) {
+            $response = array(
+                "status" => false,
+                "message" => "Invalid category ID: " . $id
+            );
+            header('Content-Type: application/json');
+            echo json_encode($response);
+            exit;
+        }
+        $category = $this->categori_model->get_categori_by_id($id);
+
+        if ($category) {
+            // Get related grades
+            $category->grades = $this->grade_model->get_grades_by_categori($id);
+
+            $category->brands = $this->categori_model->get_brand_by_categori($id);
+
+            $category->attributes = $this->attribute_model->get_attribute_by_categori($id);
+            $response = array(
+                "status" => true,
+                "data" => $category
+            );
+        } else {
+            $response =  array(
+                "status" => false,
+                "message" => "Category not found"
+            );
+        }
+        header('Content-Type: application/json');
+        echo json_encode($response);
+        exit;
     }
 
     public function getGrades()
@@ -1037,7 +1192,7 @@ class Backendproduct extends MX_Controller
         echo json_encode(array("status" => true, "data" => $categories));
     }
 
-    public function addSubCategori()
+    public function addSubCategoriAjax()
     {
         // Validasi
         $this->form_validation->set_rules('mainCategoriId', 'Main Category', 'required');
@@ -1048,22 +1203,228 @@ class Backendproduct extends MX_Controller
             return;
         }
 
-        $data = array(
+        $datainput = array(
             'name' => $this->input->post('name'),
             'url' => preg_replace("/[^a-zA-Z0-9\-]/", "", str_replace(" ", "-", $this->input->post('name'))),
-            'parent' => $this->input->post('mainCategoriId'), // Parent = main category ID
+            'parent' => $this->input->post('mainCategoriId'),
             'parent_brand' => 0,
             'etc' => 0,
             'is_brand' => 0,
             'is_tag' => 0,
         );
 
-        $insert = $this->categori_model->insert_categori($data);
-
-        if ($insert) {
-            echo json_encode(array("status" => true, "message" => "Sub category added successfully"));
+        if (empty($_FILES['fileuploadSub']['name'])) {
+            $alldatainput = array_merge($datainput);
+            $addcategory = $this->categori_model->insert_categori($datainput);
+            if ($addcategory) {
+                echo json_encode(array("status" => true, "message" => "Sub Categori Added successfully without pic"));
+            } else {
+                echo json_encode(array("status" => false, "message" => "Failed to add Sub Categori"));
+            }
         } else {
-            echo json_encode(array("status" => false, "message" => "Failed to add sub category"));
+            $config['upload_path'] = './public/upload/categori/';
+            $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
+            $config['file_name'] = microtime() . ".png";
+            $config['max_size'] = '1000';
+            $config['max_width']  = '1000';
+            $config['max_height']  = '1000';
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if (! $this->upload->do_upload("fileuploadSub")) {
+                echo json_encode(array("status" => false, "message" => "Failed to upload pic"));
+            } else {
+                $data = $this->upload->data();
+                $namenewfile = $data["file_name"];
+                $dataaddimg = array('img' => $namenewfile);
+                $alldatainput = array_merge($datainput, $dataaddimg);
+                $addcategory = $this->categori_model->insert_categori($alldatainput);
+                if ($addcategory) {
+                    echo json_encode(array("status" => true, "message" => "Sub Categori Added successfully"));
+                } else {
+                    echo json_encode(array("status" => false, "message" => "Failed to add Sub Categori"));
+                }
+            }
+        }
+    }
+
+    public function updateSubCategoriAjax()
+    {
+        $this->form_validation->set_rules('edit_subcategori_id', 'Sub Category ID', 'required');
+        $this->form_validation->set_rules('mainCategoriEditId', 'Main Category', 'required');
+        $this->form_validation->set_rules('name', 'Sub Category Name', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            echo json_encode(array("status" => false, "message" => validation_errors()));
+            return;
+        }
+
+        $id = $this->input->post('edit_subcategori_id');
+
+        // Cek apakah sub kategori ada
+        $existing = $this->categori_model->get_categori_by_id($id);
+        if (!$existing) {
+            echo json_encode(array("status" => false, "message" => "Sub Category not found"));
+            return;
+        }
+
+        $datainput = array(
+            'name' => $this->input->post('name'),
+            'url' => preg_replace("/[^a-zA-Z0-9\-]/", "", str_replace(" ", "-", $this->input->post('name'))),
+            'parent' => $this->input->post('mainCategoriEditId'),
+        );
+
+        if (empty($_FILES['fileuploadSubEdit']['name'])) {
+            // Update tanpa gambar baru
+            $updatecategory = $this->categori_model->update_categori($id, $datainput);
+            if ($updatecategory) {
+                echo json_encode(array("status" => true, "message" => "Sub Categori updated successfully"));
+            } else {
+                echo json_encode(array("status" => false, "message" => "Failed to update Sub Categori"));
+            }
+        } else {
+            $config['upload_path'] = './public/upload/categori/';
+            $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
+            $config['file_name'] = microtime() . ".png";
+            $config['max_size'] = '1000';
+            $config['max_width']  = '1000';
+            $config['max_height']  = '1000';
+            $config['overwrite'] = true;
+
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+
+            if (!$this->upload->do_upload("fileuploadSubEdit")) {
+                echo json_encode(array("status" => false, "message" => "Failed to upload image: " . $this->upload->display_errors()));
+                return;
+            } else {
+                $data = $this->upload->data();
+                $datainput['img'] = $data["file_name"];
+
+                // Hapus file lama jika ada
+                if (!empty($existing->img)) {
+                    $old_file = './public/upload/categori/' . $existing->img;
+                    if (file_exists($old_file)) {
+                        @unlink($old_file);
+                    }
+                }
+
+                $updatecategory = $this->categori_model->update_categori($id, $datainput);
+                if ($updatecategory) {
+                    echo json_encode(array("status" => true, "message" => "Sub Categori updated successfully"));
+                } else {
+                    echo json_encode(array("status" => false, "message" => "Failed to update Sub Categori"));
+                }
+            }
+        }
+    }
+
+    public function addSubSubCategoriAjax()
+    {
+        // Validasi
+        $this->form_validation->set_rules('mainCategoriSubSubId', 'Main Category', 'required');
+        $this->form_validation->set_rules('name', 'Sub Category Name', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            echo json_encode(array("status" => false, "message" => validation_errors()));
+            return;
+        }
+
+        $datainput = array(
+            'name' => $this->input->post('name'),
+            'url' => preg_replace("/[^a-zA-Z0-9\-]/", "", str_replace(" ", "-", $this->input->post('name'))),
+            'parent' => $this->input->post('mainCategoriSubSubId'),
+            'parent_brand' => 0,
+            'etc' => 0,
+            'is_brand' => 0,
+            'is_tag' => 0,
+        );
+
+        if (empty($_FILES['fileuploadSubSub']['name'])) {
+            $alldatainput = array_merge($datainput);
+            $addcategory = $this->categori_model->insert_categori($datainput);
+            if ($addcategory) {
+                echo json_encode(array("status" => true, "message" => "Sub Sub Categori Added successfully without pic"));
+            } else {
+                echo json_encode(array("status" => false, "message" => "Failed to add Sub Sub Categori"));
+            }
+        } else {
+            $config['upload_path'] = './public/upload/categori/';
+            $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
+            $config['file_name'] = microtime() . ".png";
+            $config['max_size'] = '1000';
+            $config['max_width']  = '1000';
+            $config['max_height']  = '1000';
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if (! $this->upload->do_upload("fileuploadSubSub")) {
+                echo json_encode(array("status" => false, "message" => "Failed to upload pic"));
+            } else {
+                $data = $this->upload->data();
+                $namenewfile = $data["file_name"];
+                $dataaddimg = array('img' => $namenewfile);
+                $alldatainput = array_merge($datainput, $dataaddimg);
+                $addcategory = $this->categori_model->insert_categori($alldatainput);
+                if ($addcategory) {
+                    echo json_encode(array("status" => true, "message" => "Sub Categori Added successfully"));
+                } else {
+                    echo json_encode(array("status" => false, "message" => "Failed to add Sub Categori"));
+                }
+            }
+        }
+    }
+
+    public function addSubSubCategoriJasaAjax()
+    {
+        // Validasi
+        $this->form_validation->set_rules('mainCategoriSubSubJasaId', 'Main Category', 'required');
+        $this->form_validation->set_rules('name', 'Sub Category Name', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            echo json_encode(array("status" => false, "message" => validation_errors()));
+            return;
+        }
+
+        $datainput = array(
+            'name' => $this->input->post('name'),
+            'url' => preg_replace("/[^a-zA-Z0-9\-]/", "", str_replace(" ", "-", $this->input->post('name'))),
+            'parent' => $this->input->post('mainCategoriSubSubJasaId'),
+            'parent_brand' => 0,
+            'etc' => 1,
+            'is_brand' => 0,
+            'is_tag' => 0,
+        );
+
+        if (empty($_FILES['fileuploadSubSubJasa']['name'])) {
+            $alldatainput = array_merge($datainput);
+            $addcategory = $this->categori_model->insert_categori($datainput);
+            if ($addcategory) {
+                echo json_encode(array("status" => true, "message" => "Sub Sub Categori Jasa Added successfully without pic"));
+            } else {
+                echo json_encode(array("status" => false, "message" => "Failed to add Sub Sub Categori Jasa"));
+            }
+        } else {
+            $config['upload_path'] = './public/upload/categori/';
+            $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
+            $config['file_name'] = microtime() . ".png";
+            $config['max_size'] = '1000';
+            $config['max_width']  = '1000';
+            $config['max_height']  = '1000';
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if (! $this->upload->do_upload("fileuploadSubSubJasa")) {
+                echo json_encode(array("status" => false, "message" => "Failed to upload pic"));
+            } else {
+                $data = $this->upload->data();
+                $namenewfile = $data["file_name"];
+                $dataaddimg = array('img' => $namenewfile);
+                $alldatainput = array_merge($datainput, $dataaddimg);
+                $addcategory = $this->categori_model->insert_categori($alldatainput);
+                if ($addcategory) {
+                    echo json_encode(array("status" => true, "message" => "Sub Sub Categori Jasa Added successfully"));
+                } else {
+                    echo json_encode(array("status" => false, "message" => "Failed to add Sub Sub Categori Jasa"));
+                }
+            }
         }
     }
 
@@ -1081,7 +1442,7 @@ class Backendproduct extends MX_Controller
     public function subCategoriesJasaAjaxAdd()
     {
 
-        $data = array(
+        $datainput = array(
             'name' => $this->input->post('name'),
             'url' => preg_replace("/[^a-zA-Z0-9\-]/", "", str_replace(" ", "-", $this->input->post('name'))),
             'parent' => $this->input->post('mainCategoriJasaId'),
@@ -1091,24 +1452,38 @@ class Backendproduct extends MX_Controller
             'is_tag' => 0,
         );
 
-        $insert = $this->categori_model->insert_categori($data);
-
-        if ($insert) {
-            echo json_encode(array("status" => true, "message" => "Sub Categori Jasa added successfully"));
+        if (empty($_FILES['fileuploadSubJasa']['name'])) {
+            $alldatainput = array_merge($datainput);
+            $addcategory = $this->categori_model->insert_categori($datainput);
+            if ($addcategory) {
+                echo json_encode(array("status" => true, "message" => "Sub Categori Jasa Added successfully without pic"));
+            } else {
+                echo json_encode(array("status" => false, "message" => "Failed to add Sub Categori Jasa"));
+            }
         } else {
-            echo json_encode(array("status" => false, "message" => "Failed to add Sub Categori Jasa"));
+            $config['upload_path'] = './public/upload/categori/';
+            $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
+            $config['file_name'] = microtime() . ".png";
+            $config['max_size'] = '1000';
+            $config['max_width']  = '1000';
+            $config['max_height']  = '1000';
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if (! $this->upload->do_upload("fileuploadSubJasa")) {
+                echo json_encode(array("status" => false, "message" => "Failed to upload pic"));
+            } else {
+                $data = $this->upload->data();
+                $namenewfile = $data["file_name"];
+                $dataaddimg = array('img' => $namenewfile);
+                $alldatainput = array_merge($datainput, $dataaddimg);
+                $addcategory = $this->categori_model->insert_categori($alldatainput);
+                if ($addcategory) {
+                    echo json_encode(array("status" => true, "message" => "Sub Categori Jasa Added successfully"));
+                } else {
+                    echo json_encode(array("status" => false, "message" => "Failed to add Sub Categori Jasa"));
+                }
+            }
         }
-    }
-
-
-    public function subCategoriesAjaxList()
-    {
-        $this->categoriAjaxList('sub_category');
-    }
-
-    public function subsubCategoriesAjaxList()
-    {
-        $this->categoriAjaxList('subsub_category');
     }
 
     public function brandsAjaxList()

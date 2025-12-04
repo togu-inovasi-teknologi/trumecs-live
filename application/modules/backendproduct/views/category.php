@@ -44,6 +44,9 @@
 										<div class="row d-flex flex-column gap-3">
 											<div class="col-lg-12 d-flex justify-content-between align-items-center">
 												<h3 class="fw-bold">Category List & Sub</h3>
+												<button data-bs-target="#add-categori" data-bs-toggle="modal" class="btn btn-primary">
+													<i class="fas fa-plus me-1"></i>Tambah Kategori
+												</button>
 											</div>
 											<ul class="nav nav-tabs" id="myTab" role="tablist">
 												<li class="nav-item" role="presentation">
@@ -58,9 +61,6 @@
 													<div class="col-lg-12 d-flex justify-content-between align-items-center">
 														<h3 class="fw-bold">Product</h3>
 														<div class="d-flex gap-2">
-															<button data-bs-target="#add-categori" data-bs-toggle="modal" class="btn btn-primary">
-																<i class="fas fa-plus me-1"></i>Tambah Kategori
-															</button>
 															<button data-bs-target="#add-subcategori" data-bs-toggle="modal" class="btn btn-primary">
 																<i class="fas fa-plus me-1"></i>Tambah Sub Kategori
 															</button>
@@ -83,84 +83,75 @@
 															</tbody>
 														</table>
 													</div>
-													<div class="modal fade" id="add-categori" tabindex="-1">
-														<div class="modal-dialog modal-lg">
-															<div class="modal-content">
-																<div class="modal-header">
-																	<h5 class="modal-title">Add New Category</h5>
-																	<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-																</div>
-																<form id="addFormCategori" enctype="multipart/form-data">
-																	<div class="modal-body">
-																		<input type="hidden" name="id" id="category_id" value="">
-
-																		<div class="row">
-																			<!-- Nama Kategori -->
-																			<div class="col-md-6 mb-3">
-																				<label for="name" class="form-label fw-bold">Nama Kategori <span class="text-danger">*</span></label>
-																				<input type="text" class="form-control" id="name" name="name" required>
-																			</div>
-																			<div class="col-md-6 mb-3">
-																				<label for="select2-grade" class="form-label fw-bold">Grade</label>
-																				<select class="form-select select2-grade" id="select2-grade" name="grade[]" multiple>
-																					<option value="#">Pilih Grade</option>
-																				</select>
-																			</div>
-
-																		</div>
-
-																		<div class="row">
-
-																			<div class="col-md-6 mb-3">
-																				<label for="select2-brand" class="form-label fw-bold">Merk/Brand</label>
-																				<select class="form-select select2-brand" id="select2-brand" name="merk[]" multiple>
-																					<option value="#">Pilih Brand</option>
-																				</select>
-																			</div>
-																			<div class="col-md-6 mb-3">
-																				<label for="select2-attribute" class="form-label fw-bold">Attributes</label>
-																				<select class="form-select select2-attribute" id="select2-attribute" name="attribute[]" multiple>
-																					<option value="#">Pilih Attribute</option>
-																				</select>
-																			</div>
-																		</div>
-
-																		<div class="row">
-																			<div class="col-md-6 mb-3">
-																				<label for="fileupload" class="form-label fw-bold">Icon / Image</label>
-																				<input type="file" class="form-control" id="fileupload" name="fileupload" accept=".jpg,.jpeg,.png">
-																				<div class="form-text">Format: JPG, PNG (Max: 1MB, 1000x1000px)</div>
-
-																			</div>
-																			<div class="col-md-6 mb-3">
-																				<div id="imagePreview" class="mt-2"></div>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="modal-footer">
-																		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-																		<button type="submit" class="btn btn-primary">Save Category</button>
-																	</div>
-																</form>
-															</div>
-														</div>
-													</div>
 													<div class="modal fade" id="add-subcategori" tabindex="-1">
-														<div class="modal-dialog">
+														<div class="modal-dialog modal-lg">
 															<div class="modal-content">
 																<div class="modal-header">
 																	<h5 class="modal-title">Add New Sub Categori</h5>
 																	<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 																</div>
-																<form id="addFormSubCategori">
+																<form id="addFormSubCategori" enctype="multipart/form-data">
 																	<div class="modal-body">
-																		<div class="my-3">
-																			<label for="mainCategori" class="form-label fw-bold">Kategori Utama</label>
-																			<select name="mainCategoriId" id="mainCategori" class="form-control"></select>
+																		<div class="row">
+																			<div class="col-md-6 mb-3">
+																				<label for="fileuploadSub" class="form-label fw-bold">Icon / Image</label>
+																				<input type="file" class="form-control" id="fileuploadSub" name="fileuploadSub" accept=".jpg,.jpeg,.png">
+																				<div class="form-text">Format: JPG, PNG (Max: 1MB, 1000x1000px)</div>
+																			</div>
+																			<div class="col-md-6 mb-3">
+																				<div id="imagePreviewSub" class="mt-2"></div>
+																			</div>
 																		</div>
-																		<div class="my-3">
-																			<label for="subCategori" class="form-label fw-bold">Nama Sub Kategori</label>
-																			<input type="text" class="form-control" id="subCategori" name="name" disabled required>
+																		<div class="row">
+																			<div class="col-md-6 mb-3">
+																				<label for="mainCategori" class="form-label fw-bold">Kategori Utama</label>
+																				<select name="mainCategoriId" id="mainCategori" class="form-control"></select>
+																			</div>
+																			<div class="col-md-6 mb-3">
+																				<label for="subCategori" class="form-label fw-bold">Nama Sub Kategori</label>
+																				<input type="text" class="form-control" id="subCategori" name="name" disabled required>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="modal-footer">
+																		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+																		<button type="submit" class="btn btn-primary">Save</button>
+																	</div>
+																</form>
+															</div>
+														</div>
+													</div>
+													<div class="modal fade" id="edit-subcategori" tabindex="-1">
+														<div class="modal-dialog modal-lg">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h5 class="modal-title">Edit Sub Categori</h5>
+																	<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+																</div>
+																<form id="editFormSubCategori" enctype="multipart/form-data">
+																	<div class="modal-body">
+																		<input type="hidden" name="edit_subcategori_id" id="edit_subcategori_id">
+																		<div class="row">
+																			<div class="col-md-6 mb-3">
+																				<label for="fileuploadSubEdit" class="form-label fw-bold">Icon / Image</label>
+																				<input type="file" class="form-control" id="fileuploadSubEdit" name="fileuploadSubEdit" accept=".jpg,.jpeg,.png">
+																				<div class="form-text">Format: JPG, PNG (Max: 1MB, 1000x1000px)</div>
+																				<div class="mt-2" id="edit_image_subcategory"></div>
+																				<input type="hidden" name="edit_image_subcategory_value" id="edit_image_subcategory_value">
+																			</div>
+																			<div class="col-md-6 mb-3">
+																				<div id="imagePreviewSubEdit" class="mt-2"></div>
+																			</div>
+																		</div>
+																		<div class="row">
+																			<div class="col-md-6 mb-3">
+																				<label for="mainCategoriEdit" class="form-label fw-bold">Kategori Utama</label>
+																				<select name="mainCategoriEditId" id="mainCategoriEdit" class="form-control"></select>
+																			</div>
+																			<div class="col-md-6 mb-3">
+																				<label for="subCategoriEdit" class="form-label fw-bold">Nama Sub Kategori</label>
+																				<input type="text" class="form-control" id="subCategoriEdit" name="name" disabled required>
+																			</div>
 																		</div>
 																	</div>
 																	<div class="modal-footer">
@@ -172,7 +163,7 @@
 														</div>
 													</div>
 													<div class="modal fade" id="add-subsubcategori" tabindex="-1">
-														<div class="modal-dialog">
+														<div class="modal-dialog modal-lg">
 															<div class="modal-content">
 																<div class="modal-header">
 																	<h5 class="modal-title">Add New Sub Sub Category</h5>
@@ -180,17 +171,32 @@
 																</div>
 																<form id="addFormSubSubCategori">
 																	<div class="modal-body">
-																		<div class="my-3">
-																			<label for="mainCategoriSub" class="form-label fw-bold">Kategori Utama</label>
-																			<select name="mainCategoriSubId" id="mainCategoriSub" class="form-control"></select>
+																		<div class="row">
+																			<div class="col-md-6 mb-3">
+																				<label for="fileuploadSubSub" class="form-label fw-bold">Icon / Image</label>
+																				<input type="file" class="form-control" id="fileuploadSubSub" name="fileuploadSubSub" accept=".jpg,.jpeg,.png">
+																				<div class="form-text">Format: JPG, PNG (Max: 1MB, 1000x1000px)</div>
+																			</div>
+																			<div class="col-md-6 mb-3">
+																				<div id="imagePreviewSubSub" class="mt-2"></div>
+																			</div>
 																		</div>
-																		<div class="my-3">
-																			<label for="mainCategoriSubSub" class="form-label fw-bold">Kategori Sub</label>
-																			<select name="mainCategoriSubSubId" id="mainCategoriSubSub" class="form-control" disabled></select>
+																		<div class="row">
+																			<div class="col-md-6 mb-3">
+																				<label for="mainCategoriSub" class="form-label fw-bold">Kategori Utama</label>
+																				<select name="mainCategoriSubId" id="mainCategoriSub" class="form-control"></select>
+																			</div>
+																			<div class="col-md-6 mb-3">
+																				<label for="mainCategoriSubSub" class="form-label fw-bold">Kategori Sub</label>
+																				<select name="mainCategoriSubSubId" id="mainCategoriSubSub" class="form-control" disabled></select>
+																			</div>
 																		</div>
-																		<div class="my-3">
-																			<label for="subCategoriSub" class="form-label fw-bold">Nama Sub Kategori</label>
-																			<input type="text" class="form-control" id="subCategoriSub" name="name" disabled required>
+
+																		<div class="row">
+																			<div class="col-md-12 mb-3">
+																				<label for="subCategoriSub" class="form-label fw-bold">Nama Sub Kategori</label>
+																				<input type="text" class="form-control" id="subCategoriSub" name="name" disabled required>
+																			</div>
 																		</div>
 																	</div>
 																	<div class="modal-footer">
@@ -229,7 +235,7 @@
 														</table>
 													</div>
 													<div class="modal fade" id="add-subcategori-jasa" tabindex="-1">
-														<div class="modal-dialog">
+														<div class="modal-dialog modal-lg">
 															<div class="modal-content">
 																<div class="modal-header">
 																	<h5 class="modal-title">Add New Sub Jasa</h5>
@@ -237,13 +243,64 @@
 																</div>
 																<form id="addFormSubCategoriJasa">
 																	<div class="modal-body">
-																		<div class="my-3">
-																			<label for="mainCategoriJasa" class="form-label fw-bold">Kategori Utama</label>
-																			<select name="mainCategoriJasaId" id="mainCategoriJasa" class="form-control"></select>
+																		<div class="row">
+																			<div class="col-md-6 mb-3">
+																				<label for="fileuploadSubJasa" class="form-label fw-bold">Icon / Image</label>
+																				<input type="file" class="form-control" id="fileuploadSubJasa" name="fileuploadSubJasa" accept=".jpg,.jpeg,.png">
+																				<div class="form-text">Format: JPG, PNG (Max: 1MB, 1000x1000px)</div>
+																			</div>
+																			<div class="col-md-6 mb-3">
+																				<div id="imagePreviewSubJasa" class="mt-2"></div>
+																			</div>
 																		</div>
-																		<div class="my-3">
-																			<label for="subCategoriJasa" class="form-label fw-bold">Nama Sub Kategori Jasa</label>
-																			<input type="text" class="form-control" id="subCategoriJasa" name="name" disabled required>
+																		<div class="row">
+																			<div class="col-md-6 mb-3"><label for="mainCategoriJasa" class="form-label fw-bold">Kategori Utama</label>
+																				<select name="mainCategoriJasaId" id="mainCategoriJasa" class="form-control"></select>
+																			</div>
+																			<div class="col-md-6 mb-3"><label for="subCategoriJasa" class="form-label fw-bold">Nama Sub Kategori Jasa</label>
+																				<input type="text" class="form-control" id="subCategoriJasa" name="name" disabled required>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="modal-footer">
+																		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+																		<button type="submit" class="btn btn-primary">Save</button>
+																	</div>
+																</form>
+															</div>
+														</div>
+													</div>
+													<div class="modal fade" id="edit-subcategori-jasa" tabindex="-1">
+														<div class="modal-dialog modal-lg">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h5 class="modal-title">Edit Sub Jasa</h5>
+																	<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+																</div>
+																<form id="editFormSubCategoriJasa" enctype="multipart/form-data">
+																	<div class="modal-body">
+																		<input type="hidden" name="edit_subcategori_jasa_id" id="edit_subcategori_jasa_id">
+																		<div class="row">
+																			<div class="col-md-6 mb-3">
+																				<label for="fileuploadSubJasaEdit" class="form-label fw-bold">Icon / Image</label>
+																				<input type="file" class="form-control" id="fileuploadSubJasaEdit" name="fileuploadSubJasaEdit" accept=".jpg,.jpeg,.png">
+																				<div class="form-text">Format: JPG, PNG (Max: 1MB, 1000x1000px)</div>
+																				<div class="mt-2" id="edit_image_subcategory_jasa"></div>
+																				<input type="hidden" name="edit_image_subcategory_jasa_value" id="edit_image_subcategory_jasa_value">
+																			</div>
+																			<div class="col-md-6 mb-3">
+																				<div id="imagePreviewSubEdit" class="mt-2"></div>
+																			</div>
+																		</div>
+																		<div class="row">
+																			<div class="col-md-6 mb-3">
+																				<label for="mainCategoriJasaEdit" class="form-label fw-bold">Kategori Utama</label>
+																				<select name="mainCategoriJasaEditId" id="mainCategoriJasaEdit" class="form-control"></select>
+																			</div>
+																			<div class="col-md-6 mb-3">
+																				<label for="subCategoriJasaEdit" class="form-label fw-bold">Nama Sub Kategori</label>
+																				<input type="text" class="form-control" id="subCategoriJasaEdit" name="name" disabled required>
+																			</div>
 																		</div>
 																	</div>
 																	<div class="modal-footer">
@@ -255,25 +312,36 @@
 														</div>
 													</div>
 													<div class="modal fade" id="add-subsubcategori-jasa" tabindex="-1">
-														<div class="modal-dialog">
+														<div class="modal-dialog modal-lg">
 															<div class="modal-content">
 																<div class="modal-header">
-																	<h5 class="modal-title">Add New Sub Sub Category</h5>
+																	<h5 class="modal-title">Add New Sub Sub Jasa</h5>
 																	<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 																</div>
 																<form id="addFormSubSubCategoriJasa">
 																	<div class="modal-body">
-																		<div class="my-3">
-																			<label for="mainCategoriSubJasa" class="form-label fw-bold">Kategori Utama</label>
-																			<select name="mainCategoriSubJasaId" id="mainCategoriSubJasa" class="form-control"></select>
+																		<div class="row">
+																			<div class="col-md-6 mb-3">
+																				<label for="fileuploadSubSubJasa" class="form-label fw-bold">Icon / Image</label>
+																				<input type="file" class="form-control" id="fileuploadSubSubJasa" name="fileuploadSubSubJasa" accept=".jpg,.jpeg,.png">
+																				<div class="form-text">Format: JPG, PNG (Max: 1MB, 1000x1000px)</div>
+																			</div>
+																			<div class="col-md-6 mb-3">
+																				<div id="imagePreviewSubSubJasa" class="mt-2"></div>
+																			</div>
 																		</div>
-																		<div class="my-3">
-																			<label for="mainCategoriSubSubJasa" class="form-label fw-bold">Kategori Sub</label>
-																			<select name="mainCategoriSubSubJasaId" id="mainCategoriSubSubJasa" class="form-control" disabled></select>
+																		<div class="row">
+																			<div class="col-md-6 mb-3"><label for="mainCategoriSubJasa" class="form-label fw-bold">Kategori Utama</label>
+																				<select name="mainCategoriSubJasaId" id="mainCategoriSubJasa" class="form-control"></select>
+																			</div>
+																			<div class="col-md-6 mb-3"><label for="mainCategoriSubSubJasa" class="form-label fw-bold">Kategori Sub</label>
+																				<select name="mainCategoriSubSubJasaId" id="mainCategoriSubSubJasa" class="form-control" disabled></select>
+																			</div>
 																		</div>
-																		<div class="my-3">
-																			<label for="subCategoriSubJasa" class="form-label fw-bold">Nama Sub Kategori</label>
-																			<input type="text" class="form-control" id="subCategoriSubJasa" name="name" disabled required>
+																		<div class="row">
+																			<div class="col-md-12 mb-3"><label for="subCategoriSubJasa" class="form-label fw-bold">Nama Sub Kategori</label>
+																				<input type="text" class="form-control" id="subCategoriSubJasa" name="name" disabled required>
+																			</div>
 																		</div>
 																	</div>
 																	<div class="modal-footer">
@@ -503,10 +571,10 @@
 										</div>
 										<form id="editFormAttribute">
 											<div class="modal-body">
-												<input type="hidden" id="edit_id" name="id">
+												<input type="hidden" id="edit_id" name="id" value="">
 												<div class="mb-3">
 													<label for="edit_attribute" class="form-label">Nama Attribute</label>
-													<input type="text" class="form-control" id="edit_attribute" name="name" required>
+													<input type="text" class="form-control" id="edit_attribute" name="name" value="" required>
 												</div>
 											</div>
 											<div class="modal-footer">
@@ -589,7 +657,7 @@
 										</div>
 										<form id="editFormGrade">
 											<div class="modal-body">
-												<input type="hidden" id="edit_id" name="id">
+												<input type="hidden" id="edit_id" name="id" value="">
 												<div class="mb-3">
 													<label for="edit_grade" class="form-label">Grade</label>
 													<input type="text" class="form-control" id="edit_grade" name="grade" required>
@@ -612,51 +680,141 @@
 							</div>
 						</div>
 					</div>
-
-
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<div class="toast-container position-fixed top-0 end-0 p-3">
-	<div id="toastMessage" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-		<div class="toast-header">
-			<strong class="me-auto" id="toastTitle">System Message</strong>
-			<small id="toastTime">Just now</small>
-			<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-		</div>
-		<div class="toast-body" id="toastBody">
-			<!-- Message will appear here -->
+<div class="modal fade" id="add-categori" tabindex="-1">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Add New Category</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+			</div>
+			<form id="addFormCategori" enctype="multipart/form-data">
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="name" class="form-label fw-bold">Nama Kategori <span class="text-danger">*</span></label>
+							<input type="text" class="form-control" id="name" name="name" required>
+						</div>
+						<div class="col-md-6 mb-3">
+							<label for="select2-grade" class="form-label fw-bold">Grade</label>
+							<select class="form-select select2-grade" id="select2-grade" name="grade[]" multiple>
+								<option value="#">Pilih Grade</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="select2-brand" class="form-label fw-bold">Merk/Brand</label>
+							<select class="form-select select2-brand" id="select2-brand" name="merk[]" multiple>
+								<option value="#">Pilih Brand</option>
+							</select>
+						</div>
+						<div class="col-md-6 mb-3">
+							<label for="etc" class="form-label fw-bold">Type Categotri</label>
+							<select class="form-select" id="etc" name="etc">
+								<option value="0" selected>Product</option>
+								<option value="1">Jasa</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 mb-3">
+							<label for="select2-attribute" class="form-label fw-bold">Attributes</label>
+							<select class="form-select select2-attribute" id="select2-attribute" name="attribute[]" multiple>
+								<option value="#">Pilih Attribute</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="fileupload" class="form-label fw-bold">Icon / Image</label>
+							<input type="file" class="form-control" id="fileupload" name="fileupload" accept=".jpg,.jpeg,.png">
+							<div class="form-text">Format: JPG, PNG (Max: 1MB, 1000x1000px)</div>
+
+						</div>
+						<div class="col-md-6 mb-3">
+							<div id="imagePreview" class="mt-2"></div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Save Category</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
+<div class="modal fade" id="edit-categori" tabindex="-1">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Edit Category</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+			</div>
+			<form id="editFormCategori" enctype="multipart/form-data">
+				<input type="hidden" id="edit_category_id" name="id">
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="edit_name" class="form-label fw-bold">Nama Kategori <span class="text-danger">*</span></label>
+							<input type="text" class="form-control" id="edit_name" name="name" required>
+						</div>
+						<div class="col-md-6 mb-3">
+							<label for="edit_select2-grade" class="form-label fw-bold">Grade</label>
+							<select class="form-select select2-grade-edit" id="edit_select2-grade" name="grade[]" multiple>
+								<!-- Options akan diisi via JS -->
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="edit_select2-brand" class="form-label fw-bold">Merk/Brand</label>
+							<select class="form-select select2-brand-edit" id="edit_select2-brand" name="merk[]" multiple>
+								<!-- Options akan diisi via JS -->
+							</select>
+						</div>
+						<div class="col-md-6 mb-3">
+							<label for="edit_etc" class="form-label fw-bold">Type Categori</label>
+							<select class="form-select" id="edit_etc" name="etc">
+								<option value="0">Product</option>
+								<option value="1">Jasa</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 mb-3">
+							<label for="edit_select2-attribute" class="form-label fw-bold">Attributes</label>
+							<select class="form-select select2-attribute-edit" id="edit_select2-attribute" name="attribute[]" multiple>
+								<!-- Options akan diisi via JS -->
+							</select>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="edit_fileupload" class="form-label fw-bold">Icon / Image</label>
+							<input type="file" class="form-control" id="edit_fileupload" name="fileuploadEdit" accept=".jpg,.jpeg,.png">
+							<div class="form-text">Format: JPG, PNG (Max: 1MB, 1000x1000px)</div>
+							<!-- Info gambar saat ini -->
+							<div class="mt-2" id="edit_image_category"></div>
+							<input type="hidden" name="edit_image_category_value" id="edit_image_category_value">
+						</div>
+						<div class="col-md-6 mb-3">
+							<div id="edit_imagePreview" class="mt-2"></div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Update Category</button>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>
-
-<style>
-	.toast.bg-success .toast-header {
-		background-color: #198754;
-		color: white;
-	}
-
-	.toast.bg-danger .toast-header {
-		background-color: #dc3545;
-		color: white;
-	}
-
-	.toast.bg-warning .toast-header {
-		background-color: #ffc107;
-		color: black;
-	}
-
-	/* Toast animation */
-	.toast {
-		transition: transform 0.3s ease-in-out;
-	}
-
-	.category-line {
-		line-height: 1.2;
-		margin-bottom: 2px;
-		font-size: 14px;
-	}
-</style>

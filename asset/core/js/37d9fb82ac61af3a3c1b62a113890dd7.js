@@ -1149,9 +1149,6 @@ $(document).ready(function () {
             '" class="img-thumbnail" style="max-width: 150px;">' +
             '<div class="mt-1 text-success small">New Image Preview</div>'
         );
-
-        // Update hidden value jika user upload gambar baru
-        $("#edit_image_subcategory_value").val("");
       };
       reader.readAsDataURL(file);
     } else {
@@ -1405,14 +1402,13 @@ $(document).ready(function () {
     // Reset form terlebih dahulu
     $("#editFormSubCategori")[0].reset();
     $("#imagePreviewSubEdit").empty();
-    $("#edit_image_subcategory").empty();
     $("#mainCategoriEdit").empty();
     $("#subCategoriEdit").prop("disabled", true).val("");
 
     // Set hidden ID
     $("#edit_subcategori_id").val(categoryId);
 
-    // Tampilkan modal terlebih dahulu
+    // Tampilkan loading
     $("#edit-subcategori").modal("show");
 
     // 1. Load main categories untuk dropdown
@@ -1443,7 +1439,7 @@ $(document).ready(function () {
           // Enable input nama
           $("#subCategoriEdit").prop("disabled", false).val(categoryName);
 
-          // 2. Load gambar kategori
+          // 2. Load gambar kategori jika ada
           loadSubCategoryImage(categoryId);
         } else {
           Swal.fire({
@@ -1466,48 +1462,27 @@ $(document).ready(function () {
   // Function untuk load gambar kategori
   function loadSubCategoryImage(categoryId) {
     $.ajax({
-      url: base_url + "backendproduct/getCategoryById/" + categoryId, // Gunakan endpoint yang benar
+      url: base_url + "backendproduct/getCategoriById/" + categoryId,
       type: "GET",
       dataType: "json",
       success: function (response) {
-        console.log("Image response:", response);
-        if (response.status && response.data) {
+        if (response.status) {
           var data = response.data;
 
           // Tampilkan gambar saat ini jika ada
           if (data.img) {
             var imageUrl = base_url + "public/upload/categori/" + data.img;
-            $("#edit_image_subcategory").html(
-              '<div class="alert alert-info p-2">' +
-                'Current image: <a href="' +
-                imageUrl +
-                '" target="_blank">' +
-                data.img +
-                "</a></div>"
-            );
-            $("#edit_image_subcategory_value").val(data.img);
-
             $("#imagePreviewSubEdit").html(
               '<img src="' +
                 imageUrl +
                 '" class="img-thumbnail" style="max-width: 150px;">' +
                 '<div class="mt-1 text-muted small">Current Image</div>'
             );
-          } else {
-            $("#edit_image_subcategory").html(
-              '<div class="alert alert-warning p-2">No image available</div>'
-            );
-            $("#imagePreviewSubEdit").html(
-              '<div class="text-muted">No image available</div>'
-            );
           }
         }
       },
       error: function (xhr, status, error) {
         console.log("Error loading image:", error);
-        $("#imagePreviewSubEdit").html(
-          '<div class="text-danger">Failed to load image</div>'
-        );
       },
     });
   }
@@ -1748,100 +1723,6 @@ $(document).ready(function () {
     }
   });
 
-  $("#fileuploadSubJasaEdit").on("change", function () {
-    var file = this.files[0];
-    if (file) {
-      if (file.size > 1024 * 1024) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "File terlalu besar. Maksimal 1MB",
-        });
-        $(this).val("");
-        return;
-      }
-
-      var validTypes = ["image/jpeg", "image/jpg", "image/png"];
-      if (!validTypes.includes(file.type)) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "Format File tidak didukung. Hanya JPG, JPEG, PNG",
-        });
-        $(this).val("");
-        return;
-      }
-
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $("#imagePreviewSubJasaEdit").html(
-          '<img src="' +
-            e.target.result +
-            '" class="img-thumbnail" style="max-width: 150px;">' +
-            '<div class="mt-1 text-success small">New Image Preview</div>'
-        );
-
-        // Update hidden value jika user upload gambar baru
-        $("#edit_image_subcategory_jasa_value").val("");
-      };
-      reader.readAsDataURL(file);
-    } else {
-      // Jika file dihapus, load kembali gambar saat ini
-      var categoryId = $("#edit_subcategori_jasa_id").val();
-      if (categoryId) {
-        loadSubCategoryJasaImage(categoryId);
-      }
-    }
-  });
-
-  function loadSubCategoryJasaImage(categoryId) {
-    $.ajax({
-      url: base_url + "backendproduct/getCategoryById/" + categoryId, // Gunakan endpoint yang benar
-      type: "GET",
-      dataType: "json",
-      success: function (response) {
-        console.log("Image response:", response);
-        if (response.status && response.data) {
-          var data = response.data;
-
-          // Tampilkan gambar saat ini jika ada
-          if (data.img) {
-            var imageUrl = base_url + "public/upload/categori/" + data.img;
-            $("#edit_image_subcategory_jasa").html(
-              '<div class="alert alert-info p-2">' +
-                'Current image: <a href="' +
-                imageUrl +
-                '" target="_blank">' +
-                data.img +
-                "</a></div>"
-            );
-            $("#edit_image_subcategory_jasa_value").val(data.img);
-
-            $("#imagePreviewSubJasaEdit").html(
-              '<img src="' +
-                imageUrl +
-                '" class="img-thumbnail" style="max-width: 150px;">' +
-                '<div class="mt-1 text-muted small">Current Image</div>'
-            );
-          } else {
-            $("#edit_image_subcategory_jasa").html(
-              '<div class="alert alert-warning p-2">No image available</div>'
-            );
-            $("#imagePreviewSubJasaEdit").html(
-              '<div class="text-muted">No image available</div>'
-            );
-          }
-        }
-      },
-      error: function (xhr, status, error) {
-        console.log("Error loading image:", error);
-        $("#imagePreviewSubJasaEdit").html(
-          '<div class="text-danger">Failed to load image</div>'
-        );
-      },
-    });
-  }
-
   $("#fileuploadSubSubJasa").on("change", function () {
     var file = this.files[0];
     if (file) {
@@ -2017,72 +1898,6 @@ $(document).ready(function () {
   // Panggil function ketika modal dibuka
   $("#add-subcategori-jasa").on("show.bs.modal", function () {
     loadMainCategoriesJasa();
-  });
-
-  $(document).on("click", ".edit-subcategori-jasa", function () {
-    var categoryId = $(this).data("id");
-    var categoryName = $(this).data("name");
-    var categoryParent = $(this).data("parent");
-
-    // Reset form terlebih dahulu
-    $("#editFormSubCategoriJasa")[0].reset();
-    $("#imagePreviewSubJasaEdit").empty();
-    $("#edit_image_subcategory").empty();
-    $("#mainCategoriEdit").empty();
-    $("#subCategoriEdit").prop("disabled", true).val("");
-
-    // Set hidden ID
-    $("#edit_subcategori_id").val(categoryId);
-
-    // Tampilkan modal terlebih dahulu
-    $("#edit-subcategori").modal("show");
-
-    // 1. Load main categories untuk dropdown
-    $.ajax({
-      url: base_url + "backendproduct/getMainCategories",
-      type: "GET",
-      dataType: "json",
-      success: function (response) {
-        if (response.status) {
-          var select = $("#mainCategoriEdit");
-          select.empty();
-          select.append('<option value="">Pilih Kategori Utama</option>');
-          $.each(response.data, function (index, category) {
-            select.append(
-              '<option value="' +
-                category.id +
-                '">' +
-                category.name +
-                "</option>"
-            );
-          });
-
-          // Set parent yang sudah ada
-          if (categoryParent) {
-            select.val(categoryParent).trigger("change");
-          }
-
-          // Enable input nama
-          $("#subCategoriEdit").prop("disabled", false).val(categoryName);
-
-          // 2. Load gambar kategori
-          loadSubCategoryImage(categoryId);
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error!",
-            text: response.message || "Failed to load categories",
-          });
-        }
-      },
-      error: function (xhr, status, error) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "Error loading categories: " + error,
-        });
-      },
-    });
   });
 
   $("#add-subsubcategori-jasa").on("show.bs.modal", function () {

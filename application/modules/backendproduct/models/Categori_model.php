@@ -302,12 +302,30 @@ class categori_model extends CI_Model
                     $this->db->where('parent !=', 0);
                     $this->db->where('is_brand', 0);
                     $this->db->where('parent_brand', 0);
+                    $this->db->where('etc', 0);
+                    $this->db->where('parent IN (SELECT id FROM categori WHERE parent = 0 AND is_brand = 0 AND parent_brand = 0 AND etc = 0)');
                     break;
                 case 'subsub_category':
                     $this->db->where('parent !=', 0);
                     $this->db->where('is_brand', 0);
                     $this->db->where('parent_brand', 0);
-                    // Subsub category punya parent yang merupakan sub category
+                    $this->db->where('etc', 0);
+                    $this->db->where('parent IN (SELECT id FROM categori WHERE parent != 0 AND is_brand = 0 AND parent_brand = 0 AND etc = 0)');
+
+                    break;
+                case 'sub_category_jasa':
+                    $this->db->where('parent !=', 0);
+                    $this->db->where('is_brand', 0);
+                    $this->db->where('parent_brand', 0);
+                    $this->db->where('etc !=', 0);
+                    $this->db->where('parent IN (SELECT id FROM categori WHERE parent = 0 AND is_brand = 0 AND parent_brand = 0 AND etc = 0)');
+                    break;
+                case 'subsub_category_jasa':
+                    $this->db->where('parent !=', 0);
+                    $this->db->where('is_brand', 0);
+                    $this->db->where('parent_brand', 0);
+                    $this->db->where('etc !=', 0);
+                    $this->db->where('parent IN (SELECT id FROM categori WHERE parent != 0 AND is_brand = 0 AND parent_brand = 0 AND etc = 0)');
                     break;
                 case 'brand':
                     $this->db->where(['parent' => 0, 'is_brand' => 1]);
@@ -357,10 +375,18 @@ class categori_model extends CI_Model
         } else {
             // Cek level untuk bedakan sub vs subsub
             $parent = $this->get_categori_by_id($category->parent);
-            if ($parent && $parent->parent == 0) {
-                return 'sub_category';
+            if ($parent->etc == 0) {
+                if ($parent && $parent->parent == 0) {
+                    return 'sub_category';
+                } else {
+                    return 'subsub_category';
+                }
             } else {
-                return 'subsub_category';
+                if ($parent && $parent->parent == 0) {
+                    return 'sub_category_jasa';
+                } else {
+                    return 'subsub_category_jasa';
+                }
             }
         }
     }
@@ -402,15 +428,31 @@ class categori_model extends CI_Model
                 return $category->name; // 1 baris: nama brand
 
             case 'model':
-                $brand = $this->get_categori_by_id($category->parent_brand);
-                $subsub_category = $this->get_categori_by_id($category->parent);
-                if ($brand && $subsub_category) {
-                    $parent_sub = $this->get_categori_by_id($subsub_category->parent);
-                    $parent_main = $this->get_categori_by_id($parent_sub->parent);
+                $brand = $this->get_categori_by_id($category->parent_brand ?? 0);
+                $subsub_category = $this->get_categori_by_id($category->parent ?? 0);
+                $hierarchy_parts = [];
 
-                    return '<div class="fbold">' . $category->name . '</div>' .
-                        '<div class="text-muted fs-6">'  . $parent_main->name . ' - ' . $parent_sub->name . ' - ' . $subsub_category->name . ' - ' .  $brand->name . '</div>';
+                if ($subsub_category) {
+                    $parent_sub = $this->get_categori_by_id($subsub_category->parent ?? 0);
+
+                    if ($parent_sub) {
+                        $parent_main = $this->get_categori_by_id($parent_sub->parent ?? 0);
+                        if ($parent_main) $hierarchy_parts[] = $parent_main->name;
+                        $hierarchy_parts[] = $parent_sub->name;
+                    }
+
+                    $hierarchy_parts[] = $subsub_category->name;
                 }
+
+                if ($brand) {
+                    $hierarchy_parts[] = $brand->name;
+                }
+
+                if (!empty($hierarchy_parts)) {
+                    return '<div class="fbold">' . $category->name . '</div>' .
+                        '<div class="text-muted fs-6">' . implode(' - ', $hierarchy_parts) . '</div>';
+                }
+
                 return $category->name;
 
             default:
@@ -504,10 +546,15 @@ class categori_model extends CI_Model
     // Delete category dengan handle image
     public function delete_categori($category_id)
     {
-        // Get image name sebelum delete
-        $image_name = $this->get_image_path($category_id);
 
-        // Delete dari database
+        $category = $this->get_categori_by_id($category_id);
+
+        if ($category->parent == 0) {
+            $this->db->where('category_id', $category_id)->delete('category_grade');
+            $this->db->where('category_id', $category_id)->delete('category_brand');
+            $this->db->where('category_id', $category_id)->delete('category_attribute');
+        }
+        $image_name = $this->get_image_path($category_id);
         $this->db->where('id', $category_id);
         $result = $this->db->delete($this->table);
 
@@ -525,5 +572,20 @@ class categori_model extends CI_Model
     public function insert_categori($data)
     {
         return $this->db->insert($this->table, $data);
+    }
+
+    public function get_brand_by_categori($category_id = null)
+    {
+        if ($category_id != null) {
+            $this->db
+                ->join("category_brand cb", "cb.brand_id = c.id AND cb.category_id = " . $category_id, false)
+                ->join("categori c2", "c2.id = cb.brand_id");
+        }
+
+        $query = $this->db
+            ->where(['c.parent' => 0, "c.is_brand" => 1])
+            ->get('categori c');
+
+        return $query->result();
     }
 }

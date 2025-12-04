@@ -263,6 +263,9 @@ class Spreadsheetapi
             // 1. Ambil data dari Google Sheet
             $sheetData = $this->getAllProductsFromSheet($sheet);
 
+            var_dump($sheetData);
+            die;
+
             if (!$sheetData['success']) {
                 throw new Exception('Failed to get data from sheet: ' . $sheetData['error']);
             }
@@ -357,8 +360,6 @@ class Spreadsheetapi
                     }
                 }
             }
-
-            // 4. PROCESS DELETE: Cek product yang ada di database tapi tidak ada di sheet
             $dbProductIds = array_keys($dbProductsMap);
             $productsToDelete = array_diff($dbProductIds, $sheetProductIds);
 
@@ -368,7 +369,6 @@ class Spreadsheetapi
                 $stats['deleted'] = $ci->db->affected_rows();
             }
 
-            // 5. Hitung total setelah sync
             $stats['total_db_after'] = $stats['total_db_before'] + $stats['created'] - $stats['deleted'];
 
             return [
@@ -377,7 +377,6 @@ class Spreadsheetapi
                 'stats' => $stats
             ];
         } catch (Exception $e) {
-            log_message('error', 'Sync Products Error: ' . $e->getMessage());
             return [
                 'success' => false,
                 'error' => $e->getMessage()

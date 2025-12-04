@@ -17,6 +17,16 @@ class grade_model extends CI_Model
         return $this->db->get('grade')->result();
     }
 
+    public function get_grades_by_categori($category_id)
+    {
+        return $this->db->select('g.*')
+            ->from('category_grade cg')
+            ->join('grade g', 'cg.grade_id = g.id')
+            ->where('cg.category_id', $category_id)
+            ->get()
+            ->result();
+    }
+
     // Get all grades for DataTables
     public function get_datatables($start, $length, $search, $order)
     {
