@@ -244,13 +244,15 @@ foreach ($jenis as $key) {
 											<?php foreach ($backingdata["attribute"] as $index => $value): ?>
 												<div class="row mb-2 align-items-end">
 													<div class="col-md-5">
-														<input type="text" class="form-control form-control-sm" jq-model="atribut" placeholder="Nama atribut" name="attribute[]" value="<?php echo  $value["name"] ?>">
+														<label class="form-label small text-muted">Nama Atribut</label>
+														<input type="text" class="form-control" jq-model="atribut" placeholder="Nama atribut" name="attribute[]" value="<?php echo  $value["name"] ?>">
 													</div>
 													<div class="col-md-5">
-														<input type="text" class="form-control form-control-sm" jq-model="value" placeholder="Nilai atribut" name="value[]" value="<?php echo $value["value"] ?>">
+														<label class="form-label small text-muted">Nilai Atribut</label>
+														<input type="text" class="form-control" jq-model="value" placeholder="Nilai atribut" name="value[]" value="<?php echo $value["value"] ?>">
 													</div>
 													<div class="col-md-2">
-														<button type="button" class="btn btn-outline-danger btn-sm del-att w-100">
+														<button type="button" class="btn btn-outline-danger del-att w-100">
 															<i class="fas fa-times"></i>
 														</button>
 													</div>

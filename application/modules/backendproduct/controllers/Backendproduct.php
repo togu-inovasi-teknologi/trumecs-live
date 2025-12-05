@@ -989,6 +989,7 @@ class Backendproduct extends MX_Controller
 
     public function categoriAjaxUpdate()
     {
+
         $id = $this->input->post('id');
         $datainput = array(
             'name' => $this->input->post('name'),

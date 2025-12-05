@@ -79,9 +79,9 @@ class General extends MX_Controller
 	{
 		$other = '';
 		$condition = array(
-		    'parent' => '0',
-		    'is_brand' => '0'
-		    );
+			'parent' => '0',
+			'is_brand' => '0'
+		);
 		echo '<option value="0">-- Semua Komponen --</option>';
 		foreach ($this->general_model->getcategori($condition) as $key) {
 			if ($key["name"] != "Other") {
@@ -117,16 +117,16 @@ class General extends MX_Controller
 
 	public function getsubkategori($id)
 	{
-	    $condition = array(
-		    'parent' => $id,
-		    'is_brand' => '0'
-		    );
+		$condition = array(
+			'parent' => $id,
+			'is_brand' => '0'
+		);
 		echo '<option value="0">-- Semua Sub Kategori --</option>';
 		foreach ($this->general_model->getcategori($condition) as $key) {
-		    $condition2 = array(
-    		    'parent' => $key["id"],
-    		    'is_brand' => '0'
-		    );
+			$condition2 = array(
+				'parent' => $key["id"],
+				'is_brand' => '0'
+			);
 			echo '<option value="' . $key["id"] . '">' . $key["name"] . '</option>';
 			foreach ($this->general_model->getcategori($condition2) as $keys) {
 				echo '<option value="' . $keys["id"] . '">' . $key["name"] . ' > ' . $keys["name"] . '</option>';
@@ -144,72 +144,172 @@ class General extends MX_Controller
 
 	public function getcomponentall_form($idcomponent = null)
 	{
-		if (!is_numeric($idcomponent)) {
-			$idcomponent = $this->general_model->getcategoribyname($idcomponent);
-			$idcomponent = $idcomponent[0]['id'];
+		// Validasi input
+		if (empty($idcomponent)) {
+			echo '<option value="0">-- Parameter tidak valid --</option>';
+			return;
 		}
+
+		if (!is_numeric($idcomponent)) {
+			$category = $this->general_model->getcategoribyname($idcomponent);
+
+			// Validasi hasil query
+			if (empty($category) || !isset($category[0]['id'])) {
+				echo '<option value="0">-- Kategori tidak ditemukan --</option>';
+				return;
+			}
+
+			$idcomponent = $category[0]['id'];
+		}
+
 		echo '<option value="0">-- Semua Komponen --</option>';
-		foreach ($this->general_model->getparentcategori($idcomponent) as $key) {
+
+		$parentCategories = $this->general_model->getparentcategori($idcomponent);
+
+		// Validasi parent categories
+		if (empty($parentCategories)) {
+			echo '<option value="0">-- Tidak ada komponen tersedia --</option>';
+			return;
+		}
+
+		$other = '';
+
+		foreach ($parentCategories as $key) {
 			if ($key["name"] != "Other") {
 				echo '<option value="' . $key["id"] . '">' . $key["name"] . '</option>';
 			} else {
 				$other = '<option value="' . $key["id"] . '">' . $key["name"] . '</option>';
 			}
+
 			$condition = array(
-    		    'parent' => $key["id"],
-    		    'is_brand' => '0'
-		    );
-			foreach ($this->general_model->getcategori($condition) as $keys) {
-				echo '<option value="' . $keys["id"] . '">' . $key["name"] . ' > ' . $keys["name"] . '</option>';
-				$conditions = array(
-        		    'parent' => $keys["id"],
-        		    'is_brand' => '0'
-    		    );
-				foreach ($this->general_model->getcategori($conditions) as $keyss) {
-					echo '<option value="' . $keyss["id"] . '">' . $key["name"] . ' > ' . $keys["name"] . ' > ' . $keyss["name"] . '</option>';
+				'parent' => $key["id"],
+				'is_brand' => '0'
+			);
+
+			$subCategories = $this->general_model->getcategori($condition);
+
+			if (!empty($subCategories)) {
+				foreach ($subCategories as $keys) {
+					echo '<option value="' . $keys["id"] . '">' . $key["name"] . ' > ' . $keys["name"] . '</option>';
+
+					$conditions = array(
+						'parent' => $keys["id"],
+						'is_brand' => '0'
+					);
+
+					$subSubCategories = $this->general_model->getcategori($conditions);
+
+					if (!empty($subSubCategories)) {
+						foreach ($subSubCategories as $keyss) {
+							echo '<option value="' . $keyss["id"] . '">' . $key["name"] . ' > ' . $keys["name"] . ' > ' . $keyss["name"] . '</option>';
+						}
+					}
 				}
 			}
 		}
-		echo isset($other) ? $other : "";
+
+		if ($other) {
+			echo $other;
+		}
 	}
 
 	public function getgradeform($value = null)
 	{
-		if (!is_numeric($value)) {
-			$value = $this->general_model->getcategoribyname($value);
-			$value = $value[0]['id'];
+		// Validasi input
+		if (empty($value)) {
+			echo '<option value="">-- Parameter tidak valid --</option>';
+			return;
 		}
+
+		if (!is_numeric($value)) {
+			$result = $this->general_model->getcategoribyname($value);
+
+			if (empty($result) || !isset($result[0]['id'])) {
+				echo '<option value="">-- Kategori tidak ditemukan --</option>';
+				return;
+			}
+
+			$value = $result[0]['id'];
+		}
+
 		echo '<option value="">-- Silahkan pilih grade --</option>';
-		foreach ($this->general_model->getgrade($value) as $key) {
-			echo '<option value="' . $key["id"] . '">' . $key["grade"] . '</option>';
+
+		$grades = $this->general_model->getgrade($value);
+
+		if (!empty($grades)) {
+			foreach ($grades as $key) {
+				echo '<option value="' . $key["id"] . '">' . $key["grade"] . '</option>';
+			}
+		} else {
+			echo '<option value="">-- Tidak ada grade tersedia --</option>';
 		}
 	}
 
 	public function getbrandform($value = null)
 	{
-		if (!is_numeric($value)) {
-			$value = $this->general_model->getcategoribyname($value);
-			$value = $value[0]['id'];
+		// Validasi input
+		if (empty($value)) {
+			echo '<option value="">-- Parameter tidak valid --</option>';
+			return;
 		}
+
+		if (!is_numeric($value)) {
+			$result = $this->general_model->getcategoribyname($value);
+
+			if (empty($result) || !isset($result[0]['id'])) {
+				echo '<option value="">-- Kategori tidak ditemukan --</option>';
+				return;
+			}
+
+			$value = $result[0]['id'];
+		}
+
 		echo '<option value="">-- Silahkan pilih merk --</option>';
-		foreach ($this->general_model->getbrand($value) as $key) {
-			echo '<option value="' . $key["id"] . '">' . $key["name"] . '</option>';
+
+		$brands = $this->general_model->getbrand($value);
+
+		if (!empty($brands)) {
+			foreach ($brands as $key) {
+				echo '<option value="' . $key["id"] . '">' . $key["name"] . '</option>';
+			}
+		} else {
+			echo '<option value="">-- Tidak ada merk tersedia --</option>';
 		}
 	}
 
 	public function getattributeform($value = null)
 	{
-		if (!is_numeric($value)) {
-			$value = $this->general_model->getcategoribyname($value);
-			$value = $value[0]['id'];
+		// Validasi input
+		if (empty($value)) {
+			echo '<div class="alert alert-warning">Parameter tidak valid</div>';
+			return;
 		}
 
-		foreach ($this->general_model->getattribute($value) as $key) {
-			echo '<div class="row m-b-1">';
-			echo '<div class="col-xs-5"><input type="text" class="form-control" jq-model="atribut" placeholder="Nama atribut" name="attribute[]" value="' . $key['name'] . '"></div>';
-			echo '<div class="col-xs-5 p-a-0"><input type="text" class="form-control" jq-model="value" placeholder="Nilai atribut"  name="value[]" value=""></div>';
-			echo '<div class="col-xs-2"><button type="button" class="btn btn-danger del-att">X</button></div>';
-			echo '</div>';
+		if (!is_numeric($value)) {
+			$result = $this->general_model->getcategoribyname($value);
+
+			if (empty($result) || !isset($result[0]['id'])) {
+				echo '<div class="alert alert-warning">Kategori tidak ditemukan</div>';
+				return;
+			}
+
+			$value = $result[0]['id'];
+		}
+
+		$attributes = $this->general_model->getattribute($value);
+
+		if (!empty($attributes)) {
+			foreach ($attributes as $key) {
+				echo '<div class="row mb-2 align-items-end">';
+				echo '<div class="col-md-5"><label class="form-label small text-muted">Nama Atribut</label><input type="text" class="form-control" jq-model="atribut" placeholder="Contoh: Warna, Ukuran, Material" name="attribute[]" value="' . htmlspecialchars($key['name']) . '"></div>';
+				echo '<div class="col-md-5 p-a-0"><label class="form-label small text-muted">Nilai Atribut</label><input type="text" class="form-control" jq-model="value" placeholder="Contoh: Merah, 10x20cm, Plastik" name="value[]" value=""></div>';
+				echo '<div class="col-md-2"><button type="button" class="btn btn-outline-danger del-att w-100">
+															<i class="fas fa-times"></i>
+														</button></div>';
+				echo '</div>';
+			}
+		} else {
+			echo '<div class="alert alert-info">Tidak ada atribut tersedia untuk kategori ini</div>';
 		}
 	}
 
@@ -446,9 +546,19 @@ class General extends MX_Controller
 			exit;
 		}
 		$idkab_jabodetabek = array(
-			'3171', '3172', '3173', '3174', '3175', //jakarta
-			'3201', '3216', '3271', '3275', '3276', //jawabarat
-			'3603', '3671', '3674' //banten
+			'3171',
+			'3172',
+			'3173',
+			'3174',
+			'3175', //jakarta
+			'3201',
+			'3216',
+			'3271',
+			'3275',
+			'3276', //jawabarat
+			'3603',
+			'3671',
+			'3674' //banten
 		);
 		$idkab = $this->input->get("id_kab");
 		if (!in_array($idkab, $idkab_jabodetabek)) {

@@ -202,7 +202,6 @@ class etx_product extends CI_Model
 
     public function setcategorygrade($list, $id_category)
     {
-
         $this->db->where('category_id', $id_category)->delete('category_grade');
 
         foreach ($list as $key => $item) {

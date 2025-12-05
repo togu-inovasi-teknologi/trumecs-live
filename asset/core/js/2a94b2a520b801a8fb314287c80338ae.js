@@ -261,7 +261,7 @@ $(document).ready(function () {
   });
   $(document).on("click", ".choicejenis", function (e) {
     var value = $(".input_choicejenis").val($(this).attr("val"));
-    console.log(value);
+    console.log($value);
     $(".pilihjenisproduk").modal("hide");
     $("select[name=quality]").load(
       base_url + "general/getgradeform/" + $(this).attr("val"),
