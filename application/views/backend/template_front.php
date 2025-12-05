@@ -102,7 +102,7 @@
     </style>
 </head>
 
-<body url="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ?>" baseurl="<?php echo base_url() ?>">
+<body url="<?php echo "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ?>" baseurl="<?php echo base_url() ?>">
     <!-- Navigation -->
     <div class="wrapper">
         <?php if (!$this->agent->is_mobile()) {
