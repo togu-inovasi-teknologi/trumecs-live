@@ -622,6 +622,8 @@ $(document).ready(function () {
         type: "GET",
         dataType: "json",
         success: function (response) {
+          console.log("Response dari server:", response);
+
           if (response.status) {
             var category = response.data;
 
@@ -656,6 +658,10 @@ $(document).ready(function () {
 
             // Set nilai select2 untuk grade
             if (category.grades && category.grades.length > 0) {
+              console.log(
+                "Setting grades:",
+                category.grades.map((g) => g.id)
+              );
               var gradeIds = category.grades.map(function (grade) {
                 return grade.id.toString();
               });
@@ -664,6 +670,10 @@ $(document).ready(function () {
 
             // Set nilai select2 untuk brand
             if (category.brands && category.brands.length > 0) {
+              console.log(
+                "Setting brands:",
+                category.brands.map((b) => b.id)
+              );
               var brandIds = category.brands.map(function (brand) {
                 return brand.id.toString();
               });
@@ -672,12 +682,18 @@ $(document).ready(function () {
 
             // Set nilai select2 untuk attribute
             if (category.attributes && category.attributes.length > 0) {
+              console.log(
+                "Setting attributes:",
+                category.attributes.map((a) => a.id)
+              );
               var attributeIds = category.attributes.map(function (attr) {
                 return attr.id.toString();
               });
               $("#edit_select2-attribute").val(attributeIds).trigger("change");
             }
 
+            // PENTING: Resolve promise setelah semua selesai
+            console.log("Category data loaded successfully");
             resolve(); // ✅ TAMBAHKAN INI
           } else {
             console.error("Server error:", response.message);
@@ -961,7 +977,7 @@ $(document).ready(function () {
     var button = $(this);
 
     Swal.fire({
-      title: "Delete Categori?",
+      title: "Delete Brand?",
       html: `Are you sure you want to delete <strong>${name}</strong>?<br><small class="text-danger">This action cannot be undone.</small>`,
       icon: "warning",
       showCancelButton: true,
@@ -990,118 +1006,7 @@ $(document).ready(function () {
     }).then((result) => {
       if (result.isConfirmed) {
         if (result.value.status) {
-          tableCategori.ajax.reload();
-          tableCategoriJasa.ajax.reload();
-          Swal.fire({
-            icon: "success",
-            title: "Deleted!",
-            text: result.value.message,
-            timer: 2000,
-            showConfirmButton: false,
-          });
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: result.value.message,
-          });
-        }
-      }
-    });
-  });
-
-  $("#categoriTable").on("click", ".delete-subcategori", function () {
-    var id = $(this).data("id");
-    var name = $(this).data("name") || "this categori";
-    var button = $(this);
-
-    Swal.fire({
-      title: "Delete Sub Categori?",
-      html: `Are you sure you want to delete <strong>${name}</strong>?<br><small class="text-danger">This action cannot be undone.</small>`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "Cancel",
-      showLoaderOnConfirm: true,
-      preConfirm: () => {
-        return new Promise((resolve) => {
-          $.ajax({
-            url: base_url + "backendproduct/categoriAjaxDelete",
-            type: "POST",
-            data: { id: id },
-            dataType: "json",
-            success: function (response) {
-              resolve(response);
-            },
-            error: function () {
-              resolve({ status: false, message: "Network error" });
-            },
-          });
-        });
-      },
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if (result.value.status) {
-          tableCategori.ajax.reload();
-          tableCategoriJasa.ajax.reload();
-          Swal.fire({
-            icon: "success",
-            title: "Deleted!",
-            text: result.value.message,
-            timer: 2000,
-            showConfirmButton: false,
-          });
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: result.value.message,
-          });
-        }
-      }
-    });
-  });
-
-  $("#categoriTable").on("click", ".delete-subsubcategori", function () {
-    var id = $(this).data("id");
-    var name = $(this).data("name") || "this categori";
-    var button = $(this);
-
-    Swal.fire({
-      title: "Delete Sub Sub Categori?",
-      html: `Are you sure you want to delete <strong>${name}</strong>?<br><small class="text-danger">This action cannot be undone.</small>`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "Cancel",
-      showLoaderOnConfirm: true,
-      preConfirm: () => {
-        return new Promise((resolve) => {
-          $.ajax({
-            url: base_url + "backendproduct/categoriAjaxDelete",
-            type: "POST",
-            data: { id: id },
-            dataType: "json",
-            success: function (response) {
-              resolve(response);
-            },
-            error: function () {
-              resolve({ status: false, message: "Network error" });
-            },
-          });
-        });
-      },
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if (result.value.status) {
-          tableCategori.ajax.reload();
-          tableCategoriJasa.ajax.reload();
+          tableBrand.ajax.reload();
           Swal.fire({
             icon: "success",
             title: "Deleted!",
@@ -1122,11 +1027,11 @@ $(document).ready(function () {
 
   $("#categoriJasaTable").on("click", ".delete-categori", function () {
     var id = $(this).data("id");
-    var name = $(this).data("name") || "this Jasa";
+    var name = $(this).data("name") || "this categori";
     var button = $(this);
 
     Swal.fire({
-      title: "Delete Jasa?",
+      title: "Delete Brand?",
       html: `Are you sure you want to delete <strong>${name}</strong>?<br><small class="text-danger">This action cannot be undone.</small>`,
       icon: "warning",
       showCancelButton: true,
@@ -1174,120 +1079,6 @@ $(document).ready(function () {
       }
     });
   });
-
-  $("#categoriJasaTable").on("click", ".delete-subcategori-jasa", function () {
-    var id = $(this).data("id");
-    var name = $(this).data("name") || "this Jasa";
-    var button = $(this);
-
-    Swal.fire({
-      title: "Delete Jasa?",
-      html: `Are you sure you want to delete <strong>${name}</strong>?<br><small class="text-danger">This action cannot be undone.</small>`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "Cancel",
-      showLoaderOnConfirm: true,
-      preConfirm: () => {
-        return new Promise((resolve) => {
-          $.ajax({
-            url: base_url + "backendproduct/categoriAjaxDelete",
-            type: "POST",
-            data: { id: id },
-            dataType: "json",
-            success: function (response) {
-              resolve(response);
-            },
-            error: function () {
-              resolve({ status: false, message: "Network error" });
-            },
-          });
-        });
-      },
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if (result.value.status) {
-          tableCategori.ajax.reload();
-          tableCategoriJasa.ajax.reload();
-          Swal.fire({
-            icon: "success",
-            title: "Deleted!",
-            text: result.value.message,
-            timer: 2000,
-            showConfirmButton: false,
-          });
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: result.value.message,
-          });
-        }
-      }
-    });
-  });
-
-  $("#categoriJasaTable").on(
-    "click",
-    ".delete-subsubcategori-jasa",
-    function () {
-      var id = $(this).data("id");
-      var name = $(this).data("name") || "this Jasa";
-      var button = $(this);
-
-      Swal.fire({
-        title: "Delete Jasa?",
-        html: `Are you sure you want to delete <strong>${name}</strong>?<br><small class="text-danger">This action cannot be undone.</small>`,
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#d33",
-        cancelButtonColor: "#3085d6",
-        confirmButtonText: "Yes, delete it!",
-        cancelButtonText: "Cancel",
-        showLoaderOnConfirm: true,
-        preConfirm: () => {
-          return new Promise((resolve) => {
-            $.ajax({
-              url: base_url + "backendproduct/categoriAjaxDelete",
-              type: "POST",
-              data: { id: id },
-              dataType: "json",
-              success: function (response) {
-                resolve(response);
-              },
-              error: function () {
-                resolve({ status: false, message: "Network error" });
-              },
-            });
-          });
-        },
-        allowOutsideClick: () => !Swal.isLoading(),
-      }).then((result) => {
-        if (result.isConfirmed) {
-          if (result.value.status) {
-            tableCategori.ajax.reload();
-            tableCategoriJasa.ajax.reload();
-            Swal.fire({
-              icon: "success",
-              title: "Deleted!",
-              text: result.value.message,
-              timer: 2000,
-              showConfirmButton: false,
-            });
-          } else {
-            Swal.fire({
-              icon: "error",
-              title: "Error",
-              text: result.value.message,
-            });
-          }
-        }
-      });
-    }
-  );
 });
 
 $(document).ready(function () {
@@ -1644,6 +1435,7 @@ $(document).ready(function () {
       type: "GET",
       dataType: "json",
       success: function (response) {
+        console.log("Image response:", response);
         if (response.status && response.data) {
           var data = response.data;
 
@@ -1677,6 +1469,7 @@ $(document).ready(function () {
         }
       },
       error: function (xhr, status, error) {
+        console.log("Error loading image:", error);
         $("#imagePreviewSubEdit").html(
           '<div class="text-danger">Failed to load image</div>'
         );
@@ -1971,7 +1764,7 @@ $(document).ready(function () {
     var categoryName = $(this).data("name");
 
     // Reset form terlebih dahulu
-    $("#editFormSubSubCategori")[0].reset();
+    $("#addFormSubSubCategoriEdit")[0].reset();
     $("#imagePreviewSubSubEdit").empty();
     $("#edit_image_subsubcategory").empty();
     $("#mainCategoriSubEdit").empty();
@@ -1983,7 +1776,9 @@ $(document).ready(function () {
 
     // Load data kategori
     loadEditSubSubCategoryData(categoryId)
-      .then(function (category) {})
+      .then(function (category) {
+        console.log("Sub Sub Category data loaded successfully");
+      })
       .catch(function (error) {
         console.error("Error loading category data:", error);
         Swal.fire({
@@ -2080,7 +1875,7 @@ $(document).ready(function () {
   });
 
   // Form submission untuk edit sub sub
-  $("#editFormSubSubCategori").on("submit", function (e) {
+  $("#addFormSubSubCategoriEdit").on("submit", function (e) {
     e.preventDefault();
 
     // Validasi
@@ -2136,9 +1931,10 @@ $(document).ready(function () {
       contentType: false,
       dataType: "json",
       success: function (response) {
+        console.log("response: ", response);
         if (response.status) {
           $("#edit-subsubcategori").modal("hide");
-          $("#editFormSubSubCategori")[0].reset();
+          $("#addFormSubSubCategoriEdit")[0].reset();
           $("#imagePreviewSubSubEdit").empty();
           $("#edit_image_subsubcategory").empty();
 
@@ -2177,7 +1973,7 @@ $(document).ready(function () {
 
   // Reset modal saat ditutup
   $("#edit-subsubcategori").on("hidden.bs.modal", function () {
-    $("#editFormSubSubCategori")[0].reset();
+    $("#addFormSubSubCategoriEdit")[0].reset();
     $("#imagePreviewSubSubEdit").empty();
     $("#edit_image_subsubcategory").empty();
     $("#mainCategoriSubEdit").val("");
@@ -2274,6 +2070,7 @@ $(document).ready(function () {
       type: "GET",
       dataType: "json",
       success: function (response) {
+        console.log("Image response:", response);
         if (response.status && response.data) {
           var data = response.data;
 
@@ -2307,6 +2104,7 @@ $(document).ready(function () {
         }
       },
       error: function (xhr, status, error) {
+        console.log("Error loading image:", error);
         $("#imagePreviewSubJasaEdit").html(
           '<div class="text-danger">Failed to load image</div>'
         );
@@ -2726,395 +2524,6 @@ $(document).ready(function () {
         submitBtn.prop("disabled", false).html(originalText);
       },
     });
-  });
-
-  function loadMainCategoriesJasaForEditSubSub() {
-    return new Promise(function (resolve, reject) {
-      $.ajax({
-        url: base_url + "backendproduct/getMainCategoriesJasa",
-        type: "GET",
-        dataType: "json",
-        success: function (response) {
-          if (response.status) {
-            var select = $("#mainCategoriSubJasaEdit");
-            select.empty();
-            select.append('<option value="">Pilih Kategori Utama</option>');
-            $.each(response.data, function (index, category) {
-              select.append(
-                '<option value="' +
-                  category.id +
-                  '">' +
-                  category.name +
-                  "</option>"
-              );
-            });
-            resolve();
-          } else {
-            reject(response.message);
-          }
-        },
-        error: function (xhr, status, error) {
-          reject(error);
-        },
-      });
-    });
-  }
-
-  // Function untuk load sub categories di modal edit sub sub
-  function loadSubCategoriesJasaForEditSubSub(mainCategoryId) {
-    return new Promise(function (resolve, reject) {
-      if (!mainCategoryId) {
-        $("#mainCategoriSubSubJasaEdit")
-          .empty()
-          .append('<option value="">Pilih Kategori Utama dulu</option>')
-          .prop("disabled", true);
-        $("#subCategoriSubEdit").prop("disabled", true).val("");
-        resolve();
-        return;
-      }
-
-      $.ajax({
-        url: base_url + "backendproduct/getSubCategoriesJasa/" + mainCategoryId,
-        type: "GET",
-        dataType: "json",
-        success: function (response) {
-          if (response.status) {
-            var select = $("#mainCategoriSubSubJasaEdit");
-            select.empty();
-            select.append('<option value="">Pilih Sub Kategori</option>');
-            $.each(response.data, function (index, category) {
-              select.append(
-                '<option value="' +
-                  category.id +
-                  '">' +
-                  category.name +
-                  "</option>"
-              );
-            });
-            select.prop("disabled", false);
-            resolve();
-          } else {
-            reject(response.message);
-          }
-        },
-        error: function (xhr, status, error) {
-          reject(error);
-        },
-      });
-    });
-  }
-
-  // Function untuk load data edit modal sub sub
-  function loadEditSubSubCategoryJasaData(categoryId) {
-    return new Promise(function (resolve, reject) {
-      $.ajax({
-        url: base_url + "backendproduct/getSubSubCategoryById/" + categoryId,
-        type: "GET",
-        dataType: "json",
-        success: function (response) {
-          if (response.status) {
-            var category = response.data;
-
-            // Set hidden ID
-            $("#edit_subsubcategori_jasa_id").val(category.id);
-
-            // Set nama kategori
-            $("#subCategoriSubJasaEdit").val(category.name);
-
-            // Tampilkan gambar saat ini jika ada
-            if (category.img) {
-              var imageUrl =
-                base_url + "public/upload/categori/" + category.img;
-              $("#edit_image_subsubcategory_jasa").html(
-                '<div class="alert alert-info p-2">' +
-                  'Current image: <a href="' +
-                  imageUrl +
-                  '" target="_blank">' +
-                  category.img +
-                  "</a></div>"
-              );
-              $("#edit_image_subsubcategory_jasa_value").val(category.img);
-
-              $("#imagePreviewSubSubJasaEdit").html(
-                '<img src="' +
-                  imageUrl +
-                  '" class="img-thumbnail" style="max-width: 150px;">' +
-                  '<div class="mt-1 text-muted small">Current Image</div>'
-              );
-            } else {
-              $("#edit_image_subsubcategory_jasa").html(
-                '<div class="alert alert-warning p-2">No image available</div>'
-              );
-              $("#imagePreviewSubSubJasaEdit").html(
-                '<div class="text-muted">No image available</div>'
-              );
-            }
-
-            // Load main categories dan set value
-            loadMainCategoriesJasaForEditSubSub()
-              .then(function () {
-                // Set main category
-                if (category.grandparent_id) {
-                  $("#mainCategoriSubJasaEdit")
-                    .val(category.grandparent_id)
-                    .trigger("change");
-
-                  // Load sub categories setelah main category dipilih
-                  setTimeout(function () {
-                    loadSubCategoriesJasaForEditSubSub(
-                      category.grandparent_id
-                    ).then(function () {
-                      // Set sub category
-                      if (category.parent_id) {
-                        $("#mainCategoriSubSubJasaEdit")
-                          .val(category.parent_id)
-                          .trigger("change");
-                      }
-                      // Enable input nama
-                      $("#subCategoriSubJasaEdit").prop("disabled", false);
-                      resolve(category);
-                    });
-                  }, 500);
-                } else {
-                  // Enable input nama
-                  $("#subCategoriSubJasaEdit").prop("disabled", false);
-                  resolve(category);
-                }
-              })
-              .catch(function (error) {
-                reject(error);
-              });
-          } else {
-            reject(response.message);
-          }
-        },
-        error: function (xhr, status, error) {
-          reject(error);
-        },
-      });
-    });
-  }
-
-  // Event listener untuk tombol edit sub sub
-  $(document).on("click", ".edit-subsubcategori-jasa", function () {
-    var categoryId = $(this).data("id");
-    var categoryName = $(this).data("name");
-
-    // Reset form terlebih dahulu
-    $("#editFormSubSubCategoriJasa")[0].reset();
-    $("#imagePreviewSubSubJasaEdit").empty();
-    $("#edit_image_subsubcategory_jasa").empty();
-    $("#mainCategoriSubJasaEdit").empty();
-    $("#mainCategoriSubSubJasaEdit").empty().prop("disabled", true);
-    $("#subCategoriSubJasaEdit").prop("disabled", true).val("");
-
-    // Tampilkan modal terlebih dahulu
-    $("#edit-subsubcategori-jasa").modal("show");
-
-    // Load data kategori
-    loadEditSubSubCategoryJasaData(categoryId)
-      .then(function (category) {})
-      .catch(function (error) {
-        console.error("Error loading Jasa data:", error);
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "Gagal memuat data kategori. Silakan coba lagi.",
-        });
-      });
-  });
-
-  // Event listener untuk perubahan main category di edit modal sub sub
-  $("#mainCategoriSubJasaEdit").on("change", function () {
-    var mainCategoryId = $(this).val();
-    loadSubCategoriesJasaForEditSubSub(mainCategoryId);
-  });
-
-  // Event listener untuk perubahan sub category di edit modal sub sub
-  $("#mainCategoriSubSubJasaEdit").on("change", function () {
-    var subCategoryId = $(this).val();
-    var inputName = $("#subCategoriSubJasaEdit");
-
-    if (subCategoryId) {
-      inputName.prop("disabled", false);
-    } else {
-      inputName.prop("disabled", true).val("");
-    }
-  });
-
-  // Preview image untuk edit modal sub sub
-  $("#fileuploadSubSubJasaEdit").on("change", function () {
-    var file = this.files[0];
-    if (file) {
-      if (file.size > 1024 * 1024) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "File terlalu besar. Maksimal 1MB",
-        });
-        $(this).val("");
-        return;
-      }
-
-      var validTypes = ["image/jpeg", "image/jpg", "image/png"];
-      if (!validTypes.includes(file.type)) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "Format File tidak didukung. Hanya JPG, JPEG, PNG",
-        });
-        $(this).val("");
-        return;
-      }
-
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $("#imagePreviewSubSubJasaEdit").html(
-          '<img src="' +
-            e.target.result +
-            '" class="img-thumbnail" style="max-width: 150px;">' +
-            '<div class="mt-1 text-success small">New Image Preview</div>'
-        );
-
-        // Clear current image info
-        $("#edit_image_subsubcategory_jasa").empty();
-        $("#edit_image_subsubcategory_jasa_value").val("");
-      };
-      reader.readAsDataURL(file);
-    } else {
-      // Jika file dihapus, load kembali gambar saat ini
-      var categoryId = $("#edit_subsubcategori_jasa_id").val();
-      if (categoryId) {
-        // Load gambar dari hidden value
-        var currentImage = $("#edit_image_subsubcategory_jasa_value").val();
-        if (currentImage) {
-          var imageUrl = base_url + "public/upload/categori/" + currentImage;
-          $("#edit_image_subsubcategory_jasa").html(
-            '<div class="alert alert-info p-2">' +
-              'Current image: <a href="' +
-              imageUrl +
-              '" target="_blank">' +
-              currentImage +
-              "</a></div>"
-          );
-
-          $("#imagePreviewSubSubJasaEdit").html(
-            '<img src="' +
-              imageUrl +
-              '" class="img-thumbnail" style="max-width: 150px;">' +
-              '<div class="mt-1 text-muted small">Current Image</div>'
-          );
-        }
-      }
-    }
-  });
-
-  // Form submission untuk edit sub sub
-  $("#editFormSubSubCategoriJasa").on("submit", function (e) {
-    e.preventDefault();
-
-    // Validasi
-    var mainCategory = $("#mainCategoriSubJasaEdit").val();
-    var subCategory = $("#mainCategoriSubSubJasaEdit").val();
-    var categoryName = $("#subCategoriSubJasaEdit").val();
-
-    if (!mainCategory) {
-      Swal.fire({
-        icon: "error",
-        title: "Error!",
-        text: "Pilih Kategori Utama terlebih dahulu",
-      });
-      $("#mainCategoriSubJasaEdit").focus();
-      return;
-    }
-
-    if (!subCategory) {
-      Swal.fire({
-        icon: "error",
-        title: "Error!",
-        text: "Pilih Sub Kategori terlebih dahulu",
-      });
-      $("#mainCategoriSubSubJasaEdit").focus();
-      return;
-    }
-
-    if (!categoryName.trim()) {
-      Swal.fire({
-        icon: "error",
-        title: "Error!",
-        text: "Nama Sub Sub Kategori tidak boleh kosong",
-      });
-      $("#subCategoriSubJasaEdit").focus();
-      return;
-    }
-
-    var formData = new FormData(this);
-
-    var submitBtn = $(this).find('button[type="submit"]');
-    var originalText = submitBtn.html();
-    submitBtn
-      .prop("disabled", true)
-      .html(
-        '<span class="spinner-border spinner-border-sm"></span> Updating...'
-      );
-
-    $.ajax({
-      url: base_url + "backendproduct/editSubSubCategoriJasaAjax",
-      type: "POST",
-      data: formData,
-      processData: false,
-      contentType: false,
-      dataType: "json",
-      success: function (response) {
-        if (response.status) {
-          $("#edit-subsubcategori-jasa").modal("hide");
-          $("#editFormSubSubCategoriJasa")[0].reset();
-          $("#imagePreviewSubSubJasaEdit").empty();
-          $("#edit_image_subsubcategory_jasa").empty();
-
-          // Reload datatable
-          if (typeof tableCategoriJasa !== "undefined") {
-            tableCategoriJasa.ajax.reload();
-          }
-
-          Swal.fire({
-            icon: "success",
-            title: "Success!",
-            text: response.message,
-            timer: 2000,
-            showConfirmButton: false,
-          });
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error!",
-            text: response.message,
-          });
-        }
-      },
-      error: function (xhr, status, error) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "Error: " + error,
-        });
-      },
-      complete: function () {
-        submitBtn.prop("disabled", false).html(originalText);
-      },
-    });
-  });
-
-  // Reset modal saat ditutup
-  $("#edit-subsubcategori-jasa").on("hidden.bs.modal", function () {
-    $("#editFormSubSubCategoriJasa")[0].reset();
-    $("#imagePreviewSubSubJasaEdit").empty();
-    $("#edit_image_subsubcategory_jasa").empty();
-    $("#mainCategoriSubJasaEdit").val("");
-    $("#mainCategoriSubSubJasaEdit").val("");
-    $("#subCategoriSubJasaEdit").prop("disabled", true).val("");
-    $("#edit_subsubcategori_jasa_id").val("");
-    $("#edit_image_subsubcategory_jasa_value").val("");
   });
 
   $("#addFormBrand").on("submit", function (e) {

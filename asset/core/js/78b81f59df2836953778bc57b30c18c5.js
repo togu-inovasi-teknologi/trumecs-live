@@ -961,7 +961,7 @@ $(document).ready(function () {
     var button = $(this);
 
     Swal.fire({
-      title: "Delete Categori?",
+      title: "Delete Brand?",
       html: `Are you sure you want to delete <strong>${name}</strong>?<br><small class="text-danger">This action cannot be undone.</small>`,
       icon: "warning",
       showCancelButton: true,
@@ -990,118 +990,7 @@ $(document).ready(function () {
     }).then((result) => {
       if (result.isConfirmed) {
         if (result.value.status) {
-          tableCategori.ajax.reload();
-          tableCategoriJasa.ajax.reload();
-          Swal.fire({
-            icon: "success",
-            title: "Deleted!",
-            text: result.value.message,
-            timer: 2000,
-            showConfirmButton: false,
-          });
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: result.value.message,
-          });
-        }
-      }
-    });
-  });
-
-  $("#categoriTable").on("click", ".delete-subcategori", function () {
-    var id = $(this).data("id");
-    var name = $(this).data("name") || "this categori";
-    var button = $(this);
-
-    Swal.fire({
-      title: "Delete Sub Categori?",
-      html: `Are you sure you want to delete <strong>${name}</strong>?<br><small class="text-danger">This action cannot be undone.</small>`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "Cancel",
-      showLoaderOnConfirm: true,
-      preConfirm: () => {
-        return new Promise((resolve) => {
-          $.ajax({
-            url: base_url + "backendproduct/categoriAjaxDelete",
-            type: "POST",
-            data: { id: id },
-            dataType: "json",
-            success: function (response) {
-              resolve(response);
-            },
-            error: function () {
-              resolve({ status: false, message: "Network error" });
-            },
-          });
-        });
-      },
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if (result.value.status) {
-          tableCategori.ajax.reload();
-          tableCategoriJasa.ajax.reload();
-          Swal.fire({
-            icon: "success",
-            title: "Deleted!",
-            text: result.value.message,
-            timer: 2000,
-            showConfirmButton: false,
-          });
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: result.value.message,
-          });
-        }
-      }
-    });
-  });
-
-  $("#categoriTable").on("click", ".delete-subsubcategori", function () {
-    var id = $(this).data("id");
-    var name = $(this).data("name") || "this categori";
-    var button = $(this);
-
-    Swal.fire({
-      title: "Delete Sub Sub Categori?",
-      html: `Are you sure you want to delete <strong>${name}</strong>?<br><small class="text-danger">This action cannot be undone.</small>`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "Cancel",
-      showLoaderOnConfirm: true,
-      preConfirm: () => {
-        return new Promise((resolve) => {
-          $.ajax({
-            url: base_url + "backendproduct/categoriAjaxDelete",
-            type: "POST",
-            data: { id: id },
-            dataType: "json",
-            success: function (response) {
-              resolve(response);
-            },
-            error: function () {
-              resolve({ status: false, message: "Network error" });
-            },
-          });
-        });
-      },
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if (result.value.status) {
-          tableCategori.ajax.reload();
-          tableCategoriJasa.ajax.reload();
+          tableBrand.ajax.reload();
           Swal.fire({
             icon: "success",
             title: "Deleted!",
@@ -1122,11 +1011,11 @@ $(document).ready(function () {
 
   $("#categoriJasaTable").on("click", ".delete-categori", function () {
     var id = $(this).data("id");
-    var name = $(this).data("name") || "this Jasa";
+    var name = $(this).data("name") || "this categori";
     var button = $(this);
 
     Swal.fire({
-      title: "Delete Jasa?",
+      title: "Delete Brand?",
       html: `Are you sure you want to delete <strong>${name}</strong>?<br><small class="text-danger">This action cannot be undone.</small>`,
       icon: "warning",
       showCancelButton: true,
@@ -1174,120 +1063,6 @@ $(document).ready(function () {
       }
     });
   });
-
-  $("#categoriJasaTable").on("click", ".delete-subcategori-jasa", function () {
-    var id = $(this).data("id");
-    var name = $(this).data("name") || "this Jasa";
-    var button = $(this);
-
-    Swal.fire({
-      title: "Delete Jasa?",
-      html: `Are you sure you want to delete <strong>${name}</strong>?<br><small class="text-danger">This action cannot be undone.</small>`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "Cancel",
-      showLoaderOnConfirm: true,
-      preConfirm: () => {
-        return new Promise((resolve) => {
-          $.ajax({
-            url: base_url + "backendproduct/categoriAjaxDelete",
-            type: "POST",
-            data: { id: id },
-            dataType: "json",
-            success: function (response) {
-              resolve(response);
-            },
-            error: function () {
-              resolve({ status: false, message: "Network error" });
-            },
-          });
-        });
-      },
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if (result.value.status) {
-          tableCategori.ajax.reload();
-          tableCategoriJasa.ajax.reload();
-          Swal.fire({
-            icon: "success",
-            title: "Deleted!",
-            text: result.value.message,
-            timer: 2000,
-            showConfirmButton: false,
-          });
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: result.value.message,
-          });
-        }
-      }
-    });
-  });
-
-  $("#categoriJasaTable").on(
-    "click",
-    ".delete-subsubcategori-jasa",
-    function () {
-      var id = $(this).data("id");
-      var name = $(this).data("name") || "this Jasa";
-      var button = $(this);
-
-      Swal.fire({
-        title: "Delete Jasa?",
-        html: `Are you sure you want to delete <strong>${name}</strong>?<br><small class="text-danger">This action cannot be undone.</small>`,
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#d33",
-        cancelButtonColor: "#3085d6",
-        confirmButtonText: "Yes, delete it!",
-        cancelButtonText: "Cancel",
-        showLoaderOnConfirm: true,
-        preConfirm: () => {
-          return new Promise((resolve) => {
-            $.ajax({
-              url: base_url + "backendproduct/categoriAjaxDelete",
-              type: "POST",
-              data: { id: id },
-              dataType: "json",
-              success: function (response) {
-                resolve(response);
-              },
-              error: function () {
-                resolve({ status: false, message: "Network error" });
-              },
-            });
-          });
-        },
-        allowOutsideClick: () => !Swal.isLoading(),
-      }).then((result) => {
-        if (result.isConfirmed) {
-          if (result.value.status) {
-            tableCategori.ajax.reload();
-            tableCategoriJasa.ajax.reload();
-            Swal.fire({
-              icon: "success",
-              title: "Deleted!",
-              text: result.value.message,
-              timer: 2000,
-              showConfirmButton: false,
-            });
-          } else {
-            Swal.fire({
-              icon: "error",
-              title: "Error",
-              text: result.value.message,
-            });
-          }
-        }
-      });
-    }
-  );
 });
 
 $(document).ready(function () {

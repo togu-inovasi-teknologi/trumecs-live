@@ -622,6 +622,8 @@ $(document).ready(function () {
         type: "GET",
         dataType: "json",
         success: function (response) {
+          console.log("Response dari server:", response);
+
           if (response.status) {
             var category = response.data;
 
@@ -656,6 +658,10 @@ $(document).ready(function () {
 
             // Set nilai select2 untuk grade
             if (category.grades && category.grades.length > 0) {
+              console.log(
+                "Setting grades:",
+                category.grades.map((g) => g.id)
+              );
               var gradeIds = category.grades.map(function (grade) {
                 return grade.id.toString();
               });
@@ -664,6 +670,10 @@ $(document).ready(function () {
 
             // Set nilai select2 untuk brand
             if (category.brands && category.brands.length > 0) {
+              console.log(
+                "Setting brands:",
+                category.brands.map((b) => b.id)
+              );
               var brandIds = category.brands.map(function (brand) {
                 return brand.id.toString();
               });
@@ -672,12 +682,18 @@ $(document).ready(function () {
 
             // Set nilai select2 untuk attribute
             if (category.attributes && category.attributes.length > 0) {
+              console.log(
+                "Setting attributes:",
+                category.attributes.map((a) => a.id)
+              );
               var attributeIds = category.attributes.map(function (attr) {
                 return attr.id.toString();
               });
               $("#edit_select2-attribute").val(attributeIds).trigger("change");
             }
 
+            // PENTING: Resolve promise setelah semua selesai
+            console.log("Category data loaded successfully");
             resolve(); // ✅ TAMBAHKAN INI
           } else {
             console.error("Server error:", response.message);
@@ -961,7 +977,7 @@ $(document).ready(function () {
     var button = $(this);
 
     Swal.fire({
-      title: "Delete Categori?",
+      title: "Delete Brand?",
       html: `Are you sure you want to delete <strong>${name}</strong>?<br><small class="text-danger">This action cannot be undone.</small>`,
       icon: "warning",
       showCancelButton: true,
@@ -990,118 +1006,7 @@ $(document).ready(function () {
     }).then((result) => {
       if (result.isConfirmed) {
         if (result.value.status) {
-          tableCategori.ajax.reload();
-          tableCategoriJasa.ajax.reload();
-          Swal.fire({
-            icon: "success",
-            title: "Deleted!",
-            text: result.value.message,
-            timer: 2000,
-            showConfirmButton: false,
-          });
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: result.value.message,
-          });
-        }
-      }
-    });
-  });
-
-  $("#categoriTable").on("click", ".delete-subcategori", function () {
-    var id = $(this).data("id");
-    var name = $(this).data("name") || "this categori";
-    var button = $(this);
-
-    Swal.fire({
-      title: "Delete Sub Categori?",
-      html: `Are you sure you want to delete <strong>${name}</strong>?<br><small class="text-danger">This action cannot be undone.</small>`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "Cancel",
-      showLoaderOnConfirm: true,
-      preConfirm: () => {
-        return new Promise((resolve) => {
-          $.ajax({
-            url: base_url + "backendproduct/categoriAjaxDelete",
-            type: "POST",
-            data: { id: id },
-            dataType: "json",
-            success: function (response) {
-              resolve(response);
-            },
-            error: function () {
-              resolve({ status: false, message: "Network error" });
-            },
-          });
-        });
-      },
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if (result.value.status) {
-          tableCategori.ajax.reload();
-          tableCategoriJasa.ajax.reload();
-          Swal.fire({
-            icon: "success",
-            title: "Deleted!",
-            text: result.value.message,
-            timer: 2000,
-            showConfirmButton: false,
-          });
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: result.value.message,
-          });
-        }
-      }
-    });
-  });
-
-  $("#categoriTable").on("click", ".delete-subsubcategori", function () {
-    var id = $(this).data("id");
-    var name = $(this).data("name") || "this categori";
-    var button = $(this);
-
-    Swal.fire({
-      title: "Delete Sub Sub Categori?",
-      html: `Are you sure you want to delete <strong>${name}</strong>?<br><small class="text-danger">This action cannot be undone.</small>`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "Cancel",
-      showLoaderOnConfirm: true,
-      preConfirm: () => {
-        return new Promise((resolve) => {
-          $.ajax({
-            url: base_url + "backendproduct/categoriAjaxDelete",
-            type: "POST",
-            data: { id: id },
-            dataType: "json",
-            success: function (response) {
-              resolve(response);
-            },
-            error: function () {
-              resolve({ status: false, message: "Network error" });
-            },
-          });
-        });
-      },
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if (result.value.status) {
-          tableCategori.ajax.reload();
-          tableCategoriJasa.ajax.reload();
+          tableBrand.ajax.reload();
           Swal.fire({
             icon: "success",
             title: "Deleted!",
@@ -1122,11 +1027,11 @@ $(document).ready(function () {
 
   $("#categoriJasaTable").on("click", ".delete-categori", function () {
     var id = $(this).data("id");
-    var name = $(this).data("name") || "this Jasa";
+    var name = $(this).data("name") || "this categori";
     var button = $(this);
 
     Swal.fire({
-      title: "Delete Jasa?",
+      title: "Delete Brand?",
       html: `Are you sure you want to delete <strong>${name}</strong>?<br><small class="text-danger">This action cannot be undone.</small>`,
       icon: "warning",
       showCancelButton: true,
@@ -1174,120 +1079,6 @@ $(document).ready(function () {
       }
     });
   });
-
-  $("#categoriJasaTable").on("click", ".delete-subcategori-jasa", function () {
-    var id = $(this).data("id");
-    var name = $(this).data("name") || "this Jasa";
-    var button = $(this);
-
-    Swal.fire({
-      title: "Delete Jasa?",
-      html: `Are you sure you want to delete <strong>${name}</strong>?<br><small class="text-danger">This action cannot be undone.</small>`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "Cancel",
-      showLoaderOnConfirm: true,
-      preConfirm: () => {
-        return new Promise((resolve) => {
-          $.ajax({
-            url: base_url + "backendproduct/categoriAjaxDelete",
-            type: "POST",
-            data: { id: id },
-            dataType: "json",
-            success: function (response) {
-              resolve(response);
-            },
-            error: function () {
-              resolve({ status: false, message: "Network error" });
-            },
-          });
-        });
-      },
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if (result.value.status) {
-          tableCategori.ajax.reload();
-          tableCategoriJasa.ajax.reload();
-          Swal.fire({
-            icon: "success",
-            title: "Deleted!",
-            text: result.value.message,
-            timer: 2000,
-            showConfirmButton: false,
-          });
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: result.value.message,
-          });
-        }
-      }
-    });
-  });
-
-  $("#categoriJasaTable").on(
-    "click",
-    ".delete-subsubcategori-jasa",
-    function () {
-      var id = $(this).data("id");
-      var name = $(this).data("name") || "this Jasa";
-      var button = $(this);
-
-      Swal.fire({
-        title: "Delete Jasa?",
-        html: `Are you sure you want to delete <strong>${name}</strong>?<br><small class="text-danger">This action cannot be undone.</small>`,
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#d33",
-        cancelButtonColor: "#3085d6",
-        confirmButtonText: "Yes, delete it!",
-        cancelButtonText: "Cancel",
-        showLoaderOnConfirm: true,
-        preConfirm: () => {
-          return new Promise((resolve) => {
-            $.ajax({
-              url: base_url + "backendproduct/categoriAjaxDelete",
-              type: "POST",
-              data: { id: id },
-              dataType: "json",
-              success: function (response) {
-                resolve(response);
-              },
-              error: function () {
-                resolve({ status: false, message: "Network error" });
-              },
-            });
-          });
-        },
-        allowOutsideClick: () => !Swal.isLoading(),
-      }).then((result) => {
-        if (result.isConfirmed) {
-          if (result.value.status) {
-            tableCategori.ajax.reload();
-            tableCategoriJasa.ajax.reload();
-            Swal.fire({
-              icon: "success",
-              title: "Deleted!",
-              text: result.value.message,
-              timer: 2000,
-              showConfirmButton: false,
-            });
-          } else {
-            Swal.fire({
-              icon: "error",
-              title: "Error",
-              text: result.value.message,
-            });
-          }
-        }
-      });
-    }
-  );
 });
 
 $(document).ready(function () {
@@ -1644,6 +1435,7 @@ $(document).ready(function () {
       type: "GET",
       dataType: "json",
       success: function (response) {
+        console.log("Image response:", response);
         if (response.status && response.data) {
           var data = response.data;
 
@@ -1677,6 +1469,7 @@ $(document).ready(function () {
         }
       },
       error: function (xhr, status, error) {
+        console.log("Error loading image:", error);
         $("#imagePreviewSubEdit").html(
           '<div class="text-danger">Failed to load image</div>'
         );
@@ -1983,7 +1776,9 @@ $(document).ready(function () {
 
     // Load data kategori
     loadEditSubSubCategoryData(categoryId)
-      .then(function (category) {})
+      .then(function (category) {
+        console.log("Sub Sub Category data loaded successfully");
+      })
       .catch(function (error) {
         console.error("Error loading category data:", error);
         Swal.fire({
@@ -2136,6 +1931,7 @@ $(document).ready(function () {
       contentType: false,
       dataType: "json",
       success: function (response) {
+        console.log("response: ", response);
         if (response.status) {
           $("#edit-subsubcategori").modal("hide");
           $("#editFormSubSubCategori")[0].reset();
@@ -2274,6 +2070,7 @@ $(document).ready(function () {
       type: "GET",
       dataType: "json",
       success: function (response) {
+        console.log("Image response:", response);
         if (response.status && response.data) {
           var data = response.data;
 
@@ -2307,6 +2104,7 @@ $(document).ready(function () {
         }
       },
       error: function (xhr, status, error) {
+        console.log("Error loading image:", error);
         $("#imagePreviewSubJasaEdit").html(
           '<div class="text-danger">Failed to load image</div>'
         );
@@ -2731,7 +2529,7 @@ $(document).ready(function () {
   function loadMainCategoriesJasaForEditSubSub() {
     return new Promise(function (resolve, reject) {
       $.ajax({
-        url: base_url + "backendproduct/getMainCategoriesJasa",
+        url: base_url + "backendproduct/getMainCategories",
         type: "GET",
         dataType: "json",
         success: function (response) {
@@ -2774,7 +2572,7 @@ $(document).ready(function () {
       }
 
       $.ajax({
-        url: base_url + "backendproduct/getSubCategoriesJasa/" + mainCategoryId,
+        url: base_url + "backendproduct/getSubCategories/" + mainCategoryId,
         type: "GET",
         dataType: "json",
         success: function (response) {
@@ -2866,7 +2664,7 @@ $(document).ready(function () {
                     ).then(function () {
                       // Set sub category
                       if (category.parent_id) {
-                        $("#mainCategoriSubSubJasaEdit")
+                        $("#mainCategoriJasaSubSubEdit")
                           .val(category.parent_id)
                           .trigger("change");
                       }
@@ -2896,7 +2694,7 @@ $(document).ready(function () {
   }
 
   // Event listener untuk tombol edit sub sub
-  $(document).on("click", ".edit-subsubcategori-jasa", function () {
+  $(document).on("click", ".edit-subsubcategori-saja", function () {
     var categoryId = $(this).data("id");
     var categoryName = $(this).data("name");
 
@@ -2912,8 +2710,10 @@ $(document).ready(function () {
     $("#edit-subsubcategori-jasa").modal("show");
 
     // Load data kategori
-    loadEditSubSubCategoryJasaData(categoryId)
-      .then(function (category) {})
+    loadEditSubSubCategoryData(categoryId)
+      .then(function (category) {
+        console.log("Sub Sub Jasa data loaded successfully");
+      })
       .catch(function (error) {
         console.error("Error loading Jasa data:", error);
         Swal.fire({
@@ -3066,6 +2866,7 @@ $(document).ready(function () {
       contentType: false,
       dataType: "json",
       success: function (response) {
+        console.log("response: ", response);
         if (response.status) {
           $("#edit-subsubcategori-jasa").modal("hide");
           $("#editFormSubSubCategoriJasa")[0].reset();

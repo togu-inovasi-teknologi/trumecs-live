@@ -990,8 +990,7 @@ $(document).ready(function () {
     }).then((result) => {
       if (result.isConfirmed) {
         if (result.value.status) {
-          tableCategori.ajax.reload();
-          tableCategoriJasa.ajax.reload();
+          tableBrand.ajax.reload();
           Swal.fire({
             icon: "success",
             title: "Deleted!",
@@ -1045,8 +1044,7 @@ $(document).ready(function () {
     }).then((result) => {
       if (result.isConfirmed) {
         if (result.value.status) {
-          tableCategori.ajax.reload();
-          tableCategoriJasa.ajax.reload();
+          tableBrand.ajax.reload();
           Swal.fire({
             icon: "success",
             title: "Deleted!",
@@ -1100,8 +1098,7 @@ $(document).ready(function () {
     }).then((result) => {
       if (result.isConfirmed) {
         if (result.value.status) {
-          tableCategori.ajax.reload();
-          tableCategoriJasa.ajax.reload();
+          tableBrand.ajax.reload();
           Swal.fire({
             icon: "success",
             title: "Deleted!",

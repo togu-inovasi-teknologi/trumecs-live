@@ -990,8 +990,7 @@ $(document).ready(function () {
     }).then((result) => {
       if (result.isConfirmed) {
         if (result.value.status) {
-          tableCategori.ajax.reload();
-          tableCategoriJasa.ajax.reload();
+          tableBrand.ajax.reload();
           Swal.fire({
             icon: "success",
             title: "Deleted!",
@@ -1028,7 +1027,7 @@ $(document).ready(function () {
       preConfirm: () => {
         return new Promise((resolve) => {
           $.ajax({
-            url: base_url + "backendproduct/categoriAjaxDelete",
+            url: base_url + "backendproduct/subCategoriAjaxDelete",
             type: "POST",
             data: { id: id },
             dataType: "json",
@@ -1045,8 +1044,7 @@ $(document).ready(function () {
     }).then((result) => {
       if (result.isConfirmed) {
         if (result.value.status) {
-          tableCategori.ajax.reload();
-          tableCategoriJasa.ajax.reload();
+          tableBrand.ajax.reload();
           Swal.fire({
             icon: "success",
             title: "Deleted!",
@@ -1083,7 +1081,7 @@ $(document).ready(function () {
       preConfirm: () => {
         return new Promise((resolve) => {
           $.ajax({
-            url: base_url + "backendproduct/categoriAjaxDelete",
+            url: base_url + "backendproduct/subSubCategoriAjaxDelete",
             type: "POST",
             data: { id: id },
             dataType: "json",
@@ -1100,8 +1098,7 @@ $(document).ready(function () {
     }).then((result) => {
       if (result.isConfirmed) {
         if (result.value.status) {
-          tableCategori.ajax.reload();
-          tableCategoriJasa.ajax.reload();
+          tableBrand.ajax.reload();
           Swal.fire({
             icon: "success",
             title: "Deleted!",
@@ -1193,7 +1190,7 @@ $(document).ready(function () {
       preConfirm: () => {
         return new Promise((resolve) => {
           $.ajax({
-            url: base_url + "backendproduct/categoriAjaxDelete",
+            url: base_url + "backendproduct/subCategoriAjaxDelete",
             type: "POST",
             data: { id: id },
             dataType: "json",
@@ -1251,7 +1248,7 @@ $(document).ready(function () {
         preConfirm: () => {
           return new Promise((resolve) => {
             $.ajax({
-              url: base_url + "backendproduct/categoriAjaxDelete",
+              url: base_url + "backendproduct/subSubCategoriAjaxDelete",
               type: "POST",
               data: { id: id },
               dataType: "json",

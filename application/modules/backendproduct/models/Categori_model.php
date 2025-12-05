@@ -424,6 +424,27 @@ class categori_model extends CI_Model
                 }
                 return $category->name;
 
+            case 'sub_category_jasa':
+                $parent = $this->get_categori_by_id($category->parent);
+                if ($parent) {
+                    return '<div class="fbold">' . $category->name . '</div>' .
+                        '<div class="text-muted fs-6">' . $parent->name . '</div>';
+                }
+                return $category->name;
+
+            case 'subsub_category_jasa':
+                $parent_sub = $this->get_categori_by_id($category->parent);
+                if ($parent_sub) {
+                    $parent_main = $this->get_categori_by_id($parent_sub->parent);
+                    if ($parent_main) {
+                        return '<div class="fbold">' . $category->name . '</div>' .
+                            '<div class="text-muted fs-6">' . $parent_main->name . ' - ' . $parent_sub->name . '</div>';
+                    }
+                    return '<div class="fbold">' . $category->name . '</div>' .
+                        '<div class="text-muted fs-6">' . $parent_sub->name . '</div>';
+                }
+                return $category->name;
+
             case 'brand':
                 return $category->name; // 1 baris: nama brand
 

@@ -207,6 +207,54 @@
 															</div>
 														</div>
 													</div>
+													<div class="modal fade" id="edit-subsubcategori" tabindex="-1">
+														<div class="modal-dialog modal-lg">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h5 class="modal-title">Edit Sub Sub Category</h5>
+																	<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+																</div>
+																<form id="editFormSubSubCategori">
+																	<div class="modal-body">
+																		<input type="hidden" name="edit_subsubcategori_id" id="edit_subsubcategori_id">
+																		<div class="row">
+																			<div class="col-md-6 mb-3">
+																				<label for="fileuploadSubSubEdit" class="form-label fw-bold">Icon / Image</label>
+																				<input type="file" class="form-control" id="fileuploadSubSubEdit" name="fileuploadSubSubEdit" accept=".jpg,.jpeg,.png">
+																				<div class="form-text">Format: JPG, PNG (Max: 1MB, 1000x1000px)</div>
+																				<div class="mt-2" id="edit_image_subsubcategory"></div>
+																				<input type="hidden" name="edit_image_subsubcategory_value" id="edit_image_subsubcategory_value">
+																			</div>
+																			<div class="col-md-6 mb-3">
+																				<div id="imagePreviewSubSubEdit" class="mt-2"></div>
+																			</div>
+																		</div>
+																		<div class="row">
+																			<div class="col-md-6 mb-3">
+																				<label for="mainCategoriSubEdit" class="form-label fw-bold">Kategori Utama</label>
+																				<select name="mainCategoriSubEditId" id="mainCategoriSubEdit" class="form-control"></select>
+																			</div>
+																			<div class="col-md-6 mb-3">
+																				<label for="mainCategoriSubSubEdit" class="form-label fw-bold">Kategori Sub</label>
+																				<select name="mainCategoriSubSubEditId" id="mainCategoriSubSubEdit" class="form-control" disabled></select>
+																			</div>
+																		</div>
+
+																		<div class="row">
+																			<div class="col-md-12 mb-3">
+																				<label for="subCategoriSubEdit" class="form-label fw-bold">Nama Sub Kategori</label>
+																				<input type="text" class="form-control" id="subCategoriSubEdit" name="name" disabled required>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="modal-footer">
+																		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+																		<button type="submit" class="btn btn-primary">Save</button>
+																	</div>
+																</form>
+															</div>
+														</div>
+													</div>
 												</div>
 												<div class="tab-pane fade" id="jasa-tab-pane" role="tabpanel" aria-labelledby="jasa-tab" tabindex="0">
 													<div class="col-lg-12 d-flex justify-content-between align-items-center">
@@ -289,7 +337,7 @@
 																				<input type="hidden" name="edit_image_subcategory_jasa_value" id="edit_image_subcategory_jasa_value">
 																			</div>
 																			<div class="col-md-6 mb-3">
-																				<div id="imagePreviewSubEdit" class="mt-2"></div>
+																				<div id="imagePreviewSubJasaEdit" class="mt-2"></div>
 																			</div>
 																		</div>
 																		<div class="row">
@@ -341,6 +389,54 @@
 																		<div class="row">
 																			<div class="col-md-12 mb-3"><label for="subCategoriSubJasa" class="form-label fw-bold">Nama Sub Kategori</label>
 																				<input type="text" class="form-control" id="subCategoriSubJasa" name="name" disabled required>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="modal-footer">
+																		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+																		<button type="submit" class="btn btn-primary">Save</button>
+																	</div>
+																</form>
+															</div>
+														</div>
+													</div>
+													<div class="modal fade" id="edit-subsubcategori-jasa" tabindex="-1">
+														<div class="modal-dialog modal-lg">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h5 class="modal-title">Edit Sub Sub Jasa</h5>
+																	<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+																</div>
+																<form id="editFormSubSubCategoriJasa">
+																	<div class="modal-body">
+																		<input type="hidden" name="edit_subsubcategori_jasa_id" id="edit_subsubcategori_jasa_id">
+																		<div class="row">
+																			<div class="col-md-6 mb-3">
+																				<label for="fileuploadSubSubJasaEdit" class="form-label fw-bold">Icon / Image</label>
+																				<input type="file" class="form-control" id="fileuploadSubSubJasaEdit" name="fileuploadSubSubJasaEdit" accept=".jpg,.jpeg,.png">
+																				<div class="form-text">Format: JPG, PNG (Max: 1MB, 1000x1000px)</div>
+																				<div class="mt-2" id="edit_image_subsubcategory_jasa"></div>
+																				<input type="hidden" name="edit_image_subsubcategory_jasa_value" id="edit_image_subsubcategory_jasa_value">
+																			</div>
+																			<div class="col-md-6 mb-3">
+																				<div id="imagePreviewSubSubJasaEdit" class="mt-2"></div>
+																			</div>
+																		</div>
+																		<div class="row">
+																			<div class="col-md-6 mb-3">
+																				<label for="mainCategoriSubJasaEdit" class="form-label fw-bold">Kategori Utama</label>
+																				<select name="mainCategoriSubJasaEditId" id="mainCategoriSubJasaEdit" class="form-control"></select>
+																			</div>
+																			<div class="col-md-6 mb-3">
+																				<label for="mainCategoriSubSubJasaEdit" class="form-label fw-bold">Kategori Sub</label>
+																				<select name="mainCategoriSubSubJasaEditId" id="mainCategoriSubSubJasaEdit" class="form-control" disabled></select>
+																			</div>
+																		</div>
+
+																		<div class="row">
+																			<div class="col-md-12 mb-3">
+																				<label for="subCategoriSubJasaEdit" class="form-label fw-bold">Nama Sub Kategori</label>
+																				<input type="text" class="form-control" id="subCategoriSubJasaEdit" name="name" disabled required>
 																			</div>
 																		</div>
 																	</div>

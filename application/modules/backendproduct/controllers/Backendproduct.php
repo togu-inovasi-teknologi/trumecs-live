@@ -841,21 +841,21 @@ class Backendproduct extends MX_Controller
             data-id="' . $categori->id . '" 
             data-name="' . $categori->name . '"
             data-image="' . $categori->img . '">
-        <i class="fas fa-edit"></i>
+        <i class="fa fa-edit"></i>
     </button>
     <button type="button" class="btn btn-danger btn-sm delete-brand" 
             data-id="' . $categori->id . '"
             data-name="' . $categori->name . '">
-        <i class="fas fa-trash"></i>
+        <i class="fa fa-trash"></i>
     </button>
 ';
             } elseif (($type == "main_category" || $type == "main_category_jasa") && $categori->parent == 0) {
                 $action = '
         <button type="button" class="btn btn-warning btn-sm edit-categori" data-id="' . $categori->id . '" data-categori="' . $categori->name . '">
-            <i class="fas fa-edit"></i>
+            <i class="fa fa-edit"></i>
         </button>
         <button type="button" class="btn btn-danger btn-sm delete-categori" data-id="' . $categori->id . '" data-name="' . $categori->name . '">
-            <i class="fas fa-trash"></i>
+            <i class="fa fa-trash"></i>
         </button>
     ';
             } else {
@@ -867,12 +867,12 @@ class Backendproduct extends MX_Controller
                             data-id="' . $categori->id . '" 
                             data-name="' . $categori->name . '"
                             data-parent="' . $categori->parent . '">
-                        <i class="fas fa-edit"></i>
+                        <i class="fa fa-edit"></i>
                     </button>
                     <button type="button" class="btn btn-danger btn-sm delete-subcategori" 
                             data-id="' . $categori->id . '" 
                             data-name="' . $categori->name . '">
-                        <i class="fas fa-trash"></i>
+                        <i class="fa fa-trash"></i>
                     </button>
                 ';
                 } elseif ($category_type == 'subsub_category') {
@@ -881,12 +881,12 @@ class Backendproduct extends MX_Controller
                             data-id="' . $categori->id . '" 
                             data-name="' . $categori->name . '"
                             data-parent="' . $categori->parent . '">
-                        <i class="fas fa-edit"></i>
+                        <i class="fa fa-edit"></i>
                     </button>
                     <button type="button" class="btn btn-danger btn-sm delete-subsubcategori" 
                             data-id="' . $categori->id . '" 
                             data-name="' . $categori->name . '">
-                        <i class="fas fa-trash"></i>
+                        <i class="fa fa-trash"></i>
                     </button>
                 ';
                 } elseif ($category_type == 'sub_category_jasa') {
@@ -895,12 +895,12 @@ class Backendproduct extends MX_Controller
                             data-id="' . $categori->id . '" 
                             data-name="' . $categori->name . '"
                             data-parent="' . $categori->parent . '">
-                        <i class="fas fa-edit"></i>
+                        <i class="fa fa-edit"></i>
                     </button>
                     <button type="button" class="btn btn-danger btn-sm delete-subcategori-jasa" 
                             data-id="' . $categori->id . '" 
                             data-name="' . $categori->name . '">
-                        <i class="fas fa-trash"></i>
+                        <i class="fa fa-trash"></i>
                     </button>
                 ';
                 } elseif ($category_type == 'subsub_category_jasa') {
@@ -909,12 +909,12 @@ class Backendproduct extends MX_Controller
                             data-id="' . $categori->id . '" 
                             data-name="' . $categori->name . '"
                             data-parent="' . $categori->parent . '">
-                        <i class="fas fa-edit"></i>
+                        <i class="fa fa-edit"></i>
                     </button>
                     <button type="button" class="btn btn-danger btn-sm delete-subsubcategori-jasa" 
                             data-id="' . $categori->id . '" 
                             data-name="' . $categori->name . '">
-                        <i class="fas fa-trash"></i>
+                        <i class="fa fa-trash"></i>
                     </button>
                 ';
                 }
@@ -1261,7 +1261,6 @@ class Backendproduct extends MX_Controller
 
         $id = $this->input->post('edit_subcategori_id');
 
-        // Cek apakah sub kategori ada
         $existing = $this->categori_model->get_categori_by_id($id);
         if (!$existing) {
             echo json_encode(array("status" => false, "message" => "Sub Category not found"));
@@ -1278,7 +1277,7 @@ class Backendproduct extends MX_Controller
             // Update tanpa gambar baru
             $updatecategory = $this->categori_model->update_categori($id, $datainput);
             if ($updatecategory) {
-                echo json_encode(array("status" => true, "message" => "Sub Categori updated successfully"));
+                echo json_encode(array("status" => true, "message" => "Sub Categori updated successfully without new pic"));
             } else {
                 echo json_encode(array("status" => false, "message" => "Failed to update Sub Categori"));
             }
@@ -1314,6 +1313,77 @@ class Backendproduct extends MX_Controller
                     echo json_encode(array("status" => true, "message" => "Sub Categori updated successfully"));
                 } else {
                     echo json_encode(array("status" => false, "message" => "Failed to update Sub Categori"));
+                }
+            }
+        }
+    }
+
+    public function updateSubCategoriJasaAjax()
+    {
+        $this->form_validation->set_rules('edit_subcategori_jasa_id', 'Sub Category ID', 'required');
+        $this->form_validation->set_rules('mainCategoriJasaEditId', 'Main Category', 'required');
+        $this->form_validation->set_rules('name', 'Sub Category Name', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            echo json_encode(array("status" => false, "message" => validation_errors()));
+            return;
+        }
+
+        $id = $this->input->post('edit_subcategori_jasa_id');
+
+        // Cek apakah sub kategori ada
+        $existing = $this->categori_model->get_categori_by_id($id);
+        if (!$existing) {
+            echo json_encode(array("status" => false, "message" => "Sub Category not found"));
+            return;
+        }
+
+        $datainput = array(
+            'name' => $this->input->post('name'),
+            'url' => preg_replace("/[^a-zA-Z0-9\-]/", "", str_replace(" ", "-", $this->input->post('name'))),
+            'parent' => $this->input->post('mainCategoriJasaEditId'),
+        );
+
+        if (empty($_FILES['fileuploadSubJasaEdit']['name'])) {
+            // Update tanpa gambar baru
+            $updatecategory = $this->categori_model->update_categori($id, $datainput);
+            if ($updatecategory) {
+                echo json_encode(array("status" => true, "message" => "Sub Categori Jasa updated successfully without new pic"));
+            } else {
+                echo json_encode(array("status" => false, "message" => "Failed to update Sub Categori Jasa"));
+            }
+        } else {
+            $config['upload_path'] = './public/upload/categori/';
+            $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
+            $config['file_name'] = microtime() . ".png";
+            $config['max_size'] = '1000';
+            $config['max_width']  = '1000';
+            $config['max_height']  = '1000';
+            $config['overwrite'] = true;
+
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+
+            if (!$this->upload->do_upload("fileuploadSubJasaEdit")) {
+                echo json_encode(array("status" => false, "message" => "Failed to upload image: " . $this->upload->display_errors()));
+                return;
+            } else {
+                $data = $this->upload->data();
+                $datainput['img'] = $data["file_name"];
+
+                // Hapus file lama jika ada
+                if (!empty($existing->img)) {
+                    $old_file = './public/upload/categori/' . $existing->img;
+                    if (file_exists($old_file)) {
+                        @unlink($old_file);
+                    }
+                }
+
+                $updatecategory = $this->categori_model->update_categori($id, $datainput);
+                if ($updatecategory) {
+                    echo json_encode(array("status" => true, "message" => "Sub Categori Jasa updated successfully"));
+                } else {
+                    echo json_encode(array("status" => false, "message" => "Failed to update Sub Categori Jasa"));
                 }
             }
         }
@@ -1374,6 +1444,117 @@ class Backendproduct extends MX_Controller
         }
     }
 
+    public function getSubSubCategoryById($id)
+    {
+        $category = $this->categori_model->get_categori_by_id($id);
+
+        if ($category) {
+            // Get parent category (sub category)
+            $parentCategory = $this->categori_model->get_categori_by_id($category->parent);
+
+            // Get grandparent category (main category) - parent dari sub category
+            $grandparentCategory = null;
+            if ($parentCategory) {
+                $grandparentCategory = $this->categori_model->get_categori_by_id($parentCategory->parent);
+            }
+
+            $data = array(
+                'id' => $category->id,
+                'name' => $category->name,
+                'img' => $category->img,
+                'parent_id' => $category->parent,
+                'parent_name' => $parentCategory ? $parentCategory->name : '',
+                'grandparent_id' => $grandparentCategory ? $grandparentCategory->id : '',
+                'grandparent_name' => $grandparentCategory ? $grandparentCategory->name : ''
+            );
+
+            echo json_encode(array("status" => true, "data" => $data));
+        } else {
+            echo json_encode(array("status" => false, "message" => "Category not found"));
+        }
+    }
+
+    // Method untuk update sub sub category
+    public function editSubSubCategoriAjax()
+    {
+        // Validasi
+        $this->form_validation->set_rules('edit_subsubcategori_id', 'ID', 'required');
+        $this->form_validation->set_rules('mainCategoriSubSubEditId', 'Sub Category', 'required');
+        $this->form_validation->set_rules('name', 'Sub Sub Category Name', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            echo json_encode(array("status" => false, "message" => validation_errors()));
+            return;
+        }
+
+        $id = $this->input->post('edit_subsubcategori_id');
+
+        // Periksa apakah kategori ada
+        $existing = $this->categori_model->get_categori_by_id($id);
+        if (!$existing) {
+            echo json_encode(array("status" => false, "message" => "Sub Sub Category not found"));
+            return;
+        }
+
+        $datainput = array(
+            'name' => $this->input->post('name'),
+            'url' => preg_replace("/[^a-zA-Z0-9\-]/", "", str_replace(" ", "-", $this->input->post('name'))),
+            'parent' => $this->input->post('mainCategoriSubSubEditId'),
+        );
+
+        // Handle file upload jika ada
+        if (!empty($_FILES['fileuploadSubSubEdit']['name'])) {
+            $config['upload_path'] = './public/upload/categori/';
+            $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
+            $config['file_name'] = time() . '_' . rand(1000, 9999) . ".png";
+            $config['max_size'] = '1000';
+            $config['max_width']  = '1000';
+            $config['max_height']  = '1000';
+            $config['overwrite'] = false;
+
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+
+            if (!$this->upload->do_upload("fileuploadSubSubEdit")) {
+                echo json_encode(array("status" => false, "message" => "Failed to upload image: " . $this->upload->display_errors()));
+                return;
+            } else {
+                $data = $this->upload->data();
+                $datainput['img'] = $data["file_name"];
+
+                // Hapus file lama jika ada
+                if ($existing->img && file_exists('./public/upload/categori/' . $existing->img)) {
+                    unlink('./public/upload/categori/' . $existing->img);
+                }
+            }
+        } else {
+            // Jika tidak upload file baru, tetap gunakan gambar lama
+            if ($this->input->post('edit_image_subsubcategory_value')) {
+                $datainput['img'] = $this->input->post('edit_image_subsubcategory_value');
+            }
+        }
+
+        // Update kategori
+        $updatecategory = $this->categori_model->update_categori($id, $datainput);
+        if ($updatecategory) {
+            echo json_encode(array("status" => true, "message" => "Sub Sub Category updated successfully"));
+        } else {
+            echo json_encode(array("status" => false, "message" => "Failed to update Sub Sub Category"));
+        }
+    }
+
+    // Method untuk mendapatkan sub categories berdasarkan main category (untuk edit)
+    public function getSubCategoriesForEdit($mainCategoryId)
+    {
+        $subCategories = $this->categori_model->get_sub_categories($mainCategoryId);
+
+        if ($subCategories) {
+            echo json_encode(array("status" => true, "data" => $subCategories));
+        } else {
+            echo json_encode(array("status" => false, "message" => "No sub categories found"));
+        }
+    }
+
     public function addSubSubCategoriJasaAjax()
     {
         // Validasi
@@ -1426,6 +1607,86 @@ class Backendproduct extends MX_Controller
                     echo json_encode(array("status" => false, "message" => "Failed to add Sub Sub Categori Jasa"));
                 }
             }
+        }
+    }
+
+    public function editSubSubCategoriJasaAjax()
+    {
+        // Validasi
+        $this->form_validation->set_rules('edit_subsubcategori_jasa_id', 'ID', 'required');
+        $this->form_validation->set_rules('mainCategoriSubSubJasaEditId', 'Sub Category', 'required');
+        $this->form_validation->set_rules('name', 'Sub Sub Category Name', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            echo json_encode(array("status" => false, "message" => validation_errors()));
+            return;
+        }
+
+        $id = $this->input->post('edit_subsubcategori_jasa_id');
+
+        // Periksa apakah kategori ada
+        $existing = $this->categori_model->get_categori_by_id($id);
+        if (!$existing) {
+            echo json_encode(array("status" => false, "message" => "Sub Sub Category Jasa not found"));
+            return;
+        }
+
+        $datainput = array(
+            'name' => $this->input->post('name'),
+            'url' => preg_replace("/[^a-zA-Z0-9\-]/", "", str_replace(" ", "-", $this->input->post('name'))),
+            'parent' => $this->input->post('mainCategoriSubSubJasaEditId'),
+        );
+
+        // Handle file upload jika ada
+        if (!empty($_FILES['fileuploadSubSubJasaEdit']['name'])) {
+            $config['upload_path'] = './public/upload/categori/';
+            $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
+            $config['file_name'] = time() . '_' . rand(1000, 9999) . ".png";
+            $config['max_size'] = '1000';
+            $config['max_width']  = '1000';
+            $config['max_height']  = '1000';
+            $config['overwrite'] = false;
+
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+
+            if (!$this->upload->do_upload("fileuploadSubSubJasaEdit")) {
+                echo json_encode(array("status" => false, "message" => "Failed to upload image: " . $this->upload->display_errors()));
+                return;
+            } else {
+                $data = $this->upload->data();
+                $datainput['img'] = $data["file_name"];
+
+                // Hapus file lama jika ada
+                if ($existing->img && file_exists('./public/upload/categori/' . $existing->img)) {
+                    unlink('./public/upload/categori/' . $existing->img);
+                }
+            }
+        } else {
+            // Jika tidak upload file baru, tetap gunakan gambar lama
+            if ($this->input->post('edit_image_subsubcategory_jasa_value')) {
+                $datainput['img'] = $this->input->post('edit_image_subsubcategory_jasa_value');
+            }
+        }
+
+        // Update kategori
+        $updatecategory = $this->categori_model->update_categori($id, $datainput);
+        if ($updatecategory) {
+            echo json_encode(array("status" => true, "message" => "Sub Sub Category Jasa updated successfully"));
+        } else {
+            echo json_encode(array("status" => false, "message" => "Failed to update Sub Sub Category Jasa"));
+        }
+    }
+
+    // Method untuk mendapatkan sub categories berdasarkan main category (untuk edit)
+    public function getSubCategoriesJasaForEdit($mainCategoryId)
+    {
+        $subCategories = $this->categori_model->get_sub_categories($mainCategoryId);
+
+        if ($subCategories) {
+            echo json_encode(array("status" => true, "data" => $subCategories));
+        } else {
+            echo json_encode(array("status" => false, "message" => "No sub categories found"));
         }
     }
 
