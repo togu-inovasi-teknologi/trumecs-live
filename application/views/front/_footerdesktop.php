@@ -1,4 +1,4 @@
-<?php if ($this->uri->segment(2) == 'article') { ?>
+<?php if ($this->uri->segment(1) == 'article') { ?>
 
     <footer class="mt-3">
         <?php
