@@ -598,7 +598,110 @@
 											</div>
 										</div>
 									</div>
-
+								</div>
+							</div>
+							<div class="modal fade" id="add-model" tabindex="-1">
+								<div class="modal-dialog modal-lg">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title">Add Model</h5>
+											<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+										</div>
+										<form id="addFormModel">
+											<div class="modal-body">
+												<div class="row">
+													<div class="col-md-6 mb-3">
+														<label for="fileuploadModel" class="form-label fw-bold">Icon / Image</label>
+														<input type="file" class="form-control" id="fileuploadModel" name="fileuploadModel" accept=".jpg,.jpeg,.png">
+														<div class="form-text">Format: JPG, PNG (Max: 1MB, 1000x1000px)</div>
+														<div class="mt-2" id="edit_image_model"></div>
+														<input type="hidden" name="edit_image_model_value" id="edit_image_model_value">
+													</div>
+													<div class="col-md-6 mb-3">
+														<div id="imagePreviewModel" class="mt-2"></div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-6 mb-3"><label for="mainCategoriModel" class="form-label fw-bold">Kategori</label>
+														<select name="mainCategoriModelId" id="mainCategoriModel" class="form-control"></select>
+													</div>
+													<div class="col-md-6 mb-3"><label for="subCategoriModel" class="form-label fw-bold">Sub Kategori</label>
+														<select name="subCategoriModelId" id="subCategoriModel" class="form-control" disabled></select>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-6 mb-3">
+														<label for="subSubCategoriModel" class="form-label fw-bold">Sub Sub Kategori</label>
+														<select type="text" class="form-control" id="subSubCategoriModel" name="subSubCategoriModelId" disabled></select>
+													</div>
+													<div class="col-md-6 mb-3"><label for="mainBrandModel" class="form-label fw-bold">Brand</label>
+														<select type="text" class="form-control" id="mainBrandModel" name="mainBrandModelId" disabled required></select>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-12 mb-3">
+														<label for="model" class="form-label fw-bold">Nama Model</label>
+														<input type="text" class="form-control" id="model" name="name" disabled required>
+													</div>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+												<button type="submit" class="btn btn-primary">Save</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<div class="modal fade" id="edit-model" tabindex="-1">
+								<div class="modal-dialog modal-lg">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title">Edit Model</h5>
+											<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+										</div>
+										<form id="editFormModel">
+											<div class="modal-body">
+												<input type="hidden" name="edit_model_id" id="edit_model_id">
+												<div class="row">
+													<div class="col-md-6 mb-3">
+														<label for="fileuploadModelEdit" class="form-label fw-bold">Icon / Image</label>
+														<input type="file" class="form-control" id="fileuploadModelEdit" name="fileuploadModelEdit" accept=".jpg,.jpeg,.png">
+														<div class="form-text">Format: JPG, PNG (Max: 1MB, 1000x1000px)</div>
+													</div>
+													<div class="col-md-6 mb-3">
+														<div id="imagePreviewModelEdit" class="mt-2"></div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-6 mb-3"><label for="mainCategoriModelEdit" class="form-label fw-bold">Kategori</label>
+														<select name="mainCategoriModelEditId" id="mainCategoriModelEdit" class="form-control"></select>
+													</div>
+													<div class="col-md-6 mb-3"><label for="subCategoriModelEdit" class="form-label fw-bold">Sub Kategori</label>
+														<select name="subCategoriModelEditId" id="subCategoriModelEdit" class="form-control" disabled></select>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-6 mb-3"><label for="subSubCategoriModelEdit" class="form-label fw-bold">Sub Sub Kategori</label>
+														<select type="text" class="form-control" id="subSubCategoriModelEdit" name="subSubCategoriModelEditId" disabled></select>
+													</div>
+													<div class="col-md-6 mb-3"><label for="mainBrandModelEdit" class="form-label fw-bold">Brand</label>
+														<select type="text" class="form-control" id="mainBrandModelEdit" name="mainBrandModelEditId" disabled required></select>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-12 mb-3">
+														<label for="model" class="form-label fw-bold">Nama Model</label>
+														<input type="text" class="form-control" id="model" name="name" disabled required>
+													</div>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+												<button type="submit" class="btn btn-primary">Save</button>
+											</div>
+										</form>
+									</div>
 								</div>
 							</div>
 						</div>

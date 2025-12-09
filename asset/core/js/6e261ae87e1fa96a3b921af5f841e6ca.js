@@ -3633,41 +3633,6 @@ $(document).ready(function () {
     }
   });
 
-  $("#fileuploadModelEdit").on("change", function () {
-    var file = this.files[0];
-    if (file) {
-      if (file.size > 1024 * 1024) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "File terlalu besar. Maksimal 1MB",
-        });
-        $(this).val("");
-        return;
-      }
-
-      var validTypes = ["image/jpeg", "image/jpg", "image/png"];
-      if (!validTypes.includes(file.type)) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "Format file tidak didukung. Hanya JPG, JPEG, PNG",
-        });
-        $(this).val("");
-        return;
-      }
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $("#imagePreviewModelEdit").html(
-          '<img src="' +
-            e.target.result +
-            '" class="img-thumbnail" style="max-width: 150px;">'
-        );
-      };
-      reader.readAsDataURL(file);
-    }
-  });
-
   $("#add-model").on("show.bs.modal", function () {
     loadAllCategories();
   });

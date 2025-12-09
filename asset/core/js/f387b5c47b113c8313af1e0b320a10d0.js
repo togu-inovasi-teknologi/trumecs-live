@@ -3525,20 +3525,21 @@ $(document).ready(function () {
             $("#edit_model_id").val(model.id);
 
             // Set nama kategori
-            $("#model").val(model.name);
+            $("#model").val(category.name);
 
             // Tampilkan gambar saat ini jika ada
-            if (model.img) {
-              var imageUrl = base_url + "public/upload/categori/" + model.img;
+            if (category.img) {
+              var imageUrl =
+                base_url + "public/upload/categori/" + category.img;
               $("#edit_image_model").html(
                 '<div class="alert alert-info p-2">' +
                   'Current image: <a href="' +
                   imageUrl +
                   '" target="_blank">' +
-                  model.img +
+                  category.img +
                   "</a></div>"
               );
-              $("#edit_image_model_value").val(model.img);
+              $("#edit_image_model_value").val(category.img);
 
               $("#imagePreviewModelEdit").html(
                 '<img src="' +
@@ -3558,30 +3559,30 @@ $(document).ready(function () {
             // Load main categories dan set value
             loadMainCategoriesForEditModel()
               .then(function () {
-                // Set main model
-                if (model.grandparent_id) {
+                // Set main category
+                if (category.grandparent_id) {
                   $("#mainCategoriModelEdit")
-                    .val(model.grandparent_id)
+                    .val(category.grandparent_id)
                     .trigger("change");
                   setTimeout(function () {
-                    loadMainCategoriesForEditModel()(model.grandparent_id).then(
-                      function () {
-                        // Set sub model
-                        if (model.parent_id) {
-                          $("#subCategoriModelEdit")
-                            .val(model.parent_id)
-                            .trigger("change");
-                        }
-                        // Enable input nama
-                        $("#subCategoriSubEdit").prop("disabled", false);
-                        resolve(model);
+                    loadMainCategoriesForEditModel()(
+                      category.grandparent_id
+                    ).then(function () {
+                      // Set sub category
+                      if (category.parent_id) {
+                        $("#subCategoriModelEdit")
+                          .val(category.parent_id)
+                          .trigger("change");
                       }
-                    );
+                      // Enable input nama
+                      $("#subCategoriSubEdit").prop("disabled", false);
+                      resolve(category);
+                    });
                   }, 500);
                 } else {
                   // Enable input nama
                   $("#subCategoriSubEdit").prop("disabled", false);
-                  resolve(model);
+                  resolve(category);
                 }
               })
               .catch(function (error) {
@@ -3624,41 +3625,6 @@ $(document).ready(function () {
       var reader = new FileReader();
       reader.onload = function (e) {
         $("#imagePreviewModel").html(
-          '<img src="' +
-            e.target.result +
-            '" class="img-thumbnail" style="max-width: 150px;">'
-        );
-      };
-      reader.readAsDataURL(file);
-    }
-  });
-
-  $("#fileuploadModelEdit").on("change", function () {
-    var file = this.files[0];
-    if (file) {
-      if (file.size > 1024 * 1024) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "File terlalu besar. Maksimal 1MB",
-        });
-        $(this).val("");
-        return;
-      }
-
-      var validTypes = ["image/jpeg", "image/jpg", "image/png"];
-      if (!validTypes.includes(file.type)) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "Format file tidak didukung. Hanya JPG, JPEG, PNG",
-        });
-        $(this).val("");
-        return;
-      }
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $("#imagePreviewModelEdit").html(
           '<img src="' +
             e.target.result +
             '" class="img-thumbnail" style="max-width: 150px;">'

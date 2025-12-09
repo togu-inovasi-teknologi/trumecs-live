@@ -11,7 +11,13 @@ class categori_model extends CI_Model
         $this->load->database();
     }
 
-    // Get all main categories (parent = 0, is_brand = 0)
+    public function get_all_categories()
+    {
+        return $this->db->where(['parent' => 0, 'is_brand' => 0])
+            ->get($this->table)
+            ->result();
+    }
+
     public function get_main_categories()
     {
         return $this->db->where(['parent' => 0, 'is_brand' => 0, 'etc' => 0])

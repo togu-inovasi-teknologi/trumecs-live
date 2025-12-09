@@ -3449,7 +3449,7 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         if (response.status) {
-          var select = $("#mainBrandModel");
+          var select = $("#brandCategoriModel");
           select.empty();
           select.append('<option value="">Pilih Brand Kategori</option>');
           $.each(response.data, function (index, category) {
@@ -3476,125 +3476,6 @@ $(document).ready(function () {
           text: "Error loading sub categories: " + error,
         });
       },
-    });
-  }
-
-  function loadMainCategoriesForEditModel() {
-    return new Promise(function (resolve, reject) {
-      $.ajax({
-        url: base_url + "backendproduct/getMainCategories",
-        type: "GET",
-        dataType: "json",
-        success: function (response) {
-          if (response.status) {
-            var select = $("#mainCategoriModelEdit");
-            select.empty();
-            select.append('<option value="">Pilih Kategori Utama</option>');
-            $.each(response.data, function (index, category) {
-              select.append(
-                '<option value="' +
-                  category.id +
-                  '">' +
-                  category.name +
-                  "</option>"
-              );
-            });
-            resolve();
-          } else {
-            reject(response.message);
-          }
-        },
-        error: function (xhr, status, error) {
-          reject(error);
-        },
-      });
-    });
-  }
-
-  function loadEditModelData(categoryId) {
-    return new Promise(function (resolve, reject) {
-      $.ajax({
-        url: base_url + "backendproduct/getSubSubCategoryById/" + categoryId,
-        type: "GET",
-        dataType: "json",
-        success: function (response) {
-          if (response.status) {
-            var model = response.data;
-            console.log(model);
-            // Set hidden ID
-            $("#edit_model_id").val(model.id);
-
-            // Set nama kategori
-            $("#model").val(model.name);
-
-            // Tampilkan gambar saat ini jika ada
-            if (model.img) {
-              var imageUrl = base_url + "public/upload/categori/" + model.img;
-              $("#edit_image_model").html(
-                '<div class="alert alert-info p-2">' +
-                  'Current image: <a href="' +
-                  imageUrl +
-                  '" target="_blank">' +
-                  model.img +
-                  "</a></div>"
-              );
-              $("#edit_image_model_value").val(model.img);
-
-              $("#imagePreviewModelEdit").html(
-                '<img src="' +
-                  imageUrl +
-                  '" class="img-thumbnail" style="max-width: 150px;">' +
-                  '<div class="mt-1 text-muted small">Current Image</div>'
-              );
-            } else {
-              $("#edit_image_model").html(
-                '<div class="alert alert-warning p-2">No image available</div>'
-              );
-              $("#imagePreviewModelEdit").html(
-                '<div class="text-muted">No image available</div>'
-              );
-            }
-
-            // Load main categories dan set value
-            loadMainCategoriesForEditModel()
-              .then(function () {
-                // Set main model
-                if (model.grandparent_id) {
-                  $("#mainCategoriModelEdit")
-                    .val(model.grandparent_id)
-                    .trigger("change");
-                  setTimeout(function () {
-                    loadMainCategoriesForEditModel()(model.grandparent_id).then(
-                      function () {
-                        // Set sub model
-                        if (model.parent_id) {
-                          $("#subCategoriModelEdit")
-                            .val(model.parent_id)
-                            .trigger("change");
-                        }
-                        // Enable input nama
-                        $("#subCategoriSubEdit").prop("disabled", false);
-                        resolve(model);
-                      }
-                    );
-                  }, 500);
-                } else {
-                  // Enable input nama
-                  $("#subCategoriSubEdit").prop("disabled", false);
-                  resolve(model);
-                }
-              })
-              .catch(function (error) {
-                reject(error);
-              });
-          } else {
-            reject(response.message);
-          }
-        },
-        error: function (xhr, status, error) {
-          reject(error);
-        },
-      });
     });
   }
 
@@ -3633,41 +3514,6 @@ $(document).ready(function () {
     }
   });
 
-  $("#fileuploadModelEdit").on("change", function () {
-    var file = this.files[0];
-    if (file) {
-      if (file.size > 1024 * 1024) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "File terlalu besar. Maksimal 1MB",
-        });
-        $(this).val("");
-        return;
-      }
-
-      var validTypes = ["image/jpeg", "image/jpg", "image/png"];
-      if (!validTypes.includes(file.type)) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "Format file tidak didukung. Hanya JPG, JPEG, PNG",
-        });
-        $(this).val("");
-        return;
-      }
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $("#imagePreviewModelEdit").html(
-          '<img src="' +
-            e.target.result +
-            '" class="img-thumbnail" style="max-width: 150px;">'
-        );
-      };
-      reader.readAsDataURL(file);
-    }
-  });
-
   $("#add-model").on("show.bs.modal", function () {
     loadAllCategories();
   });
@@ -3675,10 +3521,11 @@ $(document).ready(function () {
   $("#mainCategoriModel").on("change", function () {
     var mainCategoryId = $(this).val();
     var selectSub = $("#subCategoriModel");
-    var selectBrand = $("#mainBrandModel");
+    var selectBrand = $("#brandCategoriModel");
     if (mainCategoryId) {
       selectSub.prop("disabled", false);
       selectBrand.prop("disabled", false);
+      console.log(selectBrand);
       loadSubCategoriesModel(mainCategoryId);
       loadBrandCategoriesModel(mainCategoryId);
     } else {
@@ -3696,6 +3543,8 @@ $(document).ready(function () {
   $("#subCategoriModel").on("change", function () {
     var subCategoryId = $(this).val();
     var selectSubSub = $("#subSubCategoriModel");
+    console.log("value:", subCategoryId);
+
     if (subCategoryId) {
       console.log("has change:", selectSubSub);
       selectSubSub.prop("disabled", false);
@@ -3708,100 +3557,9 @@ $(document).ready(function () {
     }
   });
 
-  $("#subSubCategoriModel").on("change", function () {
-    var subSubCategoryId = $(this).val();
-    var selectModel = $("#model");
-
-    if (subSubCategoryId) {
-      selectModel.prop("disabled", false);
-    } else {
-      selectModel
-        .empty()
-        .val("Pilih Sub Sub Kategori Dulu")
-        .prop("disabled", true);
-    }
-  });
-
-  $("#addFormModel").on("submit", function (e) {
-    e.preventDefault();
-
-    var formData = new FormData(this);
-
-    var submitBtn = $(this).find('button[type="submit"]');
-    var originalText = submitBtn.html();
-    submitBtn
-      .prop("disabled", true)
-      .html('<span class="spinner-border spinner-border-sm"></span> Saving...');
-
-    $.ajax({
-      url: base_url + "backendproduct/addModelAjax",
-      type: "POST",
-      data: formData,
-      processData: false,
-      contentType: false,
-      dataType: "json",
-      success: function (response) {
-        if (response.status) {
-          $("#add-model").modal("hide");
-          $("#addFormModel")[0].reset();
-          $("#imagePreviewModel").empty();
-          tableModel.ajax.reload();
-          Swal.fire({
-            icon: "success",
-            title: "Edit Sub Categori!",
-            text: response.message,
-            timer: 2000,
-            showConfirmButton: false,
-          });
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error!",
-            text: response.message,
-          });
-        }
-      },
-      error: function (xhr, status, error) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "Error: " + error,
-        });
-      },
-      complete: function () {
-        submitBtn.prop("disabled", false).html(originalText);
-      },
-    });
-  });
-
   $(document).on("click", ".edit-model", function () {
-    var modelId = $(this).data("id");
-
-    // Reset form terlebih dahulu
-    $("#editFormModel")[0].reset();
-    $("#imagePreviewModelEdit").empty();
-    $("#edit_image_model").empty();
-    $("#subCategoriEdit").empty();
-    $("#mainCategoriModelEdit").empty().prop("disabled", true);
-    $("#subCategoriModelEdit").empty().prop("disabled", true);
-    $("#subSubCategoriModelEdit").empty().prop("disabled", true);
-    $("#mainBrandModelEdit").empty().prop("disabled", true);
-    $("#model").prop("disabled", true).val("");
-
-    // Tampilkan modal terlebih dahulu
+    var categoryId = $(this).data("id");
     $("#edit-model").modal("show");
-
-    // Load data kategori
-    loadEditModelData(modelId)
-      .then(function (category) {})
-      .catch(function (error) {
-        console.error("Error loading category data:", error);
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "Gagal memuat data kategori. Silakan coba lagi.",
-        });
-      });
   });
 
   $("#modelTable").on("click", ".delete-model", function () {
