@@ -614,8 +614,6 @@
 														<label for="fileuploadModel" class="form-label fw-bold">Icon / Image</label>
 														<input type="file" class="form-control" id="fileuploadModel" name="fileuploadModel" accept=".jpg,.jpeg,.png">
 														<div class="form-text">Format: JPG, PNG (Max: 1MB, 1000x1000px)</div>
-														<div class="mt-2" id="edit_image_model"></div>
-														<input type="hidden" name="edit_image_model_value" id="edit_image_model_value">
 													</div>
 													<div class="col-md-6 mb-3">
 														<div id="imagePreviewModel" class="mt-2"></div>
@@ -668,6 +666,8 @@
 														<label for="fileuploadModelEdit" class="form-label fw-bold">Icon / Image</label>
 														<input type="file" class="form-control" id="fileuploadModelEdit" name="fileuploadModelEdit" accept=".jpg,.jpeg,.png">
 														<div class="form-text">Format: JPG, PNG (Max: 1MB, 1000x1000px)</div>
+														<div class="mt-2" id="edit_image_model"></div>
+														<input type="hidden" name="edit_image_model_value" id="edit_image_model_value">
 													</div>
 													<div class="col-md-6 mb-3">
 														<div id="imagePreviewModelEdit" class="mt-2"></div>
@@ -691,8 +691,8 @@
 												</div>
 												<div class="row">
 													<div class="col-md-12 mb-3">
-														<label for="model" class="form-label fw-bold">Nama Model</label>
-														<input type="text" class="form-control" id="model" name="name" disabled required>
+														<label for="modelEdit" class="form-label fw-bold">Nama Model</label>
+														<input type="text" class="form-control" id="modelEdit" name="name" disabled required>
 													</div>
 												</div>
 											</div>

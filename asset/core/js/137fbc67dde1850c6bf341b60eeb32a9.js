@@ -3644,15 +3644,17 @@ $(document).ready(function () {
         success: function (response) {
           if (response.status) {
             var model = response.data;
+            console.log("Model data loaded:", model);
+
             // Set hidden ID
             $("#edit_model_id").val(model.id);
 
             // Set nama model
             $("#modelEdit").val(model.name).prop("disabled", false);
+
             // Tampilkan gambar saat ini jika ada
             if (model.img) {
               var imageUrl = base_url + "public/upload/categori/" + model.img;
-              console.log("imageUrl:", imageUrl);
               $("#edit_image_model").html(
                 '<div class="alert alert-info p-2">' +
                   'Current image: <a href="' +
@@ -3708,13 +3710,11 @@ $(document).ready(function () {
                               false
                             );
 
-                            if (model.parent_id) {
+                            if (model.parent) {
                               // Set sub sub category value
-                              console.log("parent: ", model.parent_id);
+                              console.log("parent: ", model.parent);
 
-                              $("#subSubCategoriModelEdit").val(
-                                model.parent_id
-                              );
+                              $("#subSubCategoriModelEdit").val(model.parent);
                             }
 
                             // Load brand categories

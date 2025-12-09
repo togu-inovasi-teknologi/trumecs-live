@@ -3649,6 +3649,30 @@ $(document).ready(function () {
 
             // Set nama model
             $("#modelEdit").val(model.name).prop("disabled", false);
+
+            console.log("=== DEBUG MODEL DATA ===");
+            console.log("model object:", model);
+            console.log("model.img value:", "'" + model.img + "'");
+            console.log("model.img type:", typeof model.img);
+            console.log("model.img is empty string?", model.img === "");
+            console.log("model.img is null?", model.img === null);
+            console.log("model.img is undefined?", model.img === undefined);
+            console.log("base_url:", base_url);
+
+            console.log("=== CHECK ELEMENT EXISTENCE ===");
+            console.log(
+              "$('#edit_image_model').length:",
+              $("#edit_image_model").length
+            );
+            console.log(
+              "$('#editFormModel').length:",
+              $("#editFormModel").length
+            );
+            console.log(
+              "document.getElementById('edit_image_model'):",
+              document.getElementById("edit_image_model")
+            );
+
             // Tampilkan gambar saat ini jika ada
             if (model.img) {
               var imageUrl = base_url + "public/upload/categori/" + model.img;

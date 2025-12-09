@@ -3644,11 +3644,14 @@ $(document).ready(function () {
         success: function (response) {
           if (response.status) {
             var model = response.data;
+            console.log("Model data loaded:", model);
+
             // Set hidden ID
             $("#edit_model_id").val(model.id);
 
             // Set nama model
             $("#modelEdit").val(model.name).prop("disabled", false);
+
             // Tampilkan gambar saat ini jika ada
             if (model.img) {
               var imageUrl = base_url + "public/upload/categori/" + model.img;

@@ -2,6 +2,7 @@
 .git
 .hg
 .vscode
+.env
 
 application/cache/*
 !application/cache/index.html
@@ -48,3 +49,9 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /public/image/upload/*
 /public/image/prospek/*
 /public/tmp/*
+
+/application/config/google.php
+/application/config/database.php
+/application/config/config.php
+
+/asset/insite/credentials-trumecs.json

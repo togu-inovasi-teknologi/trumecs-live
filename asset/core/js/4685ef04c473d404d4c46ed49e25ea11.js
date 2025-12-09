@@ -3511,132 +3511,8 @@ $(document).ready(function () {
     });
   }
 
-  function loadSubCategoriesModelEdit(mainCategoryId) {
-    return new Promise(function (resolve, reject) {
-      $.ajax({
-        url: base_url + "backendproduct/getSubCategories/" + mainCategoryId,
-        type: "GET",
-        dataType: "json",
-        success: function (response) {
-          if (response.status) {
-            var select = $("#subCategoriModelEdit");
-            select.empty();
-            select.append('<option value="">Pilih Sub Kategori</option>');
-            $.each(response.data, function (index, category) {
-              select.append(
-                '<option value="' +
-                  category.id +
-                  '">' +
-                  category.name +
-                  "</option>"
-              );
-            });
-            resolve();
-          } else {
-            reject(response.message);
-          }
-        },
-        error: function (xhr, status, error) {
-          reject(error);
-        },
-      });
-    });
-  }
-
-  function loadSubSubCategoriesModelEdit(subCategoryId) {
-    return new Promise(function (resolve, reject) {
-      $.ajax({
-        url: base_url + "backendproduct/getSubSubCategories/" + subCategoryId,
-        type: "GET",
-        dataType: "json",
-        success: function (response) {
-          if (response.status) {
-            var select = $("#subSubCategoriModelEdit");
-            select.empty();
-            select.append('<option value="">Pilih Sub Sub Kategori</option>');
-            $.each(response.data, function (index, category) {
-              select.append(
-                '<option value="' +
-                  category.id +
-                  '">' +
-                  category.name +
-                  "</option>"
-              );
-            });
-            resolve();
-          } else {
-            reject(response.message);
-          }
-        },
-        error: function (xhr, status, error) {
-          reject(error);
-        },
-      });
-    });
-  }
-
-  function loadBrandCategoriesModelEdit(mainCategoryId) {
-    return new Promise(function (resolve, reject) {
-      $.ajax({
-        url: base_url + "backendproduct/getBrandById/" + mainCategoryId,
-        type: "GET",
-        dataType: "json",
-        success: function (response) {
-          if (response.status) {
-            var select = $("#mainBrandModelEdit");
-            select.empty();
-            select.append('<option value="">Pilih Brand Kategori</option>');
-            $.each(response.data, function (index, category) {
-              select.append(
-                '<option value="' +
-                  category.id +
-                  '">' +
-                  category.name +
-                  "</option>"
-              );
-            });
-            resolve();
-          } else {
-            reject(response.message);
-          }
-        },
-        error: function (xhr, status, error) {
-          reject(error);
-        },
-      });
-    });
-  }
-
   function loadEditModelData(categoryId) {
     return new Promise(function (resolve, reject) {
-      // Reset semua form terlebih dahulu
-      $("#editFormModel")[0].reset();
-      $("#imagePreviewModelEdit").empty();
-      $("#edit_image_model").empty();
-      $("#edit_image_model_value").val("");
-
-      // Reset dan disable semua select
-      $("#mainCategoriModelEdit")
-        .empty()
-        .append('<option value="">Loading...</option>')
-        .prop("disabled", true);
-      $("#subCategoriModelEdit")
-        .empty()
-        .append('<option value="">Pilih Kategori Utama dulu</option>')
-        .prop("disabled", true);
-      $("#subSubCategoriModelEdit")
-        .empty()
-        .append('<option value="">Pilih Sub Kategori dulu</option>')
-        .prop("disabled", true);
-      $("#mainBrandModelEdit")
-        .empty()
-        .append('<option value="">Pilih Kategori Utama dulu</option>')
-        .prop("disabled", true);
-      $("#modelEdit").prop("disabled", true);
-
-      // Tampilkan loading state
-      $("#modelEdit").val("Loading data...").prop("disabled", true);
-
       $.ajax({
         url: base_url + "backendproduct/getSubSubCategoryById/" + categoryId,
         type: "GET",
@@ -3644,15 +3520,16 @@ $(document).ready(function () {
         success: function (response) {
           if (response.status) {
             var model = response.data;
+            console.log(model);
             // Set hidden ID
             $("#edit_model_id").val(model.id);
 
-            // Set nama model
-            $("#modelEdit").val(model.name).prop("disabled", false);
+            // Set nama kategori
+            $("#modelEdit").val(model.name);
+
             // Tampilkan gambar saat ini jika ada
             if (model.img) {
               var imageUrl = base_url + "public/upload/categori/" + model.img;
-              console.log("imageUrl:", imageUrl);
               $("#edit_image_model").html(
                 '<div class="alert alert-info p-2">' +
                   'Current image: <a href="' +
@@ -3678,91 +3555,36 @@ $(document).ready(function () {
               );
             }
 
-            // Load main categories
+            // Load main categories dan set value
             loadMainCategoriesForEditModel()
               .then(function () {
-                if (model.grandgrandparent_id) {
-                  // Set main category value
-
-                  console.log("grandgrandparent: ", model.grandgrandparent_id);
+                // Set main model
+                if (model.grandparent_id) {
                   $("#mainCategoriModelEdit")
-                    .val(model.grandgrandparent_id)
-                    .prop("disabled", false);
-
-                  // Load sub categories
-                  loadSubCategoriesModelEdit(model.grandgrandparent_id)
-                    .then(function () {
-                      $("#subCategoriModelEdit").prop("disabled", false);
-
-                      if (model.grandparent_id) {
-                        // Set sub category value
-                        console.log("grandparent: ", model.grandparent_id);
-
-                        $("#subCategoriModelEdit").val(model.grandparent_id);
-
-                        // Load sub sub categories
-                        loadSubSubCategoriesModelEdit(model.grandparent_id)
-                          .then(function () {
-                            $("#subSubCategoriModelEdit").prop(
-                              "disabled",
-                              false
-                            );
-
-                            if (model.parent_id) {
-                              // Set sub sub category value
-                              console.log("parent: ", model.parent_id);
-
-                              $("#subSubCategoriModelEdit").val(
-                                model.parent_id
-                              );
-                            }
-
-                            // Load brand categories
-                            loadBrandCategoriesModelEdit(
-                              model.grandgrandparent_id
-                            )
-                              .then(function () {
-                                $("#mainBrandModelEdit").prop(
-                                  "disabled",
-                                  false
-                                );
-
-                                if (model.parent_brand) {
-                                  console.log("brand: ", model.parent_brand);
-                                  $("#mainBrandModelEdit").val(
-                                    model.parent_brand
-                                  );
-                                }
-
-                                resolve(model);
-                              })
-                              .catch(function (error) {
-                                console.error("Error loading brands:", error);
-                                resolve(model); // Resolve anyway, skip brand
-                              });
-                          })
-                          .catch(function (error) {
-                            console.error(
-                              "Error loading sub sub categories:",
-                              error
-                            );
-                            resolve(model); // Resolve anyway
-                          });
-                      } else {
+                    .val(model.grandparent_id)
+                    .trigger("change");
+                  setTimeout(function () {
+                    loadMainCategoriesForEditModel()(model.grandparent_id).then(
+                      function () {
+                        // Set sub model
+                        if (model.parent_id) {
+                          $("#subCategoriModelEdit")
+                            .val(model.parent_id)
+                            .trigger("change");
+                        }
+                        // Enable input nama
+                        $("#subCategoriSubEdit").prop("disabled", false);
                         resolve(model);
                       }
-                    })
-                    .catch(function (error) {
-                      console.error("Error loading sub categories:", error);
-                      resolve(model); // Resolve anyway
-                    });
+                    );
+                  }, 500);
                 } else {
-                  $("#mainCategoriModelEdit").prop("disabled", false);
+                  // Enable input nama
+                  $("#subCategoriSubEdit").prop("disabled", false);
                   resolve(model);
                 }
               })
               .catch(function (error) {
-                console.error("Error loading main categories:", error);
                 reject(error);
               });
           } else {
@@ -3955,212 +3777,33 @@ $(document).ready(function () {
   $(document).on("click", ".edit-model", function () {
     var modelId = $(this).data("id");
 
-    // Tampilkan modal
-    $("#edit-model").modal("show");
+    console.log("id: ", modelId);
 
-    // Load data ke dalam modal
-    loadEditModelData(modelId)
-      .then(function () {
-        console.log("Model data loaded successfully");
-      })
-      .catch(function (error) {
-        console.error("Error loading model data:", error);
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "Failed to load model data: " + error,
-        });
-
-        // Tutup modal jika gagal load
-        $("#edit-model").modal("hide");
-      });
-  });
-
-  $("#mainCategoriModelEdit").on("change", function () {
-    var mainCategoryId = $(this).val();
-    var selectSub = $("#subCategoriModelEdit");
-    var selectBrand = $("#mainBrandModelEdit");
-
-    if (mainCategoryId) {
-      // Load sub categories
-      loadSubCategoriesModelEdit(mainCategoryId)
-        .then(function () {
-          selectSub.prop("disabled", false);
-          selectSub.val(""); // Reset value
-
-          // Reset sub sub category
-          $("#subSubCategoriModelEdit")
-            .empty()
-            .append('<option value="">Pilih Sub Kategori dulu</option>')
-            .prop("disabled", true);
-        })
-        .catch(function (error) {
-          console.error("Error loading sub categories:", error);
-        });
-
-      // Load brand categories
-      loadBrandCategoriesModelEdit(mainCategoryId)
-        .then(function () {
-          selectBrand.prop("disabled", false);
-        })
-        .catch(function (error) {
-          console.error("Error loading brands:", error);
-        });
-    } else {
-      selectSub
-        .empty()
-        .append('<option value="">Pilih Kategori Utama dulu</option>')
-        .prop("disabled", true);
-      $("#subSubCategoriModelEdit")
-        .empty()
-        .append('<option value="">Pilih Sub Kategori dulu</option>')
-        .prop("disabled", true);
-      selectBrand
-        .empty()
-        .append('<option value="">Pilih Kategori Utama dulu</option>')
-        .prop("disabled", true);
-      $("#modelEdit").prop("disabled", true);
-    }
-  });
-
-  // Event handler untuk perubahan sub category di edit
-  $("#subCategoriModelEdit").on("change", function () {
-    var subCategoryId = $(this).val();
-    var selectSubSub = $("#subSubCategoriModelEdit");
-
-    if (subCategoryId) {
-      loadSubSubCategoriesModelEdit(subCategoryId)
-        .then(function () {
-          selectSubSub.prop("disabled", false);
-          selectSubSub.val(""); // Reset value
-        })
-        .catch(function (error) {
-          console.error("Error loading sub sub categories:", error);
-        });
-    } else {
-      selectSubSub
-        .empty()
-        .append('<option value="">Pilih Sub Kategori dulu</option>')
-        .prop("disabled", true);
-      $("#modelEdit").prop("disabled", true);
-    }
-  });
-
-  // Event handler untuk perubahan sub sub category di edit
-  $("#subSubCategoriModelEdit").on("change", function () {
-    var subSubCategoryId = $(this).val();
-
-    if (subSubCategoryId) {
-      $("#modelEdit").prop("disabled", false);
-    } else {
-      $("#modelEdit").prop("disabled", true);
-    }
-  });
-
-  $("#editFormModel").on("submit", function (e) {
-    e.preventDefault();
-
-    // Validasi form
-    var modelName = $("#modelEdit").val();
-    var subSubCategory = $("#subSubCategoriModelEdit").val();
-
-    if (!modelName || !modelName.trim()) {
-      Swal.fire({
-        icon: "error",
-        title: "Error!",
-        text: "Model name is required",
-      });
-      return;
-    }
-
-    if (!subSubCategory) {
-      Swal.fire({
-        icon: "warning",
-        title: "Warning!",
-        text: "Please select Sub Sub Category",
-      });
-      return;
-    }
-
-    var formData = new FormData(this);
-
-    var submitBtn = $(this).find('button[type="submit"]');
-    var originalText = submitBtn.html();
-    submitBtn
-      .prop("disabled", true)
-      .html(
-        '<span class="spinner-border spinner-border-sm"></span> Updating...'
-      );
-
-    $.ajax({
-      url: base_url + "backendproduct/editModelAjax",
-      type: "POST",
-      data: formData,
-      processData: false,
-      contentType: false,
-      dataType: "json",
-      success: function (response) {
-        if (response.status) {
-          $("#edit-model").modal("hide");
-          $("#editFormModel")[0].reset();
-          $("#imagePreviewModelEdit").empty();
-
-          // Reload table jika ada
-          if (typeof tableModel !== "undefined") {
-            tableModel.ajax.reload();
-          }
-
-          Swal.fire({
-            icon: "success",
-            title: "Success!",
-            text: response.message,
-            timer: 2000,
-            showConfirmButton: false,
-          });
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error!",
-            text: response.message,
-          });
-        }
-      },
-      error: function (xhr, status, error) {
-        Swal.fire({
-          icon: "error",
-          title: "Error!",
-          text: "Error: " + error,
-        });
-      },
-      complete: function () {
-        submitBtn.prop("disabled", false).html(originalText);
-      },
-    });
-  });
-
-  $("#edit-model").on("hidden.bs.modal", function () {
+    // Reset form terlebih dahulu
     $("#editFormModel")[0].reset();
     $("#imagePreviewModelEdit").empty();
     $("#edit_image_model").empty();
-    $("#edit_image_model_value").val("");
+    $("#subCategoriEdit").empty();
+    $("#mainCategoriModelEdit").empty().prop("disabled", true);
+    $("#subCategoriModelEdit").empty().prop("disabled", true);
+    $("#subSubCategoriModelEdit").empty().prop("disabled", true);
+    $("#mainBrandModelEdit").empty().prop("disabled", true);
+    $("#modelEdit").prop("disabled", true).val("");
 
-    // Reset semua select
-    $("#mainCategoriModelEdit")
-      .empty()
-      .append('<option value="">Pilih Kategori Utama</option>');
-    $("#subCategoriModelEdit")
-      .empty()
-      .append('<option value="">Pilih Kategori Utama dulu</option>')
-      .prop("disabled", true);
-    $("#subSubCategoriModelEdit")
-      .empty()
-      .append('<option value="">Pilih Sub Kategori dulu</option>')
-      .prop("disabled", true);
-    $("#mainBrandModelEdit")
-      .empty()
-      .append('<option value="">Pilih Kategori Utama dulu</option>')
-      .prop("disabled", true);
-    $("#modelEdit").prop("disabled", true);
+    // Tampilkan modal terlebih dahulu
+    $("#edit-model").modal("show");
+
+    // Load data kategori
+    loadEditModelData(modelId)
+      .then(function (category) {})
+      .catch(function (error) {
+        console.error("Error loading category data:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Error!",
+          text: "Gagal memuat data kategori. Silakan coba lagi.",
+        });
+      });
   });
 
   $("#modelTable").on("click", ".delete-model", function () {

@@ -3649,6 +3649,16 @@ $(document).ready(function () {
 
             // Set nama model
             $("#modelEdit").val(model.name).prop("disabled", false);
+
+            console.log("=== DEBUG MODEL DATA ===");
+            console.log("model object:", model);
+            console.log("model.img value:", "'" + model.img + "'");
+            console.log("model.img type:", typeof model.img);
+            console.log("model.img is empty string?", model.img === "");
+            console.log("model.img is null?", model.img === null);
+            console.log("model.img is undefined?", model.img === undefined);
+            console.log("base_url:", base_url);
+
             // Tampilkan gambar saat ini jika ada
             if (model.img) {
               var imageUrl = base_url + "public/upload/categori/" + model.img;

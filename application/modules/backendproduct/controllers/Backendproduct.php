@@ -1507,25 +1507,31 @@ class Backendproduct extends MX_Controller
         $category = $this->categori_model->get_categori_by_id($id);
 
         if ($category) {
-            // Get parent category (sub category)
-            $parentCategory = $this->categori_model->get_categori_by_id($category->parent);
+            // Get parent information
+            $parent = $category->parent ? $this->categori_model->get_categori_by_id($category->parent) : null;
+            $grandparent = null;
 
-            // Get grandparent category (main category) - parent dari sub category
-            $grandparentCategory = null;
-            if ($parentCategory) {
-                $grandparentCategory = $this->categori_model->get_categori_by_id($parentCategory->parent);
+            if ($parent) {
+                $grandparent = $parent->parent ? $this->categori_model->get_categori_by_id($parent->parent) : null;
+                $grandgrandparent = null;
+
+                if ($grandparent) {
+                    $grandgrandparent = $grandparent->parent ? $this->categori_model->get_categori_by_id($grandparent->parent) : null;
+                }
+                $data = array(
+                    'id' => $category->id,
+                    'name' => $category->name,
+                    'img' => $category->img,
+                    'parent_id' => $parent ? $parent->id : null,
+                    'parent_name' => $parent ? $parent->name : null,
+                    'grandparent_id' => $grandparent ? $grandparent->id : null,
+                    'grandparent_name' => $grandparent ? $grandparent->name : null,
+                    'grandgrandparent_id' => $grandgrandparent ? $grandgrandparent->id : null,
+                    'grandgrandparent_name' => $grandgrandparent ? $grandgrandparent->name : null,
+                    'main_parent' => $category->parent,
+                    'parent_brand' => $category->parent_brand
+                );
             }
-
-            $data = array(
-                'id' => $category->id,
-                'name' => $category->name,
-                'img' => $category->img,
-                'parent_id' => $category->parent,
-                'parent_name' => $parentCategory ? $parentCategory->name : '',
-                'grandparent_id' => $grandparentCategory ? $grandparentCategory->id : '',
-                'grandparent_name' => $grandparentCategory ? $grandparentCategory->name : ''
-            );
-
             echo json_encode(array("status" => true, "data" => $data));
         } else {
             echo json_encode(array("status" => false, "message" => "Category not found"));
@@ -1952,8 +1958,8 @@ class Backendproduct extends MX_Controller
             'url' => preg_replace("/[^a-zA-Z0-9\-]/", "", str_replace(" ", "-", $this->input->post('name'))),
             'parent' => $id_subsub,
             'parent_brand' => $this->input->post('mainBrandModelId'),
-            'etc' => 0,
-            'is_brand' => $subSubCategoris->etc,
+            'etc' => $subSubCategoris->etc,
+            'is_brand' => 0,
             'is_tag' => 0,
         );
 
@@ -2003,8 +2009,11 @@ class Backendproduct extends MX_Controller
             return;
         }
 
-        $subSubCategorisId = $this->input->post('subSubCategoriModelId');
-        $dataSubSubCategoris = $this->categori_model->get_categori_by_model($subSubCategorisId);
+        $subSubCategorisId = $this->input->post('subSubCategoriModelEditId');
+        $dataSubSubCategoris = $this->categori_model->get_categori_by_id($subSubCategorisId);
+
+        var_dump($this->input->post('edit_image_model_value'));
+        die;
 
         $datainput = array(
             'name' => $this->input->post('name'),
@@ -2014,44 +2023,42 @@ class Backendproduct extends MX_Controller
             'etc' => $dataSubSubCategoris->etc
         );
 
-        // Handle file upload jika ada
-        if (!empty($_FILES['fileuploadModelEdit']['name'])) {
+        if (empty($_FILES['fileuploadModelEdit']['name'])) {
+            $dataaddimg = array('img' => (($this->input->post('edit_image_model_value')) == "") ? '' : $this->input->post('edit_image_model_value'));
+            $alldatainput = array_merge($datainput, $dataaddimg);
+            $updatecategori = $this->categori_model->update_categori($id, $alldatainput);
+            if ($updatecategori) {
+                echo json_encode(array("status" => true, "message" => "Model Updated successfully without uploaded new pic"));
+            } else {
+                echo json_encode(array("status" => false, "message" => "Failed to update Model"));
+            }
+        } else {
             $config['upload_path'] = './public/upload/categori/';
             $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
-            $config['file_name'] = time() . '_' . rand(1000, 9999) . ".png";
+            $config['file_name'] = microtime() . ".jpg";
+            $config['encrypt_name'] = TRUE;
             $config['max_size'] = '1000';
             $config['max_width']  = '1000';
             $config['max_height']  = '1000';
-            $config['overwrite'] = false;
-
             $this->load->library('upload', $config);
             $this->upload->initialize($config);
-
-            if (!$this->upload->do_upload("fileuploadModelEdit")) {
-                echo json_encode(array("status" => false, "message" => "Failed to upload image: " . $this->upload->display_errors()));
-                return;
+            if (! $this->upload->do_upload("fileuploadModelEdit")) {
+                echo json_encode(array("status" => false, "message" => "Failed to upload pic"));
             } else {
                 $data = $this->upload->data();
-                $datainput['img'] = $data["file_name"];
-
-                // Hapus file lama jika ada
+                $namenewfile = $data["file_name"];
+                $dataaddimg = array('img' => $namenewfile);
+                $alldatainput = array_merge($datainput, $dataaddimg);
                 if ($existing->img && file_exists('./public/upload/categori/' . $existing->img)) {
                     unlink('./public/upload/categori/' . $existing->img);
                 }
+                $updatecategori = $this->categori_model->update_categori($id, $alldatainput);
+                if ($updatecategori) {
+                    echo json_encode(array("status" => true, "message" => "Model Updated successfully"));
+                } else {
+                    echo json_encode(array("status" => false, "message" => "Failed to update Model"));
+                }
             }
-        } else {
-            // Jika tidak upload file baru, tetap gunakan gambar lama
-            if ($this->input->post('edit_image_subsubcategory_value')) {
-                $datainput['img'] = $this->input->post('edit_image_subsubcategory_value');
-            }
-        }
-
-        // Update kategori
-        $updatecategory = $this->categori_model->update_categori($id, $datainput);
-        if ($updatecategory) {
-            echo json_encode(array("status" => true, "message" => "Model updated successfully"));
-        } else {
-            echo json_encode(array("status" => false, "message" => "Failed to update Model"));
         }
     }
 }
