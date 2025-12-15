@@ -10,10 +10,10 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown-<?php echo $item['id'] ?>">
                 <li class="menu-item">
                     <div class="mega-menu">
-                        <h5 class="d-flex gap-2 align-items-center">
+                        <p class="d-flex gap-2 align-items-center fs-5 mb-1 fw-bold">
                             <img src="<?php echo base_url() ?>public/icon/category/icon-<?php echo $item['url']; ?>.svg" alt="<?php echo $item['name'] ?>" />
                             <?php echo $item['name'] ?>
-                        </h5>
+                        </p>
                         <div class="menu-content">
                             <div class="section">
                                 <ul class="list-unstyled">
@@ -44,13 +44,13 @@
                     <!-- Submenu level 2 -->
                     <?php if (count($kategoris) > 0): ?>
                         <div class="mega-submenu">
-                            <h6>Subkategori</h6>
+                            <p>Subkategori</p>
                             <div class="menu-content">
                                 <?php foreach ($kategoris as $items) : ?>
                                     <?php $subkategoris = $this->M_general->getcategori(['parent' => $items['id']]); ?>
                                     <?php if (count($subkategoris) > 0): ?>
                                         <div class="section">
-                                            <h6 class="text-primary"><?php echo $items['name'] ?></h6>
+                                            <p class="text-primary"><?php echo $items['name'] ?></p>
                                             <ul class="list-unstyled">
                                                 <?php foreach ($subkategoris as $subitem) : ?>
                                                     <li>
