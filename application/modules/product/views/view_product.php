@@ -127,9 +127,9 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                     <div class="card p-x-0 p-t-0 border-none">
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                <p itemprop="name"
+                                                <h1 itemprop="name"
                                                     alt="<?php echo ucwords(strtolower($key["tittle"])) ?>"
-                                                    class="fbold m-b-0 f38"><?php echo (($key["tittle"])) ?></p>
+                                                    class="fbold m-b-0"><?php echo (($key["tittle"])) ?></h1>
 
                                                 <?php if ($key['is_sell'] == 1) : ?>
                                                     <span itemprop="mpn"
