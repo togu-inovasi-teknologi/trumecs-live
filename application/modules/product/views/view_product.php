@@ -127,9 +127,9 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                     <div class="card p-x-0 p-t-0 border-none">
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                <h1 itemprop="name"
+                                                <p itemprop="name"
                                                     alt="<?php echo ucwords(strtolower($key["tittle"])) ?>"
-                                                    class="fbold m-b-0"><?php echo (($key["tittle"])) ?></h1>
+                                                    class="fbold m-b-0 f38"><?php echo (($key["tittle"])) ?></p>
 
                                                 <?php if ($key['is_sell'] == 1) : ?>
                                                     <span itemprop="mpn"
@@ -411,9 +411,9 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                 ?>
                                 <div class="row m-b-1 m-t-3">
                                     <div class="col-lg-12">
-                                        <h3 class="fbold f22"><span class="fa fa-shopping-cart forange"></span>
+                                        <p class="fbold f22"><span class="fa fa-shopping-cart forange"></span>
                                             <?php echo $this->lang->line('judul_produk_terkait', FALSE); ?> <?php echo ucwords(strtolower($key["tittle"])) ?>
-                                        </h3>
+                                        </p>
                                     </div>
                                 </div>
                                 <table class="table table-horizontal table-striped table-sm">
@@ -443,9 +443,9 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                         <div class="clearfix m-b-1"></div>
                         <div class="col-lg-12 m-y-3">
                             <div class="panel-kotak panel-default">
-                                <h3 class="f22 m-b-1"><strong><span class="fa fa-rss forange"></span>
+                                <p class="f22 m-b-1"><strong><span class="fa fa-rss forange"></span>
                                         <?php echo $this->lang->line('judul_informasi_terkait', FALSE) . ' ' . $key['tittle']; ?></strong>
-                                </h3>
+                                </p>
                                 <?php echo $this->load->view('article/_same_article', array('article' => $relatedarticle, 'media' => 'half', 'img_base_url' => $this->base_url)); ?>
                             </div>
                         </div>

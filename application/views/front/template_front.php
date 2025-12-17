@@ -64,8 +64,10 @@ $this->db->reset_query();
 $contact = $this->db->where('id', $ida)->get("admin")->result_array();
 ?>
 <!DOCTYPE html>
-<html lang="<?php $lang = get_language();
-            echo $lang['code'] ?? "id" ?>">
+<?php
+$lang = get_language();
+echo isset($lang['code']) ? htmlspecialchars($lang['code']) : 'en';
+?>
 
 <head>
     <meta charset="utf-8">
