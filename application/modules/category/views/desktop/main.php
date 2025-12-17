@@ -14,7 +14,7 @@
 
                 if ($remainingItems == 2 && $lastItems <= 2) {
                     $colClass = 'col-lg-6';
-                } elseif ($remainingItems == 1 && $ilastItemsndex <= 1) {
+                } elseif ($remainingItems == 1 && $lastItems <= 1) {
                     $colClass = 'col-lg-12';
                 } else {
                     $colClass = 'col-lg-4';

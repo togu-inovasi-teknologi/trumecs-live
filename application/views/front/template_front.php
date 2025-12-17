@@ -65,7 +65,7 @@ $contact = $this->db->where('id', $ida)->get("admin")->result_array();
 ?>
 <!DOCTYPE html>
 <html lang="<?php $lang = get_language();
-            echo $lang['code'] ?>">
+            echo $lang['code'] ?? "id" ?>">
 
 <head>
     <meta charset="utf-8">

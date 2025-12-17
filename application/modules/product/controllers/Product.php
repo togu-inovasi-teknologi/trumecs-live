@@ -68,7 +68,7 @@ class Product extends MX_Controller
         }
 
 
-        $data["seotitle"] = $this->lang->line('seo_title', FALSE) . " " . $data["data_product"][0]["tittle"] . ' | Trumecs';
+        $data["seotitle"] = $data["data_product"][0]["tittle"] . " - " . $namebrand . ' | Trumecs';
         $data["seokeywords"] = "jual sparepart truk,sparepart truk," . $str_keyword;
         $data["seodescription"] = sprintf($this->lang->line('seo_description', FALSE), $data["data_product"][0]["tittle"]);
         $data["seoimage"] = $file_exists;
