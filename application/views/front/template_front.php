@@ -78,7 +78,7 @@ $contact = $this->db->where('id', $ida)->get("admin")->result_array();
     <?php $this->load->view("front/_favicon"); ?>
     <!-- Bootstrap Core CSS -->
     <!--link  rel="stylesheet" href="<?php echo base_url(); ?>asset/css/bootstrap.min.css" -->
-    <?php if ($this->uri->segment(1) == "article") : ?>
+    <?php if ($this->uri->segment(1) == "article" || $this->uri->segment(1) == null) : ?>
         <!-- <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css"> -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <?php else : ?>
