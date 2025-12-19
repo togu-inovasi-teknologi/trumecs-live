@@ -1,105 +1,283 @@
-<section class="menu-big-4-mobile m-y-1">
+<section class="steps-process-section pt-5 pb-2" style="background-color: #f8f9fa;">
     <div class="container">
-        <div class="row">
-            <a href="#" class="menu-big-4-button-mobile" data-google-tag="inquiry">
-                <div class="col-md-12 m-b-1 bg-menu-big-4 menu-sourcing">
-                    <img src="/public/landing/pic/sourcing-agent.png" alt="sourcing-agent"></img>
-                    <div class="content">
-                        <h5 class="fbold fblack underline-text">SOURCING AGENT</h5>
-                        <p class="fgray f14">Find the mechanical needs that you need or browse from our online catalogue</p>
-                    </div>
-                </div>
-            </a>
-            <div class="col-md-12">
-                <div class="row d-flex gap-3">
-                    <div class="col-md-6" style="flex: 1;">
-                        <div class="row d-flex flex-column gap-3">
-                            <a href="#" class="menu-big-4-button-mobile" data-google-tag="maintenance">
-                                <div class="col-md-12 bg-menu-big-4 kiri">
-                                    <img class="maintenance" src="/public/landing/pic/maintenance.png" alt="maintenance"></img>
-                                    <div class="content p-t-1">
-                                        <h6 class="fbold fblack underline-text">MAINTENANCE</h6>
-                                        <h6 class="fgray f14">Availability of your units is our priority</h6>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="menu-big-4-button-mobile" data-google-tag="construction">
-                                <div class="col-md-12 bg-menu-big-4 kiri">
-                                    <img class="construction" src="/public/landing/pic/construction.png" alt="construction"></img>
-                                    <div class="content p-t-1">
-                                        <h6 class="fbold fblack underline-text">CONSTRUCTION</h6>
-                                        <h6 class="fgray f14">Engineering, Construction and procurement</h6>
-                                    </div>
-                                </div>
-                            </a>
+        <!-- Section Header -->
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h1 class="fw-bold display-5 mb-3">Langkah mudah untuk kebutuhan bisnismu</h1>
+                <p class="lead text-muted">Ikuti langkah mudah kami untuk meningkatkan bisnismu</p>
+            </div>
+        </div>
+
+        <div class="row g-5 align-items-start">
+            <!-- Left Column: Steps Accordion -->
+            <div class="col-lg-6">
+                <div class="steps-accordion-wrapper">
+                    <!-- Step 1 -->
+                    <div class="step-item active" data-step="1">
+                        <div class="step-header">
+                            <div class="step-indicator">
+                                <span class="step-number">1</span>
+                                <div class="step-line"></div>
+                            </div>
+                            <div class="step-title-wrapper">
+                                <h3 class="step-title">Sourcing</h3>
+                                <p class="step-subtitle">Find products & reliable suppliers</p>
+                            </div>
+                            <div class="step-arrow">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="step-content">
+                            <!-- Isi konten step 1 Anda di sini -->
+                            <div class="step-details">
+                                <ul class="step-list">
+                                    <li>
+                                        <i class="fas fa-search me-3"></i>
+                                        <span>Search by keywords or categories</span>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-file-alt me-3"></i>
+                                        <span>Post a sourcing request to get multiple quotes</span>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-users me-3"></i>
+                                        <span>Connect with verified suppliers instantly</span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6" style="flex: 1;">
-                        <div class="row d-flex flex-column">
-                            <a href="<?php echo site_url('mechanic'); ?>" class="menu-big-4-button-mobile" data-google-tag="manpower">
-                                <div class="col-md-12 bg-menu-big-4 kanan">
-                                    <div class="content p-t-1">
-                                        <h6 class="fbold fblack underline-text">MANPOWER</h6>
-                                        <h6 class="fgray f14">Find Mechanic and Operator for Hire</h6>
-                                    </div>
-                                    <img src="/public/landing/pic/mechanic.png" alt="mekanik"></img>
-                                </div>
-                            </a>
+
+                    <!-- Step 2 -->
+                    <div class="step-item" data-step="2">
+                        <div class="step-header">
+                            <div class="step-indicator">
+                                <span class="step-number">2</span>
+                                <div class="step-line"></div>
+                            </div>
+                            <div class="step-title-wrapper">
+                                <h3 class="step-title">Verification</h3>
+                                <p class="step-subtitle">Authoritative third-party verification</p>
+                            </div>
+                            <div class="step-arrow">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="step-content">
+                            <!-- Isi konten step 2 Anda di sini -->
+                            <div class="step-details">
+                                <ul class="step-list">
+                                    <li>
+                                        <i class="fas fa-shield-alt me-3"></i>
+                                        <span>Choose audited suppliers verified by third-party</span>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-chart-line me-3"></i>
+                                        <span>Access supplier's audited reports for free</span>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-check-circle me-3"></i>
+                                        <span>Quality assurance and reliability check</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-item" data-step="3">
+                        <div class="step-header">
+                            <div class="step-indicator">
+                                <span class="step-number">3</span>
+                                <div class="step-line"></div>
+                            </div>
+                            <div class="step-title-wrapper">
+                                <h3 class="step-title">Negotiation</h3>
+                                <p class="step-subtitle">Contact and negotiate with suppliers</p>
+                            </div>
+                            <div class="step-arrow">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="step-content">
+                            <!-- Isi konten step 3 Anda di sini -->
+                            <div class="step-details">
+                                <ul class="step-list">
+                                    <li>
+                                        <i class="fas fa-envelope me-3"></i>
+                                        <span>Send inquiries with "Contact Now" button</span>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-comment-dots me-3"></i>
+                                        <span>Chat with suppliers in real-time</span>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-file-invoice-dollar me-3"></i>
+                                        <span>Receive and manage quotations in your virtual office</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="step-item" data-step="4">
+                        <div class="step-header">
+                            <div class="step-indicator">
+                                <span class="step-number">4</span>
+                                <div class="step-line"></div>
+                            </div>
+                            <div class="step-title-wrapper">
+                                <h3 class="step-title">Ordering</h3>
+                                <p class="step-subtitle">Place orders online securely</p>
+                            </div>
+                            <div class="step-arrow">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="step-content">
+                            <!-- Isi konten step 4 Anda di sini -->
+                            <div class="step-details">
+                                <ul class="step-list">
+                                    <li>
+                                        <i class="fas fa-shopping-cart me-3"></i>
+                                        <span>Search products with Secured Trading Service</span>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-lock me-3"></i>
+                                        <span>Escrow protection and refund support</span>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-shipping-fast me-3"></i>
+                                        <span>Secure payment and tracking</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Video/Media Area -->
+            <div class="col-lg-6">
+                <div class="step-media-wrapper">
+                    <!-- Video Placeholder - Ganti dengan video/embed Anda -->
+                    <div class="video-container">
+                        <div class="video-placeholder">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                                alt="Business Process Video"
+                                class="video-thumbnail img-fluid rounded-3">
+                        </div>
+                        <div class="video-caption mt-3">
+                            <p class="text-muted">Lihat langkah mudah kami</p>
+                        </div>
+                    </div>
+
+                    <!-- Step Content Preview (akan berubah berdasarkan step yang aktif) -->
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="step-preview">
+                    <div class="preview-content active">
+                        <h3 class="preview-title">Sourcing Made Easy</h3>
+                        <p>Find the perfect products and connect with reliable suppliers through our intelligent sourcing platform.</p>
+                        <div class="preview-stats">
+                            <div class="stat-item">
+                                <h4>10,000+</h4>
+                                <p>Verified Suppliers</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>24/7</h4>
+                                <p>Support Available</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>95%</h4>
+                                <p>Satisfaction Rate</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-</section>
-
-<section class="main-category">
-    <div class="container">
-        <div class="row m-y-1 text-center">
-            <h3 class="fbold">Our Categories</h3>
-        </div>
-        <div class="row">
-            <?php
-            $categories = main_categories();
-            $totalItems = count($categories);
-            $cols = 2;
-            foreach ($categories as $index => $i) :
-                if($index<7):
-                if ($index % $cols === 0) {
-                    echo '<div class="d-flex gap-3 m-b-1">';
-                }
-            ?>
-                <a href="<?php echo base_url(); ?>category/<?= $i['id'] ?>" class="col-md-6 p-a-0 pointer click-category-mobile" data-google-tag="<?= $i['name'] ?>" style="flex: 1;">
-                    <div class="main-category-item text-left d-flex align-items-end">
-                        <p class="fbold f13"><?= $i['name'] ?></p>
-                        <img src="/public/landing/category/<?= $i['name'] ?>.png" alt="<?= $i['name'] ?>" class="img-fluid">
-                    </div>
-                </a>
-            <?php
-                if (($index + 1) % $cols === 0 || ($index + 1) === $totalItems) {
-                    echo '</div>';
-                }
-                endif;
-            endforeach;
-            ?>
-        </div>
     </div>
 </section>
 
-<section class="banner-ads m-b-1">
-    <a href="https://ers-id.informa-info.com/wri25??cid=PREREG+TRUMECS" target="_blank" alt="Tautan pendaftaran Water Indonesia 2025" >
+<section class="blueprint-categories">
     <div class="container">
-        <div class="row">
-            <!--<div class="col-md banner-front radius-md p-a-1" style="background-color: #16143e;">
+        <p class="text-center mb-5 fw-bold fs-3">Product Categories</p>
+        <div class="blueprint-grid">
+            <?php
+            $categories = main_categories();
+
+            foreach ($categories as $index => $i) :
+                if ($index < 8):
+                    $rotation = rand(-3, 3);
+            ?>
+                    <div class="blueprint-item" style="--item-rotate: <?= $rotation ?>deg; --blueprint-color: #f59e0b;">
+                        <a href="<?php echo base_url(); ?>category/<?= $i['id'] ?>"
+                            class="blueprint-card click-category"
+                            data-google-tag="<?= $i['name'] ?>">
+
+                            <!-- Blueprint Background -->
+                            <div class="blueprint-bg"></div>
+                            <div class="blueprint-grid-pattern"></div>
+                            <div class="center-crosshair"></div>
+                            <div class="corner-markers">
+                                <div class="marker tl"></div>
+                                <div class="marker tr"></div>
+                                <div class="marker bl"></div>
+                                <div class="marker br"></div>
+                            </div>
+
+                            <!-- Image Container -->
+                            <div class="image-wrapper">
+
+                                <!-- <img src="/public/landing/category/<?= $i['name'] ?>.png"
+                                    alt="<?= $i['name'] ?>"> -->
+                                <img src="/public/upload/categori/<?= $i['img'] ?>"
+                                    alt="<?= $i['name'] ?>">
+                            </div>
+
+                            <!-- Blueprint Content -->
+                            <div class="card-content">
+                                <p class="category-name mb-0 fs-5"><?= $i['name'] ?></p>
+                                <div class="card-footer">
+                                    <span class="view-text">Lihat Detail</span>
+                                    <div class="action-arrow">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Engineering Lines -->
+                            <div class="dimension-horizontal"></div>
+                            <div class="dimension-vertical"></div>
+                        </a>
+                    </div>
+            <?php endif;
+            endforeach; ?>
+        </div>
+    </div>
+</section>
+<section class="banner-ads m-b-1">
+    <a href="https://ers-id.informa-info.com/wri25??cid=PREREG+TRUMECS" target="_blank" alt="Tautan pendaftaran Water Indonesia 2025">
+        <div class="container">
+            <div class="row">
+                <!--<div class="col-md banner-front radius-md p-a-1" style="background-color: #16143e;">
                 <div class="d-flex flex-column gap-1 justify-content-center align-items-center">
                     <h6 class="fbold fwhite">HARGA KHUSUS <span class="fred">PERTAMINA</span> </h6>
                     <p class="fwhite f11 text-center">Daftarkan perusahaanmu untuk mendapatkan harga khusus untuk produk lubricant pertamina selama 1 tahun. Syarat dan ketentuan berlaku selama persediaan masih ada</p>
                     <img src="/public/landing/ads/Trumecs-WI.gif" width="100%" alt="Pertamina" class="banner-ads-image">
                 </div>
             </div>-->
-            <img src="/public/landing/ads/Trumecs-WI.gif" width="100%" alt="Banner Water Indonesia 2025">
-            
+                <img src="/public/landing/ads/Trumecs-WI.gif" width="100%" alt="Banner Water Indonesia 2025">
+
+            </div>
         </div>
-    </div>
     </a>
 </section>
 
@@ -166,10 +344,10 @@
 </section>
 
 <section class="banner-ads m-t-3 m-b-1">
-    <a href="https://ers-id.informa-info.com/adx25??cid=PREREG+TRUMECS" target="_blank" alt="Tautan pendaftaran ADC" >
-    <div class="container">
-        <div class="row">
-            <!--<div class="col-md banner-front radius-md p-a-1" style="background-color: #000000;">
+    <a href="https://ers-id.informa-info.com/adx25??cid=PREREG+TRUMECS" target="_blank" alt="Tautan pendaftaran ADC">
+        <div class="container">
+            <div class="row">
+                <!--<div class="col-md banner-front radius-md p-a-1" style="background-color: #000000;">
                 <div class="d-flex flex-column gap-3 justify-content-center align-items-center">
                     <h6 class="fbold fwhite">KETERSEDIAAN BAN TERJAMIN </h6>
                     <p class="fwhite f11 text-center">Diskusikan dengan kami untuk qualitas dan quantity yang terjamin untuk perusahaanmu.</p>
@@ -177,9 +355,9 @@
                     https://ers-id.informa-info.com/adx25??cid=PREREG+TRUMECS
                 </div>
             </div>-->
-            <img src="/public/landing/ads/Trumecs-ADC.gif" width="100%" alt="Banner ADEXCO 2025">
+                <img src="/public/landing/ads/Trumecs-ADC.gif" width="100%" alt="Banner ADEXCO 2025">
+            </div>
         </div>
-    </div>
     </a>
 </section>
 
@@ -513,3 +691,901 @@
     </div>
 </section>
 -->
+
+<style>
+    /* Base Layout */
+    .blueprint-categories {
+        padding: 60px 0;
+        background: #f8fafc;
+    }
+
+    .blueprint-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 25px;
+        align-items: stretch;
+        /* Semua card sama tinggi */
+    }
+
+    .blueprint-item {
+        height: 250px;
+        /* Tinggi sama untuk semua card */
+        perspective: 1000px;
+    }
+
+    /* Blueprint Card - Semua Sama Tinggi */
+    .blueprint-card {
+        display: block;
+        height: 100%;
+        background: white;
+        border-radius: 12px;
+        position: relative;
+        text-decoration: none;
+        border: 2px solid #e2e8f0;
+        transform: rotate(var(--item-rotate));
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+    }
+
+    .blueprint-item:hover .blueprint-card {
+        transform: rotate(0deg) translateY(-10px);
+        border-color: var(--blueprint-color);
+        box-shadow:
+            0 20px 40px rgba(0, 0, 0, 0.15),
+            0 0 0 1px rgba(59, 130, 246, 0.1);
+    }
+
+    /* Blueprint Background */
+    .blueprint-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #1e3a8a 0%, #1e3a8a 100%);
+        opacity: 0.9;
+    }
+
+    .blueprint-grid-pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+            linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+        background-size: 20px 20px;
+        opacity: 0.4;
+    }
+
+    .center-crosshair {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 30px;
+        height: 30px;
+    }
+
+    .center-crosshair:before,
+    .center-crosshair:after {
+        content: '';
+        position: absolute;
+        background: rgba(30, 41, 59, 0.15);
+    }
+
+    .center-crosshair:before {
+        width: 100%;
+        height: 1px;
+        top: 50%;
+    }
+
+    .center-crosshair:after {
+        width: 1px;
+        height: 100%;
+        left: 50%;
+    }
+
+    /* Corner Markers */
+    .corner-markers {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+
+    .marker {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border: 2px solid var(--blueprint-color);
+        border-radius: 2px;
+        opacity: 0.4;
+    }
+
+    .marker.tl {
+        top: 12px;
+        left: 12px;
+    }
+
+    .marker.tr {
+        top: 12px;
+        right: 12px;
+    }
+
+    .marker.bl {
+        bottom: 12px;
+        left: 12px;
+    }
+
+    .marker.br {
+        bottom: 12px;
+        right: 12px;
+    }
+
+    .blueprint-item:hover .marker {
+        opacity: 0.8;
+        border-color: var(--blueprint-color);
+    }
+
+    /* Image Container - Posisi Konsisten */
+    .image-wrapper {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 160px;
+        height: 140px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border-radius: 8px;
+        border: 1px solid rgba(30, 41, 59, 0.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        z-index: 2;
+        transition: all 0.3s ease;
+    }
+
+    .blueprint-item:hover .image-wrapper {
+        transform: translateX(-50%) translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        border-color: var(--blueprint-color);
+    }
+
+    .image-wrapper img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+        filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.1));
+    }
+
+    /* Card Content - Posisi Tetap */
+    .card-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 70px;
+        /* Tinggi content sama untuk semua */
+        padding: 20px;
+        background: linear-gradient(to top, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.95) 100%);
+        border-top: 1px solid #e2e8f0;
+        z-index: 2;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .part-id {
+        font-family: 'Courier New', monospace;
+        color: #64748b;
+        font-size: 0.85rem;
+        font-weight: 600;
+    }
+
+    /* Category Name */
+    .category-name {
+        color: #1e293b;
+        font-weight: 800;
+        font-size: 1.2rem;
+        letter-spacing: 0.5px;
+        line-height: 1.3;
+        text-transform: uppercase;
+    }
+
+    /* Card Footer */
+    .card-footer {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .view-text {
+        color: var(--blueprint-color);
+        font-weight: 600;
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+    }
+
+    .action-arrow {
+        width: 32px;
+        height: 32px;
+        background: var(--blueprint-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+    }
+
+    .blueprint-item:hover .action-arrow {
+        background: #1e293b;
+        transform: translateX(5px);
+    }
+
+    /* Dimension Lines */
+    .dimension-horizontal {
+        position: absolute;
+        width: 80%;
+        height: 1px;
+        bottom: 140px;
+        /* Posisi tetap dari bawah card */
+        left: 10%;
+        border-top: 1px dashed rgba(30, 41, 59, 0.15);
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .dimension-vertical {
+        position: absolute;
+        width: 1px;
+        height: 80%;
+        right: 20px;
+        top: 10%;
+        border-left: 1px dashed rgba(30, 41, 59, 0.15);
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .blueprint-item:hover .dimension-horizontal,
+    .blueprint-item:hover .dimension-vertical {
+        border-color: var(--blueprint-color);
+    }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+        .blueprint-grid {
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        }
+    }
+
+    @media (max-width: 992px) {
+        .blueprint-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .blueprint-item {
+            height: 300px;
+            /* Sedikit lebih kecil di tablet */
+        }
+
+        .image-wrapper {
+            width: 140px;
+            height: 120px;
+        }
+
+        .card-content {
+            height: 130px;
+            padding: 15px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .blueprint-grid {
+            grid-template-columns: 1fr;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .blueprint-card {
+            transform: rotate(0deg) !important;
+        }
+
+        .blueprint-item:hover .blueprint-card {
+            transform: translateY(-8px) !important;
+        }
+
+        .category-name {
+            font-size: 1.1rem;
+        }
+
+        .spec-summary {
+            flex-direction: column;
+            gap: 8px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .blueprint-item {
+            height: 280px;
+        }
+
+        .image-wrapper {
+            top: 15px;
+            width: 120px;
+            height: 100px;
+            padding: 15px;
+        }
+
+        .card-content {
+            height: 120px;
+            padding: 15px;
+        }
+
+        .category-name {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .spec-item {
+            font-size: 0.8rem;
+        }
+    }
+
+    /* Steps Accordion Styles - HOVER ONLY */
+    .steps-accordion-wrapper {
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .step-item {
+        background: white;
+        border-bottom: 1px solid #eef0f3;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .step-item:last-child {
+        border-bottom: none;
+    }
+
+    /* Hover State - BUKAN active state */
+    .step-item:hover {
+        background: #f8faff;
+        border-left: 4px solid #4a6cf7;
+    }
+
+    .step-header {
+        padding: 25px 30px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .step-item:hover .step-header {
+        background: #f8faff;
+    }
+
+    .step-indicator {
+        position: relative;
+        margin-right: 20px;
+    }
+
+    .step-number {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: #eef0f3;
+        color: #6c757d;
+        border-radius: 50%;
+        font-weight: 700;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+    }
+
+    .step-item:hover .step-number {
+        background: #4a6cf7;
+        color: white;
+        transform: scale(1.1);
+    }
+
+    .step-line {
+        position: absolute;
+        top: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: calc(100% - 40px);
+        background: #eef0f3;
+        z-index: 1;
+    }
+
+    .step-item:last-child .step-line {
+        display: none;
+    }
+
+    .step-title-wrapper {
+        flex: 1;
+    }
+
+    .step-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 5px;
+        transition: all 0.3s ease;
+    }
+
+    .step-item:hover .step-title {
+        color: #4a6cf7;
+    }
+
+    .step-subtitle {
+        color: #6c757d;
+        font-size: 0.95rem;
+        margin: 0;
+    }
+
+    .step-item:hover .step-subtitle {
+        color: #4a6cf7;
+    }
+
+    .step-arrow {
+        color: #a0aec0;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+        transform: rotate(0deg);
+    }
+
+    .step-item:hover .step-arrow {
+        transform: rotate(180deg);
+        color: #4a6cf7;
+    }
+
+    .step-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.5s ease;
+        padding: 0 30px;
+        background: white;
+    }
+
+    .step-item:hover .step-content {
+        max-height: 500px;
+        padding: 0 30px 25px 30px;
+        background: #f8faff;
+    }
+
+    .step-details {
+        padding-left: 60px;
+        padding-top: 15px;
+    }
+
+    .step-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .step-list li {
+        padding: 12px 0;
+        border-bottom: 1px dashed #e2e8f0;
+        color: #4a5568;
+        font-size: 1rem;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .step-list li:last-child {
+        border-bottom: none;
+    }
+
+    .step-list li i {
+        margin-top: 3px;
+        color: #4a6cf7;
+        font-size: 1.1rem;
+        min-width: 24px;
+    }
+
+    /* Media/Video Area */
+    .step-media-wrapper {
+        position: sticky;
+        top: 30px;
+    }
+
+    .video-container {
+        margin-bottom: 40px;
+    }
+
+    .video-placeholder {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+
+    .video-thumbnail {
+        width: 100%;
+        height: 320px;
+        object-fit: cover;
+        transition: all 0.3s ease;
+    }
+
+    .video-placeholder:hover .video-thumbnail {
+        transform: scale(1.02);
+    }
+
+    .play-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70px;
+        height: 70px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #4a6cf7;
+        font-size: 1.8rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .play-button:hover {
+        background: white;
+        transform: translate(-50%, -50%) scale(1.1);
+        box-shadow: 0 10px 25px rgba(74, 108, 247, 0.3);
+    }
+
+    .video-caption {
+        text-align: center;
+    }
+
+    .video-caption h4 {
+        color: #2d3748;
+        font-weight: 700;
+    }
+
+    /* Step Preview */
+    .step-preview {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        position: relative;
+    }
+
+    .preview-content {
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.4s ease;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        right: 30px;
+        bottom: 30px;
+        pointer-events: none;
+    }
+
+    .preview-content.active {
+        opacity: 1;
+        transform: translateY(0);
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: all;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .preview-title {
+        color: #2d3748;
+        font-weight: 700;
+        margin-bottom: 15px;
+        font-size: 1.5rem;
+    }
+
+    .preview-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-top: 25px;
+    }
+
+    .stat-item {
+        text-align: center;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 8px;
+    }
+
+    .stat-item h4 {
+        color: #4a6cf7;
+        font-weight: 800;
+        font-size: 2rem;
+        margin-bottom: 5px;
+    }
+
+    .stat-item p {
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin: 0;
+    }
+
+    .verification-badges .badge {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+        border-radius: 20px;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .feature {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 8px;
+    }
+
+    .feature i {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+
+    .security-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        margin-bottom: 15px;
+    }
+
+    .security-item i {
+        font-size: 1.8rem;
+    }
+
+    .security-item h6 {
+        color: #2d3748;
+        margin-bottom: 5px;
+    }
+
+    /* CTA Box */
+    .cta-box {
+        box-shadow: 0 20px 40px rgba(74, 108, 247, 0.15);
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+        .step-media-wrapper {
+            position: static;
+            margin-top: 40px;
+        }
+
+        .video-thumbnail {
+            height: 280px;
+        }
+
+        .preview-stats {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .step-header {
+            padding: 20px;
+        }
+
+        .step-content {
+            padding: 0 20px;
+        }
+
+        .step-item:hover .step-content {
+            padding: 0 20px 20px 20px;
+        }
+
+        .step-details {
+            padding-left: 40px;
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+        }
+
+        .preview-stats {
+            grid-template-columns: 1fr;
+        }
+
+        .features-grid {
+            grid-template-columns: 1fr;
+        }
+
+        /* Untuk mobile, gunakan click bukan hover */
+        .step-item {
+            cursor: pointer;
+        }
+    }
+</style>
+
+<script>
+    // HOVER ACCORDION - Hanya hover, tidak ada yang aktif default
+    $(document).ready(function() {
+        console.log('Initializing hover-only accordion...');
+
+        const $stepItems = $('.step-item');
+        const $previewContents = $('.preview-content');
+
+        let activeStep = null;
+        let hoverTimer = null;
+
+        // Fungsi untuk membuka step
+        function openStep(stepNumber) {
+            // Reset semua step
+            $stepItems.removeClass('active');
+
+            // Reset semua preview
+            $previewContents.removeClass('active');
+
+            // Buka step yang dihover
+            const $stepToOpen = $(`.step-item[data-step="${stepNumber}"]`);
+            const $previewToShow = $(`.preview-content[data-preview="${stepNumber}"]`);
+
+            if ($stepToOpen.length) {
+                $stepToOpen.addClass('active');
+            }
+
+            if ($previewToShow.length) {
+                $previewToShow.addClass('active');
+            }
+
+            activeStep = stepNumber;
+            console.log('Opened step:', stepNumber);
+        }
+
+        // Fungsi untuk menutup semua step
+        function closeAllSteps() {
+            $stepItems.removeClass('active');
+            $previewContents.removeClass('active');
+
+            activeStep = null;
+            console.log('All steps closed');
+        }
+
+        // Setup hover events untuk desktop
+        function setupHoverAccordion() {
+            const isDesktop = $(window).width() > 768;
+
+            $stepItems.off('mouseenter mouseleave click'); // Hapus event listeners sebelumnya
+
+            $stepItems.each(function() {
+                const $item = $(this);
+                const stepNumber = $item.data('step');
+
+                // Hover masuk
+                $item.on('mouseenter', function() {
+                    if (isDesktop) {
+                        clearTimeout(hoverTimer);
+                        openStep(stepNumber);
+                    }
+                });
+
+                // Hover keluar
+                $item.on('mouseleave', function() {
+                    if (isDesktop) {
+                        hoverTimer = setTimeout(() => {
+                            if (activeStep === stepNumber) {
+                                closeAllSteps();
+                            }
+                        }, 300); // Delay 300ms sebelum tutup
+                    }
+                });
+
+                // Untuk mobile: click untuk buka/tutup
+                if (!isDesktop) {
+                    $item.on('click', function(e) {
+                        e.preventDefault();
+
+                        if (activeStep === stepNumber) {
+                            // Jika step yang sama diklik, tutup
+                            closeAllSteps();
+                        } else {
+                            // Jika step berbeda, buka yang baru
+                            openStep(stepNumber);
+                        }
+                    });
+                }
+            });
+
+            // Tutup semua saat mouse keluar dari container
+            const $accordionWrapper = $('.steps-accordion-wrapper');
+            if ($accordionWrapper.length && isDesktop) {
+                $accordionWrapper.off('mouseleave mouseenter');
+
+                $accordionWrapper.on('mouseleave', function() {
+                    hoverTimer = setTimeout(closeAllSteps, 500);
+                });
+
+                $accordionWrapper.on('mouseenter', function() {
+                    clearTimeout(hoverTimer);
+                });
+            }
+        }
+
+        // Inisialisasi
+        setTimeout(() => {
+            if ($stepItems.length > 0) {
+                setupHoverAccordion();
+
+                // TIDAK ada step aktif default
+                console.log('Hover accordion initialized - No step active by default');
+
+                // Tampilkan pesan untuk user
+                const $previewContainer = $('.step-preview');
+                if ($previewContainer.length && !$previewContainer.find('.preview-content.active').length) {
+                    const defaultMessage = $(`
+                    <div class="preview-content default-message active">
+                        <h3 class="preview-title">Pilih Langkah</h3>
+                        <p>Hover pada langkah di sebelah kiri untuk melihat detail</p>
+                        <div class="mt-4">
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle me-2"></i>
+                                <strong>Tips:</strong> Arahkan mouse ke langkah untuk melihat detail
+                            </div>
+                        </div>
+                    </div>
+                `);
+                    $previewContainer.prepend(defaultMessage);
+                }
+            }
+        }, 500);
+
+        // Handle window resize
+        $(window).on('resize', function() {
+            setTimeout(setupHoverAccordion, 100);
+        });
+
+        // Video play button
+        const $playButton = $('.play-button');
+        if ($playButton.length) {
+            $playButton.off('click').on('click', function() {
+                // Ganti dengan video embed Anda
+                alert('Video player would open here. Replace with actual video embed.');
+            });
+        }
+    });
+</script>

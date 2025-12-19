@@ -227,6 +227,8 @@ class etx_product extends CI_Model
             ))->insert("category_brand");
         }
     }
+
+
     public function setcategoryattribute($list, $id_category)
     {
 

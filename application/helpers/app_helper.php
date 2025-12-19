@@ -6,7 +6,7 @@ if (!function_exists('main_categories')) {
     {
         $CI = &get_instance();
         $CI->load->model('general/general_model');
-        return $CI->general_model->getcategori(["parent" => 0, "is_brand" => 0]);
+        return $CI->general_model->getcategori(["parent" => 0, "is_brand" => 0, "etc" => 0]);
     }
 
     function base_production_url($url)
@@ -14,6 +14,7 @@ if (!function_exists('main_categories')) {
         return 'https://www.trumecs.com/timthumb?src=https://www.trumecs.com/public/image/product/' . $url;
     }
 }
+
 if (!function_exists('product_categories')) {
     function product_categories($categoryId, $offset)
     {

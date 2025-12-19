@@ -78,12 +78,7 @@ $contact = $this->db->where('id', $ida)->get("admin")->result_array();
     <?php $this->load->view("front/_favicon"); ?>
     <!-- Bootstrap Core CSS -->
     <!--link  rel="stylesheet" href="<?php echo base_url(); ?>asset/css/bootstrap.min.css" -->
-    <?php if ($this->uri->segment(1) == "article" || $this->uri->segment(1) == null) : ?>
-        <!-- <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css"> -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <?php else : ?>
-        <link rel="stylesheet" href="<?php echo base_url() ?>asset/css/bootstrap.4-alpha.css">
-    <?php endif ?>
+
 
     <link rel="stylesheet" href="<?php echo base_url() ?>asset/css/template.css">
     <?php
@@ -101,6 +96,12 @@ $contact = $this->db->where('id', $ida)->get("admin")->result_array();
     <link rel="stylesheet" href="<?php echo base_url() ?>asset/js/slick/slick-theme.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <?php if ($this->uri->segment(1) == "article" || $this->uri->segment(1) == null) : ?>
+        <!-- <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css"> -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <?php else : ?>
+        <link rel="stylesheet" href="<?php echo base_url() ?>asset/css/bootstrap.4-alpha.css">
+    <?php endif ?>
     <?php
     if (isset($css_cdn)) {
         foreach ($css_cdn as $item) {
@@ -293,7 +294,7 @@ $contact = $this->db->where('id', $ida)->get("admin")->result_array();
     <?php if (!$this->agent->is_mobile()) {
         $this->load->view("front/_footerdesktop");
     } else {
-        $this->load->view("front/_footermobile_new");
+        $this->load->view("front/_footermobile");
     } ?>
     <div class="modal fade modalproccessshow" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-hidden="false">
         <div class="modal-dialog modal-sm">
@@ -307,14 +308,17 @@ $contact = $this->db->where('id', $ida)->get("admin")->result_array();
         </div>
     </div>
     <?php $this->load->view("front/popup_ads"); ?>
-    <?php
-    $javascript = array(base_url() . "asset/js/jquery.js", base_url() . 'asset/js/bootstrap.min.js', base_url() . 'asset/js/bootstrap-toolkit.min.js', base_url() . 'asset/js/slick/slick.min.js', base_url() . 'asset/js/bootstrap.offcanvas.min.js');
-    foreach ($javascript as $dt_javascript) {
-        echo '<script type="text/javascript" src="' . $dt_javascript . '"></script>';
-    }
-    ?>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <?php if ($this->uri->segment(1) == "article" || $this->uri->segment(1) == null || $this->uri->segment(1) == "product") : ?>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <?php else : ?>
+        <?php
+        $javascript = array(base_url() . "asset/js/jquery.js", base_url() . 'asset/js/bootstrap.min.js', base_url() . 'asset/js/bootstrap-toolkit.min.js', base_url() . 'asset/js/slick/slick.min.js', base_url() . 'asset/js/bootstrap.offcanvas.min.js');
+        foreach ($javascript as $dt_javascript) {
+            echo '<script type="text/javascript" src="' . $dt_javascript . '"></script>';
+        }
+        ?>
+    <?php endif; ?>
     <script src="https://kit.fontawesome.com/d64235c5d9.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="<?php echo base_url() ?>asset/js/trumecs.effect.js"></script>
     <script type="text/javascript" src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>

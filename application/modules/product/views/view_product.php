@@ -28,7 +28,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
 ?>
 <div class="container">
     <div class="row">
-        <div class="col-lg-12 p-t-1">
+        <div class="col-lg-12 pt-1">
             <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
                 <li><a class="forange"
                         href="<?php echo base_url() ?>"><?php echo $this->lang->line('breadcrumb_home', FALSE); ?></a>
@@ -124,12 +124,12 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                     </div>
                                 <?php } ?>
                                 <div class="col-lg-12">
-                                    <div class="card p-x-0 p-t-0 border-none">
+                                    <div class="card px-0 pt-0 border-none">
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <h1 itemprop="name"
                                                     alt="<?php echo ucwords(strtolower($key["tittle"])) ?>"
-                                                    class="fbold m-b-0"><?php echo (($key["tittle"])) ?></h1>
+                                                    class="fw-bold mb-0"><?php echo (($key["tittle"])) ?></h1>
 
                                                 <?php if ($key['is_sell'] == 1) : ?>
                                                     <span itemprop="mpn"
@@ -144,7 +144,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                                 </h6>-->
                                                 <?php endif; ?>
                                             </div>
-                                            <div class="col-lg-12 m-y-1">
+                                            <div class="col-lg-12 my-1">
                                                 <div class="bg-highlight __highlight_price">
                                                     <div itemprop="offers" itemscope itemtype="https://schema.org/Offer"
                                                         style="color:#333">
@@ -170,15 +170,22 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                                         ?>
                                                         <span class="f22 nomt forange"
                                                             style="font-size:24px;display:block;width:100%">
-                                                            <span class="fbold" itemprop="priceCurrency"
+                                                            <span class="fw-bold" itemprop="priceCurrency"
                                                                 content="IDR">Rp</span>
-                                                            <span class="price-label fbold"
-                                                                itemprop="price"><?= number_format($key["price_promo"] == 0 || $key['price_promo'] == null ? $key['is_sell'] == 1 ? $key["price"] : $key['rent_price'] : $key["price_promo"], 0, ',', '.'); ?></span>
+                                                            <span class="price-label fw-bold" itemprop="price">
+                                                                <?php
+                                                                $display_price = ($key["price_promo"] == 0 || $key['price_promo'] == null)
+                                                                    ? ($key['is_sell'] == 1 ? $key["price"] : $key['rent_price'])
+                                                                    : $key["price_promo"];
+
+                                                                echo number_format($display_price, 0, ',', '.');
+                                                                ?>
+                                                            </span>
                                                             <small class="f34" style="color:#999 !important">/
                                                                 <?php echo strtolower($key["unit"]) ?></small>
                                                         </span>
                                                         <?php if ($key['price_promo'] != 0 && $key['price_promo'] != null) : ?>
-                                                            <span class="fbold nomb label label-danger"
+                                                            <span class="fw-bold nomb label label-danger"
                                                                 data-promo-disc="<?php echo ceil(100 - $percent) ?>"
                                                                 style="font-weight:bold">- <span
                                                                     class="promo-label"><?= ceil(100 - $percent) ?></span>
@@ -213,21 +220,21 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                                 </div>
                                             </div>
 
-                                            <div class="col-lg-12 m-t-1">
+                                            <div class="col-lg-12 mt-1">
                                                 Info, pemesanan, diskon khusus:<br />
                                                 <a style="border:1px solid #ccc"
                                                     href="https://wa.me/6285176912338?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["tittle"] . ". Apakah barang ini tersedia?") ?>"
-                                                    class="btn btn-lg btnnew fbold text-center f14 wa-button-product"><i
-                                                        class="fa fa-whatsapp fa-2x f18 m-r-1"></i><?php echo $this->lang->line('tombol_whatsapp', FALSE); ?></a>
+                                                    class="btn btn-lg btnnew fw-bold text-center f14 wa-button-product"><i
+                                                        class="fa fa-whatsapp fa-2x f18 me-1"></i><?php echo $this->lang->line('tombol_whatsapp', FALSE); ?></a>
                                                 <a style="border:1px solid #ccc"
                                                     href="mailto:info@trumecs.com?subject=<?php echo $key["tittle"] ?>&body=<?php echo "Hi Trumecs, saya tertarik dengan " . $key["tittle"] . ". \n \t Apakah barang ini tersedia?" ?>"
-                                                    class=" btnnew  fbold text-center f14 email-button-product"><i
-                                                        class="fa fa-envelope-o fa-2x f18 m-r-1"></i><?php echo $this->lang->line('tombol_email', FALSE); ?></a>
+                                                    class=" btnnew  fw-bold text-center f14 email-button-product"><i
+                                                        class="fa fa-envelope-o fa-2x f18 me-1"></i><?php echo $this->lang->line('tombol_email', FALSE); ?></a>
                                             </div>
-                                            <div class="col-lg-12 m-t-1">
+                                            <div class="col-lg-12 mt-1">
                                                 <div class="d-flex flex-column">
                                                     <div class="d-flex justify-content-between">
-                                                        <p class="fbold">Detail</p>
+                                                        <p class="fw-bold">Detail</p>
                                                     </div>
                                                     <!--<div class="d-flex justify-content-between">
                                                         <p><?= $this->lang->line('product_location', FALSE) ?></p>
@@ -271,7 +278,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-12 m-t-2">
+                                            <div class="col-lg-12 mt-2">
                                                 <table class="table table-sm">
                                                     <tr>
                                                         <th colspan="2" class="bg-highlight">Spesifikasi</th>
@@ -285,7 +292,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                                     <?php endforeach; ?>
                                                 </table>
                                             </div>
-                                            <div class="col-lg-12 m-t-2">
+                                            <div class="col-lg-12 mt-2">
                                                 <table class="table table-sm">
                                                     <tr>
                                                         <th class="bg-highlight">
@@ -312,7 +319,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                         <hr />
                                     </div>
                                     <div class="col-lg-8">
-                                        <p class="m-a-0"><span class="fa fa-question-circle fa-2x"
+                                        <p class="m-0"><span class="fa fa-question-circle fa-2x"
                                                 style="vertical-align:middle"></span> Anda punya pertanyaan?
                                             Konsultasikan dengan agen kami</p>
                                     </div>
@@ -321,7 +328,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                 </div>
                             </div>
                             <?php foreach ($discussion as $key => $item) : ?>
-                            <div class="row p-b-2 m-t-1" data-message_id=""
+                            <div class="row pb-2 mt-1" data-message_id=""
                                 style="background:#f9f9f9;box-shadow:0px 3px 7px rgba(0,0,0,0.05);overflow:hidden;border-radius:5px;">
                                 <div class="col-lg-12 p-a-2" style="background:#fff;border-bottom:1px solid #ddd">
                                     <div class="media">
@@ -334,7 +341,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                                 <small><strong><?php echo $item['name'] ?></strong></small>&nbsp;&nbsp;&nbsp;&nbsp;<small
                                                     class="text-muted"><?php echo date('d M Y', $item['created_at']) ?></small>
                                             </h6>
-                                            <p class="m-b-0" style="color:#666"><?php echo $item['message'] ?></p>
+                                            <p class="mb-0" style="color:#666"><?php echo $item['message'] ?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -344,7 +351,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                         foreach ($item['reply'] as $keys => $items) :
                                     ?>
                                     <div class="clearfix"></div>
-                                    <div class="col-lg-11 col-lg-offset-1 p-x-0 m-t-2">
+                                    <div class="col-lg-11 col-lg-offset-1 px-0 mt-2">
                                         <div class="media">
                                             <div class="media-left">
                                                 <img class="media-object" style="border-radius:50%"
@@ -356,14 +363,14 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                                         class="text-muted">
                                                         <?php echo date('d M Y', $items['created_at']) ?></small>
                                                 </h6>
-                                                <p class="m-b-0" style="color:#666"><?php echo $items['message'] ?></p>
+                                                <p class="mb-0" style="color:#666"><?php echo $items['message'] ?></p>
                                             </div>
                                         </div>
                                     </div>
                                     <?php if ($items['reply_count'] > 1) : ?>
-                                    <div class="col-lg-11 col-lg-offset-1 p-x-0 m-t-2">
+                                    <div class="col-lg-11 col-lg-offset-1 px-0 mt-2">
                                         <button data-parent="0"
-                                            class="btn btn-more-comment btn-link p-a-0 m-a-0"><strong>Lihat komentar
+                                            class="btn btn-more-comment btn-link p-a-0 m-0"><strong>Lihat komentar
                                                 lainnya</strong></button>
                                     </div>
                                     <?php endif; ?>
@@ -371,47 +378,47 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                     endif; ?>
                                 </div>
                                 <div class="clearfix"></div>
-                                <div class="col-lg-11 col-lg-offset-1 p-x-0 m-t-2">
+                                <div class="col-lg-11 col-lg-offset-1 px-0 mt-2">
                                     <div class="media">
                                         <div class="media-left">
                                             <img class="media-object" style="border-radius:50%"
                                                 src="<?php echo base_url('public/image/user-girl-3.png'); ?>" />
                                         </div>
                                         <div class="media-body">
-                                            <div class="col-lg-12 p-l-0">
+                                            <div class="col-lg-12 ps-0">
                                                 <textarea data-parent="0" style="resize:none" rows="1"
                                                     class="form-control" name="message"
                                                     placeholder="Tulis komentar di sini..."></textarea>
                                                 <button data-parent="0" hidden
                                                     data-product_id="<?php echo $key['id'] ?>"
-                                                    class="btn-comment btn btnnew pull-right m-t-1">Kirim</button>
+                                                    class="btn-comment btn btnnew pull-right mt-1">Kirim</button>
                                                 <button data-parent="0" hidden
-                                                    class="btn-batal-comment btn btnnewwhite pull-right m-t-1 m-r-1">Batal</button>
+                                                    class="btn-batal-comment btn btnnewwhite pull-right mt-1 me-1">Batal</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <?php endforeach; ?>
-                            <div class="card p-a-1 m-t-1" id="konsultasi">
+                            <div class="card p-a-1 mt-1" id="konsultasi">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <textarea class="form-control form-message" data-parent="0" name="message"
                                             placeholder="Apa yang ingin anda tanyakan?"></textarea>
                                         <button data-product_id="<?php echo $key['id'] ?>" data-parent="0"
-                                            class="btn-message btn btnnew pull-right m-t-1">Kirim</button>
+                                            class="btn-message btn btnnew pull-right mt-1">Kirim</button>
                                     </div>
                                 </div>
                             </div>
                         </div>-->
-                        <div class="clearfix m-b-1"></div>
+                        <div class="clearfix mb-1"></div>
                         <div class="col-lg-12">
                             <div class="list_same_product">
                                 <?php //$this->load->view("_sameproduct", array('title' => $key['tittle'])) 
                                 ?>
-                                <div class="row m-b-1 m-t-3">
+                                <div class="row mb-1 mt-3">
                                     <div class="col-lg-12">
-                                        <p class="fbold f22"><span class="fa fa-shopping-cart forange"></span>
+                                        <p class="fw-bold f22"><span class="fa fa-shopping-cart forange"></span>
                                             <?php echo $this->lang->line('judul_produk_terkait', FALSE); ?> <?php echo ucwords(strtolower($key["tittle"])) ?>
                                         </p>
                                     </div>
@@ -440,10 +447,10 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                 </table>
                             </div>
                         </div>
-                        <div class="clearfix m-b-1"></div>
-                        <div class="col-lg-12 m-y-3">
+                        <div class="clearfix mb-1"></div>
+                        <div class="col-lg-12 my-3">
                             <div class="panel-kotak panel-default">
-                                <p class="f22 m-b-1"><strong><span class="fa fa-rss forange"></span>
+                                <p class="f22 mb-1"><strong><span class="fa fa-rss forange"></span>
                                         <?php echo $this->lang->line('judul_informasi_terkait', FALSE) . ' ' . $key['tittle']; ?></strong>
                                 </p>
                                 <?php echo $this->load->view('article/_same_article', array('article' => $relatedarticle, 'media' => 'half', 'img_base_url' => $this->base_url)); ?>
@@ -466,16 +473,16 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                             <?php endif; ?>
                             
                         </div>
-                        <div class="clearfix m-b-1"></div>
+                        <div class="clearfix mb-1"></div>
                         <div class="col-lg-12">
                             <div class="card p-a-1">
                                 <div class="row">
                                     <div class="col-lg-12 text-center">
                                         <span
-                                            class="blinking fbold"><?php echo $this->lang->line('judul_cta', FALSE); ?>
+                                            class="blinking fw-bold"><?php echo $this->lang->line('judul_cta', FALSE); ?>
                                             <?php echo $key["tittle"] ?>?</span>
                                     </div>
-                                    <div class="clearfix m-b-1"></div>
+                                    <div class="clearfix mb-1"></div>
                                     <div class="col-lg-12">
                                         <p class="quantity pull-right">
                                             <button type="button" class="btn btnnew btn-sm btn-min">-</button>
@@ -499,7 +506,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                     <?php if ($key["moq"] != 0 and $key["stock"] != 0 and $key["stock"] >= 1 and $key["stock"] >= $key["moq"]) : ?>
                                     <?php if ($key["promo_cbd_price"] != '0') : ?>
                                     <div class="col-lg-12">
-                                        <h6 class="fbold">Metode Pembayaran</h6>
+                                        <h6 class="fw-bold">Metode Pembayaran</h6>
                                         <a style="border:1px solid #ccc;color:#fa8420;"
                                             data-cbd-price="<?php echo number_format(($key["promo_cbd_price"] * $key["price"] / 100), 0, ',', '.') ?>"
                                             class="btn text-center f14 cbd-button <?php echo isset($cart_key) && $cart_key['method'] == 'cbd' ? 'active' : '' ?>">CBD</a>
@@ -507,9 +514,9 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                             class="btn text-center f14 cod-button <?php echo isset($cart_key) && $cart_key['method'] == 'cod' ? 'active' : '' ?>"
                                             data-cod-price="<?php echo number_format($key["price_promo"], 0, ',', '.') ?>">COD</a>
                                     </div>
-                                    <div class="clearfix m-b-1"></div>
+                                    <div class="clearfix mb-1"></div>
                                     <div class="col-lg-12">
-                                        <h6 class="fbold">Diskon tambahan</h6>
+                                        <h6 class="fw-bold">Diskon tambahan</h6>
                                         <div
                                             class="ticket ticket-cbd <?php echo isset($cart_key) && $cart_key['method'] == 'cbd' ? 'ticket-active' : '' ?>">
                                             <div class="ticket__content">
@@ -543,12 +550,12 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                                 <form id="referral-form"
                                                     action="<?php echo site_url('cart/check_referral_code'); ?>"
                                                     method="post">
-                                                    <div class="input-code input-group m-t-1">
+                                                    <div class="input-code input-group mt-1">
                                                         <input type="text" name="referral-code" maxlength="10"
                                                             placeholder="Kode referal"
                                                             class="form-control form-control-sm"
                                                             style="text-transform:uppercase" />
-                                                        <span class="input-group-btn">
+                                                        <span class="input-groupbtn">
                                                             <button type="submit"
                                                                 class="btn btn-sm btnnew check-referral-code">Kirim</button>
                                                         </span>
@@ -571,21 +578,21 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                                 class="total-label"><?php echo number_format($key['price_promo'] != 0 ? $key['price_promo'] : $key['price'], 0, ',', '.'); ?></span></strong>
                                     </div>
                                     <?php endif ?>
-                                    <div class="clearfix m-b-1"></div>
+                                    <div class="clearfix mb-1"></div>
                                     <div class="col-lg-12">
                                         <form id="form-cart" action="<?php echo base_url() ?>cart/addproduct"
                                             method="post">
                                             <button
-                                                class="btn btnnew btn-block fbold text-center f14 cart-button-product"><i
-                                                    class="fa fa-cart-plus fa-2x f18 m-r-1"
+                                                class="btn btnnew btn-block fw-bold text-center f14 cart-button-product"><i
+                                                    class="fa fa-cart-plus fa-2x f18 me-1"
                                                     style="vertical-align:middle"></i> Tambah ke Keranjang</button>
                                         </form>
                                     </div>
-                                    <div class="clearfix m-b-1"></div>
+                                    <div class="clearfix mb-1"></div>
                                     <div class="col-lg-12">
                                         <a href="https://wa.me/6282122668008?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["tittle"] . ". Apakah barang ini tersedia?") ?>"
-                                            class="btn btnnew btn-block fbold text-center f14 beli-button-product"><i
-                                                class="fa fa-shopping-cart fa-2x f18 m-r-1"
+                                            class="btn btnnew btn-block fw-bold text-center f14 beli-button-product"><i
+                                                class="fa fa-shopping-cart fa-2x f18 me-1"
                                                 style="vertical-align:middle"></i>
                                             <?= $this->lang->line($key['is_rent'] == 1 ? 'attr_rent_now' : 'attr_buy_now', FALSE); ?></a>
                                     </div>
@@ -596,23 +603,23 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                         <div class="col-lg-12">
                             <div class="card p-a-1">
                                 <div class="row">
-                                    <div class="col-lg-12 m-b-1">
+                                    <div class="col-lg-12 mb-1">
                                         <a style="border:1px solid #ccc" onClick="window.Tawk_API.maximize();"
                                             class="chat-button-product btn btn-block f14 chat-button-product"><i
-                                                class="fa fa-comment-o fa-2x f18 m-r-1"></i><?php echo $this->lang->line('tombol_chat', FALSE); ?></a>
+                                                class="fa fa-comment-o fa-2x f18 me-1"></i><?php echo $this->lang->line('tombol_chat', FALSE); ?></a>
                                     </div>
-                                    <div class="col-lg-12 m-b-1">
+                                    <div class="col-lg-12 mb-1">
                                         <a style="border:1px solid #ccc"
                                             href="https://wa.me/6282122668008?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["tittle"] . ". Apakah barang ini tersedia?") ?>"
                                             class="btn btn-block f14 wa-button-product"><i
-                                                class="fa fa-whatsapp fa-2x f18 m-r-1"></i><?php echo $this->lang->line('tombol_whatsapp', FALSE); ?></a>
+                                                class="fa fa-whatsapp fa-2x f18 me-1"></i><?php echo $this->lang->line('tombol_whatsapp', FALSE); ?></a>
                                     </div>
                                     <div class="clearfix"></div>
                                     <div class="col-lg-12">
                                         <a style="border:1px solid #ccc"
                                             href="mailto:info@trumecs.com?subject=<?php echo $key["tittle"] ?>&body=<?php echo "Hi Trumecs, saya tertarik dengan " . $key["tittle"] . ". \n \t Apakah barang ini tersedia?" ?>"
                                             class="btn btn-block f14 email-button-product"><i
-                                                class="fa fa-envelope-o fa-2x f18 m-r-1"></i><?php echo $this->lang->line('tombol_email', FALSE); ?></a>
+                                                class="fa fa-envelope-o fa-2x f18 me-1"></i><?php echo $this->lang->line('tombol_email', FALSE); ?></a>
                                     </div>
                                 </div>
                             </div>
