@@ -3,7 +3,7 @@ $session = $this->session->all_userdata();
 $sessionmember = isset($session["member"]) ? $session["member"] : array('id' => null);
 ?>
 
-<?php if ($this->uri->segment(1) == "article" || $this->uri->segment(1) == null) { ?>
+<?php if ($this->uri->segment(1) == "article" || $this->uri->segment(1) == null || $this->uri->segment(1) == "product" || $this->uri->segment(1) == "home") { ?>
     <nav class="navbar navbar-expand-lg bg-white border-bottom" role="navigation">
         <div class="container-fluid d-flex flex-column gap-1 py-2 px-4">
             <div class=" d-flex align-items-center justify-content-between w-100">

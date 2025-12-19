@@ -96,9 +96,10 @@ $contact = $this->db->where('id', $ida)->get("admin")->result_array();
     <link rel="stylesheet" href="<?php echo base_url() ?>asset/js/slick/slick-theme.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <?php if ($this->uri->segment(1) == "article" || $this->uri->segment(1) == null) : ?>
+    <?php if ($this->uri->segment(1) == "article" || $this->uri->segment(1) == null || $this->uri->segment(1) == "product" || $this->uri->segment(1) == "home") : ?>
         <!-- <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css"> -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.datatables.net/2.3.5/css/dataTables.dataTables.css" />
     <?php else : ?>
         <link rel="stylesheet" href="<?php echo base_url() ?>asset/css/bootstrap.4-alpha.css">
     <?php endif ?>
@@ -308,8 +309,9 @@ $contact = $this->db->where('id', $ida)->get("admin")->result_array();
         </div>
     </div>
     <?php $this->load->view("front/popup_ads"); ?>
-    <?php if ($this->uri->segment(1) == "article" || $this->uri->segment(1) == null || $this->uri->segment(1) == "product") : ?>
+    <?php if ($this->uri->segment(1) == "article" || $this->uri->segment(1) == null || $this->uri->segment(1) == "product" || $this->uri->segment(1) == "home") : ?>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.datatables.net/2.3.5/js/dataTables.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <?php else : ?>
         <?php
