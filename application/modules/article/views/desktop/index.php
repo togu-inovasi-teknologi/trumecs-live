@@ -76,7 +76,7 @@
                             <div class="card border-0 shadow-lg">
                                 <div class="card-header bg-primary text-white py-3">
                                     <h5 class="fw-bold mb-0">
-                                        <i class="fas fa-fire me-2"></i>
+                                        <i class="bi bi-fire me-2"></i>
                                         <?= $this->lang->line('label_trending'); ?>
                                     </h5>
                                 </div>

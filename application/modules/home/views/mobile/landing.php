@@ -24,7 +24,7 @@
                                 <p class="step-subtitle">Find products & reliable suppliers</p>
                             </div>
                             <div class="step-arrow">
-                                <i class="fas fa-chevron-down"></i>
+                                <i class="bi bi-chevron-down"></i>
                             </div>
                         </div>
                         <div class="step-content">
@@ -32,15 +32,15 @@
                             <div class="step-details">
                                 <ul class="step-list">
                                     <li>
-                                        <i class="fas fa-search me-3"></i>
+                                        <i class="bi bi-search me-3"></i>
                                         <span>Search by keywords or categories</span>
                                     </li>
                                     <li>
-                                        <i class="fas fa-file-alt me-3"></i>
+                                        <i class="bi bi-file-earmark-text me-3"></i>
                                         <span>Post a sourcing request to get multiple quotes</span>
                                     </li>
                                     <li>
-                                        <i class="fas fa-users me-3"></i>
+                                        <i class="bi bi-person me-3"></i>
                                         <span>Connect with verified suppliers instantly</span>
                                     </li>
                                 </ul>
@@ -60,7 +60,7 @@
                                 <p class="step-subtitle">Authoritative third-party verification</p>
                             </div>
                             <div class="step-arrow">
-                                <i class="fas fa-chevron-down"></i>
+                                <i class="bi bi-chevron-down"></i>
                             </div>
                         </div>
                         <div class="step-content">
@@ -68,15 +68,15 @@
                             <div class="step-details">
                                 <ul class="step-list">
                                     <li>
-                                        <i class="fas fa-shield-alt me-3"></i>
+                                        <i class="bi bi-shield me-3"></i>
                                         <span>Choose audited suppliers verified by third-party</span>
                                     </li>
                                     <li>
-                                        <i class="fas fa-chart-line me-3"></i>
+                                        <i class="bi bi-bar-chart-line me-3"></i>
                                         <span>Access supplier's audited reports for free</span>
                                     </li>
                                     <li>
-                                        <i class="fas fa-check-circle me-3"></i>
+                                        <i class="bi bi-check-circle me-3"></i>
                                         <span>Quality assurance and reliability check</span>
                                     </li>
                                 </ul>
@@ -96,7 +96,7 @@
                                 <p class="step-subtitle">Contact and negotiate with suppliers</p>
                             </div>
                             <div class="step-arrow">
-                                <i class="fas fa-chevron-down"></i>
+                                <i class="bi bi-chevron-down"></i>
                             </div>
                         </div>
                         <div class="step-content">
@@ -104,15 +104,15 @@
                             <div class="step-details">
                                 <ul class="step-list">
                                     <li>
-                                        <i class="fas fa-envelope me-3"></i>
+                                        <i class="bi bi-envelope me-3"></i>
                                         <span>Send inquiries with "Contact Now" button</span>
                                     </li>
                                     <li>
-                                        <i class="fas fa-comment-dots me-3"></i>
+                                        <i class="bi bi-chat-dots me-3"></i>
                                         <span>Chat with suppliers in real-time</span>
                                     </li>
                                     <li>
-                                        <i class="fas fa-file-invoice-dollar me-3"></i>
+                                        <i class="bi bi-journal-medical me-3"></i>
                                         <span>Receive and manage quotations in your virtual office</span>
                                     </li>
                                 </ul>
@@ -132,7 +132,7 @@
                                 <p class="step-subtitle">Place orders online securely</p>
                             </div>
                             <div class="step-arrow">
-                                <i class="fas fa-chevron-down"></i>
+                                <i class="bi bi-chevron-down"></i>
                             </div>
                         </div>
                         <div class="step-content">
@@ -140,15 +140,15 @@
                             <div class="step-details">
                                 <ul class="step-list">
                                     <li>
-                                        <i class="fas fa-shopping-cart me-3"></i>
+                                        <i class="bi bi-cart me-3"></i>
                                         <span>Search products with Secured Trading Service</span>
                                     </li>
                                     <li>
-                                        <i class="fas fa-lock me-3"></i>
+                                        <i class="bi bi-lock me-3"></i>
                                         <span>Escrow protection and refund support</span>
                                     </li>
                                     <li>
-                                        <i class="fas fa-shipping-fast me-3"></i>
+                                        <i class="bi bi-truck me-3"></i>
                                         <span>Secure payment and tracking</span>
                                     </li>
                                 </ul>
@@ -165,7 +165,7 @@
                     <div class="video-container">
                         <div class="video-placeholder">
                             <div class="play-button">
-                                <i class="fas fa-play"></i>
+                                <i class="bi bi-play"></i>
                             </div>
                             <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
                                 alt="Business Process Video"
@@ -248,7 +248,7 @@
                                 <div class="card-footer">
                                     <span class="view-text">Lihat Detail</span>
                                     <div class="action-arrow">
-                                        <i class="fas fa-arrow-right"></i>
+                                        <i class="bi bi-arrow-right"></i>
                                     </div>
                                 </div>
                             </div>
@@ -1563,7 +1563,7 @@
                         <p>Hover pada langkah di sebelah kiri untuk melihat detail</p>
                         <div class="mt-4">
                             <div class="alert alert-info">
-                                <i class="fas fa-info-circle me-2"></i>
+                                <i class="bi bi-info-circle me-2"></i>
                                 <strong>Tips:</strong> Arahkan mouse ke langkah untuk melihat detail
                             </div>
                         </div>

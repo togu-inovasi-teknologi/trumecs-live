@@ -128,7 +128,7 @@
                 <label for="kata-kunci" class="form-label fw-semibold"><?= $this->lang->line('keyword_label', FALSE) ?></label>
                 <div class="input-group">
                     <span class="input-group-text bg-transparent border-end-0">
-                        <i class="fas fa-search"></i>
+                        <i class="bi bi-search"></i>
                     </span>
                     <input type="text" class="form-control border-start-0" id="kata-kunci" name="keyword"
                         placeholder="<?= $this->lang->line('keyword_label', FALSE) ?>">

@@ -5,7 +5,7 @@
 			<div class="card bg-light">
 				<div class="card-body border-bottom py-3">
 					<h2 class="fw-bold text-primary mb-0">
-						<i class="fas fa-cube me-2"></i>Category & Brand Management
+						<i class="bi bi-box me-2"></i>Category & Brand Management
 					</h2>
 				</div>
 			</div>
@@ -45,7 +45,7 @@
 											<div class="col-lg-12 d-flex justify-content-between align-items-center">
 												<h3 class="fw-bold">Category List & Sub</h3>
 												<button data-bs-target="#add-categori" data-bs-toggle="modal" class="btn btn-primary">
-													<i class="fas fa-plus me-1"></i>Tambah Kategori
+													<i class="bi bi-plus me-1"></i>Tambah Kategori
 												</button>
 											</div>
 											<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -62,10 +62,10 @@
 														<h3 class="fw-bold">Product</h3>
 														<div class="d-flex gap-2">
 															<button data-bs-target="#add-subcategori" data-bs-toggle="modal" class="btn btn-primary">
-																<i class="fas fa-plus me-1"></i>Tambah Sub Kategori
+																<i class="bi bi-plus me-1"></i>Tambah Sub Kategori
 															</button>
 															<button data-bs-target="#add-subsubcategori" data-bs-toggle="modal" class="btn btn-primary">
-																<i class="fas fa-plus me-1"></i>Tambah Sub Sub Categori
+																<i class="bi bi-plus me-1"></i>Tambah Sub Sub Categori
 															</button>
 														</div>
 													</div>
@@ -261,10 +261,10 @@
 														<h3 class="fw-bold">Jasa</h3>
 														<div class="d-flex gap-2">
 															<button data-bs-target="#add-subcategori-jasa" data-bs-toggle="modal" class="btn btn-primary">
-																<i class="fas fa-plus me-1"></i>Tambah Sub Jasa
+																<i class="bi bi-plus me-1"></i>Tambah Sub Jasa
 															</button>
 															<button data-bs-target="#add-subsubcategori-jasa" data-bs-toggle="modal" class="btn btn-primary">
-																<i class="fas fa-plus me-1"></i>Tambah Sub Sub Jasa
+																<i class="bi bi-plus me-1"></i>Tambah Sub Sub Jasa
 															</button>
 														</div>
 													</div>
@@ -466,7 +466,7 @@
 												<h3 class="fw-bold">Brand List</h3>
 												<div class="d-flex gap-2">
 													<button data-bs-target="#add-brand" data-bs-toggle="modal" class="btn btn-primary">
-														<i class="fas fa-plus me-1"></i>Tambah Merk
+														<i class="bi bi-plus me-1"></i>Tambah Merk
 													</button>
 												</div>
 											</div>
@@ -578,7 +578,7 @@
 												<h3 class="fw-bold">Model List</h3>
 												<div class="d-flex gap-2">
 													<button data-bs-target="#add-model" data-bs-toggle="modal" class="btn btn-primary">
-														<i class="fas fa-plus me-1"></i>Tambah Model
+														<i class="bi bi-plus me-1"></i>Tambah Model
 													</button>
 												</div>
 											</div>
@@ -715,7 +715,7 @@
 												<h3 class="fw-bold">Attribute List</h3>
 												<div class="d-flex gap-2">
 													<button data-bs-target="#add-attribute" data-bs-toggle="modal" class="btn btn-primary">
-														<i class="fas fa-plus me-1"></i>Tambah Attribute
+														<i class="bi bi-plus me-1"></i>Tambah Attribute
 													</button>
 												</div>
 											</div>
@@ -794,7 +794,7 @@
 												<h3 class="fw-bold">Grade List</h3>
 												<div class="d-flex gap-2">
 													<button data-bs-target="#add-grade" data-bs-toggle="modal" class="btn btn-primary">
-														<i class="fas fa-plus me-1"></i>Tambah Grade
+														<i class="bi bi-plus me-1"></i>Tambah Grade
 													</button>
 												</div>
 											</div>

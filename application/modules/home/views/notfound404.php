@@ -94,9 +94,9 @@
                         letter-spacing: 3px;
                         text-shadow: 0 0 10px rgba(243, 156, 18, 0.5);
                     ">
-                        <i class="fas fa-exclamation-triangle me-3"></i>
+                        <i class="bi bi-exclamation-triangle me-3"></i>
                         Komponen Hilang
-                        <i class="fas fa-exclamation-triangle ms-3"></i>
+                        <i class="bi bi-exclamation-triangle ms-3"></i>
                     </h2>
 
                     <p class="lead mb-4" style="max-width: 600px; margin: 0 auto;">
@@ -109,13 +109,13 @@
                 <div class="text-center">
                     <div class="btn-group" role="group" aria-label="404 Actions">
                         <a href="/" class="btn btn-lg btn-warning px-4 rounded-start">
-                            <i class="fas fa-industry me-2"></i>Kembali ke Awal
+                            <i class="bi bi-buildings me-2"></i>Kembali ke Awal
                         </a>
                         <a href="javascript:history.back()" class="btn btn-lg btn-success px-4 border-start-0">
-                            <i class="fas fa-chevron-left me-2"></i>Kembali ke sebelumnya
+                            <i class="bi bi-chevron-left me-2"></i>Kembali ke sebelumnya
                         </a>
                         <button onclick="location.reload()" class="btn btn-lg btn-primary px-4 rounded-end border-start-0">
-                            <i class="fas fa-sync-alt me-2"></i>Refresh Halaman
+                            <i class="bi bi-arrow-repeat me-2"></i>Refresh Halaman
                         </button>
                     </div>
                 </div>
@@ -125,7 +125,7 @@
                     <div class="row align-items-center">
                         <div class="col-md-12 text-md-end">
                             <small class="text-muted">
-                                <i class="fas fa-microchip me-1"></i>
+                                <i class="bi bi-cpu me-1"></i>
                                 Industrial Error System v2.4
                             </small>
                         </div>

@@ -103,7 +103,7 @@
             <!-- Button selalu di bawah -->
             <div class="flex-shrink-0">
                 <span id="btnbuy<?php echo $key["id"] ?>" class="btn btn-primary w-100 rounded-0">
-                    <i class="fas fa-shopping-cart"></i> Beli
+                    <i class="bi bi-cart"></i> Beli
                 </span>
             </div>
         </a>

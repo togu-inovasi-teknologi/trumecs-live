@@ -34,7 +34,7 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                         <h1 class="h2 fw-bold mb-3" itemprop="headline"><?php echo $key["title"]; ?></h1>
 
                         <div class="d-flex align-items-center text-muted mb-4">
-                            <i class="fas fa-calendar me-2"></i>
+                            <i class="bi bi-calendar me-2"></i>
                             <span><?php echo $this->dateformat->indonesia($key["date"]); ?></span>
                         </div>
 

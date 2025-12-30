@@ -23,7 +23,7 @@ foreach ($jenis as $key) {
 			</div>
 			<div class="col-md-2">
 				<button type="button" class="btn btn-outline-danger del-att w-100">
-					<i class="fas fa-times"></i>
+					<i class="bi bi-x-lg"></i>
 				</button>
 			</div>
 		</div>
@@ -43,7 +43,7 @@ foreach ($jenis as $key) {
 					<div class="row align-items-center">
 						<div class="col-md-9">
 							<h2 class="fw-bold text-primary mb-0">
-								<i class="fas fa-cube me-2"></i>Form Produk
+								<i class="bi bi-box me-2"></i>Form Produk
 							</h2>
 						</div>
 						<div class="col-md-3">
@@ -70,7 +70,7 @@ foreach ($jenis as $key) {
 					<div class="card border-0 shadow-sm h-100">
 						<div class="card-header bg-dark text-white">
 							<h5 class="card-title mb-0">
-								<i class="fas fa-info-circle me-2"></i>Informasi Dasar
+								<i class="bi bi-info-circle me-2"></i>Informasi Dasar
 							</h5>
 						</div>
 						<div class="card-body">
@@ -109,7 +109,7 @@ foreach ($jenis as $key) {
 					<div class="card border-0 shadow-sm h-100">
 						<div class="card-header bg-dark text-white">
 							<h5 class="card-title mb-0">
-								<i class="fas fa-tag me-2"></i>Harga & Diskon
+								<i class="bi bi-tag me-2"></i>Harga & Diskon
 							</h5>
 						</div>
 						<div class="card-body">
@@ -176,7 +176,7 @@ foreach ($jenis as $key) {
 					<div class="card border-0 shadow-sm h-100">
 						<div class="card-header bg-dark text-white">
 							<h5 class="card-title mb-0">
-								<i class="fas fa-tags me-2"></i>Kategori & Spesifikasi
+								<i class="bi bi-tags me-2"></i>Kategori & Spesifikasi
 							</h5>
 						</div>
 						<div class="card-body">
@@ -233,7 +233,7 @@ foreach ($jenis as $key) {
 									<div class="d-flex gap-1 align-items-center justify-content-center">
 										<small class="text-muted">Opsional</small>
 										<button type="button" class="btn btn-outline-success btn-sm add-att">
-											<i class="fas fa-plus me-1"></i>Tambah Atribut
+											<i class="bi bi-plus me-1"></i>Tambah Atribut
 										</button>
 									</div>
 
@@ -253,7 +253,7 @@ foreach ($jenis as $key) {
 													</div>
 													<div class="col-md-2">
 														<button type="button" class="btn btn-outline-danger del-att w-100">
-															<i class="fas fa-times"></i>
+															<i class="bi bi-x-lg"></i>
 														</button>
 													</div>
 												</div>
@@ -276,7 +276,7 @@ foreach ($jenis as $key) {
 					<div class="card border-0 shadow-sm h-100">
 						<div class="card-header bg-dark text-white">
 							<h5 class="card-title mb-0">
-								<i class="fas fa-boxes me-2"></i>Stok & Pengiriman
+								<i class="bi bi-boxes me-2"></i>Stok & Pengiriman
 							</h5>
 						</div>
 						<div class="card-body">
@@ -303,7 +303,7 @@ foreach ($jenis as $key) {
 					<div class="card border-0 shadow-sm h-100">
 						<div class="card-header bg-dark text-white">
 							<h5 class="card-title mb-0">
-								<i class="fas fa-weight-hanging me-2"></i>Properti Fisik
+								<i class="bi bi-duffle-fill me-2"></i>Properti Fisik
 							</h5>
 						</div>
 						<div class="card-body">
@@ -348,7 +348,7 @@ foreach ($jenis as $key) {
 					<div class="card border-0 shadow-sm h-100">
 						<div class="card-header bg-dark text-white">
 							<h5 class="card-title mb-0">
-								<i class="fas fa-shield-alt me-2"></i>Garansi & Links
+								<i class="bi bi-shield me-2"></i>Garansi & Links
 							</h5>
 						</div>
 						<div class="card-body">
@@ -398,7 +398,7 @@ foreach ($jenis as $key) {
 			<div class="card border-0 shadow-sm">
 				<div class="card-header bg-dark text-dark">
 					<h5 class="card-title mb-0">
-						<i class="fas fa-shipping-fast me-2"></i>Estimasi Pengiriman
+						<i class="bi bi-truck me-2"></i>Estimasi Pengiriman
 					</h5>
 				</div>
 				<div class="card-body">
@@ -431,7 +431,7 @@ foreach ($jenis as $key) {
 					<div class="card border-0 shadow-sm h-100">
 						<div class="card-header bg-dark text-white">
 							<h5 class="card-title mb-0">
-								<i class="fas fa-image me-2"></i>Gambar Produk
+								<i class="bi bi-image me-2"></i>Gambar Produk
 							</h5>
 						</div>
 						<div class="card-body">
@@ -440,7 +440,7 @@ foreach ($jenis as $key) {
 								<input type="file" class="form-control" id="file" name="fileimg" jq-model="fileupload" <?php echo (empty($this->input->get("id"))) ? "required" : ""; ?>>
 								<div class="form-text">
 									<small>
-										<i class="fas fa-info-circle me-1"></i>
+										<i class="bi bi-info-circle me-1"></i>
 										Ukuran maksimal 3000x3000 px • Format: JPG/PNG
 									</small>
 								</div>
@@ -458,7 +458,7 @@ foreach ($jenis as $key) {
 								<?php endif ?>
 							<?php else: ?>
 								<div class="text-center border rounded p-4 bg-light">
-									<i class="fas fa-image fa-3x text-muted mb-2"></i>
+									<i class="bi bi-image fa-3x text-muted mb-2"></i>
 									<p class="text-muted mb-0">Preview gambar akan muncul di sini</p>
 									<img class="img-fluid rounded mt-3 blah d-none">
 								</div>
@@ -472,7 +472,7 @@ foreach ($jenis as $key) {
 					<div class="card border-0 shadow-sm h-100">
 						<div class="card-header bg-dark text-white">
 							<h5 class="card-title mb-0">
-								<i class="fas fa-align-left me-2"></i>Deskripsi Produk
+								<i class="bi bi-text-left me-2"></i>Deskripsi Produk
 							</h5>
 						</div>
 						<div class="card-body">
@@ -491,7 +491,7 @@ foreach ($jenis as $key) {
 							<!-- Submit Button -->
 							<div class="mt-4">
 								<button class="btn btn-primary btn-lg w-100 py-3" type="submit">
-									<i class="fas fa-save me-2"></i>
+									<i class="bi bi-save me-2"></i>
 									<?php echo (!empty($this->input->get("id"))) ? 'Update Produk' : 'Simpan Produk'; ?>
 								</button>
 							</div>

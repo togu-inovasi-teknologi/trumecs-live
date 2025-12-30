@@ -304,7 +304,7 @@ class General extends MX_Controller
 				echo '<div class="col-md-5"><label class="form-label small text-muted">Nama Atribut</label><input type="text" class="form-control" jq-model="atribut" placeholder="Contoh: Warna, Ukuran, Material" name="attribute[]" value="' . htmlspecialchars($key['name']) . '"></div>';
 				echo '<div class="col-md-5 p-a-0"><label class="form-label small text-muted">Nilai Atribut</label><input type="text" class="form-control" jq-model="value" placeholder="Contoh: Merah, 10x20cm, Plastik" name="value[]" value=""></div>';
 				echo '<div class="col-md-2"><button type="button" class="btn btn-outline-danger del-att w-100">
-															<i class="fas fa-times"></i>
+															<i class="bi bi-x-lg"></i>
 														</button></div>';
 				echo '</div>';
 			}

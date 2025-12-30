@@ -6,7 +6,7 @@
     <!-- Teks di bawah gambar -->
     <div class="card-body p-3">
         <p class="text-muted small mb-1">
-            <i class="fas fa-calendar me-1"></i>
+            <i class="bi bi-calendar me-1"></i>
             <?php echo $this->dateformat->indonesia($article["date"]); ?>
         </p>
         <h6 class="card-title fw-bold text-dark mb-0"><?= $article["title"] ?></h6>

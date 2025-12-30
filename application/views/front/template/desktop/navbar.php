@@ -23,7 +23,7 @@ $sessionmember = isset($session["member"]) ? $session["member"] : array('id' => 
                                     placeholder="<?= isset($search_placeholder) ? $search_placeholder : $this->lang->line('placeholder_pencarian', FALSE) ?>"
                                     value="<?php echo $this->input->get("nama"); ?>">
                                 <button class="btn btn-primary rounded-end" id="searchbuttontemplate">
-                                    <i class="fas fa-search"></i>
+                                    <i class="bi bi-search"></i>
                                 </button>
                             </div>
                         </div>
@@ -45,7 +45,7 @@ $sessionmember = isset($session["member"]) ? $session["member"] : array('id' => 
                             <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem;">
                                 <?php echo count($this->cart->contents()) ?>
                             </span>
-                            <i class="fas fa-shopping-cart fs-5"></i>
+                            <i class="bi bi-cart fs-5"></i>
                         </a>
 
                         <?php if ($sessionmember["id"] != null) :
@@ -59,7 +59,7 @@ $sessionmember = isset($session["member"]) ? $session["member"] : array('id' => 
                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem;">
                                     <?php echo count($this->cart->contents()) ?>
                                 </span>
-                                <i class="fas fa-comment fs-5"></i>
+                                <i class="bi bi-chat-dots fs-5"></i>
                             </a>
 
                             <!-- Notification -->
@@ -67,13 +67,13 @@ $sessionmember = isset($session["member"]) ? $session["member"] : array('id' => 
                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem;">
                                     <?php echo count($this->cart->contents()) ?>
                                 </span>
-                                <i class="fas fa-bell fs-5"></i>
+                                <i class="bi bi-bell fs-5"></i>
                             </a>
 
                             <!-- User Dropdown -->
                             <div class="dropdown">
                                 <a class="dropdown-toggle text-dark text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-user fs-5"></i>
+                                    <i class="bi bi-person fs-5"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg" style="min-width: 280px;">
                                     <li>
@@ -99,13 +99,13 @@ $sessionmember = isset($session["member"]) ? $session["member"] : array('id' => 
                                         <div class="row g-0 text-center">
                                             <div class="col-6 border-end">
                                                 <a href="<?php echo base_url() ?>member/store" class="dropdown-item py-2">
-                                                    <i class="fas fa-building me-2"></i>
+                                                    <i class="bi bi-building me-2"></i>
                                                     <span>Toko</span>
                                                 </a>
                                             </div>
                                             <div class="col-6">
                                                 <a href="<?php echo base_url() ?>member/bulk" class="dropdown-item py-2">
-                                                    <i class="fas fa-files me-2"></i>
+                                                    <i class="bi bi-files me-2"></i>
                                                     <span>RFQ Saya</span>
                                                 </a>
                                             </div>
@@ -116,7 +116,7 @@ $sessionmember = isset($session["member"]) ? $session["member"] : array('id' => 
                                     </li>
                                     <li>
                                         <a href="<?php echo base_url() ?>member/logout" class="dropdown-item text-danger py-2">
-                                            <i class="fas fa-sign-out-alt me-2"></i>
+                                            <i class="bi bi-box-arrow-right me-2"></i>
                                             <span>Keluar</span>
                                         </a>
                                     </li>

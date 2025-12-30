@@ -107,7 +107,7 @@ function namectgr($id)
 						<!-- Modal Header -->
 						<div class="modal-header bg-primary text-white">
 							<h5 class="modal-title fw-bold" id="downloadModalLabel">
-								<i class="fas fa-download me-2"></i>Download Data
+								<i class="bi bi-download me-2"></i>Download Data
 							</h5>
 							<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
@@ -118,7 +118,7 @@ function namectgr($id)
 							<div class="download-section mb-4">
 								<div class="section-header mb-3">
 									<h6 class="fw-semibold text-primary mb-2">
-										<i class="fas fa-box me-2"></i>Download Data Produk
+										<i class="bi bi-box me-2"></i>Download Data Produk
 									</h6>
 									<p class="text-muted small mb-0">Pilih jenis data produk yang ingin diunduh</p>
 								</div>
@@ -128,7 +128,7 @@ function namectgr($id)
 										class="btn btn-outline-secondary text-start py-3">
 										<div class="d-flex justify-content-between align-items-center">
 											<div>
-												<i class="fas fa-layer-group me-2"></i>
+												<i class="bi bi-layers me-2"></i>
 												<strong>Semua Produk</strong>
 											</div>
 											<small class="text-muted">.xlsx</small>
@@ -139,7 +139,7 @@ function namectgr($id)
 										class="btn btn-outline-success text-start py-3">
 										<div class="d-flex justify-content-between align-items-center">
 											<div>
-												<i class="fas fa-check-circle me-2"></i>
+												<i class="bi bi-check-circle me-2"></i>
 												<strong>Produk Valid</strong>
 											</div>
 											<small class="text-muted">.xlsx</small>
@@ -150,7 +150,7 @@ function namectgr($id)
 										class="btn btn-outline-danger text-start py-3">
 										<div class="d-flex justify-content-between align-items-center">
 											<div>
-												<i class="fas fa-times-circle me-2"></i>
+												<i class="bi bi-x-lg-circle me-2"></i>
 												<strong>Produk Tidak Valid</strong>
 											</div>
 											<small class="text-muted">.xlsx</small>
@@ -163,7 +163,7 @@ function namectgr($id)
 							<div class="download-section">
 								<div class="section-header mb-3">
 									<h6 class="fw-semibold text-success mb-2">
-										<i class="fas fa-tags me-2"></i>Download Data Kategori
+										<i class="bi bi-tags me-2"></i>Download Data Kategori
 									</h6>
 									<p class="text-muted small mb-0">Unduh data kategori, merek, dan tipe</p>
 								</div>
@@ -173,7 +173,7 @@ function namectgr($id)
 										class="btn btn-outline-info text-start py-3">
 										<div class="d-flex justify-content-between align-items-center">
 											<div>
-												<i class="fas fa-database me-2"></i>
+												<i class="bi bi-database me-2"></i>
 												<strong>Semua Kategori & Merek</strong>
 											</div>
 											<small class="text-muted">.xlsx</small>
@@ -186,7 +186,7 @@ function namectgr($id)
 						<!-- Modal Footer -->
 						<div class="modal-footer bg-light">
 							<small class="text-muted">
-								<i class="fas fa-info-circle me-1"></i>
+								<i class="bi bi-info-circle me-1"></i>
 								File akan diunduh dalam format Excel (.xlsx)
 							</small>
 						</div>
@@ -251,7 +251,7 @@ function namectgr($id)
 								</td>
 								<td>
 									<a class="badge bg-primary text-decoration-none"
-										href="<?php echo base_url() ?>backendproduct/galery?id=<?php echo $key["id"] ?>"><i class="fas fa-images"></i></a>
+										href="<?php echo base_url() ?>backendproduct/galery?id=<?php echo $key["id"] ?>"><i class="bi bi-images"></i></a>
 								</td>
 								<td>
 									<a class="badge bg-danger text-decoration-none click"

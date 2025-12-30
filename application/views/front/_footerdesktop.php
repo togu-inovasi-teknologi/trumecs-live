@@ -46,7 +46,7 @@
                         </div>
                         <div class="contact-item d-flex align-items-center mb-3">
                             <div class="me-3">
-                                <i class="fas fa-envelope icon-footer"></i>
+                                <i class="bi bi-envelope icon-footer"></i>
                             </div>
                             <div>
                                 <a href="mailto:<?php echo platform_contact('email') ?>" target="_blank" rel="noopener noreferrer">
@@ -57,7 +57,7 @@
 
                         <div class="contact-item d-flex align-items-start mb-3">
                             <div class="me-3">
-                                <i class="fas fa-map-marker-alt icon-footer"></i>
+                                <i class="bi bi-pin-map icon-footer"></i>
                             </div>
                             <div>
                                 <a href="https://goo.gl/maps/a4emSqqX4qWaQikG7" target="_blank" rel="noopener noreferrer">
@@ -71,7 +71,7 @@
                     <p class="fs-4 fw-bold text-end" style="color:#fff;"><?php echo $this->lang->line('ragu_trumecs', FALSE) ?></p>
                     <div class="row mt-4 mb-4 py-0">
                         <div class="col-lg-6">
-                            <i class="fas fa-book icon-footer mb-3"></i>
+                            <i class="bi bi-book icon-footer mb-3"></i>
                             <p class="fw-bold fs-5" style="color:#fff;"><?php echo $this->lang->line('pelajari_trumecs') ?></p>
                             <p class="fs-6" style="color:#fff;"><?php echo $this->lang->line('pelajari_trumecs_isi', FALSE) ?></p>
                             <a href="<?php echo base_url() ?>page" class="btn btn-primary"><?php echo $this->lang->line('tombol_baca_dulu', FALSE) ?></a>
@@ -105,7 +105,7 @@
                                 <?php
                                     }
                                 } ?>
-                                <i class="fas fa-envelope icon-footer mb-3"></i>
+                                <i class="bi bi-envelope icon-footer mb-3"></i>
                                 <p class="fw-bold fs-5" style="color:#fff;"><?php echo $this->lang->line('info_trumecs', FALSE) ?></p>
                                 <p class="fs-6" style="color:#fff;"><?php echo $this->lang->line('info_trumecs_isi', FALSE) ?></p>
                                 <div class="input-group input-group-lg" style="width:100%;">

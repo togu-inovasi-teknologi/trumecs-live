@@ -14,7 +14,7 @@
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
                     <small class="text-muted">
-                        <i class="fas fa-calendar me-1"></i>
+                        <i class="bi bi-calendar me-1"></i>
                         <?= $this->dateformat->indonesia($artikel["date"]) ?>
                     </small>
                 </div>

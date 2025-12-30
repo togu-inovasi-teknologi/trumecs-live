@@ -31,7 +31,7 @@
                                     <?php else: ?>
                                         <li>
                                             <div class="alert alert-warning text-center mb-0">
-                                                <i class="fas fa-info-circle me-2"></i>
+                                                <i class="bi bi-info-circle me-2"></i>
                                                 Kategori ini belum memiliki sub kategori.
                                             </div>
                                         </li>
