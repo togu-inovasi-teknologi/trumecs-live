@@ -1,28 +1,28 @@
 <div id="page_detail">
-	<div class="row">
+    <div class="row">
         <div class="col-lg-7">
-            <div class="col-xs-12 p-a-3"  style="background:#fff;box-shadow:0px 3px 7px rgba(0,0,0,0.05);overflow:hidden;border-radius:5px">
+            <div class="col-xs-12 p-a-3" style="background:#fff;box-shadow:0px 3px 7px rgba(0,0,0,0.05);overflow:hidden;border-radius:5px">
                 <h1 class="fbold"><?php echo $this->lang->line('judul_halaman_principal') ?></h1>
                 <br />
                 <h2><?php echo $this->lang->line('subjudul_halaman_principal') ?></h2>
-                <p class="f18"></p>    
-                <br/>
-                <h3 class="f18 "><span class="fa fa-check-circle"></span> <?php echo $this->lang->line('point_principal_1') ?></h3>
-                <br/>
-                <h3 class="f18 "><span class="fa fa-check-circle"></span> <?php echo $this->lang->line('point_principal_2') ?></h3>
-                <br/>
-                <h3 class="f18"><span class="fa fa-check-circle"></span> <?php echo $this->lang->line('point_principal_3') ?></h3>
-                <br/>
-                <h3 class="f18"><span class="fa fa-check-circle"></span> <?php echo $this->lang->line('point_principal_4') ?></h3>
-                <br/>
+                <p class="f18"></p>
+                <br />
+                <h3 class="f18 "><span class="bi bi-check-circle"></span> <?php echo $this->lang->line('point_principal_1') ?></h3>
+                <br />
+                <h3 class="f18 "><span class="bi bi-check-circle"></span> <?php echo $this->lang->line('point_principal_2') ?></h3>
+                <br />
+                <h3 class="f18"><span class="bi bi-check-circle"></span> <?php echo $this->lang->line('point_principal_3') ?></h3>
+                <br />
+                <h3 class="f18"><span class="bi bi-check-circle"></span> <?php echo $this->lang->line('point_principal_4') ?></h3>
+                <br />
             </div>
         </div>
-		<div class="col-lg-5 ">
-			<div class="product row"  style="background:#fff;box-shadow:0px 3px 7px rgba(0,0,0,0.05);overflow:hidden;border-radius:5px">
+        <div class="col-lg-5 ">
+            <div class="product row" style="background:#fff;box-shadow:0px 3px 7px rgba(0,0,0,0.05);overflow:hidden;border-radius:5px">
                 <div class="col-md-12 p-a-3">
                     <?php echo $this->session->flashdata('form_error'); ?>
                     <h2><?php echo $this->lang->line('judul_form_principal') ?></h2>
-                    <br/>
+                    <br />
                     <p class="text-muted"><?php echo $this->lang->line('subjudul_form_principal') ?>:</p>
                     <form class="m-y-2" method="post" action="<?php echo base_url('principal/save'); ?>">
                         <div class="form-group row">
@@ -87,8 +87,8 @@
                             </div>
                         </div>
                     </form>
-				</div>	
-			</div>
-		</div>
-	</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

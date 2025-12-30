@@ -139,10 +139,10 @@ class Myproduct extends MX_Controller
                 '<span class="label label-default">' . ($this->namectgr($product['brand'])) . '</span>' . '<br>' . '<small>' . ($this->namectgr($product['type'])) . '</small>',
                 '<span class="label label-' . $k . '">' . $product["stock"] . '</span>',
                 '<span class="label label-' . $w . '">' . $product["warranty"] . '</span>',
-                '<a class="label label-warning" href="' . base_url() . 'backendproduct/myproduct/form?id=' . $product["id"] . '"><i class="fa fa-edit"></i></a>',
-                '<a class="label label-primary" href="' . base_url() . 'backendproduct/myproduct/galery?id=' . $product["id"] . '"><i class="fa fa-file-image-o"></i></a>',
+                '<a class="label label-warning" href="' . base_url() . 'backendproduct/myproduct/form?id=' . $product["id"] . '"><i class="bi bi-pencil"></i></a>',
+                '<a class="label label-primary" href="' . base_url() . 'backendproduct/myproduct/galery?id=' . $product["id"] . '"><i class="bi bi-image"></i></a>',
                 '<a class="label click label-danger" onclick="hapus(' . $product["id"] . ',\'' . $product["tittle"] . '\')"
-                    url="' . base_url() . 'backendproduct/myproduct/hapus?id=' . $product["id"] . '"><i class="fa fa-trash"></i></a>'
+                    url="' . base_url() . 'backendproduct/myproduct/hapus?id=' . $product["id"] . '"><i class="bi bi-trash"></i></a>'
 
             );
         }

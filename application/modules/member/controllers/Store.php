@@ -414,7 +414,7 @@ class Store extends MX_Controller
                 $result[] = $value['unit'];
                 $result[] = $value['stock'];
                 $result[] = '<p class="m-a-0 label label-' . $value['status'] . '">' . $value['status'] . '</p>';
-                $result[] = '<div class="d-flex-sa align-items-center vertical-align-middle"><button class="btn btn-edit-product" data-toggle="modal" data-target="#edit-product-' . $value["id"] . '"><i class="fa fa-edit"></i></button><button class="btn btn-delete-product" data-toggle="modal" data-target="#delete-product-' . $value["id"] . '"><i class="fa fa-trash"></i></button></div>';
+                $result[] = '<div class="d-flex-sa align-items-center vertical-align-middle"><button class="btn btn-edit-product" data-toggle="modal" data-target="#edit-product-' . $value["id"] . '"><i class="bi bi-pencil"></i></button><button class="btn btn-delete-product" data-toggle="modal" data-target="#delete-product-' . $value["id"] . '"><i class="bi bi-trash"></i></button></div>';
                 // $result[] = '<input type="checkbox" class="checkbox checkbox-quotation" name="quotation[]" value="'.$value['id'].'">';
                 $response[] = $result;
             }

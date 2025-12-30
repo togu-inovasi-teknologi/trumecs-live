@@ -151,17 +151,17 @@ class Backendproduct extends MX_Controller
             $w = $product["warranty"] != 0 or $product["warranty"] != "" ? "danger" : "success";
 
             $output['data'][] = array(
-                '<a href="' . base_url() . 'backendproduct/productstatus?id=' . $product["id"] . '&status=' . $s . '" class="label label-' . $l . '" alt="show"><i class="fa fa-' . $i . '"></i></a>',
+                '<a href="' . base_url() . 'backendproduct/productstatus?id=' . $product["id"] . '&status=' . $s . '" class="label label-' . $l . '" alt="show"><i class="bi bi-' . $i . '"></i></a>',
                 $product['tittle'] . '<br>' . '<small>' . $product['partnumber'] . '</small>',
                 'Rp.' . number_format($product['price']) . '/' . $product['unit'] . '<br>' . '<small>' .
                     'Rp.' . number_format($product['price_promo']) . '/' . $product['unit'] . '</small>',
                 '<span class="label label-default">' . ($this->namectgr($product['brand'])) . '</span>' . '<br>' . '<small>' . ($this->namectgr($product['type'])) . '</small>',
                 '<span class="label label-' . $k . '">' . $product["stock"] . '</span>',
                 '<span class="label label-' . $w . '">' . $product["warranty"] . '</span>',
-                '<a class="label label-warning" href="' . base_url() . 'backendproduct/form?id=' . $product["id"] . '"><i class="fa fa-edit"></i></a>',
-                '<a class="label label-primary" href="' . base_url() . 'backendproduct/galery?id=' . $product["id"] . '"><i class="fa fa-file-image-o"></i></a>',
+                '<a class="label label-warning" href="' . base_url() . 'backendproduct/form?id=' . $product["id"] . '"><i class="bi bi-pencil"></i></a>',
+                '<a class="label label-primary" href="' . base_url() . 'backendproduct/galery?id=' . $product["id"] . '"><i class="bi bi-image"></i></a>',
                 '<a class="label click label-danger" onclick="hapus(' . $product["id"] . ',\'' . $product["tittle"] . '\')"
-                    url="' . base_url() . 'backendproduct/hapus?id=' . $product["id"] . '"><i class="fa fa-trash"></i></a>'
+                    url="' . base_url() . 'backendproduct/hapus?id=' . $product["id"] . '"><i class="bi bi-trash"></i></a>'
 
             );
         }
@@ -649,10 +649,10 @@ class Backendproduct extends MX_Controller
             $row[] = $grade->type == 0 ? 'Produk' : 'Mekanik';
             $row[] = '
             <button type="button" class="btn btn-warning btn-sm edit" data-id="' . $grade->id . '" data-grade="' . $grade->grade . '" data-type="' . $grade->type . '">
-                <i class="fas fa-edit"></i>
+                <i class="bi bi-pencil"></i>
             </button>
             <button type="button" class="btn btn-danger btn-sm delete" data-id="' . $grade->id . '" data-name="' . $grade->grade . '">
-                <i class="fas fa-trash"></i>
+                <i class="bi bi-trash"></i>
             </button>
         ';
 
@@ -734,10 +734,10 @@ class Backendproduct extends MX_Controller
             $row[] = $attribute->name;
             $row[] = '
             <button type="button" class="btn btn-warning btn-sm edit" data-id="' . $attribute->id . '" data-attribute="' . $attribute->name . '">
-                <i class="fas fa-edit"></i>
+                <i class="bi bi-pencil"></i>
             </button>
             <button type="button" class="btn btn-danger btn-sm delete" data-id="' . $attribute->id . '" data-name="' . $attribute->name . '">
-                <i class="fas fa-trash"></i>
+                <i class="bi bi-trash"></i>
             </button>
         ';
 
@@ -841,21 +841,21 @@ class Backendproduct extends MX_Controller
             data-id="' . $categori->id . '" 
             data-name="' . $categori->name . '"
             data-image="' . $categori->img . '">
-        <i class="fa fa-edit"></i>
+        <i class="bi bi-pencil"></i>
     </button>
     <button type="button" class="btn btn-danger btn-sm delete-brand" 
             data-id="' . $categori->id . '"
             data-name="' . $categori->name . '">
-        <i class="fa fa-trash"></i>
+        <i class="bi bi-trash"></i>
     </button>
 ';
             } elseif (($type == "main_category" || $type == "main_category_jasa") && $categori->parent == 0) {
                 $action = '
         <button type="button" class="btn btn-warning btn-sm edit-categori" data-id="' . $categori->id . '" data-categori="' . $categori->name . '">
-            <i class="fa fa-edit"></i>
+            <i class="bi bi-pencil"></i>
         </button>
         <button type="button" class="btn btn-danger btn-sm delete-categori" data-id="' . $categori->id . '" data-name="' . $categori->name . '">
-            <i class="fa fa-trash"></i>
+            <i class="bi bi-trash"></i>
         </button>
     ';
             } else {
@@ -867,12 +867,12 @@ class Backendproduct extends MX_Controller
                             data-id="' . $categori->id . '" 
                             data-name="' . $categori->name . '"
                             data-parent="' . $categori->parent . '">
-                        <i class="fa fa-edit"></i>
+                        <i class="bi bi-pencil"></i>
                     </button>
                     <button type="button" class="btn btn-danger btn-sm delete-subcategori" 
                             data-id="' . $categori->id . '" 
                             data-name="' . $categori->name . '">
-                        <i class="fa fa-trash"></i>
+                        <i class="bi bi-trash"></i>
                     </button>
                 ';
                 } elseif ($category_type == 'subsub_category') {
@@ -881,12 +881,12 @@ class Backendproduct extends MX_Controller
                             data-id="' . $categori->id . '" 
                             data-name="' . $categori->name . '"
                             data-parent="' . $categori->parent . '">
-                        <i class="fa fa-edit"></i>
+                        <i class="bi bi-pencil"></i>
                     </button>
                     <button type="button" class="btn btn-danger btn-sm delete-subsubcategori" 
                             data-id="' . $categori->id . '" 
                             data-name="' . $categori->name . '">
-                        <i class="fa fa-trash"></i>
+                        <i class="bi bi-trash"></i>
                     </button>
                 ';
                 } elseif ($category_type == 'sub_category_jasa') {
@@ -895,12 +895,12 @@ class Backendproduct extends MX_Controller
                             data-id="' . $categori->id . '" 
                             data-name="' . $categori->name . '"
                             data-parent="' . $categori->parent . '">
-                        <i class="fa fa-edit"></i>
+                        <i class="bi bi-pencil"></i>
                     </button>
                     <button type="button" class="btn btn-danger btn-sm delete-subcategori-jasa" 
                             data-id="' . $categori->id . '" 
                             data-name="' . $categori->name . '">
-                        <i class="fa fa-trash"></i>
+                        <i class="bi bi-trash"></i>
                     </button>
                 ';
                 } elseif ($category_type == 'subsub_category_jasa') {
@@ -909,12 +909,12 @@ class Backendproduct extends MX_Controller
                             data-id="' . $categori->id . '" 
                             data-name="' . $categori->name . '"
                             data-parent="' . $categori->parent . '">
-                        <i class="fa fa-edit"></i>
+                        <i class="bi bi-pencil"></i>
                     </button>
                     <button type="button" class="btn btn-danger btn-sm delete-subsubcategori-jasa" 
                             data-id="' . $categori->id . '" 
                             data-name="' . $categori->name . '">
-                        <i class="fa fa-trash"></i>
+                        <i class="bi bi-trash"></i>
                     </button>
                 ';
                 } else {
@@ -923,12 +923,12 @@ class Backendproduct extends MX_Controller
                             data-id="' . $categori->id . '" 
                             data-name="' . $categori->name . '"
                             data-parent="' . $categori->parent . '"  data-parent-brand="' . $categori->parent_brand . '">
-                        <i class="fa fa-edit"></i>
+                        <i class="bi bi-pencil"></i>
                     </button>
                     <button type="button" class="btn btn-danger btn-sm delete-model" 
                             data-id="' . $categori->id . '" 
                             data-name="' . $categori->name . '">
-                        <i class="fa fa-trash"></i>
+                        <i class="bi bi-trash"></i>
                     </button>
                 ';
                 }

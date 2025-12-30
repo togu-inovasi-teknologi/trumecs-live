@@ -122,32 +122,32 @@ $sessionmember = array_key_exists('member', $session) ? $session['member'] : arr
                         style="background:#fff;box-shadow:0px 3px 7px rgba(0,0,0,0.05);overflow:hidden;border-radius:5px">
                         <button type="button" data-toggle="modal" data-target=".popup_alamat"
                             class="btn fbold btn-sm pull-right btn-lingkaran"><i
-                                class="fa fa-edit forange"></i></button>
+                                class="bi bi-pencil forange"></i></button>
                         <h5>Alamat Pengiriman</h5>
                         <div class="text-muted">
                             <?php if ($sessionmember['id'] == null) : ?>
-                            <span class="alamat-placeholder">Alamat tidak diisi</span>
-                            <span class="alamat-nama"></span><span class="alamat-phone"></span><br />
-                            <span class="alamat-jalan"></span><span class="alamat-kelurahan"></span><span
-                                class="alamat-kecamatan"></span><span class="alamat-kabupaten"></span><span
-                                class="alamat-provinsi"></span><br />
-                            <span class="alamat-kodepos"></span>
+                                <span class="alamat-placeholder">Alamat tidak diisi</span>
+                                <span class="alamat-nama"></span><span class="alamat-phone"></span><br />
+                                <span class="alamat-jalan"></span><span class="alamat-kelurahan"></span><span
+                                    class="alamat-kecamatan"></span><span class="alamat-kabupaten"></span><span
+                                    class="alamat-provinsi"></span><br />
+                                <span class="alamat-kodepos"></span>
                             <?php else : ?>
-                            <span class="alamat-nama"><?php echo $user_data['nama'] ?></span> <span
-                                class="alamat-phone"><?php echo $user_data['phone'] ?></span><br />
-                            <span class="alamat-jalan"><?php echo $sessionmember['address'] ?></span> <span
-                                class="alamat-kelurahan"><?php echo $sessionmember['nm_villages'] ?></span> <span
-                                class="alamat-kecamatan"><?php echo $sessionmember['nm_districts'] ?></span> <span
-                                class="alamat-kabupaten"><?php echo $sessionmember['nm_regencies'] ?><span> <span
-                                        class="alamat-provinsi"><?php echo $sessionmember['nm_provinces'] ?></span><br />
-                                    <span class="alamat-kodepos"><?php echo $sessionmember['shipping_kodepos'] ?></span>
+                                <span class="alamat-nama"><?php echo $user_data['nama'] ?></span> <span
+                                    class="alamat-phone"><?php echo $user_data['phone'] ?></span><br />
+                                <span class="alamat-jalan"><?php echo $sessionmember['address'] ?></span> <span
+                                    class="alamat-kelurahan"><?php echo $sessionmember['nm_villages'] ?></span> <span
+                                    class="alamat-kecamatan"><?php echo $sessionmember['nm_districts'] ?></span> <span
+                                    class="alamat-kabupaten"><?php echo $sessionmember['nm_regencies'] ?><span> <span
+                                            class="alamat-provinsi"><?php echo $sessionmember['nm_provinces'] ?></span><br />
+                                        <span class="alamat-kodepos"><?php echo $sessionmember['shipping_kodepos'] ?></span>
                                     <?php endif; ?>
                         </div>
                     </div>
                     <div class="clearfix"></div><br />
                     <div class="col-xs-12 p-a-1"
                         style="background:#fff;box-shadow:0px 3px 7px rgba(0,0,0,0.05);overflow:hidden;border-radius:5px">
-                        <!-- <button type="button" data-toggle="modal" data-target=".popup_catatan" class="btn btn-sm pull-right btn-lingkaran"><i class="fa fa-edit forange"></i></button> -->
+                        <!-- <button type="button" data-toggle="modal" data-target=".popup_catatan" class="btn btn-sm pull-right btn-lingkaran"><i class="bi bi-pencil forange"></i></button> -->
                         <h5>Catatan tambahan</h5>
                         <!-- <span class="text-catatan text-muted">Belum ada catatan</span> -->
                         <textarea class="form-control" name="bulk_note" style="width: 100%; height:150px;"></textarea>
@@ -155,14 +155,14 @@ $sessionmember = array_key_exists('member', $session) ? $session['member'] : arr
                     <div class="clearfix"></div>
                     <div class="col-xs-12 p-y-2 p-x-0 text-right">
                         <?php if ($sessionmember['id'] == null) :  ?>
-                        <button type="button" data-toggle="modal" data-target=".popup_login"
-                            class="btn btnhome btn-lg fbold col-xs-12">Masuk & Kirim</button>
+                            <button type="button" data-toggle="modal" data-target=".popup_login"
+                                class="btn btnhome btn-lg fbold col-xs-12">Masuk & Kirim</button>
                         <?php else : ?>
-                        <div class="form-group text-center">
-                            <div style="display:inline-block" class="g-recaptcha"
-                                data-sitekey="6LcuyIoUAAAAAP1jwHjM_tSsmhn_KYMifBEPJfD0"></div>
-                        </div>
-                        <button type="submit" class="btn btnnew btn-lg fbold col-xs-12">Kirim Daftar Belanja</button>
+                            <div class="form-group text-center">
+                                <div style="display:inline-block" class="g-recaptcha"
+                                    data-sitekey="6LcuyIoUAAAAAP1jwHjM_tSsmhn_KYMifBEPJfD0"></div>
+                            </div>
+                            <button type="submit" class="btn btnnew btn-lg fbold col-xs-12">Kirim Daftar Belanja</button>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -304,7 +304,7 @@ $sessionmember = array_key_exists('member', $session) ? $session['member'] : arr
                                 <textarea form="uploader" class="form-control"
                                     placeholder="Catatan tambahan untuk kami pertimbangkan" name="bulk_note"
                                     rows="5"><?php //echo $sessionmember["shipping_address"]; 
-                                                                                                                                                                    ?></textarea>
+                                                ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -377,7 +377,7 @@ $sessionmember = array_key_exists('member', $session) ? $session['member'] : arr
                                     id="<?php echo array_key_exists('shipping_idprovince', $sessionmember) ? $sessionmember["shipping_idprovince"] : 'shipping_province'; ?>">
                                     <option value="">--Pilih Provinsi--</option>
                                     <?php foreach ($provinsi->result() as $key) : ?>
-                                    <option value="<?php echo $key->id ?>"><?php echo $key->name ?></option>
+                                        <option value="<?php echo $key->id ?>"><?php echo $key->name ?></option>
                                     <?php endforeach ?>
                                 </select>
                             </div>
@@ -389,7 +389,7 @@ $sessionmember = array_key_exists('member', $session) ? $session['member'] : arr
                                     id="<?php echo array_key_exists('shipping_idcity', $sessionmember) ? $sessionmember["shipping_idcity"] : 'shipping_city'; ?>">
                                     <option value="">--Pilih Kabupaten--</option>
                                     <?php foreach ($regency->result() as $key) : ?>
-                                    <option value="<?php echo $key->id ?>"><?php echo $key->name ?></option>
+                                        <option value="<?php echo $key->id ?>"><?php echo $key->name ?></option>
                                     <?php endforeach ?>
                                 </select>
                             </div>
@@ -401,7 +401,7 @@ $sessionmember = array_key_exists('member', $session) ? $session['member'] : arr
                                     id="<?php echo array_key_exists('shipping_iddistricts', $sessionmember) ? $sessionmember["shipping_iddistricts"] : 'shipping_district'; ?>">
                                     <option value="">--Pilih Kecamatan--</option>
                                     <?php foreach ($district->result() as $key) : ?>
-                                    <option value="<?php echo $key->id ?>"><?php echo $key->name ?></option>
+                                        <option value="<?php echo $key->id ?>"><?php echo $key->name ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -413,7 +413,7 @@ $sessionmember = array_key_exists('member', $session) ? $session['member'] : arr
                                     id="<?php echo array_key_exists('shipping_idvillages', $sessionmember) ? $sessionmember["shipping_idvillage"] : 'shipping_village'; ?>">
                                     <option value="">--Pilih Kelurahan--</option>
                                     <?php foreach ($regency->result() as $key) : ?>
-                                    <option value="<?php echo $key->id ?>"><?php echo $key->name ?></option>
+                                        <option value="<?php echo $key->id ?>"><?php echo $key->name ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -441,9 +441,9 @@ $sessionmember = array_key_exists('member', $session) ? $session['member'] : arr
     </div>
 </div>
 <style>
-.btn-lingkaran {
-    background-color: transparent;
-    color: orange;
-    font-size: 20px;
-}
+    .btn-lingkaran {
+        background-color: transparent;
+        color: orange;
+        font-size: 20px;
+    }
 </style>

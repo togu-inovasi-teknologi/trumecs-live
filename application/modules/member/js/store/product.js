@@ -41,8 +41,8 @@ $(document).ready(function () {
           <div class="d-flex-sb align-items-center w-100">
             <p class="fbold m-a-0">${data[1]}</p>
             <div class="d-flex gap-1 align-items-center vertical-align-middle">
-              <button class="btn btn-edit-product" data-toggle="modal" data-target="#edit-product-${data[5]}"><i class="fa fa-edit"></i></button>
-              <button class="btn btn-delete-product" data-toggle="modal" data-target="#delete-product-${data[5]}"><i class="fa fa-trash"></i></button>
+              <button class="btn btn-edit-product" data-toggle="modal" data-target="#edit-product-${data[5]}"><i class="bi bi-pencil"></i></button>
+              <button class="btn btn-delete-product" data-toggle="modal" data-target="#delete-product-${data[5]}"><i class="bi bi-trash"></i></button>
             </div>
           </div>
           <p class="fbold forange m-a-0">${data[3]}</p>

@@ -21,8 +21,8 @@
                             <a href="<?= base_url(); ?>backendrental/detail_rental/<?= $dataRental['id']; ?>"><?= $dataRental['tittle']; ?></a>
                         </td>
                         <td class="d-flex gap-1 align-items-center justify-content-center">
-                            <a href="<?= base_url(); ?>backendrental/edit_rental/<?= $dataRental['id']; ?>" class="btn btn-warning btn-sm radius-sm"><i class="fa fa-edit"></i></a>
-                            <a href="<?= base_url(); ?>backendrental/deleteRental/<?= $dataRental['id']; ?>" class="btn btn-danger btn-sm radius-sm"><i class="fa fa-trash"></i></a>
+                            <a href="<?= base_url(); ?>backendrental/edit_rental/<?= $dataRental['id']; ?>" class="btn btn-warning btn-sm radius-sm"><i class="bi bi-pencil"></i></a>
+                            <a href="<?= base_url(); ?>backendrental/deleteRental/<?= $dataRental['id']; ?>" class="btn btn-danger btn-sm radius-sm"><i class="bi bi-trash"></i></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

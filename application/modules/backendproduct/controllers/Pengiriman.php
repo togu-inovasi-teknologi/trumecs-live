@@ -57,9 +57,9 @@ class Pengiriman extends MX_Controller
 
                 $page["description"],
 
-                '<a class="btn btn-sm btn-warning" href="' . base_url() . 'backendproduct/pengiriman/form?id=' . $page["id"] . '"><i class="fa fa-edit"></i></a>',
+                '<a class="btn btn-sm btn-warning" href="' . base_url() . 'backendproduct/pengiriman/form?id=' . $page["id"] . '"><i class="bi bi-pencil"></i></a>',
 
-                '<a class="btn btn-sm btn-danger" href="' . base_url() . 'backendproduct/pengiriman/hapus?id=' . $page["id"] . '"><i class="fa fa-trash"></i></a>'
+                '<a class="btn btn-sm btn-danger" href="' . base_url() . 'backendproduct/pengiriman/hapus?id=' . $page["id"] . '"><i class="bi bi-trash"></i></a>'
             );
         }
 

@@ -113,10 +113,10 @@ class Backendlelang extends MX_Controller
                 'Rp.' . number_format($product['nilai']),
                 '<span class="label label-default">' . ($this->namectgr($product['category'])) . '</span>',
                 '<span class="label label-default">' . ($product['jenis_penawaran']) . '</span>',
-                '<a class="label label-warning" href="' . base_url() . 'backendlelang/form?id=' . $product["id"] . '"><i class="fa fa-edit"></i></a>',
-                '<a class="label label-primary" href="' . base_url() . 'backendlelang/galery?id=' . $product["id"] . '"><i class="fa fa-file-image-o"></i></a>',
+                '<a class="label label-warning" href="' . base_url() . 'backendlelang/form?id=' . $product["id"] . '"><i class="bi bi-pencil"></i></a>',
+                '<a class="label label-primary" href="' . base_url() . 'backendlelang/galery?id=' . $product["id"] . '"><i class="bi bi-image"></i></a>',
                 '<a class="label click label-danger" onclick="hapus(' . $product["id"] . ',\'' . $product["judul"] . '\')"
-                    url="' . base_url() . 'backendlelang/hapus?id=' . $product["id"] . '"><i class="fa fa-trash"></i></a>'
+                    url="' . base_url() . 'backendlelang/hapus?id=' . $product["id"] . '"><i class="bi bi-trash"></i></a>'
 
             );
         }

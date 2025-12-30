@@ -208,7 +208,7 @@ if ($stores->banners != null) {
                                                             <p class="f16">Desktop</p>
                                                             <div class="d-flex gap-2 align-items-center">
                                                                 <a data-target="#edit-cover-desktop-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Cover</a>
-                                                                <a href="<?= base_url() ?>member/store/delete_cover" class="text-danger pointer f16"><i class="fa fa-trash"></i></a>
+                                                                <a href="<?= base_url() ?>member/store/delete_cover" class="text-danger pointer f16"><i class="bi bi-trash"></i></a>
                                                             </div>
                                                         </div>
                                                         <img src="<?= $key['cover'] == null ? base_url('public/image/default-cover.png') : base_url('public/image/store/cover/' . $key['cover']); ?>" alt="Default Cover" class="w-100">
@@ -278,7 +278,7 @@ if ($stores->banners != null) {
                                                                                 <p class="text-dark">Anda belum menambahkan banner</p>
                                                                             </div>
                                                                         <?php } ?>
-                                                                        <a href="<?= base_url('member/store/delete_banner/' . $bannerUtama[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                                        <a href="<?= base_url('member/store/delete_banner/' . $bannerUtama[0]->id) ?>" class="text-danger"><i class="bi bi-trash"></i> Delete</a>
                                                                         <input form="formBannerUtama" type="text" name="nameBannerUtama" value="<?= $bannerUtama[0]->source ?>" hidden>
                                                                     </div>
                                                                 <?php } else { ?>
@@ -306,7 +306,7 @@ if ($stores->banners != null) {
                                                                         <?php if ($banner1 != null) { ?>
                                                                             <div class="d-flex flex-column gap-1">
                                                                                 <img src="<?= base_url('public/image/store/banner/' . $banner1[0]->source); ?>" alt="Default Cover" class="w-100">
-                                                                                <a href="<?= base_url('member/store/delete_banner/' . $banner1[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                                                <a href="<?= base_url('member/store/delete_banner/' . $banner1[0]->id) ?>" class="text-danger"><i class="bi bi-trash"></i> Delete</a>
                                                                                 <input form="formBanner1" type="text" name="nameBanner1" value="<?= $banner1[0]->source ?>" hidden>
                                                                             </div>
                                                                         <?php } else { ?>
@@ -336,7 +336,7 @@ if ($stores->banners != null) {
                                                                         <?php if ($banner2 != null) { ?>
                                                                             <div class="d-flex flex-column gap-1">
                                                                                 <img src="<?= base_url('public/image/store/banner/' . $banner2[0]->source); ?>" alt="Default Cover" class="w-100">
-                                                                                <a href="<?= base_url('member/store/delete_banner/' . $banner2[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                                                <a href="<?= base_url('member/store/delete_banner/' . $banner2[0]->id) ?>" class="text-danger"><i class="bi bi-trash"></i> Delete</a>
                                                                                 <input form="formBanner2" type="text" name="nameBanner2" value="<?= $banner2[0]->source ?>" hidden>
                                                                             </div>
                                                                         <?php } else { ?>
@@ -375,7 +375,7 @@ if ($stores->banners != null) {
                                                             <p class="f16">Mobile</p>
                                                             <div class="d-flex gap-2 align-items-center">
                                                                 <a data-target="#edit-cover-mobile-<?php echo $key["member_id"]; ?>" data-toggle="modal" class="color-primary pointer f16">Ganti Cover</a>
-                                                                <a href="<?= base_url() ?>member/store/delete_cover_mobile" data-toggle="modal" class="text-danger pointer f16"><i class="fa fa-trash"></i></a>
+                                                                <a href="<?= base_url() ?>member/store/delete_cover_mobile" data-toggle="modal" class="text-danger pointer f16"><i class="bi bi-trash"></i></a>
                                                             </div>
                                                         </div>
                                                         <img src="<?= $key['cover_mobile'] == null ? base_url('public/image/default-cover.png') : base_url('public/image/store/cover/' . $key['cover_mobile']); ?>" alt="Default Cover" class="w-100">
@@ -429,7 +429,7 @@ if ($stores->banners != null) {
                                                                 <?php if ($bannerUtamaMobile != null) { ?>
                                                                     <div class="d-flex flex-column gap-1">
                                                                         <img src="<?= base_url('public/image/store/banner/' . $bannerUtamaMobile[0]->source); ?>" alt="Default Cover" class="w-100">
-                                                                        <a href="<?= base_url('member/store/delete_banner/' . $bannerUtamaMobile[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                                        <a href="<?= base_url('member/store/delete_banner/' . $bannerUtamaMobile[0]->id) ?>" class="text-danger"><i class="bi bi-trash"></i> Delete</a>
                                                                         <input form="formBannerUtamaMobile" type="text" name="nameBannerUtama" value="<?= $bannerUtamaMobile[0]->source ?>" hidden>
                                                                     </div>
                                                                 <?php } else { ?>
@@ -455,7 +455,7 @@ if ($stores->banners != null) {
                                                                 <?php if ($banner1Mobile != null) { ?>
                                                                     <div class="d-flex flex-column gap-1">
                                                                         <img src="<?= base_url('public/image/store/banner/' . $banner1Mobile[0]->source); ?>" alt="Default Cover" class="w-100">
-                                                                        <a href="<?= base_url('member/store/delete_banner/' . $banner1Mobile[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                                        <a href="<?= base_url('member/store/delete_banner/' . $banner1Mobile[0]->id) ?>" class="text-danger"><i class="bi bi-trash"></i> Delete</a>
                                                                         <input form="formBanner1Mobile" type="text" name="nameBanner1" value="<?= $banner1Mobile[0]->source ?>" hidden>
                                                                     </div>
                                                                 <?php } else { ?>
@@ -481,7 +481,7 @@ if ($stores->banners != null) {
                                                                 <?php if ($banner2Mobile != null) { ?>
                                                                     <div class="d-flex flex-column gap-1">
                                                                         <img src="<?= base_url('public/image/store/banner/' . $banner2Mobile[0]->source); ?>" alt="Default Cover" class="w-100">
-                                                                        <a href="<?= base_url('member/store/delete_banner/' . $banner2Mobile[0]->id) ?>" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                                        <a href="<?= base_url('member/store/delete_banner/' . $banner2Mobile[0]->id) ?>" class="text-danger"><i class="bi bi-trash"></i> Delete</a>
                                                                         <input form="formBanner2Mobile" type="text" name="nameBanner2" value="<?= $banner2Mobile[0]->source ?>" hidden>
                                                                     </div>
                                                                 <?php } else { ?>
@@ -550,8 +550,8 @@ if ($stores->banners != null) {
                                                                     </form>
                                                                     <td class="text-center va-middle">
                                                                         <div class="d-flex gap-2 align-items-center">
-                                                                            <a href="" data-target="#edit-desc-<?= $desc->id ?>" data-toggle="modal" class="text-warning f18"><i class="fa fa-edit"></i></a>
-                                                                            <a href="<?= base_url() ?>member/store/delete_description/<?= $desc->id ?>" class="text-danger f18"><i class="fa fa-trash"></i></a>
+                                                                            <a href="" data-target="#edit-desc-<?= $desc->id ?>" data-toggle="modal" class="text-warning f18"><i class="bi bi-pencil"></i></a>
+                                                                            <a href="<?= base_url() ?>member/store/delete_description/<?= $desc->id ?>" class="text-danger f18"><i class="bi bi-trash"></i></a>
                                                                         </div>
                                                                     </td>
                                                                 </tr>

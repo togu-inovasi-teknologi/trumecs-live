@@ -106,7 +106,7 @@ $sessionmember = array_key_exists('member', $session) ? $session['member'] : arr
                     <div class="card p-a-1">
                         <div class="row">
                             <div class="col-xs-12">
-                                <button type="button" data-toggle="modal" data-target=".popup_alamat" class="btn btn-sm pull-right btn-lingkaran"><i class="fa fa-edit"></i></button>
+                                <button type="button" data-toggle="modal" data-target=".popup_alamat" class="btn btn-sm pull-right btn-lingkaran"><i class="bi bi-pencil"></i></button>
                                 <p class="f16 fbold">Alamat Pengiriman</p>
                                 <div class="text-muted">
                                     <?php if ($sessionmember['id'] == null) : ?>
@@ -125,7 +125,7 @@ $sessionmember = array_key_exists('member', $session) ? $session['member'] : arr
                             </div>
                             <hr>
                             <div class="col-xs-12">
-                                <!-- <button type="button" data-toggle="modal" data-target=".popup_catatan" class="btn btn-sm pull-right btn-lingkaran"><i class="fa fa-edit"></i></button> -->
+                                <!-- <button type="button" data-toggle="modal" data-target=".popup_catatan" class="btn btn-sm pull-right btn-lingkaran"><i class="bi bi-pencil"></i></button> -->
                                 <p class="f16 fbold">Catatan tambahan</p>
                                 <!-- <span class="text-catatan text-muted f14">Belum ada catatan</span> -->
                                 <textarea class="form-control" name="bulk_note" style="width: 100%; height:150px;"></textarea>

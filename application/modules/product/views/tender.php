@@ -12,13 +12,13 @@
                             <div class="card-header btn-orange text-warning fbold">Mengapa bermitra dengan Trumecs?</div>
                         </div>
                         <div class="alert alert-warning" style="margin-bottom:0px;">
-                            <span class="fa fa-check-circle f22"></span> &nbsp;Terima penawaran terbaik dari ribuan supplier terpercaya kami
+                            <span class="bi bi-check-circle f22"></span> &nbsp;Terima penawaran terbaik dari ribuan supplier terpercaya kami
                             <br/>
                             <br/>
-                            <span class="fa fa-check-circle f22"></span> &nbsp;Transaksi aman, dapatkan Invoice & E-Faktur yang sudah termasuk PPN 10
+                            <span class="bi bi-check-circle f22"></span> &nbsp;Transaksi aman, dapatkan Invoice & E-Faktur yang sudah termasuk PPN 10
                             <br/>
                             <br/>
-                            <span class="fa fa-check-circle f22"></span> &nbsp;Cepat, efisien, dan menghemat waktu Anda karena tidak perlu melakukan pengecekan email satu per satu
+                            <span class="bi bi-check-circle f22"></span> &nbsp;Cepat, efisien, dan menghemat waktu Anda karena tidak perlu melakukan pengecekan email satu per satu
                             <br/>
                             <br/>
                         </div>

@@ -86,9 +86,9 @@ $img_promo = '<img alt="promo trumecs" class="promo-small" src="' . base_url() .
         </div>
         <div class="col-xs-12" style="color:#58585a;font-size:20px;">
             <p style="padding:0 55px;">
-                <span style="color:#f7941e" class="fa fa-check-circle"></span> Harga transparan<br />
-                <span style="color:#f7941e" class="fa fa-check-circle"></span> Respon cepat<br />
-                <span style="color:#f7941e" class="fa fa-check-circle"></span> Spesialis mekanikal
+                <span style="color:#f7941e" class="bi bi-check-circle"></span> Harga transparan<br />
+                <span style="color:#f7941e" class="bi bi-check-circle"></span> Respon cepat<br />
+                <span style="color:#f7941e" class="bi bi-check-circle"></span> Spesialis mekanikal
                 <br />
             </p>
             <p class="text-center">

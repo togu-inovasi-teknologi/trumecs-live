@@ -1,5 +1,5 @@
 <div class="col-md-6 col-md-offset-3 col-xs-12">
-    <div class="alert alert-success"><span class="fa fa-check-circle" style="vertical-align:middle"></span> <small>Permintaan anda berhasil dikirimkan</small></div>
+    <div class="alert alert-success"><span class="bi bi-check-circle" style="vertical-align:middle"></span> <small>Permintaan anda berhasil dikirimkan</small></div>
     <br />
     <h4>Permintaan diterima</h4>
     <p>Terimakasih telah menjadikan Trumecs sebagai partner anda.</p>

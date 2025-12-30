@@ -62,10 +62,10 @@
                       <td>
                           <div class="btn-group" role="group">
                               <a href="<?php echo base_url() ?>backendartikel/<?php echo $isMyArtikel ? "myartikel/" : "" ?>form?id=<?php echo $key["id"] ?>" class="btn btn-sm btn-outline-warning">
-                                  <i class="fas fa-edit"></i>
+                                  <i class="bi bi-pencil"></i>
                               </a>
                               <a href="<?php echo base_url() ?>backendartikel/<?php echo $isMyArtikel ? "myartikel/" : "" ?>hapus?id=<?php echo $key["id"] ?>" class="btn btn-sm btn-outline-danger">
-                                  <i class="fas fa-trash"></i>
+                                  <i class="bi bi-trash"></i>
                               </a>
                           </div>
                       </td>

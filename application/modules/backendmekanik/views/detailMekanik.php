@@ -4,8 +4,8 @@
         <div class="d-flex justify-content-between align-items-start">
             <h2 class="fbold">Detail Mekanik</h2>
             <div class="d-flex gap-1">
-                <a href="<?= base_url(); ?>/backendmekanik/edit_mekanik/<?= $dataMechanic['id']; ?>" class="btn btn-warning radius-sm"><i class="fa fa-edit"></i> Edit</a>
-                <a href="<?= base_url(); ?>/backendmekanik/deleteMekanik/<?= $dataMechanic['id']; ?>" class="btn btn-danger radius-sm"><i class="fa fa-trash"></i> Hapus</a>
+                <a href="<?= base_url(); ?>/backendmekanik/edit_mekanik/<?= $dataMechanic['id']; ?>" class="btn btn-warning radius-sm"><i class="bi bi-pencil"></i> Edit</a>
+                <a href="<?= base_url(); ?>/backendmekanik/deleteMekanik/<?= $dataMechanic['id']; ?>" class="btn btn-danger radius-sm"><i class="bi bi-trash"></i> Hapus</a>
             </div>
         </div>
         <hr class="m-a-0">

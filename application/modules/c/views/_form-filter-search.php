@@ -9,7 +9,7 @@
 				<h4 class="m-y-1"><?php echo $this->lang->line('judul_filter', FALSE); ?></h4>
 			</div>
 			<!--<div class="col-md-12 ">
-			<h4 class="f14  fbold"><a class="forange fbold"  href="<?php echo base_url() ?>caribanyakproduct">Cari banyak produk <i class="fa fa-check-circle forange"></i></a> </h4>
+			<h4 class="f14  fbold"><a class="forange fbold"  href="<?php echo base_url() ?>caribanyakproduct">Cari banyak produk <i class="bi bi-check-circle forange"></i></a> </h4>
 		</div>-->
 			<div class="form-group">
 				<label class="col-xs-12"><?php echo $this->lang->line('label_kategori', FALSE); ?></label>
@@ -87,7 +87,7 @@
 						</div>
 						<div class="" style="">
 							<!--<div class="col-md-12 ">
-							<h4 class="f14  fbold"><a class="forange fbold"  href="<?php echo base_url() ?>caribanyakproduct">Cari banyak produk <i class="fa fa-check-circle forange"></i></a> </h4>
+							<h4 class="f14  fbold"><a class="forange fbold"  href="<?php echo base_url() ?>caribanyakproduct">Cari banyak produk <i class="bi bi-check-circle forange"></i></a> </h4>
 						</div>-->
 							<div class="form-group m-t-2">
 								<div class="col-xs-12">

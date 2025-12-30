@@ -58,8 +58,8 @@ class Backendpromo extends MX_Controller
                 '<a class="fbold f14 forange" href="' . base_url() . 'backendpromo/form?id=' . $promo["id"] . '">' . $promo["name"] . '</a><br>',
 
                 '<span>' . count($explode) . '</span>',
-                '<a class="btn btn-sm btn-warning" href="' . base_url() . 'backendpromo/form?id=' . $promo["id"] . '"><i class="fa fa-edit"></i></a>',
-                '<a class="btn btn-sm btn-danger" href="' . base_url() . 'backendpromo/hapuspromo?id=' . $promo["id"] . '"><i class="fa fa-trash"></i></a>'
+                '<a class="btn btn-sm btn-warning" href="' . base_url() . 'backendpromo/form?id=' . $promo["id"] . '"><i class="bi bi-pencil"></i></a>',
+                '<a class="btn btn-sm btn-danger" href="' . base_url() . 'backendpromo/hapuspromo?id=' . $promo["id"] . '"><i class="bi bi-trash"></i></a>'
             );
         }
         echo json_encode($output);

@@ -16,14 +16,14 @@
                     <label for="pa_value">Nilai Atribut</label>
                     <input type="text" id="pa_value" class="form-control" placeholder="Nilai Attribute" name="pa_value[]" value="">
                 </div>
-                <div class=""><button type="button" class="btn btn-danger radius-sm del-pa"><i class="fa fa-trash"></i></button>
+                <div class=""><button type="button" class="btn btn-danger radius-sm del-pa"><i class="bi bi-trash"></i></button>
                 </div>
             </div>
         </div>
         <div class="gallery-form" hidden>
             <div class="d-flex gap-2 align-items-start">
                 <div class="m-t-2">
-                    <button type="button" class="btn btn-danger radius-sm del-gallery"><i class="fa fa-trash">
+                    <button type="button" class="btn btn-danger radius-sm del-gallery"><i class="bi bi-trash">
                         </i></button>
                 </div>
                 <div class="d-flex flex-column">
@@ -173,7 +173,7 @@
                                             <label for="pa_value">Nilai Atribut</label>
                                             <input type="text" id="pa_value" class="form-control" placeholder="Nilai Attribute" name="pa_value[]" value="<?= $pa['value']; ?>">
                                         </div>
-                                        <div class=""><button type="button" class="btn btn-danger radius-sm del-pa"><i class="fa fa-trash"></i></button>
+                                        <div class=""><button type="button" class="btn btn-danger radius-sm del-pa"><i class="bi bi-trash"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -194,7 +194,7 @@
                         <?php foreach ($rental_gallery as $i => $gallery) : ?>
                             <div class="gallery-form">
                                 <div class="d-flex gap-2 align-items-start">
-                                    <button type="button" class="btn btn-danger radius-sm del-gallery"><i class="fa fa-trash"></i></button>
+                                    <button type="button" class="btn btn-danger radius-sm del-gallery"><i class="bi bi-trash"></i></button>
                                     <div class="d-flex flex-column">
                                         <div class="d-flex gap-1">
                                             <p><?= $i + 1 ?>. </p>

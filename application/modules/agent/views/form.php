@@ -1,34 +1,34 @@
 <div id="page_detail">
-	<div class="row">
-		<div class="col-lg-12 ">
-			<div class="product row">
+    <div class="row">
+        <div class="col-lg-12 ">
+            <div class="product row">
                 <div class="col-md-7">
-                    <div class="col-xs-12 p-a-3"  style="background:#fff;box-shadow:0px 3px 7px rgba(0,0,0,0.05);overflow:hidden;border-radius:5px">
+                    <div class="col-xs-12 p-a-3" style="background:#fff;box-shadow:0px 3px 7px rgba(0,0,0,0.05);overflow:hidden;border-radius:5px">
                         <h1 class="fbold"><?php echo $this->lang->line('judul_halaman_agen') ?></h1>
                         <p class="m-t-2" style="font-size:24px"><?php echo $this->lang->line('konten_judul_halaman_agen') ?></p>
                         <br />
                         <h2><?php echo $this->lang->line('subjudul_halaman_agen') ?></h2>
-                        <p class="f18"><?php echo $this->lang->line('konten_subjudul_halaman_agen') ?></p> 
-                        <br/>
-                        <h3 class="f18 fbold"><span class="fa fa-check-circle"></span> <?php echo $this->lang->line('point_agen_1') ?></h3>
-                        <br/>
-                        <h3 class="f18 fbold"><span class="fa fa-check-circle"></span> <?php echo $this->lang->line('point_agen_2') ?></h3>
-                        <br/>
-                        <h3 class="f18 fbold"><span class="fa fa-check-circle"></span> <?php echo $this->lang->line('point_agen_3') ?></h3>
-                        <br/>
-                        <h3 class="f18 fbold"><span class="fa fa-check-circle"></span> <?php echo $this->lang->line('point_agen_4') ?></h3>
-                        <br/>
-                        <h3 class="f18 fbold"><span class="fa fa-check-circle"></span> <?php echo $this->lang->line('point_agen_5') ?></h3>
-                        <br/>
-                        <h3 class="f18 fbold"><span class="fa fa-check-circle"></span> <?php echo $this->lang->line('point_agen_6') ?></h3>
+                        <p class="f18"><?php echo $this->lang->line('konten_subjudul_halaman_agen') ?></p>
+                        <br />
+                        <h3 class="f18 fbold"><span class="bi bi-check-circle"></span> <?php echo $this->lang->line('point_agen_1') ?></h3>
+                        <br />
+                        <h3 class="f18 fbold"><span class="bi bi-check-circle"></span> <?php echo $this->lang->line('point_agen_2') ?></h3>
+                        <br />
+                        <h3 class="f18 fbold"><span class="bi bi-check-circle"></span> <?php echo $this->lang->line('point_agen_3') ?></h3>
+                        <br />
+                        <h3 class="f18 fbold"><span class="bi bi-check-circle"></span> <?php echo $this->lang->line('point_agen_4') ?></h3>
+                        <br />
+                        <h3 class="f18 fbold"><span class="bi bi-check-circle"></span> <?php echo $this->lang->line('point_agen_5') ?></h3>
+                        <br />
+                        <h3 class="f18 fbold"><span class="bi bi-check-circle"></span> <?php echo $this->lang->line('point_agen_6') ?></h3>
                     </div>
                 </div>
-                
+
                 <div class="col-md-5">
-                    <div class="col-xs-12 p-a-3"  style="background:#fff;box-shadow:0px 3px 7px rgba(0,0,0,0.05);overflow:hidden;border-radius:5px">
+                    <div class="col-xs-12 p-a-3" style="background:#fff;box-shadow:0px 3px 7px rgba(0,0,0,0.05);overflow:hidden;border-radius:5px">
                         <?php echo $this->session->flashdata('form_error'); ?>
                         <h3 class=""><?php echo $this->lang->line('judul_form_agen') ?></h3>
-                        <br/>
+                        <br />
                         <p class="text-muted"><?php echo $this->lang->line('subjudul_form_agen') ?>:</p>
                         <form class="m-y-2" method="post" action="<?php echo base_url('agent/save'); ?>">
                             <div class="form-group row">
@@ -61,31 +61,31 @@
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" name="scope[]" value="pemerintah">
                                         <label class="form-check-label" for="defaultCheck1">
-                                        <?php echo $this->lang->line('label_scope_pemerintah') ?>
+                                            <?php echo $this->lang->line('label_scope_pemerintah') ?>
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" name="scope[]" value="industri">
                                         <label class="form-check-label" for="defaultCheck1">
-                                        <?php echo $this->lang->line('label_scope_industri') ?>
+                                            <?php echo $this->lang->line('label_scope_industri') ?>
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" name="scope[]" value="pelabuhan">
                                         <label class="form-check-label" for="defaultCheck1">
-                                        <?php echo $this->lang->line('label_scope_pelabuhan') ?>
+                                            <?php echo $this->lang->line('label_scope_pelabuhan') ?>
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" name="scope[]" value="perkapalan">
                                         <label class="form-check-label" for="defaultCheck1">
-                                        <?php echo $this->lang->line('label_scope_perkapalan') ?>
+                                            <?php echo $this->lang->line('label_scope_perkapalan') ?>
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" name="scope[]" value="pertambangan">
                                         <label class="form-check-label" for="defaultCheck1">
-                                        <?php echo $this->lang->line('label_scope_pertambangan') ?>
+                                            <?php echo $this->lang->line('label_scope_pertambangan') ?>
                                         </label>
                                     </div>
                                 </div>
@@ -93,25 +93,25 @@
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" name="scope[]" value="perkebunan">
                                         <label class="form-check-label" for="defaultCheck1">
-                                        <?php echo $this->lang->line('label_scope_perkebunan') ?>
+                                            <?php echo $this->lang->line('label_scope_perkebunan') ?>
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" name="scope[]" value="transportasi">
                                         <label class="form-check-label" for="defaultCheck1">
-                                        <?php echo $this->lang->line('label_scope_transportasi') ?>
+                                            <?php echo $this->lang->line('label_scope_transportasi') ?>
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" name="scope[]" value="kontraktor">
                                         <label class="form-check-label" for="defaultCheck1">
-                                        <?php echo $this->lang->line('label_scope_kontraktor') ?>
+                                            <?php echo $this->lang->line('label_scope_kontraktor') ?>
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" name="scope[]" value="oilgas">
                                         <label class="form-check-label" for="defaultCheck1">
-                                        <?php echo $this->lang->line('label_scope_oilgas') ?>
+                                            <?php echo $this->lang->line('label_scope_oilgas') ?>
                                         </label>
                                     </div>
                                 </div>
@@ -134,31 +134,31 @@
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" name="product[]" value="ban">
                                         <label class="form-check-label" for="defaultCheck1">
-                                        <?php echo $this->lang->line('label_produk_ban') ?>
+                                            <?php echo $this->lang->line('label_produk_ban') ?>
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" name="product[]" value="aki">
                                         <label class="form-check-label" for="defaultCheck1">
-                                        <?php echo $this->lang->line('label_produk_aki') ?>
+                                            <?php echo $this->lang->line('label_produk_aki') ?>
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" name="product[]" value="pelumas">
                                         <label class="form-check-label" for="defaultCheck1">
-                                        <?php echo $this->lang->line('label_produk_pelumas') ?>
+                                            <?php echo $this->lang->line('label_produk_pelumas') ?>
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" name="product[]" value="sparepart">
                                         <label class="form-check-label" for="defaultCheck1">
-                                        <?php echo $this->lang->line('label_produk_sparepart') ?>
+                                            <?php echo $this->lang->line('label_produk_sparepart') ?>
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" name="product[]" value="unit">
                                         <label class="form-check-label" for="defaultCheck1">
-                                        <?php echo $this->lang->line('label_produk_unit') ?>
+                                            <?php echo $this->lang->line('label_produk_unit') ?>
                                         </label>
                                     </div>
                                 </div>
@@ -166,22 +166,22 @@
                             <div class="form-group row">
                                 <label class="control-label col-xs-12"><strong><?php echo $this->lang->line('label_tanggal_bergabung') ?></strong></label>
                                 <div class="col-xs-12">
-                                    <input class="form-control" name="active_date"  required type="date">
+                                    <input class="form-control" name="active_date" required type="date">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="control-label col-xs-12"><strong><?php echo $this->lang->line('label_status_agent') ?></strong></label>
                                 <div class="col-xs-12">
-                                <div class="form-check">
+                                    <div class="form-check">
                                         <input type="radio" class="form-check-input" name="status" value="fulltime">
                                         <label class="form-check-label" for="defaultCheck1">
-                                        <?php echo $this->lang->line('label_status_fulltime') ?>
+                                            <?php echo $this->lang->line('label_status_fulltime') ?>
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input type="radio" class="form-check-input" name="status" value="parttime">
                                         <label class="form-check-label" for="defaultCheck1">
-                                        <?php echo $this->lang->line('label_status_parttime') ?>
+                                            <?php echo $this->lang->line('label_status_parttime') ?>
                                         </label>
                                     </div>
                                 </div>
@@ -201,8 +201,8 @@
                             </div>
                         </form>
                     </div>
-				</div>	
-			</div>
-		</div>
-	</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

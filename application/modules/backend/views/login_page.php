@@ -12,9 +12,7 @@
 
     <!-- Bootstrap 5.3.8 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/d64235c5d9.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
     <style>
         body {
@@ -114,7 +112,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-text bg-light">
-                                        <i class="fa-solid fa-envelope text-muted"></i>
+                                        <i class="bi bi-envelope text-muted"></i>
                                     </span>
                                     <input class="form-control" placeholder="E-mail" name="email" type="email" required autofocus>
                                 </div>
@@ -122,7 +120,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-text bg-light">
-                                        <i class="fa-solid fa-lock text-muted"></i>
+                                        <i class="fa-solid bi bi-lock text-muted"></i>
                                     </span>
                                     <input class="form-control" placeholder="Password" name="password" type="password" required>
                                 </div>

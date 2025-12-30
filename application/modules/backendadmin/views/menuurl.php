@@ -42,8 +42,8 @@ function menu($menu, $parent)
 									<?php endif ?>
 								</div>
 								<div class="d-flex gap-1 align-items-center">
-									<a class="btn btn-warning btn-sm" href="<?php echo base_url() ?>backendadmin/menuurl?id=<?php echo $key["id"] ?>"><i class="fa fa-edit"></i></a>
-									<a class="btn btn-danger btn-sm" href="<?php echo base_url() ?>backendadmin/hapusmenu?id=<?php echo $key["id"] ?>"><i class="fa fa-trash"></i></a>
+									<a class="btn btn-warning btn-sm" href="<?php echo base_url() ?>backendadmin/menuurl?id=<?php echo $key["id"] ?>"><i class="bi bi-pencil"></i></a>
+									<a class="btn btn-danger btn-sm" href="<?php echo base_url() ?>backendadmin/hapusmenu?id=<?php echo $key["id"] ?>"><i class="bi bi-trash"></i></a>
 								</div>
 							</div>
 							<div class="d-flex flex-column gap-1">
@@ -53,8 +53,8 @@ function menu($menu, $parent)
 											<div class="d-flex justify-content-between align-items-center m-y-1">
 												<a class="m-b-0" href=" <?php echo base_url() ?><?php echo $ks["url"] ?>" aria-expanded="false"><?php echo $ks["name"] ?></a>
 												<div class="d-flex gap-1">
-													<a class="btn btn-warning btn-sm" href="<?php echo base_url() ?>backendadmin/menuurl?id=<?php echo $ks["id"] ?>"><i class="fa fa-edit"></i></a>
-													<a class="btn btn-danger btn-sm" href="<?php echo base_url() ?>backendadmin/hapusmenu?id=<?php echo $ks["id"] ?>"><i class="fa fa-trash"></i></a>
+													<a class="btn btn-warning btn-sm" href="<?php echo base_url() ?>backendadmin/menuurl?id=<?php echo $ks["id"] ?>"><i class="bi bi-pencil"></i></a>
+													<a class="btn btn-danger btn-sm" href="<?php echo base_url() ?>backendadmin/hapusmenu?id=<?php echo $ks["id"] ?>"><i class="bi bi-trash"></i></a>
 												</div>
 											</div>
 										<?php endforeach ?>

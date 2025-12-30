@@ -151,10 +151,10 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
         color: #333;
     }
 </style>
-<div id="page_detail" >
+<div id="page_detail">
     <!-- Swiper -->
     <div class="row">
-        <!-- <div class="btn btn-black col-xs-12 text-center btn-xs"><span class="fa fa-check-circle text-success"></span> READY STOCK</div> -->
+        <!-- <div class="btn btn-black col-xs-12 text-center btn-xs"><span class="bi bi-check-circle text-success"></span> READY STOCK</div> -->
         <!--<?php if (time() % 2 == 0) : ?>
             <a href="<?php echo site_url('product/2009/Meditran-Sx-Plus-15w-40-Ci4'); ?>">
                 <img width="100%" src="<?php echo base_url('public/image/promo-meditran-mobile.png'); ?>" />
@@ -165,7 +165,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
             </a>
         <?php endif; ?>-->
     </div>
-    <div  itemscope itemtype="https://schema.org/Product">
+    <div itemscope itemtype="https://schema.org/Product">
         <div class="swiper mySwiper m-t-1">
             <div class="swiper-wrapper">
                 <?php if ($key["youtube"] != "") : ?>
@@ -267,27 +267,28 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                     <div class="col-xs-12">
                                         <div class="row">
                                             <div class="col-xs-4" style="color:#888">Kategori</div>
-                                            <div class="col-xs-8"> 
-                                            <?php $str_after="";for($i=0;$i<count($breadcrumb)-1;$i++) : ?>
-                                            <?php echo $i > 0 ? "&raquo;" : "" ?>
-                                            <a itemprop="item" class="forange"
-                                                href="<?php echo base_url() . "c/" . $str_after . preg_replace("/[^a-zA-Z0-9]/", "-", $breadcrumb[$i]) ?>">
-                                                <span itemprop="name"><?php echo $breadcrumb[$i] ?></span>
-                                            </a>
-                                            <?php $str_after .= preg_replace("/[^a-zA-Z0-9]/", "-", $breadcrumb[$i]) . "/" ?>
-                                            
-                                            <?php endfor; ?>
+                                            <div class="col-xs-8">
+                                                <?php $str_after = "";
+                                                for ($i = 0; $i < count($breadcrumb) - 1; $i++) : ?>
+                                                    <?php echo $i > 0 ? "&raquo;" : "" ?>
+                                                    <a itemprop="item" class="forange"
+                                                        href="<?php echo base_url() . "c/" . $str_after . preg_replace("/[^a-zA-Z0-9]/", "-", $breadcrumb[$i]) ?>">
+                                                        <span itemprop="name"><?php echo $breadcrumb[$i] ?></span>
+                                                    </a>
+                                                    <?php $str_after .= preg_replace("/[^a-zA-Z0-9]/", "-", $breadcrumb[$i]) . "/" ?>
+
+                                                <?php endfor; ?>
                                             </div>
                                             <div class="clearfix"></div>
                                             <div class="col-xs-4" style="color:#888">Merek</div>
-                                            <div class="col-xs-8"> 
+                                            <div class="col-xs-8">
                                                 <a class="forange"
-                                                    href="<?php echo base_url() . "c/" . $str_after . preg_replace("/[^a-zA-Z0-9]/", "-", $breadcrumb[count($breadcrumb)-1]) ?>">
-                                                    <span itemprop="brand"><?php echo $breadcrumb[count($breadcrumb)-1] ?></span>
+                                                    href="<?php echo base_url() . "c/" . $str_after . preg_replace("/[^a-zA-Z0-9]/", "-", $breadcrumb[count($breadcrumb) - 1]) ?>">
+                                                    <span itemprop="brand"><?php echo $breadcrumb[count($breadcrumb) - 1] ?></span>
                                                 </a>
                                             </div>
                                             <div class="clearfix"></div>
-    
+
                                             <?php if ($namecategori["parent"] != "Sparepart") : ?>
                                                 <!--<div class="col-xs-4" style="color:#888">Tipe</div>
                                                 <div class="col-xs-8"> <span class="lfid"><?php echo strip_tags((!empty($namecategori["type"])) ? $namecategori["type"] : "-"); ?></span></div>-->
@@ -295,25 +296,25 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                                 <div class="col-xs-4" style="color:#888">Merek Unit</div>
                                                 <div class="col-xs-8"> <span class="lfid" itemprop="brand"><?php echo strip_tags((!empty($namecategori["brandunit"])) ? $namecategori["brandunit"] : "-"); ?></span></div>
                                                 <div class="clearfix"></div>
-    
+
                                                 <div class="col-xs-4" style="color:#888">Tipe Unit</div>
                                                 <div class="col-xs-8"> <span class="lfid"><?php echo strip_tags((!empty($namecategori["type"])) ? $namecategori["type"] : "-"); ?></span></div>
-    
+
                                             <?php endif; ?>
                                             <div class="clearfix"></div>
-    
+
                                             <div class="col-xs-4" style="color:#888">Berat</div>
                                             <div class="col-xs-8"> <?php echo $key["weight"] ?> Kg</div>
                                             <div class="clearfix"></div>
-    
+
                                             <!--<div class="col-xs-4" style="color:#888">Kemasan</div>
                                             <div class="col-xs-8"> <?php echo $key["packagin"] == "" ? "-" : $key["packagin"] ?></div>
                                             <div class="clearfix"></div>-->
-    
+
                                             <div class="col-xs-4" style="color:#888">Grade</div>
                                             <div class="col-xs-8"> <?php echo ($key["quality"] == 1 ? "Asli" : ($key["quality"] == 3 ? "Bekas" : ($key["quality"] == 3 ? "Tiruan" : ""))); ?></div>
                                             <div class="clearfix"></div>
-    
+
                                             <!--<div class="col-xs-4" style="color:#888">Garansi</div>
                                             <div class="col-xs-8"> <?php echo (!empty($key["warranty"])) ? $key["warranty"] : "-"; ?></div>-->
                                         </div>
@@ -343,16 +344,18 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                         </div>
                                         <?php $i = 1;
                                         foreach ($attribute as $index => $value) { ?>
-                                            <?php //if ($i < 5) : ?>
-                                                <div class="col-xs-12 f14">
-                                                    <table class="table table-bordered <?php echo ($i % 2) ? "" : "table-striped"; ?>" style="width:100%;margin-bottom:0px;">
-                                                        <tr>
-                                                            <td class="fbold" style="width:40%;"><?php echo $value['name'] ?></td>
-                                                            <td><?php echo strip_tags($value['value']); ?></td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                            <?php //endif ?>
+                                            <?php //if ($i < 5) : 
+                                            ?>
+                                            <div class="col-xs-12 f14">
+                                                <table class="table table-bordered <?php echo ($i % 2) ? "" : "table-striped"; ?>" style="width:100%;margin-bottom:0px;">
+                                                    <tr>
+                                                        <td class="fbold" style="width:40%;"><?php echo $value['name'] ?></td>
+                                                        <td><?php echo strip_tags($value['value']); ?></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <?php //endif 
+                                            ?>
                                             <?php if ($i > 5) { ?>
                                                 <!--<div class="col-xs-12">
                                                     <a data-toggle="modal" data-target="#detail" class="forange f14">Baca selengkapnya</a>
@@ -370,7 +373,8 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                     </div>
                                     <?php if (!empty($key["description"])) : ?>
                                         <div class="col-xs-12">
-                                            <p><?php echo $key["description"];//word_limiter($key["description"], 20); ?></p>
+                                            <p><?php echo $key["description"]; //word_limiter($key["description"], 20); 
+                                                ?></p>
                                         </div>
                                     <?php else : ?>
                                         <div class="col-xs-12">
@@ -401,7 +405,8 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
     </div>
     <div class="">
         <div class="list_same_product">
-            <?php //$this->load->view("_sameproduct_mobile", array('title' => $key['tittle'])) ?>
+            <?php //$this->load->view("_sameproduct_mobile", array('title' => $key['tittle'])) 
+            ?>
             <div class="row m-b-1 m-t-3">
                 <div class="col-lg-12">
                     <h3 class="fbold f22"><span class="fa fa-shopping-cart forange"></span>
@@ -417,12 +422,12 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($sameproduct as $same): ?>
-                    <tr>
-                        <td><?php echo $same["tittle"] ?></td>
-                        <!--<td style="text-align:center"><?php echo $same["brand_name"] ?></td>-->
-                        <td style="text-align:right">Rp <?php echo number_format($same["price"], 0, ',', '.') ?></td>
-                    </tr>
+                    <?php foreach ($sameproduct as $same): ?>
+                        <tr>
+                            <td><?php echo $same["tittle"] ?></td>
+                            <!--<td style="text-align:center"><?php echo $same["brand_name"] ?></td>-->
+                            <td style="text-align:right">Rp <?php echo number_format($same["price"], 0, ',', '.') ?></td>
+                        </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>

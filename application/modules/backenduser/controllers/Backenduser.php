@@ -51,7 +51,7 @@ class Backenduser extends MX_Controller
 
                 '<a class="fbold f14 forange" href="' . base_url() . 'backenduser/ddtttaaaiiill?id=' . $user["id"] . '">' . $user["name"] . '</a><br>',
                 '<span>' . $user["privileges"] . '</span>',
-                '<a class="btn btn-sm btn-danger" href="' . base_url() . 'backenduser/haspuuuuuussssssadminnnnn?id=' . $user["id"] . '"><i class="fa fa-trash"></i></a>'
+                '<a class="btn btn-sm btn-danger" href="' . base_url() . 'backenduser/haspuuuuuussssssadminnnnn?id=' . $user["id"] . '"><i class="bi bi-trash"></i></a>'
 
             );
         }

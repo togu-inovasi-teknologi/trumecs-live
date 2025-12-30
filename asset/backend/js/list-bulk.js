@@ -61,55 +61,54 @@ $(document).ready(function () {
       $(".biaya_pengiriman").prop("readonly", true);
     }
   });
-  
+
   var previewNode = document.querySelector("#template");
-      previewNode.id = "";
-      var previewTemplate = previewNode.parentNode.innerHTML;
-      previewNode.parentNode.removeChild(previewNode);
-      $("#uploader").dropzone({
-        url: base_url + "bulk/upload",
-        parallelUploads: 3,
-        clickable: ".btn-upload",
-        previewTemplate: previewTemplate,
-        autoQueue: true,
-        maxFiles: 3,
-        previewsContainer: "#previews",
-        acceptedFiles: ".xls, .xlsx, .png, .jpg, .jpeg, .docx, .pdf",
-        init: function () {
-          this.on("dragenter", function () {
-            $("#uploader").addClass("drag-enter");
-          });
-          this.on("dragleave", function () {
-            $("#uploader").removeClass("drag-enter");
-          });
-          this.on("complete", (file) => {
-            $(file).each(function (index, item) {
-              response = JSON.parse(item.xhr.response);
-              $("#uploader").removeClass("drag-enter");
-              $("#uploader").append(
-                '<input type="hidden" name="files[]" value="' +
-                  response.name +
-                  '" />'
-              );
-              setTimeout(function () {
-                $(item.previewElement).find(".progress").fadeOut(1000);
-              }, 500);
-            });
-          });
-          this.on("removedfile", (file) => {
-            response = JSON.parse(file.xhr.response);
-            filename = response.name;
-            $.post(
-              base_url + "bulk/remove",
-              { filename: filename },
-              function (data) {
-                $('input[value="' + filename + '"]').remove();
-              }
-            );
-          });
-        },
+  previewNode.id = "";
+  var previewTemplate = previewNode.parentNode.innerHTML;
+  previewNode.parentNode.removeChild(previewNode);
+  $("#uploader").dropzone({
+    url: base_url + "bulk/upload",
+    parallelUploads: 3,
+    clickable: ".btn-upload",
+    previewTemplate: previewTemplate,
+    autoQueue: true,
+    maxFiles: 3,
+    previewsContainer: "#previews",
+    acceptedFiles: ".xls, .xlsx, .png, .jpg, .jpeg, .docx, .pdf",
+    init: function () {
+      this.on("dragenter", function () {
+        $("#uploader").addClass("drag-enter");
       });
-    
+      this.on("dragleave", function () {
+        $("#uploader").removeClass("drag-enter");
+      });
+      this.on("complete", (file) => {
+        $(file).each(function (index, item) {
+          response = JSON.parse(item.xhr.response);
+          $("#uploader").removeClass("drag-enter");
+          $("#uploader").append(
+            '<input type="hidden" name="files[]" value="' +
+              response.name +
+              '" />'
+          );
+          setTimeout(function () {
+            $(item.previewElement).find(".progress").fadeOut(1000);
+          }, 500);
+        });
+      });
+      this.on("removedfile", (file) => {
+        response = JSON.parse(file.xhr.response);
+        filename = response.name;
+        $.post(
+          base_url + "bulk/remove",
+          { filename: filename },
+          function (data) {
+            $('input[value="' + filename + '"]').remove();
+          }
+        );
+      });
+    },
+  });
 });
 $(document).on("click", ".change-nego", function () {
   var container = $(this).closest(".card-nego");
@@ -117,7 +116,7 @@ $(document).on("click", ".change-nego", function () {
   var action = container.find(".action-nego");
   inputNego.prop("readonly", false);
   action.html(
-    "<button class='btn btnnewgreen nego-fix'><i class='fa fa-check'></i></button> <button class='btn btnnewred cancel-nego'><i class='fa fa-times'></i></button>"
+    "<button class='btn btnnewgreen nego-fix'><i class='bi bi-check'></i></button> <button class='btn btnnewred cancel-nego'><i class='fa fa-times'></i></button>"
   );
 });
 $(document).on("click", ".nego-fix", function () {
@@ -137,7 +136,7 @@ $(document).on("click", ".redo-harga", function () {
   var action = container.find(".action-nego");
   inputNego.prop("readonly", false);
   action.html(
-    "<button class='btn btnnewgreen nego-fix'><i class='fa fa-check'></i></button>"
+    "<button class='btn btnnewgreen nego-fix'><i class='bi bi-check'></i></button>"
   );
 });
 $(document).on("click", ".cancel-nego", function () {
@@ -146,7 +145,7 @@ $(document).on("click", ".cancel-nego", function () {
   var action = container.find(".action-nego");
   inputNego.prop("readonly", true);
   action.html(
-    "<button class='btn btn-primary change-nego'><i class=\"fa fa-edit\"></i></button>"
+    "<button class='btn btn-primary change-nego'><i class=\"bi bi-pencil\"></i></button>"
   );
 });
 
@@ -156,7 +155,7 @@ $(document).on("click", ".change-nego-cust", function () {
   var action = container.find(".action-nego-cust");
   inputNego.prop("readonly", false);
   action.html(
-    "<button class='btn btnnewgreen nego-cust-fix'><i class='fa fa-check'></i></button> <button class='btn btnnewred cancel-nego-cust'><i class='fa fa-times'></i></button>"
+    "<button class='btn btnnewgreen nego-cust-fix'><i class='bi bi-check'></i></button> <button class='btn btnnewred cancel-nego-cust'><i class='fa fa-times'></i></button>"
   );
 });
 $(document).on("click", ".nego-cust-fix", function () {
@@ -176,7 +175,7 @@ $(document).on("click", ".redo-harga-cust", function () {
   var action = container.find(".action-nego-cust");
   inputNego.prop("readonly", false);
   action.html(
-    "<button class='btn btnnewgreen nego-cust-fix'><i class='fa fa-check'></i></button>"
+    "<button class='btn btnnewgreen nego-cust-fix'><i class='bi bi-check'></i></button>"
   );
 });
 $(document).on("click", ".cancel-nego-cust", function () {
@@ -185,7 +184,7 @@ $(document).on("click", ".cancel-nego-cust", function () {
   var action = container.find(".action-nego-cust");
   inputNego.prop("readonly", true);
   action.html(
-    "<button class='btn btn-primary change-nego-cust'><i class=\"fa fa-edit\"></i></button>"
+    "<button class='btn btn-primary change-nego-cust'><i class=\"bi bi-pencil\"></i></button>"
   );
 });
 
@@ -219,7 +218,7 @@ $(document).on("click", ".edit-harga", function () {
   var container = $(this).closest(".card-nego");
   var action = container.find(".action-nego");
   action.html(
-    "<button class='btn btnnewgreen f8 harga-fix'><i class='fa fa-check'></i></button> <button class='btn btn-primary f10 change-nego'>Nego</button> <button class='btn btnnewred f8 harga-tolak'><i class='fa fa-times'></i></button>"
+    "<button class='btn btnnewgreen f8 harga-fix'><i class='bi bi-check'></i></button> <button class='btn btn-primary f10 change-nego'>Nego</button> <button class='btn btnnewred f8 harga-tolak'><i class='fa fa-times'></i></button>"
   );
 });
 
@@ -229,7 +228,7 @@ $(document).on("click", ".edit-qty", function () {
   var icon = container.find(".action-qty");
   edit.prop("readonly", false);
   icon.html(
-    '<button type="button" class="btn btnnewgreen done-qty"><i class="fa fa-check"></i></button> <button class="btn btnnewred cancel-qty"><i class="fa fa-times"></i></button>'
+    '<button type="button" class="btn btnnewgreen done-qty"><i class="bi bi-check"></i></button> <button class="btn btnnewred cancel-qty"><i class="fa fa-times"></i></button>'
   );
 });
 $(document).on("click", ".cancel-qty", function () {
@@ -238,7 +237,7 @@ $(document).on("click", ".cancel-qty", function () {
   var action = container.find(".action-qty");
   inputNego.prop("readonly", true);
   action.html(
-    "<button class='btn btn-primary edit-qty'><i class=\"fa fa-edit\"></i></button>"
+    "<button class='btn btn-primary edit-qty'><i class=\"bi bi-pencil\"></i></button>"
   );
 });
 $(document).on("click", ".done-qty", function () {
@@ -247,7 +246,7 @@ $(document).on("click", ".done-qty", function () {
   var icon = container.find(".action-qty");
   edit.prop("readonly", true);
   icon.html(
-    '<button type="button" class="btn btn-primary edit-qty"><i class="fa fa-edit"></i></button>'
+    '<button type="button" class="btn btn-primary edit-qty"><i class="bi bi-pencil"></i></button>'
   );
 });
 
@@ -257,7 +256,7 @@ $(document).on("click", ".edit-uom", function () {
   var icon = container.find(".action-uom");
   edit.prop("readonly", false);
   icon.html(
-    '<button type="button" class="btn btnnewgreen done-uom"><i class="fa fa-check"></i></button> <button class="btn btnnewred cancel-uom"><i class="fa fa-times"></i></button>'
+    '<button type="button" class="btn btnnewgreen done-uom"><i class="bi bi-check"></i></button> <button class="btn btnnewred cancel-uom"><i class="fa fa-times"></i></button>'
   );
 });
 $(document).on("click", ".cancel-uom", function () {
@@ -266,7 +265,7 @@ $(document).on("click", ".cancel-uom", function () {
   var action = container.find(".action-uom");
   inputNego.prop("readonly", true);
   action.html(
-    "<button class='btn btn-primary edit-uom'><i class=\"fa fa-edit\"></i></button>"
+    "<button class='btn btn-primary edit-uom'><i class=\"bi bi-pencil\"></i></button>"
   );
 });
 $(document).on("click", ".done-uom", function () {
@@ -275,7 +274,7 @@ $(document).on("click", ".done-uom", function () {
   var icon = container.find(".action-uom");
   edit.prop("readonly", true);
   icon.html(
-    '<button type="button" class="btn btn-primary edit-uom"><i class="fa fa-edit"></i></button>'
+    '<button type="button" class="btn btn-primary edit-uom"><i class="bi bi-pencil"></i></button>'
   );
 });
 
@@ -408,152 +407,200 @@ function getPathByExtension(extension) {
   };
   return pathMapping[extension] || "public/sourcing/";
 }
-$(document).on('click', '.supplier-source', function () {
-    var table;
-    var dt;
+$(document).on("click", ".supplier-source", function () {
+  var table;
+  var dt;
 
-    supplierIndex = $(this).parent().parent().index();
-    items = [];
-    
-    dt = $('#modalSupplier .datatable').DataTable({
-        ajax: {
-            url: base_url + 'getjson/getsourcing_items_supplier',
-            method: 'POST',
-            data: {
-                where: "type = 'supplier'",
-            }
+  supplierIndex = $(this).parent().parent().index();
+  items = [];
+
+  dt = $("#modalSupplier .datatable").DataTable({
+    ajax: {
+      url: base_url + "getjson/getsourcing_items_supplier",
+      method: "POST",
+      data: {
+        where: "type = 'supplier'",
+      },
+    },
+    scrollX: true,
+    processing: true,
+    serverSide: true,
+    columns: [
+      { data: "company", className: "f12" },
+      { data: "items", className: "f12" },
+      { data: "qty", className: "f12 text-right" },
+      { data: "uom", className: "f12" },
+      { data: "price", className: "f12 text-right" },
+      { data: "created_at", className: "f12 text-muted text-right" },
+      { data: "province", className: "f12" },
+      { data: null },
+    ],
+    columnDefs: [
+      {
+        targets: 2,
+        render: function (data, type, row) {
+          var data = parseInt(data);
+          return data.toLocaleString("id-ID");
         },
-        scrollX: true,
-        processing: true,
-        serverSide: true,
-        columns: [
-            { data: 'company', className: 'f12' },
-            { data: 'items' , className: 'f12'},
-            { data: 'qty' , className: 'f12 text-right'},
-            { data: 'uom' , className: 'f12'},
-            { data: 'price', className: 'f12 text-right' },
-            { data: 'created_at' , className: 'f12 text-muted text-right'},
-            { data: 'province' , className: 'f12'},
-            { data: null },
-        ],
-        columnDefs: [
-            {
-                targets: 2,
-                render: function (data, type, row) {
-                    var data = parseInt(data);
-                    return data.toLocaleString('id-ID');
-                }
-            },
-            {
-                targets: 4,
-                render: function (data, type, row) {
-                    var data = parseInt(data);
-                    return "Rp "+data.toLocaleString('id-ID');
-                }
-            },
-            {
-                targets: 5,
-                render: function (data, type, row) {
-                    var tgl = parseInt(data);
-                    var dates = new Date(tgl*1000);
-                    return dates.toLocaleDateString("id-ID");
-                }
-            },
-            {
-                targets: 7,
-                orderable: false,
-                render: function (data, type, row) {
-                    return `<input type="checkbox" class="checkbox-item-source-datatable" data-json='${JSON.stringify(row)}' name="item_checks[]"  value="${data.id}">`;
-                }
-            },
-        ],
-        drawCallback: function (settings) {
-            var api = this.api();
-     
-            // Output the data for the visible rows to the browser's console
-            console.log(api.rows({ page: 'current' }).data());
-        }
-    });
+      },
+      {
+        targets: 4,
+        render: function (data, type, row) {
+          var data = parseInt(data);
+          return "Rp " + data.toLocaleString("id-ID");
+        },
+      },
+      {
+        targets: 5,
+        render: function (data, type, row) {
+          var tgl = parseInt(data);
+          var dates = new Date(tgl * 1000);
+          return dates.toLocaleDateString("id-ID");
+        },
+      },
+      {
+        targets: 7,
+        orderable: false,
+        render: function (data, type, row) {
+          return `<input type="checkbox" class="checkbox-item-source-datatable" data-json='${JSON.stringify(
+            row
+          )}' name="item_checks[]"  value="${data.id}">`;
+        },
+      },
+    ],
+    drawCallback: function (settings) {
+      var api = this.api();
 
-    table = dt.$;
-  
-    dt.on('draw', function (data, row) {
-        console.log(row);
-        handleSelectedRows();
-    });
-    
+      // Output the data for the visible rows to the browser's console
+      console.log(api.rows({ page: "current" }).data());
+    },
+  });
 
-    function handleSelectedRows() {
-        const buttons = document.querySelectorAll('[class="checkbox-item-source-datatable"]');
-        
-        buttons.forEach(element => {
-            element.addEventListener('change', selectedSource);
-        });
-    }
+  table = dt.$;
+
+  dt.on("draw", function (data, row) {
+    console.log(row);
+    handleSelectedRows();
+  });
+
+  function handleSelectedRows() {
+    const buttons = document.querySelectorAll(
+      '[class="checkbox-item-source-datatable"]'
+    );
+
+    buttons.forEach((element) => {
+      element.addEventListener("change", selectedSource);
+    });
+  }
 });
-function selectedSource(e){
-    const data = JSON.parse(e.target.dataset.json);
-    
-    if (e.target.checked)
-    {
-        items.push(data);
-    }else{
-        
-        items.forEach((element, index) => {
-            if(element.id == data.id){
-                items.splice(index, 1);
-            }
-        });
-    }
+function selectedSource(e) {
+  const data = JSON.parse(e.target.dataset.json);
+
+  if (e.target.checked) {
+    items.push(data);
+  } else {
+    items.forEach((element, index) => {
+      if (element.id == data.id) {
+        items.splice(index, 1);
+      }
+    });
+  }
 }
 
-$(document).on('click', '#btn-save-item-list-source', function(e){
-    console.log(supplierIndex);
+$(document).on("click", "#btn-save-item-list-source", function (e) {
+  console.log(supplierIndex);
 
-    var trItem = $('table.table-item > tbody').children().eq(supplierIndex);
-    
-    var tdItemProduct = trItem.children().eq(7).find("input[name='list_id[]']").val();
-    var tdItemQuantity = trItem.children().eq(2);
-    var tdItemPrice = trItem.children().eq(4).find(".uang").val().replace(/\./g, '');
+  var trItem = $("table.table-item > tbody").children().eq(supplierIndex);
 
-    console.log("Harga "+tdItemPrice);
+  var tdItemProduct = trItem
+    .children()
+    .eq(7)
+    .find("input[name='list_id[]']")
+    .val();
+  var tdItemQuantity = trItem.children().eq(2);
+  var tdItemPrice = trItem
+    .children()
+    .eq(4)
+    .find(".uang")
+    .val()
+    .replace(/\./g, "");
 
-    /*tdItemProduct.after(`
+  console.log("Harga " + tdItemPrice);
+
+  /*tdItemProduct.after(`
 
         <input type="hidden" name="id_items[]" value="${items[0].product_id}" class="form-control product-id" id="id_items">
         <input type="name" name="items[]" value="${items[0].items}" class="form-control product-name" id="name" placeholder="Masukan nama item">
     
     `);*/
-    
-    items.forEach(element => {
-    trItem.after('<tr style="background-color:#f9f9f9"><td class="f12 p-l-1"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>');
-    
-    var trPrice = $('table.table-item > tbody').children().eq(supplierIndex + 1);
-    trPrice.children().eq(0).html('<span class="text-muted">'+element.company+'</span><br/>'+element.items);
-    trPrice.children().eq(2).html('<div class="input-group input-group-sm">'+
-                                '<input type="text" class="form-control uang input-qty text-right" name="qty_supplier[]" value="'+element.qty+'" >'+
-                                '<input type="hidden" name="source_id[]" value="'+element.id+'" readonly>'+
-                                '<input type="hidden" name="source_item_id[]" value="'+tdItemProduct+'" readonly>'+
-                                '<span class="input-group-btn action-qty">'+
-                                '<button type="button" class="btn btn-primary edit-qty"><i class="fa fa-edit"></i></button>'+
-                                '</span>'+
-                            '</div>');
-    trPrice.children().eq(3).html('<div class="input-group input-group-sm">'+
-                                '<input type="text" class="form-control input-uom text-right" name="uom[]" value="'+element.uom+'" readonly>'+
-                                '<span class="input-group-btn action-uom">'+
-                                '<button type="button" class="btn btn-primary edit-uom"><i class="fa fa-edit"></i></button>'+
-                                '</span>'+
-                            '</div>');
-    trPrice.children().eq(4).html('<div class="input-group input-group-sm">'+
-                                '<span class="text-success input-group-addon fbold">'+
-                                    Math.round(((tdItemPrice - element.price ) / element.price*100))+'%'+
-                                '</span>'+
-                                '<span class="input-group-addon">Rp</span>'+
-                                '<input type="text" class="form-control uang text-right" name="price_supplier[]" value="'+element.price+'" >'+
-                            '</div>');
-    });
-    
-    /*
+
+  items.forEach((element) => {
+    trItem.after(
+      '<tr style="background-color:#f9f9f9"><td class="f12 p-l-1"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>'
+    );
+
+    var trPrice = $("table.table-item > tbody")
+      .children()
+      .eq(supplierIndex + 1);
+    trPrice
+      .children()
+      .eq(0)
+      .html(
+        '<span class="text-muted">' +
+          element.company +
+          "</span><br/>" +
+          element.items
+      );
+    trPrice
+      .children()
+      .eq(2)
+      .html(
+        '<div class="input-group input-group-sm">' +
+          '<input type="text" class="form-control uang input-qty text-right" name="qty_supplier[]" value="' +
+          element.qty +
+          '" >' +
+          '<input type="hidden" name="source_id[]" value="' +
+          element.id +
+          '" readonly>' +
+          '<input type="hidden" name="source_item_id[]" value="' +
+          tdItemProduct +
+          '" readonly>' +
+          '<span class="input-group-btn action-qty">' +
+          '<button type="button" class="btn btn-primary edit-qty"><i class="bi bi-pencil"></i></button>' +
+          "</span>" +
+          "</div>"
+      );
+    trPrice
+      .children()
+      .eq(3)
+      .html(
+        '<div class="input-group input-group-sm">' +
+          '<input type="text" class="form-control input-uom text-right" name="uom[]" value="' +
+          element.uom +
+          '" readonly>' +
+          '<span class="input-group-btn action-uom">' +
+          '<button type="button" class="btn btn-primary edit-uom"><i class="bi bi-pencil"></i></button>' +
+          "</span>" +
+          "</div>"
+      );
+    trPrice
+      .children()
+      .eq(4)
+      .html(
+        '<div class="input-group input-group-sm">' +
+          '<span class="text-success input-group-addon fbold">' +
+          Math.round(((tdItemPrice - element.price) / element.price) * 100) +
+          "%" +
+          "</span>" +
+          '<span class="input-group-addon">Rp</span>' +
+          '<input type="text" class="form-control uang text-right" name="price_supplier[]" value="' +
+          element.price +
+          '" >' +
+          "</div>"
+      );
+  });
+
+  /*
     var currentQuantity = tdItemQuantity.children().eq(0);
     currentQuantity = parseInt(currentQuantity.val());
 
@@ -610,10 +657,8 @@ $(document).on('click', '#btn-save-item-list-source', function(e){
     tdSupplierName.html(elementSupplier);
 
 */
-
 });
-    
-    
-$(document).on('click', '.remove-source', function(e) {
-        $(this).parent().parent().remove();
-   })
+
+$(document).on("click", ".remove-source", function (e) {
+  $(this).parent().parent().remove();
+});

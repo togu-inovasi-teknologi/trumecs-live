@@ -74,7 +74,7 @@ class Backendagent extends MX_Controller
             $message = $this->load->view('email/tender', $email_content, true);
             $this->send_email("Berpartner dengan Trumecs adalah keputusan tepat", $data['email'], $message); */
 
-        $this->session->set_flashdata('form_error', '<div class="alert alert-success"><span class="fa fa-check-circle"></span> <strong>Sukses!</strong> Perubahan berhasil dilakukan</div>');
+        $this->session->set_flashdata('form_error', '<div class="alert alert-success"><span class="bi bi-check-circle"></span> <strong>Sukses!</strong> Perubahan berhasil dilakukan</div>');
         $this->m_backendagent->save($data);
         redirect('backendagent/detail/' . $id);
         /* } */

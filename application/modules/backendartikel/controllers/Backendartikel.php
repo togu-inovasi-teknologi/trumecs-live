@@ -81,9 +81,9 @@ class Backendartikel extends MX_Controller
                 '<small class="text-right">' . $artikel["view"] . '</small>',
                 '<small>' . $artikel["creator"] . '</small>',
 
-                //'<a class="btn btn-sm btn-warning" href="'.base_url().'backendartikel/form?id='.$artikel["id"].'"><i class="fa fa-edit"></i></a>',
+                //'<a class="btn btn-sm btn-warning" href="'.base_url().'backendartikel/form?id='.$artikel["id"].'"><i class="bi bi-pencil"></i></a>',
 
-                //$artikel['display'] == 1 ? '<a class="btn btn-sm btn-danger" href="'.base_url().'backendartikel/hapus?id='.$artikel["id"].'"><i class="fa fa-remove"></i></a>' : '<a class="btn btn-sm btn-success" href="'.base_url().'backendartikel/show?id='.$artikel["id"].'"><i class="fa fa-check"></i></a>'
+                //$artikel['display'] == 1 ? '<a class="btn btn-sm btn-danger" href="'.base_url().'backendartikel/hapus?id='.$artikel["id"].'"><i class="fa fa-remove"></i></a>' : '<a class="btn btn-sm btn-success" href="'.base_url().'backendartikel/show?id='.$artikel["id"].'"><i class="bi bi-check"></i></a>'
                 $artikel['display'] == 1 ? '<a class="f12 text-danger" href="' . base_url() . 'backendartikel/hapus?id=' . $artikel["id"] . '">Sembunyikan</a>' : '<a class="text-success f12" href="' . base_url() . 'backendartikel/show?id=' . $artikel["id"] . '">Tampilkan</a>'
             );
         }

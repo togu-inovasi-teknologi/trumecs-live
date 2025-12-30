@@ -25,8 +25,8 @@
                             <a href="#" class="fgreen" data-target="#data-mechanic-<?= $dataMechanic['id'] ?>" data-toggle="modal"><?= getAvailabledate($dataMechanic['estimated_deliveryindent'])[0] === 'Tersedia' ? getAvailabledate($dataMechanic['estimated_deliveryindent'])[0] : getAvailabledate($dataMechanic['estimated_deliveryindent'])[1] . " " . "(" . getAvailabledate($dataMechanic['estimated_deliveryindent'])[0] . ")" ?></a>
                         </td>
                         <td class="d-flex gap-1 align-items-center justify-content-center">
-                            <a href="<?= base_url(); ?>backendmekanik/edit_mekanik/<?= $dataMechanic['id']; ?>" class="btn btn-warning btn-sm radius-sm"><i class="fa fa-edit"></i></a>
-                            <a href="<?= base_url(); ?>backendmekanik/deleteMekanik/<?= $dataMechanic['id']; ?>" class="btn btn-danger btn-sm radius-sm"><i class="fa fa-trash"></i></a>
+                            <a href="<?= base_url(); ?>backendmekanik/edit_mekanik/<?= $dataMechanic['id']; ?>" class="btn btn-warning btn-sm radius-sm"><i class="bi bi-pencil"></i></a>
+                            <a href="<?= base_url(); ?>backendmekanik/deleteMekanik/<?= $dataMechanic['id']; ?>" class="btn btn-danger btn-sm radius-sm"><i class="bi bi-trash"></i></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

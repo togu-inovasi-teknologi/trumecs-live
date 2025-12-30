@@ -77,7 +77,7 @@
 		    						';
 								} else if ($key["status"] == "delivery") {
 									echo '
-				    					<a href="" class="btn btn-sm btn-orange"><i class="fa fa-check"></i> Sudah Terima</a>
+				    					<a href="" class="btn btn-sm btn-orange"><i class="bi bi-check"></i> Sudah Terima</a>
 				    					';
 								} ?>
 		    				</div>

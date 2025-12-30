@@ -62,9 +62,9 @@ class Myartikel extends MX_Controller
 
                 '<a class="fbold f14 forange" href="' . base_url() . 'backendartikel/myartikel/form?id=' . $artikel["id"] . '">' . $artikel["title"] . '</a>',
 
-                '<a class="btn btn-sm btn-warning" href="' . base_url() . 'backendartikel/myartikel/form?id=' . $artikel["id"] . '"><i class="fa fa-edit"></i></a>',
+                '<a class="btn btn-sm btn-warning" href="' . base_url() . 'backendartikel/myartikel/form?id=' . $artikel["id"] . '"><i class="bi bi-pencil"></i></a>',
 
-                $artikel['display'] == 1 ? '<a class="btn btn-sm btn-danger" href="' . base_url() . 'backendartikel/myartikel/hapus?id=' . $artikel["id"] . '"><i class="fa fa-trash"></i></a>' : '<a class="btn btn-sm btn-success" href="' . base_url() . 'backendartikel/myartikel/show?id=' . $artikel["id"] . '"><i class="fa fa-check"></i></a>'
+                $artikel['display'] == 1 ? '<a class="btn btn-sm btn-danger" href="' . base_url() . 'backendartikel/myartikel/hapus?id=' . $artikel["id"] . '"><i class="bi bi-trash"></i></a>' : '<a class="btn btn-sm btn-success" href="' . base_url() . 'backendartikel/myartikel/show?id=' . $artikel["id"] . '"><i class="bi bi-check"></i></a>'
             );
         }
 

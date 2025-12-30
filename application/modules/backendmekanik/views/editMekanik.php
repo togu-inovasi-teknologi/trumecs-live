@@ -19,7 +19,7 @@
                     <label for="pv_value">Harga Kontrak</label>
                     <input type="text" id="pv_value" class="form-control uang" placeholder="Harga" name="pv_value[]" value="0">
                 </div>
-                <div class=""><button type="button" class="btn btn-danger radius-sm del-pv"><i class="fa fa-trash"></i></button></div>
+                <div class=""><button type="button" class="btn btn-danger radius-sm del-pv"><i class="bi bi-trash"></i></button></div>
             </div>
         </div>
         <div class="ee-form" hidden>
@@ -46,7 +46,7 @@
                     <textarea type="text" id="ee_description" class="form-control" placeholder="Deskripsi" name="ee_description[]"></textarea>
                 </div>
                 <div class="m-t-2">
-                    <button type="button" class="btn btn-danger radius-sm del-ee"><i class="fa fa-trash"></i></button>
+                    <button type="button" class="btn btn-danger radius-sm del-ee"><i class="bi bi-trash"></i></button>
                 </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
                     <textarea id="se_description" class="form-control" style="width: 700px;" name="se_description[]"></textarea>
                 </div>
                 <div class="m-t-2">
-                    <button type="button" class="btn btn-danger radius-sm del-se"><i class="fa fa-trash"></i></button>
+                    <button type="button" class="btn btn-danger radius-sm del-se"><i class="bi bi-trash"></i></button>
                 </div>
             </div>
         </div>
@@ -85,14 +85,14 @@
                     <textarea id="sertificate_description" class="form-control" style="width: 350px;" name="sertificate_description[]"></textarea>
                 </div>
                 <div class="m-t-2">
-                    <button type="button" class="btn btn-danger radius-sm del-sertificate"><i class="fa fa-trash"></i></button>
+                    <button type="button" class="btn btn-danger radius-sm del-sertificate"><i class="bi bi-trash"></i></button>
                 </div>
             </div>
         </div>
         <div class="gallery-form" hidden>
             <div class="d-flex gap-2 align-items-start">
                 <div class="m-t-2">
-                    <button type="button" class="btn btn-danger radius-sm del-gallery"><i class="fa fa-trash"></i></button>
+                    <button type="button" class="btn btn-danger radius-sm del-gallery"><i class="bi bi-trash"></i></button>
                 </div>
                 <div class="d-flex flex-column">
                     <label class="fbold m-b-0" for="gallery_file">Foto / Gambar</label>
@@ -250,7 +250,7 @@
                                                         <label for="pv_value">Harga Kontrak</label>
                                                         <input type="text" id="pv_value" value="<?= $mv['price']; ?>" class="form-control" placeholder="Harga" name="pv_value[]" value="<?= $mv['price']; ?>">
                                                     </div>
-                                                    <div class=""><button type="button" class="btn btn-danger radius-sm del-pv"><i class="fa fa-trash"></i></button></div>
+                                                    <div class=""><button type="button" class="btn btn-danger radius-sm del-pv"><i class="bi bi-trash"></i></button></div>
                                                 </div>
 
                                             </div>
@@ -302,7 +302,7 @@
                                             <textarea type="text" id="ee_description" class="form-control" placeholder="Deskripsi" name="ee_description[]"><?= $me['description']; ?></textarea>
                                         </div>
                                         <div class="m-t-2">
-                                            <button type="button" class="btn btn-danger radius-sm del-ee"><i class="fa fa-trash"></i></button>
+                                            <button type="button" class="btn btn-danger radius-sm del-ee"><i class="bi bi-trash"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -332,7 +332,7 @@
                                             <textarea id="se_description" class="form-control" style="width: 700px;" name="se_description[]"><?= $mse['description']; ?></textarea>
                                         </div>
                                         <div class="m-t-2">
-                                            <button type="button" class="btn btn-danger radius-sm del-se"><i class="fa fa-trash"></i></button>
+                                            <button type="button" class="btn btn-danger radius-sm del-se"><i class="bi bi-trash"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -374,7 +374,7 @@
                                             <textarea id="sertificate_description" class="form-control" style="width: 350px;" name="sertificate_description[]"><?= $mf['description']; ?></textarea>
                                         </div>
                                         <div class="m-t-2">
-                                            <button type="button" class="btn btn-danger radius-sm del-sertificate"><i class="fa fa-trash"></i></button>
+                                            <button type="button" class="btn btn-danger radius-sm del-sertificate"><i class="bi bi-trash"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -394,7 +394,7 @@
                         <?php foreach ($mechanic_gallery as $i => $gallery) : ?>
                             <div class="gallery-form">
                                 <div class="d-flex gap-2 align-items-start">
-                                    <button type="button" class="btn btn-danger radius-sm del-gallery"><i class="fa fa-trash"></i></button>
+                                    <button type="button" class="btn btn-danger radius-sm del-gallery"><i class="bi bi-trash"></i></button>
                                     <div class="d-flex flex-column">
                                         <div class="d-flex gap-1">
                                             <p><?= $i + 1 ?>. </p>

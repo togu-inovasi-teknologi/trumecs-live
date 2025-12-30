@@ -36,14 +36,14 @@
                             </td>
                             <td>
                                 <a href="<?php echo base_url() ?>backendpage/form?id=<?php echo $key["id"] ?>" class="btn btn-sm btn-warning">
-                                    <i class="fas fa-edit"></i>
+                                    <i class="bi bi-pencil"></i>
                                 </a>
                             </td>
                             <td>
                                 <a href="<?php echo base_url() ?>backendpage/hapus?id=<?php echo $key["id"] ?>"
                                     class="btn btn-sm btn-danger"
                                     onclick="return confirm('Yakin ingin menghapus asal pengiriman <?php echo $key["title"] ?>?')">
-                                    <i class="fas fa-trash"></i>
+                                    <i class="bi bi-trash"></i>
                                 </a>
                             </td>
                         </tr>

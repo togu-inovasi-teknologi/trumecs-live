@@ -152,7 +152,7 @@ $sessionmember = $session["member"];
 
                                         </div>
                                         <div class="col-lg-2" style="margin-left:-15px;">
-                                            <button type="button" class="f16 del-att" style="color: red; padding:5px 10px;border: 1px solid red; border-radius:50%; background-color:transparent;"><i class="fa fa-trash"></i></button>
+                                            <button type="button" class="f16 del-att" style="color: red; padding:5px 10px;border: 1px solid red; border-radius:50%; background-color:transparent;"><i class="bi bi-trash"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -405,7 +405,7 @@ $sessionmember = $session["member"];
                                 <input type="text" name="description" jq-model="value" class="form-control" data-title="Nilai Atribut" placeholder="Nilai Atribut">
                             </div>
                             <div class="col-lg-2 m-b-2" style="margin-left:-15px;">
-                                <button type="button" class="f16 del-att" style="color: red; padding:5px 10px;border: 1px solid red; border-radius:50%; background-color:transparent;"><i class="fa fa-trash"></i></button>
+                                <button type="button" class="f16 del-att" style="color: red; padding:5px 10px;border: 1px solid red; border-radius:50%; background-color:transparent;"><i class="bi bi-trash"></i></button>
                             </div>
                         </div>
                     </div>
@@ -512,7 +512,7 @@ $sessionmember = $session["member"];
                                     <input type="text" name="description" jq-model="value" class="form-control" data-title="Nilai Atribut" placeholder="Nilai Atribut">
                                 </div>
                                 <div class="col-lg-2 m-b-2" style="margin-left:-15px;">
-                                    <button type="button" class="f16 del-mp" style="color: red; padding:5px 10px;border: 1px solid red; border-radius:50%; background-color:transparent;"><i class="fa fa-trash"></i></button>
+                                    <button type="button" class="f16 del-mp" style="color: red; padding:5px 10px;border: 1px solid red; border-radius:50%; background-color:transparent;"><i class="bi bi-trash"></i></button>
                                 </div>
                             </div>
                         </div>

@@ -226,7 +226,7 @@ function namectgr($id)
 							<tr>
 								<td>
 									<a href="<?php echo base_url() ?>backendproduct/productstatus?id=<?php echo $key["id"] ?>&status=<?php echo ($key["status"] == "show") ? "draf" : "show"; ?>" class="badge bg-<?php echo ($key["status"] == "show") ? "success" : "danger"; ?> text-decoration-none" alt="show">
-										<i class="fas fa-<?php echo ($key["status"] == "show") ? "check" : "ban"; ?>"></i>
+										<i class="bi bi-<?php echo ($key["status"] == "show") ? "check" : "ban"; ?>"></i>
 									</a>
 								</td>
 								<td><?php echo $key["tittle"] ?><br>
@@ -247,7 +247,7 @@ function namectgr($id)
 								</td>
 								<td>
 									<a class="badge bg-warning text-decoration-none"
-										href="<?php echo base_url() ?>backendproduct/form?id=<?php echo $key["id"] ?>"><i class="fas fa-edit"></i></a>
+										href="<?php echo base_url() ?>backendproduct/form?id=<?php echo $key["id"] ?>"><i class="bi bi-pencil"></i></a>
 								</td>
 								<td>
 									<a class="badge bg-primary text-decoration-none"
@@ -256,7 +256,7 @@ function namectgr($id)
 								<td>
 									<a class="badge bg-danger text-decoration-none click"
 										onclick="hapus(<?php echo $key["id"] ?>,'<?php echo $key["tittle"] ?>')"
-										url="<?php echo base_url() ?>backendproduct/hapus?id=<?php echo $key["id"] ?>"><i class="fas fa-trash"></i></a>
+										url="<?php echo base_url() ?>backendproduct/hapus?id=<?php echo $key["id"] ?>"><i class="bi bi-trash"></i></a>
 								</td>
 							</tr>
 						<?php endforeach ?>

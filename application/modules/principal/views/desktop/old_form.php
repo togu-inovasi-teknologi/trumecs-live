@@ -8,16 +8,16 @@
                 <h2><?php echo $this->lang->line('subjudul_halaman_principal') ?></h2>
                 <p class="f18"></p>
                 <br />
-                <h3 class="f18 "><span class="fa fa-check-circle"></span>
+                <h3 class="f18 "><span class="bi bi-check-circle"></span>
                     <?php echo $this->lang->line('point_principal_1') ?></h3>
                 <br />
-                <h3 class="f18 "><span class="fa fa-check-circle"></span>
+                <h3 class="f18 "><span class="bi bi-check-circle"></span>
                     <?php echo $this->lang->line('point_principal_2') ?></h3>
                 <br />
-                <h3 class="f18"><span class="fa fa-check-circle"></span>
+                <h3 class="f18"><span class="bi bi-check-circle"></span>
                     <?php echo $this->lang->line('point_principal_3') ?></h3>
                 <br />
-                <h3 class="f18"><span class="fa fa-check-circle"></span>
+                <h3 class="f18"><span class="bi bi-check-circle"></span>
                     <?php echo $this->lang->line('point_principal_4') ?></h3>
                 <br />
             </div>

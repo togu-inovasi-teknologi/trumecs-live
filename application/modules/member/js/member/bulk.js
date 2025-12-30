@@ -526,10 +526,10 @@ $(document).ready(function () {
     inputQty.prop("readonly", true);
     bsContainerWidth <= 768
       ? action.html(
-          '<button type="button" class="btn btn-warning f8 fbold change-qty">Ubah Qty</button><button type="button" class="btn btn-success f8 fix-nego"><i class="fa fa-check"></i></button>'
+          '<button type="button" class="btn btn-warning f8 fbold change-qty">Ubah Qty</button><button type="button" class="btn btn-success f8 fix-nego"><i class="bi bi-check"></i></button>'
         )
       : action.html(
-          '<button type="button" class="btn btn-success f12 btn-block fix-nego mb-5px"><i class="fa fa-check"></i></button><button type="button" class="btn btn-warning btn-block f12 fbold change-qty">Ubah Qty</button>'
+          '<button type="button" class="btn btn-success f12 btn-block fix-nego mb-5px"><i class="bi bi-check"></i></button><button type="button" class="btn btn-warning btn-block f12 fbold change-qty">Ubah Qty</button>'
         );
   });
   $(document).on("click", ".fix-nego", function () {
@@ -557,10 +557,10 @@ $(document).ready(function () {
     inputNego.prop("readonly", true);
     bsContainerWidth <= 768
       ? action.html(
-          '<button type="button" class="btn btn-warning f8 fbold change-nego">Ubah Harga</button><button type="button" class="btn btn-success f8 fbold fix-qty"><i class="fa fa-check"></i></button>'
+          '<button type="button" class="btn btn-warning f8 fbold change-nego">Ubah Harga</button><button type="button" class="btn btn-success f8 fbold fix-qty"><i class="bi bi-check"></i></button>'
         )
       : action.html(
-          '<button type="button" class="btn btn-success f12 btn-block fbold fix-qty mb-5px"><i class="fa fa-check"></i></button><button type="button" class="btn btn-warning btn-block f12 fbold change-nego">Ubah Harga</button>'
+          '<button type="button" class="btn btn-success f12 btn-block fbold fix-qty mb-5px"><i class="bi bi-check"></i></button><button type="button" class="btn btn-warning btn-block f12 fbold change-nego">Ubah Harga</button>'
         );
   });
   $(document).on("click", ".change-qty-after", function () {
@@ -570,10 +570,10 @@ $(document).ready(function () {
     inputQty.prop("readonly", false);
     bsContainerWidth <= 768
       ? action.html(
-          '<button type="button" class="btn btn-success f8 btn-block fbold fix-qty-after"><i class="fa fa-check"></i>'
+          '<button type="button" class="btn btn-success f8 btn-block fbold fix-qty-after"><i class="bi bi-check"></i>'
         )
       : action.html(
-          '<button type="button" class="btn btn-success f12 btn-block fbold fix-qty-after"><i class="fa fa-check"></i>'
+          '<button type="button" class="btn btn-success f12 btn-block fbold fix-qty-after"><i class="bi bi-check"></i>'
         );
   });
   $(document).on("click", ".fix-qty", function () {
@@ -609,10 +609,10 @@ $(document).ready(function () {
     inputQty.prop("readonly", false);
     bsContainerWidth <= 768
       ? action.html(
-          '<button type="button" class="btn btn-success f8 btn-block fbold fix-qty-after"><i class="fa fa-check"></i>'
+          '<button type="button" class="btn btn-success f8 btn-block fbold fix-qty-after"><i class="bi bi-check"></i>'
         )
       : action.html(
-          '<button type="button" class="btn btn-success f12 btn-block fbold fix-qty-after"><i class="fa fa-check"></i>'
+          '<button type="button" class="btn btn-success f12 btn-block fbold fix-qty-after"><i class="bi bi-check"></i>'
         );
   });
   $(document).on("click", ".redo-nego", function () {

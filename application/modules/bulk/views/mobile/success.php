@@ -1,5 +1,5 @@
 <div class="col-xs-12">
-    <div class="alert alert-success" style="border-radius: 40px; text-align:center;"><span class="fa fa-check-circle" style="vertical-align:middle"></span> <small>Pengiriman daftar RFQ Berhasil!</small></div>
+    <div class="alert alert-success" style="border-radius: 40px; text-align:center;"><span class="bi bi-check-circle" style="vertical-align:middle"></span> <small>Pengiriman daftar RFQ Berhasil!</small></div>
     <div class="card p-a-1 text-center">
         <h4>Terimakasih atas kepercayaan anda untuk menjalin kerjasama dengan Trumecs.</h4>
         <br />
