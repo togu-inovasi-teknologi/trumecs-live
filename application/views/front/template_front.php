@@ -310,7 +310,7 @@ $contact = $this->db->where('id', $ida)->get("admin")->result_array();
         </div>
     </div>
     <?php $this->load->view("front/popup_ads"); ?>
-    <?php if ($this->uri->segment(1) == "article" || $this->uri->segment(1) == null || $this->uri->segment(1) == "product") : ?>
+    <?php if ($this->uri->segment(1) == "article" || $this->uri->segment(1) == "product") : ?>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.datatables.net/2.3.5/js/dataTables.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

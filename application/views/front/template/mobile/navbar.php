@@ -1,4 +1,4 @@
-<?php if ($this->uri->segment(1) == "article" || $this->uri->segment(1) == null || $this->uri->segment(1) == "product") { ?>
+<?php if ($this->uri->segment(1) == "article" || $this->uri->segment(1) == "product") { ?>
     <?php if ($this->uri->segment(1) == 'member' && $this->uri->segment(2) == 'login') { ?>
         <nav class="navbar fixed-top bg-dark" role="navigation">
             <div class="container-fluid">
