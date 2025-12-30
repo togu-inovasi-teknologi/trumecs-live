@@ -232,7 +232,7 @@ $sessionmember = isset($session["member"]) ? $session["member"] : array('id' => 
                                 <input type="text" class="form-control radius-lg-left-new" placeholder="<?= isset($search_placeholder) ? $search_placeholder : $this->lang->line('placeholder_pencarian', FALSE) ?>" value="<?php echo $this->input->get("nama"); ?>">
                                 <div class="input-group-btn">
                                     <button class="btn search-button radius-lg-right-new" id="searchbuttontemplate" style="color:#fff;background-color:#fa8420;">
-                                        <i class="fa fa-search"></i> <!-- <?= $this->lang->line('cari', FALSE) ?> -->
+                                        <i class="bi bi-search"></i> <!-- <?= $this->lang->line('cari', FALSE) ?> -->
                                     </button>
                                 </div>
                             </div>
@@ -249,7 +249,7 @@ $sessionmember = isset($session["member"]) ? $session["member"] : array('id' => 
                     <div class="menu-kanan-atas" style="text-align:end;">
                         <a href="<?php echo base_url() ?>cart" class="m-r-1 f24">
                             <small class="label label-danger f12 badge"><?php echo count($this->cart->contents()) ?></small>
-                            <i class="fa fa-shopping-cart"></i>
+                            <i class="bi bi-cart"></i>
                         </a>
                         <?php
                         if ($sessionmember["id"] != null) :
@@ -260,14 +260,14 @@ $sessionmember = isset($session["member"]) ? $session["member"] : array('id' => 
                         ?>
                             <a href="<?php echo base_url() ?>chat" class="m-r-1 f24">
                                 <small class="label label-danger f12 badge"><?php echo count($this->cart->contents()) ?></small>
-                                <i class="fa fa-commenting-o"></i>
+                                <i class="bi bi-chat-dots"></i>
                             </a>
                             <a href="<?php echo base_url() ?>notification" class="m-r-1 f24">
                                 <small class="label label-danger f12 badge"><?php echo count($this->cart->contents()) ?></small>
-                                <i class="fa fa-bell"></i>
+                                <i class="bi bi-bell"></i>
                             </a>
                             <li class="d-down">
-                                <a class="f24" href="<?php echo base_url() ?>member" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i></a>
+                                <a class="f24" href="<?php echo base_url() ?>member" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-person"></i></a>
                                 <ul class="d-down-content-akun" aria-labelledby="navbarDropdown">
                                     <div class="col-lg-12 p-x-0">
                                         <a href="<?php echo base_url() ?>member">
@@ -287,15 +287,15 @@ $sessionmember = isset($session["member"]) ? $session["member"] : array('id' => 
                                     <div class="col-lg-12 p-x-0" style="border-bottom: 0.5px solid #ccc;">
                                         <div class="row">
                                             <div class="col-lg-6" style="border-right: 0.5px solid #ccc;">
-                                                <a href="<?php echo base_url() ?>member/store" class="list d-flex-sb align-items-center">Toko <i class="fa fa-building"></i></a>
+                                                <a href="<?php echo base_url() ?>member/store" class="list d-flex-sb align-items-center">Toko <i class="bi bi-building"></i></a>
                                             </div>
                                             <div class="col-lg-6">
-                                                <a href="<?php echo base_url() ?>member/bulk" class="list d-flex-sb align-items-center">RFQ Saya <i class="fa fa-files-o"></i></a>
+                                                <a href="<?php echo base_url() ?>member/bulk" class="list d-flex-sb align-items-center">RFQ Saya <i class="bi bi-file-earmark-text"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
-                                        <a href="<?php echo base_url() ?>member/logout" class="list d-flex-sb align-items-center">Keluar <i class="fa fa-sign-out fred"></i></a>
+                                        <a href="<?php echo base_url() ?>member/logout" class="list d-flex-sb align-items-center">Keluar <i class="bi bi-box-arrow-right fred"></i></a>
                                     </div>
                                 </ul>
                             </li>

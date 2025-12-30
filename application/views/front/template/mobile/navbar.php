@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="d-flex gap-2 align-items-center">
                     <a class="btn btn-warning" href="<?php echo base_url() ?>">
-                        <i class="fa fa-chevron-left"></i>
+                        <i class="bi bi-chevron-left"></i>
                     </a>
                     <a href="<?php echo base_url("member/login") ?>" class="text-white fw-bold fs-5 text-decoration-none">
                         <?php echo $this->lang->line("masuk", FALSE); ?>
@@ -22,7 +22,7 @@
                     <div id="logo" class="d-flex align-items-center">
                         <div class="col-1 p-0">
                             <button class="btn p-1 f20" data-bs-toggle="offcanvas" data-bs-target="#js-mobile-offcanvas">
-                                <i class="fa fa-bars text-dark"></i>
+                                <i class="bi bi-list text-dark"></i>
                             </button>
                         </div>
                         <div class="col-8 p-1">
@@ -32,10 +32,10 @@
                         </div>
                         <div class="col-3 text-end p-0">
                             <a style="color:#000; margin-right:10px;" class="f20 text-decoration-none" onclick="show()">
-                                <i class="fa fa-search"></i>
+                                <i class="bi bi-search"></i>
                             </a>
                             <a class="f20 me-2 text-decoration-none" style="color:#000;">
-                                <i class="fa fa-bell-o"></i>
+                                <i class="bi bi-bell"></i>
                             </a>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                         </div>
                         <div class="col-2 text-center p-0">
                             <a style="color:#6c757d;" class="f20 text-decoration-none" onclick="show()">
-                                <i class="fa fa-search"></i>
+                                <i class="bi bi-search"></i>
                             </a>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapskategori" aria-expanded="false" aria-controls="collapskategori">
                     <?php echo $this->lang->line('kategori', FALSE); ?>
-                    <i class="fa fa-angle-down icondropdown"></i>
+                    <i class="bi bi-chevron-down icondropdown"></i>
                 </li>
                 <div class="collapse" id="collapskategori" style="background-color:#fff;">
                     <?php $this->load->model("general/General_model", 'M_general'); ?>
@@ -100,7 +100,7 @@
 
                             <li class="list-group-item dropdownlist f14 d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapskategori-<?php echo $item['id'] ?>" aria-expanded="false" aria-controls="collapskategori">
                                 <?php echo $item['name'] ?>
-                                <i class="fa fa-angle-down icondropdown"></i>
+                                <i class="bi bi-chevron-down icondropdown"></i>
                             </li>
                             <div class="collapse" id="collapskategori-<?php echo $item['id'] ?>">
                                 <a alt="Jual Sparepart Truk Komponen Engine" href="<?php echo base_url(); ?>c/<?php echo $item['url'] ?>" class="list-group-item list-group-item-warning f12 fblack text-decoration-none">
@@ -145,7 +145,7 @@
 
                 <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#join_partner" aria-expanded="false" aria-controls="join_partner">
                     <?php echo $this->lang->line('join_trumecs_mitra', FALSE); ?>
-                    <i class="fa fa-angle-down icondropdown"></i>
+                    <i class="bi bi-chevron-down icondropdown"></i>
                 </li>
                 <div class="collapse" id="join_partner" style="background-color:#fff;">
                     <a href="<?= base_url('principal/form') ?>" class="list-group-item dropdownlist f14 text-decoration-none">
@@ -181,7 +181,7 @@
                                     <img src="<?php echo base_url() ?>public/image/member/<?php echo ($fotomember == null) ? "profile-default.png" : $fotomember ?>" alt="Avatar" class="rounded-circle" style="width: 30px; height: 30px; object-fit: cover;">
                                     <p class="fw-bold f14 mb-0"><?php echo $namemember ?></p>
                                 </div>
-                                <i class="fa fa-sign-out text-danger"></i>
+                                <i class="bi bi-box-arrow-right text-danger"></i>
                             </div>
                         </a>
                     </li>
@@ -197,14 +197,14 @@
         <div class="offcanvas-footer py-2 text-white bg-dark text-center">
             <small><strong><?php echo $this->lang->line('hubungi_kami', FALSE); ?>:</strong></small><br />
             <div class="my-1">
-                <span class="fa fa-phone"></span>
+                <span class="bi bi-phone"></span>
                 <small>
                     <a class="text-white text-decoration-none" href="tel:<?php echo platform_contact("phone") ?>" target="_blank" rel="noreferrer">
                         <?php echo platform_contact("phone") ?>
                     </a>
                 </small>
             </div>
-            <span class="fa fa-envelope"></span>
+            <span class="bi bi-envelope"></span>
             <small>
                 <a class="text-white text-decoration-none" href="mailto:<?php echo platform_contact("email") ?>" target="_blank" rel="noreferrer">
                     <?php echo platform_contact("email") ?>
@@ -292,7 +292,7 @@
     <?php if ($this->uri->segment(1) == 'member' && $this->uri->segment(2) == 'login') { ?>
         <nav class="navbar navbar-fixed-top bg-black" role="navigation">
             <div class="row d-flex gap-1 align-items-center">
-                <a class="btn forange" href="<?php echo base_url() ?>"><i class=" fa fa-chevron-left"></i></a>
+                <a class="btn forange" href="<?php echo base_url() ?>"><i class=" bi bi-chevron-left"></i></a>
                 <a href="<?php echo base_url("member/login") ?>" class="fwhite fbold f20">
                     <?php echo $this->lang->line("masuk", FALSE); ?>
                 </a>
@@ -305,7 +305,7 @@
             <div class="row">
                 <div id="logo" class="d-flex-ai-center">
                     <div class="col-xs-1 p-x-0">
-                        <span class="btn p-x-1 p-y-0 f20 navbar-toggle offcanvas-toggle offcanvas-toggle-close" data-toggle="offcanvas" data-target="#js-mobile-offcanvas"><i class="fa fa-bars" style="color:#000;"></i></span>
+                        <span class="btn p-x-1 p-y-0 f20 navbar-toggle offcanvas-toggle offcanvas-toggle-close" data-toggle="offcanvas" data-target="#js-mobile-offcanvas"><i class="bi bi-list" style="color:#000;"></i></span>
                     </div>
                     <div class="col-xs-8 p-x-1">
                         <a href="<?php echo base_url() ?>">
@@ -313,8 +313,8 @@
                         </a>
                     </div>
                     <div class="col-xs-3 text-right p-x-0">
-                        <a style="color:#000; margin-right:10px;" class="f20" onclick="show()"><i class="fa fa-search "></i></a>
-                        <a class="f20 m-r-1" style="color:#000;"><i class="fa fa-bell-o"></i></a>
+                        <a style="color:#000; margin-right:10px;" class="f20" onclick="show()"><i class="bi bi-search "></i></a>
+                        <a class="f20 m-r-1" style="color:#000;"><i class="bi bi-bell"></i></a>
                     </div>
                 </div>
                 <div id="searchfrom" style="display: none;" class="d-flex-ai-center">
@@ -343,7 +343,7 @@
                         </div>
                     </div>
                     <div class="col-xs-2 text-center p-x-0">
-                        <a style="color:#fff; margin-right:10px;" class="f20" onclick="show()"><i class="fa fa-search "></i></a>
+                        <a style="color:#fff; margin-right:10px;" class="f20" onclick="show()"><i class="bi bi-search "></i></a>
                     </div>
                 </div>
             </div>
@@ -358,7 +358,7 @@
             <div class="row" style="padding:10px 10px;">
                 <div class="col-xs-2">
                     <a class="btn btnnew wa-button-mobile" href="https://wa.me/6285176912338?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["tittle"] . ". Apakah barang ini tersedia?") ?>">
-                        <i class="fa fa-commenting fbold"></i>
+                        <i class="bi bi-chat-dots fbold"></i>
                     </a>
                 </div>
                 <div class="col-xs-10">
@@ -372,50 +372,50 @@
             <input type="hidden" class="" value="json" name="source_type">
         </form> -->
                 <!-- <a class="col-xs-2 btn" onclick="window.Tawk_API.maximize();" style="background-color:#fa8420;color:#fff;width:15%;margin:7px 3px;padding:10px">
-            <i class="fa fa-commenting fbold fa-2x"></i>
+            <i class="bi bi-chat-dots fbold fa-2x"></i>
         </a> -->
 
                 <!-- <button type="submit" form="add-product"class="col-xs-5 btn btn-default" style="color:#fa8420;background-color:#fff;border:1px solid #fa8420;width:40%;margin:7px 3px;padding:11px">
-            <i class="fa fa-cart-plus fa-2x" style="vertical-align:middle;margin-right:5px"></i> <span class="f14 fbold"> Tambahkan</span>
+            <i class="bi bi-cart-plus fa-2x" style="vertical-align:middle;margin-right:5px"></i> <span class="f14 fbold"> Tambahkan</span>
         </button> -->
 
                 <!-- <a href="<?php echo site_url('product/buy/' . $key['id'] . '/' . preg_replace("/[^a-zA-Z0-9]/", "-", $key["tittle"])); ?>" class="col-xs-5 btn btn-default" style="color:#666;background-color:#fff;border:1px solid #666;width:40%;margin:7px 3px;padding:11px">
-                <i class="fa fa-envelope fa-2x" style="vertical-align:middle;margin-right:5px"></i> <span class="f14 fbold">Penawaran</span>
+                <i class="bi bi-envelope fa-2x" style="vertical-align:middle;margin-right:5px"></i> <span class="f14 fbold">Penawaran</span>
         </a> -->
 
                 <!-- <button class="col-xs-4 btn btn-default" style="background-color:#fff">
-            <i class="fa fa-whatsapp"></i></br>Whatsapp
+            <i class="bi bi-whatsapp"></i></br>Whatsapp
         </button> -->
             </div>
         <?php else : ?>
             <!--<div class="row p-x-1" style="padding-top: 5px;">
             <div class="col-lg-2--4 text-center p-x-0">
                 <a href="<?php echo site_url() ?>" style="background-color:#000;line-height:1;color:<?php echo $this->uri->segment(1) == "" ? '#fa8420' : '#fff' ?>">
-                    <i class="fa fa-home f22"></i></br>
+                    <i class="bi bi-house f22"></i></br>
                     <h6 class="f10">Beranda</h6>
                 </a>
             </div>
             <div class="col-lg-2--4 text-center p-x-0">
                 <a href="<?php echo site_url('cart'); ?>" style="background-color:#000;line-height:1;color:<?php echo $this->uri->segment(1) == "cart" ? '#fa8420' : '#fff' ?>">
-                    <i class="fa fa-shopping-cart f22"></i></br>
+                    <i class="bi bi-cart f22"></i></br>
                     <h6 class="f10">Keranjang</h6>
                 </a>
             </div>
             <div class="col-lg-2--4 text-center p-x-0">
                 <a class="wa-button-mobile" href="https://wa.me/6285176912338?text=<?php echo urlencode("Hi Trumecs, saya ingin mengetahui tentang produk yang dijual") ?>" style="background-color:#000;line-height:1;color:<?php echo $this->uri->segment(1) == "chat" ? '#fa8420' : '#fff' ?>">
-                    <i class="fa fa-commenting f22"></i></br>
+                    <i class="bi bi-chat-dots f22"></i></br>
                     <h6 class="f10">Pesan</h6>
                 </a>
             </div>
             <div class="col-lg-2--4 text-center p-x-0">
                 <a href="<?php echo site_url('promo'); ?>" style="background-color:#000;line-height:1;color:<?php echo $this->uri->segment(1) == "promo" ? '#fa8420' : '#fff' ?>">
-                    <i class="fa fa-tags f22"></i></br>
+                    <i class="bi bi-tags f22"></i></br>
                     <h6 class="f10">Promo</h6>
                 </a>
             </div>
             <div class="col-lg-2--4 text-center p-x-0">
                 <a href="<?php echo site_url('member'); ?>" style="background-color:#000;line-height:1; color:<?php echo $this->uri->segment(1) == "member" ? '#fa8420' : '#fff' ?>">
-                    <i class="fa fa-user f22"></i></br>
+                    <i class="bi bi-person f22"></i></br>
                     <h6 class="f10">Akun</h6>
                 </a>
             </div>
@@ -435,11 +435,11 @@
         </div>
         <div class="row">
             <ul class="list-group">
-                <!-- <li class="list-group-item" data-toggle="collapse" data-target="#collapslanguage" aria-expanded="false" aria-controls="collapskategori" style="color:#333"><?php echo $this->lang->line('bahasa', FALSE); ?>: <?php echo $this->lang->line('nama_bahasa', FALSE); ?> <i class="fa fa-angle-down"></i></li> -->
+                <!-- <li class="list-group-item" data-toggle="collapse" data-target="#collapslanguage" aria-expanded="false" aria-controls="collapskategori" style="color:#333"><?php echo $this->lang->line('bahasa', FALSE); ?>: <?php echo $this->lang->line('nama_bahasa', FALSE); ?> <i class="bi bi-chevron-down"></i></li> -->
                 <!-- <div class="collapse" id="collapslanguage">
-                <li class="list-group-item list-group-item-warning"><a href="<?php echo 'http://www.togu-dev.com:8888' . $_SERVER['REQUEST_URI']; ?>"><span class="fa fa-<?php echo get_cookie('language', TRUE) == 'id' ? 'check' : 'none' ?>" style="vertical-align:middle;margin-right:10px;min-width:16px"></span> Bahasa Indonesia</a></li>
-                <li class="list-group-item list-group-item-warning"><a href="<?php echo 'http://en.togu-dev.com:8888' . $_SERVER['REQUEST_URI']; ?>"><span class="fa fa-<?php echo get_cookie('language', TRUE) == 'en' ? 'check' : 'none' ?>" style="vertical-align:middle;margin-right:10px;min-width:16px"></span> English</a></li>
-                <li class="list-group-item list-group-item-warning"><a href="<?php echo 'http://cn.togu-dev.com:8888' . $_SERVER['REQUEST_URI']; ?>"><span class="fa fa-<?php echo get_cookie('language', TRUE) == 'cn' ? 'check' : 'none' ?>" style="vertical-align:middle;margin-right:10px;min-width:16px"></span> Chinese</a></li>
+                <li class="list-group-item list-group-item-warning"><a href="<?php echo 'http://www.togu-dev.com:8888' . $_SERVER['REQUEST_URI']; ?>"><span class="bi bi-<?php echo get_cookie('language', TRUE) == 'id' ? 'check' : 'none' ?>" style="vertical-align:middle;margin-right:10px;min-width:16px"></span> Bahasa Indonesia</a></li>
+                <li class="list-group-item list-group-item-warning"><a href="<?php echo 'http://en.togu-dev.com:8888' . $_SERVER['REQUEST_URI']; ?>"><span class="bi bi-<?php echo get_cookie('language', TRUE) == 'en' ? 'check' : 'none' ?>" style="vertical-align:middle;margin-right:10px;min-width:16px"></span> English</a></li>
+                <li class="list-group-item list-group-item-warning"><a href="<?php echo 'http://cn.togu-dev.com:8888' . $_SERVER['REQUEST_URI']; ?>"><span class="bi bi-<?php echo get_cookie('language', TRUE) == 'cn' ? 'check' : 'none' ?>" style="vertical-align:middle;margin-right:10px;min-width:16px"></span> Chinese</a></li>
             </div>
             <li class="list-group-item d-flex-sb align-items-center" data-toggle="collapse" data-target="#bahasa" aria-expanded="false" aria-controls="bahasa"><?php echo $this->lang->line('bahasa', FALSE); ?>:
                 <div class="d-flex-ai-center gap-1">
@@ -462,14 +462,14 @@
             </div> -->
                 <li class="list-group-item d-flex-sb align-items-center" data-toggle="collapse" data-target="#collapskategori" aria-expanded="false" aria-controls="collapskategori">
                     <?php echo $this->lang->line('kategori', FALSE); ?>
-                    <i class="fa fa-angle-down icondropdown"></i>
+                    <i class="bi bi-chevron-down icondropdown"></i>
                 </li>
                 <div class="collapse" id="collapskategori" style="background-color:#fff;">
                     <?php $this->load->model("general/General_model", 'M_general'); ?>
 
                     <?php foreach (main_categories() as $item) : if ($item['etc'] == NULL): ?>
 
-                            <li class="list-group-item dropdownlist f14 d-flex-sb align-items-center" data-toggle="collapse" data-target="#collapskategori-<?php echo $item['id'] ?>" aria-expanded="false" aria-controls="collapskategori"><?php echo $item['name'] ?> <i class="fa fa-angle-down icondropdown"></i></li>
+                            <li class="list-group-item dropdownlist f14 d-flex-sb align-items-center" data-toggle="collapse" data-target="#collapskategori-<?php echo $item['id'] ?>" aria-expanded="false" aria-controls="collapskategori"><?php echo $item['name'] ?> <i class="bi bi-chevron-down icondropdown"></i></li>
                             <div class="collapse" id="collapskategori-<?php echo $item['id'] ?>">
                                 <a alt="Jual Sparepart Truk Komponen Engine" href="<?php echo base_url(); ?>c/<?php echo $item['url'] ?>">
                                     <li class="list-group-item list-group-item-warning f12 fblack">Semua <?php echo $item['name'] ?>
@@ -523,7 +523,7 @@
                     <li class="list-group-item">FAQ
                     </li>
                 </a>
-                <li class="list-group-item d-flex-sb align-items-center" data-toggle="collapse" data-target="#join_partner" aria-expanded="false" aria-controls="join_partner"><?php echo $this->lang->line('join_trumecs_mitra', FALSE); ?> <i class="fa fa-angle-down icondropdown"></i></li>
+                <li class="list-group-item d-flex-sb align-items-center" data-toggle="collapse" data-target="#join_partner" aria-expanded="false" aria-controls="join_partner"><?php echo $this->lang->line('join_trumecs_mitra', FALSE); ?> <i class="bi bi-chevron-down icondropdown"></i></li>
                 <div class="collapse" id="join_partner" style="background-color:#fff;">
                     <a href="<?= base_url('principal/form') ?>" class="list-group-item dropdownlist f14"><?= $this->lang->line("join_principal", FALSE) ?>
                     </a>
@@ -553,7 +553,7 @@
                                     <img src="<?php echo base_url() ?>public/image/member/<?php echo ($fotomember == null) ? "profile-default.png" : $fotomember ?>" alt="Avatar" class="avanav">
                                     <p class="fbold f14"><?php echo $namemember ?></p>
                                 </div>
-                                <i class="fa fa-sign-out fred"></i>
+                                <i class="bi bi-box-arrow-right fred"></i>
                             </div>
                         </a>
                     </li>
@@ -567,9 +567,9 @@
             <div class="col-xs-12 text-center">
                 <small><strong><?php echo $this->lang->line('hubungi_kami', FALSE); ?>:</strong></small><br />
                 <div class="p-y-1">
-                    <span class="fa fa-phone" style="vertical-align:middle"></span> <small><a class="fwhite" href="tel:<?php echo platform_contact("phone") ?>" target="_blank" rel="noreferrer"><?php echo platform_contact("phone") ?></a></small>
+                    <span class="bi bi-phone" style="vertical-align:middle"></span> <small><a class="fwhite" href="tel:<?php echo platform_contact("phone") ?>" target="_blank" rel="noreferrer"><?php echo platform_contact("phone") ?></a></small>
                 </div>
-                <span class="fa fa-envelope" style="vertical-align:middle"></span> <small><a class="fwhite" href="mailto:<?php echo platform_contact("email") ?>" target="_blank" rel="noreferrer"><?php echo platform_contact("email") ?></a></small>
+                <span class="bi bi-envelope" style="vertical-align:middle"></span> <small><a class="fwhite" href="mailto:<?php echo platform_contact("email") ?>" target="_blank" rel="noreferrer"><?php echo platform_contact("email") ?></a></small>
             </div>
         </div>
     </div>
