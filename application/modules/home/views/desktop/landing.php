@@ -265,14 +265,10 @@
 
     <section class="banner-ads mb-3 mt-5">
         <div class="container">
-            <a href="https://ers-id.informa-info.com/adx25??cid=PREREG+TRUMECS" target="_blank" alt="Tautan pendaftaran ADC 2025">
+            <a href="https://www.trumecs.com" target="_blank" alt="link trumecs">
                 <div class="row">
-                    <div class="col-lg banner-front rounded-3 p-3" style="background-color: #16143e;">
-                        <div class="d-flex flex-column gap-3 col-lg-8">
-                            <h3 class="fw-bold text-white">HARGA KHUSUS <span class="text-danger">PERTAMINA</span> </h3>
-                            <h5 class="text-white">Daftarkan perusahaanmu untuk mendapatkan harga khusus untuk produk lubricant pertamina selama 1 tahun. Syarat dan ketentuan berlaku selama persediaan masih ada</h5>
-                        </div>
-                        <img src="/public/landing/ads/Trumecs-ADC.gif" alt="Banner ADECXCO 2025" class="img-fluid position-absolute top-0 end-0" style="width:100%">
+                    <div class="col-lg banner-front rounded-3 p-3">
+                        <img src="/public/banner/banner-nataru.png" alt="Banner nataru" class="img-fluid position-absolute top-0 end-0" style="width:100%">
                     </div>
                 </div>
             </a>
@@ -339,7 +335,7 @@
         </div>
     </section>
 
-    <!-- Ban -->
+    <!-- Ban
     <section class="banner-ads mt-3 mb-3">
         <div class="container">
             <a href="https://ers-id.informa-info.com/wri25??cid=PREREG+TRUMECS" target="_blank" alt="Tautan pendaftaran Water Indonesia 2025">
@@ -354,7 +350,7 @@
                 </div>
             </a>
         </div>
-    </section>
+    </section> -->
 
     <section class="category-ban mb-3">
         <div class="container">

@@ -264,7 +264,7 @@
     </div>
 </section>
 <section class="banner-ads m-b-1">
-    <a href="https://ers-id.informa-info.com/wri25??cid=PREREG+TRUMECS" target="_blank" alt="Tautan pendaftaran Water Indonesia 2025">
+    <a href="https://www.trumecs.com" target="_blank" alt="link trumecs">
         <div class="container">
             <div class="row">
                 <!--<div class="col-md banner-front radius-md p-a-1" style="background-color: #16143e;">
@@ -274,7 +274,7 @@
                     <img src="/public/landing/ads/Trumecs-WI.gif" width="100%" alt="Pertamina" class="banner-ads-image">
                 </div>
             </div>-->
-                <img src="/public/landing/ads/Trumecs-WI.gif" width="100%" alt="Banner Water Indonesia 2025">
+                <img src="/public/banner/banner-nataru.png" width="100%" alt="Banner Nataru trumecs">
 
             </div>
         </div>
@@ -343,23 +343,23 @@
     </div>
 </section>
 
-<section class="banner-ads m-t-3 m-b-1">
+<!-- <section class="banner-ads m-t-3 m-b-1">
     <a href="https://ers-id.informa-info.com/adx25??cid=PREREG+TRUMECS" target="_blank" alt="Tautan pendaftaran ADC">
         <div class="container">
             <div class="row">
-                <!--<div class="col-md banner-front radius-md p-a-1" style="background-color: #000000;">
+                <div class="col-md banner-front radius-md p-a-1" style="background-color: #000000;">
                 <div class="d-flex flex-column gap-3 justify-content-center align-items-center">
                     <h6 class="fbold fwhite">KETERSEDIAAN BAN TERJAMIN </h6>
                     <p class="fwhite f11 text-center">Diskusikan dengan kami untuk qualitas dan quantity yang terjamin untuk perusahaanmu.</p>
                     <img src="/public/landing/ads/ads-Ban.png" alt="Ban" class="banner-ads-image">
                     https://ers-id.informa-info.com/adx25??cid=PREREG+TRUMECS
                 </div>
-            </div>-->
+            </div>
                 <img src="/public/landing/ads/Trumecs-ADC.gif" width="100%" alt="Banner ADEXCO 2025">
             </div>
         </div>
     </a>
-</section>
+</section> -->
 
 <!--- Ban -->
 
