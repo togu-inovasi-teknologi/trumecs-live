@@ -980,7 +980,7 @@ class Backendproduct extends MX_Controller
             $this->load->library('upload', $config);
             $this->upload->initialize($config);
             if (! $this->upload->do_upload("fileupload")) {
-                echo json_encode(array("status" => false, "message" => "Failed to upload pic"));
+                echo json_encode(array("status" => false, "message" => 'Gambar tidak bisa di upload ' . $this->upload->display_errors()));
             } else {
                 $data = $this->upload->data();
                 $namenewfile = $data["file_name"];
@@ -1032,7 +1032,7 @@ class Backendproduct extends MX_Controller
             $this->load->library('upload', $config);
             $this->upload->initialize($config);
             if (! $this->upload->do_upload("fileuploadEdit")) {
-                echo json_encode(array("status" => false, "message" => "Failed to upload pic"));
+                echo json_encode(array("status" => false, "message" => 'Gambar tidak bisa di upload ' . $this->upload->display_errors()));
             } else {
                 $data = $this->upload->data();
                 $namenewfile = $data["file_name"];
@@ -1290,7 +1290,7 @@ class Backendproduct extends MX_Controller
             $this->load->library('upload', $config);
             $this->upload->initialize($config);
             if (! $this->upload->do_upload("fileuploadSub")) {
-                echo json_encode(array("status" => false, "message" => "Failed to upload pic"));
+                echo json_encode(array("status" => false, "message" => 'Gambar tidak bisa di upload ' . $this->upload->display_errors()));
             } else {
                 $data = $this->upload->data();
                 $namenewfile = $data["file_name"];
@@ -1486,7 +1486,7 @@ class Backendproduct extends MX_Controller
             $this->load->library('upload', $config);
             $this->upload->initialize($config);
             if (! $this->upload->do_upload("fileuploadSubSub")) {
-                echo json_encode(array("status" => false, "message" => "Failed to upload pic"));
+                echo json_encode(array("status" => false, "message" => 'Gambar tidak bisa di upload ' . $this->upload->display_errors()));
             } else {
                 $data = $this->upload->data();
                 $namenewfile = $data["file_name"];
@@ -1658,7 +1658,7 @@ class Backendproduct extends MX_Controller
             $this->load->library('upload', $config);
             $this->upload->initialize($config);
             if (! $this->upload->do_upload("fileuploadSubSubJasa")) {
-                echo json_encode(array("status" => false, "message" => "Failed to upload pic"));
+                echo json_encode(array("status" => false, "message" => 'Gambar tidak bisa di upload ' . $this->upload->display_errors()));
             } else {
                 $data = $this->upload->data();
                 $namenewfile = $data["file_name"];
@@ -1796,7 +1796,7 @@ class Backendproduct extends MX_Controller
             $this->load->library('upload', $config);
             $this->upload->initialize($config);
             if (! $this->upload->do_upload("fileuploadSubJasa")) {
-                echo json_encode(array("status" => false, "message" => "Failed to upload pic"));
+                echo json_encode(array("status" => false, "message" => 'Gambar tidak bisa di upload ' . $this->upload->display_errors()));
             } else {
                 $data = $this->upload->data();
                 $namenewfile = $data["file_name"];
@@ -1843,10 +1843,8 @@ class Backendproduct extends MX_Controller
             $config['max_height']  = '1000';
             $this->load->library('upload', $config);
             $this->upload->initialize($config);
-            if (! $this->upload->do_upload("logoBrand")) {
-                $this->session->set_flashdata('message', 'Gambar tidak bisa di upload ' . $this->upload->display_errors());
-                redirect(base_url() . "backendproduct/categori");
-                exit();
+            if (!$this->upload->do_upload("logoBrand")) {
+                echo json_encode(array("status" => false, "message" =>  'Gambar tidak bisa di upload ' . $this->upload->display_errors()));
             } else {
                 $dataImage = $this->upload->data();
                 $namenewfile = $dataImage["file_name"];
@@ -1981,7 +1979,7 @@ class Backendproduct extends MX_Controller
             $this->load->library('upload', $config);
             $this->upload->initialize($config);
             if (! $this->upload->do_upload("fileuploadSubSub")) {
-                echo json_encode(array("status" => false, "message" => "Failed to upload pic"));
+                echo json_encode(array("status" => false, "message" => 'Gambar tidak bisa di upload ' . $this->upload->display_errors()));
             } else {
                 $data = $this->upload->data();
                 $namenewfile = $data["file_name"];
@@ -2043,7 +2041,7 @@ class Backendproduct extends MX_Controller
             $this->load->library('upload', $config);
             $this->upload->initialize($config);
             if (! $this->upload->do_upload("fileuploadModelEdit")) {
-                echo json_encode(array("status" => false, "message" => "Failed to upload pic"));
+                echo json_encode(array("status" => false, "message" => 'Gambar tidak bisa di upload ' . $this->upload->display_errors()));
             } else {
                 $data = $this->upload->data();
                 $namenewfile = $data["file_name"];

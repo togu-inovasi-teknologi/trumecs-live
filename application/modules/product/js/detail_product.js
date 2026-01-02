@@ -341,18 +341,45 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-  $("#sameProductDetailTable").DataTable({
+  $("#sameProductDetailTableas").DataTable({
     processing: true,
     serverSide: true,
     ajax: {
-      url: base_url + "",
+      url: base_url + "product/get_sameproduct_datatable",
       type: "POST",
     },
     columns: [
-      { data: 0, orderable: false },
-      { data: 1 },
-      { data: 2 },
-      { data: 3, orderable: false },
+      {
+        data: "tittle",
+        name: "tittle",
+        orderable: true,
+        render: function (data, type, row) {
+          if (type === "display") {
+            return data;
+          }
+          // Untuk sorting, extract text dari link
+          var temp = $("<div>").html(data);
+          return temp.text() || data;
+        },
+      },
+      {
+        data: "brand",
+        name: "brand",
+        orderable: true,
+        className: "text-center",
+      },
+      {
+        data: "grade",
+        name: "grade",
+        orderable: true,
+        className: "text-center",
+      },
+      {
+        data: "price",
+        name: "price",
+        orderable: true,
+        className: "text-right",
+      },
     ],
     order: [[0, "asc"]],
   });

@@ -8,6 +8,7 @@ class Product_datatable_model extends CI_Model
     var $where_column = ['component' => 'p.component', 'subcategory' => 'c.id', 'brand' => 'p.brand'];
     var $order_column = array('p.id', 'tittle', 'b.name', 'grade', 'price', 'p.img', 'c.name');
 
+
     var $where = [];
 
     function __construct()
@@ -32,7 +33,7 @@ class Product_datatable_model extends CI_Model
 
             $this->db->where_in('component', $this->where);
         }
-        
+
         if (count($_POST['where']) > 1) {
             $this->db->group_start();
             foreach ($_POST['where'] as $key => $value) {
@@ -43,7 +44,7 @@ class Product_datatable_model extends CI_Model
             $this->db->group_end();
         }
 
-        $this->db->where('p.status','show');
+        $this->db->where('p.status', 'show');
 
         if (!empty($_POST["search"]["value"])) {
             if (!empty($this->where)) {
@@ -62,12 +63,12 @@ class Product_datatable_model extends CI_Model
         }
 
         if (isset($_POST["order"])) {
-            if($_POST["order"][0]['column']!=0){
+            if ($_POST["order"][0]['column'] != 0) {
                 $this->db->order_by($this->order_column[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
-            }else{
+            } else {
                 $this->db->order_by('RAND()');
             }
-        } else { 
+        } else {
             $this->db->order_by('RAND()');
         }
     }

@@ -141,16 +141,16 @@ is_file("public/image/artikel/" . $key["img"]) != 1 ? $key["img"] = "../noimage.
                                 <?php $share_link = urlencode("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"); ?>
                                 <div class="btn-group" role="group">
                                     <a class="btn btn-outline-primary btn-sm" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" href="http://www.facebook.com/sharer.php?u=<?php echo $share_link ?>">
-                                        <i class="fab fa-facebook-f"></i>
+                                        <i class="bi bi-facebook"></i>
                                     </a>
                                     <a class="btn btn-outline-info btn-sm" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" href="https://twitter.com/intent/tweet?text=<?php echo ucwords($key["title"]) ?>&url=<?php echo $share_link ?>&hashtags=trumecs&original_referer=<?php echo $share_link ?>">
-                                        <i class="fab fa-twitter"></i>
+                                        <i class="bi bi-twitter-x"></i>
                                     </a>
                                     <a class="btn btn-outline-danger btn-sm" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $share_link ?>&title=<?php echo ucwords($key["title"]) ?>&summary=Sparepart truk <?php echo ucwords($key["title"]) ?>&source=trumecs.com">
-                                        <i class="fab fa-linkedin-in"></i>
+                                        <i class="bi bi-linkedin-in"></i>
                                     </a>
                                     <a class="btn btn-outline-dark btn-sm" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" href="https://id.pinterest.com/pin/create/button/?url=<?php echo $share_link ?>&media=<?php echo base_url() ?>public/image/artikel/<?php echo ($ext == ".jpg" ? $key["img"] : "../noimage.png") ?>&description=<?php echo ucwords($key["title"]) ?>">
-                                        <i class="fab fa-pinterest-p"></i>
+                                        <i class="bi bi-pinterest-p"></i>
                                     </a>
                                 </div>
                             </div>

@@ -16,6 +16,7 @@ class Product extends MX_Controller
         parent::__construct();
         $this->load->model("product_model");
         $this->load->model("article/article_model");
+        $this->load->model('product_datatable_model');
         $this->load->language("product");
 
 
@@ -88,7 +89,6 @@ class Product extends MX_Controller
 
         $arrayname = explode(" ", trim($data["data_product"][0]["tittle"]) . " " . $namebrand . " " . $namecomponent);
         $data["sameproduct"] = $this->product_model->getsameproduct($arrayname, $productgalery, $data["data_product"][0]["brand_id"]);
-
         $data["relatedarticle"] = $this->article_model->getsameartikel(trim($data["data_product"][0]["tittle"]) . " " . $namebrand . " " . $namebrandunit . " " . $namecomponent . " " . $nametype);
         $data["discussion"] = $this->product_model->getdiscussion($data["data_product"][0]["id"]);
 
@@ -214,5 +214,31 @@ class Product extends MX_Controller
         }
 
         $this->load->view('front/template_front', $data);
+    }
+
+    public function get_sameproduct_datatable()
+    {
+        $postData = $this->input->post();
+
+        // Tambahkan default values untuk parameter yang diperlukan
+        $defaultParams = [
+            'draw' => $postData['draw'] ?? 0,
+            'start' => $postData['start'] ?? 0,
+            'length' => $postData['length'] ?? 10,
+            'search' => $postData['search'] ?? ['value' => '', 'regex' => false],
+            'order' => $postData['order'] ?? [['column' => 0, 'dir' => 'asc']], // Default order
+            'columns' => $postData['columns'] ?? []
+        ];
+
+        // Merge dengan parameter custom
+        $mergedParams = array_merge($defaultParams, [
+            'product_id' => $postData['product_id'] ?? 0,
+            'brand_id' => $postData['brand_id'] ?? null,
+            'search_terms' => $postData['search_terms'] ?? '[]'
+        ]);
+        $response = $this->product_datatable_model->get_sameproducts($mergedParams);
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($response));
     }
 }

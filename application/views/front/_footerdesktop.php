@@ -25,18 +25,18 @@
                         </a>
                     </div>
                     <p class="fw-bold mt-3 mb-3 fs-5"><?php echo $this->lang->line('ikuti_kami', FALSE) ?></p>
-                    <a href="https://www.linkedin.com/company/trumecs" target="_blank" rel="noreferrer"><i class="fab fa-linkedin icon-footer"></i></a>
-                    <a href="https://www.instagram.com/trumecs" target="_blank" rel="noreferrer"><i class="fab fa-instagram icon-footer"></i></a>
-                    <a href="https://www.facebook.com/trumecsid" target="_blank" rel="noreferrer"><i class="fab fa-facebook-square icon-footer"></i></a>
-                    <a href="https://twitter.com/trumecs" target="_blank" rel="noreferrer"><i class="fab fa-twitter icon-footer"></i></a>
-                    <a href="https://www.youtube.com/@trumecs" target="_blank" rel="noreferrer"><i class="fab fa-youtube icon-footer"></i></a>
+                    <a href="https://www.linkedin.com/company/trumecs" target="_blank" rel="noreferrer"><i class="bi bi-linkedin icon-footer"></i></a>
+                    <a href="https://www.instagram.com/trumecs" target="_blank" rel="noreferrer"><i class="bi bi-instagram icon-footer"></i></a>
+                    <a href="https://www.facebook.com/trumecsid" target="_blank" rel="noreferrer"><i class="bi bi-facebook icon-footer"></i></a>
+                    <a href="https://twitter.com/trumecs" target="_blank" rel="noreferrer"><i class="bi bi-twitter-x icon-footer"></i></a>
+                    <a href="https://www.youtube.com/@trumecs" target="_blank" rel="noreferrer"><i class="bi bi-youtube icon-footer"></i></a>
                 </div>
                 <div class="col-lg-3 mt-3" style="color: #fff;">
                     <p class="fw-bold fs-5"><?php echo $this->lang->line('hubungi_kami', FALSE) ?></p>
                     <div class="contact-info mt-3">
                         <div class="contact-item d-flex align-items-center mb-3">
                             <div class="me-3">
-                                <i class="fab fa-whatsapp icon-footer"></i>
+                                <i class="bi bi-whatsapp icon-footer"></i>
                             </div>
                             <div>
                                 <a href="https://wa.me/<?php echo "+" . platform_contact('whatsapp') ?>" target="_blank" rel="noopener noreferrer">

@@ -64,32 +64,42 @@ class Product_model extends CI_Model
         $this->db->limit($limit)
             ->from("product");
 
+        if (!is_array($value) || empty($value)) {
+            $value = []; // Set default sebagai array kosong
+        }
+
+
         if ($brand_id == null):
             $array = array();
             $asb = '';
             $akhir = count($value) - 1;
 
 
-            foreach ($value as $key => $v) {
-                /*!empty($key)?
-            $this->db->or_like_in("tittle",$key) : "";*/
-                $ses = $this->db->escape_str(preg_replace("/[^A-Za-z0-9 ]/", '', $v));
-                $asb .= " or tittle LIKE '%" . $ses . "%'";
-            }
-
-            $string_query = "";
-            $sql_query = "";
-            foreach ($value as $q) {
-                $q = $this->db->escape_str(preg_replace("/[^A-Za-z0-9 ]/", '', $q));
-                if ($q != '') {
-                    $string_query .= ", " . $q . "";
-                    $sql_query .= "+ MATCH(`tittle`, `description`) AGAINST('" . $q . "*' IN BOOLEAN MODE) ";
+            if (!empty($value)) {
+                foreach ($value as $key => $v) {
+                    $ses = $this->db->escape_str(preg_replace("/[^A-Za-z0-9 ]/", '', $v));
+                    $asb .= " or tittle LIKE '%" . $ses . "%'";
                 }
-            }
 
-            $this->db->select("*, product.id AS id, product.img AS img, SUM(MATCH(`tittle`, `description`) AGAINST('" . implode(" ", $this->db->escape_str(preg_replace("/[^A-Za-z0-9 ]/", ' ', $value))) . "') " . $sql_query . ")  AS score");
-            $this->db->order_by("score", "DESC");
-            $this->db->where("( product.id = '' " . $asb . ") AND status='show'");
+                $string_query = "";
+                $sql_query = "";
+                foreach ($value as $q) {
+                    $q = $this->db->escape_str(preg_replace("/[^A-Za-z0-9 ]/", '', $q));
+                    if ($q != '') {
+                        $string_query .= ", " . $q . "";
+                        $sql_query .= "+ MATCH(`tittle`, `description`) AGAINST('" . $q . "*' IN BOOLEAN MODE) ";
+                    }
+                }
+
+                $this->db->select("*, product.id AS id, product.img AS img, SUM(MATCH(`tittle`, `description`) AGAINST('" . implode(" ", $this->db->escape_str(preg_replace("/[^A-Za-z0-9 ]/", ' ', $value))) . "') " . $sql_query . ")  AS score");
+                $this->db->order_by("score", "DESC");
+                $this->db->where("( product.id = '' " . $asb . ") AND status='show'");
+            } else {
+                // Jika $value kosong, tampilkan produk random
+                $this->db->select("product.*, categori.name AS brand_name, grade.grade AS grade_name");
+                $this->db->where("status", "show");
+                $this->db->order_by("product.id", "RAND");
+            }
         else:
             $this->db->select("product.*, categori.name AS brand_name, grade.grade AS grade_name");
             $this->db->where("brand", $brand_id);
