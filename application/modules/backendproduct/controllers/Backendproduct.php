@@ -312,10 +312,12 @@ class Backendproduct extends MX_Controller
             'area' => empty($this->input->post('area')) ? "0" : $this->input->post('area'),
 
         );
-        $dataattribute = array(
-            'attribute' => $this->input->post('attribute'),
-            'value' => $this->input->post('value')
-        );
+        if (!empty($this->input->post('attribute[]')) && !empty($this->input->post('value[]'))) {
+            $dataattribute = array(
+                'attribute' => $this->input->post('attribute[]'),
+                'value' => $this->input->post('value[]')
+            );
+        };
         $config['upload_path'] = './public/image/product/';
         $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
         $config['file_name'] = microtime() . ".jpg";
@@ -345,7 +347,9 @@ class Backendproduct extends MX_Controller
             $this->watermarkoverlay($namenewfile, "product");
             //var_dump($alldatainput);exit();
             $this->etx_product->addproduct($alldatainput);
-            $this->etx_product->addattribute($dataattribute, array('product_id' => $this->db->insert_id()));
+            if (!empty($this->input->post('attribute[]')) && !empty($this->input->post('value[]'))) {
+                $this->etx_product->addattribute($dataattribute, array('product_id' => $this->db->insert_id()));
+            };
             $this->session->set_flashdata('message', 'Produk di tambah, Silahkan tambah galery produk baru');
             redirect(base_url() . "backendproduct/listall");
             exit();
@@ -415,13 +419,12 @@ class Backendproduct extends MX_Controller
             'estimated_deliveryindent' => empty($this->input->post('estimated_deliveryindent')) ? "7" : $this->input->post('estimated_deliveryindent'),
             'description' => empty($this->input->post('description')) ? "" : nl2br($this->input->post('description'))
         );
+
+
         $dataattribute = array(
             'attribute' => $this->input->post('attribute[]'),
             'value' => $this->input->post('value[]')
         );
-
-        var_dump($dataattribute);
-
         if (empty($_FILES['fileimg']['name'])) {
             $dataaddimg = array('img' => $this->input->post('imgold'));
             $alldatainput = array_merge($datainput, $dataaddimg);

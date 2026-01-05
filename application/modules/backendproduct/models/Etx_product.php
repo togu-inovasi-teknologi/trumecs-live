@@ -176,9 +176,13 @@ class etx_product extends CI_Model
     public function addattribute($data, $id_product)
     {
         $attribute = array();
+        if (empty($id_product) || !isset($id_product['product_id'])) {
+            return false; // Or throw an exception
+        }
+
         if (!empty($data["attribute"])) {
             foreach ($data["attribute"] as $key => $item) {
-                if ($data['value'][$key] != ""):
+                if (isset($data['value'][$key]) && $data['value'][$key] != "") {
                     $this->db->where('name', $item);
                     $attr = $this->db->get('attribute');
 
@@ -188,16 +192,24 @@ class etx_product extends CI_Model
                         $this->db->insert('attribute', array('name' => $item));
                         $id_attribute = $this->db->insert_id();
                     }
+
                     $attribute[] = array(
                         'product_id' => $id_product['product_id'],
                         'attribute_id' => $id_attribute,
                         'value' => $data['value'][$key]
                     );
-                endif;
+                }
             }
-            $this->db->where($id_product)->delete("product_attribute");
-            $this->db->insert_batch("product_attribute", $attribute);
+
+            $this->db->where('product_id', $id_product['product_id']);
+            $this->db->delete("product_attribute");
+
+            if (!empty($attribute)) {
+                $this->db->insert_batch("product_attribute", $attribute);
+            }
         }
+
+        return true;
     }
 
     public function setcategorygrade($list, $id_category)

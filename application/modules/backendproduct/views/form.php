@@ -361,7 +361,7 @@ foreach ($jenis as $key) {
 							<div class="mb-3">
 								<label class="form-label fw-semibold">Garansi Vendor</label>
 								<small class="text-muted float-end">Opsional</small>
-								<input type="text" class="form-control" jq-model="warranty_vendor" name="warrantyvendor" value="<?php echo (!empty($backingdata)) ? $backingdata["warrantyvendor"] : ''; ?>" placeholder="6 bulan">
+								<input type="text" class="form-control" jq-model="warranty_vendor" name="warranty_vendor" value="<?php echo (!empty($backingdata)) ? $backingdata["warrantyvendor"] : ''; ?>" placeholder="6 bulan">
 							</div>
 
 							<div class="mb-3">
