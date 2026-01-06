@@ -54,11 +54,16 @@ class C extends MX_Controller
 					if ($categori[0]["parent"] == "0" && $categori[0]["is_brand"] == 1) {
 						$this->brand = $categori[0]["id"];
 						$this->data["idbrand"] = $this->brand;
-						//echo $this->brand;
 					}
 					if ($categori[0]["parent"] >= 1 && $categori[0]["is_brand"] == 0) {
+						// Ini adalah sub kategori atau sub-sub kategori
 						$this->type = $categori[0]["id"];
-						$this->data["idsub"] = $this->type;
+						$this->data["idsub"] = $this->type; // Simpan ID sub kategori
+
+						// Cek apakah ini sub kategori langsung dari parent
+						if ($this->c_model->is_direct_subcategory($categori[0]["id"], $this->component)) {
+							$this->subcat = $categori[0]["id"];
+						}
 					}
 					if ($categori[0]["parent"] == "0" && $categori[0]["is_brand"] == 0) {
 						$this->component = $categori[0]["id"];
@@ -86,6 +91,12 @@ class C extends MX_Controller
 		$this->type = $this->input->get("tipe");
 		$this->promo = $this->input->get("promo");
 		$this->cucigudang = $this->input->get("cucigudang");
+
+		// Ambil sub kategori dari parameter GET jika ada
+		if ($this->input->get("sub_kategori")) {
+			$this->subcat = $this->input->get("sub_kategori");
+			$this->data["idsub"] = $this->subcat;
+		}
 	}
 
 	function set_ad()
@@ -167,18 +178,35 @@ class C extends MX_Controller
 
 
 			if ($this->component != "") {
-				$this->data["datawhere"] = array_merge($this->data["datawhere"], array('component' => $this->component, 'component_type' => $this->component_type));
+				$this->data["datawhere"] = array_merge(
+					$this->data["datawhere"],
+					array(
+						'component' => $this->component,
+						'component_type' => $this->component_type
+					)
+				);
 			}
 
-
+			// Tambahkan sub kategori jika ada
+			if ($this->subcat != "") {
+				$this->data["datawhere"] = array_merge(
+					$this->data["datawhere"],
+					array('sub_category' => $this->subcat)
+				);
+			}
 
 			if ($this->type != "") {
-				$this->data["datawhere"] = array_merge($this->data["datawhere"], array('tipe' => $this->type));
+				$this->data["datawhere"] = array_merge(
+					$this->data["datawhere"],
+					array('tipe' => $this->type)
+				);
 			}
 
-
 			if ($this->quality != "") {
-				$this->data["datawhere"] = array_merge($this->data["datawhere"], array('quality' => $this->quality));
+				$this->data["datawhere"] = array_merge(
+					$this->data["datawhere"],
+					array('quality' => $this->quality)
+				);
 			}
 
 			if ($this->input->get("minp") != "") {

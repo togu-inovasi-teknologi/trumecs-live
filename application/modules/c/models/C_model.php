@@ -106,14 +106,22 @@ class C_model extends CI_Model
 
     public function record_count($datasearch, $datasearchor_like, $datawhere)
     {
-
         $query = [];
 
         if (!empty($datasearchor_like["tittle"]) or ($datasearchor_like["tittle"]) != "") {
             $query = $this->get_query($datasearchor_like["tittle"]);
         };
+
+        // Handle sub kategori jika ada
+        $sub_category = array();
         if (!empty($datawhere["component"])) {
-            $sub_category = $this->get_sub_category($datawhere["component"]);
+            // Jika ada sub kategori spesifik
+            if (!empty($datawhere["sub_category"])) {
+                $sub_category = $this->get_all_child_categories($datawhere["sub_category"]);
+            } else {
+                // Jika hanya komponen utama, dapatkan semua child-nya
+                $sub_category = $this->get_all_child_categories($datawhere["component"]);
+            }
         };
 
         if (!empty($datasearchor_like["tittle"]) or ($datasearchor_like["tittle"]) != "") {
@@ -137,6 +145,7 @@ class C_model extends CI_Model
             $this->db->where('type', $datawhere["type"]);
         }
         if (!empty($datawhere["component"])) {
+            // Gunakan array sub category yang sudah diproses
             $this->db->where_in("component", $sub_category);
         }
         if (!empty($datawhere["year"])) {
@@ -148,7 +157,6 @@ class C_model extends CI_Model
         if (!empty($datawhere["cucigudang"])) {
             $this->db->where("cucigudang", $datawhere["cucigudang"]);
         }
-
         if (!empty($datawhere["quality"])) {
             $this->db->where("quality", $datawhere["quality"]);
         }
@@ -182,19 +190,31 @@ class C_model extends CI_Model
         return $query->num_rows();
     }
 
+
     public function fetch_product($limit, $start, $datasearch, $datasearchor_like, $datawhere, $rand = false)
     {
-
         $query = [];
 
         if (!empty($datasearchor_like["tittle"]) or ($datasearchor_like["tittle"]) != "") {
             $query = $this->get_query($datasearchor_like["tittle"]);
         };
 
-
+        // Handle sub kategori jika ada
+        $sub_category = array();
         if (!empty($datawhere["component"])) {
-            $sub_category = $this->get_sub_category($datawhere["component"]);
+            // Jika ada sub kategori spesifik
+            if (!empty($datawhere["sub_category"])) {
+                $sub_category = $this->get_all_child_categories($datawhere["sub_category"]);
+            } else {
+                // Jika hanya komponen utama, dapatkan semua child-nya
+                $sub_category = $this->get_all_child_categories($datawhere["component"]);
+            }
         };
+
+        // ... (sisa kode tetap sama, pastikan bagian WHERE_IN component menggunakan $sub_category)
+        if (!empty($datawhere["component"])) {
+            $this->db->where_in("component", $sub_category);
+        }
 
         if (!empty($datasearchor_like["tittle"]) or ($datasearchor_like["tittle"]) != "") {
             $string = explode(" ", preg_replace("/[^a-zA-Z0-9]/", "", $datasearchor_like["tittle"]));
@@ -291,6 +311,35 @@ class C_model extends CI_Model
         }
 
         return false;
+    }
+
+    public function get_all_child_categories($parent_id)
+    {
+        $this->db->select('id');
+        $this->db->where('parent', $parent_id);
+        $query = $this->db->get('categori');
+
+        $children = array();
+        $children[] = $parent_id; // Include parent itself
+
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                // Get grandchildren recursively
+                $grandchildren = $this->get_all_child_categories($row->id);
+                $children = array_merge($children, $grandchildren);
+            }
+        }
+
+        return array_unique($children);
+    }
+
+    // Fungsi untuk mengecek apakah kategori adalah sub kategori langsung
+    public function is_direct_subcategory($category_id, $parent_id)
+    {
+        $this->db->where('id', $category_id);
+        $this->db->where('parent', $parent_id);
+        $query = $this->db->get('categori');
+        return $query->num_rows() > 0;
     }
 
     private function get_sub_category($id_category)

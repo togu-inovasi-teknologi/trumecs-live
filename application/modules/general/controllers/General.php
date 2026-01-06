@@ -80,7 +80,8 @@ class General extends MX_Controller
 		$other = '';
 		$condition = array(
 			'parent' => '0',
-			'is_brand' => '0'
+			'is_brand' => '0',
+			'etc' => '0'
 		);
 		echo '<option value="0">-- Semua Komponen --</option>';
 		foreach ($this->general_model->getcategori($condition) as $key) {
@@ -119,7 +120,8 @@ class General extends MX_Controller
 	{
 		$condition = array(
 			'parent' => $id,
-			'is_brand' => '0'
+			'is_brand' => '0',
+			'etc' => '0'
 		);
 		echo '<option value="0">-- Semua Sub Kategori --</option>';
 		foreach ($this->general_model->getcategori($condition) as $key) {

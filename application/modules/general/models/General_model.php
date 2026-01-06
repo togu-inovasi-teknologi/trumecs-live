@@ -15,11 +15,13 @@ class general_model extends CI_Model
         return $query->result_array();
     }
 
-    public function initCompare(){
+    public function initCompare()
+    {
         $this->db->insert('sharing_compare', ['created_at' => time()]);
         return $this->db->insert_id();
     }
-    public function insert_item_share($items){
+    public function insert_item_share($items)
+    {
         $this->db->insert_batch('compare_item', $items);
     }
 
@@ -43,7 +45,7 @@ class general_model extends CI_Model
     {
         $this->db->reset_query();
         $data = $this->db->select('*')->from('categori')->where($where)->get()->result_array();
-       
+
         return $data;
     }
 
@@ -61,28 +63,30 @@ class general_model extends CI_Model
 
     public function getbrand($category_id = null, $empty = false)
     {
-        if ($category_id != null) {
+        // VALIDASI category_id - pastikan numeric atau null
+        if ($category_id !== null && $category_id !== "undefined" && is_numeric($category_id)) {
             $this->db
-                ->join("category_brand cb", "cb.brand_id = c.id AND cb.category_id = " . $category_id, false)
+                ->join("category_brand cb", "cb.brand_id = c.id AND cb.category_id = " . $this->db->escape($category_id), false)
                 ->join("categori c2", "c2.id = cb.brand_id");
+        } elseif ($category_id === "undefined") {
+            // Jika "undefined", anggap sebagai null
+            $category_id = null;
         }
-        
-        if($empty == true){
+
+        if ($empty == true) {
             $this->db->join('product p', 'p.brand = c.id AND p.status = "show"')
-                    ->select("COUNT(p.id) as jumlah, c.*", false)
-                    ->order_by('jumlah', 'desc')
-                    ->where('name !=','other')
-                    ->limit(20)
-                    ->group_by('c.id');
-                    //->where('jumlah > 0');
+                ->select("COUNT(p.id) as jumlah, c.*", false)
+                ->order_by('jumlah', 'desc')
+                ->where('name !=', 'other')
+                ->limit(20)
+                ->group_by('c.id');
         }
 
         $query = $this->db
             ->where('c.parent', "0")
-            
             ->order_by('c.name', 'ASC')
             ->get('categori c');
-            
+
         return $query->result_array();
     }
 
