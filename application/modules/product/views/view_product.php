@@ -59,7 +59,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                     <div itemscope itemtype="https://schema.org/Product" class="row">
                         <meta itemprop="image"
                             content="<?php echo base_url() ?>public/image/product/<?php echo ($ext == ".jpg" || $ext == ".png" || $ext == 'jpeg' ? $key["img"] : "../noimage.png") ?>" />
-                        <div class="col-lg-5 text-center imgproduct sticky">
+                        <div class="col-lg-5 text-center imgproduct sticky-top h-100">
                             <div class="row">
                                 <div class="col-lg-12 text-center">
                                     <img itemprop="image" class="img-detail-lg tochangebyclick"
@@ -68,7 +68,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                         alt="Jual <?php echo ucwords(strtolower($key["tittle"])) ?> | Trumecs"
                                         width="100%">
                                 </div>
-                                <div class="col-lg-12">
+                                <div class="col-lg-12 d-flex justify-content-center align-items-center">
                                     <div class="text-center img-galery">
                                         <div class=" img-border">
                                             <img class="img-fluid changeimagegalery" style="margin:0 auto;height:50px;"
