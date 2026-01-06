@@ -32,6 +32,10 @@ class Product extends MX_Controller
 
         $data["data_product"] = $this->product_model->getproduct($url);
 
+        if (empty($data["data_product"])) {
+            show_404(); // atau redirect ke halaman 404
+            return;
+        }
 
 
         if (empty($data["data_product"])) {
@@ -216,29 +220,74 @@ class Product extends MX_Controller
         $this->load->view('front/template_front', $data);
     }
 
-    public function get_sameproduct_datatable()
+    public function getsameproduct_ajax($product_id)
     {
-        $postData = $this->input->post();
+        // Set header JSON
+        header('Content-Type: application/json');
 
-        // Tambahkan default values untuk parameter yang diperlukan
-        $defaultParams = [
-            'draw' => $postData['draw'] ?? 0,
-            'start' => $postData['start'] ?? 0,
-            'length' => $postData['length'] ?? 10,
-            'search' => $postData['search'] ?? ['value' => '', 'regex' => false],
-            'order' => $postData['order'] ?? [['column' => 0, 'dir' => 'asc']], // Default order
-            'columns' => $postData['columns'] ?? []
+        // Load model
+        $this->load->model("product_model");
+
+        // Ambil produk utama
+        $product = $this->product_model->getproduct_by_id($product_id);
+
+        if (empty($product)) {
+            echo json_encode([
+                'draw' => 1,
+                'recordsTotal' => 0,
+                'recordsFiltered' => 0,
+                'data' => []
+            ]);
+            return;
+        }
+
+        // Ambil keyword dari produk saat ini
+        $namebrand = $this->getcategory($product['brand']);
+        $namecomponent = $this->getcategory($product['component']);
+
+        $arrayname = explode(" ", trim($product["tittle"]) . " " . $namebrand . " " . $namecomponent);
+
+        // Get same products
+        $sameproducts = $this->product_model->getsameproduct($arrayname, $product_id, 50, $product['brand_id']);
+        $data = [];
+        $no = 0;
+
+        foreach ($sameproducts as $prod) {
+            $no++;
+            $row = [
+                $no,
+                '<a href="' . base_url() . 'product/' . $prod["id"] . '/' . preg_replace(
+                    "/[^a-zA-Z0-9]/",
+                    "-",
+                    ucwords(strtolower($prod["tittle"]))
+                ) . '">' . $prod["tittle"] . '</a>',
+                $prod["name"] ?? '-',
+                $this->get_grade_text($prod["quality"]),
+                'Rp ' . number_format($prod["price"], 0, ',', '.')
+            ];
+            $data[] = $row;
+        }
+
+        $output = [
+            "draw" => $this->input->get('draw') ? intval($this->input->get('draw')) : 1,
+            "recordsTotal" => count($sameproducts),
+            "recordsFiltered" => count($sameproducts),
+            "data" => $data
         ];
 
-        // Merge dengan parameter custom
-        $mergedParams = array_merge($defaultParams, [
-            'product_id' => $postData['product_id'] ?? 0,
-            'brand_id' => $postData['brand_id'] ?? null,
-            'search_terms' => $postData['search_terms'] ?? '[]'
-        ]);
-        $response = $this->product_datatable_model->get_sameproducts($mergedParams);
-        $this->output
-            ->set_content_type('application/json')
-            ->set_output(json_encode($response));
+        echo json_encode($output);
     }
+
+    private function get_grade_text($quality)
+    {
+        $grades = [
+            1 => 'Asli',
+            2 => 'Bekas',
+            3 => 'Tiruan'
+        ];
+        return $grades[$quality] ?? '-';
+    }
+
+    // Tambahkan method helper untuk get single product
+
 }

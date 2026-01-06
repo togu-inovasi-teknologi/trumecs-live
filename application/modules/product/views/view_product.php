@@ -324,6 +324,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                     </div>
                                 </div>
                                 <table class="table table-horizontal  table-striped table-sm" id="sameProductDetailTable">
+                                    <input type="hidden" id="current_product_id" value="<?php echo $data_product[0]['id']; ?>">
                                     <thead>
                                         <tr>
                                             <th>Nama</th>

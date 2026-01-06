@@ -125,8 +125,7 @@
                     <div class="row align-items-center">
                         <div class="col-md-12 text-md-end">
                             <small class="text-muted">
-                                <i class="bi bi-cpu me-1"></i>
-                                Industrial Error System v2.4
+                                www.trumecs.com
                             </small>
                         </div>
                     </div>

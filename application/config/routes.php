@@ -136,4 +136,4 @@ $route['rental/list/(:any)'] = 'rental/list/$1';
 $route['category/brands'] = 'category/get_brands';
 
 $route['member/downloadBuktiTransfer/(:any)'] = 'member/downloadBuktiTransfer/$1';
-
+$route['product/getsameproduct_ajax/(:any)'] = 'modules/product/getsameproduct_ajax/$1';

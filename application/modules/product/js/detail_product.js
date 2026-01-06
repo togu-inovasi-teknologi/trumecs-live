@@ -341,46 +341,98 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-  $("#sameProductDetailTableas").DataTable({
-    processing: true,
-    serverSide: true,
-    ajax: {
-      url: base_url + "product/get_sameproduct_datatable",
-      type: "POST",
-    },
-    columns: [
-      {
-        data: "tittle",
-        name: "tittle",
-        orderable: true,
-        render: function (data, type, row) {
-          if (type === "display") {
-            return data;
-          }
-          // Untuk sorting, extract text dari link
-          var temp = $("<div>").html(data);
-          return temp.text() || data;
-        },
-      },
-      {
-        data: "brand",
-        name: "brand",
-        orderable: true,
-        className: "text-center",
-      },
-      {
-        data: "grade",
-        name: "grade",
-        orderable: true,
-        className: "text-center",
-      },
-      {
-        data: "price",
-        name: "price",
-        orderable: true,
-        className: "text-right",
-      },
-    ],
-    order: [[0, "asc"]],
-  });
+  new DataTable("#sameProductDetailTable");
 });
+
+// $(document).ready(function () {
+//   // Ambil product_id dari URL atau hidden field
+//   var currentUrl = window.location.pathname;
+//   var pathParts = currentUrl.split("/");
+//   var productId = pathParts[2];
+
+//   if (!productId || isNaN(productId)) {
+//     productId = $("#current_product_id").val();
+//   }
+
+//   if (productId) {
+//     initSameProductTable(productId);
+//   }
+//   function initSameProductTable(productId) {
+//     console.log("Initializing DataTable with product ID:", productId);
+//     console.log(
+//       "AJAX URL:",
+//       base_url + "product/getsameproduct_ajax/" + productId
+//     );
+
+//     $("#sameProductDetailTable").DataTable({
+//       processing: true,
+//       serverSide: false,
+//       ajax: {
+//         url: base_url + "product/getsameproduct_ajax/" + productId,
+//         type: "GET",
+//         dataType: "json",
+//         dataSrc: "data",
+//         error: function (xhr, status, error) {
+//           console.error("AJAX Error:", status, error);
+//           console.error("Response:", xhr.responseText);
+//           // Fallback: tampilkan pesan error
+//           $("#sameProductDetailTable tbody").html(
+//             '<tr><td colspan="4" class="text-center">Error loading data</td></tr>'
+//           );
+//         },
+//       },
+//       columns: [
+//         {
+//           data: 0,
+//           className: "text-center",
+//           orderable: false,
+//         },
+//         {
+//           data: 1,
+//           className: "text-left",
+//         },
+//         {
+//           data: 2,
+//           className: "text-center",
+//         },
+//         {
+//           data: 3,
+//           className: "text-center",
+//         },
+//         {
+//           data: 4,
+//           className: "text-right",
+//           render: function (data, type, row) {
+//             return data;
+//           },
+//         },
+//       ],
+//       order: [[1, "asc"]], // Urutkan berdasarkan nama produk
+//       language: {
+//         emptyTable: "Tidak ada produk serupa ditemukan",
+//         info: "Menampilkan _START_ hingga _END_ dari _TOTAL_ produk",
+//         infoEmpty: "Menampilkan 0 hingga 0 dari 0 produk",
+//         infoFiltered: "(disaring dari _MAX_ total produk)",
+//         lengthMenu: "Tampilkan _MENU_ produk",
+//         loadingRecords: "Memuat...",
+//         processing: "Memproses...",
+//         search: "Cari:",
+//         zeroRecords: "Tidak ada data yang cocok",
+//         paginate: {
+//           first: "Pertama",
+//           last: "Terakhir",
+//           next: "Selanjutnya",
+//           previous: "Sebelumnya",
+//         },
+//       },
+//       pageLength: 10,
+//       lengthMenu: [
+//         [5, 10, 25, 50, -1],
+//         [5, 10, 25, 50, "Semua"],
+//       ],
+//       initComplete: function () {
+//         console.log("DataTable initialized successfully");
+//       },
+//     });
+//   }
+// });
