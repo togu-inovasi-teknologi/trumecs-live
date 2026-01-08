@@ -159,10 +159,10 @@
             </div>
 
             <!-- Right Column: Video/Media Area -->
-            <div class="col-lg-6">
-                <div class="step-media-wrapper">
-                    <!-- Video Placeholder - Ganti dengan video/embed Anda -->
-                    <div class="video-container">
+            <div class="col-lg-6 h-100">
+                <div class="step-media-wrapper h-100">
+
+                    <!-- <div class="video-container">
                         <div class="video-placeholder">
                             <div class="play-button">
                                 <i class="bi bi-play"></i>
@@ -174,9 +174,32 @@
                         <div class="video-caption mt-3">
                             <p class="text-muted">Lihat langkah mudah kami</p>
                         </div>
+                    </div> -->
+                    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="<?php base_url(); ?>/public/banner/home-mobile/1.png" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="<?php base_url(); ?>/public/banner/home-mobile/2.png" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="<?php base_url(); ?>/public/banner/home-mobile/3.png" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="<?php base_url(); ?>/public/banner/home-mobile/3.png" class="d-block w-100" alt="...">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
                     </div>
 
-                    <!-- Step Content Preview (akan berubah berdasarkan step yang aktif) -->
                 </div>
             </div>
 
@@ -246,7 +269,6 @@
                             <div class="card-content">
                                 <p class="category-name mb-0 fs-5"><?= $i['name'] ?></p>
                                 <div class="card-footer">
-                                    <span class="view-text">Lihat Detail</span>
                                     <div class="action-arrow">
                                         <i class="bi bi-arrow-right"></i>
                                     </div>

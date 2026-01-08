@@ -78,14 +78,14 @@
     <?php } ?>
 
     <!-- Offcanvas Mobile Menu -->
-    <div class="offcanvas offcanvas-start d-md-none" tabindex="-1" id="js-mobile-offcanvas" style="z-index: 99999;">
+    <div class="offcanvas offcanvas-start bg-black d-md-none" tabindex="-1" id="js-mobile-offcanvas" style="z-index: 99999;">
         <div class="offcanvas-header border-bottom">
             <div class="text-center w-100">
                 <a href="<?php echo base_url() ?>">
                     <img src="<?php echo base_url() ?>public/image/logofooternew.png" alt="Trumecs.com logo" width="150" class="img-fluid">
                 </a>
             </div>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <button type="button text-white" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body p-0">
             <ul class="list-group list-group-flush">
@@ -95,10 +95,8 @@
                 </li>
                 <div class="collapse" id="collapskategori" style="background-color:#fff;">
                     <?php $this->load->model("general/General_model", 'M_general'); ?>
-
-                    <?php foreach (main_categories() as $item) : if ($item['etc'] == NULL): ?>
-
-                            <li class="list-group-item dropdownlist f14 d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapskategori-<?php echo $item['id'] ?>" aria-expanded="false" aria-controls="collapskategori">
+                    <?php foreach (main_categories() as $item) : if ($item['etc'] == 0): ?>
+                            <li class="list-group-item f14 d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#collapskategori-<?php echo $item['id'] ?>" aria-expanded="false" aria-controls="collapskategori">
                                 <?php echo $item['name'] ?>
                                 <i class="bi bi-chevron-down icondropdown"></i>
                             </li>
@@ -304,10 +302,10 @@
         <nav class="navbar navbar-fixed-top bg-white" role="navigation">
             <div class="row">
                 <div id="logo" class="d-flex-ai-center">
-                    <div class="col-xs-1 p-x-0">
-                        <span class="btn p-x-1 p-y-0 f20 navbar-toggle offcanvas-toggle offcanvas-toggle-close" data-toggle="offcanvas" data-target="#js-mobile-offcanvas"><i class="bi bi-list" style="color:#000;"></i></span>
+                    <div class="col-xs-1 px-0">
+                        <span class="btn px-1 py-0 f20 navbar-toggle offcanvas-toggle offcanvas-toggle-close" data-bs-toggle="offcanvas" data-bs-target="#js-mobile-offcanvas"><i class="bi bi-list" style="color:#000;"></i></span>
                     </div>
-                    <div class="col-xs-8 p-x-1">
+                    <div class="col-xs-8 px-1">
                         <a href="<?php echo base_url() ?>">
                             <img src="<?php echo base_url() ?>public/image/logotrumecsnew.png" width="150px" alt="Trumecs.com logo">
                         </a>

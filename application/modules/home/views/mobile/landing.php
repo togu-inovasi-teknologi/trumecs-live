@@ -1,9 +1,33 @@
-<section class="steps-process-section pt-5 pb-2" style="background-color: #f8f9fa;">
+<section class="steps-process-section pt-1 pb-2" style="background-color: #f8f9fa;">
     <div class="container">
+        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="<?php base_url(); ?>/public/banner/home-mobile/1.png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="<?php base_url(); ?>/public/banner/home-mobile/2.png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="<?php base_url(); ?>/public/banner/home-mobile/3.png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="<?php base_url(); ?>/public/banner/home-mobile/3.png" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
         <!-- Section Header -->
-        <div class="row mb-5">
+        <div class="row mb-2 mt-3">
             <div class="col-12 text-center">
-                <h1 class="fw-bold display-5 mb-3">Langkah mudah untuk kebutuhan bisnismu</h1>
+                <p class="fs-3 fw-bold display-5 mb-3">Langkah mudah untuk kebutuhan bisnismu</p>
                 <p class="lead text-muted">Ikuti langkah mudah kami untuk meningkatkan bisnismu</p>
             </div>
         </div>
@@ -159,9 +183,8 @@
             </div>
 
             <!-- Right Column: Video/Media Area -->
-            <div class="col-lg-6">
+            <!-- <div class="col-lg-6">
                 <div class="step-media-wrapper">
-                    <!-- Video Placeholder - Ganti dengan video/embed Anda -->
                     <div class="video-container">
                         <div class="video-placeholder">
                             <div class="play-button">
@@ -176,9 +199,8 @@
                         </div>
                     </div>
 
-                    <!-- Step Content Preview (akan berubah berdasarkan step yang aktif) -->
                 </div>
-            </div>
+            </div> -->
 
             <div class="col-lg-12">
                 <div class="step-preview">
@@ -244,9 +266,8 @@
 
                             <!-- Blueprint Content -->
                             <div class="card-content">
-                                <p class="category-name mb-0 fs-5"><?= $i['name'] ?></p>
+                                <p class="category-name mb-0 fs-6"><?= $i['name'] ?></p>
                                 <div class="card-footer">
-                                    <span class="view-text">Lihat Detail</span>
                                     <div class="action-arrow">
                                         <i class="bi bi-arrow-right"></i>
                                     </div>
@@ -263,38 +284,31 @@
         </div>
     </div>
 </section>
-<section class="banner-ads m-b-1">
+<!-- <section class="banner-ads mb-3">
     <a href="https://www.trumecs.com" target="_blank" alt="link trumecs">
         <div class="container">
             <div class="row">
-                <!--<div class="col-md banner-front radius-md p-a-1" style="background-color: #16143e;">
-                <div class="d-flex flex-column gap-1 justify-content-center align-items-center">
-                    <h6 class="fbold fwhite">HARGA KHUSUS <span class="fred">PERTAMINA</span> </h6>
-                    <p class="fwhite f11 text-center">Daftarkan perusahaanmu untuk mendapatkan harga khusus untuk produk lubricant pertamina selama 1 tahun. Syarat dan ketentuan berlaku selama persediaan masih ada</p>
-                    <img src="/public/landing/ads/Trumecs-WI.gif" width="100%" alt="Pertamina" class="banner-ads-image">
-                </div>
-            </div>-->
                 <img src="/public/banner/banner-nataru.png" width="100%" alt="Banner Nataru trumecs">
 
             </div>
         </div>
     </a>
-</section>
+</section> -->
 
 <!--- Pelumas -->
-<section class="category-pelumas m-b-3">
+<section class="category-pelumas mb-2">
     <div class="container">
         <div class="row d-flex flex-column gap-2">
             <?php
             $mainCategory = main_categories()[0];
             $subCategories = $this->M_general->getcategori(['parent' => $mainCategory['id']]);
             ?>
-            <div class="col-md">
-                <h3 class="fbold p-l-2 m-y-1"><?= $mainCategory['name'] ?></h3>
+            <div class="col-md-12">
+                <h3 class="fbold ps-2 my-1"><?= $mainCategory['name'] ?></h3>
             </div>
-            <div class="col-md d-flex category-pelumas-base" style="background: url('/public/landing/category/background/<?= $mainCategory['name'] ?>.png') no-repeat 0% 0% / cover;
+            <div class="col-md-4 d-flex category-pelumas-base" style="background: url('/public/landing/category/background/<?= $mainCategory['name'] ?>.png') no-repeat 0% 0% / cover;
                 position: relative;">
-                <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[16]['url'] ?>" class="col-md-4 p-a-1 item-sub h-full category-pelumas-base-kiri click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[16]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
+                <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[16]['url'] ?>" class="col-md-4 p-1 item-sub h-full category-pelumas-base-kiri click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[16]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
                     <div class="d-flex flex-column gap-1 z-index-1">
                         <h6 class="fbold fwhite"><?= $subCategories[16]['name'] ?></h6>
                         <p class="fwhite f11">Boost your engine with our oil! Advanced formula for top-tier performance and long-term reliability</p>
@@ -303,15 +317,15 @@
                 <div class="col-md-8 category-pelumas-base-kanan">
                     <div class="row">
                         <div class="d-flex flex-column justify-content-between align-items-start">
-                            <div class="col-md">
+                            <div class="col-md-12">
                                 <div class="d-flex h-100">
-                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[3]['url'] ?>" class="col-md-8 p-a-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[3]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-right: solid #fff 2px;border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
+                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[3]['url'] ?>" class="col-md-8 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[3]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-right: solid #fff 2px;border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class=" d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[3]['name'] ?></h6>
                                             <p class="fwhite f11">Unmatched quality for enhanced transmission efficiency and protection.</p>
                                         </div>
                                     </a>
-                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[8]['url'] ?>" class="col-md-4 p-a-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[8]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
+                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[8]['url'] ?>" class="col-md-4 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[8]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class="d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[8]['name'] ?></h6>
                                             <p class="fwhite f11">Maximize machine life & performance with high-grade industrial lubricants!</p>
@@ -319,15 +333,15 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-md">
+                            <div class="col-md-12">
                                 <div class="d-flex h-100">
-                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-md-4 p-a-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-right: solid #fff 2px;border-top: solid #fff 2px;border-left: solid #fff 2px;">
+                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-md-4 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-right: solid #fff 2px;border-top: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class="d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[0]['name'] ?></h6>
                                             <p class="fwhite f11">Ensures smooth operation and long-lasting component health.</p>
                                         </div>
                                     </a>
-                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[18]['url'] ?>" class="col-md-8 p-a-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[18]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-top: solid #fff 2px;border-left: solid #fff 2px;">
+                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[18]['url'] ?>" class="col-md-8 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[18]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-top: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class="d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[18]['name'] ?></h6>
                                             <p class="fwhite f11">Optimize torque transfer while reducing friction and noise.</p>
@@ -343,11 +357,11 @@
     </div>
 </section>
 
-<!-- <section class="banner-ads m-t-3 m-b-1">
+<!-- <section class="banner-ads m-t-3 mb-1">
     <a href="https://ers-id.informa-info.com/adx25??cid=PREREG+TRUMECS" target="_blank" alt="Tautan pendaftaran ADC">
         <div class="container">
             <div class="row">
-                <div class="col-md banner-front radius-md p-a-1" style="background-color: #000000;">
+                <div class="col-md banner-front radius-md p-1" style="background-color: #000000;">
                 <div class="d-flex flex-column gap-3 justify-content-center align-items-center">
                     <h6 class="fbold fwhite">KETERSEDIAAN BAN TERJAMIN </h6>
                     <p class="fwhite f11 text-center">Diskusikan dengan kami untuk qualitas dan quantity yang terjamin untuk perusahaanmu.</p>
@@ -363,19 +377,19 @@
 
 <!--- Ban -->
 
-<section class="category-ban m-b-3">
+<section class="category-ban mb-2">
     <div class="container">
         <div class="row d-flex flex-column gap-2">
             <?php
             $mainCategory = main_categories()[1];
             $subCategories = $this->M_general->getcategori(['parent' => $mainCategory['id']]);
             ?>
-            <div class="col-md">
-                <h3 class="fbold p-l-2 m-y-1"><?= $mainCategory['name'] ?></h3>
+            <div class="col-md-12">
+                <h3 class="fbold p-l-2 my-1"><?= $mainCategory['name'] ?></h3>
             </div>
             <div class="col-md d-flex category-ban-base" style="background: url('/public/landing/category/background/<?= $mainCategory['name'] ?>.png') no-repeat 0% 0% / cover;
                 position: relative;">
-                <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-md-4 p-a-1 item-sub h-full category-ban-base-kiri click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
+                <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-md-4 p-1 item-sub h-full category-ban-base-kiri click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
                     <div class="d-flex flex-column gap-1 z-index-1">
                         <h6 class="fbold fwhite"><?= $subCategories[0]['name'] ?></h6>
                         <p class="fwhite f11">Maximize productivity with durable OTR tyres for mining and construction</p>
@@ -384,15 +398,15 @@
                 <div class="col-md-8 category-ban-base-kanan">
                     <div class="row">
                         <div class="d-flex flex-column justify-content-between align-items-start">
-                            <div class="col-md">
+                            <div class="col-md-12">
                                 <div class="d-flex h-100">
-                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[1]['url'] ?>" class="col-md-8 p-a-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[1]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-right: solid #fff 2px;border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
+                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[1]['url'] ?>" class="col-md-8 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[1]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-right: solid #fff 2px;border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class=" d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[1]['name'] ?></h6>
                                             <p class="fwhite f11">Grip the road with confidence—premium motorcycle tyres for every ride</p>
                                         </div>
                                     </a>
-                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[2]['url'] ?>" class="col-md-4 p-a-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[2]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
+                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[2]['url'] ?>" class="col-md-4 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[2]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class="d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[2]['name'] ?></h6>
                                             <p class="fwhite f11">Trusted by drivers for reliable performance in city and highway driving</p>
@@ -400,15 +414,15 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-md">
+                            <div class="col-md-12">
                                 <div class="d-flex h-100">
-                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[3]['url'] ?>" class="col-md-4 p-a-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[3]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-right: solid #fff 2px;border-top: solid #fff 2px;border-left: solid #fff 2px;">
+                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[3]['url'] ?>" class="col-md-4 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[3]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-right: solid #fff 2px;border-top: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class="d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[3]['name'] ?></h6>
                                             <p class="fwhite f11">Optimal heat dissipation for cooler running in long-haul operations</p>
                                         </div>
                                     </a>
-                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[4]['url'] ?>" class="col-md-8 p-a-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[4]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-top: solid #fff 2px;border-left: solid #fff 2px;">
+                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[4]['url'] ?>" class="col-md-8 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[4]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-top: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class="d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[4]['name'] ?></h6>
                                             <p class="fwhite f11">Optimized tread design for wet and dry traction in all conditions.</p>
@@ -426,25 +440,25 @@
 
 <!--- Aki -->
 
-<section class="category-ban m-b-3">
+<section class="category-ban mb-2">
     <div class="container">
         <div class="row d-flex flex-column gap-2">
             <?php
             $mainCategory = main_categories()[6];
             $subCategories = $this->M_general->getcategori(['parent' => $mainCategory['id']]);
             ?>
-            <div class="col-md">
-                <h3 class="fbold p-l-2 m-y-1"><?= $mainCategory['name'] ?></h3>
+            <div class="col-md-12">
+                <h3 class="fbold p-l-2 my-1"><?= $mainCategory['name'] ?></h3>
             </div>
             <div class="col-md d-flex category-ban-base" style="background: url('/public/landing/category/background/<?= $mainCategory['name'] ?>.png') no-repeat 0% 0% / cover;
                 position: relative;">
-                <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-md-6 p-a-1 item-sub h-full category-ban-base-kiri click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
+                <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-md-6 p-1 item-sub h-full category-ban-base-kiri click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
                     <div class="d-flex flex-column gap-1 z-index-1">
                         <h6 class="fbold fwhite"><?= $subCategories[0]['name'] ?></h6>
                         <p class="fwhite f11">Reduce wear and tear with quality heavy equipment add-ons.</p>
                     </div>
                 </a>
-                <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[1]['url'] ?>" class="col-md-6 p-a-1 item-sub h-full category-ban-base-kiri click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[1]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
+                <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[1]['url'] ?>" class="col-md-6 p-1 item-sub h-full category-ban-base-kiri click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[1]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
                     <div class="d-flex flex-column gap-1 z-index-1">
                         <h6 class="fbold fwhite"><?= $subCategories[1]['name'] ?></h6>
                         <p class="fwhite f11">Maximize driver comfort and vehicle functionality on every trip</p>
@@ -457,19 +471,19 @@
 
 <!--- Sparepart -->
 
-<section class="category-ban m-b-3">
+<section class="category-ban mb-2">
     <div class="container">
         <div class="row d-flex flex-column gap-2">
             <?php
             $mainCategory = main_categories()[3];
             $subCategories = $this->M_general->getcategori(['parent' => $mainCategory['id']]);
             ?>
-            <div class="col-md">
-                <h3 class="fbold p-l-2 m-y-1"><?= $mainCategory['name'] ?></h3>
+            <div class="col-md-12">
+                <h3 class="fbold p-l-2 my-1"><?= $mainCategory['name'] ?></h3>
             </div>
             <div class="col-md d-flex category-ban-base" style="background: url('/public/landing/category/background/<?= $mainCategory['name'] ?>.png') no-repeat 0% 0% / cover;
                 position: relative;">
-                <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-md-4 p-a-1 item-sub h-full category-ban-base-kiri click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
+                <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-md-4 p-1 item-sub h-full category-ban-base-kiri click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
                     <div class="d-flex flex-column gap-1 z-index-1">
                         <h6 class="fbold fwhite"><?= $subCategories[0]['name'] ?></h4>
                             <p class="fwhite f11">The right parts make all the difference in heavy-duty operations</p>
@@ -478,15 +492,15 @@
                 <div class="col-md-8 category-ban-base-kanan">
                     <div class="row">
                         <div class="d-flex flex-column justify-content-between align-items-start">
-                            <div class="col-md">
+                            <div class="col-md-12">
                                 <div class="d-flex h-100">
-                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[1]['url'] ?>" class="col-md-8 p-a-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[1]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-right: solid #fff 2px;border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
+                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[1]['url'] ?>" class="col-md-8 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[1]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-right: solid #fff 2px;border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class=" d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[1]['name'] ?></h6>
                                             <p class="fwhite f11">Reduce maintenance intervals with high-performance spare parts</p>
                                         </div>
                                     </a>
-                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[2]['url'] ?>" class="col-md-4 p-a-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[2]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
+                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[2]['url'] ?>" class="col-md-4 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[2]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class="d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[2]['name'] ?></h6>
                                             <p class="fwhite f11">Keep production running with reliable industrial spare parts</p>
@@ -494,15 +508,15 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-md">
+                            <div class="col-md-12">
                                 <div class="d-flex h-100">
-                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[3]['url'] ?>" class="col-md-4 p-a-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[3]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-right: solid #fff 2px;border-top: solid #fff 2px;border-left: solid #fff 2px;">
+                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[3]['url'] ?>" class="col-md-4 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[3]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-right: solid #fff 2px;border-top: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class="d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[3]['name'] ?></h6>
                                             <p class="fwhite f11">Genuine replacements for tractors, harvesters, and implements</p>
                                         </div>
                                     </a>
-                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[4]['url'] ?>" class="col-md-8 p-a-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[4]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-top: solid #fff 2px;border-left: solid #fff 2px;">
+                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[4]['url'] ?>" class="col-md-8 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[4]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-top: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class="d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[4]['name'] ?></h6>
                                             <p class="fwhite f11">Reliable replacements for engines, pumps, and navigation systems.</p>
@@ -520,19 +534,19 @@
 
 <!--- Unit -->
 
-<section class="category-ban m-b-3">
+<section class="category-ban mb-2">
     <div class="container">
         <div class="row d-flex flex-column gap-2">
             <?php
             $mainCategory = main_categories()[4];
             $subCategories = $this->M_general->getcategori(['parent' => $mainCategory['id']]);
             ?>
-            <div class="col-md">
-                <h3 class="fbold p-l-2 m-y-1"><?= $mainCategory['name'] ?></h3>
+            <div class="col-md-12">
+                <h3 class="fbold p-l-2 my-1"><?= $mainCategory['name'] ?></h3>
             </div>
             <div class="col-md d-flex category-ban-base" style="background: url('/public/landing/category/background/<?= $mainCategory['name'] ?>.png') no-repeat 0% 0% / cover;
                 position: relative;">
-                <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-md-4 p-a-1 item-sub h-full category-ban-base-kiri click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
+                <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-md-4 p-1 item-sub h-full category-ban-base-kiri click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
                     <div class="d-flex flex-column gap-1 z-index-1">
                         <h6 class="fbold fwhite"><?= $subCategories[0]['name'] ?></h6>
                         <p class="fwhite f11">The backbone of logistics and public transportation systems</p>
@@ -541,15 +555,15 @@
                 <div class="col-md-8 category-ban-base-kanan">
                     <div class="row">
                         <div class="d-flex flex-column justify-content-between align-items-start">
-                            <div class="col-md">
+                            <div class="col-md-12">
                                 <div class="d-flex h-100">
-                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[1]['url'] ?>" class="col-md-8 p-a-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[1]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-right: solid #fff 2px;border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
+                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[1]['url'] ?>" class="col-md-8 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[1]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-right: solid #fff 2px;border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class=" d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[1]['name'] ?></h6>
                                             <p class="fwhite f11">Designed for power, stability, and unmatched job site performance.</p>
                                         </div>
                                     </a>
-                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[2]['url'] ?>" class="col-md-4 p-a-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[2]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
+                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[2]['url'] ?>" class="col-md-4 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[2]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class="d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[2]['name'] ?></h6>
                                             <p class="fwhite f11">Innovative technology to optimize planting and harvesting</p>
@@ -557,9 +571,9 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-md">
+                            <div class="col-md-12">
                                 <div class="d-flex h-100">
-                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[3]['url'] ?>" class="col-md p-a-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[3]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-top: solid #fff 2px;border-left: solid #fff 2px;">
+                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[3]['url'] ?>" class="col-md p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[3]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-top: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class="d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[3]['name'] ?></h6>
                                             <p class="fwhite f11">Built for the sea—reliable marine vessels for any mission. Designed for safety and stability in rough waters</p>
@@ -578,19 +592,19 @@
 <!--- Tools -->
 
 
-<section class="category-ban m-b-3">
+<section class="category-ban mb-2">
     <div class="container">
         <div class="row d-flex flex-column gap-2">
             <?php
             $mainCategory = main_categories()[5];
             $subCategories = $this->M_general->getcategori(['parent' => $mainCategory['id']]);
             ?>
-            <div class="col-md">
-                <h3 class="fbold p-l-2 m-y-1"><?= $mainCategory['name'] ?></h3>
+            <div class="col-md-12">
+                <h3 class="fbold p-l-2 my-1"><?= $mainCategory['name'] ?></h3>
             </div>
             <div class="col-md d-flex category-ban-base" style="background: url('/public/landing/category/background/<?= $mainCategory['name'] ?>.png') no-repeat 0% 0% / cover;
                 position: relative;">
-                <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-md-4 p-a-1 item-sub h-full category-ban-base-kiri click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
+                <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-md-4 p-1 item-sub h-full category-ban-base-kiri click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
                     <div class="d-flex flex-column gap-1 z-index-1">
                         <h6 class="fbold fwhite"><?= $subCategories[0]['name'] ?></h6>
                         <p class="fwhite f11">The right tools make every job safer and more efficient</p>
@@ -599,9 +613,9 @@
                 <div class="col-md-8 category-ban-base-kanan">
                     <div class="row">
                         <div class="d-flex flex-column justify-content-between align-items-start">
-                            <div class="col-md">
+                            <div class="col-md-12">
                                 <div class="d-flex h-100">
-                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[1]['url'] ?>" class="col-md p-a-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[1]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
+                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[1]['url'] ?>" class="col-md p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[1]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class=" d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[1]['name'] ?></h6>
                                             <p class="fwhite f11">Protect your workforce with certified safety tools and gear. Durable safety gear designed for comfort and performance.</p>
@@ -609,9 +623,9 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-md">
+                            <div class="col-md-12">
                                 <div class="d-flex h-100">
-                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[2]['url'] ?>" class="col-md p-a-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[2]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-top: solid #fff 2px;border-left: solid #fff 2px;">
+                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[2]['url'] ?>" class="col-md p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[2]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-top: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class="d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[2]['name'] ?></h6>
                                             <p class="fwhite f11">Boost productivity with innovative, time-saving technology. Smart solutions for professionals who demand the best</p>
@@ -630,19 +644,19 @@
 <!--- Aksesoris -->
 
 <!--
-<section class="category-ban m-b-3">
+<section class="category-ban mb-2">
     <div class="container">
         <div class="row d-flex flex-column gap-2">
             <?php
             $mainCategory = main_categories()[7];
             $subCategories = $this->M_general->getcategori(['parent' => $mainCategory['id']]);
             ?>
-            <div class="col-md">
-                <h3 class="fbold p-l-2 m-y-1"><?= $mainCategory['name'] ?></h3>
+            <div class="col-md-12">
+                <h3 class="fbold p-l-2 my-1"><?= $mainCategory['name'] ?></h3>
             </div>
             <div class="col-md d-flex category-ban-base" style="background: url('/public/landing/category/background/<?= $mainCategory['name'] ?>.png') no-repeat 0% 0% / cover;
                 position: relative;">
-                <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-md-4 p-a-1 item-sub h-full category-ban-base-kiri click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
+                <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-md-4 p-1 item-sub h-full category-ban-base-kiri click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
                     <div class="d-flex flex-column gap-1 z-index-1">
                         <h6 class="fbold fwhite"><?= $subCategories[0]['name'] ?></h6>
                         <p class="fwhite f11">Choose excellence with our premium engine oil—rev up your engine and keep moving forward smoothly!</p>
@@ -651,15 +665,15 @@
                 <div class="col-md-8 category-ban-base-kanan">
                     <div class="row">
                         <div class="d-flex flex-column justify-content-between align-items-start">
-                            <div class="col-md">
+                            <div class="col-md-12">
                                 <div class="d-flex h-100">
-                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[1]['url'] ?>" class=" col-md-8 p-a-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[1]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-right: solid #fff 2px;border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
+                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[1]['url'] ?>" class=" col-md-8 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[1]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-right: solid #fff 2px;border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class=" d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[1]['name'] ?></h6>
                                             <p class="fwhite f11">Choose excellence with our premium engine oil—rev up your engine and keep moving forward smoothly!</p>
                                         </div>
                                     </a>
-                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[2]['url'] ?>" class=" col-md-4 p-a-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[2]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
+                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[2]['url'] ?>" class=" col-md-4 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[2]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class="d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[2]['name'] ?></h6>
                                             <h6 class="fwhite f11">Choose excellence with our premium engine oil</h6>
@@ -667,15 +681,15 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-md">
+                            <div class="col-md-12">
                                 <div class="d-flex h-100">
-                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[3]['url'] ?>" class=" col-md-4 p-a-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[3]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-right: solid #fff 2px;border-top: solid #fff 2px;border-left: solid #fff 2px;">
+                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[3]['url'] ?>" class=" col-md-4 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[3]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-right: solid #fff 2px;border-top: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class="d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[3]['name'] ?></h6>
                                             <p class="fwhite f11">Choose excellence with our premium engine oil!</p>
                                         </div>
                                     </a>
-                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[4]['url'] ?>" class=" col-md-8 p-a-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[4]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-top: solid #fff 2px;border-left: solid #fff 2px;">
+                                    <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[4]['url'] ?>" class=" col-md-8 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[4]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-top: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class="d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[4]['name'] ?></h6>
                                             <p class="fwhite f11">Choose excellence with our premium engine oil—rev up your engine and keep moving forward smoothly!</p>
@@ -695,48 +709,62 @@
 <style>
     /* Base Layout */
     .blueprint-categories {
-        padding: 60px 0;
+        padding: 40px 0;
+        /* Lebih kecil untuk mobile */
         background: #f8fafc;
     }
 
     .blueprint-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 25px;
+        /* Untuk semua ukuran: 2 kolom */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        /* Gap lebih kecil untuk mobile */
         align-items: stretch;
-        /* Semua card sama tinggi */
     }
 
     .blueprint-item {
-        height: 250px;
-        /* Tinggi sama untuk semua card */
+        height: 180px;
+        /* Lebih pendek untuk mobile */
         perspective: 1000px;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
 
-    /* Blueprint Card - Semua Sama Tinggi */
     .blueprint-card {
         display: block;
         height: 100%;
         background: white;
-        border-radius: 12px;
+        border-radius: 8px;
+        /* Border radius lebih kecil */
         position: relative;
         text-decoration: none;
-        border: 2px solid #e2e8f0;
-        transform: rotate(var(--item-rotate));
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        border: 1.5px solid #e2e8f0;
+        /* Border lebih tipis */
+        transform: rotate(0deg) !important;
+        /* Pastikan tidak ada rotasi di mobile */
+        transition: all 0.3s ease;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
         overflow: hidden;
     }
 
-    .blueprint-item:hover .blueprint-card {
-        transform: rotate(0deg) translateY(-10px);
+    .blueprint-item:active .blueprint-card {
+        transform: translateY(-3px) !important;
         border-color: var(--blueprint-color);
-        box-shadow:
-            0 20px 40px rgba(0, 0, 0, 0.15),
-            0 0 0 1px rgba(59, 130, 246, 0.1);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
 
-    /* Blueprint Background */
+    /* Sembunyikan elemen dekoratif yang tidak perlu di mobile */
+    .corner-markers,
+    .dimension-horizontal,
+    .dimension-vertical,
+    .center-crosshair,
+    .blueprint-grid-pattern {
+        display: none;
+        /* Sembunyikan di mobile untuk performa */
+    }
+
     .blueprint-bg {
         position: absolute;
         top: 0;
@@ -744,135 +772,43 @@
         width: 100%;
         height: 100%;
         background: linear-gradient(135deg, #1e3a8a 0%, #1e3a8a 100%);
-        opacity: 0.9;
-    }
-
-    .blueprint-grid-pattern {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image:
-            linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-        background-size: 20px 20px;
-        opacity: 0.4;
-    }
-
-    .center-crosshair {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 30px;
-        height: 30px;
-    }
-
-    .center-crosshair:before,
-    .center-crosshair:after {
-        content: '';
-        position: absolute;
-        background: rgba(30, 41, 59, 0.15);
-    }
-
-    .center-crosshair:before {
-        width: 100%;
-        height: 1px;
-        top: 50%;
-    }
-
-    .center-crosshair:after {
-        width: 1px;
-        height: 100%;
-        left: 50%;
-    }
-
-    /* Corner Markers */
-    .corner-markers {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-    }
-
-    .marker {
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        border: 2px solid var(--blueprint-color);
-        border-radius: 2px;
-        opacity: 0.4;
-    }
-
-    .marker.tl {
-        top: 12px;
-        left: 12px;
-    }
-
-    .marker.tr {
-        top: 12px;
-        right: 12px;
-    }
-
-    .marker.bl {
-        bottom: 12px;
-        left: 12px;
-    }
-
-    .marker.br {
-        bottom: 12px;
-        right: 12px;
-    }
-
-    .blueprint-item:hover .marker {
         opacity: 0.8;
-        border-color: var(--blueprint-color);
+        /* Lebih gelap untuk kontras */
     }
 
-    /* Image Container - Posisi Konsisten */
+    /* Image Container untuk mobile */
     .image-wrapper {
         position: absolute;
-        top: 20px;
+        top: 10px;
         left: 50%;
         transform: translateX(-50%);
-        width: 160px;
-        height: 140px;
+        width: 90px;
+        height: 80px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: transparent;
-        border-radius: 8px;
+        border-radius: 4px;
         border: 1px solid rgba(30, 41, 59, 0.1);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         z-index: 2;
-        transition: all 0.3s ease;
-    }
-
-    .blueprint-item:hover .image-wrapper {
-        transform: translateX(-50%) translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        border-color: var(--blueprint-color);
     }
 
     .image-wrapper img {
         max-width: 100%;
         max-height: 100%;
-        object-fit: cover;
-        filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.1));
+        object-fit: contain;
+        /* Pastikan gambar terlihat penuh */
+        filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.1));
     }
 
-    /* Card Content - Posisi Tetap */
+    /* Card Content untuk mobile */
     .card-content {
         position: absolute;
         bottom: 0;
         left: 0;
         width: 100%;
-        height: 70px;
-        /* Tinggi content sama untuk semua */
-        padding: 20px;
+        height: 50px;
+        padding: 10px 12px;
         background: linear-gradient(to top, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.95) 100%);
         border-top: 1px solid #e2e8f0;
         z-index: 2;
@@ -881,161 +817,187 @@
         align-items: center;
     }
 
-    .part-id {
-        font-family: 'Courier New', monospace;
-        color: #64748b;
-        font-size: 0.85rem;
-        font-weight: 600;
-    }
-
-    /* Category Name */
     .category-name {
         color: #1e293b;
-        font-weight: 800;
-        font-size: 1.2rem;
-        letter-spacing: 0.5px;
-        line-height: 1.3;
+        font-weight: 700;
+        /* Lebih ringan untuk mobile */
+        font-size: 0.85rem;
+        /* Lebih kecil */
+        letter-spacing: 0.2px;
+        line-height: 1.2;
         text-transform: uppercase;
+        margin: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
-    /* Card Footer */
-    .card-footer {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .view-text {
-        color: var(--blueprint-color);
-        font-weight: 600;
-        font-size: 0.9rem;
-        letter-spacing: 0.5px;
-    }
-
+    /* Action arrow lebih kecil untuk mobile */
     .action-arrow {
-        width: 32px;
-        height: 32px;
+        width: 24px;
+        height: 24px;
         background: var(--blueprint-color);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         color: white;
-        font-size: 0.9rem;
-        transition: all 0.3s ease;
+        font-size: 0.7rem;
+        flex-shrink: 0;
+        /* Pastikan tidak menyusut */
+        margin-left: 8px;
+        /* Spasi dari teks */
     }
 
-    .blueprint-item:hover .action-arrow {
-        background: #1e293b;
-        transform: translateX(5px);
-    }
-
-    /* Dimension Lines */
-    .dimension-horizontal {
-        position: absolute;
-        width: 80%;
-        height: 1px;
-        bottom: 140px;
-        /* Posisi tetap dari bawah card */
-        left: 10%;
-        border-top: 1px dashed rgba(30, 41, 59, 0.15);
-        pointer-events: none;
-        z-index: 1;
-    }
-
-    .dimension-vertical {
-        position: absolute;
-        width: 1px;
-        height: 80%;
-        right: 20px;
-        top: 10%;
-        border-left: 1px dashed rgba(30, 41, 59, 0.15);
-        pointer-events: none;
-        z-index: 1;
-    }
-
-    .blueprint-item:hover .dimension-horizontal,
-    .blueprint-item:hover .dimension-vertical {
-        border-color: var(--blueprint-color);
-    }
-
-    /* Responsive */
-    @media (max-width: 1200px) {
+    /* Responsive untuk tablet */
+    @media (min-width: 576px) {
         .blueprint-grid {
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-        }
-    }
-
-    @media (max-width: 992px) {
-        .blueprint-grid {
-            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
         }
 
         .blueprint-item {
-            height: 300px;
-            /* Sedikit lebih kecil di tablet */
+            height: 200px;
+        }
+
+        .image-wrapper {
+            width: 110px;
+            height: 90px;
+            top: 15px;
+        }
+
+        .card-content {
+            height: 55px;
+            padding: 12px 15px;
+        }
+
+        .category-name {
+            font-size: 0.9rem;
+        }
+
+        .action-arrow {
+            width: 28px;
+            height: 28px;
+            font-size: 0.8rem;
+        }
+    }
+
+    /* Responsive untuk desktop kecil */
+    @media (min-width: 768px) {
+        .blueprint-categories {
+            padding: 60px 0;
+        }
+
+        .blueprint-grid {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .blueprint-item {
+            height: 250px;
+        }
+
+        .blueprint-card {
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+            transform: rotate(var(--item-rotate)) !important;
+        }
+
+        .blueprint-item:hover .blueprint-card {
+            transform: rotate(0deg) translateY(-8px) !important;
+            border-color: var(--blueprint-color);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Tampilkan kembali elemen dekoratif */
+        .corner-markers,
+        .dimension-horizontal,
+        .dimension-vertical,
+        .center-crosshair,
+        .blueprint-grid-pattern {
+            display: block;
         }
 
         .image-wrapper {
             width: 140px;
             height: 120px;
+            top: 20px;
+            padding: 12px;
         }
 
         .card-content {
-            height: 130px;
-            padding: 15px;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .blueprint-grid {
-            grid-template-columns: 1fr;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        .blueprint-card {
-            transform: rotate(0deg) !important;
-        }
-
-        .blueprint-item:hover .blueprint-card {
-            transform: translateY(-8px) !important;
+            height: 70px;
+            padding: 15px 20px;
         }
 
         .category-name {
-            font-size: 1.1rem;
+            font-size: 1rem;
+            -webkit-line-clamp: 1;
+            /* Satu baris saja di desktop */
         }
 
-        .spec-summary {
-            flex-direction: column;
-            gap: 8px;
+        .action-arrow {
+            width: 32px;
+            height: 32px;
+            font-size: 0.9rem;
         }
     }
 
-    @media (max-width: 480px) {
+    /* Responsive untuk desktop besar */
+    @media (min-width: 992px) {
+        .blueprint-grid {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
         .blueprint-item {
             height: 280px;
         }
 
         .image-wrapper {
-            top: 15px;
-            width: 120px;
-            height: 100px;
-            padding: 15px;
-        }
-
-        .card-content {
-            height: 120px;
-            padding: 15px;
+            width: 160px;
+            height: 140px;
         }
 
         .category-name {
-            font-size: 1rem;
-            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+    }
+
+    /* Untuk layar sangat kecil (di bawah 350px) */
+    @media (max-width: 350px) {
+        .blueprint-grid {
+            grid-template-columns: 1fr;
+            /* 1 kolom untuk layar sangat kecil */
+            gap: 10px;
+            max-width: 300px;
+            margin: 0 auto;
         }
 
-        .spec-item {
+        .blueprint-item {
+            height: 160px;
+        }
+
+        .image-wrapper {
+            width: 80px;
+            height: 70px;
+            top: 8px;
+        }
+
+        .card-content {
+            height: 45px;
+            padding: 8px 10px;
+        }
+
+        .category-name {
             font-size: 0.8rem;
+        }
+
+        .action-arrow {
+            width: 20px;
+            height: 20px;
+            font-size: 0.6rem;
         }
     }
 
