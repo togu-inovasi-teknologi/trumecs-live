@@ -147,7 +147,7 @@ $(document).ready(function () {
   });
 
   // Event handler untuk submit form
-  $(".apply-filter").click(function (e) {
+  $("#apply-filter").click(function (e) {
     e.preventDefault();
 
     // Pastikan semua select memiliki nilai

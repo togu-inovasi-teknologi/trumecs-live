@@ -332,13 +332,22 @@ class C extends MX_Controller
 				$this->data["listproduct"] = $newarray;
 			}
 		}
-		$this->data['view_product'] = "_listproduct";
+		if ($this->agent->is_mobile()) {
+			$this->data['view_product'] = "mobile/_listproduct";
+		} else {
+			$this->data['view_product'] = "desktop/_listproduct";
+		}
 	}
 
 	private function _search_all()
 	{
 		$this->data["listproduct"] = $this->c_model->fetch_product_by_cat(4, 0, $this->data["datasearch"], $this->data["datasearchor_like"], $this->data["datawhere"]);
-		$this->data['view_product'] = "_listproduct_all";
+
+		if ($this->agent->is_mobile()) {
+			$this->data['view_product'] = "mobile/_listproduct_all";
+		} else {
+			$this->data['view_product'] = "desktop/_listproduct_all";
+		}
 	}
 
 	public function view()
@@ -350,8 +359,11 @@ class C extends MX_Controller
 
 		$this->data["css"] = array(base_url() . 'asset/css/cari_page.css');
 		$this->data["js"] = array(base_url() . "asset/js/number/jquery.number.min.js", base_url() . 'asset/js/cari.js');
-		$this->data['content'] = 'view_c';
-
+		if ($this->agent->is_mobile()) {
+			$this->data['content'] = 'mobile/view_c';
+		} else {
+			$this->data['content'] = 'desktop/view_c';
+		}
 		$this->load->view('front/template_front', $this->data);
 	}
 }

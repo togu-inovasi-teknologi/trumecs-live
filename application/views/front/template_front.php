@@ -96,14 +96,9 @@ $contact = $this->db->where('id', $ida)->get("admin")->result_array();
     <link rel="stylesheet" href="<?php echo base_url() ?>asset/js/slick/slick-theme.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-2.1.5/datatables.min.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <?php if ($this->uri->segment(1) == "article" || $this->uri->segment(1) == null || $this->uri->segment(1) == "product" || $this->uri->segment(1) == "home" || $this->uri->segment(1) == "c") : ?>
-        <!-- <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css"> -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.datatables.net/2.3.5/css/dataTables.dataTables.css" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <?php else : ?>
-        <link rel="stylesheet" href="<?php echo base_url() ?>asset/css/bootstrap.4-alpha.css">
-    <?php endif ?>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.5/css/dataTables.dataTables.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <?php
     if (isset($css_cdn)) {
         foreach ($css_cdn as $item) {
@@ -310,19 +305,10 @@ $contact = $this->db->where('id', $ida)->get("admin")->result_array();
         </div>
     </div>
     <?php $this->load->view("front/popup_ads"); ?>
-    <?php if ($this->uri->segment(1) == "article" || $this->uri->segment(1) == null || $this->uri->segment(1) == "product" || $this->uri->segment(1) == "home") : ?>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cdn.datatables.net/2.3.5/js/dataTables.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
-    <?php else : ?>
-        <?php
-        $javascript = array(base_url() . "asset/js/jquery.js", base_url() . 'asset/js/bootstrap.min.js', base_url() . 'asset/js/bootstrap-toolkit.min.js', base_url() . 'asset/js/slick/slick.min.js', base_url() . 'asset/js/bootstrap.offcanvas.min.js');
-        foreach ($javascript as $dt_javascript) {
-            echo '<script type="text/javascript" src="' . $dt_javascript . '"></script>';
-        }
-        ?>
-    <?php endif; ?>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/2.3.5/js/dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
     <!-- <script src="https://kit.fontawesome.com/d64235c5d9.js" crossorigin="anonymous"></script> -->
     <script type="text/javascript" src="<?php echo base_url() ?>asset/js/trumecs.effect.js"></script>
     <script type="text/javascript" src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>

@@ -54,7 +54,7 @@ function redirectToSearch() {
   var url =
     baseurl +
     "c/all/query?q=on&nama=" +
-    $(".inputsearch").find("input[type=text]").val();
+    $("#inputsearch").find("#searchInput").val();
   window.location.href = url;
 }
 

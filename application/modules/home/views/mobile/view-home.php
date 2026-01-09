@@ -5,9 +5,9 @@
             <div class="input-search">
                 <h1>Pasar Mekanikal</h1>
                 <h2>Belanja mekanikal makin mudah</h2>
-                <div class="inputsearch input-group input-group-sm m-b-1">
+                <div class="input-group input-group-sm mb-1" id="inputsearch">
                     <span class="input-group-addon btn search-button" id="searchbuttontemplate" style="background-color: #fff;"><i class="fa fa-search" style="color: #666;"></i></span>
-                    <input type="text" class="form-control" placeholder="Cari Kebutuhan Mekanikal?" value="<?php echo $this->input->get("nama"); ?>">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Cari Kebutuhan Mekanikal?" value="<?php echo $this->input->get("nama"); ?>">
                     <input type="hidden" name="quality" value="<?php echo $this->uri->segment(2) == 'used' ? "3" : $this->input->get("quality"); ?>">
                 </div>
             </div>
