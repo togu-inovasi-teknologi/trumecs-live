@@ -1,74 +1,99 @@
-<section class="submenu-category p-b-0">
-    <div class="container d-flex flex-column gap-3">
-        <h3 class="fbold text-center">Sub Categories of <?= $categories['name'] ?></h3>
-        <div class="row justify-content-center subcategory">
+<section class="submenu-category pb-0 d-none d-lg-block">
+    <div class="container">
+        <h3 class="fbold text-center mb-4">Sub Categories of <?= htmlspecialchars($categories['name']) ?></h3>
+
+        <div class="row g-3">
             <?php
             $totalItems = count($subCategories);
-            $cols = 3;
-            $remainingItems = $totalItems % $cols;
+            $cols = 3; // 3 kolom di desktop
+
             foreach ($subCategories as $index => $i) :
-                $lastItems = $totalItems - $index;
-                if ($index % $cols === 0) {
-                    echo '<div class="row d-flex justify-content-start m-b-8px gap-2 w-100 m-a-0">';
+                // Sederhanakan logika untuk desktop saja
+                // Di desktop, kita selalu ingin 3 kolom per baris
+
+                // Mulai baris baru setiap 3 item
+                if ($index % $cols === 0 && $index > 0) {
+                    echo '</div><div class="row g-3">';
                 }
 
-                if ($remainingItems == 2 && $lastItems <= 2) {
-                    $colClass = 'col-lg-6';
-                } elseif ($remainingItems == 1 && $lastItems <= 1) {
-                    $colClass = 'col-lg-12';
+                // Tentukan ukuran kolom berdasarkan posisi di baris terakhir
+                $itemsInLastRow = $totalItems % $cols;
+                $isLastRow = ($index >= $totalItems - $itemsInLastRow);
+
+                if ($isLastRow) {
+                    if ($itemsInLastRow === 1) {
+                        // Jika hanya 1 item di baris terakhir, buat full width
+                        $colClass = 'col-12';
+                    } elseif ($itemsInLastRow === 2) {
+                        // Jika 2 item di baris terakhir, buat 6 kolom masing-masing
+                        $colClass = 'col-6';
+                    } else {
+                        // Default 3 kolom
+                        $colClass = 'col-4';
+                    }
                 } else {
-                    $colClass = 'col-lg-4';
+                    // Untuk baris penuh, selalu 4 kolom (12/3=4)
+                    $colClass = 'col-4';
                 }
             ?>
-                <div class="<?= $colClass ?> p-a-0 pointer click-subcategory" data-google-tag="<?= $categories['name'] ?> - <?= $i['name'] ?>">
-                    <div class="submenu-category-item text-left d-flex align-items-end" onclick="toggleSubCategorySelection(this, <?= $i['id'] ?>)" data-id="<?= $i['id'] ?>">
-                        <h6 class="fbold"><?= $i['name'] ?></h6>
-                        <!--<img src="<?= $i['img'] ?>" alt="<?= $i['name'] ?>" class="img-fluid">-->
+                <div class="<?= $colClass ?> pointer click-subcategory mb-2"
+                    data-google-tag="<?= htmlspecialchars($categories['name']) ?> - <?= htmlspecialchars($i['name']) ?>">
+                    <div class="submenu-category-item text-left d-flex align-items-start p-3 h-100"
+                        onclick="toggleSubCategorySelection(this, <?= $i['id'] ?>)"
+                        data-id="<?= $i['id'] ?>">
+                        <h6 class="fbold mb-0"><?= htmlspecialchars($i['name']) ?></h6>
                     </div>
                 </div>
-            <?php
-                if (($index + 1) % $cols === 0 || ($index + 1) === $totalItems || ($remainingItems == 2 && $cols == 2)) {
-                    echo '</div>';
-                }
-            endforeach;
-            ?>
-
+            <?php endforeach; ?>
         </div>
-        <div class="text-center w-100 m-t-2 d-none">
-            <button class="btn btn-sm btn-outline-primary" id="toggle-subcategories">Lihat Lebih Banyak</button>
+
+        <div class="text-center w-100 mt-3">
+            <button class="btn btn-sm btn-outline-primary" id="toggle-subcategories">
+                Lihat Lebih Banyak
+            </button>
         </div>
     </div>
 </section>
 
 <input type="hidden" id="selected_submenu" name="selected_submenu">
 
-<section class="brand-category p-b-0">
-    <div class="container d-flex flex-column gap-3">
-        <h3 class="fbold text-center">Brand of <?= $categories['name'] ?></h3>
-        <div class="row justify-content-center brand">
+<section class="brand-category pb-0 d-none d-lg-block">
+    <div class="container">
+        <h3 class="fbold text-center mb-4">Brand of <?= htmlspecialchars($categories['name']) ?></h3>
+
+        <div class="row g-2">
             <?php
             $totalItems = count($brand);
-            $cols = 6;
+            $cols = 6; // 6 kolom di desktop
+
             foreach ($brand as $index => $i) :
-                if ($index % $cols === 0) {
-                    echo '<div class="row d-flex justify-content-start m-b-8px gap-2 w-100 m-a-0">';
+                // Mulai baris baru setiap 6 item
+                if ($index % $cols === 0 && $index > 0) {
+                    echo '</div><div class="row g-2">';
+                }
+
+                // Tentukan ukuran kolom untuk baris terakhir
+                $itemsInLastRow = $totalItems % $cols;
+                $isLastRow = ($index >= $totalItems - $itemsInLastRow);
+
+                if ($isLastRow && $itemsInLastRow > 0) {
+                    // Untuk baris terakhir, hitung lebar kolom
+                    $colWidth = 12 / $itemsInLastRow;
+                    $colClass = "col-{$colWidth}";
+                } else {
+                    // Default 2 kolom (12/6=2)
+                    $colClass = 'col-2';
                 }
             ?>
-                <div class="col-lg-2 p-a-0 pointer click-brand" data-google-tag="<?= $categories['name'] ?> - <?= $i['name'] ?>">
-                    <div class="brand-category-item d-flex flex-column align-items-center gap-3" onclick="toggleBrandSelection(this, <?= $i['id'] ?>)" data-id="<?= $i['id'] ?>">
-                        <!--<img src="<?= $i['img'] ?>" alt="<?= $i['name'] ?>">-->
-                        <h6 class="fbold f11"><?= $i['name'] ?></h6>
+                <div class="<?= $colClass ?> pointer click-brand mb-2"
+                    data-google-tag="<?= htmlspecialchars($categories['name']) ?> - <?= htmlspecialchars($i['name']) ?>">
+                    <div class="brand-category-item d-flex flex-column align-items-center justify-content-center p-2 h-100"
+                        onclick="toggleBrandSelection(this, <?= $i['id'] ?>)"
+                        data-id="<?= $i['id'] ?>">
+                        <h6 class="fbold f11 text-center mb-0"><?= htmlspecialchars($i['name']) ?></h6>
                     </div>
                 </div>
-            <?php
-                if (($index + 1) % $cols === 0 || ($index + 1) === $totalItems) {
-                    echo '</div>';
-                }
-            endforeach;
-            ?>
-        </div>
-        <div class="text-center w-100 m-t-2 d-none">
-            <button class="btn btn-sm btn-outline-primary" id="toggle-brands">Lihat Lebih Banyak</button>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>
@@ -80,7 +105,7 @@
 <section class="<?= $categories['name'] ?> m-y-lg" id="see-product-table">
     <div class="container d-flex flex-column gap-3">
         <h3 class="fbold text-center">Product of <?= $categories['name'] ?></h3>
-        <div class="row catalog-content p-x-1" style="background:#F6F6F7">
+        <div class="row catalog-content px-1" style="background:#F6F6F7">
             <!-- <div class="col-lg-12 m-t-2">
                     <div class="row d-flex justify-content-center">
                         <div class="col-lg-6 d-flex align-items-end gap-3">
@@ -120,27 +145,27 @@
                         </tr>
                     </thead>
                 </table>
-                <div class="row text-center m-a-2">
-                    <a href="<?php echo site_url('c/' . $categories['name']); ?>" class="btn btn-lg btnnew fbold radius-lg-new p-x-3" style="padding:16px 30px 16px 30px;font-size:20px;font-family:'Lato'">Jelajahi Semua <?= $categories['name'] ?></a>
+                <div class="row text-center m-2">
+                    <a href="<?php echo site_url('c/' . $categories['name']); ?>" class="btn btn-lg btnnew fbold radius-lg-new px-3" style="padding:16px 30px 16px 30px;font-size:20px;font-family:'Lato'">Jelajahi Semua <?= $categories['name'] ?></a>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<div class="float float-request d-flex align-items-center text-center justify-content-between p-l-1 w-1200 <?= !empty($items) ? '' : 'd-none' ?>" style="padding: 3px">
+<div class="float float-request d-flex align-items-center text-center justify-content-between ps-1 w-1200 <?= !empty($items) ? '' : 'd-none' ?>" style="padding: 3px">
 
     <p class="my-float" id="float-value">Permintaan <?= count($items) ?> (item)</p>
     <form class="right-side" method="post" action="<?= base_url('bulk/toBulk') ?>" id="form-request-checkbox">
         <div class="form-list"></div>
-        <button type="submit" class="btn btnnew btn-create-request">Lanjut <i class="fa fa-fw fa-pencil-square"></i></button>
+        <button type="submit" class="btn btnnew btn-create-request">Lanjut <i class="bi bi-pencil-square"></i></button>
 
         <!-- <a href="submit" class="btn btnnew btn-create-request radius-circle">Buat Permintaan Sekarang</a> -->
     </form>
 </div>
 
 <button id="back-to-top" class="btn btnnew radius-lg back-to-top d-none" role="button">
-    &#8593; <!-- Panah ke atas -->
+    <i class="bi bi-arrow-up"></i>
 </button>
 
 <!-- Modal -->

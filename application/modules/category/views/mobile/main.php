@@ -1,72 +1,62 @@
-<section class="submenu-category p-b-0">
-    <div class="container d-flex flex-column gap-3">
-        <h3 class="fbold text-center">Sub Categories of <?= $categories['name'] ?></h3>
-        <div class="row justify-content-center subcategory">
+<section class="submenu-category pb-0 d-lg-none">
+    <div class="container">
+        <h3 class="fbold text-center mb-3">Sub Categories of <?= htmlspecialchars($categories['name']) ?></h3>
+
+        <div class="row g-2">
             <?php
             $totalItems = count($subCategories);
-            $cols = 2;
-            $remainingItems = $totalItems % $cols;
+
             foreach ($subCategories as $index => $i) :
-                $lastItems = $totalItems - $index;
-                if ($index % $cols === 0) {
-                    echo '<div class="row d-flex justify-content-start m-b-8px gap-2 w-100 m-a-0">';
-                }
-                if ($remainingItems == 1 && $lastItems <= 1) {
-                    $colClass = 'col-md-12';
-                } else {
-                    $colClass = 'col-md-6';
-                }
+                // Mobile: 2 kolom, kecuali jika hanya 1 item
+                $colClass = ($totalItems === 1) ? 'col-12' : 'col-6';
             ?>
-                <div class="<?= $colClass ?> pointer click-subcategory-mobile" data-google-tag="<?= $categories['name'] ?> - <?= $i['name'] ?>" style="flex: 1;">
-                    <div class="submenu-category-item text-left d-flex align-items-start" onclick="toggleSubCategorySelection(this, <?= $i['id'] ?>)" data-id="<?= $i['id'] ?>">
-                        <p class="fbold f11"><?= $i['name'] ?></p>
-                        <!--<img src="<?= $i['img'] ?>" alt="<?= $i['name'] ?>" class="img-fluid">-->
+                <div class="<?= $colClass ?> pointer click-subcategory-mobile"
+                    data-google-tag="<?= htmlspecialchars($categories['name']) ?> - <?= htmlspecialchars($i['name']) ?>">
+                    <div class="submenu-category-item d-flex align-items-start p-2 border rounded"
+                        onclick="toggleSubCategorySelection(this, <?= $i['id'] ?>)"
+                        data-id="<?= $i['id'] ?>">
+                        <p class="fbold f11 mb-0"><?= htmlspecialchars($i['name']) ?></p>
                     </div>
                 </div>
-            <?php
-                if (($index + 1) % $cols === 0 || ($index + 1) === $totalItems || ($remainingItems == 2 && $cols == 2)) {
-                    echo '</div>';
-                }
-            endforeach;
-            ?>
+            <?php endforeach; ?>
+        </div>
 
-        </div>
-        <div class="text-center w-100 d-none">
-            <button class="btn btn-sm btn-outline-primary" id="toggle-subcategories">Lihat Lebih Banyak</button>
-        </div>
+        <?php if (count($subCategories) > 6) : ?>
+            <div class="text-center w-100 mt-3">
+                <button class="btn btn-sm btn-outline-primary" id="toggle-subcategories-mobile">
+                    Lihat Lebih Banyak
+                </button>
+            </div>
+        <?php endif; ?>
     </div>
 </section>
 
 <input type="hidden" id="selected_submenu" name="selected_submenu">
 
-<section class="brand-category p-b-0">
-    <div class="container d-flex flex-column gap-3">
-        <h3 class="fbold text-center">Brand of <?= $categories['name'] ?></h3>
-        <div class="row justify-content-center brand">
-            <?php
-            $totalItems = count($brand);
-            $cols = 3;
-            foreach ($brand as $index => $i) :
-                if ($index % $cols === 0) {
-                    echo '<div class="row d-flex justify-content-start m-b-8px gap-2 w-100 m-a-0">';
-                }
-            ?>
-                <div class="col-md-4 pointer click-brand-mobile" data-google-tag="<?= $categories['name'] ?> - <?= $i['name'] ?>" style="flex: 1;">
-                    <div class="brand-category-item d-flex flex-column align-items-center gap-1" onclick="toggleBrandSelection(this, <?= $i['id'] ?>)" data-id="<?= $i['id'] ?>">
-                        <!--<img src="<?= $i['img'] ?>" alt="<?= $i['name'] ?>">-->
-                        <h6 class="fbold f11"><?= $i['name'] ?></h6>
+<section class="brand-category pb-0 d-lg-none">
+    <div class="container">
+        <h3 class="fbold text-center mb-3">Brand of <?= htmlspecialchars($categories['name']) ?></h3>
+
+        <div class="row g-2">
+            <?php foreach ($brand as $i) : ?>
+                <div class="col-4 pointer click-brand-mobile"
+                    data-google-tag="<?= htmlspecialchars($categories['name']) ?> - <?= htmlspecialchars($i['name']) ?>">
+                    <div class="brand-category-item d-flex flex-column align-items-center justify-content-center p-2 border rounded"
+                        onclick="toggleBrandSelection(this, <?= $i['id'] ?>)"
+                        data-id="<?= $i['id'] ?>">
+                        <h6 class="fbold f11 text-center mb-0"><?= htmlspecialchars($i['name']) ?></h6>
                     </div>
                 </div>
-            <?php
-                if (($index + 1) % $cols === 0 || ($index + 1) === $totalItems) {
-                    echo '</div>';
-                }
-            endforeach;
-            ?>
+            <?php endforeach; ?>
         </div>
-        <div class="text-center w-100 d-none">
-            <button class="btn btn-sm btn-outline-primary" id="toggle-brands">Lihat Lebih Banyak</button>
-        </div>
+
+        <?php if (count($brand) > 9) : ?>
+            <div class="text-center w-100 mt-3">
+                <button class="btn btn-sm btn-outline-primary" id="toggle-brands-mobile">
+                    Lihat Lebih Banyak
+                </button>
+            </div>
+        <?php endif; ?>
     </div>
 </section>
 
@@ -74,7 +64,7 @@
 
 <input type="hidden" name="current_c_k_items" value="<?= $_COOKIE['items'] ?? 0 ?>">
 
-<section class="<?= $categories['name'] ?> m-y-md" id="see-product-table">
+<section class="<?= $categories['name'] ?> my-2" id="see-product-table">
     <div class="container">
         <div class="row catalog-content">
             <!-- <div class="col-xs-12">
@@ -100,7 +90,7 @@
 
             </div>
 
-            <div class="col-xs-12 catalog p-x-0">
+            <div class="col-xs-12 catalog px-0">
                 <input type="hidden" name="image" value="<?php echo base_url(); ?>public/image/category/card-<?php echo $categories["url"]; ?>.png">
                 <input type="hidden" name="category_id" value="<?= $categories['id'] ?>">
                 <input type="hidden" name="name" value="<?= $categories['name'] ?>">
@@ -113,27 +103,27 @@
                             </tr>
                         </thead> -->
                 </table>
-                <div class="row text-center m-a-2">
-                    <a href="<?php echo site_url('c/' . $categories['name']); ?>" class="btn btn-md btnnew fbold radius-md-new p-x-3" style="padding:16px 30px 16px 30px;font-size:20px;font-family:'Lato'">Jelajahi Semua <?= $categories['name'] ?></a>
+                <div class="row text-center m-2">
+                    <a href="<?php echo site_url('c/' . $categories['name']); ?>" class="btn btn-md btnnew fbold radius-md-new px-3" style="padding:16px 30px 16px 30px;font-size:20px;font-family:'Lato'">Jelajahi Semua <?= $categories['name'] ?></a>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<div class="float float-request d-flex align-items-center text-center justify-content-between p-l-1 w-1200 <?= !empty($items) ? '' : 'd-none' ?>" style="padding: 3px">
 
-    <p class="my-float" id="float-value">Permintaan <?= count($items) ?> (item)</p>
-    <form class="right-side" method="post" action="<?= base_url('bulk/toBulk') ?>" id="form-request-checkbox">
+<div class="float-request-mobile d-flex align-items-center justify-content-between p-2 bg-white shadow-sm fixed-bottom d-lg-none <?= !empty($items) ? '' : 'd-none' ?>">
+    <p class="mb-0" id="float-value-mobile"><?= count($items) ?> item</p>
+    <form method="post" action="<?= base_url('bulk/toBulk') ?>" id="form-request-checkbox-mobile">
         <div class="form-list"></div>
-        <button type="submit" class="btn btnnew btn-create-request">Lanjut <i class="fa fa-fw fa-pencil-square"></i></button>
-
-        <!-- <a href="submit" class="btn btnnew btn-create-request radius-circle">Buat Permintaan Sekarang</a> -->
+        <button type="submit" class="btn btn-sm btn-primary">
+            Lanjut <i class="bi bi-pencil-square"></i>
+        </button>
     </form>
 </div>
 
-<button id="back-to-top" class="btn btnnew radius-md back-to-top d-none" role="button">
-    &#8593; <!-- Panah ke atas -->
+<button id="back-to-top-mobile" class="btn btn-primary back-to-top d-none d-lg-none" role="button">
+    <i class="bi bi-arrow-up"></i>
 </button>
 
 <!-- Modal -->

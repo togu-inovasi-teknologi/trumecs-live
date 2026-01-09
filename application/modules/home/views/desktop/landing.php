@@ -10,8 +10,8 @@
 
         <div class="row g-5 align-items-start">
             <!-- Left Column: Steps Accordion -->
-            <div class="col-lg-6">
-                <div class="steps-accordion-wrapper">
+            <div class="col-lg-3 h-100">
+                <div class="steps-accordion-wrapper h-100">
                     <!-- Step 1 -->
                     <div class="step-item active" data-step="1">
                         <div class="step-header">
@@ -20,7 +20,7 @@
                                 <div class="step-line"></div>
                             </div>
                             <div class="step-title-wrapper">
-                                <h3 class="step-title">Sourcing</h3>
+                                <h5 class="step-title">Sourcing</h5>
                                 <p class="step-subtitle">Find products & reliable suppliers</p>
                             </div>
                             <div class="step-arrow">
@@ -32,15 +32,15 @@
                             <div class="step-details">
                                 <ul class="step-list">
                                     <li>
-                                        <i class="bi bi-search me-3"></i>
+                                        <i class="bi bi-search"></i>
                                         <span>Search by keywords or categories</span>
                                     </li>
                                     <li>
-                                        <i class="bi bi-file-earmark-text me-3"></i>
+                                        <i class="bi bi-file-earmark-text"></i>
                                         <span>Post a sourcing request to get multiple quotes</span>
                                     </li>
                                     <li>
-                                        <i class="bi bi-person me-3"></i>
+                                        <i class="bi bi-person"></i>
                                         <span>Connect with verified suppliers instantly</span>
                                     </li>
                                 </ul>
@@ -56,7 +56,7 @@
                                 <div class="step-line"></div>
                             </div>
                             <div class="step-title-wrapper">
-                                <h3 class="step-title">Verification</h3>
+                                <h5 class="step-title">Verification</h5>
                                 <p class="step-subtitle">Authoritative third-party verification</p>
                             </div>
                             <div class="step-arrow">
@@ -68,15 +68,15 @@
                             <div class="step-details">
                                 <ul class="step-list">
                                     <li>
-                                        <i class="bi bi-shield me-3"></i>
+                                        <i class="bi bi-shield"></i>
                                         <span>Choose audited suppliers verified by third-party</span>
                                     </li>
                                     <li>
-                                        <i class="bi bi-bar-chart-line me-3"></i>
+                                        <i class="bi bi-bar-chart-line"></i>
                                         <span>Access supplier's audited reports for free</span>
                                     </li>
                                     <li>
-                                        <i class="bi bi-check-circle me-3"></i>
+                                        <i class="bi bi-check-circle"></i>
                                         <span>Quality assurance and reliability check</span>
                                     </li>
                                 </ul>
@@ -92,7 +92,7 @@
                                 <div class="step-line"></div>
                             </div>
                             <div class="step-title-wrapper">
-                                <h3 class="step-title">Negotiation</h3>
+                                <h5 class="step-title">Negotiation</h5>
                                 <p class="step-subtitle">Contact and negotiate with suppliers</p>
                             </div>
                             <div class="step-arrow">
@@ -104,15 +104,15 @@
                             <div class="step-details">
                                 <ul class="step-list">
                                     <li>
-                                        <i class="bi bi-envelope me-3"></i>
+                                        <i class="bi bi-envelope"></i>
                                         <span>Send inquiries with "Contact Now" button</span>
                                     </li>
                                     <li>
-                                        <i class="bi bi-chat-dots me-3"></i>
+                                        <i class="bi bi-chat-dots"></i>
                                         <span>Chat with suppliers in real-time</span>
                                     </li>
                                     <li>
-                                        <i class="bi bi-journal-medical me-3"></i>
+                                        <i class="bi bi-journal-medical"></i>
                                         <span>Receive and manage quotations in your virtual office</span>
                                     </li>
                                 </ul>
@@ -128,7 +128,7 @@
                                 <div class="step-line"></div>
                             </div>
                             <div class="step-title-wrapper">
-                                <h3 class="step-title">Ordering</h3>
+                                <h5 class="step-title">Ordering</h5>
                                 <p class="step-subtitle">Place orders online securely</p>
                             </div>
                             <div class="step-arrow">
@@ -140,15 +140,15 @@
                             <div class="step-details">
                                 <ul class="step-list">
                                     <li>
-                                        <i class="bi bi-cart me-3"></i>
+                                        <i class="bi bi-cart"></i>
                                         <span>Search products with Secured Trading Service</span>
                                     </li>
                                     <li>
-                                        <i class="bi bi-lock me-3"></i>
+                                        <i class="bi bi-lock"></i>
                                         <span>Escrow protection and refund support</span>
                                     </li>
                                     <li>
-                                        <i class="bi bi-truck me-3"></i>
+                                        <i class="bi bi-truck"></i>
                                         <span>Secure payment and tracking</span>
                                     </li>
                                 </ul>
@@ -159,7 +159,7 @@
             </div>
 
             <!-- Right Column: Video/Media Area -->
-            <div class="col-lg-6 h-100">
+            <div class="col-lg-9 h-100">
                 <div class="step-media-wrapper h-100">
 
                     <!-- <div class="video-container">
@@ -285,7 +285,7 @@
         </div>
     </div>
 
-    <section class="banner-ads mb-3 mt-5">
+    <!-- <section class="banner-ads mb-3 mt-5">
         <div class="container">
             <a href="https://www.trumecs.com" target="_blank" alt="link trumecs">
                 <div class="row">
@@ -295,9 +295,9 @@
                 </div>
             </a>
         </div>
-    </section>
+    </section> -->
 
-    <section class="category-pelumas mb-3">
+    <section class="category-pelumas my-3">
         <div class="container">
             <div class="row d-flex flex-column gap-2">
                 <?php
@@ -1061,7 +1061,7 @@
     }
 
     .step-title {
-        font-size: 1.4rem;
+        font-size: 1rem;
         font-weight: 700;
         color: #2d3748;
         margin-bottom: 5px;
@@ -1074,7 +1074,7 @@
 
     .step-subtitle {
         color: #6c757d;
-        font-size: 0.95rem;
+        font-size: 0.6rem;
         margin: 0;
     }
 
@@ -1109,7 +1109,7 @@
     }
 
     .step-details {
-        padding-left: 60px;
+        padding-left: 0px;
         padding-top: 15px;
     }
 
@@ -1123,7 +1123,7 @@
         padding: 12px 0;
         border-bottom: 1px dashed #e2e8f0;
         color: #4a5568;
-        font-size: 1rem;
+        font-size: 0.7rem;
         display: flex;
         align-items: flex-start;
     }
