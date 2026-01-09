@@ -8,25 +8,23 @@ $img_promo_red = '<img alt="promo trumecs" class="promo-small" src="' . base_url
     <link itemprop="url" href="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" />
 
     <?php if (!empty($listproduct)) { ?>
-        <?php $view = $session_data["layout"]["view"]; ?>
-        <?php foreach ($listproduct as $index => $key) : ?>
-            <?php if ($view == "list") : ?>
-                <?php $this->load->view('product/mobile/_item_product_c.php', array('key' => $key)); ?>
-            <?php endif ?>
-            <?php if ($index == 1 || ($index % 2 == 1 && $index > 0)) : ?>
-                <div class="clearfix"></div>
-            <?php endif ?>
-        <?php endforeach ?>
+        <!-- Grid View - 2 kolom untuk mobile -->
+        <div class="row g-2">
+            <?php foreach ($listproduct as $key) : ?>
+                <div class="col-6">
+                    <?php $this->load->view('product/mobile/_item_product_c.php', array('key' => $key)); ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
 
     <?php } else { ?>
-        <div class="col-12 text-center product">
+        <div class="col-12 text-center">
             <div class="alert alert-warning" role="alert">
                 <?php echo $this->lang->line('konten_tidak_ditemukan', FALSE); ?>
             </div>
         </div>
     <?php } ?>
 </div>
-
 <?php if (!empty($links)) : ?>
     <div class="col-12">
         <div class="text-center linkpagination mt-3">
