@@ -3,7 +3,12 @@
 	data-selected-type="<?php echo isset($idtype) ? $idtype : ""; ?>"
 	data-selected-component="<?php echo isset($idcomponent) ? $idcomponent : ""; ?>"
 	data-selected-sub="<?php echo isset($idsub) ? $idsub : ""; ?>"
-	data-selected-quality="<?php echo isset($quality) ? $quality : ""; ?>">
+	data-selected-quality="<?php echo isset($quality) ? $quality : ""; ?>"
+	seletedbrand="<?php echo isset($idbrand) ? $idbrand : ""; ?>"
+	seletedtype="<?php echo isset($idtype) ? $idtype : ""; ?>"
+	seletedcomponent="<?php echo isset($idcomponent) ? $idcomponent : ""; ?>"
+	seletedsub="<?php echo isset($idsub) ? $idsub : ""; ?>"
+	seletedquality="<?php echo isset($quality) ? $quality : ""; ?>">
 
 	<form method="GET" action="<?php echo base_url() ?>cari">
 		<div class="mb-4">

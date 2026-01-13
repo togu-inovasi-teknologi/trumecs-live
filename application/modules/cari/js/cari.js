@@ -1,173 +1,176 @@
 var base_url = $("body").attr("baseurl");
 
-$(document).ready(function () {
-  // Fungsi untuk memuat sub kategori berdasarkan komponen
-  function loadSubKategori(componentId, selectedValue = "") {
-    if (!componentId || componentId === "" || componentId === "0") {
-      $("select[name=sub_kategori]").html(
-        '<option value="">-- Semua Subkategori --</option>'
-      );
-      return;
-    }
+$("select[name=merek]").load(base_url + "general/getmerekall/all/false");
+$("select[name=komponen]").load(base_url + "general/getcomponentall");
 
-    $("select[name=sub_kategori]").load(
-      base_url + "general/getsubkategori/" + componentId,
-      function () {
-        if (selectedValue) {
-          var optionExists =
-            $(this).find('option[value="' + selectedValue + '"]').length > 0;
-          if (optionExists) {
-            $(this).val(selectedValue);
+$("select[name=komponen]").change(function (argument) {
+  var value = $(this).val();
+  $("select[name=sub_kategori]").load(
+    base_url + "general/getsubkategori/" + value,
+    function () {
+      if (
+        $(
+          "select[name=sub_kategori] option[value='" +
+            $(".form-filter-search").attr("seletedsub") +
+            "']"
+        ).length > 0
+      ) {
+        $(this).val($(".form-filter-search").attr("seletedsub"));
+      } else {
+        $(this).val("0");
+      }
+    }
+  );
+  $("select[name=merek]").load(
+    base_url + "general/getmerekall/" + value + "/false",
+    function () {
+      $("select[name=merek]").val(
+        $(".form-filter-search").attr("seletedbrand")
+      );
+      if (
+        $(
+          "select[name=merek] option[value='" +
+            $(".form-filter-search").attr("seletedbrand") +
+            "']"
+        ).length > 0
+      ) {
+        $(this).val($(".form-filter-search").attr("seletedbrand"));
+      } else {
+        $(this).val("");
+      }
+    }
+  );
+  console.log(value);
+  $("select[name=quality]").load(
+    base_url + "general/getgradeall/" + value + "/false",
+    function () {
+      $("select[name=quality]").val(
+        $(".form-filter-search").attr("seletedquality")
+      );
+      if (
+        $(
+          "select[name=quality] option[value='" +
+            $(".form-filter-search").attr("seletedquality") +
+            "']"
+        ).length > 0
+      ) {
+        $(this).val($(".form-filter-search").attr("seletedquality"));
+      } else {
+        $(this).val("");
+      }
+    }
+  );
+});
+
+/*$('.format-uang').mask('000.000.000.000', {
+    reverse: true
+    });*/
+
+$(document).ready(function () {
+  setTimeout(function () {
+    var formsearch = $(".form-filter-search");
+    var seletedbrand = formsearch.attr("seletedbrand");
+    var seletedtype = formsearch.attr("seletedtype");
+    var seletedsub = formsearch.attr("seletedsub");
+    var seletedcomponent = formsearch.attr("seletedcomponent");
+    var seletedquality = formsearch.attr("seletedquality");
+    if (seletedbrand != "") {
+      //$("select[name=merek]").val(seletedbrand);
+      //$("select[name=tipe]").load(base_url+"general/gettype/"+seletedbrand);
+      $("select[name=merek]").load(
+        base_url + "general/getmerekall/" + seletedcomponent + "/false",
+        function () {
+          $("select[name=merek]").val(
+            $(".form-filter-search").attr("seletedbrand")
+          );
+        }
+      );
+    }
+    if (seletedquality != "") {
+      $("select[name=quality]").val(seletedquality);
+    }
+    if (seletedcomponent != "") {
+      $("select[name=komponen]").val(seletedcomponent);
+      $("select[name=sub_kategori]").load(
+        base_url + "general/getsubkategori/" + seletedcomponent,
+        function () {
+          if (
+            $(
+              "select[name=sub_kategori] option[value='" +
+                $(".form-filter-search").attr("seletedsub") +
+                "']"
+            ).length > 0
+          ) {
+            $(this).val($(".form-filter-search").attr("seletedsub"));
+          } else {
+            $(this).val("0");
+          }
+        }
+      );
+      $("select[name=merek]").load(
+        base_url + "general/getmerekall/" + seletedcomponent + "/false",
+        function () {
+          $("select[name=merek]").val(
+            $(".form-filter-search").attr("seletedbrand")
+          );
+          if (
+            $(
+              "select[name=merek] option[value='" +
+                $(".form-filter-search").attr("seletedbrand") +
+                "']"
+            ).length > 0
+          ) {
+            $(this).val($(".form-filter-search").attr("seletedbrand"));
           } else {
             $(this).val("");
           }
         }
-      }
-    );
-  }
-
-  // Fungsi untuk memuat merek berdasarkan komponen
-  function loadMerek(componentId, selectedValue = "") {
-    var url = base_url + "general/getmerekall/";
-    if (componentId && componentId !== "" && componentId !== "0") {
-      url += componentId + "/false";
-    } else {
-      url += "all/false";
-    }
-
-    $("select[name=merek]").load(url, function () {
-      if (selectedValue) {
-        var optionExists =
-          $(this).find('option[value="' + selectedValue + '"]').length > 0;
-        if (optionExists) {
-          $(this).val(selectedValue);
-        } else {
-          $(this).val("");
-        }
-      }
-    });
-  }
-
-  // Fungsi untuk memuat quality berdasarkan komponen
-  function loadQuality(componentId, selectedValue = "") {
-    var url = base_url + "general/getgradeall/";
-    if (componentId && componentId !== "" && componentId !== "0") {
-      url += componentId + "/false";
-    } else {
-      url += "all/false";
-    }
-
-    $("select[name=quality]").load(url, function () {
-      if (selectedValue) {
-        var optionExists =
-          $(this).find('option[value="' + selectedValue + '"]').length > 0;
-        if (optionExists) {
-          $(this).val(selectedValue);
-        } else {
-          $(this).val("");
-        }
-      }
-    });
-  }
-
-  // LOAD KOMPONEN DULU DENGAN CALLBACK
-  $("select[name=komponen]").load(
-    base_url + "general/getcomponentall",
-    function () {
-      console.log("Callback komponen dijalankan");
-      console.log("Elemen .form-filter-search:", $(".form-filter-search"));
-      console.log(
-        "Jumlah elemen .form-filter-search:",
-        $(".form-filter-search").length
       );
-
-      // Coba cari di berbagai tempat
-      console.log(
-        "Attribute dari body:",
-        $("body").attr("data-selected-component")
-      );
-      console.log(
-        "Attribute dari form terdekat:",
-        $(this).closest("form").attr("data-selected-component")
-      );
-
-      var formsearch = $(".form-filter-search");
-      if (formsearch.length === 0) {
-        // Coba alternatif lain
-        formsearch = $(this).closest("form");
-        console.log("Mencari form terdekat:", formsearch);
-      }
-
-      var seletedbrand = formsearch.attr("data-selected-brand") || "";
-      var seletedtype = formsearch.attr("data-selected-type") || "";
-      var seletedsub = formsearch.attr("data-selected-sub") || "";
-      var seletedcomponent = formsearch.attr("data-selected-component") || "";
-      var seletedquality = formsearch.attr("data-selected-quality") || "";
-
-      console.log("component: ", seletedcomponent);
-      console.log("brand: ", seletedbrand);
-      console.log("sub: ", seletedsub);
-      // Set nilai komponen jika ada
-      if (seletedcomponent) {
-        $(this).val(seletedcomponent); // "this" mengacu pada select[name=komponen]
-
-        // Load data lainnya berdasarkan komponen yang dipilih
-        loadSubKategori(seletedcomponent, seletedsub);
-        loadMerek(seletedcomponent, seletedbrand);
-        loadQuality(seletedcomponent, seletedquality);
-      }
-
-      // Set nilai tipe setelah semua selesai
-      setTimeout(function () {
-        if (seletedtype) {
-          $("select[name=tipe]").val(seletedtype);
+      $("select[name=quality]").load(
+        base_url + "general/getgradeall/" + seletedcomponent + "/false",
+        function () {
+          $("select[name=quality]").val(
+            $(".form-filter-search").attr("seletedquality")
+          );
+          if (
+            $(
+              "select[name=quality] option[value='" +
+                $(".form-filter-search").attr("seletedquality") +
+                "']"
+            ).length > 0
+          ) {
+            $(this).val($(".form-filter-search").attr("seletedquality"));
+          } else {
+            $(this).val("");
+          }
         }
-      }, 300);
+      );
     }
-  );
+    setTimeout(function () {
+      if (seletedtype != "") {
+        $("select[name=tipe]").val(seletedtype);
+      }
+      if (seletedsub != "") {
+        $("select[name=sub_kategori]").val(seletedsub);
+      }
+    }, 2000);
+  }, 2000);
 
-  // Load merek untuk opsi default
-  $("select[name=merek]").load(base_url + "general/getmerekall/all/false");
-
-  // Event handler untuk perubahan komponen
-  $("select[name=komponen]").change(function () {
-    var componentId = $(this).val();
-    var selectedSub = $(".form-filter-search").attr("data-selected-sub") || "";
-
-    // Load sub kategori, merek, dan quality berdasarkan komponen
-    loadSubKategori(componentId, selectedSub);
-    loadMerek(
-      componentId,
-      $(".form-filter-search").attr("data-selected-brand")
-    );
-    loadQuality(
-      componentId,
-      $(".form-filter-search").attr("data-selected-quality")
-    );
-  });
-
-  // Event handler untuk submit form
-  $("#apply-filter").click(function (e) {
-    e.preventDefault();
-
-    // Pastikan semua select memiliki nilai
-    var komponen = $("select[name=komponen]").val() || "";
-    var subKategori = $("select[name=sub_kategori]").val() || "";
-    var merek = $("select[name=merek]").val() || "";
-    var quality = $("select[name=quality]").val() || "";
-    var nama = $("input[name=nama]").val() || "";
-
-    // Buat URL dengan parameter
-    var url = base_url + "cari?";
-    var params = [];
-
-    if (nama) params.push("nama=" + encodeURIComponent(nama));
-    if (komponen) params.push("komponen=" + komponen);
-    if (subKategori) params.push("sub_kategori=" + subKategori);
-    if (merek) params.push("merek=" + merek);
-    if (quality) params.push("quality=" + quality);
-
-    // Submit form
-    window.location.href = url + params.join("&");
-  });
+  /* $("input[name=minp]").number( true );
+	$("input[name=maxp]").number( true );
+	$("input[name=minp]").val($(".filterprice").attr("minp"));
+	$("input[name=maxp]").val($(".filterprice").attr("maxp"));
+	document.getElementById("minp").onblur = function() {fp()};
+	document.getElementById("maxp").onblur = function() {fp()};
+	function fp() {
+		var minp = Number($("input[name=minp]").val().replace(/[,]/g, ""));
+		var maxp = Number($("input[name=maxp]").val().replace(/[,]/g, ""));
+		if ((maxp>minp)==true) {
+			$("input[name=minp]").val(minp);
+			$("input[name=maxp]").val(maxp);
+			document.getElementById("submitprice").submit();
+		}else{
+			$("input[name=maxp]").popover("show");
+		};
+	}; */
 });

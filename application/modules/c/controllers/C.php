@@ -358,7 +358,7 @@ class C extends MX_Controller
 		$this->data["seodescription"] = "Berikut adalah daftar sparepart truk" . $this->stringtitle . " terlengkap. Trumecs jual sparepart" . $this->stringtitle . " sangat murah";
 
 		$this->data["css"] = array(base_url() . 'asset/css/cari_page.css');
-		$this->data["js"] = array(base_url() . "asset/js/number/jquery.number.min.js", base_url() . 'asset/js/cari.js');
+		$this->data["js"] = array(base_url() . "asset/js/number/jquery.number.min.js", 'modules/cari/js/cari.js', base_url() . 'asset/js/trumecs.effect.js');
 		if ($this->agent->is_mobile()) {
 			$this->data['content'] = 'mobile/view_c';
 		} else {

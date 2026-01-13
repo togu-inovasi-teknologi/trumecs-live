@@ -71,7 +71,12 @@ $session_data = $this->session->all_userdata();
 		</div> -->
         </div>
     </div>
-    <div class="modal fade" id="modal_filter" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+    <div class="modal fade form-filter-search" id="modal_filter" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true"
+        seletedbrand="<?php echo isset($idbrand) ? $idbrand : ""; ?>"
+        seletedtype="<?php echo isset($idtype) ? $idtype : ""; ?>"
+        seletedcomponent="<?php echo isset($idcomponent) ? $idcomponent : ""; ?>"
+        seletedsub="<?php echo isset($idsub) ? $idsub : ""; ?>"
+        seletedquality="<?php echo isset($quality) ? $quality : ""; ?>">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content rounded-3">
                 <div class="modal-header border-0 pb-0">
@@ -114,7 +119,7 @@ $session_data = $this->session->all_userdata();
                             <select name="komponen" class="form-select">
                                 <option value="">-- Pilih kategori --</option>
                                 <?php foreach ($category->result() as $item) : ?>
-                                    <option value="<?php echo $item->id ?>" <?php echo $idcomponent == $item->id ? 'selected="selected"' : "" ?>>
+                                    <option value="<?php echo $item->id ?>" <?php echo $idcomponent == $item->id ? "selected" : "" ?>>
                                         <?php echo $item->name ?>
                                     </option>
                                 <?php endforeach; ?>
