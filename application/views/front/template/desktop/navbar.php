@@ -193,4 +193,18 @@ $sessionmember = isset($session["member"]) ? $session["member"] : array('id' => 
         background-color: #e6761a;
         border-color: #e6761a;
     }
+
+    .badge {
+        position: absolute;
+        top: 10px;
+        font-weight: normal;
+        height: 17px;
+        width: 17px;
+        border-radius: 50%;
+        display: inline-block;
+        text-align: center;
+        margin-left: 15px;
+        font-size: 10px;
+        margin-top: 3px;
+    }
 </style>

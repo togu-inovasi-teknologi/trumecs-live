@@ -21,9 +21,9 @@ class Agent extends MX_Controller
         $data["js"] = array(base_url() . "asset/js/jquery.elevateZoom.js", base_url() . "asset/js/detail_product.js", base_url() . "asset/js/slick/slick.min.js");
 
         if (!$this->agent->is_mobile()) {
-            $data['content'] = 'index';
+            $data['content'] = 'desktop/index';
         } else {
-            $data['content'] = 'index_mobile';
+            $data['content'] = 'mobile/index';
         }
 
         $this->load->view('front/template_front', $data);
@@ -60,9 +60,9 @@ class Agent extends MX_Controller
         $data["js"] = array(base_url() . "asset/js/slick/slick.min.js");
 
         if (!$this->agent->is_mobile()) {
-            $data['content'] = 'form';
+            $data['content'] = 'desktop/form';
         } else {
-            $data['content'] = 'form_mobile';
+            $data['content'] = 'mobile/form';
         }
 
         $this->load->view('front/template_front', $data);
@@ -116,6 +116,7 @@ class Agent extends MX_Controller
             $this->send_email("Trumecs.com - Terimakasih telah mendaftar sebagai agen kami", $data['email'], $message);
 
             $this->m_agent->save($data);
+
             redirect('agent/success');
         }
     }
@@ -132,7 +133,12 @@ class Agent extends MX_Controller
 
     public function success()
     {
-        $data['content'] = 'success';
+
+        if (!$this->agent->is_mobile()) {
+            $data['content'] = 'desktop/success';
+        } else {
+            $data['content'] = 'mobile/success';
+        }
         $this->load->view('front/template_front', $data);
     }
 }

@@ -12,7 +12,12 @@ class Backend extends MX_Controller
     public function index()
     {
         $this->securitylog->cekadmin();
-        $data['content'] = 'view_dashboard';
+        if (!$this->agent->is_mobile()) {
+            $data['content'] = 'desktop/view_dashboard';
+        } else {
+
+            $data['content'] = 'mobile/view_dashboard';
+        }
         $this->load->view('backend/template_front', $data);
     }
 
@@ -22,7 +27,11 @@ class Backend extends MX_Controller
         if (array_key_exists("admin", $ses)) {
         }
 
-        $this->load->view('login_page');
+        if (!$this->agent->is_mobile()) {
+            $this->load->view('desktop/login_page');
+        } else {
+            $this->load->view('mobile/login_page');
+        }
     }
     public function logout()
     {

@@ -20,7 +20,6 @@ class Backendadmin extends MX_Controller
             //$data["detail"] = $this->etx_model->getrule($this->input->get("id"));
             $data["detail"] = $this->etx_model->getrule($id);
             if (empty($data["detail"])) {
-
                 redirect(base_url() . 'backendadmin/rule');
             }
         }
@@ -28,7 +27,11 @@ class Backendadmin extends MX_Controller
         $data["js"] = array(base_url() . 'asset/backend/js/rule.backendadmin.js');
         $data["rule"] = $this->etx_model->getruletable();
         $data["menu"] = $this->etx_model->getmenutable();
-        $data['content'] = 'rule';
+        if (!$this->agent->is_mobile()) {
+            $data['content'] = 'desktop/rule';
+        } else {
+            $data['content'] = 'mobile/rule';
+        }
         $data['id'] = $id;
         $this->load->view('backend/template_front', $data);
     }
@@ -106,7 +109,11 @@ class Backendadmin extends MX_Controller
         $data["js"] = array(base_url() . 'asset/backend/js/rule.backendadmin.js');
 
         $data["menu"] = $this->etx_model->getmenutable();
-        $data['content'] = 'menuurl';
+        if (!$this->agent->is_mobile()) {
+            $data['content'] = 'desktop/menuurl';
+        } else {
+            $data['content'] = 'mobile/menuurl';
+        }
         $data['id'] = $id;
         $this->load->view('backend/template_front', $data);
     }

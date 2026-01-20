@@ -21,10 +21,13 @@ class Backendagent extends MX_Controller
         $data["js"] = array(
             base_url() . 'asset/backend/js/list-agent.js'
         );
-        $data['js_cdn'] = '<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>';
-        $data['css_cdn'] = '<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"></script>';
-
-        $data['content'] = 'index';
+        // $data['js_cdn'] = '<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>';
+        // $data['css_cdn'] = '<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"></script>';
+        if (!$this->agent->is_mobile()) {
+            $data['content'] = 'desktop/index';
+        } else {
+            $data['content'] = 'mobile/index';
+        }
 
         $this->load->view('backend/template_front', $data);
     }
@@ -39,8 +42,11 @@ class Backendagent extends MX_Controller
 
         $data["css"] = array(base_url() . "asset/css/page_detail.css", base_url() . "asset/js/slick/slick.css", base_url() . "asset/js/slick/slick-theme.css");
         $data["js"] = array(base_url() . "asset/js/jquery.elevateZoom.js", base_url() . "asset/js/detail_product.js", base_url() . "asset/js/slick/slick.min.js");
-
-        $data['content'] = 'detail';
+        if (!$this->agent->is_mobile()) {
+            $data['content'] = 'desktop/detail';
+        } else {
+            $data['content'] = 'mobile/detail';
+        }
 
         $this->load->view('backend/template_front', $data);
     }

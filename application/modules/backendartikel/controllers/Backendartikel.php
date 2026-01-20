@@ -23,7 +23,11 @@ class Backendartikel extends MX_Controller
         $data["listfilter"] = $this->etx_model->fetch_product($config["per_page"], $page, $data["datawhere"]);
         //$this->etx_model->migrate();
         //$data["js"] = array(base_url().'asset/backend/js/list.order.js' );
-        $data['content'] = 'list';
+        if (!$this->agent->is_mobile()) {
+            $data['content'] = 'desktop/list';
+        } else {
+            $data['content'] = 'mobile/list';
+        }
         $this->load->view('backend/template_front', $data);
     }
 
@@ -69,24 +73,48 @@ class Backendartikel extends MX_Controller
             $jum = $this->db->get('artikel');
             $output['recordsTotal'] = $output['recordsFiltered'] = $jum->num_rows();
         }
-
         foreach ($query->result_array() as $artikel) {
-
-
             $output['data'][] = array(
+                '<a class="text-primary text-decoration-none fw-medium" href="' . base_url() . 'backendartikel/form?id=' . $artikel["id"] . '">' . htmlspecialchars($artikel["title"]) . '</a>',
+                '<div class="text-muted small">' . date("d M Y", $artikel["created_at"]) . '</div>',
+                '<div class="text-muted small">' . ($artikel["updated_at"] == 0 ? '<span class="text-muted">-</span>' : date("d M Y", $artikel["updated_at"])) . '</div>',
+                '<div class="text-end fw-medium">' . number_format($artikel["view"]) . '</div>',
+                '<div class="small">' . htmlspecialchars($artikel["creator"]) . '</div>',
 
-                '<a class=" f12 text-primary" href="' . base_url() . 'backendartikel/form?id=' . $artikel["id"] . '">' . $artikel["title"] . '</a>',
-                '<small class="text-muted">' . date("d M Y H:i:s", $artikel["created_at"]) . '</small>',
-                '<small class="text-muted">' . ($artikel["updated_at"] == 0 ? '-' : date("d M Y H:i:s", $artikel["updated_at"])) . '</small>',
-                '<small class="text-right">' . $artikel["view"] . '</small>',
-                '<small>' . $artikel["creator"] . '</small>',
+                // Untuk toggle display - Versi dengan badge dan icon
+                $artikel['display'] == 1
+                    ? '
+       <a class="btn btn-sm btn-outline-danger ms-2" 
+          href="' . base_url() . 'backendartikel/hide?id=' . $artikel["id"] . '"
+          title="Sembunyikan Artikel">
+          <i class="bi bi-eye-slash"></i>
+       </a>'
+                    : '<span class="badge bg-danger-subtle text-danger border border-danger-subtle">
+          <i class="bi bi-eye-slash-fill me-1"></i>Tersembunyi
+       </span>
+       <a class="btn btn-sm btn-outline-success ms-2" 
+          href="' . base_url() . 'backendartikel/show?id=' . $artikel["id"] . '"
+          title="Tampilkan Artikel">
+          <i class="bi bi-eye"></i>
+       </a>',
 
-                //'<a class="btn btn-sm btn-warning" href="'.base_url().'backendartikel/form?id='.$artikel["id"].'"><i class="bi bi-pencil"></i></a>',
-
-                //$artikel['display'] == 1 ? '<a class="btn btn-sm btn-danger" href="'.base_url().'backendartikel/hapus?id='.$artikel["id"].'"><i class="fa fa-remove"></i></a>' : '<a class="btn btn-sm btn-success" href="'.base_url().'backendartikel/show?id='.$artikel["id"].'"><i class="bi bi-check"></i></a>'
-                $artikel['display'] == 1 ? '<a class="f12 text-danger" href="' . base_url() . 'backendartikel/hapus?id=' . $artikel["id"] . '">Sembunyikan</a>' : '<a class="text-success f12" href="' . base_url() . 'backendartikel/show?id=' . $artikel["id"] . '">Tampilkan</a>'
+                // Action buttons - tombol edit dan hapus
+                '<div class="btn-group btn-group-sm" role="group">
+    <a class="btn btn-outline-warning" 
+       href="' . base_url() . 'backendartikel/form?id=' . $artikel["id"] . '"
+       title="Edit Artikel">
+       <i class="bi bi-pencil"></i>
+    </a>
+    <a class="btn btn-outline-danger" 
+       href="' . base_url() . 'backendartikel/hapus?id=' . $artikel["id"] . '"
+       onclick="return confirm(\'Apakah anda yakin ingin menghapus artikel ' . addslashes($artikel["title"]) . '?\')"
+       title="Hapus Artikel">
+       <i class="bi bi-trash"></i>
+    </a>
+</div>'
             );
         }
+
 
         echo json_encode($output);
     }
@@ -102,7 +130,11 @@ class Backendartikel extends MX_Controller
                 redirect(base_url() . 'backendpage/?status=all');
             }
         }
-        $data['content'] = 'form';
+        if (!$this->agent->is_mobile()) {
+            $data['content'] = 'desktop/form';
+        } else {
+            $data['content'] = 'mobile/form';
+        }
         $data['id'] = $id;
         $data["css"] = array(
             base_url() . 'asset/backend/dist/js/tinymce/skins/lightgray/skin.min.css',
