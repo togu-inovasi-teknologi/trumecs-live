@@ -214,7 +214,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body p-0">
-                    <div class="input-group" id="inputsearch">
+                    <form id="searchForm" class="input-group" id="inputsearch">
                         <input type="text"
                             class="form-control border-0 py-3 px-3"
                             placeholder="<?php echo $this->lang->line('placeholder_pencarian', FALSE) ?>"
@@ -224,7 +224,7 @@
                         <button class="btn btn-primary text-white border-0 px-4" type="button" id="searchbuttontemplate">
                             <i class="bi bi-search"></i>
                         </button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

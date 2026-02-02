@@ -20,7 +20,7 @@
 			<div class="input-group">
 				<input type="password" name="password" class="form-control password" placeholder="<?php echo $this->lang->line("placeholder_input_password", FALSE); ?>" required>
 				<button class="btn btn-outline-secondary border-start-0 show-password-icon" type="button" value="1">
-					<i class="fas fa-eye"></i>
+					<i class="bi bi-eye"></i>
 				</button>
 			</div>
 		</div>

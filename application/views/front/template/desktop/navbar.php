@@ -16,14 +16,16 @@ $sessionmember = isset($session["member"]) ? $session["member"] : array('id' => 
             <div class="flex-grow-1 mx-4">
                 <div class="d-flex align-items-center justify-content-center gap-3 w-100">
                     <div class="flex-grow-1" style="max-width: 600px;">
-                        <div class="input-group" id="inputsearch">
+
+                        <form id="searchForm" class="input-group" id="inputsearch">
                             <input type="text" class="form-control rounded-start" id="searchInput"
                                 placeholder="<?= isset($search_placeholder) ? $search_placeholder : $this->lang->line('placeholder_pencarian', FALSE) ?>"
                                 value="<?php echo $this->input->get("nama"); ?>">
-                            <button class="btn btn-primary rounded-end" id="searchbuttontemplate">
+                            <button type="submit" class="btn btn-primary rounded-end" id="searchbuttontemplate">
                                 <i class="bi bi-search"></i>
                             </button>
-                        </div>
+                        </form>
+
                     </div>
                     <div class="flex-shrink-0">
                         <p class="mb-0 text-muted"><small><strong>atau</strong></small></p>

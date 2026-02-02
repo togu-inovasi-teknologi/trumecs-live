@@ -16,21 +16,37 @@ $(document).ready(function () {
 
   // Fungsi search
   function redirectToSearch() {
-    var url =
-      base_url +
-      "c/all/query?q=on&nama=" +
-      $("#inputsearch").find("#searchInput").val();
-    window.location.href = url;
+    var searchInput = $("#searchInput");
+    var searchValue = searchInput.val().trim();
+
+    if (searchValue) {
+      // Encode untuk URL (penting untuk spasi dan karakter khusus)
+      var encodedValue = encodeURIComponent(searchValue);
+      var url = base_url + "c/all/query?q=on&nama=" + encodedValue;
+      window.location.href = url;
+    } else {
+      // Optional: Fokus ke input jika kosong
+      searchInput.focus();
+      // Optional: Tambahkan class untuk feedback visual
+      searchInput.addClass("is-invalid");
+
+      // Hapus class invalid setelah 2 detik
+      setTimeout(function () {
+        searchInput.removeClass("is-invalid");
+      }, 2000);
+    }
   }
 
-  $(".inputsearch")
-    .find("input[type=text]")
-    .on("keydown", function (e) {
-      if (e.which == 13) {
-        redirectToSearch();
-      }
-    });
+  // Event listener untuk Enter key pada input search
+  $("#searchInput").on("keydown", function (e) {
+    // Support untuk semua browser (key, keyCode, dan which)
+    if (e.key === "Enter" || e.keyCode === 13 || e.which === 13) {
+      e.preventDefault(); // Mencegah perilaku default
+      redirectToSearch();
+    }
+  });
 
+  // Event listener untuk search button
   $("#searchbuttontemplate").click(function () {
     redirectToSearch();
   });
