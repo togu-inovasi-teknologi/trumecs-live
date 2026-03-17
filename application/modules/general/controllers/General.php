@@ -781,33 +781,11 @@ class General extends MX_Controller
 	//     echo $response;
 	// }
 
-	// public function proxySetting()
-	// {
-	// 	$targetUrl = 'https://migration.trumecs.com' . uri_string();
-
-	// 	if (!empty($_SERVER['QUERY_STRING'])) {
-	// 		$targetUrl .= '?' . $_SERVER['QUERY_STRING'];
-	// 	}
-
-	// 	$ch = curl_init($targetUrl);
-
-	// 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	// 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-
-	// 	$response = curl_exec($ch);
-
-	// 	if ($response === false) {
-	// 		show_error('Frontend server unavailable', 500);
-	// 	}
-
-	// 	curl_close($ch);
-
-	// 	echo $response;
-	// }
-
 	public function proxySetting()
 	{
-		$targetUrl = 'https://migration.trumecs.com/' . uri_string();
+		// $targetUrl = 'https://migration.trumecs.com' . uri_string();
+		$targetUrl = 'http://localhost:3000/' . uri_string();
+
 
 		if (!empty($_SERVER['QUERY_STRING'])) {
 			$targetUrl .= '?' . $_SERVER['QUERY_STRING'];
@@ -815,28 +793,58 @@ class General extends MX_Controller
 
 		$ch = curl_init($targetUrl);
 
-		curl_setopt_array($ch, [
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_USERAGENT => 'Mozilla/5.0',
-			CURLOPT_TIMEOUT => 30,
-			CURLOPT_CONNECTTIMEOUT => 10,
-
-			// debug SSL (sementara)
-			CURLOPT_SSL_VERIFYPEER => false,
-			CURLOPT_SSL_VERIFYHOST => false,
-		]);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
 		$response = curl_exec($ch);
+		$response = str_replace(
+			'href="/_nuxt/',
+			'href="https://migration.trumecs.com/_nuxt/',
+			$response
+		);
 
 		if ($response === false) {
-			$error = curl_error($ch);
-			curl_close($ch);
-			show_error($error, 500);
+			show_error('Frontend server unavailable', 500);
 		}
 
 		curl_close($ch);
 
 		echo $response;
 	}
+
+	// public function proxySetting()
+	// {
+	// 	$targetUrl = 'https://migration.trumecs.com/' . uri_string();
+	// 	// $targetUrl = 'http://localhost:3000/' . uri_string();
+
+	// 	if (!empty($_SERVER['QUERY_STRING'])) {
+	// 		$targetUrl .= '?' . $_SERVER['QUERY_STRING'];
+	// 	}
+
+	// 	$ch = curl_init($targetUrl);
+
+	// 	curl_setopt_array($ch, [
+	// 		CURLOPT_RETURNTRANSFER => true,
+	// 		CURLOPT_FOLLOWLOCATION => true,
+	// 		CURLOPT_USERAGENT => 'Mozilla/5.0',
+	// 		CURLOPT_TIMEOUT => 30,
+	// 		CURLOPT_CONNECTTIMEOUT => 10,
+
+	// 		// debug SSL (sementara)
+	// 		CURLOPT_SSL_VERIFYPEER => false,
+	// 		CURLOPT_SSL_VERIFYHOST => false,
+	// 	]);
+
+	// 	$response = curl_exec($ch);
+
+	// 	if ($response === false) {
+	// 		$error = curl_error($ch);
+	// 		curl_close($ch);
+	// 		show_error($error, 500);
+	// 	}
+
+	// 	curl_close($ch);
+
+	// 	echo $response;
+	// }
 }
