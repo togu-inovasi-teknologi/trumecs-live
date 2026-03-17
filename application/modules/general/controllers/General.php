@@ -781,11 +781,40 @@ class General extends MX_Controller
 	//     echo $response;
 	// }
 
+	// public function proxySetting()
+	// {
+	// 	$targetUrl = 'https://migration.trumecs.com/' . uri_string();
+	// 	// $targetUrl = 'http://localhost:3000/' . uri_string();
+
+
+	// 	if (!empty($_SERVER['QUERY_STRING'])) {
+	// 		$targetUrl .= '?' . $_SERVER['QUERY_STRING'];
+	// 	}
+
+	// 	$ch = curl_init($targetUrl);
+
+	// 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	// 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+	// 	$response = curl_exec($ch);
+
+
+	// 	if ($response === false) {
+	// 		show_error('Frontend server unavailable', 500);
+	// 	}
+
+	// 	curl_close($ch);
+	// 	$response = str_replace(
+	// 		'href="/_nuxt/',
+	// 		'href="https://migration.trumecs.com/_nuxt/',
+	// 		$response
+	// 	);
+	// 	echo $response;
+	// }
+
 	public function proxySetting()
 	{
-		// $targetUrl = 'https://migration.trumecs.com' . uri_string();
-		$targetUrl = 'http://localhost:3000/' . uri_string();
-
+		$targetUrl = 'https://migration.trumecs.com/' . uri_string();
 
 		if (!empty($_SERVER['QUERY_STRING'])) {
 			$targetUrl .= '?' . $_SERVER['QUERY_STRING'];
@@ -796,55 +825,47 @@ class General extends MX_Controller
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
-		$response = curl_exec($ch);
+		// METHOD
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $_SERVER['REQUEST_METHOD']);
 
+		// BODY (POST, PUT, dll)
+		if (!empty($_POST)) {
+			curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($_POST));
+		}
+
+		// HEADERS
+		$headers = [];
+		foreach (getallheaders() as $key => $value) {
+			$headers[] = "$key: $value";
+		}
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+		// INCLUDE HEADER RESPONSE
+		curl_setopt($ch, CURLOPT_HEADER, true);
+
+		$response = curl_exec($ch);
 
 		if ($response === false) {
 			show_error('Frontend server unavailable', 500);
 		}
 
+		$headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+		$header = substr($response, 0, $headerSize);
+		$body = substr($response, $headerSize);
+
 		curl_close($ch);
-		$response = str_replace(
-			'href="/_nuxt/',
-			'href="https://migration.trumecs.com/_nuxt/',
-			$response
-		);
-		echo $response;
+
+		// Forward headers
+		foreach (explode("\r\n", $header) as $line) {
+			if (strpos($line, ':') !== false) {
+				header($line);
+			}
+		}
+
+		// Fix Nuxt assets
+		$body = str_replace('"/_nuxt/', '"https://migration.trumecs.com/_nuxt/', $body);
+		$body = str_replace("'/_nuxt/", "'https://migration.trumecs.com/_nuxt/", $body);
+
+		echo $body;
 	}
-
-	// public function proxySetting()
-	// {
-	// 	$targetUrl = 'https://migration.trumecs.com/' . uri_string();
-	// 	// $targetUrl = 'http://localhost:3000/' . uri_string();
-
-	// 	if (!empty($_SERVER['QUERY_STRING'])) {
-	// 		$targetUrl .= '?' . $_SERVER['QUERY_STRING'];
-	// 	}
-
-	// 	$ch = curl_init($targetUrl);
-
-	// 	curl_setopt_array($ch, [
-	// 		CURLOPT_RETURNTRANSFER => true,
-	// 		CURLOPT_FOLLOWLOCATION => true,
-	// 		CURLOPT_USERAGENT => 'Mozilla/5.0',
-	// 		CURLOPT_TIMEOUT => 30,
-	// 		CURLOPT_CONNECTTIMEOUT => 10,
-
-	// 		// debug SSL (sementara)
-	// 		CURLOPT_SSL_VERIFYPEER => false,
-	// 		CURLOPT_SSL_VERIFYHOST => false,
-	// 	]);
-
-	// 	$response = curl_exec($ch);
-
-	// 	if ($response === false) {
-	// 		$error = curl_error($ch);
-	// 		curl_close($ch);
-	// 		show_error($error, 500);
-	// 	}
-
-	// 	curl_close($ch);
-
-	// 	echo $response;
-	// }
 }
