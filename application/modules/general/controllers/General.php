@@ -815,15 +815,17 @@ class General extends MX_Controller
 
 		$ch = curl_init($targetUrl);
 
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+		curl_setopt_array($ch, [
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_USERAGENT => 'Mozilla/5.0',
+			CURLOPT_TIMEOUT => 30,
+			CURLOPT_CONNECTTIMEOUT => 10,
 
-		// 🔥 penting
-		curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0');
-
-		// 🔥 untuk debug SSL
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+			// debug SSL (sementara)
+			CURLOPT_SSL_VERIFYPEER => false,
+			CURLOPT_SSL_VERIFYHOST => false,
+		]);
 
 		$response = curl_exec($ch);
 
