@@ -781,9 +781,33 @@ class General extends MX_Controller
 	//     echo $response;
 	// }
 
+	// public function proxySetting()
+	// {
+	// 	$targetUrl = 'https://migration.trumecs.com' . uri_string();
+
+	// 	if (!empty($_SERVER['QUERY_STRING'])) {
+	// 		$targetUrl .= '?' . $_SERVER['QUERY_STRING'];
+	// 	}
+
+	// 	$ch = curl_init($targetUrl);
+
+	// 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	// 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+	// 	$response = curl_exec($ch);
+
+	// 	if ($response === false) {
+	// 		show_error('Frontend server unavailable', 500);
+	// 	}
+
+	// 	curl_close($ch);
+
+	// 	echo $response;
+	// }
+
 	public function proxySetting()
 	{
-		$targetUrl = 'https://migration.trumecs.com' . uri_string();
+		$targetUrl = 'https://migration.trumecs.com/' . uri_string();
 
 		if (!empty($_SERVER['QUERY_STRING'])) {
 			$targetUrl .= '?' . $_SERVER['QUERY_STRING'];
@@ -794,10 +818,19 @@ class General extends MX_Controller
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
+		// 🔥 penting
+		curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0');
+
+		// 🔥 untuk debug SSL
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
 		$response = curl_exec($ch);
 
 		if ($response === false) {
-			show_error('Frontend server unavailable', 500);
+			$error = curl_error($ch);
+			curl_close($ch);
+			show_error($error, 500);
 		}
 
 		curl_close($ch);
