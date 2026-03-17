@@ -797,18 +797,18 @@ class General extends MX_Controller
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
 		$response = curl_exec($ch);
-		$response = str_replace(
-			'href="/_nuxt/',
-			'href="https://migration.trumecs.com/_nuxt/',
-			$response
-		);
+
 
 		if ($response === false) {
 			show_error('Frontend server unavailable', 500);
 		}
 
 		curl_close($ch);
-
+		$response = str_replace(
+			'href="/_nuxt/',
+			'href="https://migration.trumecs.com/_nuxt/',
+			$response
+		);
 		echo $response;
 	}
 
