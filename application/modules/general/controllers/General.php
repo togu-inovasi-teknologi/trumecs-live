@@ -764,22 +764,23 @@ class General extends MX_Controller
 	}
 
 
-	// public function proxySetting() {
-	//     // The URL to proxy
-	//     $targetUrl = 'http://localhost:3000/' . uri_string();
+	public function proxySetting()
+	{
+		// The URL to proxy
+		$targetUrl = 'https://migration.trumecs.com/' . uri_string();
 
-	//     // Initialize cURL
-	//     $ch = curl_init();
-	//     curl_setopt($ch, CURLOPT_URL, $targetUrl);
-	//     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		// Initialize cURL
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $targetUrl);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-	//     // Execute and get response
-	//     $response = curl_exec($ch);
-	//     curl_close($ch);
+		// Execute and get response
+		$response = curl_exec($ch);
+		curl_close($ch);
 
-	//     // Output the response
-	//     echo $response;
-	// }
+		// Output the response
+		echo $response;
+	}
 
 	// public function proxySetting()
 	// {
@@ -869,102 +870,102 @@ class General extends MX_Controller
 	// 	echo $body;
 	// }
 
-	public function proxySetting()
-	{
-		$targetUrl = 'https://migration.trumecs.com/' . uri_string();
+	// public function proxySetting()
+	// {
+	// 	$targetUrl = 'https://migration.trumecs.com/' . uri_string();
 
-		if (!empty($_SERVER['QUERY_STRING'])) {
-			$targetUrl .= '?' . $_SERVER['QUERY_STRING'];
-		}
+	// 	if (!empty($_SERVER['QUERY_STRING'])) {
+	// 		$targetUrl .= '?' . $_SERVER['QUERY_STRING'];
+	// 	}
 
-		$ch = curl_init($targetUrl);
+	// 	$ch = curl_init($targetUrl);
 
-		// ── Basic Options ──────────────────────────────────────────
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-		curl_setopt($ch, CURLOPT_HEADER, true);         // ambil response headers
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // jika SSL bermasalah
-		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-		curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+	// 	// ── Basic Options ──────────────────────────────────────────
+	// 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	// 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+	// 	curl_setopt($ch, CURLOPT_HEADER, true);         // ambil response headers
+	// 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // jika SSL bermasalah
+	// 	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+	// 	curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 
-		// ── Forward Request Method ─────────────────────────────────
-		$method = $_SERVER['REQUEST_METHOD'];
-		if ($method === 'POST') {
-			curl_setopt($ch, CURLOPT_POST, true);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, file_get_contents('php://input'));
-		} elseif (!in_array($method, ['GET', 'HEAD'])) {
-			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, file_get_contents('php://input'));
-		}
+	// 	// ── Forward Request Method ─────────────────────────────────
+	// 	$method = $_SERVER['REQUEST_METHOD'];
+	// 	if ($method === 'POST') {
+	// 		curl_setopt($ch, CURLOPT_POST, true);
+	// 		curl_setopt($ch, CURLOPT_POSTFIELDS, file_get_contents('php://input'));
+	// 	} elseif (!in_array($method, ['GET', 'HEAD'])) {
+	// 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+	// 		curl_setopt($ch, CURLOPT_POSTFIELDS, file_get_contents('php://input'));
+	// 	}
 
-		// ── Forward Request Headers ────────────────────────────────
-		$headers = [];
-		$skipHeaders = ['host', 'connection', 'content-length'];
+	// 	// ── Forward Request Headers ────────────────────────────────
+	// 	$headers = [];
+	// 	$skipHeaders = ['host', 'connection', 'content-length'];
 
-		foreach (getallheaders() as $name => $value) {
-			if (!in_array(strtolower($name), $skipHeaders)) {
-				$headers[] = "$name: $value";
-			}
-		}
-		// Beritahu Nuxt bahwa ini proxy dari CI3
-		$headers[] = 'X-Forwarded-Host: www.trumecs.com';
-		$headers[] = 'X-Forwarded-For: ' . $this->input->ip_address();
-		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+	// 	foreach (getallheaders() as $name => $value) {
+	// 		if (!in_array(strtolower($name), $skipHeaders)) {
+	// 			$headers[] = "$name: $value";
+	// 		}
+	// 	}
+	// 	// Beritahu Nuxt bahwa ini proxy dari CI3
+	// 	$headers[] = 'X-Forwarded-Host: www.trumecs.com';
+	// 	$headers[] = 'X-Forwarded-For: ' . $this->input->ip_address();
+	// 	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-		// ── Execute ────────────────────────────────────────────────
-		$response     = curl_exec($ch);
-		$httpCode     = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-		$headerSize   = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
-		$contentType  = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+	// 	// ── Execute ────────────────────────────────────────────────
+	// 	$response     = curl_exec($ch);
+	// 	$httpCode     = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+	// 	$headerSize   = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+	// 	$contentType  = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
 
-		if ($response === false) {
-			log_message('error', 'Proxy cURL error: ' . curl_error($ch));
-			show_error('Frontend server unavailable', 500);
-		}
+	// 	if ($response === false) {
+	// 		log_message('error', 'Proxy cURL error: ' . curl_error($ch));
+	// 		show_error('Frontend server unavailable', 500);
+	// 	}
 
-		curl_close($ch);
+	// 	curl_close($ch);
 
-		// ── Pisah Header & Body ────────────────────────────────────
-		$responseHeaders = substr($response, 0, $headerSize);
-		$body            = substr($response, $headerSize);
+	// 	// ── Pisah Header & Body ────────────────────────────────────
+	// 	$responseHeaders = substr($response, 0, $headerSize);
+	// 	$body            = substr($response, $headerSize);
 
-		// ── Forward Response Headers ke Client ────────────────────
-		http_response_code($httpCode);
+	// 	// ── Forward Response Headers ke Client ────────────────────
+	// 	http_response_code($httpCode);
 
-		$skipResponseHeaders = ['transfer-encoding', 'connection', 'content-encoding'];
-		foreach (explode("\r\n", $responseHeaders) as $header) {
-			if (strpos($header, ':') !== false) {
-				[$name, $val] = explode(':', $header, 2);
-				if (!in_array(strtolower(trim($name)), $skipResponseHeaders)) {
-					header(trim($name) . ':' . $val, false);
-				}
-			}
-		}
+	// 	$skipResponseHeaders = ['transfer-encoding', 'connection', 'content-encoding'];
+	// 	foreach (explode("\r\n", $responseHeaders) as $header) {
+	// 		if (strpos($header, ':') !== false) {
+	// 			[$name, $val] = explode(':', $header, 2);
+	// 			if (!in_array(strtolower(trim($name)), $skipResponseHeaders)) {
+	// 				header(trim($name) . ':' . $val, false);
+	// 			}
+	// 		}
+	// 	}
 
-		// ── Replace Asset URLs di HTML ─────────────────────────────
-		if (strpos($contentType, 'text/html') !== false) {
-			$nuxtBase = 'https://migration.trumecs.com';
-			$body = str_replace(
-				[
-					'href="/_nuxt/',
-					'src="/_nuxt/',
-					'href="/_ipx/',
-					'src="/_ipx/',
-					'"/_nuxt/',
-					'url(/_nuxt/',
-				],
-				[
-					'href="' . $nuxtBase . '/_nuxt/',
-					'src="'  . $nuxtBase . '/_nuxt/',
-					'href="' . $nuxtBase . '/_ipx/',
-					'src="'  . $nuxtBase . '/_ipx/',
-					'"'      . $nuxtBase . '/_nuxt/',
-					'url('   . $nuxtBase . '/_nuxt/',
-				],
-				$body
-			);
-		}
+	// 	// ── Replace Asset URLs di HTML ─────────────────────────────
+	// 	if (strpos($contentType, 'text/html') !== false) {
+	// 		$nuxtBase = 'https://migration.trumecs.com';
+	// 		$body = str_replace(
+	// 			[
+	// 				'href="/_nuxt/',
+	// 				'src="/_nuxt/',
+	// 				'href="/_ipx/',
+	// 				'src="/_ipx/',
+	// 				'"/_nuxt/',
+	// 				'url(/_nuxt/',
+	// 			],
+	// 			[
+	// 				'href="' . $nuxtBase . '/_nuxt/',
+	// 				'src="'  . $nuxtBase . '/_nuxt/',
+	// 				'href="' . $nuxtBase . '/_ipx/',
+	// 				'src="'  . $nuxtBase . '/_ipx/',
+	// 				'"'      . $nuxtBase . '/_nuxt/',
+	// 				'url('   . $nuxtBase . '/_nuxt/',
+	// 			],
+	// 			$body
+	// 		);
+	// 	}
 
-		echo $body;
-	}
+	// 	echo $body;
+	// }
 }
