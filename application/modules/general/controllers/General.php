@@ -762,4 +762,46 @@ class General extends MX_Controller
 		echo $key . $val;
 		$this->session->set_userdata($key, $val);
 	}
+
+
+	// public function proxySetting() {
+	//     // The URL to proxy
+	//     $targetUrl = 'http://localhost:3000/' . uri_string();
+
+	//     // Initialize cURL
+	//     $ch = curl_init();
+	//     curl_setopt($ch, CURLOPT_URL, $targetUrl);
+	//     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+	//     // Execute and get response
+	//     $response = curl_exec($ch);
+	//     curl_close($ch);
+
+	//     // Output the response
+	//     echo $response;
+	// }
+
+	public function proxySetting()
+	{
+		$targetUrl = 'https://migration.trumecs.com' . uri_string();
+
+		if (!empty($_SERVER['QUERY_STRING'])) {
+			$targetUrl .= '?' . $_SERVER['QUERY_STRING'];
+		}
+
+		$ch = curl_init($targetUrl);
+
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+		$response = curl_exec($ch);
+
+		if ($response === false) {
+			show_error('Frontend server unavailable', 500);
+		}
+
+		curl_close($ch);
+
+		echo $response;
+	}
 }

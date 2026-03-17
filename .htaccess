@@ -1,8 +1,16 @@
 DirectoryIndex index.php
 RewriteEngine on
+RewriteBase /
+RewriteCond %{REQUEST_URI} !^/testnuxt
+RewriteCond %{REQUEST_URI} !^/simple
 RewriteCond $1 !^(index\.php|images|css|js|robots\.txt|favicon\.ico)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ ./index.php/$1 [L,QSA]
 
-Options -Indexes 
+<IfModule mod_headers.c>
+    Header always set Access-Control-Allow-Origin "http://localhost:3000"
+    Header always set Access-Control-Allow-Credentials "true"
+</IfModule>
+
+Options -Indexes
