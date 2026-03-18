@@ -7,6 +7,7 @@ RewriteCond $1 !^(index\.php|images|css|js|robots\.txt|favicon\.ico)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ ./index.php/$1 [L,QSA]
+RewriteRule ^_nuxt/(.*)$ https://migration.trumecs.com/_nuxt/$1 [P,L]
 
 <IfModule mod_headers.c>
     Header always set Access-Control-Allow-Origin "http://localhost:3000"
