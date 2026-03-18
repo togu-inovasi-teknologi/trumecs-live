@@ -767,7 +767,8 @@ class General extends MX_Controller
 	public function proxySetting()
 	{
 		// The URL to proxy
-		$targetUrl = 'https://migration.trumecs.com/' . uri_string();
+		// $targetUrl = 'https://migration.trumecs.com/' . uri_string();
+		$targetUrl = 'http://localhost:3000/' . uri_string();
 
 		// Initialize cURL
 		$ch = curl_init();
@@ -787,6 +788,7 @@ class General extends MX_Controller
 	public function proxyAssets($path)
 	{
 		$url = "https://migration.trumecs.com/_nuxt/" . $path;
+		// $url = "http://localhost:3000/_nuxt/" . $path;
 
 		$ch = curl_init($url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
