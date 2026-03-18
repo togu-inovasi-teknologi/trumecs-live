@@ -61,6 +61,8 @@ $route['partnership'] = 'principal/partnership';
 $route['introduction'] = 'home/introduction';
 $route['home/vcard/(:any)'] = 'home/vcard/$1';
 
+$route['_nuxt/(.*)'] = 'general/proxyAssets/$1';
+
 $route['timthumb'] = 'timthumb';
 $route['product'] = 'product';
 $route['mechanic'] = 'mechanic';
