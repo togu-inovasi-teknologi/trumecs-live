@@ -41,12 +41,12 @@ $sessionmember = isset($session["member"]) ? $session["member"] : array('id' => 
             <!-- User Menu (tetap sama) -->
             <div class="flex-shrink-0">
                 <div class="d-flex align-items-center gap-3">
-                    <a href="<?php echo base_url() ?>cart" class="position-relative text-dark text-decoration-none">
+                    <!-- <a href="<?php echo base_url() ?>cart" class="position-relative text-dark text-decoration-none">
                         <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem;">
                             <?php echo count($this->cart->contents()) ?>
                         </span>
                         <i class="bi bi-cart fs-5"></i>
-                    </a>
+                    </a> -->
 
                     <?php if ($sessionmember["id"] != null) :
                         $member = $session["member"];

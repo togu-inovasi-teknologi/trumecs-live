@@ -27,7 +27,7 @@
 
             <!-- Gambar Produk -->
             <div class="card-img-container" style="height: 170px;">
-                <img src="<?php echo base_url() ?>timthumb?src=<?php echo base_url() ?>public/image/product/<?php echo ($ext == '.jpg') ? $key['img'] : '../noimage.png'; ?>"
+                <img src="<?php echo base_url() ?>timthumb?src=<?php echo base_url() ?>public/image/product/<?php echo ($ext == '.jpg') ? $key['img'] : '../noimage.png'; ?>&q=95"
                     alt="<?php echo $key['tittle']; ?>"
                     class="img-fluid w-100 h-100 object-fit-cover"
                     itemprop="image"
