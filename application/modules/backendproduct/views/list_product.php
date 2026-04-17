@@ -225,8 +225,14 @@ function namectgr($id)
 						<?php foreach ($listproduct as $key): ?>
 							<tr>
 								<td>
-									<a href="<?php echo base_url() ?>backendproduct/productstatus?id=<?php echo $key["id"] ?>&status=<?php echo ($key["status"] == "show") ? "draf" : "show"; ?>" class="badge bg-<?php echo ($key["status"] == "show") ? "success" : "danger"; ?> text-decoration-none" alt="show">
-										<i class="bi bi-<?php echo ($key["status"] == "show") ? "check" : "ban"; ?>"></i>
+									<a href="<?php echo base_url() ?>backendproduct/productstatus?id=<?php echo $key["id"] ?>&status=<?php echo ($key["status"] == "show") ? "draf" : "show"; ?>" class="badge bg-success text-decoration-none" alt="show">
+										<i class="bi bi-check"></i>
+									</a>
+									<a href="<?php echo base_url() ?>backendproduct/productstatus?id=<?php echo $key["id"] ?>&status=<?php echo ($key["status"] == "show") ? "draf" : "show"; ?>" class="badge bg-default text-decoration-none" alt="draf">
+										<i class="bi bi-file-earmark-arrow-down"></i>
+									</a>
+									<a href="<?php echo base_url() ?>backendproduct/productstatus?id=<?php echo $key["id"] ?>&status=<?php echo ($key["status"] == "show") ? "draf" : "show"; ?>" class="badge bg-danger text-decoration-none" alt="sold">
+										<i class="bi bi-ban"></i>
 									</a>
 								</td>
 								<td><?php echo $key["tittle"] ?><br>
