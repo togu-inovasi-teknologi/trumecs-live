@@ -300,6 +300,7 @@ class Backendproduct extends MX_Controller
             'unit' => $unit,
             'ppn' => "10",
             'youtube' => $this->input->post('youtube'),
+            'created_by' => $this->sessionmember["id"],
             'jenisproduct' => $this->input->post('jenisproduct'),
             'link_tokped' => $this->input->post('link_tokped'),
             'link_bukalapak' => $this->input->post('link_bukalapak'),

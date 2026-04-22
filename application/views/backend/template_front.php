@@ -397,6 +397,19 @@
             }
         });
 
+        $("#table-produk-promo-pilih").DataTable({
+            ordering: true,
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "<?php echo base_url('backendpromo/hapus_data_product') ?>",
+                type: 'POST',
+                data: {
+                    "id-promo": $("input[name='id-promo']").val()
+                }
+            }
+        });
+
         $("#table-warranty").DataTable({
             ordering: true,
             processing: true,

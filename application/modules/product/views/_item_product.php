@@ -13,7 +13,7 @@
         ?>
 
         <div class="col-12 img-center-product"
-            style="background: url('<?php echo base_url() ?>timthumb?w=200&h=200&src=<?php echo base_url() ?>public/image/product/<?php echo ($ext == '.jpg') ? $key['img'] : '../noimage.png'; ?>&q=95'); 
+            style="background: url('<?php echo base_url() ?>public/image/product/<?php echo ($ext == '.jpg') ? $key['img'] : '../noimage.png'; ?>&q=95'); 
                     background-size: cover; 
                     background-position: center; 
                     height: 200px;">

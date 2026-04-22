@@ -9,7 +9,10 @@ class Backendpromo extends MX_Controller
         parent::__construct();
         $this->securitylog->cekadmin();
         $this->load->model("etx_model");
+        $session = $this->session->all_userdata();
+        $this->sessionmember = array_key_exists("admin", $session) ? $session["admin"] : array('id' => 0);
     }
+
     public function index() {}
 
     public function listpromo()
@@ -56,10 +59,11 @@ class Backendpromo extends MX_Controller
             $output['data'][] = array(
 
                 '<a class="fbold f14 forange" href="' . base_url() . 'backendpromo/form?id=' . $promo["id"] . '">' . $promo["name"] . '</a><br>',
+                '<span class="fbold f14">' . $promo["type"] . '</span>',
 
                 '<span>' . count($explode) . '</span>',
-                '<a class="btn btn-sm btn-warning" href="' . base_url() . 'backendpromo/form?id=' . $promo["id"] . '"><i class="bi bi-pencil"></i></a>',
-                '<a class="btn btn-sm btn-danger" href="' . base_url() . 'backendpromo/hapuspromo?id=' . $promo["id"] . '"><i class="bi bi-trash"></i></a>'
+                '<a class="btn btn-sm btn-primary" href="' . base_url() . 'backendpromo/formPromoProduct?id=' . $promo["id"] . '"><i class="bi bi-file-earmark"></i></a> <a class="btn btn-sm btn-warning" href="' . base_url() . 'backendpromo/form?id=' . $promo["id"] . '"><i class="bi bi-pencil"></i></a>
+                <a class="btn btn-sm btn-danger" href="' . base_url() . 'backendpromo/hapuspromo?id=' . $promo["id"] . '"><i class="bi bi-trash"></i></a>'
             );
         }
         echo json_encode($output);
@@ -72,49 +76,162 @@ class Backendpromo extends MX_Controller
         $length = $_REQUEST['length'];
         $start = $_REQUEST['start'];
         $search = $_REQUEST['search']["value"];
-        $this->db->where("status", 'show');
-        $total = $this->db->count_all_results('product');
-        $output = array();
-        $output['draw'] = $draw;
-        $output['recordsTotal'] = $output['recordsFiltered'] = $total;
-        $output['data'] = array();
-        if ($search != "") {
-            $this->db->like("tittle", $search);
-        }
-        $this->db->limit($length, $start);
-        if ($_REQUEST['order'][0]['column'] == '0'):
-            $this->db->order_by('tittle', $_REQUEST['order'][0]['dir']);
-        endif;
-        $this->db->where("status", 'show');
-        $query = $this->db->get('product');
-        if ($search != "") {
-            $this->db->like("tittle", $search);
-            $this->db->where("status", 'show');
-
-            $jum = $this->db->get('product');
-            $output['recordsTotal'] = $output['recordsFiltered'] = $jum->num_rows();
-        }
 
         if (!empty($id)) {
             $detail = $this->etx_model->getdetail($id);
             $expolde = explode(",", $detail["product"]);
+            $expolde = array_filter($expolde);
         } else {
             $expolde = array();
         }
 
-        foreach ($query->result_array() as $promo) {
-            //$explode = explode(",", $promo["product"]);
+        // ========== HITUNG TOTAL (tanpa search) ==========
+        $this->db->from('product');
+        $this->db->where("status", 'show');
+        if (!empty($expolde)) {
+            $this->db->where_not_in("id", $expolde);
+        }
+        $total = $this->db->count_all_results();
 
+        // ========== HITUNG TOTAL FILTERED (dengan search) ==========
+        $this->db->from('product');
+        $this->db->where("status", 'show');
+        if (!empty($expolde)) {
+            $this->db->where_not_in("id", $expolde);
+        }
+        if ($search != "") {
+            $this->db->group_start();
+            $this->db->like("tittle", $search);
+            $this->db->or_like("partnumber", $search);
+            $this->db->group_end();
+        }
+        $recordsFiltered = $this->db->count_all_results();
+
+        // ========== AMBIL DATA ==========
+        $this->db->select('*');
+        $this->db->from('product');
+        $this->db->where("status", 'show');
+        if (!empty($expolde)) {
+            $this->db->where_not_in("id", $expolde);
+        }
+        if ($search != "") {
+            $this->db->group_start();
+            $this->db->like("tittle", $search);
+            $this->db->or_like("partnumber", $search);
+            $this->db->group_end();
+        }
+        $this->db->limit($length, $start);
+        if ($_REQUEST['order'][0]['column'] == '0') {
+            $this->db->order_by('tittle', $_REQUEST['order'][0]['dir']);
+        }
+        $query = $this->db->get();
+
+        // ========== OUTPUT ==========
+        $output = array();
+        $output['draw'] = $draw;
+        $output['recordsTotal'] = (int)$total;
+        $output['recordsFiltered'] = (int)$recordsFiltered;
+        $output['data'] = array();
+
+        foreach ($query->result_array() as $promo) {
             $output['data'][] = array(
-                '<td>
-                <form action="' . base_url('backendpromo/' . (in_array($promo["id"], $expolde) ? 'hapus' : 'add')) . 'productpromo" method="POST">
-                    ' . ((!empty($id)) ? '<input type="hidden" name="id" value="' . $id . '">' : '')
-                    . ((!empty($id)) ? '<input type="hidden" name="product" value="' . $detail["product"] . '">' : '')
-                    . ((!empty($id)) ? '<input type="hidden" name="newproduct" value="' . $promo["id"] . '">' : '')
-                    . (in_array($promo["id"], $expolde) ? '<button class="btn btn-danger">Promo</button>' : '<button class="btn btn-orange">Tambah</button>') . '</form></td>',
-                '<td>' . $promo["tittle"] . '<br><small>' . $promo["partnumber"] . '</small></td>'
+                '<form action="' . base_url('backendpromo/addproductpromo') . '" method="POST">
+            <input type="hidden" name="id" value="' . $id . '">
+            <input type="hidden" name="product" value="' . $detail["product"] . '">
+            <input type="hidden" name="newproduct" value="' . $promo["id"] . '">
+            <button type="submit" class="btn btn-success btn-sm rounded-3">
+                <i class="bi bi-plus-circle"></i> Tambah
+            </button>
+        </form>',
+                '<strong>' . htmlspecialchars($promo["tittle"]) . '</strong><br><small class="text-muted">' . htmlspecialchars($promo["partnumber"]) . '</small>'
             );
         }
+
+        echo json_encode($output);
+    }
+
+    function hapus_data_product()
+    {
+        $id = $_REQUEST['id-promo'];
+        $draw = $_REQUEST['draw'];
+        $length = $_REQUEST['length'];
+        $start = $_REQUEST['start'];
+        $search = $_REQUEST['search']["value"];
+
+        // Ambil detail promo untuk mendapatkan list product ID yang sudah dalam promo
+        if (!empty($id)) {
+            $detail = $this->etx_model->getdetail($id);
+
+            // Kolom product berisi "1982,2232,123" di explode jadi array
+            $expolde = explode(",", $detail["product"]);
+            // Bersihkan array dari nilai kosong
+            $expolde = array_filter($expolde);
+        } else {
+            $expolde = array();
+        }
+
+        // Cek apakah ada produk dalam promo
+        if (empty($expolde)) {
+            // Jika tidak ada produk, return data kosong
+            $output = array();
+            $output['draw'] = $draw;
+            $output['recordsTotal'] = 0;
+            $output['recordsFiltered'] = 0;
+            $output['data'] = array();
+            echo json_encode($output);
+            exit;
+        }
+
+        // Query untuk mengambil produk yang ID-nya ADA di dalam $expolde
+        $this->db->where_in("id", $expolde);
+        $this->db->where("status", 'show');
+
+        // Hitung total semua produk (yang ada di promo)
+        $total = $this->db->count_all_results('product', false);
+
+        // Apply search jika ada (cari di tittle atau partnumber)
+        if ($search != "") {
+            $this->db->group_start();
+            $this->db->like("tittle", $search);
+            $this->db->or_like("partnumber", $search);
+            $this->db->group_end();
+        }
+
+        // Hitung total filtered (untuk pencarian)
+        $query_filtered = clone $this->db;
+        $recordsFiltered = $query_filtered->count_all_results();
+
+        // Apply limit dan order untuk pagination
+        $this->db->limit($length, $start);
+        if ($_REQUEST['order'][0]['column'] == '0') {
+            $this->db->order_by('tittle', $_REQUEST['order'][0]['dir']);
+        }
+
+        // Eksekusi query untuk mengambil data produk
+        $query = $this->db->get();
+
+        // Siapkan output
+        $output = array();
+        $output['draw'] = $draw;
+        $output['recordsTotal'] = $total;
+        $output['recordsFiltered'] = $recordsFiltered;
+        $output['data'] = array();
+
+        foreach ($query->result_array() as $product) {
+            // Produk pasti ada di promo karena sudah difilter where_in
+            $output['data'][] = array(
+                '<form action="' . base_url('backendpromo/hapusproductpromo') . '" method="POST">
+            <input type="hidden" name="id" value="' . $id . '">
+            <input type="hidden" name="product" value="' . $detail["product"] . '">
+            <input type="hidden" name="newproduct" value="' . $product["id"] . '">
+            <button type="submit" class="btn btn-sm btn-danger rounded-3">
+                <i class="bi bi-dash-circle"></i> Hapus
+            </button>
+        </form>',
+                '<strong>' . htmlspecialchars($product["tittle"]) . '</strong><br><small class="text-muted">' . htmlspecialchars($product["partnumber"]) . '</small>'
+            );
+        }
+
         echo json_encode($output);
     }
 
@@ -131,7 +248,7 @@ class Backendpromo extends MX_Controller
         }
 
         $data["product"] = $this->etx_model->getallproduct();
-        $data['content'] = 'form';
+        $data['content'] = 'formPromo';
         $data['id'] = $id;
         $data["css"] = array('https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css');
         $data["js"] = array(
@@ -141,7 +258,34 @@ class Backendpromo extends MX_Controller
             base_url() . "asset/backend/dist/js/canvas/binaryajax.js",
             base_url() . "asset/backend/dist/js/canvas/exif.js",
             base_url() . "asset/backend/dist/js/canvas/canvasResize.js",
-            base_url() . "asset/backend/js/form.promo.js"
+            "/modules/backendpromo/js/form.promo.js"
+        );
+        $this->load->view('backend/template_front', $data);
+    }
+
+    public function formPromoProduct()
+    {
+        $id = $this->input->get("id");
+        if ($id) {
+            $data["detail"] = $this->etx_model->getdetail($id);
+            if (empty($data["detail"])) {
+                $this->session->set_flashdata('message', 'Promo tidak ada di database');
+                redirect(base_url() . 'backendpromo/listpromo');
+            }
+        }
+
+        $data["product"] = $this->etx_model->getallproduct();
+        $data['content'] = 'formPromoProduct';
+        $data['id'] = $id;
+        $data["css"] = array('https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css');
+        $data["js"] = array(
+            base_url() . '/asset/backend/bower_components/datatables/media/js/jquery.dataTables.min.js',
+            base_url() . "asset/js/number/jquery.number.min.js",
+            base_url() . "asset/backend/dist/js/canvas/zepto.min.js",
+            base_url() . "asset/backend/dist/js/canvas/binaryajax.js",
+            base_url() . "asset/backend/dist/js/canvas/exif.js",
+            base_url() . "asset/backend/dist/js/canvas/canvasResize.js",
+            "/modules/backendpromo/js/form.promo.js"
         );
         $this->load->view('backend/template_front', $data);
     }
@@ -149,6 +293,7 @@ class Backendpromo extends MX_Controller
     public function input()
     {
         $this->form_validation->set_rules('name', 'Name', 'required');
+        $this->form_validation->set_rules('type', 'Tipe Promo', 'required');
         $this->form_validation->set_rules('description', 'Description', 'required');
         $this->form_validation->set_rules('start_date', 'Tanggal mulai', 'required');
         $this->form_validation->set_rules('end_date', 'Tanggal berakhir', 'required');
@@ -165,8 +310,11 @@ class Backendpromo extends MX_Controller
                     'name' => $this->input->post("name"),
                     'url' => preg_replace("/[^a-zA-Z0-9]/", "-", $this->input->post("name")),
                     'product' => $this->input->post("product"),
-                    'start_date' => $this->input->post("start_date"),
-                    'end_date' => $this->input->post("end_date"),
+                    'start_date' => strtotime($this->input->post("start_date")),
+                    'end_date' => strtotime($this->input->post("end_date")),
+                    'price' => $this->input->post("price") ?? null,
+                    'type' => $this->input->post("type"),
+                    'created_by' => $this->sessionmember["id"],
                     'img' => ($this->input->post("txtfilegambar")),
                     'description' => htmlentities($this->input->post("description"))
                 );
@@ -209,6 +357,9 @@ class Backendpromo extends MX_Controller
                         'start_date' => strtotime($this->input->post("start_date")),
                         'end_date' => strtotime($this->input->post("end_date")),
                         'img' => ($this->input->post("txtfilegambar")),
+                        'price' => $this->input->post("price") ?? null,
+                        'type' => $this->input->post("type"),
+                        'created_by' => $this->sessionmember["id"],
                         'description' => htmlentities($this->input->post("description"))
                     );
 
@@ -224,6 +375,9 @@ class Backendpromo extends MX_Controller
                         'end_date' => strtotime($this->input->post("end_date")),
                         'product' => $this->input->post("product"),
                         'img' => ($this->input->post("txtfilegambarold")),
+                        'price' => $this->input->post("price") ?? null,
+                        'type' => $this->input->post("type"),
+                        'created_by' => $this->sessionmember["id"],
                         'description' => htmlentities($this->input->post("description"))
                     );
 
@@ -257,12 +411,12 @@ class Backendpromo extends MX_Controller
         $this->form_validation->set_rules('newproduct', 'Newroduct', 'required');
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message', 'Tidak ada data, Ulangi input lagi!!' . validation_errors());
-            redirect(base_url() . 'backendpromo/form?id=' . $id);
+            redirect(base_url() . 'backendpromo/formPromoProduct?id=' . $id);
         } else {
             $set = array('product' => (!empty($this->input->post("product"))) ? $this->input->post("product") . "," . $this->input->post("newproduct") : $this->input->post("newproduct"));
-            $this->session->set_flashdata('message', 'Promo baru telah diupdate');
+            $this->session->set_flashdata('message', 'Menambahkan Produk pada Promo Berhasil');
             $this->etx_model->update(array('id' => $id), $set);
-            redirect(base_url() . 'backendpromo/form?id=' . $id);
+            redirect(base_url() . 'backendpromo/formPromoProduct?id=' . $id);
         }
     }
 
@@ -273,15 +427,15 @@ class Backendpromo extends MX_Controller
         $this->form_validation->set_rules('newproduct', 'Newroduct', 'required');
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message', 'Tidak ada data, Ulangi input lagi!!' . validation_errors());
-            redirect(base_url() . 'backendpromo/form?id=' . $id);
+            redirect(base_url() . 'backendpromo/formPromoProduct?id=' . $id);
         } else {
             $product = explode(',', $this->input->post("product"));
             $key = array_search($this->input->post("newproduct"), $product);
             unset($product[$key]);
             $set = array('product' => implode(',', $product));
-            $this->session->set_flashdata('message', 'Promo baru telah diupdate');
+            $this->session->set_flashdata('message', 'Menghapus Produk pada Promo Berhasil');
             $this->etx_model->update(array('id' => $id), $set);
-            redirect(base_url() . 'backendpromo/form?id=' . $id);
+            redirect(base_url() . 'backendpromo/formPromoProduct?id=' . $id);
         }
     }
 

@@ -27,11 +27,11 @@
 
             <!-- Gambar Produk -->
             <div class="card-img-container" style="height: 170px;">
-                <img src="<?php echo base_url() ?>timthumb?src=<?php echo base_url() ?>public/image/product/<?php echo ($ext == '.jpg') ? $key['img'] : '../noimage.png'; ?>&q=95"
+                <img src="<?php echo base_url() ?>public/image/product/<?php echo ($ext == '.jpg') ? $key['img'] : '../noimage.png'; ?>"
                     alt="<?php echo $key['tittle']; ?>"
-                    class="img-fluid w-100 h-100 object-fit-cover"
-                    itemprop="image"
-                    style="object-fit: cover;">
+                    class="w-100 h-100"
+                    style="object-fit: cover; border-bottom: 0.5px solid #ccc;"
+                    itemprop="image">
             </div>
 
             <!-- Konten Card -->

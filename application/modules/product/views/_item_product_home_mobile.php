@@ -6,7 +6,7 @@
             <?php
             $lfp = strlen($key["img"]);
             $ext = substr($key["img"], $lfp - 4);
-            
+
             $percent = 90;
             $pricepromo = "";
             if ($key["price_promo"] != 0) {
@@ -25,7 +25,7 @@
 
             $extension = end($explode);
             ?>
-            <img src="<?php echo isset($img_base_url) ? $img_base_url : base_url() ?>timthumb?src=<?php echo isset($img_base_url) ? $img_base_url : base_url() ?>public/image/product/<?= in_array($extension, $acceptExtenstion) ? $key["img"] : "../noimage.png"; ?>"
+            <img src="<?php echo isset($img_base_url) ? $img_base_url : base_url() ?>public/image/product/<?= in_array($extension, $acceptExtenstion) ? $key["img"] : "../noimage.png"; ?>"
                 alt="<?php echo $key["tittle"]; ?>" style="width: 100%; max-height:170px; margin-bottom:16px;">
             <div class="p-x-1" style="height: 75px;" id="article-list">
                 <div class="info">

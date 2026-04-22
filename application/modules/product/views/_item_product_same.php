@@ -17,7 +17,7 @@
                 $pricepromo = ($key["price"] * 100) / $percent;
             }
             ?>
-            <img src=" <?php echo base_url() ?>timthumb?src=<?php echo base_url() ?>public/image/product/<?php echo ($ext == ".jpg") ? $key["img"] : "../noimage.png"; ?>" alt="<?php echo $key["tittle"]; ?>" style="width: 100%; max-height:170px; margin-bottom:16px;">
+            <img src=" <?php echo base_url() ?>public/image/product/<?php echo ($ext == ".jpg") ? $key["img"] : "../noimage.png"; ?>" alt="<?php echo $key["tittle"]; ?>" style="width: 100%; max-height:170px; margin-bottom:16px;">
             <div class="p-x-1" style="height: 75px;">
                 <h4 itemprop="name" class="f11 fblack"><?php echo ucwords($key["tittle"]) ?></h4>
                 <h4 class="f12 fbold fred"><?php echo ceil(100 - $percent) ?><small>%</small>

@@ -26,9 +26,8 @@ class Promo extends MX_Controller
 
 	public function index($url)
 	{
-
-
 		if (($url == NULL or $url == "index")) {
+			// Halaman list semua promo
 			if (!$this->agent->is_mobile()) {
 				$data['content'] = '/desktop/view_index';
 			} else {
@@ -40,10 +39,16 @@ class Promo extends MX_Controller
 			$data["seodescription"] = $this->lang->line("seo_description_promo");
 			$data["datalist"] = $this->promo_model->getpromo(0);
 			$data["listproduct"] = $data["datalist"]["product"];
+
+			// 🔥 Untuk halaman index, tidak ada promo_type spesifik
+			// Biarkan saja atau set default
+
 		} else {
+			// Halaman detail promo
 			$data["datalist"] = $this->promo_model->getpromo($this->uri->segment(2));
-			$data["breadcrumb"] =  array($data["datalist"]["promo"][0]["name"]);
+			$data["breadcrumb"] = array($data["datalist"]["promo"][0]["name"]);
 			$data["listproduct"] = $data["datalist"]["product"];
+
 			if ($this->agent->is_mobile()) {
 				$data['content'] = '/mobile/view_c_mobile';
 			} else {
@@ -63,10 +68,10 @@ class Promo extends MX_Controller
 			$data["seodescription"] = "dapatkan promo sparepart truk di trumecs yang di jamin harganya sangat murah, coba deh cek di trumecs.com pasti promonya di bawah harga pasar.";
 			$data["seoimage"] = $file_exists;
 		}
+
 		$data["css"] = array(base_url() . 'asset/css/cari_page.css',);
 		$data["js"] = array(base_url() . "asset/js/number/jquery.number.min.js", base_url() . 'asset/js/cari.js', "/modules/promo/js/promo.js");
 		$data['category'] = $this->promo_model->get_category();
-		//echo "string";
 		$this->load->view('front/template_front', $data);
 	}
 
