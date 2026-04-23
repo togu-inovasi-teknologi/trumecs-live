@@ -83,8 +83,8 @@ if (!empty($id)) {
 
 						<hr>
 						<div class=" d-flex justify-content-end">
-							<button type="submit" class="btn btnnew px-4 rounded-3 fw-semibold">
-								Simpan
+							<button type="submit" class="btn <?php echo (!empty($id)) ? "btnnewgreen" : 'btnnew'; ?> px-4 rounded-3 fw-semibold">
+								<?php echo (!empty($id)) ? "Update" : 'Simpan'; ?>
 							</button>
 						</div>
 					</form>

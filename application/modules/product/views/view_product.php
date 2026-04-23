@@ -48,8 +48,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
             <div class="col-lg-12">
                 <div class="alert alert-warning">
                     <span class="fa fa-exclamation-circle" style="vertical-align:middle"></span> <small> <strong>Produk
-                            dalam proses restock.</strong> Silahkan daftar / hubungi <a href="telp:021 3423234"> +62 821
-                            2266 8008</a> atau <a href="">info@trumecs.com</a> untuk mendapatkan info terbaru.</small>
+                            dalam proses restock.</strong> Silahkan daftar / hubungi <a href="https://wa.me/085176912338"> 085176912338</a> atau <a href="mailto:info@trumecs.com">info@trumecs.com</a> untuk mendapatkan info terbaru.</small>
                 </div>
             </div>
         <?php endif; ?>
