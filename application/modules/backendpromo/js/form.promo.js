@@ -64,6 +64,7 @@ $("input[name=filegambar]").change(function (e) {
       xhr.addEventListener(
         "load",
         function (e) {
+          console.log("target:", e.target.responseText);
           var response = JSON.parse(e.target.responseText);
           console.log("response:", response);
           var string = response.filename;
