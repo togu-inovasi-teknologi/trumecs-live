@@ -65,6 +65,7 @@ $("input[name=filegambar]").change(function (e) {
         "load",
         function (e) {
           var response = JSON.parse(e.target.responseText);
+          console.log("response:", response);
           var string = response.filename;
           var filenametrue = string.replace("public/tmp/", "");
 
