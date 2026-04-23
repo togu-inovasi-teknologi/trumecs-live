@@ -88,6 +88,7 @@ class Backenduser extends MX_Controller
         $set = array(
             'name' => $this->input->post("name"),
             'email' => $this->input->post("email"),
+            'phone' => $this->input->post("phone"),
             'privileges' => $this->input->post("levelprevilage"),
             'password' => ($this->input->post("password") != "") ? md5($this->input->post("password")) : $this->input->post("passwordold"),
 
@@ -114,6 +115,7 @@ class Backenduser extends MX_Controller
         $set = array(
             'name' => $this->input->post("name"),
             'email' => $this->input->post("email"),
+            'phone' => $this->input->post("phone"),
             'privileges' => $this->input->post("levelprevilage"),
             'password' => md5($this->input->post("password")),
 
@@ -147,6 +149,7 @@ class Backenduser extends MX_Controller
         $set = array(
             'name' => $this->input->post("name"),
             'email' => $this->input->post("email"),
+            'phone' => $this->input->post("phone"),
             'password' => ($this->input->post("password") != "") ? md5($this->input->post("password")) : $this->input->post("passwordold"),
 
         );
