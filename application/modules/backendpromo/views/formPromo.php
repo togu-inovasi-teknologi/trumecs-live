@@ -69,14 +69,11 @@ if (!empty($id)) {
 								<label class="form-label fw-semibold">Banner untuk Promo <span class="text-danger">*</span></label>
 								<input type="file" id="file" name="filegambar" class="form-control rounded-3" <?php echo (empty($this->input->get("id"))) ? "required" : ""; ?>>
 								<div class="tampung mt-2">
-									<?php echo (!empty($id)) ? '<img src="' . base_url() . 'public/image/promo/' . $detail["img"] . '" class="img-fluid rounded-3" style="max-height: 120px;">' : ''; ?>
-									<?php if (!empty($id)): ?>
-										<input type="hidden" class="form-control" name="asknew" value="">
-									<?php endif ?>
+									<?php if (!empty($id) && !empty($detail["img"])): ?>
+										<img src="<?php echo base_url() . 'public/image/promo/' . $detail["img"]; ?>" class="img-fluid rounded-3" style="max-height: 120px;">
+										<input type="hidden" name="txtfilegambarold" value="<?php echo $detail["img"]; ?>">
+									<?php endif; ?>
 								</div>
-								<?php if (!empty($id)): ?>
-									<input type="input" class="form-control" name="txtfilegambarold" value="<?php echo (!empty($id)) ? $detail["img"] : ''; ?>" hidden>
-								<?php endif ?>
 							</div>
 							<div class="col-lg-6" id="choiceTypePromo">
 								<label class="form-label fw-semibold">Harga Bundle <span class="text-danger">*</span></label>

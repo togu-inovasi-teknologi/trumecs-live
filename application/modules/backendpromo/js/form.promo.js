@@ -43,17 +43,16 @@ function readURL(input) {
 
 $("input[name=filegambar]").change(function (e) {
   var file = e.target.files[0];
-  $(this).attr("disabled", true);
+  var $this = $(this);
+  $this.attr("disabled", true);
+
   canvasResize(file, {
     width: 2000,
     height: 2000,
     crop: false,
     quality: 100,
-    //rotate: 90,
     callback: function (data, width, height) {
-      // Create a new formdata
       var fd = new FormData();
-      // Add file data
       var f = canvasResize("dataURLtoBlob", data);
       f.name = file.name;
 
@@ -68,23 +67,34 @@ $("input[name=filegambar]").change(function (e) {
           var response = JSON.parse(e.target.responseText);
           var string = response.filename;
           var filenametrue = string.replace("public/tmp/", "");
+
+          // 🔥 PERBAIKAN: Hapus semua input terkait gambar lama
+          $(".tampung").find('input[name="txtfilegambar"]').remove();
+          $(".tampung").find('input[name="asknew"]').remove();
+
+          // 🔥 PERBAIKAN: Tambahkan input baru dengan value yang benar
           var str_input =
-            '<input name="txtfilegambar" value="' +
+            '<input type="hidden" name="txtfilegambar" value="' +
             filenametrue +
-            '" type="hidden" class="hidden-xs-up"><input name="asknew" value="yesnew" type="hidden" class="hidden-xs-up">';
+            '">' +
+            '<input type="hidden" name="asknew" value="yesnew">';
+
           $(".tampung").html(
-            '<img class="img-fluid"  src="' +
+            '<img class="img-fluid rounded-3" style="max-height: 120px;" src="' +
               base__url +
               "public/tmp/" +
               filenametrue +
               '">' +
               str_input +
-              ' <div class="clearfix"></div>'
+              '<div class="clearfix"></div>'
           );
+
+          // Enable kembali input file
+          $this.attr("disabled", false);
         },
         false
       );
-      // Send data
+
       xhr.send(fd);
     },
   });
