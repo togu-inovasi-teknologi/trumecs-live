@@ -71,7 +71,7 @@ $("input[name=filegambar]").change(function (e) {
           var str_input =
             '<input name="txtfilegambar" value="' +
             filenametrue +
-            '" type="text" class="hidden-xs-up" hidden><input name="asknew" value="yesnew" type="hidden" class="hidden-xs-up">';
+            '" type="hidden" class="hidden-xs-up"><input name="asknew" value="yesnew" type="hidden" class="hidden-xs-up">';
           $(".tampung").html(
             '<img class="img-fluid"  src="' +
               base__url +
