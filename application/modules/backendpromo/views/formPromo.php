@@ -34,8 +34,8 @@ if (!empty($id)) {
 								<label class="form-label fw-semibold">Tipe Promo <span class="text-danger">*</span></label>
 								<select name="type" class="form-select">
 									<option value="">-- Pilih Tipe Promo --</option>
-									<option value="promo" <?= $detail['type'] == "promo" ? "selected" : '' ?>>Promo</option>
-									<option value="bundle" <?= $detail['type'] == "bundle" ? "selected" : '' ?>>Bundle</option>
+									<option value="promo" <?= (!empty($id) && $detail['type'] == "promo") ? "selected" : ''; ?>>Promo</option>
+									<option value="bundle" <?= (!empty($id) && $detail['type'] == "bundle") ? "selected" : ''; ?>>Bundle</option>
 								</select>
 							</div>
 						</div>
