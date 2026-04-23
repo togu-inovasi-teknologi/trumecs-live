@@ -13,6 +13,8 @@ class Backendproduct extends MX_Controller
         $this->load->model("backendproduct/attribute_model");
         $this->load->model("backendproduct/categori_model");
         $this->load->model("product/product_model");
+        $session = $this->session->all_userdata();
+        $this->sessionmember = array_key_exists("admin", $session) ? $session["admin"] : array('id' => 0);
     }
     public function index()
     {
