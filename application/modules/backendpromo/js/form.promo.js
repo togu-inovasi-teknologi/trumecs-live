@@ -75,19 +75,19 @@ $("input[name=filegambar]").change(function (e) {
 
           // 🔥 PERBAIKAN: Tambahkan input baru dengan value yang benar
           var str_input =
-            '<input type="hidden" name="txtfilegambar" value="' +
+            "<input type='hidden' name='txtfilegambar' value='" +
             filenametrue +
-            '">' +
-            '<input type="hidden" name="asknew" value="yesnew">';
+            "'>" +
+            "<input type='hidden' name='asknew' value='yesnew'>";
 
           $(".tampung").html(
-            '<img class="img-fluid rounded-3" style="max-height: 120px;" src="' +
+            "<img class='img-fluid rounded-3' style='max-height: 120px;' src='" +
               base__url +
               "public/tmp/" +
               filenametrue +
-              '">' +
+              "'>" +
               str_input +
-              '<div class="clearfix"></div>'
+              "<div class='clearfix'></div>"
           );
 
           // Enable kembali input file
