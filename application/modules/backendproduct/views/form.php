@@ -100,6 +100,13 @@ foreach ($jenis as $key) {
 								<small class="text-muted float-end">Opsional</small>
 								<input type="text" class="form-control" jq-model="physicnumber" name="physicnumber" value="<?php echo (!empty($backingdata)) ? $backingdata["physicnumber"] : ''; ?>" placeholder="FN-001">
 							</div>
+
+							<div class="attr-unit-fisik">
+								<div class="mb-3">
+									<label class="form-label fw-semibold">Fisik Number Trumecs</label>
+									<input type="text" class="form-control" jq-model="partnumber_trumecs" name="partnumber_trumecs" value="<?php echo (!empty($backingdata)) ? $backingdata["partnumber_trumecs"] : ''; ?>" placeholder="TRM-001">
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -211,7 +218,7 @@ foreach ($jenis as $key) {
 							</div>
 
 							<div class="mb-3">
-								<label class="form-label fw-semibold">Lokasi Pengiriman</label>
+								<label class="form-label fw-semibold">Dikirim dari</label>
 								<small class="text-muted float-end">Opsional</small>
 								<select name="area" class="form-select" seletedarea="<?php echo (!empty($backingdata)) ? $backingdata["area"] : ''; ?>">
 									<option value="">-- Pilih Lokasi --</option>
@@ -370,7 +377,7 @@ foreach ($jenis as $key) {
 								<input type="text" class="form-control" jq-model="livetime" name="livetime" value="<?php echo (!empty($backingdata)) ? $backingdata["livetime"] : ''; ?>" placeholder="5 tahun">
 							</div>
 
-							<div class="mt-3">
+							<!-- <div class="mt-3">
 								<label class="form-label fw-semibold small text-primary">Marketplace Links</label>
 								<div class="mb-2">
 									<input type="text" class="form-control form-control-sm" name="link_tokped" value="<?php echo (!empty($backingdata)) ? $backingdata["link_tokped"] : ''; ?>" placeholder="Link Tokopedia">
@@ -387,7 +394,7 @@ foreach ($jenis as $key) {
 								<div>
 									<input type="text" class="form-control form-control-sm" name="youtube" value="<?php echo (!empty($backingdata)) ? $backingdata["youtube"] : ''; ?>" placeholder="YouTube Video ID">
 								</div>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -396,7 +403,7 @@ foreach ($jenis as $key) {
 
 		<div class="col-md-12 mt-4">
 			<div class="card border-0 shadow-sm">
-				<div class="card-header bg-dark text-dark">
+				<div class="card-header bg-dark text-light">
 					<h5 class="card-title mb-0">
 						<i class="bi bi-truck me-2"></i>Estimasi Pengiriman
 					</h5>

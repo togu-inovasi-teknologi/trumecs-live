@@ -68,7 +68,7 @@
 
             <!-- Image Section -->
             <div class="flex-shrink-0">
-                <img src=" <?php echo isset($img_base_url) ? $img_base_url : base_url() ?>public/image/product/<?= in_array($extension, $acceptExtenstion) ? $key["img"] : "../noimage.png"; ?>"
+                <img src=" <?php echo base_url() ?>timthumb?h=170&src=<?php echo isset($img_base_url) ? $img_base_url : base_url() ?>public/image/product/<?= in_array($extension, $acceptExtenstion) ? $key["img"] : "../noimage.png"; ?>"
                     alt="<?php echo $key["tittle"]; ?>" class="w-100" style="object-fit: contain;">
             </div>
 

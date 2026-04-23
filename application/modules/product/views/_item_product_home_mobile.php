@@ -25,7 +25,7 @@
 
             $extension = end($explode);
             ?>
-            <img src="<?php echo isset($img_base_url) ? $img_base_url : base_url() ?>public/image/product/<?= in_array($extension, $acceptExtenstion) ? $key["img"] : "../noimage.png"; ?>"
+            <img src="<?php echo base_url() ?>timthumb?h=170&src=<?php echo isset($img_base_url) ? $img_base_url : base_url() ?>public/image/product/<?= in_array($extension, $acceptExtenstion) ? $key["img"] : "../noimage.png"; ?>"
                 alt="<?php echo $key["tittle"]; ?>" style="width: 100%; max-height:170px; margin-bottom:16px;">
             <div class="p-x-1" style="height: 75px;" id="article-list">
                 <div class="info">

@@ -69,6 +69,83 @@ class Backendpromo extends MX_Controller
         echo json_encode($output);
     }
 
+    function list_data_product()
+    {
+        $id = $_REQUEST['id-promo'];
+        $draw = $_REQUEST['draw'];
+        $length = $_REQUEST['length'];
+        $start = $_REQUEST['start'];
+        $search = $_REQUEST['search']["value"];
+
+        // Ambil detail promo untuk mendapatkan list product ID yang sudah dalam promo
+        if (!empty($id)) {
+            $detail = $this->etx_model->getdetail($id);
+
+            // Kolom product berisi "1982,2232,123" di explode jadi array
+            $expolde = explode(",", $detail["product"]);
+            // Bersihkan array dari nilai kosong
+            $expolde = array_filter($expolde);
+        } else {
+            $expolde = array();
+        }
+
+        // Cek apakah ada produk dalam promo
+        if (empty($expolde)) {
+            // Jika tidak ada produk, return data kosong
+            $output = array();
+            $output['draw'] = $draw;
+            $output['recordsTotal'] = 0;
+            $output['recordsFiltered'] = 0;
+            $output['data'] = array();
+            echo json_encode($output);
+            exit;
+        }
+
+        // Query untuk mengambil produk yang ID-nya ADA di dalam $expolde
+        $this->db->where_in("id", $expolde);
+        $this->db->where("status", 'show');
+
+        // Hitung total semua produk (yang ada di promo)
+        $total = $this->db->count_all_results('product', false);
+
+        // Apply search jika ada (cari di tittle atau partnumber)
+        if ($search != "") {
+            $this->db->group_start();
+            $this->db->like("tittle", $search);
+            $this->db->or_like("partnumber", $search);
+            $this->db->group_end();
+        }
+
+        // Hitung total filtered (untuk pencarian)
+        $query_filtered = clone $this->db;
+        $recordsFiltered = $query_filtered->count_all_results();
+
+        // Apply limit dan order untuk pagination
+        $this->db->limit($length, $start);
+        if ($_REQUEST['order'][0]['column'] == '0') {
+            $this->db->order_by('tittle', $_REQUEST['order'][0]['dir']);
+        }
+
+        // Eksekusi query untuk mengambil data produk
+        $query = $this->db->get();
+
+        // Siapkan output
+        $output = array();
+        $output['draw'] = $draw;
+        $output['recordsTotal'] = $total;
+        $output['recordsFiltered'] = $recordsFiltered;
+        $output['data'] = array();
+
+        foreach ($query->result_array() as $product) {
+            $output['data'][] = array(
+                '<a class="fw-bold forange" href="' . base_url() . 'backendproduct/form?id=' . $product["id"] . '">' . htmlspecialchars($product["tittle"]) . '</a><br><small class="text-muted">' . htmlspecialchars($product["partnumber"]) . '</small>',
+                'Rp ' . htmlspecialchars(number_format($product["price"], 0, ',', '.')),
+            );
+        }
+
+        echo json_encode($output);
+    }
+
     function ambil_data_product()
     {
         $id = $_REQUEST['id-promo'];
@@ -143,7 +220,8 @@ class Backendpromo extends MX_Controller
                 <i class="bi bi-plus-circle"></i> Tambah
             </button>
         </form>',
-                '<strong>' . htmlspecialchars($promo["tittle"]) . '</strong><br><small class="text-muted">' . htmlspecialchars($promo["partnumber"]) . '</small>'
+                '<a class="fw-bold forange" href="' . base_url() . 'backendproduct/form?id=' . $promo["id"] . '">' . htmlspecialchars($promo["tittle"]) . '</a><br><small class="text-muted">' . htmlspecialchars($promo["partnumber"]) . '</small>',
+                'Rp ' . htmlspecialchars(number_format($promo["price"], 0, ',', '.')),
             );
         }
 
@@ -228,7 +306,8 @@ class Backendpromo extends MX_Controller
                 <i class="bi bi-dash-circle"></i> Hapus
             </button>
         </form>',
-                '<strong>' . htmlspecialchars($product["tittle"]) . '</strong><br><small class="text-muted">' . htmlspecialchars($product["partnumber"]) . '</small>'
+                '<a class="fw-bold forange" href="' . base_url() . 'backendproduct/form?id=' . $product["id"] . '">' . htmlspecialchars($product["tittle"]) . '</a><br><small class="text-muted">' . htmlspecialchars($product["partnumber"]) . '</small>',
+                'Rp ' . htmlspecialchars(number_format($product["price"], 0, ',', '.')),
             );
         }
 

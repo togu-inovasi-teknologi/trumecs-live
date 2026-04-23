@@ -11,7 +11,7 @@ if (!empty($id)) {
 	<div class="row g-4">
 		<div class="col-12">
 			<h3 class="fw-bold text-dark mb-2">
-				<i class="bi bi-tags-fill text-warning me-2"></i>Tambah Produk
+				<i class="bi bi-tags-fill text-warning me-2"></i>Tambah Produk untuk <span class="forange"><?= $detail["name"] ?></span>
 			</h3>
 			<hr class="border-2 border-warning opacity-75 mt-0">
 		</div>
@@ -30,6 +30,7 @@ if (!empty($id)) {
 									<tr>
 										<th class="ps-3" style="width: 100px;">Hapus?</th>
 										<th class="ps-3">Nama Produk<br><small class="text-muted">part number</small></th>
+										<th class="ps-3">Harga</small></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -60,6 +61,7 @@ if (!empty($id)) {
 									<tr>
 										<th class="ps-3" style="width: 100px;">Tambah?</th>
 										<th class="ps-3">Nama Produk<br><small class="text-muted">part number</small></th>
+										<th class="ps-3">Harga</th>
 									</tr>
 								</thead>
 								<tbody>

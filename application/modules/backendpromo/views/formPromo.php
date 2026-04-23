@@ -16,7 +16,7 @@ if (!empty($id)) {
 			<hr class="border-2 border-warning opacity-75 mt-0">
 		</div>
 
-		<div class="col-lg">
+		<div class="col-lg-<?php echo (!empty($id)) ? "7" : '12'; ?>">
 			<div class="card border-0 shadow-sm rounded-4">
 				<div class="card-body p-4">
 					<form action="<?php echo base_url() ?>backendpromo/<?php echo (!empty($id)) ? "update" : 'input'; ?>" method="POST" enctype="multipart/form-data">
@@ -88,6 +88,35 @@ if (!empty($id)) {
 							</button>
 						</div>
 					</form>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-5 <?php echo (!empty($id)) ? "" : 'd-none'; ?>">
+			<div class="card border-0 shadow-sm rounded-4">
+				<div class="card-body">
+					<div class="mb-2 d-flex justify-content-end">
+						<a href="<?= !empty($id) ? base_url() . "backendpromo/formPromoProduct?id=" . $detail['id'] : '#' ?>" class="btn btn-success">Tambah Produk</a>
+					</div>
+					<?php if (!empty($id)): ?>
+						<input name="id-promo" type="hidden" value="<?php echo $detail['id'] ?>" />
+						<div class="table-responsive">
+							<table class="table table-hover mb-0" id="table-produk-promo-terpilih">
+								<thead class="table-light">
+									<tr>
+										<th class="ps-3">Nama Produk<br><small class="text-muted">part number</small></th>
+										<th class="ps-3">Harga</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+					<?php else: ?>
+						<div class="alert alert-warning m-3 rounded-3 border-0">
+							<i class="bi bi-exclamation-triangle-fill me-2"></i>
+							Belum ada Produk yang dipilih
+						</div>
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>
