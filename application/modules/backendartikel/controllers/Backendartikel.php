@@ -65,9 +65,6 @@ class Backendartikel extends MX_Controller
         $this->db->select('artikel.*, a1.name AS creator, a2.name AS editor');
         $this->db->join('admin a1', 'a1.id = artikel.created_by');
         $this->db->join('admin a2', 'a2.id = artikel.updated_by', 'left');
-        $this->db->where([
-            'a1.id' => $this->sessionmember['id']
-        ]);
         $query = $this->db->get('artikel');
         if ($search != "") {
 

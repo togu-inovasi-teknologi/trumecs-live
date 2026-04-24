@@ -79,6 +79,7 @@ $route['category/(:any)'] = 'category/index/$1';
 $route['backend'] = 'backend';
 $route['backendmember'] = 'backendmember';
 $route['backendartikel'] = 'backendartikel';
+$route['myartikel'] = 'myartikel';
 $route['backendconfirm'] = 'backendconfirm';
 $route['backendcomplaintwarranty'] = 'backendcomplaintwarranty';
 $route['backendorder'] = 'backendorder';

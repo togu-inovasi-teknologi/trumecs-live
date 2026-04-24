@@ -23,7 +23,11 @@ class Myartikel extends MX_Controller
         $data["listfilter"] = $this->etx_model->fetch_product($config["per_page"], $page, $data["datawhere"]);
 
         $data["js"] = array(base_url() . 'asset/backend/js/list.order.js');
-        $data['content'] = 'list';
+        if (!$this->agent->is_mobile()) {
+            $data['content'] = 'desktop/list';
+        } else {
+            $data['content'] = 'mobile/list';
+        }
         $this->load->view('backend/template_front', $data);
     }
 

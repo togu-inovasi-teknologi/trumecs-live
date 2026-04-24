@@ -201,7 +201,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
             <?php if ($key["stock"] == 0) : ?>
                 <div class="col-xs-12">
                     <div class="alert alert-warning text-center">
-                        <span class="fa fa-exclamation-circle" style="vertical-align:middle"></span> <small> <strong>Produk dalam proses restock.<br /></strong> Silahkan daftar / hubungi <a href="https://wa.me/<?= (isset($key['admin_phone'])) ? $key['admin_phone'] : '085176912338' ?>"> <?= (isset($key['admin_phone'])) ? $key['admin_phone'] : '085176912338' ?></a> atau <a href="mailto:info@trumecs.com">info@trumecs.com</a> untuk mendapatkan info terbaru.</small>
+                        <span class="fa fa-exclamation-circle" style="vertical-align:middle"></span> <small> <strong>Produk dalam proses restock.<br /></strong> Silahkan daftar / hubungi <a href="https://wa.me/<?= (isset($key['admin_phone']) && !empty($key['admin_phone'])) ? $key['admin_phone'] : '085176912338' ?>"> <?= (isset($key['admin_phone']) && !empty($key['admin_phone'])) ? $key['admin_phone'] : '085176912338' ?></a> atau <a href="mailto:info@trumecs.com">info@trumecs.com</a> untuk mendapatkan info terbaru.</small>
                     </div>
                 </div>
             <?php endif; ?>
@@ -247,7 +247,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                 <span>Trumecs.com</span><br />
                                 <small><i style="color:green" class="fa fa-circle"></i> Online</small>
                                 <br />
-                                <a class="btn btnnew fbold f12" href="https://wa.me/<?= (isset($key['admin_phone'])) ? $key['admin_phone'] : '085176912338' ?>?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["tittle"] . ". Apakah barang ini tersedia?") ?>" target="_blank">
+                                <a class="btn btnnew fbold f12" href="https://wa.me/<?= (isset($key['admin_phone']) && !empty($key['admin_phone'])) ? $key['admin_phone'] : '085176912338' ?>?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["tittle"] . ". Apakah barang ini tersedia?") ?>" target="_blank">
                                     <i class="fa fa-commenting"></i>
                                     Chat sekarang
                                 </a>
@@ -528,7 +528,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                 </div>
                 Chat sekarang
             </a> -->
-                    <a class="btn btnnew btn-block fbold" href="https://wa.me/<?= (isset($key['admin_phone'])) ? $key['admin_phone'] : '085176912338' ?>?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["tittle"] . ". Apakah barang ini tersedia?") ?>" target="_blank">
+                    <a class="btn btnnew btn-block fbold" href="https://wa.me/<?= (isset($key['admin_phone']) && !empty($key['admin_phone'])) ? $key['admin_phone'] : '085176912338' ?>?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["tittle"] . ". Apakah barang ini tersedia?") ?>" target="_blank">
                         <i class="fa fa-commenting"></i>
                         Chat sekarang
                     </a>
@@ -577,7 +577,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                 </div>
                 Chat sekarang
             </a> -->
-                    <a class="btn btnnew btn-block fbold" href="https://wa.me/<?= (isset($key['admin_phone'])) ? $key['admin_phone'] : '085176912338' ?>?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["tittle"] . ". Apakah barang ini tersedia?") ?>" target="_blank">
+                    <a class="btn btnnew btn-block fbold" href="https://wa.me/<?= (isset($key['admin_phone']) && !empty($key['admin_phone']) && !empty($key['admin_phone'])) ? $key['admin_phone'] : '085176912338' ?>?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["tittle"] . ". Apakah barang ini tersedia?") ?>" target="_blank">
                         <i class="fa fa-commenting"></i>
                         Chat sekarang
                     </a>
@@ -683,7 +683,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                 </div>
                 Chat sekarang
             </a> -->
-                    <a class="btn btnnew fbold" href="https://wa.me/<?= (isset($key['admin_phone'])) ? $key['admin_phone'] : '085176912338' ?>?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["tittle"] . ". Apakah barang ini tersedia?") ?>" target="_blank">
+                    <a class="btn btnnew fbold" href="https://wa.me/<?= (isset($key['admin_phone']) && !empty($key['admin_phone'])) ? $key['admin_phone'] : '085176912338' ?>?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["tittle"] . ". Apakah barang ini tersedia?") ?>" target="_blank">
                         <i class="fa fa-commenting"></i>
                         Chat sekarang
                     </a>
@@ -729,7 +729,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                 </div>
                 Chat sekarang
             </a> -->
-                    <a class="wa-button-mobile fbold" href="https://wa.me/<?= (isset($key['admin_phone'])) ? $key['admin_phone'] : '085176912338' ?>?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["tittle"] . ". Apakah barang ini tersedia?") ?>" style="border-radius:5px;border:1px solid #fa8420;display:inline-block;color:#fa8420;margin-top:10px;padding-right:10px">
+                    <a class="wa-button-mobile fbold" href="https://wa.me/<?= (isset($key['admin_phone']) && !empty($key['admin_phone'])) ? $key['admin_phone'] : '085176912338' ?>?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["tittle"] . ". Apakah barang ini tersedia?") ?>" style="border-radius:5px;border:1px solid #fa8420;display:inline-block;color:#fa8420;margin-top:10px;padding-right:10px">
                         <div style="background:#fa8420;color:#fff;display:inline-flex;padding:10px;">
                             <i class="fa fa-commenting"></i>
                         </div>
