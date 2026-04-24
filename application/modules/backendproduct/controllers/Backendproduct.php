@@ -132,6 +132,10 @@ class Backendproduct extends MX_Controller
             $this->db->order_by('stock', $_REQUEST['order'][0]['dir']);
         endif;
 
+        $this->db->where([
+            "created_by" => $this->sessionmember['id']
+        ]);
+
         $query = $this->db->get('product');
         if ($search != "") {
             $this->db->where("(
@@ -153,7 +157,7 @@ class Backendproduct extends MX_Controller
             $w = $product["warranty"] != 0 or $product["warranty"] != "" ? "danger" : "success";
 
             $output['data'][] = array(
-                '<a href="' . base_url() . 'backendproduct/productstatus?id=' . $product["id"] . '&status=' . $s . '" class="label label-' . $l . '" alt="show"><i class="bi bi-' . $i . '"></i></a>',
+                '<a href="' . base_url() . 'backendproduct/productstatus?id=' . $product["id"] . '&status=' . $s . '" class="label label-' . $l . '" alt="show"><i class="bi bi-' . $i . '"></i></a><br><span> View : ' . $product['view'] . '</span>',
                 $product['tittle'] . '<br>' . '<small>' . $product['partnumber'] . '</small>',
                 'Rp.' . number_format($product['price']) . '/' . $product['unit'] . '<br>' . '<small>' .
                     'Rp.' . number_format($product['price_promo']) . '/' . $product['unit'] . '</small>',

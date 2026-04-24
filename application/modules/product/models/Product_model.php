@@ -41,6 +41,8 @@ class Product_model extends CI_Model
             ->get()
             ->result_array();
 
+        $this->db->where("product.id", $url)->set("view", $return[0]['view'] + 1)->update('product');
+
         $return[0]['attribute'] = $attribute;
 
         return $return;

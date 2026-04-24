@@ -18,10 +18,12 @@ class Backendpromo extends MX_Controller
     public function listpromo()
     {
 
-        $data["datawhere"] = array();
+        $data["datawhere"] = ['created_by' => $this->sessionmember["id"]];
         $config["per_page"] = 10;
         $page = ($this->input->get("per_page")) ? $this->input->get("per_page") : 0;
         $data["listfilter"] = $this->etx_model->fetch_product($config["per_page"], $page, $data["datawhere"]);
+        // var_dump($data['listfilter']);
+        // die;
         $data["js"] = array(base_url() . 'asset/backend/js/list.order.js');
         $data['content'] = 'list';
         $this->load->view('backend/template_front', $data);
@@ -44,8 +46,11 @@ class Backendpromo extends MX_Controller
         }
         $this->db->limit($length, $start);
         if ($_REQUEST['order'][0]['column'] == '0'):
-            $this->db->order_by('name', $_REQUEST['order'][0]['dir']);
+            $this->db->order_by('id', 'DESC');
         endif;
+        $this->db->where([
+            'created_by' => $this->sessionmember['id']
+        ]);
         $query = $this->db->get('promo');
         if ($search != "") {
             $this->db->like("name", $search);
@@ -164,7 +169,10 @@ class Backendpromo extends MX_Controller
 
         // ========== HITUNG TOTAL (tanpa search) ==========
         $this->db->from('product');
-        $this->db->where("status", 'show');
+        $this->db->where([
+            "status" => "show",
+            "created_by" => $this->sessionmember['id']
+        ]);
         if (!empty($expolde)) {
             $this->db->where_not_in("id", $expolde);
         }
@@ -172,7 +180,10 @@ class Backendpromo extends MX_Controller
 
         // ========== HITUNG TOTAL FILTERED (dengan search) ==========
         $this->db->from('product');
-        $this->db->where("status", 'show');
+        $this->db->where([
+            "status" => "show",
+            "created_by" => $this->sessionmember['id']
+        ]);
         if (!empty($expolde)) {
             $this->db->where_not_in("id", $expolde);
         }
@@ -187,7 +198,10 @@ class Backendpromo extends MX_Controller
         // ========== AMBIL DATA ==========
         $this->db->select('*');
         $this->db->from('product');
-        $this->db->where("status", 'show');
+        $this->db->where([
+            "status" => "show",
+            "created_by" => $this->sessionmember['id']
+        ]);
         if (!empty($expolde)) {
             $this->db->where_not_in("id", $expolde);
         }
