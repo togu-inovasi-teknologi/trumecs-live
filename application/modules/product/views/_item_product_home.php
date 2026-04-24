@@ -43,7 +43,7 @@
         </a>
     </div>
 </div> -->
-
+<?php $img_sold_out = '<img alt="promo trumecs" class="promo-small position-absolute" style="right:0px;top:-2px;z-index:2" src="' . base_url() . 'timthumb?w=70&src=' . base_url() . 'public/image/sold-out.png" width="70">'; ?>
 <div class="<?= isset($class) ? $class : 'col-lg-2--4' ?>">
     <div class="card card-product-home shadow-sm h-100 d-flex flex-column" style="border-radius: 0;">
         <a class="<?php echo $this->uri->segment(1) == '' ? 'random-product' : 'related-product' ?> text-decoration-none d-flex flex-column h-100" itemprop="url"
@@ -70,6 +70,9 @@
             <div class="flex-shrink-0">
                 <img src=" <?php echo base_url() ?>timthumb?h=170&src=<?php echo isset($img_base_url) ? $img_base_url : base_url() ?>public/image/product/<?= in_array($extension, $acceptExtenstion) ? $key["img"] : "../noimage.png"; ?>"
                     alt="<?php echo $key["tittle"]; ?>" class="w-100" style="object-fit: contain;">
+                <?php if ($key['stock'] == 0): ?>
+                    <?= $img_sold_out; ?>
+                <?php endif; ?>
             </div>
 
             <!-- Content Section - Flex grow untuk push button ke bawah -->

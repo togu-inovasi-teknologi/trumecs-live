@@ -1,3 +1,5 @@
+<?php $img_sold_out = '<img alt="promo trumecs" class="promo-small position-absolute" style="right:0px;top:-2px;z-index:2" src="' . base_url() . 'timthumb?w=70&src=' . base_url() . 'public/image/sold-out.png" width="70">'; ?>
+
 <div class="col-lg-3 mb-3">
     <div class="card h-100 d-flex flex-column border-0 shadow" itemscope itemtype="http://schema.org/Product">
         <a class="<?php echo $this->uri->segment(1) == '' ? 'random-product' : 'related-product' ?> text-decoration-none flex-grow-1 d-flex flex-column"
@@ -27,11 +29,14 @@
 
             <!-- Gambar Produk -->
             <div class="card-img-container" style="height: 170px;">
-                <img src="<?php echo base_url() ?>timthumb?src=<?php echo base_url() ?>public/image/product/<?php echo ($ext == '.jpg') ? $key['img'] : '../noimage.png'; ?>&q=95"
+                <img src="<?php echo base_url() ?>timthumb?h=170&src=<?php echo base_url() ?>public/image/product/<?php echo ($ext == '.jpg') ? $key['img'] : '../noimage.png'; ?>"
                     alt="<?php echo $key['tittle']; ?>"
                     class="img-fluid w-100 h-100 object-fit-cover"
                     itemprop="image"
                     style="object-fit: cover;">
+                <?php if ($key['stock'] == 0): ?>
+                    <?= $img_sold_out; ?>
+                <?php endif; ?>
             </div>
 
             <!-- Konten Card -->

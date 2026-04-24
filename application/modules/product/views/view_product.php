@@ -24,7 +24,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
 ?>
 <div class="container">
     <div class="row">
-        <div class="col-lg-12 pt-1 bg-highlight">
+        <div class="col-lg-12 pt-1">
             <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
                 <li class=" breadcrumb-item"><a class="forange"
                         href="<?php echo base_url() ?>"><?php echo $this->lang->line('breadcrumb_home', FALSE); ?></a>
@@ -48,7 +48,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
             <div class="col-lg-12">
                 <div class="alert alert-warning">
                     <span class="fa fa-exclamation-circle" style="vertical-align:middle"></span> <small> <strong>Produk
-                            dalam proses restock.</strong> Silahkan daftar / hubungi <a href="https://wa.me/085176912338"> 085176912338</a> atau <a href="mailto:info@trumecs.com">info@trumecs.com</a> untuk mendapatkan info terbaru.</small>
+                            dalam proses restock.</strong> Silahkan daftar / hubungi <a href="https://wa.me/<?= (isset($key['admin_phone']) && $key['admin_phone'] !== null) ? $key['admin_phone'] : '085176912338' ?>"> <?= (isset($key['admin_phone']) && $key['admin_phone'] !== null) ? $key['admin_phone'] : '085176912338' ?></a> atau <a href="mailto:info@trumecs.com">info@trumecs.com</a> untuk mendapatkan info terbaru.</small>
                 </div>
             </div>
         <?php endif; ?>
@@ -217,7 +217,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                             <div class="col-lg-12 mt-1">
                                                 Info, pemesanan, diskon khusus:<br />
                                                 <a style="border:1px solid #ccc"
-                                                    href="https://wa.me/6285176912338?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["tittle"] . ". Apakah barang ini tersedia?") ?>"
+                                                    href="https://wa.me/<?= (isset($key['admin_phone']) && $key['admin_phone'] !== null) ? $key['admin_phone'] : '085176912338' ?>?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["tittle"] . ". Apakah barang ini tersedia?") ?>"
                                                     class="btn btn-lg btnnew fw-bold text-center f14 wa-button-product"><i
                                                         class="fa fa-whatsapp fa-2x f18 me-1"></i><?php echo $this->lang->line('tombol_whatsapp', FALSE); ?></a>
                                                 <a style="border:1px solid #ccc"

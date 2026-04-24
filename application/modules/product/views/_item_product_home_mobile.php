@@ -1,3 +1,4 @@
+<?php $img_sold_out = '<img alt="promo trumecs" class="promo-small position-absolute" style="right:0px;top:-2px;z-index:2" src="' . base_url() . 'timthumb?w=70&src=' . base_url() . 'public/image/sold-out.png" width="70">'; ?>
 <div class="<?= isset($class) ? $class : 'col-xs-6' ?>">
     <div class="card" style="border-radius: 0;">
         <a class="<?php echo $this->uri->segment(1) == '' ? 'random-product' : "related-product" ?>" itemprop="url"
@@ -27,6 +28,10 @@
             ?>
             <img src="<?php echo base_url() ?>timthumb?h=170&src=<?php echo isset($img_base_url) ? $img_base_url : base_url() ?>public/image/product/<?= in_array($extension, $acceptExtenstion) ? $key["img"] : "../noimage.png"; ?>"
                 alt="<?php echo $key["tittle"]; ?>" style="width: 100%; max-height:170px; margin-bottom:16px;">
+            <?php if ($key['stock'] == 0): ?>
+                <?= $img_sold_out; ?>
+            <?php endif; ?>
+            </img>
             <div class="p-x-1" style="height: 75px;" id="article-list">
                 <div class="info">
                     <h4 itemprop="name" class="value f11 fblack"><?php echo ucwords($key["tittle"]) ?></h4>

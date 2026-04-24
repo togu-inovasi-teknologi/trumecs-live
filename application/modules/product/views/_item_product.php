@@ -1,3 +1,5 @@
+<?php $img_sold_out = '<img alt="promo trumecs" class="promo-small position-absolute" style="right:0px;top:-2px;z-index:2" src="' . base_url() . 'timthumb?w=70&src=' . base_url() . 'public/image/sold-out.png" width="70">'; ?>
+
 <div itemprop="itemListElement" itemscope itemtype="http://schema.org/Product"
     class="col-lg-2 col-md-2 col-sm-4 col-xs-6 text-start hv_product p-0 m-1"
     style="background:#fff; border-radius:5px; box-shadow:0px 3px 7px rgba(0,0,0,0.05); overflow:hidden; width:<?php echo $this->agent->is_mobile() ? 48.5 : 24 ?>%; border:none; margin-left:3px !important;">
@@ -17,6 +19,9 @@
                     background-size: cover; 
                     background-position: center; 
                     height: 200px;">
+            <?php if ($key['stock'] == 0): ?>
+                <?= $img_sold_out; ?>
+            <?php endif; ?>
         </div>
 
         <h4 itemprop="name"

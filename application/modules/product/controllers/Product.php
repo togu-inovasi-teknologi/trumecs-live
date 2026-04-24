@@ -104,7 +104,6 @@ class Product extends MX_Controller
             $data['content'] = 'view_product_mobile';
         }
 
-
         $this->load->view('front/template_front', $data);
     }
 

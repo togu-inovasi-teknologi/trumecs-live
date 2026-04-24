@@ -19,11 +19,17 @@ class etx_model extends CI_Model
 
     public function fetch_product($limit, $start, $datawhere)
     {
+        $this->db->reset_query();
         $this->db->where($datawhere);
-        $this->db->limit($limit, $start)
-            ->order_by("id", "ASC");
+        $this->db->order_by("id", "DESC");
+        $this->db->limit($limit, $start);
         $query = $this->db->get("promo");
-        return  $query->result_array();
+
+        // Cek apakah query berhasil
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        }
+        return array();
     }
 
     public function getdetail($id)

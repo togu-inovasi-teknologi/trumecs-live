@@ -1,3 +1,4 @@
+<?php $img_sold_out = '<img alt="promo trumecs" class="promo-small position-absolute" style="right:0px;top:-2px;z-index:2" src="' . base_url() . 'timthumb?w=70&src=' . base_url() . 'public/image/sold-out.png" width="70">'; ?>
 <div itemprop="itemListElement" itemscope="" itemtype="http://schema.org/Product" class="col-lg-2 col-md-2 col-sm-4 col-xs-6 text-left hv_product p-x-0 m-l-1 m-b-1" style="background:#fff;border-radius:5px;box-shadow:0px 3px 7px rgba(0,0,0,0.05);overflow:hidden;width:<?php echo $this->agent->is_mobile() ? 48.5 : 24 ?>%;border:none;margin-left:3px !important;">
     <a class="<?php echo $this->uri->segment(1) == '' ? 'random-product' : "related-product" ?>" itemprop="url" href="<?php echo base_url() ?>product/<?php echo $key["id"] ?>/<?php echo preg_replace("/[^a-zA-Z0-9]/", "-", ucwords(strtolower($key["tittle"]))) ?>">
         <?php
@@ -6,6 +7,9 @@
         is_file("public/image/product/" . $key["img"]) != 1 ? $key["img"] = "../noimage.png" : $key["img"];
         ?>
         <div class="col-lg-12 img-center-product" style="background: url(<?php echo base_url() ?>timthumb?w=200&h=200&src=<?php echo base_url() ?>public/image/product/<?php echo ($ext == ".jpg") ? $key["img"] : "../noimage.png"; ?>)">
+            <?php if ($key['stock'] == 0): ?>
+                <?= $img_sold_out; ?>
+            <?php endif; ?>
         </div>
         <h4 itemprop="name" style="height:35px;display:inline-block;float:left;padding:7px !important;overflow:hidden;" class="<?php echo $this->agent->is_mobile() ? 'f12' : 'f14' ?> col-xs-12"><?php echo ucwords($key["tittle"]) ?></h4>
         <?php

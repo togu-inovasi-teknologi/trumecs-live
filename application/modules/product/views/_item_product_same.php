@@ -1,3 +1,5 @@
+<?php $img_sold_out = '<img alt="promo trumecs" class="promo-small position-absolute" style="right:0px;top:-2px;z-index:2" src="' . base_url() . 'timthumb?w=70&src=' . base_url() . 'public/image/sold-out.png" width="70">'; ?>
+
 <div class="col-xs-6">
     <div class="card" style="border-radius: 0;">
         <a class="<?php echo $this->uri->segment(1) == '' ? 'random-product' : "related-product" ?>" itemprop="url" href="<?php echo base_url() ?>product/<?php echo $key["id"] ?>/<?php echo preg_replace("/[^a-zA-Z0-9]/", "-", ucwords(strtolower($key["tittle"]))) ?>" style=" text-decoration:none;">
@@ -18,6 +20,10 @@
             }
             ?>
             <img src="<?php echo base_url() ?>timthumb?h=170&src=<?php echo base_url() ?>public/image/product/<?php echo ($ext == ".jpg") ? $key["img"] : "../noimage.png"; ?>" alt="<?php echo $key["tittle"]; ?>" style="width: 100%; max-height:170px; margin-bottom:16px;">
+            <?php if ($key['stock'] == 0): ?>
+                <?= $img_sold_out; ?>
+            <?php endif; ?>
+            </img>
             <div class="p-x-1" style="height: 75px;">
                 <h4 itemprop="name" class="f11 fblack"><?php echo ucwords($key["tittle"]) ?></h4>
                 <h4 class="f12 fbold fred"><?php echo ceil(100 - $percent) ?><small>%</small>

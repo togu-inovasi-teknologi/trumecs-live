@@ -11,10 +11,11 @@ class Product_model extends CI_Model
 
     public function getproduct($url)
     {
-        $this->db->select('product.*,grade.grade as grade, categori.name as brand, store.name as store_name, store.domain as store_domain, store.logo as store_logo, delivery_area.send_from, delivery_area.description AS area_description, product.brand as brand_id');
+        $this->db->select('product.*,grade.grade as grade, categori.name as brand, store.name as store_name, store.domain as store_domain, store.logo as store_logo, delivery_area.send_from, delivery_area.description AS area_description, product.brand as brand_id, admin.phone as admin_phone, admin.id as admin_id');
         $this->db->join('delivery_area', 'product.area = delivery_area.id', 'left');
         $this->db->join('store', 'store.id = product.store_id', 'left');
         $this->db->join('grade', 'grade.id = product.quality', 'left');
+        $this->db->join('admin', 'admin.id = product.created_by', 'left');
         $this->db->join('categori', 'categori.id = product.brand', 'left');
         if (is_numeric($url)) {
             $query = $this->db->where("product.id", $url)->get('product');
@@ -108,6 +109,7 @@ class Product_model extends CI_Model
         endif;
 
         $this->db->join('grade', 'grade.id = product.quality', 'left');
+        $this->db->join('admin', 'admin.id = product.created_by', 'left');
         $this->db->join('categori', 'categori.id = product.brand', 'left');
         $this->db->group_by('product.id');
         $this->db->where_not_in("product.id", $id);

@@ -1,3 +1,5 @@
+<?php $img_sold_out = '<img alt="promo trumecs" class="promo-small position-absolute" style="right:0px;top:-2px;z-index:2" src="' . base_url() . 'timthumb?w=70&src=' . base_url() . 'public/image/sold-out.png" width="70">'; ?>
+
 <div class="col-lg-3 mb-3">
     <div class="card h-100 d-flex flex-column border-0 shadow" itemscope itemtype="http://schema.org/Product">
         <a class="<?php echo $this->uri->segment(1) == '' ? 'random-product' : 'related-product' ?> text-decoration-none flex-grow-1 d-flex flex-column"
@@ -32,6 +34,9 @@
                     class="w-100 h-100"
                     style="object-fit: cover; border-bottom: 0.5px solid #ccc;"
                     itemprop="image">
+                <?php if ($key['stock'] == 0): ?>
+                    <?= $img_sold_out; ?>
+                <?php endif; ?>
             </div>
 
             <!-- Konten Card -->
@@ -40,7 +45,6 @@
                 <div class="product-title mb-1" style="min-height: 50px;">
                     <h4 itemprop="name" class="fs-6 fw-semibold text-dark mb-0" style="line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
                         <?php echo ucwords($key['tittle']) ?>
-                    </h4>
                 </div>
 
                 <!-- Area Harga dan Diskon -->

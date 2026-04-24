@@ -1,6 +1,8 @@
 var base__url = $("body").attr("baseurl");
 $(document).ready(function () {
-  $("#table-promo").DataTable();
+  $("#table-promo").DataTable({
+    order: [[0, "desc"]],
+  });
 
   $("#choiceTypePromo").hide();
 
