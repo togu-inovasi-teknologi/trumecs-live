@@ -31,6 +31,49 @@ class Myartikel extends MX_Controller
         $this->load->view('backend/template_front', $data);
     }
 
+    // function ambil_data()
+    // {
+
+    //     $draw = $_REQUEST['draw'];
+    //     $length = $_REQUEST['length'];
+    //     $start = $_REQUEST['start'];
+    //     $search = $_REQUEST['search']["value"];
+    //     $total = $this->db->count_all_results("artikel");
+    //     $output = array();
+    //     $output['draw'] = $draw;
+    //     $output['recordsTotal'] = $output['recordsFiltered'] = $total;
+    //     $output['data'] = array();
+    //     if ($search != "") {
+    //         $this->db->like("title", $search);
+    //     }
+    //     $this->db->limit($length, $start);
+    //     if ($_REQUEST['order'][0]['column'] == '0'):
+    //         $this->db->order_by('title', $_REQUEST['order'][0]['dir']);
+    //     endif;
+
+    //     $query = $this->db->get('artikel');
+    //     if ($search != "") {
+    //         $this->db->like("title", $search);
+    //         $jum = $this->db->get('artikel');
+    //         $output['recordsTotal'] = $output['recordsFiltered'] = $jum->num_rows();
+    //     }
+
+    //     foreach ($query->result_array() as $artikel) {
+
+
+    //         $output['data'][] = array(
+
+    //             '<a class="fbold f14 forange" href="' . base_url() . 'backendartikel/myartikel/form?id=' . $artikel["id"] . '">' . $artikel["title"] . '</a>',
+
+    //             '<a class="btn btn-sm btn-warning" href="' . base_url() . 'backendartikel/myartikel/form?id=' . $artikel["id"] . '"><i class="bi bi-pencil"></i></a>',
+
+    //             $artikel['display'] == 1 ? '<a class="btn btn-sm btn-danger" href="' . base_url() . 'backendartikel/myartikel/hapus?id=' . $artikel["id"] . '"><i class="bi bi-trash"></i></a>' : '<a class="btn btn-sm btn-success" href="' . base_url() . 'backendartikel/myartikel/show?id=' . $artikel["id"] . '"><i class="bi bi-check"></i></a>'
+    //         );
+    //     }
+
+    //     echo json_encode($output);
+    // }
+
     function ambil_data()
     {
 
@@ -38,6 +81,7 @@ class Myartikel extends MX_Controller
         $length = $_REQUEST['length'];
         $start = $_REQUEST['start'];
         $search = $_REQUEST['search']["value"];
+        $this->db->where('created_by', $this->sessionmember["id"]);
         $total = $this->db->count_all_results("artikel");
         $output = array();
         $output['draw'] = $draw;
@@ -50,27 +94,73 @@ class Myartikel extends MX_Controller
         if ($_REQUEST['order'][0]['column'] == '0'):
             $this->db->order_by('title', $_REQUEST['order'][0]['dir']);
         endif;
+        if ($_REQUEST['order'][0]['column'] == '1'):
+            $this->db->order_by('created_at', $_REQUEST['order'][0]['dir']);
+        endif;
+        if ($_REQUEST['order'][0]['column'] == '2'):
+            $this->db->order_by('updated_at', $_REQUEST['order'][0]['dir']);
+        endif;
+        if ($_REQUEST['order'][0]['column'] == '3'):
+            $this->db->order_by('view', $_REQUEST['order'][0]['dir']);
+        endif;
+        if ($_REQUEST['order'][0]['column'] == '4'):
+            $this->db->order_by('creator', $_REQUEST['order'][0]['dir']);
+        endif;
+        $this->db->select('artikel.*, a1.name AS creator, a2.name AS editor');
+        $this->db->join('admin a1', 'a1.id = artikel.created_by');
+        $this->db->join('admin a2', 'a2.id = artikel.updated_by', 'left');
 
-        $this->db->where('created_by', $this->sessionmember["id"]);
+        $this->db->where('a1.id', $this->sessionmember["id"]);
         $query = $this->db->get('artikel');
         if ($search != "") {
+
             $this->db->like("title", $search);
+
             $jum = $this->db->get('artikel');
             $output['recordsTotal'] = $output['recordsFiltered'] = $jum->num_rows();
         }
-
         foreach ($query->result_array() as $artikel) {
-
-
             $output['data'][] = array(
+                '<a class="text-primary text-decoration-none fw-medium" href="' . base_url() . 'backendartikel/form?id=' . $artikel["id"] . '">' . htmlspecialchars($artikel["title"]) . '</a>',
+                '<div class="text-muted small">' . date("d M Y", $artikel["created_at"]) . '</div>',
+                '<div class="text-muted small">' . ($artikel["updated_at"] == 0 ? '<span class="text-muted">-</span>' : date("d M Y", $artikel["updated_at"])) . '</div>',
+                '<div class="text-end fw-medium">' . number_format($artikel["view"]) . '</div>',
+                '<div class="small">' . htmlspecialchars($artikel["creator"]) . '</div>',
 
-                '<a class="fbold f14 forange" href="' . base_url() . 'backendartikel/myartikel/form?id=' . $artikel["id"] . '">' . $artikel["title"] . '</a>',
+                // Untuk toggle display - Versi dengan badge dan icon
+                $artikel['display'] == 1
+                    ? '
+       <a class="btn btn-sm btn-outline-danger ms-2" 
+          href="' . base_url() . 'backendartikel/hide?id=' . $artikel["id"] . '"
+          title="Sembunyikan Artikel">
+          <i class="bi bi-eye-slash"></i>
+       </a>'
+                    : '<span class="badge bg-danger-subtle text-danger border border-danger-subtle">
+          <i class="bi bi-eye-slash-fill me-1"></i>Tersembunyi
+       </span>
+       <a class="btn btn-sm btn-outline-success ms-2" 
+          href="' . base_url() . 'backendartikel/show?id=' . $artikel["id"] . '"
+          title="Tampilkan Artikel">
+          <i class="bi bi-eye"></i>
+       </a>',
 
-                '<a class="btn btn-sm btn-warning" href="' . base_url() . 'backendartikel/myartikel/form?id=' . $artikel["id"] . '"><i class="bi bi-pencil"></i></a>',
-
-                $artikel['display'] == 1 ? '<a class="btn btn-sm btn-danger" href="' . base_url() . 'backendartikel/myartikel/hapus?id=' . $artikel["id"] . '"><i class="bi bi-trash"></i></a>' : '<a class="btn btn-sm btn-success" href="' . base_url() . 'backendartikel/myartikel/show?id=' . $artikel["id"] . '"><i class="bi bi-check"></i></a>'
+                // Action buttons - tombol edit dan hapus
+                '<div class="btn-group btn-group-sm" role="group">
+    <a class="btn btn-outline-warning" 
+       href="' . base_url() . 'backendartikel/form?id=' . $artikel["id"] . '"
+       title="Edit Artikel">
+       <i class="bi bi-pencil"></i>
+    </a>
+    <a class="btn btn-outline-danger" 
+       href="' . base_url() . 'backendartikel/hapus?id=' . $artikel["id"] . '"
+       onclick="return confirm(\'Apakah anda yakin ingin menghapus artikel ' . addslashes($artikel["title"]) . '?\')"
+       title="Hapus Artikel">
+       <i class="bi bi-trash"></i>
+    </a>
+</div>'
             );
         }
+
 
         echo json_encode($output);
     }
