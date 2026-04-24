@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Backendpromo extends MX_Controller
+class Mypromo extends MX_Controller
 {
     function __construct()
     {
@@ -171,6 +171,7 @@ class Backendpromo extends MX_Controller
         $this->db->from('product');
         $this->db->where([
             "status" => "show",
+            "created_by" => $this->sessionmember['id']
         ]);
         if (!empty($expolde)) {
             $this->db->where_not_in("id", $expolde);
@@ -181,6 +182,7 @@ class Backendpromo extends MX_Controller
         $this->db->from('product');
         $this->db->where([
             "status" => "show",
+            "created_by" => $this->sessionmember['id']
         ]);
         if (!empty($expolde)) {
             $this->db->where_not_in("id", $expolde);
@@ -198,6 +200,7 @@ class Backendpromo extends MX_Controller
         $this->db->from('product');
         $this->db->where([
             "status" => "show",
+            "created_by" => $this->sessionmember['id']
         ]);
         if (!empty($expolde)) {
             $this->db->where_not_in("id", $expolde);

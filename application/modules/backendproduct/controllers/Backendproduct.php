@@ -132,9 +132,7 @@ class Backendproduct extends MX_Controller
             $this->db->order_by('stock', $_REQUEST['order'][0]['dir']);
         endif;
 
-        $this->db->where([
-            "created_by" => $this->sessionmember['id']
-        ]);
+
 
         $query = $this->db->get('product');
         if ($search != "") {

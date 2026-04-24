@@ -125,11 +125,15 @@ class Myproduct extends MX_Controller
         }
 
         foreach ($query->result_array() as $product) {
+            $s = $product["status"] == "show" ? "draf" : "show";
+            $l = $product["status"] == "show" ? "success" : "danger";
+            $i = $product["status"] == "show" ? "check" : "ban";
             $k = $product["stock"] <= 3 ? "danger" : "success";
             $w = $product["warranty"] != 0 or $product["warranty"] != "" ? "danger" : "success";
 
             $output['data'][] = array(
-                '<div class="flex gap-1"><a href="' . base_url() . 'backendproduct/myproduct/productstatus?id=' . $product["id"] . '&status="show"" class="label label-success" alt="show"><i class="bi bi-check"></i></a> <a href="' . base_url() . 'backendproduct/myproduct/productstatus?id=' . $product["id"] . '&status="draf"" class="label label-default" alt="show"><i class="bi bi-file-earmark-arrow-down"></i></a> <a href="' . base_url() . 'backendproduct/myproduct/productstatus?id=' . $product["id"] . '&status="sold"" class="label label-danger" alt="show"><i class="bi bi-ban"></i></a></div>',
+                '<a href="' . base_url() . 'backendproduct/productstatus?id=' . $product["id"] . '&status=' . $s . '" class="label label-' . $l . '" alt="show"><i class="bi bi-' . $i . '"></i></a><br><span> View : ' . $product['view'] . '</span>',
+                $product['tittle'] . '<br>' . '<small>' . $product['partnumber'] . '</small>',
                 $product['tittle'] . '<br>' . '<small>' . $product['partnumber'] . '</small>',
                 'Rp.' . number_format($product['price']) . '/' . $product['unit'] . '<br>' . '<small>' .
                     'Rp.' . number_format($product['price_promo']) . '/' . $product['unit'] . '</small>',
