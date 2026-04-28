@@ -48,9 +48,6 @@ class Backendpromo extends MX_Controller
         if ($_REQUEST['order'][0]['column'] == '0'):
             $this->db->order_by('id', 'DESC');
         endif;
-        $this->db->where([
-            'created_by' => $this->sessionmember['id']
-        ]);
         $query = $this->db->get('promo');
         if ($search != "") {
             $this->db->like("name", $search);

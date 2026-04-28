@@ -13,7 +13,11 @@ class Mypromo extends MX_Controller
         $this->sessionmember = array_key_exists("admin", $session) ? $session["admin"] : array('id' => 0);
     }
 
-    public function index() {}
+    public function index()
+    {
+        $this->securitylog->cekadmin();
+        redirect(base_url() . "backendpromo/mypromo/listpromo");
+    }
 
     public function listpromo()
     {
