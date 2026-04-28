@@ -53,7 +53,13 @@ class Mypromo extends MX_Controller
         }
         $this->db->limit($length, $start);
         if ($_REQUEST['order'][0]['column'] == '0'):
-            $this->db->order_by('id', 'DESC');
+            $this->db->order_by('name', $_REQUEST['order'][0]['dir']);
+        elseif ($_REQUEST['order'][0]['column'] == '1'):
+            $this->db->order_by('type', $_REQUEST['order'][0]['dir']);
+        elseif ($_REQUEST['order'][0]['column'] == '2'):
+            $this->db->order_by('product', $_REQUEST['order'][0]['dir']);
+        elseif ($_REQUEST['order'][0]['column'] == '3'):
+            $this->db->order_by('view', $_REQUEST['order'][0]['dir']);
         endif;
         $this->db->where([
             'created_by' => $this->sessionmember['id']
@@ -74,6 +80,7 @@ class Mypromo extends MX_Controller
                 '<span class="fbold f14">' . $promo["type"] . '</span>',
 
                 '<span>' . count($explode) . '</span>',
+                '<span>' . $promo["view"] . '</span>',
                 '<a class="btn btn-sm btn-primary" href="' . base_url() . 'backendpromo/formPromoProduct?id=' . $promo["id"] . '"><i class="bi bi-file-earmark"></i></a> <a class="btn btn-sm btn-warning" href="' . base_url() . 'backendpromo/form?id=' . $promo["id"] . '"><i class="bi bi-pencil"></i></a>
                 <a class="btn btn-sm btn-danger" href="' . base_url() . 'backendpromo/hapuspromo?id=' . $promo["id"] . '"><i class="bi bi-trash"></i></a>'
             );

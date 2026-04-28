@@ -24,45 +24,11 @@
 						<th class="ps-3">Judul</th>
 						<th class="ps-3">Type</th>
 						<th class="text-center" style="width: 120px;">Total Produk</th>
+						<th class="text-center" style="width: 120px;">View</th>
 						<th class="text-center" style="width: 80px;">Action</th>
 					</tr>
 				</thead>
 				<tbody>
-					<?php if (!empty($listfilter)): ?>
-						<?php foreach ($listfilter as $key): ?>
-							<tr>
-								<td class="ps-3">
-									<a href="<?php echo base_url() ?>backendpromo/form?id=<?php echo $key["id"] ?>" class="fw-semibold text-warning text-decoration-none">
-										<?php echo htmlspecialchars($key["name"]); ?>
-									</a>
-								</td>
-								<td class="text-center">
-									<?php
-									$explode = explode(",", $key["product"]);
-									$totalProduk = count($explode);
-									?>
-									<span class="badge bg-warning text-dark rounded-pill px-3 py-2">
-										<i class="bi bi-box-seam me-1"></i> <?php echo $totalProduk; ?> Produk
-									</span>
-								</td>
-								<td class="text-center">
-									<a href=" <?php echo base_url() ?>backendpromo/form?id=<?php echo $key["id"] ?>" class="btn btn-sm btn-outline-warning rounded-3" data-bs-toggle="tooltip" title="Edit Promo">
-										<i class="bi bi-pencil-square"></i>
-									</a>
-									<button type="button" class="btn btn-sm btn-outline-danger rounded-3" data-bs-toggle="tooltip" title="Hapus Promo" onclick="hapusPromo('<?php echo $key["id"] ?>', '<?php echo addslashes($key["name"]); ?>')">
-										<i class="bi bi-trash3"></i>
-									</button>
-								</td>
-							</tr>
-						<?php endforeach ?>
-					<?php else: ?>
-						<tr>
-							<td colspan="4" class="text-center py-5">
-								<i class="bi bi-inbox fs-1 text-muted d-block mb-2"></i>
-								<span class="text-muted">Tidak ada data promo</span>
-							</td>
-						</tr>
-					<?php endif ?>
 				</tbody>
 			</table>
 		</div>

@@ -107,6 +107,8 @@ class Myproduct extends MX_Controller
             $this->db->order_by('brand', $_REQUEST['order'][0]['dir']);
         elseif ($_REQUEST['order'][0]['column'] == '4'):
             $this->db->order_by('stock', $_REQUEST['order'][0]['dir']);
+        elseif ($_REQUEST['order'][0]['column'] == '5'):
+            $this->db->order_by('view', $_REQUEST['order'][0]['dir']);
         endif;
 
         $session = $this->session->all_userdata();
