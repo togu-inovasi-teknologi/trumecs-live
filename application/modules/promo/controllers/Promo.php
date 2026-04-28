@@ -45,7 +45,7 @@ class Promo extends MX_Controller
 
 		} else {
 			// Halaman detail promo
-			$data["datalist"] = $this->promo_model->getpromo($this->uri->segment(2));
+			$data["datalist"] = $this->promo_model->getpromodetail($this->uri->segment(2));
 			$data["breadcrumb"] = array($data["datalist"]["promo"][0]["name"]);
 			$data["listproduct"] = $data["datalist"]["product"];
 
