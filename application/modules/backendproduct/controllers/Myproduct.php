@@ -135,8 +135,7 @@ class Myproduct extends MX_Controller
             $w = $product["warranty"] != 0 or $product["warranty"] != "" ? "danger" : "success";
 
             $output['data'][] = array(
-                '<a href="' . base_url() . 'backendproduct/productstatus?id=' . $product["id"] . '&status=' . $s . '" class="label label-' . $l . '" alt="show"><i class="bi bi-' . $i . '"></i></a><br><span> View : ' . $product['view'] . '</span>',
-                $product['tittle'] . '<br>' . '<small>' . $product['partnumber'] . '</small>',
+                '<a href="' . base_url() . 'backendproduct/productstatus?id=' . $product["id"] . '&status=' . $s . '" class="label label-' . $l . '" alt="show"><i class="bi bi-' . $i . '"></i></a>',
                 $product['tittle'] . '<br>' . '<small>' . $product['partnumber'] . '</small>',
                 'Rp.' . number_format($product['price']) . '/' . $product['unit'] . '<br>' . '<small>' .
                     'Rp.' . number_format($product['price_promo']) . '/' . $product['unit'] . '</small>',
