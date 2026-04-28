@@ -23,7 +23,6 @@ class Promo_model extends CI_Model
             $this->db->where("url", $value)->set("view", $getpromo[0]['view'] + 1)->update('promo');
             return $arrayall;
         }
-        $this->db->where("url", $value)->set("view", $getpromo[0]['view'] + 1)->update('promo');
         return array();
     }
 
