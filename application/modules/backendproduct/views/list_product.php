@@ -213,64 +213,13 @@ function namectgr($id)
 						<th>Harga<br><small>Harga Promo</small></th>
 						<th>Merek<br><small>Tipe</small></th>
 						<th>Stok</th>
-						<th>Garansi</th>
+						<th>View</th>
 						<th>Edit</th>
 						<th>Galeri</th>
 						<th>Hapus</th>
 					</tr>
 				</thead>
 				<tbody>
-					<?php if (!empty($listproduct)): ?>
-
-						<?php foreach ($listproduct as $key): ?>
-							<tr>
-								<td>
-									<a href="<?php echo base_url() ?>backendproduct/productstatus?id=<?php echo $key["id"] ?>&status=<?php echo ($key["status"] == "show") ? "draf" : "show"; ?>" class="badge bg-success text-decoration-none" alt="show">
-										<i class="bi bi-check"></i>
-									</a>
-									<a href="<?php echo base_url() ?>backendproduct/productstatus?id=<?php echo $key["id"] ?>&status=<?php echo ($key["status"] == "show") ? "draf" : "show"; ?>" class="badge bg-default text-decoration-none" alt="draf">
-										<i class="bi bi-file-earmark-arrow-down"></i>
-									</a>
-									<a href="<?php echo base_url() ?>backendproduct/productstatus?id=<?php echo $key["id"] ?>&status=<?php echo ($key["status"] == "show") ? "draf" : "show"; ?>" class="badge bg-danger text-decoration-none" alt="sold">
-										<i class="bi bi-ban"></i>
-									</a>
-								</td>
-								<td><?php echo $key["tittle"] ?><br>
-									<small class="text-muted"><?php echo str_replace(" ", "", $key["partnumber"]) ?></small>
-								</td>
-								<td>Rp.<?php echo number_format($key["price"]) ?>/<?php echo strtolower(($key["unit"])) ?>
-									<br><small class="text-muted">Rp.<?php echo number_format($key["price_promo"]) ?>/<?php echo strtolower(($key["unit"])) ?></small>
-								</td>
-								<td>
-									<span class="badge bg-secondary"><?php echo namectgr($key["brand"]) ?></span>
-									<br><small class="text-muted"><?php echo namectgr($key["type"]) ?></small>
-								</td>
-								<td>
-									<span class="badge bg-<?php echo (($key["stock"]) <= 3) ? "danger" : "success"; ?>"><?php echo ($key["stock"]) ?></span>
-								</td>
-								<td>
-									<span class="badge bg-<?php echo (($key["warranty"]) != 0 or $key["warranty"] != "") ? "danger" : "success"; ?>"><?php echo ($key["warranty"]) ?></span>
-								</td>
-								<td>
-									<a class="badge bg-warning text-decoration-none"
-										href="<?php echo base_url() ?>backendproduct/form?id=<?php echo $key["id"] ?>"><i class="bi bi-pencil"></i></a>
-								</td>
-								<td>
-									<a class="badge bg-primary text-decoration-none"
-										href="<?php echo base_url() ?>backendproduct/galery?id=<?php echo $key["id"] ?>"><i class="bi bi-images"></i></a>
-								</td>
-								<td>
-									<a class="badge bg-danger text-decoration-none click"
-										onclick="hapus(<?php echo $key["id"] ?>,'<?php echo $key["tittle"] ?>')"
-										url="<?php echo base_url() ?>backendproduct/hapus?id=<?php echo $key["id"] ?>"><i class="bi bi-trash"></i></a>
-								</td>
-							</tr>
-						<?php endforeach ?>
-					<?php else: ?>
-						<tr>
-							<td colspan="9" class="text-center">Tidak ada data</td>
-						</tr>
-					<?php endif ?>
 
 				</tbody>
 			</table>

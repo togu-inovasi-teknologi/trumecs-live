@@ -161,7 +161,7 @@ class Backendproduct extends MX_Controller
                     'Rp.' . number_format($product['price_promo']) . '/' . $product['unit'] . '</small>',
                 '<span class="label label-default">' . ($this->namectgr($product['brand'])) . '</span>' . '<br>' . '<small>' . ($this->namectgr($product['type'])) . '</small>',
                 '<span class="label label-' . $k . '">' . $product["stock"] . '</span>',
-                '<span class="label label-' . $w . '">' . $product["warranty"] . '</span>',
+                '<span class="label label-' . $w . '">' . $product["view"] . '</span>',
                 '<a class="label label-warning" href="' . base_url() . 'backendproduct/form?id=' . $product["id"] . '"><i class="bi bi-pencil"></i></a>',
                 '<a class="label label-primary" href="' . base_url() . 'backendproduct/galery?id=' . $product["id"] . '"><i class="bi bi-image"></i></a>',
                 '<a class="label click label-danger" onclick="hapus(' . $product["id"] . ',\'' . $product["tittle"] . '\')"
