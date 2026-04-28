@@ -360,6 +360,19 @@
             }
         });
 
+        $("#table-mypromo").DataTable({
+            ordering: true,
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "<?php echo base_url('backendpromo/mypromo/ambil_data') ?>",
+                type: 'POST',
+                data: {
+                    "status": $("input[name='status']").val()
+                }
+            }
+        });
+
         $("#table-user").DataTable({
             ordering: true,
             processing: true,
@@ -432,6 +445,39 @@
                 data: {
                     "status": $("input[name='status']").val()
                 }
+            }
+        });
+
+        $("#table-dashboard-product").DataTable({
+            ordering: true,
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "<?php echo base_url('backendproduct/myproduct/ambil_data_dashboard') ?>",
+                type: 'POST',
+            }
+        });
+
+        $("#table-dashboard-promo").DataTable({
+            ordering: true,
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "<?php echo base_url('backendpromo/mypromo/ambil_data_dashboard') ?>",
+                type: 'POST',
+                data: {
+                    "status": $("input[name='status']").val()
+                }
+            }
+        });
+
+        $("#table-dashboard-artikel").DataTable({
+            ordering: true,
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "<?php echo base_url('backendartikel/myartikel/ambil_data_dashboard') ?>",
+                type: 'POST',
             }
         });
     </script>

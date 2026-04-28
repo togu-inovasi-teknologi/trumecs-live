@@ -81,6 +81,9 @@ class Myproduct extends MX_Controller
         $length = $_REQUEST['length'];
         $start = $_REQUEST['start'];
         $search = $_REQUEST['search']["value"];
+        $this->db->where([
+            'created_by' => $this->sessionmember['id']
+        ]);
         $total = $this->db->count_all_results("product");
         $output = array();
         $output['draw'] = $draw;
@@ -144,6 +147,76 @@ class Myproduct extends MX_Controller
                 '<a class="label label-primary" href="' . base_url() . 'backendproduct/myproduct/galery?id=' . $product["id"] . '"><i class="bi bi-image"></i></a>',
                 '<a class="label click label-danger" onclick="hapus(' . $product["id"] . ',\'' . $product["tittle"] . '\')"
                     url="' . base_url() . 'backendproduct/myproduct/hapus?id=' . $product["id"] . '"><i class="bi bi-trash"></i></a>'
+
+            );
+        }
+
+        echo json_encode($output);
+    }
+
+    function ambil_data_dashboard()
+    {
+
+        $draw = $_REQUEST['draw'];
+        $length = $_REQUEST['length'];
+        $start = $_REQUEST['start'];
+        $search = $_REQUEST['search']["value"];
+        $this->db->where([
+            'created_by' => $this->sessionmember['id']
+        ]);
+        $total = $this->db->count_all_results("product");
+        $output = array();
+        $output['draw'] = $draw;
+        $output['recordsTotal'] = $output['recordsFiltered'] = $total;
+        $output['data'] = array();
+        if ($search != "") {
+            $this->db->where("(
+							tittle LIKE '%$search%' 
+							OR partnumber LIKE '%$search%' 
+							OR price LIKE '%$search%' 
+							OR price_promo LIKE '%$search%' 
+                          
+                        )", '', false);
+        }
+        $this->db->limit($length, $start);
+        if ($_REQUEST['order'][0]['column'] == '1'):
+            $this->db->order_by('tittle', $_REQUEST['order'][0]['dir']);
+        elseif ($_REQUEST['order'][0]['column'] == '2'):
+            $this->db->order_by('price', $_REQUEST['order'][0]['dir']);
+        elseif ($_REQUEST['order'][0]['column'] == '3'):
+            $this->db->order_by('brand', $_REQUEST['order'][0]['dir']);
+        elseif ($_REQUEST['order'][0]['column'] == '4'):
+            $this->db->order_by('stock', $_REQUEST['order'][0]['dir']);
+        endif;
+
+        $session = $this->session->all_userdata();
+        $sessionmember = array_key_exists("admin", $session) ? $session["admin"] : array('id' => 0);
+
+        $this->db->where('created_by', $this->sessionmember["id"]);
+
+        $query = $this->db->get('product');
+        if ($search != "") {
+            $this->db->where("(
+							tittle LIKE '%$search%' 
+							OR partnumber LIKE '%$search%' 
+							OR price LIKE '%$search%' 
+							OR price_promo LIKE '%$search%' 
+                          
+                        )", '', false);
+            $jum = $this->db->get('product');
+            $output['recordsTotal'] = $output['recordsFiltered'] = $jum->num_rows();
+        }
+
+        foreach ($query->result_array() as $product) {
+            $s = $product["status"] == "show" ? "draf" : "show";
+            $l = $product["status"] == "show" ? "success" : "danger";
+            $i = $product["status"] == "show" ? "check" : "ban";
+            $k = $product["stock"] <= 3 ? "danger" : "success";
+            $w = $product["warranty"] != 0 or $product["warranty"] != "" ? "danger" : "success";
+
+            $output['data'][] = array(
+                '<a class="label label-warning" href="' . base_url() . 'backendproduct/myproduct/form?id=' . $product["id"] . '">' . $product["tittle"] . '</a>',
+                '<span class="fbold f14">' . $product["view"] . '</span>'
 
             );
         }

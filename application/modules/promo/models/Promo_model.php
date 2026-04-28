@@ -12,16 +12,18 @@ class Promo_model extends CI_Model
     public function getpromo($value)
     {
         $promo = $this->db->where("url", $value)->from("promo")->get();
-        $getproduct = $promo->result_array();
-        if (count($getproduct) > 0) {
-            $product_ids = $getproduct[0]["product"];
-            $promo_type = $getproduct[0]["type"];
+        $getpromo = $promo->result_array();
+        if (count($getpromo) > 0) {
+            $product_ids = $getpromo[0]["product"];
+            $promo_type = $getpromo[0]["type"];
 
             $getselect = $this->fetch_product($product_ids, $promo_type);
 
-            $arrayall = array_merge(array('product' => $getselect), array('promo' => $getproduct));
+            $arrayall = array_merge(array('product' => $getselect), array('promo' => $getpromo));
+            $this->db->where("url", $value)->set("view", $getpromo[0]['view'] + 1)->update('promo');
             return $arrayall;
         }
+        $this->db->where("url", $value)->set("view", $getpromo[0]['view'] + 1)->update('promo');
         return array();
     }
 

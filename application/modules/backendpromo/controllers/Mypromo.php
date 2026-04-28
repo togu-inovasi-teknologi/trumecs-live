@@ -40,6 +40,9 @@ class Mypromo extends MX_Controller
         $length = $_REQUEST['length'];
         $start = $_REQUEST['start'];
         $search = $_REQUEST['search']["value"];
+        $this->db->where([
+            'created_by' => $this->sessionmember['id']
+        ]);
         $total = $this->db->count_all_results("promo");
         $output = array();
         $output['draw'] = $draw;
@@ -73,6 +76,49 @@ class Mypromo extends MX_Controller
                 '<span>' . count($explode) . '</span>',
                 '<a class="btn btn-sm btn-primary" href="' . base_url() . 'backendpromo/formPromoProduct?id=' . $promo["id"] . '"><i class="bi bi-file-earmark"></i></a> <a class="btn btn-sm btn-warning" href="' . base_url() . 'backendpromo/form?id=' . $promo["id"] . '"><i class="bi bi-pencil"></i></a>
                 <a class="btn btn-sm btn-danger" href="' . base_url() . 'backendpromo/hapuspromo?id=' . $promo["id"] . '"><i class="bi bi-trash"></i></a>'
+            );
+        }
+        echo json_encode($output);
+    }
+
+    function ambil_data_dashboard()
+    {
+
+        $draw = $_REQUEST['draw'];
+        $length = $_REQUEST['length'];
+        $start = $_REQUEST['start'];
+        $search = $_REQUEST['search']["value"];
+        $this->db->where([
+            'created_by' => $this->sessionmember['id']
+        ]);
+        $total = $this->db->count_all_results("promo");
+        $output = array();
+        $output['draw'] = $draw;
+        $output['recordsTotal'] = $output['recordsFiltered'] = $total;
+        $output['data'] = array();
+        if ($search != "") {
+            $this->db->like("name", $search);
+        }
+        $this->db->limit($length, $start);
+        if ($_REQUEST['order'][0]['column'] == '0'):
+            $this->db->order_by('id', 'DESC');
+        endif;
+        $this->db->where([
+            'created_by' => $this->sessionmember['id']
+        ]);
+        $query = $this->db->get('promo');
+        if ($search != "") {
+            $this->db->like("name", $search);
+            $jum = $this->db->get('promo');
+            $output['recordsTotal'] = $output['recordsFiltered'] = $jum->num_rows();
+        }
+
+        foreach ($query->result_array() as $promo) {
+
+            $output['data'][] = array(
+
+                '<a class="fbold f14 forange" href="' . base_url() . 'backendpromo/form?id=' . $promo["id"] . '">' . $promo["name"] . '</a><br><span class="fbold f14">' . $promo["type"] . '</span>',
+                '<span class="fbold f14">' . $promo["view"] . '</span>'
             );
         }
         echo json_encode($output);

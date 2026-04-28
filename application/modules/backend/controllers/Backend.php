@@ -12,6 +12,9 @@ class Backend extends MX_Controller
     public function index()
     {
         $this->securitylog->cekadmin();
+        $data['totalArtikel'] = $this->backend_model->total_views('artikel');
+        $data['totalProduct'] = $this->backend_model->total_views('product');
+        $data['totalPromo'] = $this->backend_model->total_views('promo');
         if (!$this->agent->is_mobile()) {
             $data['content'] = 'desktop/view_dashboard';
         } else {

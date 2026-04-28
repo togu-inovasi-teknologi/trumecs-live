@@ -18,7 +18,7 @@
 	<div class="row">
 		<input type="hidden" name="status" value="<?php echo $this->input->get('status') ?>" />
 		<div class="col-12 table-responsive">
-			<table id="table-promo" class="table table-hover table-striped table-bordered align-middle" width="100%">
+			<table id="table<?php echo $this->uri->segment(2) == "listpromo" ? "-promo" : "-mypromo"; ?>" class="table table-hover table-striped table-bordered align-middle" width="100%">
 				<thead class="table-light">
 					<tr class="text-center">
 						<th class="ps-3">Judul</th>

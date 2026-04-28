@@ -165,6 +165,63 @@ class Myartikel extends MX_Controller
         echo json_encode($output);
     }
 
+    function ambil_data_dashboard()
+    {
+
+        $draw = $_REQUEST['draw'];
+        $length = $_REQUEST['length'];
+        $start = $_REQUEST['start'];
+        $search = $_REQUEST['search']["value"];
+        $this->db->where('created_by', $this->sessionmember["id"]);
+        $total = $this->db->count_all_results("artikel");
+        $output = array();
+        $output['draw'] = $draw;
+        $output['recordsTotal'] = $output['recordsFiltered'] = $total;
+        $output['data'] = array();
+        if ($search != "") {
+            $this->db->like("title", $search);
+        }
+        $this->db->limit($length, $start);
+        if ($_REQUEST['order'][0]['column'] == '0'):
+            $this->db->order_by('title', $_REQUEST['order'][0]['dir']);
+        endif;
+        if ($_REQUEST['order'][0]['column'] == '1'):
+            $this->db->order_by('created_at', $_REQUEST['order'][0]['dir']);
+        endif;
+        if ($_REQUEST['order'][0]['column'] == '2'):
+            $this->db->order_by('updated_at', $_REQUEST['order'][0]['dir']);
+        endif;
+        if ($_REQUEST['order'][0]['column'] == '3'):
+            $this->db->order_by('view', $_REQUEST['order'][0]['dir']);
+        endif;
+        if ($_REQUEST['order'][0]['column'] == '4'):
+            $this->db->order_by('creator', $_REQUEST['order'][0]['dir']);
+        endif;
+        $this->db->select('artikel.*, a1.name AS creator, a2.name AS editor');
+        $this->db->join('admin a1', 'a1.id = artikel.created_by');
+        $this->db->join('admin a2', 'a2.id = artikel.updated_by', 'left');
+
+        $this->db->where('a1.id', $this->sessionmember["id"]);
+        $query = $this->db->get('artikel');
+        if ($search != "") {
+
+            $this->db->like("title", $search);
+
+            $jum = $this->db->get('artikel');
+            $output['recordsTotal'] = $output['recordsFiltered'] = $jum->num_rows();
+        }
+        foreach ($query->result_array() as $artikel) {
+            $output['data'][] = array(
+                '<a class="text-primary text-decoration-none fw-medium" href="' . base_url() . 'backendartikel/form?id=' . $artikel["id"] . '">' . htmlspecialchars($artikel["title"]) . '</a>',
+                '<span class="fbold f14">' . $artikel["view"] . '</span>'
+            );
+        }
+
+
+        echo json_encode($output);
+    }
+
+
 
     public function form()
     {

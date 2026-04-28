@@ -1,22 +1,26 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Backend_model extends CI_Model {
+class Backend_model extends CI_Model
+{
 
     function __construct()
     {
         parent::__construct();
+
+        $session = $this->session->all_userdata();
+        $this->sessionmember = array_key_exists("admin", $session) ? $session["admin"] : array('id' => 0);
     }
     public function getadmin($data)
     {
         $query = $this->db
-                ->select("*,admin.name as nameadmin,backend_rule.name as level, admin.id AS id")
-                ->where($data)
-                ->from("admin")
-                ->join("backend_rule","admin.privileges=backend_rule.id")->get();
+            ->select("*,admin.name as nameadmin,backend_rule.name as level, admin.id AS id")
+            ->where($data)
+            ->from("admin")
+            ->join("backend_rule", "admin.privileges=backend_rule.id")->get();
         return $query->result_array();
     }
-     /*public function get_orderhistory($limit, $start,$where)
+    /*public function get_orderhistory($limit, $start,$where)
     {
         $this->db->where($where)
                 ->limit($limit, $start)
@@ -85,19 +89,19 @@ class Backend_model extends CI_Model {
 
     public function insert($data)
     {
-        $this->db->insert("admin",$data);
+        $this->db->insert("admin", $data);
     }
-    
-    public function edit_admin($id,$data)
+
+    public function edit_admin($id, $data)
     {
         $this->db->where($id)
-                ->update("admin",$data);
+            ->update("admin", $data);
     }
-    public function update($where,$update)
+    public function update($where, $update)
     {
         $this->db->where($where)
-                ->set($update)
-                ->update("admin");
+            ->set($update)
+            ->update("admin");
     }
     public function delete()
     {
@@ -107,18 +111,33 @@ class Backend_model extends CI_Model {
     public function activation($data)
     {
         $query1 = $this->db->where($data)
-                ->from("admin");
+            ->from("admin");
         $query1 = $this->db->get();
         $query1->result_array();
-        if (count($query1)==NULL) {
+        if (count($query1) == NULL) {
             return false;
-        }else{
+        } else {
             $this->db->where($data)
-                ->set('status','active')
-                ->set('level','silver')
+                ->set('status', 'active')
+                ->set('level', 'silver')
                 ->update("admin");
             return true;
         }
+    }
+
+    public function total_views($nametable)
+    {
+        $this->db->select('SUM(view) as total');
+
+        $this->db->where([
+            'created_by' => $this->sessionmember['id']
+        ]);
+
+        $query = $this->db
+            ->from($nametable)
+            ->get();
+
+        return $query->row()->total;
     }
 
     /*public function recordhistory($where)
