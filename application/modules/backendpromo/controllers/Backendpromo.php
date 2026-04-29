@@ -45,15 +45,20 @@ class Backendpromo extends MX_Controller
             $this->db->like("name", $search);
         }
         $this->db->limit($length, $start);
-        if ($_REQUEST['order'][0]['column'] == '0'):
-            $this->db->order_by('name', $_REQUEST['order'][0]['dir']);
-        elseif ($_REQUEST['order'][0]['column'] == '1'):
-            $this->db->order_by('type', $_REQUEST['order'][0]['dir']);
-        elseif ($_REQUEST['order'][0]['column'] == '2'):
-            $this->db->order_by('product', $_REQUEST['order'][0]['dir']);
-        elseif ($_REQUEST['order'][0]['column'] == '3'):
-            $this->db->order_by('view', $_REQUEST['order'][0]['dir']);
-        endif;
+        if (isset($_REQUEST['order'][0]['column'])) {
+            if ($_REQUEST['order'][0]['column'] == '0'):
+                $this->db->order_by('name', $_REQUEST['order'][0]['dir']);
+            elseif ($_REQUEST['order'][0]['column'] == '1'):
+                $this->db->order_by('type', $_REQUEST['order'][0]['dir']);
+            elseif ($_REQUEST['order'][0]['column'] == '2'):
+                $this->db->order_by('product', $_REQUEST['order'][0]['dir']);
+            elseif ($_REQUEST['order'][0]['column'] == '3'):
+                $this->db->order_by('view', $_REQUEST['order'][0]['dir']);
+            endif;
+        } else {
+            $this->db->order_by('id', 'DESC');
+        }
+
         $query = $this->db->get('promo');
         if ($search != "") {
             $this->db->like("name", $search);

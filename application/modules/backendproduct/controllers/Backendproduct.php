@@ -122,19 +122,21 @@ class Backendproduct extends MX_Controller
                         )", '', false);
         }
         $this->db->limit($length, $start);
-        if ($_REQUEST['order'][0]['column'] == '1'):
-            $this->db->order_by('tittle', $_REQUEST['order'][0]['dir']);
-        elseif ($_REQUEST['order'][0]['column'] == '2'):
-            $this->db->order_by('price', $_REQUEST['order'][0]['dir']);
-        elseif ($_REQUEST['order'][0]['column'] == '3'):
-            $this->db->order_by('brand', $_REQUEST['order'][0]['dir']);
-        elseif ($_REQUEST['order'][0]['column'] == '4'):
-            $this->db->order_by('stock', $_REQUEST['order'][0]['dir']);
-        elseif ($_REQUEST['order'][0]['column'] == '5'):
-            $this->db->order_by('view', $_REQUEST['order'][0]['dir']);
-        endif;
-
-
+        if (isset($_REQUEST['order'][0]['column'])) {
+            if ($_REQUEST['order'][0]['column'] == '1'):
+                $this->db->order_by('tittle', $_REQUEST['order'][0]['dir']);
+            elseif ($_REQUEST['order'][0]['column'] == '2'):
+                $this->db->order_by('price', $_REQUEST['order'][0]['dir']);
+            elseif ($_REQUEST['order'][0]['column'] == '3'):
+                $this->db->order_by('brand', $_REQUEST['order'][0]['dir']);
+            elseif ($_REQUEST['order'][0]['column'] == '4'):
+                $this->db->order_by('stock', $_REQUEST['order'][0]['dir']);
+            elseif ($_REQUEST['order'][0]['column'] == '5'):
+                $this->db->order_by('view', $_REQUEST['order'][0]['dir']);
+            endif;
+        } else {
+            $this->db->order_by('id', 'DESC');
+        }
 
         $query = $this->db->get('product');
         if ($search != "") {

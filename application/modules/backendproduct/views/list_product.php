@@ -100,135 +100,135 @@ function namectgr($id)
 
 		</div>
 		<div class="col-md-6 text-end">
-			<a class="btn btn-success" data-bs-toggle="modal" data-bs-target=".modal_download">Download list produk</a>
+			<!-- <a class="btn btn-success" data-bs-toggle="modal" data-bs-target=".modal_download">Download list produk</a>
 			<div class="modal fade modal_download" tabindex="-1" role="dialog" aria-labelledby="downloadModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered">
 					<div class="modal-content border-0 shadow-lg">
 						<!-- Modal Header -->
-						<div class="modal-header bg-primary text-white">
-							<h5 class="modal-title fw-bold" id="downloadModalLabel">
-								<i class="bi bi-download me-2"></i>Download Data
-							</h5>
-							<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-						</div>
+			<div class="modal-header bg-primary text-white">
+				<h5 class="modal-title fw-bold" id="downloadModalLabel">
+					<i class="bi bi-download me-2"></i>Download Data
+				</h5>
+				<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
 
-						<!-- Modal Body -->
-						<div class="modal-body p-4">
-							<!-- Produk Section -->
-							<div class="download-section mb-4">
-								<div class="section-header mb-3">
-									<h6 class="fw-semibold text-primary mb-2">
-										<i class="bi bi-box me-2"></i>Download Data Produk
-									</h6>
-									<p class="text-muted small mb-0">Pilih jenis data produk yang ingin diunduh</p>
+			<!-- Modal Body -->
+			<div class="modal-body p-4">
+				<!-- Produk Section -->
+				<div class="download-section mb-4">
+					<div class="section-header mb-3">
+						<h6 class="fw-semibold text-primary mb-2">
+							<i class="bi bi-box me-2"></i>Download Data Produk
+						</h6>
+						<p class="text-muted small mb-0">Pilih jenis data produk yang ingin diunduh</p>
+					</div>
+
+					<div class="btn-group-vertical w-100" role="group">
+						<a href="<?php echo base_url() ?>backendproduct/download_exel_product"
+							class="btn btn-outline-secondary text-start py-3">
+							<div class="d-flex justify-content-between align-items-center">
+								<div>
+									<i class="bi bi-layers me-2"></i>
+									<strong>Semua Produk</strong>
 								</div>
-
-								<div class="btn-group-vertical w-100" role="group">
-									<a href="<?php echo base_url() ?>backendproduct/download_exel_product"
-										class="btn btn-outline-secondary text-start py-3">
-										<div class="d-flex justify-content-between align-items-center">
-											<div>
-												<i class="bi bi-layers me-2"></i>
-												<strong>Semua Produk</strong>
-											</div>
-											<small class="text-muted">.xlsx</small>
-										</div>
-									</a>
-
-									<a href="<?php echo base_url() ?>backendproduct/download_exel_product/show"
-										class="btn btn-outline-success text-start py-3">
-										<div class="d-flex justify-content-between align-items-center">
-											<div>
-												<i class="bi bi-check-circle me-2"></i>
-												<strong>Produk Valid</strong>
-											</div>
-											<small class="text-muted">.xlsx</small>
-										</div>
-									</a>
-
-									<a href="<?php echo base_url() ?>backendproduct/download_exel_product/draf"
-										class="btn btn-outline-danger text-start py-3">
-										<div class="d-flex justify-content-between align-items-center">
-											<div>
-												<i class="bi bi-x-lg-circle me-2"></i>
-												<strong>Produk Tidak Valid</strong>
-											</div>
-											<small class="text-muted">.xlsx</small>
-										</div>
-									</a>
-								</div>
+								<small class="text-muted">.xlsx</small>
 							</div>
+						</a>
 
-							<!-- Kategori Section -->
-							<div class="download-section">
-								<div class="section-header mb-3">
-									<h6 class="fw-semibold text-success mb-2">
-										<i class="bi bi-tags me-2"></i>Download Data Kategori
-									</h6>
-									<p class="text-muted small mb-0">Unduh data kategori, merek, dan tipe</p>
+						<a href="<?php echo base_url() ?>backendproduct/download_exel_product/show"
+							class="btn btn-outline-success text-start py-3">
+							<div class="d-flex justify-content-between align-items-center">
+								<div>
+									<i class="bi bi-check-circle me-2"></i>
+									<strong>Produk Valid</strong>
 								</div>
-
-								<div class="btn-group-vertical w-100" role="group">
-									<a href="<?php echo base_url() ?>backendproduct/category_brand_type_component"
-										class="btn btn-outline-info text-start py-3">
-										<div class="d-flex justify-content-between align-items-center">
-											<div>
-												<i class="bi bi-database me-2"></i>
-												<strong>Semua Kategori & Merek</strong>
-											</div>
-											<small class="text-muted">.xlsx</small>
-										</div>
-									</a>
-								</div>
+								<small class="text-muted">.xlsx</small>
 							</div>
-						</div>
+						</a>
 
-						<!-- Modal Footer -->
-						<div class="modal-footer bg-light">
-							<small class="text-muted">
-								<i class="bi bi-info-circle me-1"></i>
-								File akan diunduh dalam format Excel (.xlsx)
-							</small>
-						</div>
+						<a href="<?php echo base_url() ?>backendproduct/download_exel_product/draf"
+							class="btn btn-outline-danger text-start py-3">
+							<div class="d-flex justify-content-between align-items-center">
+								<div>
+									<i class="bi bi-x-lg-circle me-2"></i>
+									<strong>Produk Tidak Valid</strong>
+								</div>
+								<small class="text-muted">.xlsx</small>
+							</div>
+						</a>
+					</div>
+				</div>
+
+				<!-- Kategori Section -->
+				<div class="download-section">
+					<div class="section-header mb-3">
+						<h6 class="fw-semibold text-success mb-2">
+							<i class="bi bi-tags me-2"></i>Download Data Kategori
+						</h6>
+						<p class="text-muted small mb-0">Unduh data kategori, merek, dan tipe</p>
+					</div>
+
+					<div class="btn-group-vertical w-100" role="group">
+						<a href="<?php echo base_url() ?>backendproduct/category_brand_type_component"
+							class="btn btn-outline-info text-start py-3">
+							<div class="d-flex justify-content-between align-items-center">
+								<div>
+									<i class="bi bi-database me-2"></i>
+									<strong>Semua Kategori & Merek</strong>
+								</div>
+								<small class="text-muted">.xlsx</small>
+							</div>
+						</a>
 					</div>
 				</div>
 			</div>
-			<a href="<?php echo base_url() ?>backendproduct/<?php echo $this->uri->segment(2) == "myproduct" ? "myproduct/" : ""; ?>form" class="btn btn-warning">Tambah Produk</a>
-			<a href="<?= base_url() ?>backendproduct/syncProductFromSheetToDB"
-				class="btn btn-primary">
-				Sync From Sheet
-			</a>
-		</div>
-		<div class="col-lg-12">
-			<hr>
+
+			<!-- Modal Footer -->
+			<div class="modal-footer bg-light">
+				<small class="text-muted">
+					<i class="bi bi-info-circle me-1"></i>
+					File akan diunduh dalam format Excel (.xlsx)
+				</small>
+			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-12 table-responsive">
-			<table id="table<?php echo $this->uri->segment(2) == "listall" ? "1" : "-myproduct"; ?>" class="table table-striped table-bordered table-hover" cellspacing="2" width="100%">
-				<thead>
-					<tr>
-						<th>Valid?</th>
-						<th>Nama<br><small>Part Number</small></th>
-						<th>Harga<br><small>Harga Promo</small></th>
-						<th>Merek<br><small>Tipe</small></th>
-						<th>Stok</th>
-						<th>View</th>
-						<th>Edit</th>
-						<th>Galeri</th>
-						<th>Hapus</th>
-					</tr>
-				</thead>
-				<tbody>
+</div> -->
+<a href="<?php echo base_url() ?>backendproduct/<?php echo $this->uri->segment(2) == "myproduct" ? "myproduct/" : ""; ?>form" class="btn btn-warning">Tambah Produk</a>
+<!-- <a href="<?= base_url() ?>backendproduct/syncProductFromSheetToDB"
+				class="btn btn-primary">
+				Sync From Sheet
+			</a> -->
+</div>
+<div class="col-lg-12">
+	<hr>
+</div>
+</div>
+<div class="row">
+	<div class="col-12 table-responsive">
+		<table id="table<?php echo $this->uri->segment(2) == "listall" ? "1" : "-myproduct"; ?>" class="table table-striped table-bordered table-hover" cellspacing="2" width="100%">
+			<thead>
+				<tr>
+					<th>Valid?</th>
+					<th>Nama<br><small>Part Number</small></th>
+					<th>Harga<br><small>Harga Promo</small></th>
+					<th>Merek<br><small>Tipe</small></th>
+					<th>Stok</th>
+					<th>View</th>
+					<th>Edit</th>
+					<th>Galeri</th>
+					<th>Hapus</th>
+				</tr>
+			</thead>
+			<tbody>
 
-				</tbody>
-			</table>
-		</div>
-		<!--<div class="col-12 text-center">
+			</tbody>
+		</table>
+	</div>
+	<!--<div class="col-12 text-center">
 			<?php echo !empty($listproduct) ? $links : "";  ?> 
 		</div>-->
 
-	</div>
+</div>
 </div>
 <script type="text/javascript">
 	function hapus(url, name) {
