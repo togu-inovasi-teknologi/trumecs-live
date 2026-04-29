@@ -44,7 +44,7 @@
                               <div class="flex-grow-1">
                                   <p class="f14 fbold text-white mb-0">WhatsApp</p>
                               </div>
-                              <small class="text-white-50"><?php echo platform_contact('whatsapp') ?></small>
+                              <small class="text-white-50">+<?php echo platform_contact('whatsapp') ?></small>
                           </a>
                       </div>
 

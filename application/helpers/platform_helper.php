@@ -13,7 +13,7 @@ if (!function_exists('platform_contact')) {
             "phone" => "+62 851 7691 2338",
             "ida" => "",
             "name" => "",
-            "whatsapp" => "085176912338",
+            "whatsapp" => "6285176912338",
             "trumecs_email" => "",
             "address" => "No. B, Jl. Pintu Air Raya No.31, RT.13/RW.8, Ps. Baru, Kecamatan Sawah Besar, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10710",
         );
