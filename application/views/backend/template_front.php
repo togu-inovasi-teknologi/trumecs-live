@@ -183,6 +183,9 @@
             ordering: true,
             processing: true,
             serverSide: true,
+            order: [
+                [0, 'desc']
+            ],
             ajax: {
                 url: "<?php echo base_url('backendproduct/ambil_data') ?>",
                 type: 'POST',
