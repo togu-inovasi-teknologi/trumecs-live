@@ -76,6 +76,8 @@ class Backendpromo extends MX_Controller
 
                 '<span>' . count($explode) . '</span>',
                 '<span>' . $promo["view"] . '</span>',
+                '<span>' .  date("d M Y", $promo["start_date"]) . '</span>',
+                '<span>' .  date("d M Y", $promo["end_date"]) . '</span>',
                 '<a class="btn btn-sm btn-primary" href="' . base_url() . 'backendpromo/formPromoProduct?id=' . $promo["id"] . '"><i class="bi bi-file-earmark"></i></a> <a class="btn btn-sm btn-warning" href="' . base_url() . 'backendpromo/form?id=' . $promo["id"] . '"><i class="bi bi-pencil"></i></a>
                 <a class="btn btn-sm btn-danger" href="' . base_url() . 'backendpromo/hapuspromo?id=' . $promo["id"] . '"><i class="bi bi-trash"></i></a>'
             );

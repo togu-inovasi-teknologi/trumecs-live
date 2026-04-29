@@ -25,6 +25,8 @@
 						<th class="ps-3">Type</th>
 						<th class="text-center" style="width: 120px;">Total Produk</th>
 						<th class="text-center" style="width: 120px;">View</th>
+						<th class="text-center">Mulai Tanggal</th>
+						<th class="text-center">Berakhir Tanggal</th>
 						<th class="text-center" style="width: 80px;">Action</th>
 					</tr>
 				</thead>
