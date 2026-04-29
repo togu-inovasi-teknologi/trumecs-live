@@ -416,6 +416,19 @@
             }
         });
 
+        $("#table-myproduk-promo").DataTable({
+            ordering: true,
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "<?php echo base_url('backendpromo/mypromo/ambil_data_product') ?>",
+                type: 'POST',
+                data: {
+                    "id-promo": $("input[name='id-promo']").val()
+                }
+            }
+        });
+
         $("#table-produk-promo-pilih").DataTable({
             ordering: true,
             processing: true,
@@ -428,6 +441,7 @@
                 }
             }
         });
+
         $("#table-produk-promo-terpilih").DataTable({
             ordering: true,
             processing: true,
