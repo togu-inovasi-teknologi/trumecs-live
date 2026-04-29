@@ -305,6 +305,24 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                                     </tr>
                                                 </table>
                                             </div>
+                                            <div class="col-lg-12 mt-2">
+                                                <table class="table table-sm">
+                                                    <tr>
+                                                        <th class="bg-highlight">Promo Terkait</th>
+                                                    </tr>
+                                                    <?php if (!empty($key['promo'])): ?>
+                                                        <?php foreach ($key['promo'] as $promo) : ?>
+                                                            <td class="d-flex flex-column gap-3"><a href="<?= base_url() ?>promo/<?= $promo['url']; ?>" class="fw-bold link-underline link-underline-opacity-0 text-dark d-flex justify-content-between align-items-center"><span class="fs-4"><?= $promo['name']; ?></span><span class="fs-6 forange">lihat selengkapnya</span></a>
+                                                                <div><?php $this->load->view("_listproduct_same_promo", array('listproduct' => $promo['products'], 'promo_type' => $promo['type'])) ?></div>
+                                                            </td>
+                                                        <?php endforeach; ?>
+                                                    <?php else: ?>
+                                                        <tr>
+                                                            <td class="text-muted">Tidak ada promo terkait</td>
+                                                        </tr>
+                                                    <?php endif; ?>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

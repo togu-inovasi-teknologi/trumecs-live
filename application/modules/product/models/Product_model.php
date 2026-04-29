@@ -41,9 +41,44 @@ class Product_model extends CI_Model
             ->get()
             ->result_array();
 
+        $product_id = $return[0]['id'];
+        $limit_per_promo = 4;
+
+        $this->db->select('promo.*');
+        $this->db->from('promo');
+        $this->db->where("FIND_IN_SET($product_id, promo.product) >", 0, false);
+        $promos = $this->db->get()->result_array();
+
+        foreach ($promos as $key => $promo) {
+            $product_ids = explode(',', $promo['product']);
+            $product_ids = array_map('trim', $product_ids);
+
+            $product_ids = array_diff($product_ids, [$product_id]);
+
+            if (!empty($product_ids)) {
+                shuffle($product_ids);
+
+                $limited_product_ids = array_slice($product_ids, 0, $limit_per_promo);
+
+                $this->db->select('product.*, grade.grade as grade, categori.name as brand, store.name as store_name');
+                $this->db->from('product');
+                $this->db->join('grade', 'grade.id = product.quality', 'left');
+                $this->db->join('categori', 'categori.id = product.brand', 'left');
+                $this->db->join('store', 'store.id = product.store_id', 'left');
+                $this->db->where_in('product.id', $limited_product_ids);
+
+                $products = $this->db->get()->result_array();
+            } else {
+                $products = [];
+            }
+
+            $promos[$key]['products'] = $products;
+        }
+
         $this->db->where("product.id", $url)->set("view", $return[0]['view'] + 1)->update('product');
 
         $return[0]['attribute'] = $attribute;
+        $return[0]['promo'] = $promos;
 
         return $return;
     }
