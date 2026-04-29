@@ -44,11 +44,14 @@ class Backendadmin extends MX_Controller
             redirect(base_url() . 'backendadmin/rule');
         } else {
 
+            // $menu = $this->input->post("menu");
+            // $str_menu = "";
+            // foreach ($menu as $key) {
+            //     $str_menu .= $key . ",";
+            // }
+
             $menu = $this->input->post("menu");
-            $str_menu = "";
-            foreach ($menu as $key) {
-                $str_menu .= $key . ",";
-            }
+            $str_menu = !empty($menu) ? implode(",", $menu) : "";
             $set = array(
                 'description' => $this->input->post("description"),
                 'name' => $this->input->post("name"),
@@ -70,15 +73,29 @@ class Backendadmin extends MX_Controller
             redirect(base_url() . 'backendadmin/rule');
         } else {
 
+            // $menu = $this->input->post("menu");
+            // $str_menu = "";
+            // foreach ($menu as $key) {
+            //     $str_menu .= $key . ",";
+            //     $sub = $this->etx_model->getSubMenu($key);
+            //     foreach ($sub as $item):
+            //         $str_menu .= $item['id'] . ",";
+            //     endforeach;
+            // }
             $menu = $this->input->post("menu");
-            $str_menu = "";
-            foreach ($menu as $key) {
-                $str_menu .= $key . ",";
-                $sub = $this->etx_model->getSubMenu($key);
-                foreach ($sub as $item):
-                    $str_menu .= $item['id'] . ",";
-                endforeach;
+
+            // Jika tidak ada menu yang dipilih, set kosong
+            if (empty($menu)) {
+                $str_menu = "";
+            } else {
+                $str_menu = implode(",", $menu);
             }
+
+            $set = array(
+                'description' => $this->input->post("description"),
+                'name' => $this->input->post("name"),
+                'menu' => $str_menu,
+            );
             $set = array(
                 'description' => $this->input->post("description"),
                 'name' => $this->input->post("name"),
