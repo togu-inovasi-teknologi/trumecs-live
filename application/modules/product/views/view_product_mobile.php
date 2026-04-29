@@ -207,7 +207,7 @@ $img_promo = '<img class="labelimg d-none d-sm-block" src="' . base_url() . '/pu
                     </div>
                 <?php endif; ?>
                 <div class="swiper-slide">
-                    <img src="<?php echo isset($img_base_url) ? $img_base_url : base_url() ?>timthumb?q=80&h=105&src=<?php echo isset($img_base_url) ? $img_base_url : base_url() ?>public/image/product/<?php echo ($ext == ".jpg" ? $key["img"] : "../noimage.png"); ?>" alt="" />
+                    <img src="<?php echo isset($img_base_url) ? $img_base_url : base_url() ?>timthumb?&h=250&src=<?php echo isset($img_base_url) ? $img_base_url : base_url() ?>public/image/product/<?php echo ($ext == ".jpg" ? $key["img"] : "../noimage.png"); ?>" alt="" />
                 </div>
                 <?php if (count($galeryimg) > 0) : ?>
                     <?php foreach ($galeryimg as $galeryimg) : ?>
@@ -425,11 +425,27 @@ $img_promo = '<img class="labelimg d-none d-sm-block" src="' . base_url() . '/pu
                                             <?php if (!empty($key['promo'])): ?>
                                                 <?php foreach ($key['promo'] as $promo) : ?>
                                                     <div class="card mb-3 border-0 shadow-sm">
-                                                        <div class="card-body">
-                                                            <a href="<?= base_url() ?>promo/<?= $promo['url']; ?>" class="fw-bold text-decoration-none d-flex justify-content-between align-items-center">
+                                                        <div class="card-body d-flex flex-column gap-2">
+                                                            <a href="<?= base_url() ?>promo/<?= $promo['url']; ?>" class="fw-bold text-decoration-none d-flex flex-column gap-2 justify-content-between align-items-start">
                                                                 <span class="fs-5"><?= $promo['name']; ?></span>
-                                                                <span class="forange">lihat selengkapnya <i class="bi bi-arrow-right"></i></span>
+                                                                <span class="forange f12">lihat selengkapnya</span>
                                                             </a>
+                                                            <table class="table table-hover table-striped">
+                                                                <thead class="table-light">
+                                                                    <tr>
+                                                                        <th style="text-align:center;width:60%">Nama</th>
+                                                                        <th style="text-align:center">Harga</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <?php foreach ($promo['products'] as $promo_product): ?>
+                                                                        <tr>
+                                                                            <td><?php echo $promo_product["tittle"] ?></td>
+                                                                            <td style="text-align:right">Rp <?php echo number_format($promo_product["price"], 0, ',', '.') ?></td>
+                                                                        </tr>
+                                                                    <?php endforeach; ?>
+                                                                </tbody>
+                                                            </table>
                                                         </div>
                                                     </div>
                                                 <?php endforeach; ?>
@@ -457,7 +473,7 @@ $img_promo = '<img class="labelimg d-none d-sm-block" src="' . base_url() . '/pu
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-hover table-striped">
+                <table class="table table-hover table-striped" id="sameProductDetailTable">
                     <thead class="table-light">
                         <tr>
                             <th style="text-align:center;width:60%">Nama</th>
