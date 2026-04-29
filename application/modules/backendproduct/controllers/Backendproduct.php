@@ -110,18 +110,24 @@ class Backendproduct extends MX_Controller
         $total = $this->db->count_all_results("product");
         $output = array();
         $output['draw'] = $draw;
-        $output['recordsTotal'] = $output['recordsFiltered'] = $total;
+        $output['recordsTotal'] = $total;
+        $output['recordsFiltered'] = $total;
         $output['data'] = array();
+
+        // Apply search jika ada
         if ($search != "") {
             $this->db->where("(
-							tittle LIKE '%$search%' 
-							OR partnumber LIKE '%$search%' 
-							OR price LIKE '%$search%' 
-							OR price_promo LIKE '%$search%' 
-                          
-                        )", '', false);
+        tittle LIKE '%$search%' 
+        OR partnumber LIKE '%$search%' 
+        OR price LIKE '%$search%' 
+        OR price_promo LIKE '%$search%' 
+    )", '', false);
         }
+
+        // Apply limit
         $this->db->limit($length, $start);
+
+        // Apply ordering
         if (isset($_REQUEST['order'][0]['column'])) {
             $column = $_REQUEST['order'][0]['column'];
             $dir = $_REQUEST['order'][0]['dir'];
@@ -139,20 +145,22 @@ class Backendproduct extends MX_Controller
                 $this->db->order_by($order_columns[$column], $dir);
             }
         } else {
+            // Pertama kali load - ID terbaru di atas (DESC)
             $this->db->order_by('id', 'DESC');
         }
 
         $query = $this->db->get('product');
+
+        // Hitung filtered records (untuk search)
         if ($search != "") {
             $this->db->where("(
-							tittle LIKE '%$search%' 
-							OR partnumber LIKE '%$search%' 
-							OR price LIKE '%$search%' 
-							OR price_promo LIKE '%$search%' 
-                          
-                        )", '', false);
+        tittle LIKE '%$search%' 
+        OR partnumber LIKE '%$search%' 
+        OR price LIKE '%$search%' 
+        OR price_promo LIKE '%$search%' 
+    )", '', false);
             $jum = $this->db->get('product');
-            $output['recordsTotal'] = $output['recordsFiltered'] = $jum->num_rows();
+            $output['recordsFiltered'] = $jum->num_rows();
         }
 
         foreach ($query->result_array() as $product) {
@@ -160,7 +168,7 @@ class Backendproduct extends MX_Controller
             $l = $product["status"] == "show" ? "success" : "danger";
             $i = $product["status"] == "show" ? "check" : "ban";
             $k = $product["stock"] <= 3 ? "danger" : "success";
-            $w = $product["warranty"] != 0 or $product["warranty"] != "" ? "danger" : "success";
+            $w = $product["warranty"] != 0 || $product["warranty"] != "" ? "danger" : "success";
 
             $output['data'][] = array(
                 '<a href="' . base_url() . 'backendproduct/productstatus?id=' . $product["id"] . '&status=' . $s . '" class="label label-' . $l . '" alt="show"><i class="bi bi-' . $i . '"></i></a>',
@@ -173,8 +181,7 @@ class Backendproduct extends MX_Controller
                 '<a class="label label-warning" href="' . base_url() . 'backendproduct/form?id=' . $product["id"] . '"><i class="bi bi-pencil"></i></a>',
                 '<a class="label label-primary" href="' . base_url() . 'backendproduct/galery?id=' . $product["id"] . '"><i class="bi bi-image"></i></a>',
                 '<a class="label click label-danger" onclick="hapus(' . $product["id"] . ',\'' . $product["tittle"] . '\')"
-                    url="' . base_url() . 'backendproduct/hapus?id=' . $product["id"] . '"><i class="bi bi-trash"></i></a>'
-
+            url="' . base_url() . 'backendproduct/hapus?id=' . $product["id"] . '"><i class="bi bi-trash"></i></a>'
             );
         }
 

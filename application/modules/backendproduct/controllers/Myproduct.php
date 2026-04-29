@@ -87,7 +87,8 @@ class Myproduct extends MX_Controller
         $total = $this->db->count_all_results("product");
         $output = array();
         $output['draw'] = $draw;
-        $output['recordsTotal'] = $output['recordsFiltered'] = $total;
+        $output['recordsTotal'] = $total;
+        $output['recordsFiltered'] = $total;
         $output['data'] = array();
         if ($search != "") {
             $this->db->where("(
@@ -118,9 +119,6 @@ class Myproduct extends MX_Controller
         } else {
             $this->db->order_by('id', 'DESC');
         }
-
-        $session = $this->session->all_userdata();
-        $sessionmember = array_key_exists("admin", $session) ? $session["admin"] : array('id' => 0);
 
         $this->db->where('created_by', $this->sessionmember["id"]);
 
