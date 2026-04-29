@@ -95,7 +95,7 @@ if (!empty($id)) {
 			<div class="card border-0 shadow-sm rounded-4">
 				<div class="card-body">
 					<div class="mb-2 d-flex justify-content-end">
-						<a href="<?= !empty($id) ? base_url() . "backendpromo/formPromoProduct?id=" . $detail['id'] : '#' ?>" class="btn btn-success">Tambah Produk</a>
+						<a href="<?= !empty($id) ? (base_url() . "backendpromo/" . $this->uri->segment(2) == "listpromo" ? "formPromoProduct" : "formPromoMyProduct" . "?id=" . $detail['id']) : '#' ?>" class="btn btn-success">Tambah Produk</a>
 					</div>
 					<?php if (!empty($id)): ?>
 						<input name="id-promo" type="hidden" value="<?php echo $detail['id'] ?>" />
