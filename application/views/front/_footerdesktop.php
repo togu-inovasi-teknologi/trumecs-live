@@ -37,7 +37,7 @@
                             <i class="bi bi-whatsapp icon-footer"></i>
                         </div>
                         <div>
-                            <a href="https://wa.me/<?php platform_contact('whatsapp') ?>" target="_blank" rel="noopener noreferrer">
+                            <a href="https://wa.me/<?php echo platform_contact('whatsapp') ?>" target="_blank" rel="noopener noreferrer">
                                 <p class="fs-6 mb-0" style="color:#fff;">+<?php echo platform_contact('whatsapp') ?></p>
                             </a>
                         </div>
