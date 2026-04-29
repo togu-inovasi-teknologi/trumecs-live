@@ -20,7 +20,7 @@
 								</div>
 								<div>
 									<p class="fw-bold mb-0"><?php echo ucwords($ses["admin"]["nameadmin"]) ?></p>
-									<small class="text-muted">Administrator</small>
+									<small class="text-muted"><?php echo ucwords($ses["admin"]["level"]) ?></small>
 								</div>
 							</div>
 						</div>
