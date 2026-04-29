@@ -104,7 +104,6 @@ function namectgr($id)
 			<div class="modal fade modal_download" tabindex="-1" role="dialog" aria-labelledby="downloadModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered">
 					<div class="modal-content border-0 shadow-lg">
-						<!-- Modal Header -->
 			<div class="modal-header bg-primary text-white">
 				<h5 class="modal-title fw-bold" id="downloadModalLabel">
 					<i class="bi bi-download me-2"></i>Download Data
@@ -112,9 +111,7 @@ function namectgr($id)
 				<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 
-			<!-- Modal Body -->
 			<div class="modal-body p-4">
-				<!-- Produk Section -->
 				<div class="download-section mb-4">
 					<div class="section-header mb-3">
 						<h6 class="fw-semibold text-primary mb-2">
@@ -159,7 +156,6 @@ function namectgr($id)
 					</div>
 				</div>
 
-				<!-- Kategori Section -->
 				<div class="download-section">
 					<div class="section-header mb-3">
 						<h6 class="fw-semibold text-success mb-2">
@@ -183,7 +179,6 @@ function namectgr($id)
 				</div>
 			</div>
 
-			<!-- Modal Footer -->
 			<div class="modal-footer bg-light">
 				<small class="text-muted">
 					<i class="bi bi-info-circle me-1"></i>
@@ -193,42 +188,42 @@ function namectgr($id)
 		</div>
 	</div>
 </div> -->
-<a href="<?php echo base_url() ?>backendproduct/<?php echo $this->uri->segment(2) == "myproduct" ? "myproduct/" : ""; ?>form" class="btn btn-warning">Tambah Produk</a>
-<!-- <a href="<?= base_url() ?>backendproduct/syncProductFromSheetToDB"
+			<a href="<?php echo base_url() ?>backendproduct/<?php echo $this->uri->segment(2) == "myproduct" ? "myproduct/" : ""; ?>form" class="btn btn-warning">Tambah Produk</a>
+			<!-- <a href="<?= base_url() ?>backendproduct/syncProductFromSheetToDB"
 				class="btn btn-primary">
 				Sync From Sheet
 			</a> -->
-</div>
-<div class="col-lg-12">
-	<hr>
-</div>
-</div>
-<div class="row">
-	<div class="col-12 table-responsive">
-		<table id="table<?php echo $this->uri->segment(2) == "listall" ? "1" : "-myproduct"; ?>" class="table table-striped table-bordered table-hover" cellspacing="2" width="100%">
-			<thead>
-				<tr>
-					<th>Valid?</th>
-					<th>Nama<br><small>Part Number</small></th>
-					<th>Harga<br><small>Harga Promo</small></th>
-					<th>Merek<br><small>Tipe</small></th>
-					<th>Stok</th>
-					<th>View</th>
-					<th>Edit</th>
-					<th>Galeri</th>
-					<th>Hapus</th>
-				</tr>
-			</thead>
-			<tbody>
-
-			</tbody>
-		</table>
+		</div>
+		<div class="col-lg-12">
+			<hr>
+		</div>
 	</div>
-	<!--<div class="col-12 text-center">
+	<div class="row">
+		<div class="col-12 table-responsive">
+			<table id="table<?php echo $this->uri->segment(2) == "listall" ? "1" : "-myproduct"; ?>" class="table table-striped table-bordered table-hover" cellspacing="2" width="100%">
+				<thead>
+					<tr>
+						<th>Valid?</th>
+						<th>Nama<br><small>Part Number</small></th>
+						<th>Harga<br><small>Harga Promo</small></th>
+						<th>Merek<br><small>Tipe</small></th>
+						<th>Stok</th>
+						<th>View</th>
+						<th>Edit</th>
+						<th>Galeri</th>
+						<th>Hapus</th>
+					</tr>
+				</thead>
+				<tbody>
+
+				</tbody>
+			</table>
+		</div>
+		<!--<div class="col-12 text-center">
 			<?php echo !empty($listproduct) ? $links : "";  ?> 
 		</div>-->
 
-</div>
+	</div>
 </div>
 <script type="text/javascript">
 	function hapus(url, name) {
