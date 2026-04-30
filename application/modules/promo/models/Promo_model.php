@@ -71,6 +71,7 @@ class Promo_model extends CI_Model
             $promo_type = !empty($value['type']) ? $value['type'] : 'promo';
 
             $getselect = $this->fetch_product($value['product'], $promo_type);
+            shuffle($getselect);
 
             $promo_list[$key]['products'] = $getselect;
             $promo_list[$key]['promo_type'] = $promo_type; // Simpan type juga di level promo
