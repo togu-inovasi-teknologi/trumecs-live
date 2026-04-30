@@ -403,7 +403,7 @@ class Backendpromo extends MX_Controller
         }
 
         $data["product"] = $this->etx_model->getallproduct();
-        $data['content'] = 'formPromoProduct';
+        $data['content'] = 'formPromoMyProduct';
         $data['id'] = $id;
         $data["css"] = array('https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css');
         $data["js"] = array(
