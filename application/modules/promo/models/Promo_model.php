@@ -93,6 +93,7 @@ class Promo_model extends CI_Model
         }
 
         $this->db->where_in("id", $ids);
+        $this->db->order_by('RAND()');
         $query = $this->db->get("product");
         $products = $query->result_array();
 
