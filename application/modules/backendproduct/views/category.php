@@ -826,6 +826,13 @@
 										<form id="addFormGrade">
 											<div class="modal-body">
 												<div class="mb-3">
+													<label for="type" class="form-label">Type</label>
+													<select name="type" id="type" class="form-control" required>
+														<option value="0" selected>Grade</option>
+														<option value="1">Sub Grade</option>
+													</select>
+												</div>
+												<div class="mb-3">
 													<label for="grade" class="form-label">Grade</label>
 													<input type="text" class="form-control" id="grade" name="grade" required>
 												</div>

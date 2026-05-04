@@ -8,6 +8,8 @@ $jenis = $this->general->getcategori(array('parent' => '0', 'is_brand' => '0'));
 foreach ($jenis as $key) {
 	$jenisproduct[$key['id']] = $key['name'];
 }
+
+var_dump($backingdata);
 ?>
 
 <div class="form_io_product row" jq-app="">
@@ -52,7 +54,7 @@ foreach ($jenis as $key) {
 								<select name="jenisproduct" tar='<?php echo (!empty($backingdata)) ? $backingdata["jenisproduct"] : ''; ?>' class="input_choicejenis form-select border-primary" required>
 									<option value="">-- Pilih Jenis Produk --</option>
 									<?php foreach ($jenisproduct as $key): ?>
-										<option value='<?php echo $key ?>'><?php echo $key ?></option>
+										<option value='<?php echo $key ?>' <?= $backingdata["jenisproduct"] == $key ? 'selected' : ''; ?>><?php echo $key ?></option>
 									<?php endforeach ?>
 								</select>
 							</div>

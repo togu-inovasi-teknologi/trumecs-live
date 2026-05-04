@@ -257,7 +257,7 @@ class Backendproduct extends MX_Controller
         $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
         $config['file_name'] = microtime() . ".jpg";
         $config['encrypt_name'] = TRUE;
-        $config['max_size'] = '1000';
+        $config['max_size'] = '5000';
         $config['max_width']  = '3000';
         $config['max_height']  = '3000';
         $this->load->library('upload', $config);
@@ -342,7 +342,7 @@ class Backendproduct extends MX_Controller
         $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
         $config['file_name'] = microtime() . ".jpg";
         $config['encrypt_name'] = TRUE;
-        $config['max_size'] = '1000';
+        $config['max_size'] = '5000';
         $config['max_width']  = '3000';
         $config['max_height']  = '3000';
         $this->load->library('upload', $config);
@@ -459,7 +459,7 @@ class Backendproduct extends MX_Controller
             $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
             $config['file_name'] = microtime() . ".jpg";
             $config['encrypt_name'] = TRUE;
-            $config['max_size'] = '1000';
+            $config['max_size'] = '5000';
             $config['max_width']  = '3000';
             $config['max_height']  = '3000';
             $this->load->library('upload', $config);
@@ -573,7 +573,7 @@ class Backendproduct extends MX_Controller
                 $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
                 $config['file_name'] = microtime() . ".jpg";
                 $config['encrypt_name'] = TRUE;
-                $config['max_size'] = '1000';
+                $config['max_size'] = '5000';
                 $config['max_width']  = '1000';
                 $config['max_height']  = '1000';
                 $this->load->library('upload', $config);
@@ -998,7 +998,7 @@ class Backendproduct extends MX_Controller
             $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
             $config['file_name'] = microtime() . ".png";
 
-            $config['max_size'] = '1000';
+            $config['max_size'] = '5000';
             $config['max_width']  = '1000';
             $config['max_height']  = '1000';
             $this->load->library('upload', $config);
@@ -1050,7 +1050,7 @@ class Backendproduct extends MX_Controller
             $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
             $config['file_name'] = microtime() . ".jpg";
             $config['encrypt_name'] = TRUE;
-            $config['max_size'] = '1000';
+            $config['max_size'] = '5000';
             $config['max_width']  = '1000';
             $config['max_height']  = '1000';
             $this->load->library('upload', $config);
@@ -1308,7 +1308,7 @@ class Backendproduct extends MX_Controller
             $config['upload_path'] = './public/upload/categori/';
             $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
             $config['file_name'] = microtime() . ".png";
-            $config['max_size'] = '1000';
+            $config['max_size'] = '5000';
             $config['max_width']  = '1000';
             $config['max_height']  = '1000';
             $this->load->library('upload', $config);
@@ -1367,7 +1367,7 @@ class Backendproduct extends MX_Controller
             $config['upload_path'] = './public/upload/categori/';
             $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
             $config['file_name'] = microtime() . ".png";
-            $config['max_size'] = '1000';
+            $config['max_size'] = '5000';
             $config['max_width']  = '1000';
             $config['max_height']  = '1000';
             $config['overwrite'] = true;
@@ -1438,7 +1438,7 @@ class Backendproduct extends MX_Controller
             $config['upload_path'] = './public/upload/categori/';
             $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
             $config['file_name'] = microtime() . ".png";
-            $config['max_size'] = '1000';
+            $config['max_size'] = '5000';
             $config['max_width']  = '1000';
             $config['max_height']  = '1000';
             $config['overwrite'] = true;
@@ -1504,7 +1504,7 @@ class Backendproduct extends MX_Controller
             $config['upload_path'] = './public/upload/categori/';
             $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
             $config['file_name'] = microtime() . ".png";
-            $config['max_size'] = '1000';
+            $config['max_size'] = '5000';
             $config['max_width']  = '1000';
             $config['max_height']  = '1000';
             $this->load->library('upload', $config);
@@ -1595,7 +1595,7 @@ class Backendproduct extends MX_Controller
             $config['upload_path'] = './public/upload/categori/';
             $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
             $config['file_name'] = time() . '_' . rand(1000, 9999) . ".png";
-            $config['max_size'] = '1000';
+            $config['max_size'] = '5000';
             $config['max_width']  = '1000';
             $config['max_height']  = '1000';
             $config['overwrite'] = false;
@@ -1676,7 +1676,7 @@ class Backendproduct extends MX_Controller
             $config['upload_path'] = './public/upload/categori/';
             $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
             $config['file_name'] = microtime() . ".png";
-            $config['max_size'] = '1000';
+            $config['max_size'] = '5000';
             $config['max_width']  = '1000';
             $config['max_height']  = '1000';
             $this->load->library('upload', $config);
@@ -1730,7 +1730,7 @@ class Backendproduct extends MX_Controller
             $config['upload_path'] = './public/upload/categori/';
             $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
             $config['file_name'] = time() . '_' . rand(1000, 9999) . ".png";
-            $config['max_size'] = '1000';
+            $config['max_size'] = '5000';
             $config['max_width']  = '1000';
             $config['max_height']  = '1000';
             $config['overwrite'] = false;
@@ -1814,7 +1814,7 @@ class Backendproduct extends MX_Controller
             $config['upload_path'] = './public/upload/categori/';
             $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
             $config['file_name'] = microtime() . ".png";
-            $config['max_size'] = '1000';
+            $config['max_size'] = '5000';
             $config['max_width']  = '1000';
             $config['max_height']  = '1000';
             $this->load->library('upload', $config);
@@ -1862,7 +1862,7 @@ class Backendproduct extends MX_Controller
             $config['upload_path'] = './public/upload/categori';
             $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
             $config['file_name'] = microtime() . ".png";
-            $config['max_size'] = '1000';
+            $config['max_size'] = '5000';
             $config['max_width']  = '1000';
             $config['max_height']  = '1000';
             $this->load->library('upload', $config);
@@ -1997,7 +1997,7 @@ class Backendproduct extends MX_Controller
             $config['upload_path'] = './public/upload/categori/';
             $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
             $config['file_name'] = microtime() . ".png";
-            $config['max_size'] = '1000';
+            $config['max_size'] = '5000';
             $config['max_width']  = '1000';
             $config['max_height']  = '1000';
             $this->load->library('upload', $config);
@@ -2059,7 +2059,7 @@ class Backendproduct extends MX_Controller
             $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
             $config['file_name'] = microtime() . ".jpg";
             $config['encrypt_name'] = TRUE;
-            $config['max_size'] = '1000';
+            $config['max_size'] = '5000';
             $config['max_width']  = '1000';
             $config['max_height']  = '1000';
             $this->load->library('upload', $config);
