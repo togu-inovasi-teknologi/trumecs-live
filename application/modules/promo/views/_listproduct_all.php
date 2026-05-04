@@ -19,7 +19,7 @@ $productimgonmobile = base_url() . 'timthumb?h=200&src='
                         is_file("public/image/product/" . $key["img"]) != 1 ? $key["img"] = "../noimage.png" : $key["img"];
                         ?>
                         <div class="position-relative bg-light" style="height: 200px; overflow: hidden;">
-                            <img src="<?php echo base_url() ?>public/image/product/<?php echo ($ext == ".jpg") ? $key["img"] : "../noimage.png"; ?>"
+                            <img src="<?php echo base_url() ?>timthumb?h=170&src=<?php echo base_url() ?>public/image/product/<?php echo ($ext == ".jpg") ? $key["img"] : "../noimage.png"; ?>"
                                 alt="<?php echo $key["tittle"]; ?>"
                                 class="w-100 h-100"
                                 style="object-fit: cover;">

@@ -178,16 +178,16 @@
                     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="<?php base_url(); ?>/public/banner/home-mobile/1.png" class="d-block w-100" alt="...">
+                                <img src="<?php echo base_url() ?>timthumb?h=170&src=<?php base_url(); ?>/public/banner/home-mobile/1.png" class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="<?php base_url(); ?>/public/banner/home-mobile/2.png" class="d-block w-100" alt="...">
+                                <img src="<?php echo base_url() ?>timthumb?h=170&src=<?php base_url(); ?>/public/banner/home-mobile/2.png" class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="<?php base_url(); ?>/public/banner/home-mobile/3.png" class="d-block w-100" alt="...">
+                                <img src="<?php echo base_url() ?>timthumb?h=170&src=<?php base_url(); ?>/public/banner/home-mobile/3.png" class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="<?php base_url(); ?>/public/banner/home-mobile/3.png" class="d-block w-100" alt="...">
+                                <img src="<?php echo base_url() ?>timthumb?h=170&src=<?php base_url(); ?>/public/banner/home-mobile/3.png" class="d-block w-100" alt="...">
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -261,7 +261,7 @@
 
                                 <!-- <img src="/public/landing/category/<?= $i['name'] ?>.png"
                                     alt="<?= $i['name'] ?>"> -->
-                                <img src="/public/upload/categori/<?= $i['img'] ?>"
+                                <img src="<?php echo base_url() ?>timthumb?h=170&src=<?php echo base_url() ?>/public/upload/categori/<?= $i['img'] ?>"
                                     alt="<?= $i['name'] ?>">
                             </div>
 

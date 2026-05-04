@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-12 px-0">
 			<?php foreach ($datalist["promo"] as $key) : ?>
-				<img src="<?php echo base_url() ?>public/image/promo/<?php echo $key["img"] ?>" class="img-fluid mb-3" style="width: 100%; max-height:150px;">
+				<img src="<?php echo base_url() ?>timthumb?h=170&src=<?php echo base_url() ?>public/image/promo/<?php echo $key["img"] ?>" class="img-fluid mb-3" style="width: 100%; max-height:150px;">
 			<?php endforeach ?>
 		</div>
 		<div class="col-12">

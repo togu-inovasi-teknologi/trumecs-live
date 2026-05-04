@@ -30,7 +30,7 @@
 								<div class="card-body p-0">
 									<a href="<?php echo base_url() ?>promo/<?php echo $key["url"] ?>">
 										<img title="<?php echo $key["name"] ?>"
-											src="<?php echo $imgonmobile ?><?php echo base_url() ?>public/image/promo/<?php echo $key["img"] ?>"
+											src="<?php echo $imgonmobile ?><?php echo base_url() ?>timthumb?h=170&src=<?php echo base_url() ?>public/image/promo/<?php echo $key["img"] ?>"
 											class="img-fluid w-100"
 											alt="<?php echo $key["name"] ?>"
 											style="height: 200px; object-fit: cover; border-bottom: 1px solid #dee2e6;">
