@@ -594,12 +594,12 @@ class Mypromo extends MX_Controller
         $this->form_validation->set_rules('newproduct', 'Newroduct', 'required');
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message', 'Tidak ada data, Ulangi input lagi!!' . validation_errors());
-            redirect(base_url() . 'backendpromo/formPromoProduct?id=' . $id);
+            redirect(base_url() . 'backendpromo/formPromoMyProduct?id=' . $id);
         } else {
             $set = array('product' => (!empty($this->input->post("product"))) ? $this->input->post("product") . "," . $this->input->post("newproduct") : $this->input->post("newproduct"));
             $this->session->set_flashdata('message', 'Menambahkan Produk pada Promo Berhasil');
             $this->etx_model->update(array('id' => $id), $set);
-            redirect(base_url() . 'backendpromo/formPromoProduct?id=' . $id);
+            redirect(base_url() . 'backendpromo/formPromoMyProduct?id=' . $id);
         }
     }
 
@@ -610,7 +610,7 @@ class Mypromo extends MX_Controller
         $this->form_validation->set_rules('newproduct', 'Newroduct', 'required');
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message', 'Tidak ada data, Ulangi input lagi!!' . validation_errors());
-            redirect(base_url() . 'backendpromo/formPromoProduct?id=' . $id);
+            redirect(base_url() . 'backendpromo/formPromoMyProduct?id=' . $id);
         } else {
             $product = explode(',', $this->input->post("product"));
             $key = array_search($this->input->post("newproduct"), $product);
@@ -618,7 +618,7 @@ class Mypromo extends MX_Controller
             $set = array('product' => implode(',', $product));
             $this->session->set_flashdata('message', 'Menghapus Produk pada Promo Berhasil');
             $this->etx_model->update(array('id' => $id), $set);
-            redirect(base_url() . 'backendpromo/formPromoProduct?id=' . $id);
+            redirect(base_url() . 'backendpromo/formPromoMyProduct?id=' . $id);
         }
     }
 

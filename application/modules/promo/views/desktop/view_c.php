@@ -50,7 +50,7 @@
 							<?php if ($key['type'] == "bundle") { ?>
 								<h6 class="fw-bold text-dark mb-2 mt-3 pb-1 border-bottom border-2 border-warning d-inline-block">Harga Bundle</h6>
 								<p>
-									<span class="fw-bold forange"> Rp <?php echo number_format($key["price"], 0, ',', '.');; ?> </span>
+									<span class="fw-bold forange"> Rp <?php echo number_format($key["price"], 0, ',', '.'); ?> </span>
 								</p>
 							<?php } ?>
 						</div>
