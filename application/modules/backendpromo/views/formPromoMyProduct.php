@@ -25,7 +25,7 @@ if (!empty($id)) {
 					<?php if (!empty($id)): ?>
 						<input name="id-promo" type="hidden" value="<?php echo $detail['id'] ?>" />
 						<div class="table-responsive">
-							<table class="table table-hover mb-0" id="table-produk-promo-pilih">
+							<table class="table table-hover mb-0" id="table-myproduk-promo-pilih">
 								<thead class="table-light">
 									<tr>
 										<th class="ps-3" style="width: 100px;">Hapus?</th>

@@ -80,15 +80,15 @@ class Mypromo extends MX_Controller
 
             $output['data'][] = array(
 
-                '<a class="fbold f14 forange" href="' . base_url() . 'backendpromo/form?id=' . $promo["id"] . '">' . $promo["name"] . '</a><br>',
+                '<a class="fbold f14 forange" href="' . base_url() . 'backendpromo/formMy?id=' . $promo["id"] . '">' . $promo["name"] . '</a><br>',
                 '<span class="fbold f14">' . $promo["type"] . '</span>',
 
                 '<span>' . count($explode) . '</span>',
                 '<span>' . $promo["view"] . '</span>',
                 '<span>' .  date("d M Y", $promo["start_date"]) . '</span>',
                 '<span>' .  date("d M Y", $promo["end_date"]) . '</span>',
-                '<a class="btn btn-sm btn-primary" href="' . base_url() . 'backendpromo/formPromoMyProduct?id=' . $promo["id"] . '"><i class="bi bi-file-earmark"></i></a> <a class="btn btn-sm btn-warning" href="' . base_url() . 'backendpromo/form?id=' . $promo["id"] . '"><i class="bi bi-pencil"></i></a>
-                <a class="btn btn-sm btn-danger" href="' . base_url() . 'backendpromo/hapuspromo?id=' . $promo["id"] . '"><i class="bi bi-trash"></i></a>'
+                '<a class="btn btn-sm btn-primary" href="' . base_url() . 'backendpromo/formPromoMyProduct?id=' . $promo["id"] . '"><i class="bi bi-file-earmark"></i></a> <a class="btn btn-sm btn-warning" href="' . base_url() . 'backendpromo/formMy?id=' . $promo["id"] . '"><i class="bi bi-pencil"></i></a>
+                <a class="btn btn-sm btn-danger" href="' . base_url() . 'backendpromo/mypromo/hapuspromo?id=' . $promo["id"] . '"><i class="bi bi-trash"></i></a>'
             );
         }
         echo json_encode($output);
@@ -130,7 +130,7 @@ class Mypromo extends MX_Controller
 
             $output['data'][] = array(
 
-                '<a class="fbold f14 forange" href="' . base_url() . 'backendpromo/form?id=' . $promo["id"] . '">' . $promo["name"] . '</a><br><span class="fbold f14">' . $promo["type"] . '</span>',
+                '<a class="fbold f14 forange" href="' . base_url() . 'backendpromo/formMy?id=' . $promo["id"] . '">' . $promo["name"] . '</a><br><span class="fbold f14">' . $promo["type"] . '</span>',
                 '<span class="fbold f14">' . $promo["view"] . '</span>'
             );
         }
@@ -206,7 +206,7 @@ class Mypromo extends MX_Controller
 
         foreach ($query->result_array() as $product) {
             $output['data'][] = array(
-                '<a class="fw-bold forange" href="' . base_url() . 'backendproduct/form?id=' . $product["id"] . '">' . htmlspecialchars($product["tittle"]) . '</a><br><small class="text-muted">' . htmlspecialchars($product["partnumber"]) . '</small>',
+                '<a class="fw-bold forange" href="' . base_url() . 'backendproduct/formMy?id=' . $product["id"] . '">' . htmlspecialchars($product["tittle"]) . '</a><br><small class="text-muted">' . htmlspecialchars($product["partnumber"]) . '</small>',
                 'Rp ' . htmlspecialchars(number_format($product["price"], 0, ',', '.')),
             );
         }
@@ -289,7 +289,7 @@ class Mypromo extends MX_Controller
 
         foreach ($query->result_array() as $promo) {
             $output['data'][] = array(
-                '<form action="' . base_url('backendpromo/addproductpromo') . '" method="POST">
+                '<form action="' . base_url('backendpromo/mypromo/addproductpromo') . '" method="POST">
             <input type="hidden" name="id" value="' . $id . '">
             <input type="hidden" name="product" value="' . $detail["product"] . '">
             <input type="hidden" name="newproduct" value="' . $promo["id"] . '">
@@ -297,7 +297,7 @@ class Mypromo extends MX_Controller
                 <i class="bi bi-plus-circle"></i> Tambah
             </button>
         </form>',
-                '<a class="fw-bold forange" href="' . base_url() . 'backendproduct/form?id=' . $promo["id"] . '">' . htmlspecialchars($promo["tittle"]) . '</a><br><small class="text-muted">' . htmlspecialchars($promo["partnumber"]) . '</small>',
+                '<a class="fw-bold forange" href="' . base_url() . 'backendproduct/formMy?id=' . $promo["id"] . '">' . htmlspecialchars($promo["tittle"]) . '</a><br><small class="text-muted">' . htmlspecialchars($promo["partnumber"]) . '</small>',
                 'Rp ' . htmlspecialchars(number_format($promo["price"], 0, ',', '.')),
             );
         }
@@ -375,7 +375,7 @@ class Mypromo extends MX_Controller
         foreach ($query->result_array() as $product) {
             // Produk pasti ada di promo karena sudah difilter where_in
             $output['data'][] = array(
-                '<form action="' . base_url('backendpromo/hapusproductpromo') . '" method="POST">
+                '<form action="' . base_url('backendpromo/mypromo/hapusproductpromo') . '" method="POST">
             <input type="hidden" name="id" value="' . $id . '">
             <input type="hidden" name="product" value="' . $detail["product"] . '">
             <input type="hidden" name="newproduct" value="' . $product["id"] . '">
@@ -383,7 +383,7 @@ class Mypromo extends MX_Controller
                 <i class="bi bi-dash-circle"></i> Hapus
             </button>
         </form>',
-                '<a class="fw-bold forange" href="' . base_url() . 'backendproduct/form?id=' . $product["id"] . '">' . htmlspecialchars($product["tittle"]) . '</a><br><small class="text-muted">' . htmlspecialchars($product["partnumber"]) . '</small>',
+                '<a class="fw-bold forange" href="' . base_url() . 'backendproduct/formMy?id=' . $product["id"] . '">' . htmlspecialchars($product["tittle"]) . '</a><br><small class="text-muted">' . htmlspecialchars($product["partnumber"]) . '</small>',
                 'Rp ' . htmlspecialchars(number_format($product["price"], 0, ',', '.')),
             );
         }
@@ -405,6 +405,33 @@ class Mypromo extends MX_Controller
 
         $data["product"] = $this->etx_model->getallproduct();
         $data['content'] = 'formPromo';
+        $data['id'] = $id;
+        $data["css"] = array('https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css');
+        $data["js"] = array(
+            base_url() . '/asset/backend/bower_components/datatables/media/js/jquery.dataTables.min.js',
+            base_url() . "asset/js/number/jquery.number.min.js",
+            base_url() . "asset/backend/dist/js/canvas/zepto.min.js",
+            base_url() . "asset/backend/dist/js/canvas/binaryajax.js",
+            base_url() . "asset/backend/dist/js/canvas/exif.js",
+            base_url() . "asset/backend/dist/js/canvas/canvasResize.js",
+            "/modules/backendpromo/js/form.promo.js"
+        );
+        $this->load->view('backend/template_front', $data);
+    }
+
+    public function formMy()
+    {
+        $id = $this->input->get("id");
+        if ($id) {
+            $data["detail"] = $this->etx_model->getdetail($id);
+            if (empty($data["detail"])) {
+                $this->session->set_flashdata('message', 'Promo tidak ada di database');
+                redirect(base_url() . 'backendpromo/mypromo/listpromo');
+            }
+        }
+
+        $data["product"] = $this->etx_model->getallproduct();
+        $data['content'] = 'formMyPromo';
         $data['id'] = $id;
         $data["css"] = array('https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css');
         $data["js"] = array(
@@ -483,7 +510,7 @@ class Mypromo extends MX_Controller
         $this->form_validation->set_rules('txtfilegambar', 'Txtfilegambar', 'required');
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message', 'Tidak ada data, Ulangi input lagi!!' . validation_errors());
-            redirect(base_url() . 'backendpromo/form');
+            redirect(base_url() . 'backendpromo/formMy');
         } else {
             $file = "public/tmp/" . ($this->input->post("txtfilegambar"));
             $newfile = "public/image/promo/" . ($this->input->post("txtfilegambar"));
@@ -503,15 +530,15 @@ class Mypromo extends MX_Controller
                 );
                 $this->session->set_flashdata('message', 'Promo baru telah ditambah');
                 $this->etx_model->input($set);
-                redirect(base_url() . "backendpromo/listpromo");
+                redirect(base_url() . "backendpromo/mypromo/listpromo");
                 exit();
             } else {
                 $this->session->set_flashdata('message', 'Sistem mengalami gangguan saat memproses data yang Anda inputkan.');
-                redirect(base_url() . "backendpromo/form");
+                redirect(base_url() . "backendpromo/formMy");
                 exit();
             }
         }
-        redirect(base_url() . 'backendpromo/listpromo');
+        redirect(base_url() . 'backendpromo/mypromo/listpromo');
     }
 
     public function update()
@@ -525,7 +552,7 @@ class Mypromo extends MX_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message', 'Tidak ada data, Ulangi input lagi!!' . validation_errors());
-            redirect(base_url() . 'backendpromo/form?id=' . $id);
+            redirect(base_url() . 'backendpromo/formMy?id=' . $id);
         } else {
             if (!empty($this->input->post("asknew"))) {
                 $file = "public/tmp/" . ($this->input->post("txtfilegambar"));
@@ -583,7 +610,7 @@ class Mypromo extends MX_Controller
                 $this->session->set_flashdata('message', 'Promo baru telah diupdate');
                 $this->etx_model->update(array('id' => $id), $set);
             }
-            redirect(base_url() . 'backendpromo/listpromo');
+            redirect(base_url() . 'backendpromo/mypromo/listpromo');
         }
     }
 
@@ -627,7 +654,7 @@ class Mypromo extends MX_Controller
         $where = array('id' => $this->input->get("id"));
         $this->etx_model->hapus($where);
         $this->session->set_flashdata('message', 'Promo telah dihapus');
-        redirect(base_url() . 'backendpromo/listpromo');
+        redirect(base_url() . 'backendpromo/mypromo/listpromo');
     }
 
     public function halamandepan()

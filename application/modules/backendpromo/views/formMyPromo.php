@@ -19,7 +19,7 @@ if (!empty($id)) {
 		<div class="col-lg-<?php echo (!empty($id)) ? "7" : '12'; ?>">
 			<div class="card border-0 shadow-sm rounded-4">
 				<div class="card-body p-4">
-					<form action="<?php echo base_url() ?>backendpromo/<?php echo (!empty($id)) ? "update" : 'input'; ?>" method="POST" enctype="multipart/form-data">
+					<form action="<?php echo base_url() ?>backendpromo/mypromo/<?php echo (!empty($id)) ? "update" : 'input'; ?>" method="POST" enctype="multipart/form-data">
 						<div class="d-flex gap-2 mb-3">
 							<div class="col-lg-6 ">
 								<label class="form-label fw-semibold">Judul Promo <span class="text-danger">*</span></label>

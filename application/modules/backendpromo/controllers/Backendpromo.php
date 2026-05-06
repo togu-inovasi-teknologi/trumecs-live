@@ -363,6 +363,32 @@ class Backendpromo extends MX_Controller
         );
         $this->load->view('backend/template_front', $data);
     }
+    public function formMy()
+    {
+        $id = $this->input->get("id");
+        if ($id) {
+            $data["detail"] = $this->etx_model->getdetail($id);
+            if (empty($data["detail"])) {
+                $this->session->set_flashdata('message', 'Promo tidak ada di database');
+                redirect(base_url() . 'backendpromo/listpromo');
+            }
+        }
+
+        $data["product"] = $this->etx_model->getallproduct();
+        $data['content'] = 'formMyPromo';
+        $data['id'] = $id;
+        $data["css"] = array('https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css');
+        $data["js"] = array(
+            base_url() . '/asset/backend/bower_components/datatables/media/js/jquery.dataTables.min.js',
+            base_url() . "asset/js/number/jquery.number.min.js",
+            base_url() . "asset/backend/dist/js/canvas/zepto.min.js",
+            base_url() . "asset/backend/dist/js/canvas/binaryajax.js",
+            base_url() . "asset/backend/dist/js/canvas/exif.js",
+            base_url() . "asset/backend/dist/js/canvas/canvasResize.js",
+            "/modules/backendpromo/js/form.promo.js"
+        );
+        $this->load->view('backend/template_front', $data);
+    }
 
     public function formPromoProduct()
     {
