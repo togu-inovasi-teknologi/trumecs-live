@@ -604,6 +604,9 @@ class Mypromo extends MX_Controller
                     'end_date' => strtotime($this->input->post("end_date")),
                     'product' => $this->input->post("product"),
                     'img' => ($this->input->post("txtfilegambarold")),
+                    'price' => $this->input->post("price") ?? null,
+                    'type' => $this->input->post("type"),
+                    'created_by' => $this->sessionmember["id"],
                     'description' => htmlentities($this->input->post("description"))
                 );
 
