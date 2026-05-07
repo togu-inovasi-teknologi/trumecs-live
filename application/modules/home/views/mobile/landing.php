@@ -440,7 +440,7 @@
 
 <!--- Aki -->
 
-<section class="category-ban mb-2">
+<!-- <section class="category-ban mb-2">
     <div class="container">
         <div class="row d-flex flex-column gap-2">
             <?php
@@ -467,7 +467,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <!--- Sparepart -->
 
