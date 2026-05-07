@@ -36,7 +36,7 @@
                             </div>
                             <div class="step-title-wrapper">
                                 <h3 class="step-title">Sourcing</h3>
-                                <p class="step-subtitle">Find products & reliable suppliers</p>
+                                <p class="step-subtitle">Temukan produk dan pemasok terpercaya.</p>
                             </div>
                             <div class="step-arrow">
                                 <i class="bi bi-chevron-down"></i>
@@ -48,15 +48,15 @@
                                 <ul class="step-list">
                                     <li>
                                         <i class="bi bi-search me-3"></i>
-                                        <span>Search by keywords or categories</span>
+                                        <span>Cari berdasarkan kata kunci atau kategori.</span>
                                     </li>
                                     <li>
                                         <i class="bi bi-file-earmark-text me-3"></i>
-                                        <span>Post a sourcing request to get multiple quotes</span>
+                                        <span>Posting permintaan pengadaan untuk mendapatkan berbagai penawaran harga.</span>
                                     </li>
                                     <li>
                                         <i class="bi bi-person me-3"></i>
-                                        <span>Connect with verified suppliers instantly</span>
+                                        <span>Terhubung langsung dengan pemasok terverifikasi.</span>
                                     </li>
                                 </ul>
                             </div>
@@ -71,8 +71,8 @@
                                 <div class="step-line"></div>
                             </div>
                             <div class="step-title-wrapper">
-                                <h3 class="step-title">Verification</h3>
-                                <p class="step-subtitle">Authoritative third-party verification</p>
+                                <h3 class="step-title">Verifikasi</h3>
+                                <p class="step-subtitle">Verifikasi pihak ketiga yang terpercaya.</p>
                             </div>
                             <div class="step-arrow">
                                 <i class="bi bi-chevron-down"></i>
@@ -84,15 +84,15 @@
                                 <ul class="step-list">
                                     <li>
                                         <i class="bi bi-shield me-3"></i>
-                                        <span>Choose audited suppliers verified by third-party</span>
+                                        <span>Pilih pemasok yang telah diaudit dan diverifikasi oleh pihak ketiga.</span>
                                     </li>
                                     <li>
                                         <i class="bi bi-bar-chart-line me-3"></i>
-                                        <span>Access supplier's audited reports for free</span>
+                                        <span>Akses laporan audit pemasok secara gratis.</span>
                                     </li>
                                     <li>
                                         <i class="bi bi-check-circle me-3"></i>
-                                        <span>Quality assurance and reliability check</span>
+                                        <span>Jaminan kualitas dan pemeriksaan keandalan.</span>
                                     </li>
                                 </ul>
                             </div>
@@ -107,8 +107,8 @@
                                 <div class="step-line"></div>
                             </div>
                             <div class="step-title-wrapper">
-                                <h3 class="step-title">Negotiation</h3>
-                                <p class="step-subtitle">Contact and negotiate with suppliers</p>
+                                <h3 class="step-title">Negosiasi</h3>
+                                <p class="step-subtitle">Hubungi dan negosiasikan langsung dengan pemasok.</p>
                             </div>
                             <div class="step-arrow">
                                 <i class="bi bi-chevron-down"></i>
@@ -120,15 +120,15 @@
                                 <ul class="step-list">
                                     <li>
                                         <i class="bi bi-envelope me-3"></i>
-                                        <span>Send inquiries with "Contact Now" button</span>
+                                        <span>Kirim pertanyaan dengan tombol “Hubungi Sekarang”.</span>
                                     </li>
                                     <li>
                                         <i class="bi bi-chat-dots me-3"></i>
-                                        <span>Chat with suppliers in real-time</span>
+                                        <span>Mengobrol dengan pemasok secara real-time.</span>
                                     </li>
                                     <li>
                                         <i class="bi bi-journal-medical me-3"></i>
-                                        <span>Receive and manage quotations in your virtual office</span>
+                                        <span>Terima dan kelola penawaran harga di kantor virtual Anda.</span>
                                     </li>
                                 </ul>
                             </div>
@@ -143,8 +143,8 @@
                                 <div class="step-line"></div>
                             </div>
                             <div class="step-title-wrapper">
-                                <h3 class="step-title">Ordering</h3>
-                                <p class="step-subtitle">Place orders online securely</p>
+                                <h3 class="step-title">Pemesanan</h3>
+                                <p class="step-subtitle">Lakukan pemesanan online dengan aman.</p>
                             </div>
                             <div class="step-arrow">
                                 <i class="bi bi-chevron-down"></i>
@@ -156,15 +156,15 @@
                                 <ul class="step-list">
                                     <li>
                                         <i class="bi bi-cart me-3"></i>
-                                        <span>Search products with Secured Trading Service</span>
+                                        <span>SCari produk dengan Layanan Perdagangan Aman.</span>
                                     </li>
                                     <li>
                                         <i class="bi bi-lock me-3"></i>
-                                        <span>Escrow protection and refund support</span>
+                                        <span>Perlindungan escrow dan dukungan pengembalian dana.</span>
                                     </li>
                                     <li>
                                         <i class="bi bi-truck me-3"></i>
-                                        <span>Secure payment and tracking</span>
+                                        <span>Pembayaran aman dan pelacakan pesanan.</span>
                                     </li>
                                 </ul>
                             </div>
@@ -196,20 +196,20 @@
             <div class="col-lg-12">
                 <div class="step-preview">
                     <div class="preview-content active">
-                        <h3 class="preview-title">Sourcing Made Easy</h3>
-                        <p>Find the perfect products and connect with reliable suppliers through our intelligent sourcing platform.</p>
+                        <h3 class="preview-title">Sourcing Jadi Lebih Mudah</h3>
+                        <p>Temukan produk yang sempurna dan terhubung dengan pemasok terpercaya melalui platform pencarian sumber kami yang cerdas.</p>
                         <div class="preview-stats">
                             <div class="stat-item">
                                 <h4>10,000+</h4>
-                                <p>Verified Suppliers</p>
+                                <p>Supplier Terpercaya</p>
                             </div>
                             <div class="stat-item">
                                 <h4>24/7</h4>
-                                <p>Support Available</p>
+                                <p>Dukungan Tersedia</p>
                             </div>
                             <div class="stat-item">
                                 <h4>95%</h4>
-                                <p>Satisfaction Rate</p>
+                                <p>Tingkat Kepuasan</p>
                             </div>
                         </div>
                     </div>
@@ -221,7 +221,7 @@
 
 <section class="blueprint-categories">
     <div class="container">
-        <p class="text-center mb-5 fw-bold fs-3">Product Categories</p>
+        <p class="text-center mb-5 fw-bold fs-3">Kategori Produk</p>
         <div class="blueprint-grid">
             <?php
             $categories = main_categories();
@@ -302,7 +302,7 @@
                 <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[16]['url'] ?>" class="col-md-4 p-1 item-sub h-full category-pelumas-base-kiri click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[16]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
                     <div class="d-flex flex-column gap-1 z-index-1">
                         <h6 class="fbold fwhite"><?= $subCategories[16]['name'] ?></h6>
-                        <p class="fwhite f11">Boost your engine with our oil! Advanced formula for top-tier performance and long-term reliability</p>
+                        <p class="fwhite f11">Kualitas tak tertandingi untuk meningkatkan efisiensi dan perlindungan transmisi.</p>
                     </div>
                 </a>
                 <div class="col-md-8 category-pelumas-base-kanan">
@@ -313,13 +313,13 @@
                                     <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[3]['url'] ?>" class="col-md-8 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[3]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-right: solid #fff 2px;border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class=" d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[3]['name'] ?></h6>
-                                            <p class="fwhite f11">Unmatched quality for enhanced transmission efficiency and protection.</p>
+                                            <p class="fwhite f11">Kualitas tak tertandingi untuk meningkatkan efisiensi dan perlindungan transmisi.</p>
                                         </div>
                                     </a>
                                     <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[8]['url'] ?>" class="col-md-4 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[8]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class="d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[8]['name'] ?></h6>
-                                            <p class="fwhite f11">Maximize machine life & performance with high-grade industrial lubricants!</p>
+                                            <p class="fwhite f11">Maksimalkan umur dan performa mesin dengan pelumas industri berkualitas tinggi!</p>
                                         </div>
                                     </a>
                                 </div>
@@ -329,13 +329,13 @@
                                     <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-md-4 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-right: solid #fff 2px;border-top: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class="d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[0]['name'] ?></h6>
-                                            <p class="fwhite f11">Ensures smooth operation and long-lasting component health.</p>
+                                            <p class="fwhite f11">Memastikan pengoperasian yang lancar dan menjaga kesehatan komponen agar tahan lama.</p>
                                         </div>
                                     </a>
                                     <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[18]['url'] ?>" class="col-md-8 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[18]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-top: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class="d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[18]['name'] ?></h6>
-                                            <p class="fwhite f11">Optimize torque transfer while reducing friction and noise.</p>
+                                            <p class="fwhite f11">Optimalkan transfer torsi sekaligus mengurangi gesekan dan kebisingan.</p>
                                         </div>
                                     </a>
                                 </div>
@@ -383,7 +383,7 @@
                 <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-md-4 p-1 item-sub h-full category-ban-base-kiri click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
                     <div class="d-flex flex-column gap-1 z-index-1">
                         <h6 class="fbold fwhite"><?= $subCategories[0]['name'] ?></h6>
-                        <p class="fwhite f11">Maximize productivity with durable OTR tyres for mining and construction</p>
+                        <p class="fwhite f11">Maksimalkan produktivitas dengan ban OTR yang tangguh untuk pertambangan dan konstruksi.</p>
                     </div>
                 </a>
                 <div class="col-md-8 category-ban-base-kanan">
@@ -394,13 +394,13 @@
                                     <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[1]['url'] ?>" class="col-md-8 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[1]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-right: solid #fff 2px;border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class=" d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[1]['name'] ?></h6>
-                                            <p class="fwhite f11">Grip the road with confidence—premium motorcycle tyres for every ride</p>
+                                            <p class="fwhite f11">Cengkeram jalan dengan penuh percaya diri ban premium untuk setiap perjalanan.</p>
                                         </div>
                                     </a>
                                     <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[2]['url'] ?>" class="col-md-4 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[2]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class="d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[2]['name'] ?></h6>
-                                            <p class="fwhite f11">Trusted by drivers for reliable performance in city and highway driving</p>
+                                            <p class="fwhite f11">Dipercaya oleh pengendara untuk performa andal di jalan perkotaan maupun jalan raya.</p>
                                         </div>
                                     </a>
                                 </div>
@@ -410,13 +410,13 @@
                                     <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[3]['url'] ?>" class="col-md-4 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[3]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-right: solid #fff 2px;border-top: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class="d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[3]['name'] ?></h6>
-                                            <p class="fwhite f11">Optimal heat dissipation for cooler running in long-haul operations</p>
+                                            <p class="fwhite f11">Pelepasan panas yang optimal untuk menjaga suhu tetap stabil dalam operasional jarak jauh.</p>
                                         </div>
                                     </a>
                                     <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[4]['url'] ?>" class="col-md-8 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[4]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-top: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class="d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[4]['name'] ?></h6>
-                                            <p class="fwhite f11">Optimized tread design for wet and dry traction in all conditions.</p>
+                                            <p class="fwhite f11">Desain tapak yang dioptimalkan untuk traksi maksimal di kondisi basah maupun kering.</p>
                                         </div>
                                     </a>
                                 </div>
@@ -429,7 +429,7 @@
     </div>
 </section>
 
-<!--- Aki -->
+<!--- Aksesoris -->
 
 <!-- <section class="category-ban mb-2">
     <div class="container">
@@ -446,13 +446,13 @@
                 <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-md-6 p-1 item-sub h-full category-ban-base-kiri click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
                     <div class="d-flex flex-column gap-1 z-index-1">
                         <h6 class="fbold fwhite"><?= $subCategories[0]['name'] ?></h6>
-                        <p class="fwhite f11">Reduce wear and tear with quality heavy equipment add-ons.</p>
+                        <p class="fwhite f11">Kurangi keausan dengan aksesori alat berat berkualitas tinggi</p>
                     </div>
                 </a>
                 <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[1]['url'] ?>" class="col-md-6 p-1 item-sub h-full category-ban-base-kiri click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[1]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
                     <div class="d-flex flex-column gap-1 z-index-1">
                         <h6 class="fbold fwhite"><?= $subCategories[1]['name'] ?></h6>
-                        <p class="fwhite f11">Maximize driver comfort and vehicle functionality on every trip</p>
+                        <p class="fwhite f11">Maksimalkan kenyamanan pengemudi dan fungsionalitas kendaraan di setiap perjalanan.</p>
                     </div>
                 </a>
             </div>
@@ -474,13 +474,19 @@
             </div>
             <div class="col-md d-flex category-ban-base" style="background: url('/public/landing/category/background/<?= $mainCategory['name'] ?>.png') no-repeat 0% 0% / cover;
                 position: relative;">
-                <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-md-4 p-1 item-sub h-full category-ban-base-kiri click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
+                <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-md-6 p-1 item-sub h-full category-ban-base-kiri click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
                     <div class="d-flex flex-column gap-1 z-index-1">
                         <h6 class="fbold fwhite"><?= $subCategories[0]['name'] ?></h4>
-                            <p class="fwhite f11">The right parts make all the difference in heavy-duty operations</p>
+                            <p class="fwhite f11">Sparepart andal untuk menjaga produktivitas alat berat di setiap proyek.</p>
                     </div>
                 </a>
-                <div class="col-md-8 category-ban-base-kanan">
+                <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-md-6 p-1 item-sub h-full category-ban-base-kiri click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
+                    <div class="d-flex flex-column gap-1 z-index-1">
+                        <h6 class="fbold fwhite"><?= $subCategories[1]['name'] ?></h4>
+                            <p class="fwhite f11">Komponen berkualitas untuk mendukung perjalanan jarak jauh yang aman dan lancar.</p>
+                    </div>
+                </a>
+                <!-- <div class="col-md-8 category-ban-base-kanan">
                     <div class="row">
                         <div class="d-flex flex-column justify-content-between align-items-start">
                             <div class="col-md-12">
@@ -517,7 +523,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -540,7 +546,7 @@
                 <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-md-4 p-1 item-sub h-full category-ban-base-kiri click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
                     <div class="d-flex flex-column gap-1 z-index-1">
                         <h6 class="fbold fwhite"><?= $subCategories[0]['name'] ?></h6>
-                        <p class="fwhite f11">The backbone of logistics and public transportation systems</p>
+                        <p class="fwhite f11">Sparepart andal untuk menjaga produktivitas alat berat di setiap proyek.</p>
                     </div>
                 </a>
                 <div class="col-md-8 category-ban-base-kanan">
@@ -551,13 +557,13 @@
                                     <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[1]['url'] ?>" class="col-md-8 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[1]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-right: solid #fff 2px;border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class=" d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[1]['name'] ?></h6>
-                                            <p class="fwhite f11">Designed for power, stability, and unmatched job site performance.</p>
+                                            <p class="fwhite f11">Dirancang untuk tenaga, stabilitas, dan performa terbaik di lokasi kerja.</p>
                                         </div>
                                     </a>
                                     <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[2]['url'] ?>" class="col-md-4 p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[2]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class="d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[2]['name'] ?></h6>
-                                            <p class="fwhite f11">Innovative technology to optimize planting and harvesting</p>
+                                            <p class="fwhite f11">Teknologi inovatif untuk mengoptimalkan proses penanaman dan panen.</p>
                                         </div>
                                     </a>
                                 </div>
@@ -567,7 +573,7 @@
                                     <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[3]['url'] ?>" class="col-md p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[3]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-top: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class="d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[3]['name'] ?></h6>
-                                            <p class="fwhite f11">Built for the sea—reliable marine vessels for any mission. Designed for safety and stability in rough waters</p>
+                                            <p class="fwhite f11">Dirancang untuk lautan kapal laut andal untuk berbagai misi. Dibuat untuk keamanan dan stabilitas di perairan yang ganas.</p>
                                         </div>
                                     </a>
                                 </div>
@@ -598,7 +604,7 @@
                 <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-md-4 p-1 item-sub h-full category-ban-base-kiri click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
                     <div class="d-flex flex-column gap-1 z-index-1">
                         <h6 class="fbold fwhite"><?= $subCategories[0]['name'] ?></h6>
-                        <p class="fwhite f11">The right tools make every job safer and more efficient</p>
+                        <p class="fwhite f11">Peralatan yang tepat membuat setiap pekerjaan lebih aman dan efisien.</p>
                     </div>
                 </a>
                 <div class="col-md-8 category-ban-base-kanan">
@@ -609,7 +615,7 @@
                                     <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[1]['url'] ?>" class="col-md p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[1]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-bottom: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class=" d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[1]['name'] ?></h6>
-                                            <p class="fwhite f11">Protect your workforce with certified safety tools and gear. Durable safety gear designed for comfort and performance.</p>
+                                            <p class="fwhite f11">Lindungi tenaga kerja Anda dengan perlengkapan dan alat keselamatan bersertifikasi. Perlengkapan keselamatan yang tahan lama, dirancang untuk kenyamanan dan performa maksimal.</p>
                                         </div>
                                     </a>
                                 </div>
@@ -619,7 +625,7 @@
                                     <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[2]['url'] ?>" class="col-md p-1 item-sub click-subcategory-home-mobile" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[2]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1));border-top: solid #fff 2px;border-left: solid #fff 2px;">
                                         <div class="d-flex flex-column gap-1 z-index-1">
                                             <h6 class="fbold fwhite"><?= $subCategories[2]['name'] ?></h6>
-                                            <p class="fwhite f11">Boost productivity with innovative, time-saving technology. Smart solutions for professionals who demand the best</p>
+                                            <p class="fwhite f11">ingkatkan produktivitas dengan teknologi inovatif yang menghemat waktu. Solusi cerdas untuk para profesional yang mengutamakan kualitas terbaik.</p>
                                         </div>
                                     </a>
                                 </div>

@@ -85,7 +85,7 @@
                     <img src="<?php echo base_url() ?>public/image/logofooternew.png" alt="Trumecs.com logo" width="150" class="img-fluid">
                 </a>
             </div>
-            <button type="button text-white" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <button type="button fwhite" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body p-0">
             <ul class="list-group list-group-flush">
