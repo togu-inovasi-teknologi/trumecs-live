@@ -77,15 +77,16 @@
                     </div>
                 </div>
             </div>
-        </a>
-
-        <!-- Tombol Beli - Selalu di bawah -->
-        <div class="card-footer border-0 p-0 mt-auto">
+            <div class="card-footer border-0 p-0 mt-auto">
             <button id="btnbuy<?php echo $key['id'] ?>"
                 class="btn btn-primary w-100 rounded-0 py-2">
                 <i class="bi bi-cart3 me-1"></i>
                 Beli
             </button>
         </div>
+        </a>
+
+        <!-- Tombol Beli - Selalu di bawah -->
+        
     </div>
 </div>
