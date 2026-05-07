@@ -23,6 +23,7 @@
 					if (array_key_exists('end_date', $popup_adsbig)) {
 						if ($popup_adsbig["end_date"] == 0) {
 							$status = 'true';
+							
 						} else if ($popup_adsbig["start_date"] <= time() && $popup_adsbig["end_date"] >= time()) {
 							$status = 'true';
 						} else {
@@ -32,11 +33,17 @@
 						$status = 'false';
 					}
 
+if($status == 'true') {
 					?>
-					<div class="popup-check" data-popup="<?php echo $status; ?>"></div>
+
+					<div class="popup-check" data-popup="<?php echo $status; ?>">
 					<?php echo ($popup_adsbig["link"] != "") ? '<a href="' . $popup_adsbig["link"] . '">' : ''; ?>
 					<img src="<?php echo $popup_adsbig['img'] ?>" alt="Poster Promo Pop Up">
 					<?php echo ($popup_adsbig["link"] != "") ? '</a>' : ''; ?>
+					</div>
+
+					<?php } ?>
+					
 				</div>
 			</div>
 			<div class="clearfix"></div>
