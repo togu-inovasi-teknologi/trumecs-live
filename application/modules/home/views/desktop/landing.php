@@ -435,7 +435,7 @@
     </section>
 
     <!-- Aksesoris -->
-    <section class="category-ban mb-3">
+    <!-- <section class="category-ban mb-3">
         <div class="container">
             <div class="row d-flex flex-column gap-2">
                 <?php
@@ -461,7 +461,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Unit -->
     <section class="category-ban mb-3">
