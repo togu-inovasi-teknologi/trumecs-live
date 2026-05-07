@@ -23,8 +23,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'https://' . $_SERVER['HTTP_HOST']; //'https://www.trumecs.com';
-// $config['base_url'] = 'http://' . $_SERVER['HTTP_HOST']; //'https://www.trumecs.com';
+// $config['base_url'] = 'https://' . $_SERVER['HTTP_HOST']; //'https://www.trumecs.com';
+$config['base_url'] = 'http://' . $_SERVER['HTTP_HOST']; //'https://www.trumecs.com';
 
 /*
 |--------------------------------------------------------------------------

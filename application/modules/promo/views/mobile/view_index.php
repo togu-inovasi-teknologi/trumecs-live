@@ -19,6 +19,13 @@
 					<p class="text-secondary small mb-2"><?php echo count($str) > 1 ? $str[0] . "..." : $str[0]; ?></p>
 					<a href="<?php echo base_url() ?>promo/<?php echo $key["url"] ?>" class="text-decoration-none small text-warning">Lihat Selengkapnya</a>
 				</div>
+				<div class="col-12">
+					<?php if ($key['type'] == "bundle") { ?>
+						<p class="d-flex flex-column gap-2">
+							Dapatkan semua dengan harga <span class="fw-bold forange"> Rp <?php echo number_format($key["price"], 0, ',', '.'); ?> </span>
+						</p>
+					<?php } ?>
+				</div>
 				<div class="col-12 my-2">
 					<?php $this->load->view("_listproduct_mobile", array('listproduct' => $key['products'])) ?>
 				</div>

@@ -1,6 +1,6 @@
 <section class="submenu-category pb-0 d-lg-none">
     <div class="container">
-        <h3 class="fbold text-center mb-3">Sub Categories of <?= htmlspecialchars($categories['name']) ?></h3>
+        <h3 class="fbold text-center mb-3">Sub Kategori dari <?= htmlspecialchars($categories['name']) ?></h3>
 
         <div class="row g-2">
             <?php
@@ -35,7 +35,7 @@
 
 <section class="brand-category pb-0 d-lg-none">
     <div class="container">
-        <h3 class="fbold text-center mb-3">Brand of <?= htmlspecialchars($categories['name']) ?></h3>
+        <h3 class="fbold text-center mb-3">Merek dari <?= htmlspecialchars($categories['name']) ?></h3>
 
         <div class="row g-2">
             <?php foreach ($brand as $i) : ?>

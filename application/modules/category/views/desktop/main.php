@@ -1,6 +1,6 @@
 <section class="submenu-category pb-0 d-none d-lg-block">
     <div class="container">
-        <h3 class="fbold text-center mb-4">Sub Categories of <?= htmlspecialchars($categories['name']) ?></h3>
+        <h3 class="fbold text-center mb-4">Sub Kategori dari <?= htmlspecialchars($categories['name']) ?></h3>
 
         <div class="row g-3">
             <?php
@@ -59,7 +59,7 @@
 
 <section class="brand-category pb-0 d-none d-lg-block">
     <div class="container">
-        <h3 class="fbold text-center mb-4">Brand of <?= htmlspecialchars($categories['name']) ?></h3>
+        <h3 class="fbold text-center mb-4">Berbagai Merek dari <?= htmlspecialchars($categories['name']) ?></h3>
 
         <div class="row g-2">
             <?php
@@ -104,7 +104,7 @@
 
 <section class="<?= $categories['name'] ?> m-y-lg" id="see-product-table">
     <div class="container d-flex flex-column gap-3">
-        <h3 class="fbold text-center">Product of <?= $categories['name'] ?></h3>
+        <h3 class="fbold text-center">Produk dari <?= $categories['name'] ?></h3>
         <div class="row catalog-content px-1" style="background:#F6F6F7">
             <!-- <div class="col-lg-12 m-t-2">
                     <div class="row d-flex justify-content-center">
