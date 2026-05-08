@@ -8,8 +8,6 @@ $jenis = $this->general->getcategori(array('parent' => '0', 'is_brand' => '0'));
 foreach ($jenis as $key) {
 	$jenisproduct[$key['id']] = $key['name'];
 }
-
-var_dump($backingdata);
 ?>
 
 <div class="form_io_product row" jq-app="">

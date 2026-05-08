@@ -12,9 +12,10 @@ class grade_model extends CI_Model
         $this->load->database();
     }
 
-    public function getgrade()
+    public function getgrade($where = [])
     {
-        return $this->db->get('grade')->result();
+        return $this->db->where($where)
+        ->get('grade')->result();
     }
 
     public function get_grades_by_categori($category_id)

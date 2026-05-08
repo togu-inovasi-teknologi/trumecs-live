@@ -178,7 +178,7 @@
                     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="<?php echo base_url() ?>timthumb?h=400&src=<?php base_url(); ?>/public/banner/home-mobile/6.png" class="d-block w-100" alt="banner trumecs.com">
+                                <img src="<?php echo base_url() ?>timthumb?h=450&src=<?php base_url(); ?>/public/banner/home-mobile/6.png" class="d-block w-100" alt="banner trumecs.com">
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">

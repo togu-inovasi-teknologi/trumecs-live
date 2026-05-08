@@ -37,6 +37,7 @@
 				</div>
 				<div class="col-lg-10">
 					<div class="tab-content" id="v-pills-tabContent">
+						<!--- Category --->
 						<div class="tab-pane fade show active" id="v-pills-category" role="tabpanel" aria-labelledby="v-pills-category-tab" tabindex="0">
 							<div class="col-lg-12">
 								<div class="card shadow-sm border-0">
@@ -456,7 +457,7 @@
 							</div>
 						</div>
 
-						<!-- Other Tabs -->
+						<!-- Brand -->
 						<div class="tab-pane fade" id="v-pills-brand" role="tabpanel" aria-labelledby="v-pills-brand-tab" tabindex="0">
 							<div class="col-lg-12">
 								<div class="card shadow-sm border-0">
@@ -568,7 +569,7 @@
 								</div>
 							</div>
 						</div>
-
+						<!--- Model --->
 						<div class="tab-pane fade" id="v-pills-model" role="tabpanel" aria-labelledby="v-pills-model-tab" tabindex="0">
 							<div class="col-lg-12">
 								<div class="card shadow-sm border-0">
@@ -705,7 +706,7 @@
 								</div>
 							</div>
 						</div>
-
+						<!--- Attribute --->
 						<div class="tab-pane fade" id="v-pills-attribute" role="tabpanel" aria-labelledby="v-pills-attribute-tab" tabindex="0">
 							<div class="col-lg-12">
 								<div class="card shadow-sm border-0">
@@ -785,6 +786,7 @@
 								</div>
 							</div>
 						</div>
+						<!--- Grade --->
 						<div class="tab-pane fade" id="v-pills-grade" role="tabpanel" aria-labelledby="v-pills-grade-tab" tabindex="0">
 							<div class="col-lg-12">
 								<div class="card shadow-sm border-0">
@@ -795,6 +797,9 @@
 												<div class="d-flex gap-2">
 													<button data-bs-target="#add-grade" data-bs-toggle="modal" class="btn btn-primary">
 														<i class="bi bi-plus me-1"></i>Tambah Grade
+													</button>
+													<button data-bs-target="#add-subgrade" data-bs-toggle="modal" class="btn btn-primary">
+														<i class="bi bi-plus me-1"></i>Tambah Sub Grade
 													</button>
 												</div>
 											</div>
@@ -826,13 +831,6 @@
 										<form id="addFormGrade">
 											<div class="modal-body">
 												<div class="mb-3">
-													<label for="type" class="form-label">Type</label>
-													<select name="type" id="type" class="form-control" required>
-														<option value="0" selected>Grade</option>
-														<option value="1">Sub Grade</option>
-													</select>
-												</div>
-												<div class="mb-3">
 													<label for="grade" class="form-label">Grade</label>
 													<input type="text" class="form-control" id="grade" name="grade" required>
 												</div>
@@ -853,7 +851,6 @@
 								</div>
 							</div>
 
-							<!-- Edit Modal -->
 							<div class="modal fade" id="edit-grade" tabindex="-1">
 								<div class="modal-dialog">
 									<div class="modal-content">
@@ -863,7 +860,7 @@
 										</div>
 										<form id="editFormGrade">
 											<div class="modal-body">
-												<input type="hidden" id="edit_id" name="id" value="">
+												<input type="hidden" id="edit_grade_id" name="id" value="">
 												<div class="mb-3">
 													<label for="edit_grade" class="form-label">Grade</label>
 													<input type="text" class="form-control" id="edit_grade" name="grade" required>
@@ -874,6 +871,58 @@
 														<option value="0" selected>Produk</option>
 														<option value="1">Mekanik</option>
 													</select>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+												<button type="submit" class="btn btn-primary">Update</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+
+							<div class="modal fade" id="add-subgrade" tabindex="-1">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title">Add New Sub Grade</h5>
+											<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+										</div>
+										<form id="addFormSubGrade">
+											<div class="modal-body">
+												<div class="mb-3">
+													<label for="prnGrade" class="form-label fw-bold">Parent Grade</label>
+													<select name="prnGradeId" id="prnGrade" class="form-control"></select>
+												</div>
+												<div class="mb-3">
+													<label for="subgrade" class="form-label">Nama Sub Grade</label>
+													<input type="text" class="form-control" id="subgrade" name="grade" required>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+												<button type="submit" class="btn btn-primary">Save</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+
+							<div class="modal fade" id="edit-subgrade" tabindex="-1">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title">Edit Sub Grade</h5>
+											<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+										</div>
+										<form id="editFormSubGrade">
+											<div class="modal-body">
+												<input type="hidden" id="edit_subgrade_id" name="id" value="">
+												
+												<div class="mb-3">
+													<label for="edit_subgrade" class="form-label">Grade</label>
+													<input type="text" class="form-control" id="edit_subgrade" name="grade" required>
 												</div>
 											</div>
 											<div class="modal-footer">

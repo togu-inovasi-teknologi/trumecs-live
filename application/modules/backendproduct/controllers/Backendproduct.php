@@ -710,6 +710,31 @@ class Backendproduct extends MX_Controller
         }
     }
 
+    public function subGradeAjaxAdd()
+    {
+
+        $prnId = $this->input->post('prnGradeId');
+
+        $gradeDetail = $this->grade_model->getgrade(['id' => $prnId]);
+        $typeGrade = $gradeDetail[0]->type;
+
+        $data = array(
+            'prn' => $prnId,
+            'grade' => $this->input->post('grade'),
+            'type' => $typeGrade
+        );
+
+
+
+        $insert = $this->grade_model->insert_grade($data);
+
+        if ($insert) {
+            echo json_encode(array("status" => true, "message" => "Grade added successfully"));
+        } else {
+            echo json_encode(array("status" => false, "message" => "Failed to add grade"));
+        }
+    }
+
     public function gradeAjaxUpdate()
     {
 
@@ -717,6 +742,27 @@ class Backendproduct extends MX_Controller
         $data = array(
             'grade' => $this->input->post('grade'),
             'type' => $this->input->post('type')
+        );
+        $update = $this->grade_model->update_grade($id, $data);
+
+        if ($update) {
+            echo json_encode(array("status" => true, "message" => "Grade updated successfully"));
+        } else {
+            echo json_encode(array("status" => false, "message" => "Failed to update grade"));
+        }
+    }
+
+    public function subGradeAjaxUpdate()
+    {
+
+        $id = $this->input->post('id');
+
+        $prnId = $this->input->post('prnGradeId');
+
+        $gradeDetail = $this->grade_model->getgrade(['id' => $prnId]);
+        $typeGrade = $gradeDetail[0]->type;
+        $data = array(
+            'grade' => $this->input->post('grade'),
         );
         $update = $this->grade_model->update_grade($id, $data);
 
@@ -831,7 +877,6 @@ class Backendproduct extends MX_Controller
         $search = $this->input->post('search')['value'];
         $order = $this->input->post('order')[0];
 
-        // Jika type dari parameter, override POST
         if ($type) {
             $_POST['type'] = $type;
         }
@@ -1115,6 +1160,22 @@ class Backendproduct extends MX_Controller
         }
 
         echo json_encode(array("status" => true, "data" => $categories));
+    }
+
+    public function getPrnGrades()
+    {
+        $where = ['prn' => 0];
+        $prnGrade = $this->grade_model->getgrade($where);
+
+        $grades = array();
+        foreach ($prnGrade as $grade) {
+            $grades[] = array(
+                'id' => $grade->id,
+                'grade' => $grade->grade
+            );
+        }
+
+        echo json_encode(array("status" => true, "data" => $grades));
     }
 
     public function getCategoryById($id)

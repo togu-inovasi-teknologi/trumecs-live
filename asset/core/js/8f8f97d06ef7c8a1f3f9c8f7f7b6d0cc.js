@@ -129,11 +129,11 @@ $(document).ready(function () {
       success: function (response) {
         if (response.status) {
           $("#add-subgrade").modal("hide");
-          $("#addFormSubGrade")[0].reset();
+          $("#addFormGrade")[0].reset();
           tableGrade.ajax.reload();
           Swal.fire({
             icon: "success",
-            title: "Add Sub Grade!",
+            title: "Add Grade!",
             text: response.message,
             timer: 2000,
             showConfirmButton: false,
@@ -141,7 +141,7 @@ $(document).ready(function () {
         } else {
           Swal.fire({
             icon: "error",
-            title: "Add Sub Grade Error!",
+            title: "Add Grade Error!",
             text: response.message,
             timer: 2000,
             showConfirmButton: false,
@@ -241,17 +241,16 @@ $(document).ready(function () {
     });
   });
 
-  $("#add-subgrade").on("show.bs.modal", function () {
+  $("#add-subsubcategori").on("show.bs.modal", function () {
     loadPrnGrades();
   });
 
   function loadPrnGrades() {
     $.ajax({
-      url: base_url + "backendproduct/getPrnGrades/",
+      url: base_url + "backendproduct/gePrnGrades/",
       type: "GET",
       dataType: "json",
       success: function (response) {
-        console.log(response);
         if (response.status) {
           var select = $("#prnGrade");
           select.empty();
@@ -261,7 +260,7 @@ $(document).ready(function () {
               '<option value="' +
                 grade.id +
                 '">' +
-                grade.grade +
+                grade.name +
                 "</option>"
             );
           });
