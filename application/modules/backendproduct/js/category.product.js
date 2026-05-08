@@ -209,7 +209,6 @@ $(document).ready(function () {
       id: $("#edit_subgrade_id").val(),
       prn: $("#edit_prn_id").val(),
       grade: $("#edit_subgrade").val(),
-      type: $("#edit_type").val(),
     };
 
     $.ajax({
