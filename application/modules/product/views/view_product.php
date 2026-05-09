@@ -48,7 +48,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
             <div class="col-lg-12">
                 <div class="alert alert-warning">
                     <span class="fa fa-exclamation-circle" style="vertical-align:middle"></span> <small> <strong>Produk
-                            dalam proses restock.</strong> Silahkan daftar / hubungi <a href="https://wa.me/<?= (isset($key['admin_phone'])) ? $key['admin_phone'] : '085176912338' ?>"> <?= (isset($key['admin_phone'])) ? $key['admin_phone'] : '085176912338' ?></a> atau <a href="mailto:info@trumecs.com">info@trumecs.com</a> untuk mendapatkan info terbaru.</small>
+                            dalam proses restock.</strong> Silahkan daftar / hubungi <a href="https://wa.me/<?= (isset($key['admin_phone'])) ? $key['admin_phone'] : '6285176912338' ?>"> <?= (isset($key['admin_phone'])) ? "+" + $key['admin_phone'] : '085176912338' ?></a> atau <a href="mailto:info@trumecs.com">info@trumecs.com</a> untuk mendapatkan info terbaru.</small>
                 </div>
             </div>
         <?php endif; ?>
@@ -166,13 +166,20 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                                             style="font-size:24px;display:block;width:100%">
                                                             <span class="fw-bold" itemprop="priceCurrency"
                                                                 content="IDR">Rp</span>
-                                                            <span class="price-label fw-bold" itemprop="price">
+                                                            <span class="fw-bold" itemprop="price">
                                                                 <?php
                                                                 $display_price = ($key["price_promo"] == 0 || $key['price_promo'] == null)
                                                                     ? ($key['is_sell'] == 1 ? $key["price"] : $key['rent_price'])
                                                                     : $key["price_promo"];
 
-                                                                echo number_format($display_price, 0, ',', '.');
+                                                                $clean_price = preg_replace('/[^0-9]/', '', $display_price);
+                                                                if (empty($clean_price)) {
+                                                                    $clean_price = 0;
+                                                                }
+
+                                                                $numeric_price = (int) $clean_price;
+
+                                                                echo number_format($numeric_price, 0, ',', '.');
                                                                 ?>
                                                             </span>
                                                             <small class="f34" style="color:#999 !important">/

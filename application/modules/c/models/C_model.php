@@ -297,7 +297,7 @@ class C_model extends CI_Model
             $this->db->limit($limit, $start)
                 ->where("status", "show")
                 // ->where("tipe", $datawhere["tipe"])
-                ->order_by("score", "DESC")
+                ->order_by("id", "DESC")
                 ->group_by('id');
         }
 
