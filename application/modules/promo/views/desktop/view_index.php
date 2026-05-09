@@ -19,7 +19,7 @@
 								<?php echo $key['name']; ?>
 							</a>
 							<?php if ($key['type'] == "bundle") { ?>
-								<p>
+								<p class="fs-4">
 									Dapatkan semua dengan harga <span class="fw-bold forange"> Rp <?php echo number_format($key["price"], 0, ',', '.'); ?> </span>
 								</p>
 							<?php } ?>
