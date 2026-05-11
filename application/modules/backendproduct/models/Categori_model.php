@@ -44,6 +44,7 @@ class categori_model extends CI_Model
     {
         return $this->db->where(['parent' => 0, 'is_brand' => 0])
             ->where('etc !=', 0)
+            ->where('etc <', 3)
             ->get($this->table)
             ->result();
     }
@@ -52,6 +53,7 @@ class categori_model extends CI_Model
     {
         return $this->db->where(['parent' => $parent_id, 'is_brand' => 0])
             ->where('etc !=', 0)
+            ->where('etc <', 3)
             ->get($this->table)
             ->result();
     }
@@ -302,7 +304,7 @@ class categori_model extends CI_Model
                     $this->db->where(['is_brand' => 0, 'parent_brand' => 0, 'etc' => 0]);
                     break;
                 case 'main_category_jasa':
-                    $this->db->where(['is_brand' => 0, 'parent_brand' => 0])->where('etc !=', 0);
+                    $this->db->where(['is_brand' => 0, 'parent_brand' => 0])->where('etc !=', 0)->where('etc <', 3);
                     break;
                 case 'sub_category':
                     $this->db->where('parent !=', 0);
@@ -324,6 +326,7 @@ class categori_model extends CI_Model
                     $this->db->where('is_brand', 0);
                     $this->db->where('parent_brand', 0);
                     $this->db->where('etc !=', 0);
+                    $this->db->where('etc <', 3);
                     $this->db->where('parent IN (SELECT id FROM categori WHERE parent = 0 AND is_brand = 0 AND parent_brand = 0 AND etc = 0)');
                     break;
                 case 'subsub_category_jasa':
@@ -331,6 +334,7 @@ class categori_model extends CI_Model
                     $this->db->where('is_brand', 0);
                     $this->db->where('parent_brand', 0);
                     $this->db->where('etc !=', 0);
+                    $this->db->where('etc <', 3);
                     $this->db->where('parent IN (SELECT id FROM categori WHERE parent != 0 AND is_brand = 0 AND parent_brand = 0 AND etc = 0)');
                     break;
                 case 'brand':

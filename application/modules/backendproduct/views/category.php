@@ -919,7 +919,10 @@
 										<form id="editFormSubGrade">
 											<div class="modal-body">
 												<input type="hidden" id="edit_subgrade_id" name="id" value="">
-
+												<div class="mb-3">
+													<label for="edit_prnGrade" class="form-label fw-bold">Parent Grade</label>
+													<select name="edit_prnGradeId" id="edit_prnGrade" class="form-control"></select>
+												</div>
 												<div class="mb-3">
 													<label for="edit_subgrade" class="form-label">Nama Sub Grade</label>
 													<input type="text" class="form-control" id="edit_subgrade" name="grade" required>
