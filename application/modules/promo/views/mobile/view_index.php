@@ -21,7 +21,7 @@
 				</div>
 				<div class="col-12">
 					<?php if ($key['type'] == "bundle") { ?>
-						<p class="d-flex flex-column gap-2">
+						<p class="d-flex flex-column gap-2 fs-5">
 							Dapatkan semua dengan harga <span class="fw-bold forange"> Rp <?php echo number_format($key["price"], 0, ',', '.'); ?> </span>
 						</p>
 					<?php } ?>
