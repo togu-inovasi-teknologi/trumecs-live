@@ -919,9 +919,9 @@
 										<form id="editFormSubGrade">
 											<div class="modal-body">
 												<input type="hidden" id="edit_subgrade_id" name="id" value="">
-												
+
 												<div class="mb-3">
-													<label for="edit_subgrade" class="form-label">Grade</label>
+													<label for="edit_subgrade" class="form-label">Nama Sub Grade</label>
 													<input type="text" class="form-control" id="edit_subgrade" name="grade" required>
 												</div>
 											</div>
