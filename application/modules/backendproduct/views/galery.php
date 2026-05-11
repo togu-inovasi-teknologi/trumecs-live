@@ -44,7 +44,7 @@
 				    		<a href="' . base_url() . 'public/image/galery/' . $key["img"] . '" target="_blank" class="d-block">
 				    			<img src="' . base_url() . 'public/image/galery/' . $key["img"] . '" class="img-fluid rounded" style="max-height: 150px; width: auto;">
 				    		</a>
-				    		<a href="' . base_url() . 'backendproduct/hapusgalery?id=' . $key["id"] . '&im=' . $key["img"] . '" class="btn btn-link btn-sm text-danger text-decoration-none mt-1" onclick="return confirm(\'Yakin ingin menghapus gambar ini?\')">Hapus</a>
+				    		<a href="' . base_url() . 'backendproduct/hapusgalery?id=' . $key["id"] . '&im=' . $key["img"] . '" class="btn btn-danger btn-sm text-decoration-none mt-1" onclick="return confirm(\'Yakin ingin menghapus gambar ini?\')">Hapus</a>
 				    	</div>';
 					} else {
 						echo "<div class='col-12'><div class='alert alert-warning small'>tidak ada file $filename</div></div>";
