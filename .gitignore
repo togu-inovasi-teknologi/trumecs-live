@@ -88,3 +88,5 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /application/config/config.php
 
 /asset/insite/credentials-trumecs.json
+/asset/core/js/*
+/asset/core/css/*
