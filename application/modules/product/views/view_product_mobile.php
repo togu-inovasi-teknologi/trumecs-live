@@ -232,7 +232,7 @@ $img_promo = '<img class="labelimg d-none d-sm-block" src="' . base_url() . '/pu
                 <div class="col-12">
                     <div class="alert alert-warning text-center">
                         <i class="bi bi-exclamation-circle"></i>
-                        <small> <strong>Produk dalam proses restock.<br /></strong> Silahkan daftar / hubungi <a href="https://wa.me/<?= (isset($key['admin_phone']) && !empty($key['admin_phone'])) ? $key['admin_phone'] : '085176912338' ?>"> <?= (isset($key['admin_phone']) && !empty($key['admin_phone'])) ? $key['admin_phone'] : '085176912338' ?></a> atau <a href="mailto:info@trumecs.com">info@trumecs.com</a> untuk mendapatkan info terbaru.</small>
+                        <small> <strong>Produk dalam proses restock.<br /></strong> Silahkan daftar / hubungi <a href="https://wa.me/<?= (isset($key['admin_phone'])) ? $key['admin_phone'] : '6285176912338' ?>"> <?= (isset($key['admin_phone'])) ? "+" . $key['admin_phone'] : '+6285176912338' ?></a> atau <a href="mailto:info@trumecs.com">info@trumecs.com</a> untuk mendapatkan info terbaru.</small>
                     </div>
                 </div>
             <?php endif; ?>
@@ -242,7 +242,7 @@ $img_promo = '<img class="labelimg d-none d-sm-block" src="' . base_url() . '/pu
             <div class="col-12">
                 <div class="row">
                     <div class="col-12">
-                        <h1 itemprop="name" class="f18 fbold mb-0"><?php echo (($key["tittle"])) ?></h1>
+                        <h1 itemprop="name" class="f18 fbold mb-0"><?php echo (($key["tittle"])) ?><?php echo !empty($key["partnumber_trumecs"]) ? " - " . $key["partnumber_trumecs"] : ""; ?></h1>
                         <h4 itemprop="mpn" class="f12 text-muted"><?php echo strtoupper($key["partnumber"]) ?></h4>
                     </div>
 

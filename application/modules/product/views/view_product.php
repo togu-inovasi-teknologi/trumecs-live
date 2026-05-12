@@ -48,7 +48,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
             <div class="col-lg-12">
                 <div class="alert alert-warning">
                     <span class="fa fa-exclamation-circle" style="vertical-align:middle"></span> <small> <strong>Produk
-                            dalam proses restock.</strong> Silahkan daftar / hubungi <a href="https://wa.me/<?= (isset($key['admin_phone'])) ? $key['admin_phone'] : '6285176912338' ?>"> <?= (isset($key['admin_phone'])) ? "+" + $key['admin_phone'] : '085176912338' ?></a> atau <a href="mailto:info@trumecs.com">info@trumecs.com</a> untuk mendapatkan info terbaru.</small>
+                            dalam proses restock.</strong> Silahkan daftar / hubungi <a href="https://wa.me/<?= (isset($key['admin_phone'])) ? $key['admin_phone'] : '6285176912338' ?>"> <?= (isset($key['admin_phone'])) ? "+" . $key['admin_phone'] : '+6285176912338' ?></a> atau <a href="mailto:info@trumecs.com">info@trumecs.com</a> untuk mendapatkan info terbaru.</small>
                 </div>
             </div>
         <?php endif; ?>
@@ -123,7 +123,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                             <div class="col-lg-12">
                                                 <h1 itemprop="name"
                                                     alt="<?php echo ucwords(strtolower($key["tittle"])) ?>"
-                                                    class="fw-bold mb-0"><?php echo (($key["tittle"])) ?></h1>
+                                                    class="fw-bold mb-0"><?php echo (($key["tittle"])) ?><?php echo !empty($key["partnumber_trumecs"]) ? " - " . $key["partnumber_trumecs"] : ""; ?></h1>
 
                                                 <?php if ($key['is_sell'] == 1) : ?>
                                                     <span itemprop="mpn"

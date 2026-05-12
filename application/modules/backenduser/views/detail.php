@@ -48,7 +48,8 @@ $data = $detail[0];
 				<div class="row mb-3 align-items-center">
 					<label class="col-md-3 col-lg-2 fw-semibold text-dark">No Telepon / WA <span class="text-danger">*</span></label>
 					<div class="col-md-9 col-lg-10">
-						<input class="form-control rounded-3" type="text" name="phone" value="<?php echo htmlspecialchars($data["phone"]); ?>" placeholder="0852xxxxxxxxx" required>
+						<input class="form-control rounded-3" type="text" name="phone" value="<?php echo htmlspecialchars($data["phone"]); ?>" placeholder="62852xxxxxxxxx" required>
+						<div class="form-text">Nomer dimulai dengan 62 bukan 0</div>
 					</div>
 				</div>
 
