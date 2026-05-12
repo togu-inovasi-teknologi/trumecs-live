@@ -27,7 +27,7 @@ class Promo extends MX_Controller
 	public function index($url)
 	{
 		if (($url == NULL or $url == "index")) {
-			// Halaman list semua promo
+
 			if (!$this->agent->is_mobile()) {
 				$data['content'] = '/desktop/view_index';
 			} else {
@@ -39,12 +39,7 @@ class Promo extends MX_Controller
 			$data["seodescription"] = $this->lang->line("seo_description_promo");
 			$data["datalist"] = $this->promo_model->getpromo(0);
 			$data["listproduct"] = $data["datalist"]["product"];
-
-			// 🔥 Untuk halaman index, tidak ada promo_type spesifik
-			// Biarkan saja atau set default
-
 		} else {
-			// Halaman detail promo
 			$data["datalist"] = $this->promo_model->getpromodetail($this->uri->segment(2));
 			$data["breadcrumb"] = array($data["datalist"]["promo"][0]["name"]);
 			$data["listproduct"] = $data["datalist"]["product"];

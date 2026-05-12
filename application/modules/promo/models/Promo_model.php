@@ -63,6 +63,8 @@ class Promo_model extends CI_Model
         $this->db->where('end_date >=', time());
         $promo = $this->db->from("promo")->order_by("id", "DESC")->get();
         $promo_list = $promo->result_array();
+        $product = explode(',', $promo_list[0]["product"]);
+        $promo_list['totalProductPromo'] = count($product);
 
         foreach ($promo_list as $key => $value) {
             $this->db->limit(($this->agent->is_mobile() ? 2 : 4));
@@ -74,7 +76,7 @@ class Promo_model extends CI_Model
             shuffle($getselect);
 
             $promo_list[$key]['products'] = $getselect;
-            $promo_list[$key]['promo_type'] = $promo_type; // Simpan type juga di level promo
+            $promo_list[$key]['promo_type'] = $promo_type;
         }
         return $promo_list;
     }
