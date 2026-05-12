@@ -123,7 +123,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                             <div class="col-lg-12">
                                                 <h1 itemprop="name"
                                                     alt="<?php echo ucwords(strtolower($key["tittle"])) ?>"
-                                                    class="fw-bold mb-0"><?php echo (($key["tittle"])) ?><?php echo !empty($key["partnumber_trumecs"]) ? " ( " . $key["partnumber_trumecs"] . " ) " : ""; ?></h1>
+                                                    class="fw-bold mb-0"><?php echo (($key["tittle"])) ?><?php echo !empty($key["partnumber_trumecs"]) ? "<br> ( " . $key["partnumber_trumecs"] . " ) " : ""; ?></h1>
 
                                                 <?php if ($key['is_sell'] == 1) : ?>
                                                     <span itemprop="mpn"
