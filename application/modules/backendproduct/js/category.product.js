@@ -118,6 +118,47 @@ $(document).ready(function () {
     });
   });
 
+  // PERBAIKAN: Ganti nama fungsi dari loadPrnGrades menjadi loadParentGrades
+  function loadParentGrades() {
+    return $.ajax({
+      url: base_url + "backendproduct/getParentGrades",
+      type: "GET",
+      dataType: "json",
+      success: function (response) {
+        if (response.status) {
+          var select = $("#prnGrade");
+          var selectEdit = $("#edit_prn_grade");
+          select.empty();
+          selectEdit.empty();
+          select.append('<option value="">Pilih Parent Grade</option>');
+          selectEdit.append('<option value="">Pilih Parent Grade</option>');
+          $.each(response.data, function (index, grade) {
+            select.append(
+              '<option value="' +
+                grade.id +
+                '">' +
+                grade.grade +
+                " (" +
+                grade.type +
+                ")" +
+                "</option>"
+            );
+            selectEdit.append(
+              '<option value="' +
+                grade.id +
+                '">' +
+                grade.grade +
+                " (" +
+                grade.type +
+                ")" +
+                "</option>"
+            );
+          });
+        }
+      },
+    });
+  }
+
   $("#addFormSubGrade").on("submit", function (e) {
     e.preventDefault();
 
@@ -151,15 +192,36 @@ $(document).ready(function () {
     });
   });
 
-  // Edit button click
+  $("#gradeTable").on("click", ".add-sub", function () {
+    var parentId = $(this).data("id");
+    var parentName = $(this).data("name");
+
+    $("#prnGradeId").val(parentId);
+    $("#parent_grade_name").text(parentName);
+
+    // PERBAIKAN: Load parent grades and set value
+    loadParentGrades().then(function () {
+      $("#prnGrade").val(parentId);
+      $("#add-subgrade").modal("show");
+    });
+  });
+
+  // Load parent grades when Add Sub modal opens (for manual selection)
+  $("#add-subgrade").on("show.bs.modal", function () {
+    loadParentGrades();
+    // Reset form
+    $("#subgrade").val("");
+    $("#prnGradeId").val("");
+  });
+
   $("#gradeTable").on("click", ".edit", function () {
     var id = $(this).data("id");
     var grade = $(this).data("grade");
     var type = $(this).data("type");
+
     $("#edit_grade_id").val(id);
     $("#edit_grade").val(grade);
     $("#edit_type").val(type);
-
     $("#edit-grade").modal("show");
   });
 
@@ -202,17 +264,33 @@ $(document).ready(function () {
     });
   });
 
+  $("#gradeTable").on("click", ".edit-sub", function () {
+    var id = $(this).data("id");
+    var grade = $(this).data("grade");
+    var parentId = $(this).data("parent");
+    console.log(id);
+    console.log(grade);
+    console.log(parentId);
+    // Load parent grades first
+    loadParentGrades().then(function () {
+      $("#edit_subgrade_id").val(id);
+      $("#edit_subgrade").val(grade);
+      $("#edit_prn_grade").val(parentId);
+      $("#edit-subgrade").modal("show");
+    });
+  });
+
   $("#editFormSubGrade").on("submit", function (e) {
     e.preventDefault();
 
     var formData = {
       id: $("#edit_subgrade_id").val(),
-      prn: $("#edit_prn_id").val(),
+      prn: $("#edit_prn_grade").val(),
       grade: $("#edit_subgrade").val(),
     };
 
     $.ajax({
-      url: base_url + "backendproduct/gradeAjaxUpdate",
+      url: base_url + "backendproduct/subGradeAjaxUpdate",
       type: "POST",
       data: formData,
       dataType: "json",
@@ -221,16 +299,16 @@ $(document).ready(function () {
           tableGrade.ajax.reload();
           Swal.fire({
             icon: "success",
-            title: "Edit Grade!",
+            title: "Edit Sub Grade!",
             text: response.message,
             timer: 2000,
             showConfirmButton: false,
           });
-          $("#edit-grade").modal("hide");
+          $("#edit-subgrade").modal("hide");
         } else {
           Swal.fire({
             icon: "error",
-            title: "Edit Grade Error!",
+            title: "Edit Sub Grade Error!",
             text: response.message,
             timer: 2000,
             showConfirmButton: false,
@@ -240,49 +318,6 @@ $(document).ready(function () {
     });
   });
 
-  $("#add-subgrade").on("show.bs.modal", function () {
-    loadPrnGrades();
-  });
-
-  function loadPrnGrades() {
-    $.ajax({
-      url: base_url + "backendproduct/getPrnGrades/",
-      type: "GET",
-      dataType: "json",
-      success: function (response) {
-        console.log(response);
-        if (response.status) {
-          var select = $("#prnGrade");
-          select.empty();
-          select.append('<option value="">Pilih Parent Grade</option>');
-          $.each(response.data, function (index, grade) {
-            select.append(
-              '<option value="' +
-                grade.id +
-                '">' +
-                grade.grade +
-                "</option>"
-            );
-          });
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error!",
-            text: "Failed to load Grade",
-          });
-        }
-      },
-      error: function (xhr, status, error) {
-        Swal.fire({
-          icon: "error",
-          title: "Error",
-          text: "Error loading sub Grade: " + error,
-        });
-      },
-    });
-  }
-
-  // Delete button click
   $("#gradeTable").on("click", ".delete", function () {
     var id = $(this).data("id");
     var name = $(this).data("name") || "this grade";

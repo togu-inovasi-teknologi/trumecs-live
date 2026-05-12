@@ -920,11 +920,12 @@
 											<div class="modal-body">
 												<input type="hidden" id="edit_subgrade_id" name="id" value="">
 												<div class="mb-3">
-													<label for="edit_prnGrade" class="form-label fw-bold">Parent Grade</label>
-													<select name="edit_prnGradeId" id="edit_prnGrade" class="form-control"></select>
+													<label for="edit_prn_grade" class="form-label fw-bold">Parent Grade</label>
+													<select name="editPrnGradeId" id="edit_prn_grade" class="form-control" required>
+													</select>
 												</div>
 												<div class="mb-3">
-													<label for="edit_subgrade" class="form-label">Nama Sub Grade</label>
+													<label for="edit_subgrade" class="form-label">Sub Grade Name</label>
 													<input type="text" class="form-control" id="edit_subgrade" name="grade" required>
 												</div>
 											</div>

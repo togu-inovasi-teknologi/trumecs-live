@@ -217,7 +217,6 @@ class General extends MX_Controller
 
 	public function getgradeform($value = null)
 	{
-		// Validasi input
 		if (empty($value)) {
 			echo '<option value="">-- Parameter tidak valid --</option>';
 			return;
@@ -225,25 +224,45 @@ class General extends MX_Controller
 
 		if (!is_numeric($value)) {
 			$result = $this->general_model->getcategoribyname($value);
-
 			if (empty($result) || !isset($result[0]['id'])) {
 				echo '<option value="">-- Kategori tidak ditemukan --</option>';
 				return;
 			}
-
 			$value = $result[0]['id'];
+		}
+
+		$grades = $this->general_model->getgrade($value);
+
+		if (empty($grades)) {
+			echo '<option value="">-- Tidak ada grade tersedia --</option>';
+			return;
 		}
 
 		echo '<option value="">-- Silahkan pilih grade --</option>';
 
-		$grades = $this->general_model->getgrade($value);
+		$parents = [];
+		$children = [];
 
-		if (!empty($grades)) {
-			foreach ($grades as $key) {
-				echo '<option value="' . $key["id"] . '">' . $key["grade"] . '</option>';
+		foreach ($grades as $grade) {
+			if ($grade['prn'] == 0) {
+				$parents[] = $grade;
+			} else {
+				$children[$grade['prn']][] = $grade;
 			}
-		} else {
-			echo '<option value="">-- Tidak ada grade tersedia --</option>';
+		}
+
+		foreach ($parents as $parent) {
+			echo '<option value="' . $parent['id'] . '">';
+			echo htmlspecialchars($parent['grade']);
+			echo '</option>';
+
+			if (isset($children[$parent['id']])) {
+				foreach ($children[$parent['id']] as $child) {
+					echo '<option value="' . $child['id'] . '">';
+					echo  htmlspecialchars($parent['grade']) . ' → ' . htmlspecialchars($child['grade']);
+					echo '</option>';
+				}
+			}
 		}
 	}
 

@@ -669,17 +669,34 @@ class Backendproduct extends MX_Controller
             $no++;
             $row = array();
             $row[] = $no;
-            $row[] = $grade->grade;
+            $parent_display = ($grade->prn == 0) ? ' <span class="badge bg-secondary">Parent</span>' : ('<br><span class="text text-secondary">' . $grade->parent_name . '</span>' ?? '-');
+            $row[] = $grade->grade . $parent_display;
             $row[] = $grade->type == 0 ? 'Produk' : 'Mekanik';
-            $row[] = '
-            <button type="button" class="btn btn-warning btn-sm edit" data-id="' . $grade->id . '" data-grade="' . $grade->grade . '" data-type="' . $grade->type . '">
-                <i class="bi bi-pencil"></i>
-            </button>
-            <button type="button" class="btn btn-danger btn-sm delete" data-id="' . $grade->id . '" data-name="' . $grade->grade . '">
-                <i class="bi bi-trash"></i>
-            </button>
-        ';
 
+            // Action buttons - different for parent and child
+            if ($grade->prn == 0) {
+                // Parent grade: can add sub, edit, delete
+                $action = '
+                <button type="button" class="btn btn-warning btn-sm edit" data-id="' . $grade->id . '" data-grade="' . $grade->grade . '" data-type="' . $grade->type . '">
+                    <i class="bi bi-pencil"></i>
+                </button>
+                <button type="button" class="btn btn-danger btn-sm delete" data-id="' . $grade->id . '" data-name="' . $grade->grade . '">
+                    <i class="bi bi-trash"></i>
+                </button>
+            ';
+            } else {
+                // Child grade: only edit and delete
+                $action = '
+                <button type="button" class="btn btn-warning btn-sm edit-sub" data-id="' . $grade->id . '" data-grade="' . $grade->grade . '" data-parent="' . $grade->prn . '">
+                    <i class="bi bi-pencil"></i>
+                </button>
+                <button type="button" class="btn btn-danger btn-sm delete" data-id="' . $grade->id . '" data-name="' . $grade->grade . '">
+                    <i class="bi bi-trash"></i>
+                </button>
+            ';
+            }
+
+            $row[] = $action;
             $data[] = $row;
         }
 
@@ -712,26 +729,83 @@ class Backendproduct extends MX_Controller
 
     public function subGradeAjaxAdd()
     {
-
         $prnId = $this->input->post('prnGradeId');
 
-        $gradeDetail = $this->grade_model->getgrade(['id' => $prnId]);
-        $typeGrade = $gradeDetail[0]->type;
+        $gradeDetail = $this->grade_model->get_grade_by_id($prnId);
 
         $data = array(
             'prn' => $prnId,
             'grade' => $this->input->post('grade'),
-            'type' => $typeGrade
+            'type' => $gradeDetail->type ?? 0
         );
-
-
 
         $insert = $this->grade_model->insert_grade($data);
 
         if ($insert) {
-            echo json_encode(array("status" => true, "message" => "Grade added successfully"));
+            echo json_encode(array("status" => true, "message" => "Sub Grade added successfully"));
         } else {
-            echo json_encode(array("status" => false, "message" => "Failed to add grade"));
+            echo json_encode(array("status" => false, "message" => "Failed to add sub grade"));
+        }
+    }
+
+
+    public function subGradeAjaxUpdate()
+    {
+        $prnId = $this->input->post('prn');
+
+        $gradeDetail = $this->grade_model->get_grade_by_id($prnId);
+
+        $id = $this->input->post('id');
+        $data = array(
+            'prn' => $prnId,
+            'grade' => $this->input->post('grade'),
+            'type' => $gradeDetail->type ?? 0
+        );
+
+
+        $update = $this->grade_model->update_grade($id, $data);
+
+        if ($update) {
+            echo json_encode(array("status" => true, "message" => "Sub Grade updated successfully"));
+        } else {
+            echo json_encode(array("status" => false, "message" => "Failed to update sub grade"));
+        }
+    }
+
+    public function getParentGrades()
+    {
+        $grades = $this->grade_model->get_parent_grades();
+
+        $parent_grades = array();
+        foreach ($grades as $grade) {
+            $parent_grades[] = array(
+                'id' => $grade->id,
+                'grade' => $grade->grade,
+                'type' => $grade->type == 0 ? 'Produk' : 'Mekanik'
+            );
+        }
+
+        echo json_encode(array("status" => true, "data" => $parent_grades));
+    }
+
+    // Get single grade by ID (for edit)
+    public function getGradeById($id)
+    {
+        $grade = $this->grade_model->get_grade_by_id($id);
+
+        if ($grade) {
+            echo json_encode(array(
+                "status" => true,
+                "data" => array(
+                    'id' => $grade->id,
+                    'grade' => $grade->grade,
+                    'type' => $grade->type,
+                    'prn' => $grade->prn,
+                    'parent_name' => $grade->parent_name
+                )
+            ));
+        } else {
+            echo json_encode(array("status" => false, "message" => "Grade not found"));
         }
     }
 
@@ -752,26 +826,6 @@ class Backendproduct extends MX_Controller
         }
     }
 
-    public function subGradeAjaxUpdate()
-    {
-
-        $id = $this->input->post('id');
-
-        $prnId = $this->input->post('prnGradeId');
-
-        $gradeDetail = $this->grade_model->getgrade(['id' => $prnId]);
-        $typeGrade = $gradeDetail[0]->type;
-        $data = array(
-            'grade' => $this->input->post('grade'),
-        );
-        $update = $this->grade_model->update_grade($id, $data);
-
-        if ($update) {
-            echo json_encode(array("status" => true, "message" => "Grade updated successfully"));
-        } else {
-            echo json_encode(array("status" => false, "message" => "Failed to update grade"));
-        }
-    }
 
     // Delete grade
     public function gradeAjaxDelete()

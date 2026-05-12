@@ -107,13 +107,19 @@ class general_model extends CI_Model
 
     public function getgrade($category_id = null)
     {
-        if ($category_id != null) {
-            $this->db->where("cg.category_id", $category_id)
-                ->join("category_grade cg", "cg.grade_id = g.id");
+        $this->db->select('g.*, p.grade as parent_name');
+        $this->db->from('grade g');
+        $this->db->join('grade p', 'g.prn = p.id', 'left');
+
+        if ($category_id != null && is_numeric($category_id)) {
+            $this->db->join("category_grade cg", "cg.grade_id = g.id");
+            $this->db->where("cg.category_id", $category_id);
         }
 
-        $query = $this->db->order_by('g.grade', 'ASC')
-            ->get('grade g');
+        // Gunakan raw query untuk order by
+        $this->db->order_by("FIELD(g.prn, 0) DESC, g.grade ASC");
+
+        $query = $this->db->get();
         return $query->result_array();
     }
 

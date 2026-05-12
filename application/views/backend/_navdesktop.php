@@ -61,7 +61,7 @@ $firtsname = explode(" ", $ses["admin"]["nameadmin"]);
                             <div class="collapse <?php echo $isParentActive ? 'show' : ''; ?>" id="submenu-<?php echo $key["id"] ?>">
                                 <ul class="list-unstyled ms-3 mt-2">
                                     <?php foreach ($childprn as $ckey) :
-                                        $childActive = (explode("/", $ckey["url"])[1] == $this->uri->segment(2));
+                                        $childActive = (explode("/", $ckey["url"]) == $this->uri->segment(2));
                                     ?>
                                         <li class="nav-item">
                                             <a class="nav-link d-flex gap-2 align-items-center text-white-50 text-decoration-none py-2 px-3 rounded <?php echo $childActive ? 'bg-primary text-white' : 'hover-bg-light'; ?>"
