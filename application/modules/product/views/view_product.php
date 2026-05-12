@@ -220,7 +220,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                             <div class="col-lg-12 mt-1">
                                                 Info, pemesanan, diskon khusus:<br />
                                                 <a style="border:1px solid #ccc"
-                                                    href="https://wa.me/<?= (isset($key['admin_phone'])) ? $key['admin_phone'] : '085176912338' ?>?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["tittle"] . ". Apakah barang ini tersedia?") ?>"
+                                                    href="https://wa.me/<?= (isset($key['admin_phone'])) ? $key['admin_phone'] : '6285176912338' ?>?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["tittle"] . ". Apakah barang ini tersedia?") ?>"
                                                     class="btn btn-lg btnnew fw-bold text-center f14 wa-button-product"><i
                                                         class="fa fa-whatsapp fa-2x f18 me-1"></i><?php echo $this->lang->line('tombol_whatsapp', FALSE); ?></a>
                                                 <a style="border:1px solid #ccc"

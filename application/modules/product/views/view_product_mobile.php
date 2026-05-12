@@ -289,6 +289,7 @@ $img_promo = '<img class="labelimg d-none d-sm-block" src="' . base_url() . '/pu
                         <hr />
                     </div>
 
+
                     <div class="clearfix"></div>
 
                     <div class="col-12">
@@ -471,6 +472,17 @@ $img_promo = '<img class="labelimg d-none d-sm-block" src="' . base_url() . '/pu
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-12 mt-1">
+                            Info, pemesanan, diskon khusus:<br />
+                            <a style="border:1px solid #ccc"
+                                href="https://wa.me/<?= (isset($key['admin_phone'])) ? $key['admin_phone'] : '6285176912338' ?>?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["tittle"] . ". Apakah barang ini tersedia?") ?>"
+                                class="btn btn-lg btnnew fw-bold text-center f14 wa-button-product"><i
+                                    class="fa fa-whatsapp fa-2x f18 me-1"></i><?php echo $this->lang->line('tombol_whatsapp', FALSE); ?></a>
+                            <a style="border:1px solid #ccc"
+                                href="mailto:info@trumecs.com?subject=<?php echo $key["tittle"] ?>&body=<?php echo "Hi Trumecs, saya tertarik dengan " . $key["tittle"] . ". \n \t Apakah barang ini tersedia?" ?>"
+                                class="btn btn-lg btnnew fw-bold text-center f14 email-button-product"><i
+                                    class="fa fa-envelope-o fa-2x f18 me-1"></i><?php echo $this->lang->line('tombol_email', FALSE); ?></a>
                         </div>
                     </div>
                 </div>
