@@ -242,7 +242,7 @@ $img_promo = '<img class="labelimg d-none d-sm-block" src="' . base_url() . '/pu
             <div class="col-12">
                 <div class="row">
                     <div class="col-12">
-                        <h1 itemprop="name" class="f18 fbold mb-0"><?php echo (($key["tittle"])) ?><?php echo !empty($key["partnumber_trumecs"]) ? " ( " . $key["partnumber_trumecs"] . " ) " : ""; ?></h1>
+                        <h1 itemprop="name" class="f18 fbold mb-0"><?php echo (($key["tittle"])) ?><?php echo !empty($key["partnumber_trumecs"]) ? "<br> ( " . $key["partnumber_trumecs"] . " ) " : ""; ?></h1>
                         <h4 itemprop="mpn" class="f12 text-muted"><?php echo strtoupper($key["partnumber"]) ?></h4>
                     </div>
 
