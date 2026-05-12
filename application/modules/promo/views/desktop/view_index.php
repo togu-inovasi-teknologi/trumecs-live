@@ -19,9 +19,10 @@
 								<?php echo $key['name']; ?>
 							</a>
 							<?php if ($key['type'] == "bundle") { ?>
-								<p class="fs-4">
-									Dapatkan semua dengan harga <span class="fw-bold forange"> Rp <?php echo number_format($key["price"], 0, ',', '.'); ?> </span>
-								</p>
+								<div class="d-flex flex-column align-items-end">
+									<p class="fs-6">Dapatkan semua dengan harga</p>
+									<span class="fw-bold forange"> Rp <?php echo number_format($key["price"], 0, ',', '.'); ?> </span>
+								</div>
 							<?php } ?>
 						</div>
 
