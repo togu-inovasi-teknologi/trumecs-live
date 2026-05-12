@@ -259,7 +259,7 @@ class General extends MX_Controller
 			if (isset($children[$parent['id']])) {
 				foreach ($children[$parent['id']] as $child) {
 					echo '<option value="' . $child['id'] . '">';
-					echo  htmlspecialchars($parent['grade']) . ' → ' . htmlspecialchars($child['grade']);
+					echo  htmlspecialchars($parent['grade']) . ' > ' . htmlspecialchars($child['grade']);
 					echo '</option>';
 				}
 			}
