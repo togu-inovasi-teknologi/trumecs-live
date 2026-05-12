@@ -15,15 +15,18 @@
 				<div class="clearfix mb-3"></div>
 				<div class="col-12">
 					<?php $str = str_split($key["description"], 150); ?>
-					<h5 class="fw-bold mb-2" style="font-size: 0.9rem;"><?php echo $key["name"] ?></h5>
+					<h5 class="fw-bold mb-2 fs-4"><?php echo $key["name"] ?></h5>
 					<p class="text-secondary small mb-2"><?php echo count($str) > 1 ? $str[0] . "..." : $str[0]; ?></p>
 					<a href="<?php echo base_url() ?>promo/<?php echo $key["url"] ?>" class="text-decoration-none small text-warning">Lihat Selengkapnya</a>
 				</div>
-				<div class="col-12">
+				<div class="col-12 my-2">
 					<?php if ($key['type'] == "bundle") { ?>
-						<p class="d-flex flex-column gap-2 fs-5">
-							Dapatkan semua dengan harga <span class="fw-bold forange"> Rp <?php echo number_format($key["price"], 0, ',', '.'); ?> </span>
-						</p>
+						<div class="d-flex flex-column gap-0">
+							<p class="fs-6 mb-0">
+								<span class="fw-bold"><?= count($key['products']); ?> item</span> dengan harga
+							</p>
+							<span class="fw-bold forange fs-5"> Rp <?php echo number_format($key["price"], 0, ',', '.'); ?> </span>
+						</div>
 					<?php } ?>
 				</div>
 				<div class="col-12 my-2">

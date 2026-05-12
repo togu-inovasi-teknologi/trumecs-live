@@ -14,13 +14,13 @@
 				<?php $imgonmobile = ($this->agent->is_mobile()) ? base_url() . 'timthumb?h=200&src=' : ''; ?>
 				<?php foreach ($listpromo as $i => $key) : ?>
 					<div class="row mb-5">
-						<div class="col-lg-12 <?= $key['type'] == "promo" ? '' : 'd-flex justify-content-between' ?>">
+						<div class="col-lg-12 <?= $key['type'] == "promo" ? '' : 'd-flex justify-content-between' ?> mb-3">
 							<a href="<?php echo base_url() ?>promo/<?php echo $key["url"] ?>" class="h3 text-dark fw-bold text-decoration-none border-start border-4 border-<?= $key['type'] == "promo" ? 'danger' : 'warning' ?> ps-3 d-inline-block mb-3">
 								<?php echo $key['name']; ?>
 							</a>
 							<?php if ($key['type'] == "bundle") { ?>
 								<div class="d-flex flex-column align-items-end">
-									<p class="fs-6"><span class="fw-bold"><?= $key['totalProductPromo'] ?> item</span> dengan harga</p>
+									<p class="fs-6 mb-0"><span class="fw-bold"><?= count($key['products']); ?> item</span> dengan harga</p>
 									<span class="fw-bold forange fs-4"> Rp <?php echo number_format($key["price"], 0, ',', '.'); ?> </span>
 								</div>
 							<?php } ?>
