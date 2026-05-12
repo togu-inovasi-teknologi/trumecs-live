@@ -140,83 +140,79 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                             </div>
                                             <div class="col-lg-12 my-1">
                                                 <div class="bg-highlight __highlight_price">
-                                                    <div itemprop="offers" itemscope itemtype="https://schema.org/Offer"
-                                                        style="color:#333">
+                                                    <div itemprop="offers" itemscope itemtype="https://schema.org/Offer" style="color:#333">
                                                         <meta itemprop="priceCurrency" content="IDR" />
-                                                        <link itemprop="availability"
-                                                            href="https://schema.org/InStock" />
+                                                        <link itemprop="availability" href="https://schema.org/InStock" />
+
                                                         <?php
-                                                        $percent = 90;
-                                                        $pricepromo = 0;
-                                                        if ($key["price_promo"] != 0 && $key["price_promo"] != null) {
-                                                            $key["price"] = ($key["price"] != 0) ? ($key['is_rent'] == 1 ? $key["rent_price"] : ($key['is_sell'] == 1 ? $key["price"] : $key["price_promo"])) : $key["price_promo"];
-                                                            $got = $key["price_promo"];
-                                                            $total = $key['is_sell'] == 1 ? $key["price"] : ($key['is_rent'] == 1 ? $key["rent_price"] : $key["price"]);
-                                                            $percent = ($got / $total) * 100;
-                                                            $pricepromo = $key["price"];
+                                                        // Inisialisasi variabel
+                                                        $display_price = 0;
+                                                        $original_price = 0;
+                                                        $discount_percent = 0;
+
+                                                        // Cek apakah ini produk rental atau jual
+                                                        $is_rent = isset($key['is_rent']) ? $key['is_rent'] : 0;
+                                                        $is_sell = isset($key['is_sell']) ? $key['is_sell'] : 1;
+
+                                                        // Tentukan harga asli
+                                                        if ($is_rent == 1) {
+                                                            $original_price = isset($key['rent_price']) ? (int)$key['rent_price'] : 0;
                                                         } else {
-                                                            if ($key['is_sell'] == 1) {
-                                                                $pricepromo = ($key["price"] * 100) / $percent;
-                                                            } else if ($key['is_rent'] == 1) {
-                                                                $pricepromo = ($key["rent_price"] * 100) / $percent;
-                                                            }
+                                                            $original_price = isset($key['price']) ? (int)$key['price'] : 0;
                                                         }
+
+                                                        // Tentukan harga promo
+                                                        $promo_price = isset($key['price_promo']) ? (int)$key['price_promo'] : 0;
+
+                                                        // Tentukan harga yang ditampilkan
+                                                        if ($promo_price > 0) {
+                                                            $display_price = $promo_price;
+                                                            if ($original_price > 0) {
+                                                                $discount_percent = round((($original_price - $promo_price) / $original_price) * 100);
+                                                            }
+                                                        } else {
+                                                            $display_price = $original_price;
+                                                        }
+
+                                                        // Pastikan harga tidak negatif
+                                                        $display_price = max(0, $display_price);
+                                                        $original_price = max(0, $original_price);
                                                         ?>
-                                                        <span class="f22 nomt forange"
-                                                            style="font-size:24px;display:block;width:100%">
-                                                            <span class="fw-bold" itemprop="priceCurrency"
-                                                                content="IDR">Rp</span>
+
+                                                        <span class="f22 nomt forange" style="font-size:24px;display:block;width:100%">
+                                                            <span class="fw-bold" itemprop="priceCurrency" content="IDR">Rp</span>
                                                             <span class="fw-bold" itemprop="price">
-                                                                <?php
-                                                                $display_price = ($key["price_promo"] == 0 || $key['price_promo'] == null)
-                                                                    ? ($key['is_sell'] == 1 ? $key["price"] : $key['rent_price'])
-                                                                    : $key["price_promo"];
-
-                                                                $clean_price = preg_replace('/[^0-9]/', '', $display_price);
-                                                                if (empty($clean_price)) {
-                                                                    $clean_price = 0;
-                                                                }
-
-                                                                $numeric_price = (int) $clean_price;
-
-                                                                echo number_format($numeric_price, 0, ',', '.');
-                                                                ?>
+                                                                <?php echo number_format($display_price, 0, ',', '.'); ?>
                                                             </span>
-                                                            <small class="f34" style="color:#999 !important">/
-                                                                <?php echo strtolower($key["unit"]) ?></small>
+                                                            <small class="f34" style="color:#999 !important">/ <?php echo strtolower($key["unit"]); ?></small>
                                                         </span>
-                                                        <?php if ($key['price_promo'] != 0 && $key['price_promo'] != null) : ?>
-                                                            <span class="fw-bold nomb label label-danger"
-                                                                data-promo-disc="<?php echo ceil(100 - $percent) ?>"
-                                                                style="font-weight:bold">- <span
-                                                                    class="promo-label"><?= ceil(100 - $percent) ?></span>
-                                                                %</span>
-                                                            <span class="price-list"
-                                                                style="text-decoration:line-through;color:#999"
-                                                                data-price="<?= $key['is_rent'] == 1 ? $key['rent_price'] : $key['price'] ?>">Rp
-                                                                <?= number_format($key['is_rent'] == 1 ? $key['rent_price'] : $key['price'], 0, ',', '.') ?></span>
-                                                            <span class="price-promo"
-                                                                style="text-decoration:line-through;color:#999"
-                                                                data-price="<?php echo $key['price_promo'] ?>"></span>
-                                                        <?php else : ?>
-                                                            <span class="price-list"
-                                                                style="text-decoration:line-through;color:#999"
-                                                                data-price="<?= $key['is_sell'] == 1 ? $key['price'] : $key['rent_price'] ?>"></span>
-                                                            <span class="price-promo"
-                                                                style="text-decoration:line-through;color:#999"
-                                                                data-price="<?php echo $key['price_promo'] ?>"></span>
+
+                                                        <?php if ($promo_price > 0 && $original_price > $promo_price): ?>
+                                                            <span class="fw-bold nomb label label-danger" style="font-weight:bold">
+                                                                - <?php echo $discount_percent; ?>%
+                                                            </span>
+                                                            <span class="price-list" style="text-decoration:line-through;color:#999">
+                                                                Rp <?php echo number_format($original_price, 0, ',', '.'); ?>
+                                                            </span>
                                                         <?php endif; ?>
+
                                                         <div class="" style="display:block;width:100%">
-                                                            <span style="color:#888"
-                                                                class="f14"><?= $key['is_rent'] == 1 ? $this->lang->line('attr_minimum_rental', FALSE) : $this->lang->line('attr_minimum_pembelian', FALSE) ?>:</span>
-                                                            <?= $key['is_rent'] == 1 ?  $key["minimum_rent"] . ' ' . $key["unit"]  : $key["moq"] . ' ' . $key["unit"] ?>
-                                                        </div>
-                                                        <div class="" style="display:block;width:100%">
-                                                            <span style="color:#888"
-                                                                class="f14">Tersedia:</span>
-                                                            <?php echo $key["stock"] . ' ' . $key["unit"] ?>
+                                                            <span style="color:#888" class="f14">
+                                                                <?= $is_rent == 1 ? $this->lang->line('attr_minimum_rental', FALSE) : $this->lang->line('attr_minimum_pembelian', FALSE); ?>:
+                                                            </span>
+                                                            <?php
+                                                            if ($is_rent == 1) {
+                                                                echo isset($key["minimum_rent"]) ? $key["minimum_rent"] . ' ' . $key["unit"] : '0 ' . $key["unit"];
+                                                            } else {
+                                                                echo isset($key["moq"]) ? $key["moq"] . ' ' . $key["unit"] : '1 ' . $key["unit"];
+                                                            }
+                                                            ?>
                                                         </div>
 
+                                                        <div class="" style="display:block;width:100%">
+                                                            <span style="color:#888" class="f14">Tersedia:</span>
+                                                            <?php echo isset($key["stock"]) ? $key["stock"] . ' ' . $key["unit"] : '0 ' . $key["unit"]; ?>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

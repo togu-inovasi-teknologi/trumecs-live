@@ -76,8 +76,6 @@ $(document).ready(function () {
 
   // ========== FUNCTION UNTUK MENGATUR TAMPILAN ==========
   function toggleJenisProductFields(value) {
-    console.log("Toggle untuk value:", value); // Debug
-
     if (value == "Sparepart" || value == "Aksesoris") {
       $("select[name='brand_unit']").prop("disabled", false);
       $("select[name='type']").prop("disabled", false);

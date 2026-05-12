@@ -280,8 +280,9 @@ class Myproduct extends MX_Controller
                 exit();
             }
         }
+        $data["js"] = array('/modules/backendproduct/js/form.product.js');
+        $data["css"] = array('/modules/backendproduct/css/form.css');
 
-        $data["js"] = array(base_url() . 'asset/backend/js/form.product.js');
         $this->load->view('backend/template_front', $data);
     }
 

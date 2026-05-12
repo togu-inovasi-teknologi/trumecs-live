@@ -252,16 +252,31 @@ $img_promo = '<img class="labelimg d-none d-sm-block" src="' . base_url() . '/pu
                         <div itemprop="offers" itemscope itemtype="https://schema.org/Offer" style="color:#333">
                             <meta itemprop="priceCurrency" content="IDR" />
                             <link itemprop="availability" href="https://schema.org/InStock" />
-                            <span class="price-list" style="text-decoration:line-through;color:#999" data-price="<?php echo $key['price'] ?>"></span>
-                            <span class="price-promo" style="text-decoration:line-through;color:#999" data-price="<?php echo $key['price_promo'] ?>"></span>
+
+                            <?php
+                            $price = isset($key['price']) ? (int)$key['price'] : 0;
+                            $price_promo = isset($key['price_promo']) ? (int)$key['price_promo'] : 0;
+
+                            $display_price = ($price_promo > 0) ? $price_promo : $price;
+                            $has_promo = ($price_promo > 0 && $price_promo < $price);
+                            ?>
+
+                            <span class="price-list" style="text-decoration:line-through;color:#999" data-price="<?php echo $price; ?>"></span>
+                            <span class="price-promo" style="text-decoration:line-through;color:#999" data-price="<?php echo $price_promo; ?>"></span>
+
                             <h6 class="fbold f22 forange mb-0">
                                 <span itemprop="priceCurrency" content="IDR">Rp</span>
-                                <span itemprop="price"><?php echo number_format(($key["price_promo"] == "0") ? $key["price"] : $key["price_promo"], 0, ',', '.'); ?></span>
-                                <small class="f14" style="color:#999 !important">/ <?php echo strtolower($key["unit"]) ?></small>
+                                <span itemprop="price">
+                                    <?php echo number_format($display_price, 0, ',', '.'); ?>
+                                </span>
+                                <small class="f14" style="color:#999 !important">/ <?php echo strtolower($key["unit"]); ?></small>
                             </h6>
-                            <?php if ($key["price_promo"] != "0") : ?>
-                                <span class="f12" style="color:#ccc;"><strike>Rp <?php echo number_format($key["price"], 0, ',', '.') ?></strike></span>
-                            <?php endif ?>
+
+                            <?php if ($has_promo): ?>
+                                <span class="f12" style="color:#ccc;">
+                                    <strike>Rp <?php echo number_format($price, 0, ',', '.'); ?></strike>
+                                </span>
+                            <?php endif; ?>
                         </div>
                     </div>
 
