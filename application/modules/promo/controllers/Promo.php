@@ -37,13 +37,16 @@ class Promo extends MX_Controller
 			$data["seotitle"] = $this->lang->line("seo_title_promo") . " - Trumecs.com";
 			$data["seokeywords"] = "jual sparepart truk, promo sparepart,promo";
 			$data["seodescription"] = $this->lang->line("seo_description_promo");
-			$data["datalist"] = $this->promo_model->getpromo(0);
-			$data["listproduct"] = $data["datalist"]["product"];
+			$data["datalist"] = !empty($data["listpromo"]) ? $data["listpromo"][0] : array();
+			$data["listproduct"] = !empty($data["datalist"]["products"]) ? $data["datalist"]["products"] : array();
+			// var_dump($data["listproduct"]);
+			// die;
 		} else {
 			$data["datalist"] = $this->promo_model->getpromodetail($this->uri->segment(2));
 			$data["breadcrumb"] = array($data["datalist"]["promo"][0]["name"]);
 			$data["listproduct"] = $data["datalist"]["product"];
-
+			// var_dump($data["listproduct"]);
+			// die;
 			if ($this->agent->is_mobile()) {
 				$data['content'] = '/mobile/view_c_mobile';
 			} else {

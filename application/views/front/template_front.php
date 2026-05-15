@@ -257,7 +257,7 @@ $contact = $this->db->where('id', $ida)->get("admin")->result_array();
 
 <body onunload="testUnload()" url="<?php echo "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ?>" baseurl="<?php echo base_url() ?>">
     <!-- Google Tag Manager (noscript) -->
-    <!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TVC4G9C" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TVC4G9C" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <!-- Navigation -->
     <?php

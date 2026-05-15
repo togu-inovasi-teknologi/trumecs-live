@@ -15,7 +15,7 @@
 				<?php foreach ($listpromo as $i => $key) : ?>
 					<div class="row mb-5">
 						<div class="col-lg-12 <?= $key['type'] == "promo" ? '' : 'd-flex justify-content-between' ?> mb-3">
-							<a href="<?php echo base_url() ?>promo/<?php echo $key["url"] ?>" class="h3 text-dark fw-bold text-decoration-none border-start border-4 border-<?= $key['type'] == "promo" ? 'danger' : 'warning' ?> ps-3 d-inline-block mb-3">
+							<a href="<?php echo base_url() ?>promo/<?php echo $key["url"] ?>" class="h3 text-dark fw-bold text-decoration-none border-start border-4 border-<?= $key['type'] == "promo" ? 'danger' : 'warning' ?> ps-3 d-inline-block mb-3 click-pilih-promo" data-google-tag="<?php echo $key['name']; ?>">
 								<?php echo $key['name']; ?>
 							</a>
 							<?php if ($key['type'] == "bundle") { ?>
@@ -29,7 +29,7 @@
 						<div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
 							<div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden">
 								<div class="card-body p-0">
-									<a href="<?php echo base_url() ?>promo/<?php echo $key["url"] ?>">
+									<a href="<?php echo base_url() ?>promo/<?php echo $key["url"] ?>" class="click-pilih-promo-image" data-google-tag="Image - <?php echo $key['name']; ?>">
 										<img title="<?php echo $key["name"] ?>"
 											src="<?php echo $imgonmobile ?><?php echo base_url() ?>timthumb?h=300&src=<?php echo base_url() ?>public/image/promo/<?php echo $key["img"] ?>"
 											class="img-fluid w-100"
@@ -39,7 +39,7 @@
 									<div class="p-3">
 										<?php $str = str_split($key["description"], 230); ?>
 										<p class="text-secondary small mb-2"><?php echo count($str) > 1 ? $str[0] . "..." : $str[0] ?></p>
-										<a href="<?php echo base_url() ?>promo/<?php echo $key["url"] ?>" class="text-warning fw-semibold text-decoration-none small">
+										<a href="<?php echo base_url() ?>promo/<?php echo $key["url"] ?>" class="text-warning fw-semibold text-decoration-none small click-pilih-promo-see" data-google-tag="See - <?php echo $key['name']; ?>">
 											Lihat Selengkapnya <i class="bi bi-arrow-right"></i>
 										</a>
 									</div>

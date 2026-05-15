@@ -145,7 +145,7 @@ $sessionmember = isset($session["member"]) ? $session["member"] : array('id' => 
                     <?php echo $this->lang->line('artikel', FALSE); ?>
                 </a>
                 <a href="<?php echo site_url('promo'); ?>"
-                    class="text-decoration-none <?php echo ($this->uri->segment(1) == "promo") ? "text-warning fw-bold" : "text-dark"; ?>">
+                    class="text-decoration-none click-menu-promo <?php echo ($this->uri->segment(1) == "promo") ? "text-warning fw-bold" : "text-dark"; ?>" data-google-tag="Menu Promo">
                     <?php echo $this->lang->line('promo', FALSE) ?>
                 </a>
 

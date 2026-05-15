@@ -11,7 +11,8 @@
 			<hr>
 		</div>
 		<div class="col-12">
-			<?php $this->load->view("_listproduct_mobile.php") ?>
+			<h5 class="fw-bold my-3">List Product</h5>
+			<?php $this->load->view("_listproduct_all_mobile.php") ?>
 		</div>
 	</div>
 </div>
@@ -25,6 +26,16 @@
 			</div>
 			<div class="modal-body">
 				<h5 class="fw-normal" style="font-size: 0.9rem;"><?php echo $key["description"]; ?></h5>
+				<div class="col-12 my-2">
+					<?php if ($key['type'] == "bundle") { ?>
+						<div class="d-flex flex-column gap-0">
+							<p class="fs-6 mb-0 fw-bold">
+								Harga Bundle :
+							</p>
+							<span class="fw-bold forange fs-5"> Rp <?php echo number_format($key["price"], 0, ',', '.'); ?> </span>
+						</div>
+					<?php } ?>
+				</div>
 			</div>
 		</div>
 	</div>

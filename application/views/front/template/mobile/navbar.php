@@ -125,7 +125,7 @@
                 <a href="<?php echo base_url() ?>article" class="list-group-item list-group-item-action text-decoration-none">
                     <?php echo $this->lang->line('artikel', FALSE); ?>
                 </a>
-                <a href="<?php echo base_url('promo'); ?>" class="list-group-item list-group-item-action text-decoration-none">
+                <a href="<?php echo base_url('promo'); ?>" class="list-group-item list-group-item-action text-decoration-none click-menu-promo-mobile" data-google-tag="Menu Promo Mobile">
                     <?php echo $this->lang->line('promo', FALSE); ?>
                 </a>
                 <a href="<?php echo base_url() ?>bulk" class="list-group-item list-group-item-action text-decoration-none">

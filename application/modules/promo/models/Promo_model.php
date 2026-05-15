@@ -16,8 +16,9 @@ class Promo_model extends CI_Model
         if (count($getpromo) > 0) {
             $product_ids = $getpromo[0]["product"];
             $promo_type = $getpromo[0]["type"];
+            $id_promo = $getpromo[0]["id"];
 
-            $getselect = $this->fetch_product($product_ids, $promo_type);
+            $getselect = $this->fetch_product($product_ids, $promo_type, $id_promo);
 
             $arrayall = array_merge(array('product' => $getselect), array('promo' => $getpromo));
             return $arrayall;
@@ -32,8 +33,9 @@ class Promo_model extends CI_Model
         if (count($getpromo) > 0) {
             $product_ids = $getpromo[0]["product"];
             $promo_type = $getpromo[0]["type"];
+            $id_promo = $getpromo[0]["id"];
 
-            $getselect = $this->fetch_product($product_ids, $promo_type);
+            $getselect = $this->fetch_product($product_ids, $promo_type, $id_promo);
 
             $arrayall = array_merge(array('product' => $getselect), array('promo' => $getpromo));
             $this->db->where("url", $value)->set("view", $getpromo[0]['view'] + 1)->update('promo');
@@ -51,7 +53,8 @@ class Promo_model extends CI_Model
 
         foreach ($promo_list as $key => $value) {
             $promo_type = $value['type'];
-            $getselect = $this->fetch_product($value['product'], $promo_type);
+            $id_promo = $value['id'];
+            $getselect = $this->fetch_product($value['product'], $promo_type, $id_promo);
             $promo_list[$key]['products'] = $getselect;
         }
         return $promo_list;
@@ -67,10 +70,10 @@ class Promo_model extends CI_Model
         foreach ($promo_list as $key => $value) {
             $this->db->limit(($this->agent->is_mobile() ? 2 : 4));
 
-            // Pastikan type tidak kosong
             $promo_type = !empty($value['type']) ? $value['type'] : 'promo';
+            $id_promo = $value['id'];
 
-            $getselect = $this->fetch_product($value['product'], $promo_type);
+            $getselect = $this->fetch_product($value['product'], $promo_type, $id_promo);
             shuffle($getselect);
 
             $promo_list[$key]['products'] = $getselect;
@@ -79,7 +82,7 @@ class Promo_model extends CI_Model
         return $promo_list;
     }
 
-    public function fetch_product($product_ids, $promo_type = '')
+    public function fetch_product($product_ids, $promo_type = '', $id_promo = null)
     {
         if (empty($product_ids)) {
             return array();
@@ -93,30 +96,20 @@ class Promo_model extends CI_Model
         }
 
         $this->db->where_in("id", $ids);
-        $this->db->order_by('RAND()');
         $query = $this->db->get("product");
         $products = $query->result_array();
 
-        // Pastikan $promo_type tidak kosong
         $type_to_set = !empty($promo_type) ? $promo_type : 'promo';
 
-        // Tambahkan type ke setiap produk
         foreach ($products as &$product) {
             $product['type'] = $type_to_set;
+            $product['id_promo'] = $id_promo;
         }
 
-        // Urutkan produk berdasarkan urutan ID
-        $sorted = array();
-        foreach ($ids as $id) {
-            foreach ($products as $prod) {
-                if ($prod['id'] == $id) {
-                    $sorted[] = $prod;
-                    break;
-                }
-            }
-        }
+        // Acak setelah semua properti sudah di-set
+        shuffle($products);
 
-        return $sorted;
+        return $products;
     }
 
     public function get_category()

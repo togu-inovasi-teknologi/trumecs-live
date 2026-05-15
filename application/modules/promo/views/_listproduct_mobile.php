@@ -10,7 +10,7 @@ $productimgonmobile = base_url() . 'timthumb?h=160&src='
         <?php foreach ($listproduct as $key) : ?>
             <div itemprop="itemListElement" itemscope="" itemtype="http://schema.org/Product" class="col-6 col-sm-6 col-md-4 d-flex px-1">
                 <div class="card h-100 w-100 border-0 shadow-sm rounded-3 overflow-hidden position-relative">
-                    <a itemprop="url" href="<?php echo base_url() ?>product/<?php echo $key["id"] ?>/<?php echo preg_replace("/[^a-zA-Z0-9]/", "-", ucwords(strtolower($key["tittle"]))) ?>" class="text-decoration-none">
+                    <a itemprop="url" href="<?php echo base_url() ?>product/<?php echo $key["id"] ?>/<?php echo preg_replace("/[^a-zA-Z0-9]/", "-", ucwords(strtolower($key["tittle"]))) ?>" class="text-decoration-none click-product-promo-mobile" data-google-tag="<?php echo $key['id_promo'] ?> - <?php echo $key['tittle'] ?>">
                         <?php
                         $lfp = strlen($key["img"]);
                         $ext = substr($key["img"], $lfp - 4);
