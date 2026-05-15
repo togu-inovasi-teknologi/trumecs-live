@@ -289,7 +289,13 @@
 							</tr>
 							<tr>
 								<td>Sync Database Trumecs "Admin"</td>
-								<td><a class="btn btn-orange" target="_blank" href="<?php echo base_url() ?>backendsetting/backupdatabase"><i class="bi bi-download"></i> Download database</a></td>
+								<td>
+									<div class="d-flex gap-2">
+										<a class="btn btn-orange" target="_blank" href="<?php echo base_url() ?>backendsetting/backupdatabase"><i class="bi bi-download"></i> DB To Sheet</a>
+										<a class="btn btn-orange" target="_blank" href="<?php echo base_url() ?>backendsetting/backupdatabase"><i class="bi bi-download"></i> Sync Database</a>
+										<a class="btn btn-orange" target="_blank" href="<?php echo base_url() ?>backendsetting/backupdatabase"><i class="bi bi-download"></i> Sheet To DB</a>
+									</div>
+								</td>
 							</tr>
 						</tbody>
 					</table>
