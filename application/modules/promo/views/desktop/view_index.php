@@ -34,7 +34,7 @@
 											src="<?php echo $imgonmobile ?><?php echo base_url() ?>timthumb?h=300&src=<?php echo base_url() ?>public/image/promo/<?php echo $key["img"] ?>"
 											class="img-fluid w-100"
 											alt="<?php echo $key["name"] ?>"
-											style="height: 200px; object-fit: contain; border-bottom: 1px solid #dee2e6;">
+											style="height: 200px; object-fit: cover; border-bottom: 1px solid #dee2e6;">
 									</a>
 									<div class="p-3">
 										<?php $str = str_split($key["description"], 230); ?>
