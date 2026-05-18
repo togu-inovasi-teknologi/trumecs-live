@@ -6,14 +6,11 @@
 			</div>
 			<div class="col-12">
 				<h5 class="fw-bold mb-3" style="border-left: 2px solid #fa8420; padding-left:10px; font-size: 0.9rem;"><?php echo $key["name"]; ?></h5>
-				<a data-bs-toggle="modal" data-bs-target="#deskripsi" class="text-decoration-none small text-warning click-lihat-detail-promo-mobile" data-google-tag="Detail Mobile - <?php echo $key['name']; ?>">Lihat Deskripsi</a>
+				<div class="d-flex justify-content-between align-items-center">
+					<a data-bs-toggle="modal" data-bs-target="#deskripsi" class="text-decoration-none small text-warning click-lihat-detail-promo-mobile" data-google-tag="Detail Mobile - <?php echo $key['name']; ?>">Lihat Deskripsi</a>
+					<a style="border:1px solid #ccc" href="https://wa.me/<?= (isset($key['admin_phone'])) ? $key['admin_phone'] : '6285176912338' ?>?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["name"] . ". Apakah Promo ini masih berlaku?") ?>" class="btn btn-lg btnnew fw-bold text-center f14 wa-button-product"><i class="fa fa-whatsapp fa-2x f18 me-1"></i><?php echo $this->lang->line('tombol_whatsapp', FALSE); ?></a>
+				</div>
 				<hr>
-			</div>
-			<div class="col-12">
-				<a style="border:1px solid #ccc"
-                                                    href="https://wa.me/<?= (isset($key['admin_phone'])) ? $key['admin_phone'] : '6285176912338' ?>?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["name"] . ". Apakah Promo ini masih berlaku?") ?>"
-                                                    class="btn btn-lg btnnew fw-bold text-center f14 wa-button-product"><i
-                                                        class="fa fa-whatsapp fa-2x f18 me-1"></i><?php echo $this->lang->line('tombol_whatsapp', FALSE); ?></a>
 			</div>
 		<?php endforeach ?>
 		<div class="col-12">
