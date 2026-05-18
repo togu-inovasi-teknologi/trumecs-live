@@ -532,7 +532,7 @@ class Backendsetting extends MX_Controller
         }
 
 
-         $result = $this->uploadAllDataAdminToSheet($admin);
+         $result = $this->syncdatabasetrumecs->uploadAllDataAdminToSheet($admin);
    
          return $result;
     }

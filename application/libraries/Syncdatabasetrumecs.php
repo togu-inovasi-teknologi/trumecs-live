@@ -4,7 +4,7 @@ use Google\Client;
 use Google\Service\Sheets;
 use Google\Service\Sheets\ValueRange;
 
-class Spreadsheetapi
+class Syncdatabasetrumecs
 {
     private $client;
     private $service;
