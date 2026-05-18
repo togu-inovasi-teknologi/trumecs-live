@@ -1,15 +1,15 @@
 <div class="promo_page mt-3">
 	<div class="row">
-		<div class="col-12 px-0">
-			<?php foreach ($datalist["promo"] as $key) : ?>
+		<?php foreach ($datalist["promo"] as $key) : ?>
+			<div class="col-12 px-0">
 				<img src="<?php echo base_url() ?>timthumb?h=400&src=<?php echo base_url() ?>public/image/promo/<?php echo $key["img"] ?>" class="img-fluid mb-3" style="width: 100%; max-height:200px; object-fit: cover;">
-			<?php endforeach ?>
-		</div>
-		<div class="col-12">
-			<h5 class="fw-bold mb-3" style="border-left: 2px solid #fa8420; padding-left:10px; font-size: 0.9rem;"><?php echo $key["name"]; ?></h5>
-			<a data-bs-toggle="modal" data-bs-target="#deskripsi" class="text-decoration-none small text-warning">Lihat Deskripsi</a>
-			<hr>
-		</div>
+			</div>
+			<div class="col-12">
+				<h5 class="fw-bold mb-3" style="border-left: 2px solid #fa8420; padding-left:10px; font-size: 0.9rem;"><?php echo $key["name"]; ?></h5>
+				<a data-bs-toggle="modal" data-bs-target="#deskripsi" class="text-decoration-none small text-warning click-lihat-detail-promo-mobile" data-google-tag="Detail Mobile - <?php echo $key['name']; ?>">Lihat Deskripsi</a>
+				<hr>
+			</div>
+		<?php endforeach ?>
 		<div class="col-12">
 			<h5 class="fw-bold my-3">List Product</h5>
 			<?php $this->load->view("_listproduct_all_mobile.php") ?>
