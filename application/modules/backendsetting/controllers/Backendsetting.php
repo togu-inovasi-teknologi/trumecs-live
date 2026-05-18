@@ -523,17 +523,22 @@ class Backendsetting extends MX_Controller
     }
 
     public function uploadAdminToSheetFromDB () {
-        $admin = $this->etx_model->gettable('admin');
-        if (empty($admin)) {
-        return [
-            'success' => false,
-            'error' => 'Tidak ada data admin yang ditemukan'
-            ];
-        }
-
-
-         $result = $this->syncdatabasetrumecs->uploadAllDataAdminToSheet($admin);
-   
-         return $result;
+    $admin = $this->etx_model->gettableObject('admin');
+    
+    if (empty($admin)) {
+        $this->session->set_flashdata('message', 'Tidak ada data admin yang ditemukan');
+        redirect(base_url() . 'backendsetting/settingumum');
+        return;
     }
+    
+    $result = $this->syncdatabasetrumecs->uploadAllDataAdminToSheet($admin);
+    
+    if ($result['success']) {
+        $this->session->set_flashdata('message', 'Berhasil Update ke Google Sheet');
+    } else {
+        $this->session->set_flashdata('message', 'Gagal Update: ' . $result['error']);
+    }
+    
+    redirect(base_url() . 'backendsetting/settingumum');
+}
 }

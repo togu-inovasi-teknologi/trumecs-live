@@ -129,6 +129,7 @@ class Syncdatabasetrumecs
                 'whatsapp',
                 'point',
                 'created_at',
+                'updated_at',
             ];
 
             $data = [];
@@ -137,20 +138,21 @@ class Syncdatabasetrumecs
             foreach ($databases as $database) {
                 $data[] = [
                     $database->id ?? 0,
-                    $database->email ?? 'No Title',
+                    $database->email ?? 'No Email',
                     $database->name ?? 'N/A',
                     $database->password ?? 'N/A',
                     $database->privileges ?? 0,
-                    $database->billy ?? 'pcs',
-                    $database->phone ?? 'No Description',
+                    $database->billy ?? 'N/A',
+                    $database->phone ?? 'Unknown',
                     $database->trumecs_email ?? 'No Email',
                     $database->whatsapp ?? 'Unknown',
                     $database->point ?? 0,
                     $database->created_at ?? 0,
+                    $database->updated_at ?? 0,
                 ];
             }
 
-            $range = 'admin' . '!A1:K';
+            $range = 'admin' . '!A1:L';
             $body = new ValueRange([
                 'values' => $data
             ]);

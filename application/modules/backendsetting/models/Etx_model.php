@@ -61,6 +61,11 @@ class etx_model extends CI_Model {
         $query = $this->db->get($table);
         return  $query->result_array();
     }
+    public function gettableObject($table)
+    {
+        $query = $this->db->get($table);
+        return  $query->result();
+    }
     public function gettablewhere($table,$where)
     {
         $query = $this->db->where($where)->get($table);
