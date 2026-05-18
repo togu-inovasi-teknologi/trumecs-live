@@ -16,7 +16,7 @@
 					<div class="mb-4">
 						<?php foreach ($datalist["promo"] as $key) : ?>
 							<h5 class="fw-bold text-dark mb-0">
-								<span class="border-start border-4 border-warning ps-3">Produk <?php echo $key["name"]; ?></span>
+								<span class="border-start border-4 border-warning ps-3"><?php echo $key["name"]; ?></span>
 							</h5>
 						<?php endforeach ?>
 					</div>
@@ -45,7 +45,7 @@
 							</div>
 
 							<h6 class="fw-bold text-dark mb-2 pb-1 border-bottom border-2 border-warning d-inline-block">Deskripsi</h6>
-							<p class="text-secondary small mt-2 mb-0 lh-base"><?php echo $key["description"]; ?></p>
+							<p class="text-secondary small mt-2 mb-0 lh-base"><?php echo nl2br($key["description"];) ?></p>
 
 							<?php if ($key['type'] == "bundle") { ?>
 								<h6 class="fw-bold text-dark mb-2 mt-3 pb-1 border-bottom border-2 border-warning d-inline-block">Harga Bundle</h6>
@@ -53,6 +53,10 @@
 									<span class="fw-bold forange"> Rp <?php echo number_format($key["price"], 0, ',', '.'); ?> </span>
 								</p>
 							<?php } ?>
+							<a style="border:1px solid #ccc"
+                                                    href="https://wa.me/<?= (isset($key['admin_phone'])) ? $key['admin_phone'] : '6285176912338' ?>?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["name"] . ". Apakah Promo ini masih berlaku?") ?>"
+                                                    class="btn btn-lg btnnew fw-bold text-center f14 wa-button-product"><i
+                                                        class="fa fa-whatsapp fa-2x f18 me-1"></i><?php echo $this->lang->line('tombol_whatsapp', FALSE); ?></a>
 						</div>
 					<?php endforeach ?>
 				</div>

@@ -174,7 +174,6 @@ class Syncdatabasetrumecs
                 'updated_cells' => $response->getUpdatedCells()
             ];
         } catch (Exception $e) {
-            log_message('error', 'Upload Products Error: ' . $e->getMessage());
             return [
                 'success' => false,
                 'error' => $e->getMessage()
