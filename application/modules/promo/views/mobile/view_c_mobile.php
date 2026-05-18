@@ -9,6 +9,12 @@
 				<a data-bs-toggle="modal" data-bs-target="#deskripsi" class="text-decoration-none small text-warning click-lihat-detail-promo-mobile" data-google-tag="Detail Mobile - <?php echo $key['name']; ?>">Lihat Deskripsi</a>
 				<hr>
 			</div>
+			<div class="col-12">
+				<a style="border:1px solid #ccc"
+                                                    href="https://wa.me/<?= (isset($key['admin_phone'])) ? $key['admin_phone'] : '6285176912338' ?>?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["name"] . ". Apakah Promo ini masih berlaku?") ?>"
+                                                    class="btn btn-lg btnnew fw-bold text-center f14 wa-button-product"><i
+                                                        class="fa fa-whatsapp fa-2x f18 me-1"></i><?php echo $this->lang->line('tombol_whatsapp', FALSE); ?></a>
+			</div>
 		<?php endforeach ?>
 		<div class="col-12">
 			<h5 class="fw-bold my-3">List Product</h5>
@@ -25,7 +31,7 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<h5 class="fw-normal" style="font-size: 0.9rem;"><?php echo $key["description"]; ?></h5>
+				<h5 class="fw-normal" style="font-size: 0.9rem;"><?php echo nl2br($key["description"]); ?></h5>
 				<div class="col-12 my-2">
 					<?php if ($key['type'] == "bundle") { ?>
 						<div class="d-flex flex-column gap-0">
