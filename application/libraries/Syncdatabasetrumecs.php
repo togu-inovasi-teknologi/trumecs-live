@@ -147,8 +147,8 @@ class Syncdatabasetrumecs
                     $database->trumecs_email ?? 'No Email',
                     $database->whatsapp ?? 'Unknown',
                     $database->point ?? 0,
-                    $database->created_at ?? 0,
-                    $database->updated_at ?? 0,
+                    $database->created_at ?? date('Y-m-d H:i:s'),
+                    $database->updated_at ?? date('Y-m-d H:i:s'),
                 ];
             }
 
