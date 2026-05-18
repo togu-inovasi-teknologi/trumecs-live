@@ -45,7 +45,7 @@
 							</div>
 
 							<h6 class="fw-bold text-dark mb-2 pb-1 border-bottom border-2 border-warning d-inline-block">Deskripsi</h6>
-							<p class="text-secondary small mt-2 mb-0 lh-base"><?php echo nl2br($key["description"];) ?></p>
+							<p class="text-secondary small mt-2 mb-0 lh-base"><?php echo nl2br($key["description"]); ?></p>
 
 							<?php if ($key['type'] == "bundle") { ?>
 								<h6 class="fw-bold text-dark mb-2 mt-3 pb-1 border-bottom border-2 border-warning d-inline-block">Harga Bundle</h6>
