@@ -521,4 +521,19 @@ class Backendsetting extends MX_Controller
 
         system($command);
     }
+
+    public function uploadAdminToSheetFromDB () {
+        $admin = $this->etx_model->gettable('admin');
+        if (empty($admin)) {
+        return [
+            'success' => false,
+            'error' => 'Tidak ada data admin yang ditemukan'
+            ];
+        }
+
+
+         $result = $this->uploadAllDataAdminToSheet($admin);
+   
+         return $result;
+    }
 }

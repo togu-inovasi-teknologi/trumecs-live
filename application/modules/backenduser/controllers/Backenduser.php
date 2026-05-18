@@ -91,7 +91,7 @@ class Backenduser extends MX_Controller
             'phone' => $this->input->post("phone"),
             'privileges' => $this->input->post("levelprevilage"),
             'password' => ($this->input->post("password") != "") ? md5($this->input->post("password")) : $this->input->post("passwordold"),
-
+            'updated_at' => strtotime(date('Y-m-d H:i:s')),
         );
 
         $from = "no-reply@trumecs.com";
@@ -118,7 +118,7 @@ class Backenduser extends MX_Controller
             'phone' => $this->input->post("phone"),
             'privileges' => $this->input->post("levelprevilage"),
             'password' => md5($this->input->post("password")),
-
+            'created_at' => strtotime(date('Y-m-d H:i:s')),
         );
 
         $from = "no-reply@trumecs.com";

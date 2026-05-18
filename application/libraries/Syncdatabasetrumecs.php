@@ -114,24 +114,7 @@ class Spreadsheetapi
         }
     }
 
-    // Method untuk testing
-    public function testConnection()
-    {
-        try {
-            $response = $this->service->spreadsheets->get($this->spreadsheetId);
-            return [
-                'success' => true,
-                'title' => $response->getProperties()->getTitle()
-            ];
-        } catch (Exception $e) {
-            return [
-                'success' => false,
-                'error' => $e->getMessage()
-            ];
-        }
-    }
-
-    public function uploadAllDataAdminToSheet($sheet, $databases)
+    public function uploadAllDataAdminToSheet($databases)
     {
         try {
             $headers = [
@@ -145,6 +128,7 @@ class Spreadsheetapi
                 'trumecs_mail',
                 'whatsapp',
                 'point',
+                'created_at',
             ];
 
             $data = [];
@@ -162,10 +146,11 @@ class Spreadsheetapi
                     $database->trumecs_email ?? 'No Email',
                     $database->whatsapp ?? 'Unknown',
                     $database->point ?? 0,
+                    $database->created_at ?? 0,
                 ];
             }
 
-            $range = $sheet . '!A1:J';
+            $range = 'admin' . '!A1:K';
             $body = new ValueRange([
                 'values' => $data
             ]);
