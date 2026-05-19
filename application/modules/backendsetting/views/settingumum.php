@@ -297,6 +297,16 @@
 									</div>
 								</td>
 							</tr>
+							<tr>
+								<td>Sync Database Trumecs "Artikel"</td>
+								<td>
+									<div class="d-flex gap-2">
+										<a class="btn btn-orange" href="<?php echo base_url() ?>backendsetting/uploadArtikelToSheetFromDB"><i class="bi bi-upload"></i> DB To Sheet</a>
+										<a class="btn btn-orange" href="<?php echo base_url() ?>backendsetting/syncDatabaseArtikel"><i class="bi bi-arrow-repeat"></i> Sync Database</a>
+										<a class="btn btn-orange" href="<?php echo base_url() ?>backendsetting/importArtikelFromSheet"><i class="bi bi-download"></i> Sheet To DB</a>
+									</div>
+								</td>
+							</tr>
 						</tbody>
 					</table>
 				</div>

@@ -263,4 +263,10 @@ class etx_product extends CI_Model
     {
         $this->db->where($where)->delete("product");
     }
+
+    public function gettableObject($table)
+    {
+        $query = $this->db->get($table);
+        return  $query->result();
+    }
 }

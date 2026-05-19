@@ -522,23 +522,71 @@ class Backendsetting extends MX_Controller
         system($command);
     }
 
-    public function uploadAdminToSheetFromDB () {
-    $admin = $this->etx_model->gettableObject('admin');
-    
-    if (empty($admin)) {
-        $this->session->set_flashdata('message', 'Tidak ada data admin yang ditemukan');
+    public function uploadAdminToSheetFromDB()
+    {
+        $admin = $this->etx_model->gettableObject('admin');
+
+        if (empty($admin)) {
+            $this->session->set_flashdata('message', 'Tidak ada data admin yang ditemukan');
+            redirect(base_url() . 'backendsetting/settingumum');
+            return;
+        }
+
+        $result = $this->syncdatabasetrumecs->uploadAllDataAdminToSheet($admin);
+
+        if ($result['success']) {
+            $this->session->set_flashdata('message', 'Berhasil Update ke Google Sheet');
+        } else {
+            $this->session->set_flashdata('message', 'Gagal Update: ' . $result['error']);
+        }
+
         redirect(base_url() . 'backendsetting/settingumum');
-        return;
     }
-    
-    $result = $this->syncdatabasetrumecs->uploadAllDataAdminToSheet($admin);
-    
-    if ($result['success']) {
-        $this->session->set_flashdata('message', 'Berhasil Update ke Google Sheet');
-    } else {
-        $this->session->set_flashdata('message', 'Gagal Update: ' . $result['error']);
+
+    public function syncDatabaseAdmin()
+    {
+        $result = $this->syncdatabasetrumecs->syncAdminFromSheetToDB();
+
+        if ($result['success']) {
+            $this->session->set_flashdata('message', 'Berhasil Sync ke DB dari Sheet');
+        } else {
+            $this->session->set_flashdata('message', 'Gagal Sync: ' . $result['error']);
+        }
+
+        redirect(base_url() . 'backendsetting/settingumum');
     }
-    
-    redirect(base_url() . 'backendsetting/settingumum');
-}
+
+    public function uploadArtikelToSheetFromDB()
+    {
+        $artikel = $this->etx_model->gettableObject('artikel');
+
+        if (empty($artikel)) {
+            $this->session->set_flashdata('message', 'Tidak ada data artikel yang ditemukan');
+            redirect(base_url() . 'backendsetting/settingumum');
+            return;
+        }
+
+        $result = $this->syncdatabasetrumecs->uploadAllDataArtikelToSheet($artikel);
+
+        if ($result['success']) {
+            $this->session->set_flashdata('message', 'Berhasil Update ke Google Sheet');
+        } else {
+            $this->session->set_flashdata('message', 'Gagal Update: ' . $result['error']);
+        }
+
+        redirect(base_url() . 'backendsetting/settingumum');
+    }
+
+    public function syncDatabaseArtikel()
+    {
+        $result = $this->syncdatabasetrumecs->syncArtikelFromSheetToDB();
+
+        if ($result['success']) {
+            $this->session->set_flashdata('message', 'Berhasil Sync ke DB dari Sheet');
+        } else {
+            $this->session->set_flashdata('message', 'Gagal Sync: ' . $result['error']);
+        }
+
+        redirect(base_url() . 'backendsetting/settingumum');
+    }
 }

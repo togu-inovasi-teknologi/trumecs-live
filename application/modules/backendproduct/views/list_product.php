@@ -189,10 +189,14 @@ function namectgr($id)
 	</div>
 </div> -->
 			<a href="<?php echo base_url() ?>backendproduct/<?php echo $this->uri->segment(2) == "myproduct" ? "myproduct/" : ""; ?>form" class="btn btn-warning">Tambah Produk</a>
-			<!-- <a href="<?= base_url() ?>backendproduct/syncProductFromSheetToDB"
+			<a href="<?= base_url() ?>backendproduct/uploadProductToSheetFromDB"
+				class="btn btn-primary">
+				upload data DB
+			</a>
+			<a href="<?= base_url() ?>backendproduct/syncProductFromSheetToDB"
 				class="btn btn-primary">
 				Sync From Sheet
-			</a> -->
+			</a>
 		</div>
 		<div class="col-lg-12">
 			<hr>

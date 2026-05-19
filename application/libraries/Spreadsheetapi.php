@@ -263,9 +263,6 @@ class Spreadsheetapi
             // 1. Ambil data dari Google Sheet
             $sheetData = $this->getAllProductsFromSheet($sheet);
 
-            var_dump($sheetData);
-            die;
-
             if (!$sheetData['success']) {
                 throw new Exception('Failed to get data from sheet: ' . $sheetData['error']);
             }

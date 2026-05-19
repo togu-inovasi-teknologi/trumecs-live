@@ -87,17 +87,38 @@ class Backendproduct extends MX_Controller
 
         if ($result['success']) {
             $this->session->set_flashdata(
-                'success',
+                'message',
                 'Berhasil Sync '
             );
         } else {
             $this->session->set_flashdata(
-                'error',
+                'message',
                 'Gagal sync: '
             );
         }
 
-        // redirect('backendproduct/listall');
+        redirect(base_url() . 'backendproduct/listall');
+    }
+
+    public function uploadProductToSheetFromDB()
+    {
+        $product = $this->etx_product->gettableObject('product');
+
+        if (empty($product)) {
+            $this->session->set_flashdata('message', 'Tidak ada data product yang ditemukan');
+            redirect(base_url() . 'backendproduct/listall');
+            return;
+        }
+
+        $result = $this->spreadsheetapi->uploadAllProductsToSheet('Product-list', $product);
+
+        if ($result['success']) {
+            $this->session->set_flashdata('message', 'Berhasil Update ke Google Sheet');
+        } else {
+            $this->session->set_flashdata('message', 'Gagal Update: ' . $result['error']);
+        }
+
+        redirect(base_url() . 'backendproduct/listall');
     }
 
     function ambil_data()
