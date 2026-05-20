@@ -200,23 +200,23 @@ function namectgr($id)
 				</a>
 			<?php } ?>
 			<?php if ($id_admin == 30) { ?>
-				<a href="<?= base_url() ?>backendproduct/myproduct/uploadProductJtwToSheetFromDB"
+				<!-- <a href="<?= base_url() ?>backendproduct/myproduct/uploadProductJtwToSheetFromDB"
 					class="btn btn-primary">
 					upload data DB
-				</a>
-				<a href="<?= base_url() ?>backendproduct/syncProductFromSheetToDB"
+				</a> -->
+				<a href="<?= base_url() ?>backendproduct/myproduct/syncProductJtwFromSheetToDB"
 					class="btn btn-primary">
-					Sync From Sheet
+					Sync Data
 				</a>
 			<?php } ?>
 			<?php if ($id_admin == 16) { ?>
-				<a href="<?= base_url() ?>backendproduct/myproduct/uploadProductLmpToSheetFromDB"
+				<!-- <a href="<?= base_url() ?>backendproduct/myproduct/uploadProductLmpToSheetFromDB"
 					class="btn btn-primary">
 					upload data DB
-				</a>
-				<a href="<?= base_url() ?>backendproduct/syncProductFromSheetToDB"
+				</a> -->
+				<a href="<?= base_url() ?>backendproduct/myproduct/syncProductLmpFromSheetToDB"
 					class="btn btn-primary">
-					Sync From Sheet
+					Sync Data
 				</a>
 			<?php } ?>
 		</div>
