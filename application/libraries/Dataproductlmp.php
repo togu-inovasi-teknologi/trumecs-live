@@ -200,7 +200,7 @@ class Dataproductlmp
     public function getAllProductsFromSheet($sheet)
     {
         try {
-            $range = $sheet . '!A2:K'; // Mulai dari row 2 untuk menghindari header
+            $range = $sheet . '!A2:K';
 
             $response = $this->service->spreadsheets_values->get(
                 $this->spreadsheetId,

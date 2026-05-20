@@ -593,7 +593,7 @@ class Myproduct extends MX_Controller
 
         if (empty($product)) {
             $this->session->set_flashdata('message', 'Tidak ada data product yang ditemukan');
-            redirect(base_url() . 'backendproduct/listall');
+            redirect(base_url() . 'backendproduct/myproduct/listall');
             return;
         }
 
@@ -605,7 +605,7 @@ class Myproduct extends MX_Controller
             $this->session->set_flashdata('message', 'Gagal Update: ' . $result['error']);
         }
 
-        redirect(base_url() . 'backendproduct/listall');
+        redirect(base_url() . 'backendproduct/myproduct/listall');
     }
 
     public function uploadProductLmpToSheetFromDB()
@@ -614,7 +614,7 @@ class Myproduct extends MX_Controller
 
         if (empty($product)) {
             $this->session->set_flashdata('message', 'Tidak ada data product yang ditemukan');
-            redirect(base_url() . 'backendproduct/listall');
+            redirect(base_url() . 'backendproduct/myproduct/listall');
             return;
         }
 
@@ -626,6 +626,6 @@ class Myproduct extends MX_Controller
             $this->session->set_flashdata('message', 'Gagal Update: ' . $result['error']);
         }
 
-        redirect(base_url() . 'backendproduct/listall');
+        redirect(base_url() . 'backendproduct/myproduct/listall');
     }
 }
