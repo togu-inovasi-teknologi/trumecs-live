@@ -269,4 +269,10 @@ class etx_product extends CI_Model
         $query = $this->db->get($table);
         return  $query->result();
     }
+    public function gettableObjectWhere($table, $where)
+    {
+        $query = $this->db->where($where)
+            ->get($table);
+        return  $query->result();
+    }
 }

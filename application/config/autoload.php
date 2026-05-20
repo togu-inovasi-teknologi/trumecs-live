@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array("session", "cart", "database", "user_agent", "load_general", "pagination", "form_validation", "email", "emailer", "encryption", "securitylog", "dateformat", "minifile", "spreadsheetapi", "syncdatabasetrumecs");
+$autoload['libraries'] = array("session", "cart", "database", "user_agent", "load_general", "pagination", "form_validation", "email", "emailer", "encryption", "securitylog", "dateformat", "minifile", "spreadsheetapi", "syncdatabasetrumecs", "dataproductjtw", "dataproductlmp");
 
 /*
 | -------------------------------------------------------------------

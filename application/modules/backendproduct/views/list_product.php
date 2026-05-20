@@ -199,6 +199,26 @@ function namectgr($id)
 					Sync From Sheet
 				</a>
 			<?php } ?>
+			<?php if ($id_admin == 30) { ?>
+				<a href="<?= base_url() ?>backendproduct/myproduct/uploadProductJtwToSheetFromDB"
+					class="btn btn-primary">
+					upload data DB
+				</a>
+				<a href="<?= base_url() ?>backendproduct/syncProductFromSheetToDB"
+					class="btn btn-primary">
+					Sync From Sheet
+				</a>
+			<?php } ?>
+			<?php if ($privileges_admin == 16) { ?>
+				<a href="<?= base_url() ?>backendproduct/myproduct/uploadProductLmpToSheetFromDB"
+					class="btn btn-primary">
+					upload data DB
+				</a>
+				<a href="<?= base_url() ?>backendproduct/syncProductFromSheetToDB"
+					class="btn btn-primary">
+					Sync From Sheet
+				</a>
+			<?php } ?>
 		</div>
 		<div class="col-lg-12">
 			<hr>

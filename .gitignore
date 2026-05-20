@@ -89,5 +89,7 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 
 /asset/insite/credentials-trumecs.json
 /asset/insite/credentials-sync-database-trumecs.json
+/asset/insite/data-product-jtw-trumecs.json
+/asset/insite/data-product-lmp-trumecs.json
 /asset/core/js/*
 /asset/core/css/*

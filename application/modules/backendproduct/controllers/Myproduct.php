@@ -23,6 +23,7 @@ class Myproduct extends MX_Controller
         $this->securitylog->cekadmin();
 
         $privileges = $this->sessionmember['privileges'];
+        $id_admin = $this->sessionmember['id'];
 
         $name = $this->input->get("nama");
         $brand = $this->input->get("merek");
@@ -69,6 +70,7 @@ class Myproduct extends MX_Controller
         $page = ($this->input->get("per_page")) ? $this->input->get("per_page") : 0;
         $data["listproduct"] = $this->etx_product->fetch_product($config["per_page"], $page, $data["datasearch"], $data["datasearchor_like"], $data["datawhere"], $this->sessionmember['id']);
         $data['privileges_admin'] = $privileges;
+        $data['id_admin'] = $id_admin;
         $data["js"] = array(base_url() . 'asset/backend/js/list.product.js');
         $data['content'] = 'list_product';
         $this->load->view('backend/template_front', $data);
@@ -583,5 +585,47 @@ class Myproduct extends MX_Controller
             ->select('id,name')->get("categori")->result_array();
         $file_name = "kategori_trumecs" . date("Y_m_d") . ".xls";
         $this->excel->stream($file_name, $data);
+    }
+
+    public function uploadProductJtwToSheetFromDB()
+    {
+        $product = $this->etx_product->gettableObjectWhere('product', ['created_by' => 30]);
+
+        if (empty($product)) {
+            $this->session->set_flashdata('message', 'Tidak ada data product yang ditemukan');
+            redirect(base_url() . 'backendproduct/listall');
+            return;
+        }
+
+        $result = $this->spreadsheetapi->uploadAllProductsToSheet('data-product', $product);
+
+        if ($result['success']) {
+            $this->session->set_flashdata('message', 'Berhasil Update ke Google Sheet');
+        } else {
+            $this->session->set_flashdata('message', 'Gagal Update: ' . $result['error']);
+        }
+
+        redirect(base_url() . 'backendproduct/listall');
+    }
+
+    public function uploadProductLmpToSheetFromDB()
+    {
+        $product = $this->etx_product->gettableObjectWhere('product', ['created_by' => 16]);
+
+        if (empty($product)) {
+            $this->session->set_flashdata('message', 'Tidak ada data product yang ditemukan');
+            redirect(base_url() . 'backendproduct/listall');
+            return;
+        }
+
+        $result = $this->spreadsheetapi->uploadAllProductsToSheet('data-product', $product);
+
+        if ($result['success']) {
+            $this->session->set_flashdata('message', 'Berhasil Update ke Google Sheet');
+        } else {
+            $this->session->set_flashdata('message', 'Gagal Update: ' . $result['error']);
+        }
+
+        redirect(base_url() . 'backendproduct/listall');
     }
 }
