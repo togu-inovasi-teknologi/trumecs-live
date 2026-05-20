@@ -209,7 +209,7 @@ function namectgr($id)
 					Sync From Sheet
 				</a>
 			<?php } ?>
-			<?php if ($is_admin == 16) { ?>
+			<?php if ($id_admin == 16) { ?>
 				<a href="<?= base_url() ?>backendproduct/myproduct/uploadProductLmpToSheetFromDB"
 					class="btn btn-primary">
 					upload data DB
