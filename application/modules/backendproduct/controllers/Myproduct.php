@@ -596,7 +596,8 @@ class Myproduct extends MX_Controller
             redirect(base_url() . 'backendproduct/myproduct/listall');
             return;
         }
-
+        var_dump($product);
+        die;
         $result = $this->dataproductjtw->uploadAllProductsToSheet('data-product', $product);
 
         if ($result['success']) {
