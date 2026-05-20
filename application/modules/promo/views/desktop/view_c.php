@@ -54,9 +54,9 @@
 								</p>
 							<?php } ?>
 							<a style="border:1px solid #ccc"
-                                                    href="https://wa.me/<?= (isset($key['admin_phone'])) ? $key['admin_phone'] : '6285176912338' ?>?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["name"] . ". Apakah Promo ini masih berlaku?") ?>"
-                                                    class="btn btn-lg btnnew fw-bold text-center f14 wa-button-product"><i
-                                                        class="fa fa-whatsapp fa-2x f18 me-1"></i><?php echo $this->lang->line('tombol_whatsapp', FALSE); ?></a>
+								href="https://wa.me/<?= (isset($key['admin_phone'])) ? $key['admin_phone'] : '6285176912338' ?>?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["name"] . ". Apakah Promo ini masih berlaku?") ?>"
+								class="btn btn-lg btnnew fw-bold text-center f14 wa-button-promo" data-google-tag="WA Promo - <?= $key['name'] ?>"><i
+									class="fa fa-whatsapp fa-2x f18 me-1"></i><?php echo $this->lang->line('tombol_whatsapp', FALSE); ?></a>
 						</div>
 					<?php endforeach ?>
 				</div>
