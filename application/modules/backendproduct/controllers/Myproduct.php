@@ -22,7 +22,7 @@ class Myproduct extends MX_Controller
 
         $this->securitylog->cekadmin();
 
-
+        $privileges = $this->sessionmember['privileges'];
 
         $name = $this->input->get("nama");
         $brand = $this->input->get("merek");
@@ -68,7 +68,7 @@ class Myproduct extends MX_Controller
         $config["per_page"] = 10;
         $page = ($this->input->get("per_page")) ? $this->input->get("per_page") : 0;
         $data["listproduct"] = $this->etx_product->fetch_product($config["per_page"], $page, $data["datasearch"], $data["datasearchor_like"], $data["datawhere"], $this->sessionmember['id']);
-
+        $data['privileges_admin'] = $privileges;
         $data["js"] = array(base_url() . 'asset/backend/js/list.product.js');
         $data['content'] = 'list_product';
         $this->load->view('backend/template_front', $data);
