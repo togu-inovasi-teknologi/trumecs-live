@@ -597,7 +597,7 @@ class Myproduct extends MX_Controller
             return;
         }
 
-        $result = $this->spreadsheetapi->uploadAllProductsToSheet('data-product', $product);
+        $result = $this->dataproductjtw->uploadAllProductsToSheet('data-product', $product);
 
         if ($result['success']) {
             $this->session->set_flashdata('message', 'Berhasil Update ke Google Sheet');
@@ -618,7 +618,7 @@ class Myproduct extends MX_Controller
             return;
         }
 
-        $result = $this->spreadsheetapi->uploadAllProductsToSheet('data-product', $product);
+        $result = $this->dataproductlmp->uploadAllProductsToSheet('data-product', $product);
 
         if ($result['success']) {
             $this->session->set_flashdata('message', 'Berhasil Update ke Google Sheet');
