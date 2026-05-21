@@ -228,15 +228,15 @@
             foreach ($categories as $index => $i) :
             ?>
                 <div class="col-6 col-md-4 col-lg-3">
-                    <div class="card click-category h-100" data-google-tag="<?= $i['name'] ?>">
+                    <a href="<?php echo base_url(); ?>category/<?= $i['id'] ?>" class="card click-category h-100" data-google-tag="<?= $i['name'] ?>">
                         <div class="card-body p-2 d-flex flex-column align-items-center">
-                            <img src="<?php echo base_url() ?>timthumb?h=400&src=<?php echo base_url() ?>/public/upload/categori/<?= $i['img'] ?>"
+                            <img src="<?php echo base_url() ?>timthumb?h=200&src=<?php echo base_url() ?>/public/upload/categori/<?= $i['img'] ?>"
                                 class="img-fluid mb-2"
                                 style="height: 100px; width: auto; object-fit: contain; border-radius: 0.375rem;"
                                 alt="<?= $i['name'] ?>">
                             <p class="fw-bold fs-3 mb-0 text-center"><?= $i['name'] ?></p>
                         </div>
-                    </div>
+                    </a>
                 </div>
             <?php
             endforeach; ?>

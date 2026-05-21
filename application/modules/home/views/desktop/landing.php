@@ -197,7 +197,7 @@
             $categories = main_categories();
             foreach ($categories as $index => $i) :
             ?>
-                <div class="card" style="width: calc(33.333% - 1rem);">
+                <a href="<?php echo base_url(); ?>category/<?= $i['id'] ?>" class="card" style="width: calc(33.333% - 1rem);">
                     <div class="card-body p-2 d-flex justify-content-evenly align-items-center">
                         <p class="fw-bold fs-3 mb-0 text-center"><?= $i['name'] ?></p>
                         <img src="<?php echo base_url() ?>timthumb?h=400&src=<?php echo base_url() ?>/public/upload/categori/<?= $i['img'] ?>"
@@ -205,7 +205,7 @@
                             style="height: 100px; width:auto; object-fit: contain; border-radius: 0.375rem;"
                             alt="<?= $i['name'] ?>">
                     </div>
-                </div>
+                </a>
             <?php
             endforeach; ?>
         </div>
