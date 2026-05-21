@@ -222,55 +222,23 @@
 <section class="blueprint-categories">
     <div class="container">
         <p class="text-center mb-5 fw-bold fs-3">Kategori Produk</p>
-        <div class="blueprint-grid">
+        <div class="row g-3">
             <?php
             $categories = main_categories();
-
             foreach ($categories as $index => $i) :
-                if ($index < 8):
-                    $rotation = rand(-3, 3);
             ?>
-                    <div class="blueprint-item" style="--item-rotate: <?= $rotation ?>deg; --blueprint-color: #f59e0b;">
-                        <a href="<?php echo base_url(); ?>category/<?= $i['id'] ?>"
-                            class="blueprint-card click-category"
-                            data-google-tag="<?= $i['name'] ?>">
-
-                            <!-- Blueprint Background -->
-                            <div class="blueprint-bg"></div>
-                            <div class="blueprint-grid-pattern"></div>
-                            <div class="center-crosshair"></div>
-                            <div class="corner-markers">
-                                <div class="marker tl"></div>
-                                <div class="marker tr"></div>
-                                <div class="marker bl"></div>
-                                <div class="marker br"></div>
-                            </div>
-
-                            <!-- Image Container -->
-                            <div class="image-wrapper">
-
-                                <!-- <img src="/public/landing/category/<?= $i['name'] ?>.png"
-                                    alt="<?= $i['name'] ?>"> -->
-                                <img src="/public/upload/categori/<?= $i['img'] ?>"
-                                    alt="<?= $i['name'] ?>">
-                            </div>
-
-                            <!-- Blueprint Content -->
-                            <div class="card-content">
-                                <p class="category-name mb-0 fs-6"><?= $i['name'] ?></p>
-                                <div class="card-footer">
-                                    <div class="action-arrow">
-                                        <i class="bi bi-arrow-right"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Engineering Lines -->
-                            <div class="dimension-horizontal"></div>
-                            <div class="dimension-vertical"></div>
-                        </a>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="card click-category h-100" data-google-tag="<?= $i['name'] ?>">
+                        <div class="card-body p-2 d-flex flex-column align-items-center">
+                            <img src="<?php echo base_url() ?>timthumb?h=400&src=<?php echo base_url() ?>/public/upload/categori/<?= $i['img'] ?>"
+                                class="img-fluid mb-2"
+                                style="height: 100px; width: auto; object-fit: contain; border-radius: 0.375rem;"
+                                alt="<?= $i['name'] ?>">
+                            <p class="fw-bold fs-3 mb-0 text-center"><?= $i['name'] ?></p>
+                        </div>
                     </div>
-            <?php endif;
+                </div>
+            <?php
             endforeach; ?>
         </div>
     </div>

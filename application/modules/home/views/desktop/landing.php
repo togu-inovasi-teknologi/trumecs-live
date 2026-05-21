@@ -9,157 +9,126 @@
         </div>
 
         <div class="row g-5 align-items-start">
-            <!-- Left Column: Steps Accordion -->
-            <div class="col-lg-3 h-100">
-                <div class="steps-accordion-wrapper h-100">
+
+            <div class="col-lg-12">
+                <div class="steps-horizontal-wrapper d-flex justify-content-between">
                     <!-- Step 1 -->
-                    <div class="step-item active" data-step="1">
-                        <div class="step-header">
-                            <div class="step-indicator">
-                                <span class="step-number">1</span>
-                                <div class="step-line"></div>
+                    <div class="step-item-horizontal" data-step="5">
+                        <div class="step-header-horizontal">
+                            <div class="step-indicator-horizontal">
+                                <span class="step-number-horizontal">1</span>
                             </div>
-                            <div class="step-title-wrapper">
-                                <h5 class="step-title">Sourcing</h5>
-                                <p class="step-subtitle">Temukan produk dan pemasok terpercaya.</p>
+                            <div class="step-title-wrapper-horizontal">
+                                <h5 class="step-title-horizontal">Sourcing</h5>
+                                <p class="step-subtitle-horizontal">Temukan produk dan pemasok terpercaya.</p>
                             </div>
-                            <div class="step-arrow">
+                            <!-- <div class="step-arrow-horizontal">
                                 <i class="bi bi-chevron-down"></i>
-                            </div>
+                            </div> -->
                         </div>
-                        <div class="step-content">
-                            <!-- Isi konten step 1 Anda di sini -->
-                            <div class="step-details">
-                                <ul class="step-list">
-                                    <li>
-                                        <i class="bi bi-search"></i>
-                                        <span>Cari berdasarkan kata kunci atau kategori.</span>
-                                    </li>
-                                    <li>
-                                        <i class="bi bi-file-earmark-text"></i>
-                                        <span>Posting permintaan pengadaan untuk mendapatkan berbagai penawaran harga.</span>
-                                    </li>
-                                    <li>
-                                        <i class="bi bi-person"></i>
-                                        <span>Terhubung langsung dengan pemasok terverifikasi.</span>
-                                    </li>
+                        <!-- <div class="step-dropdown-horizontal">
+                            <div class="step-content-horizontal">
+                                <ul class="step-list-horizontal">
+                                    <li><i class="bi bi-search"></i><span>Cari berdasarkan kata kunci atau kategori.</span></li>
+                                    <li><i class="bi bi-file-earmark-text"></i><span>Posting permintaan pengadaan untuk mendapatkan berbagai penawaran harga.</span></li>
+                                    <li><i class="bi bi-person"></i><span>Terhubung langsung dengan pemasok terverifikasi.</span></li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> -->
+                    </div>
+
+                    <div class="step-connector">
+                        <i class="bi bi-arrow-right-short"></i>
                     </div>
 
                     <!-- Step 2 -->
-                    <div class="step-item" data-step="2">
-                        <div class="step-header">
-                            <div class="step-indicator">
-                                <span class="step-number">2</span>
-                                <div class="step-line"></div>
+                    <div class="step-item-horizontal" data-step="2">
+                        <div class="step-header-horizontal">
+                            <div class="step-indicator-horizontal">
+                                <span class="step-number-horizontal">2</span>
                             </div>
-                            <div class="step-title-wrapper">
-                                <h5 class="step-title">Verifikasi</h5>
-                                <p class="step-subtitle">Verifikasi pihak ketiga yang terpercaya.</p>
+                            <div class="step-title-wrapper-horizontal">
+                                <h5 class="step-title-horizontal">Verifikasi</h5>
+                                <p class="step-subtitle-horizontal">Verifikasi pihak ketiga yang terpercaya.</p>
                             </div>
-                            <div class="step-arrow">
+                            <!-- <div class="step-arrow-horizontal">
                                 <i class="bi bi-chevron-down"></i>
-                            </div>
+                            </div> -->
                         </div>
-                        <div class="step-content">
-                            <!-- Isi konten step 2 Anda di sini -->
-                            <div class="step-details">
-                                <ul class="step-list">
-                                    <li>
-                                        <i class="bi bi-shield"></i>
-                                        <span>Pilih pemasok yang telah diaudit dan diverifikasi oleh pihak ketiga.</span>
-                                    </li>
-                                    <li>
-                                        <i class="bi bi-bar-chart-line"></i>
-                                        <span>Akses laporan audit pemasok secara gratis.</span>
-                                    </li>
-                                    <li>
-                                        <i class="bi bi-check-circle"></i>
-                                        <span>Jaminan kualitas dan pemeriksaan keandalan.</span>
-                                    </li>
+                        <!-- <div class="step-dropdown-horizontal">
+                            <div class="step-content-horizontal">
+                                <ul class="step-list-horizontal">
+                                    <li><i class="bi bi-shield"></i><span>Pilih pemasok yang telah diaudit dan diverifikasi oleh pihak ketiga.</span></li>
+                                    <li><i class="bi bi-bar-chart-line"></i><span>Akses laporan audit pemasok secara gratis.</span></li>
+                                    <li><i class="bi bi-check-circle"></i><span>Jaminan kualitas dan pemeriksaan keandalan.</span></li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> -->
+                    </div>
+
+                    <div class="step-connector">
+                        <i class="bi bi-arrow-right-short"></i>
                     </div>
 
                     <!-- Step 3 -->
-                    <div class="step-item" data-step="3">
-                        <div class="step-header">
-                            <div class="step-indicator">
-                                <span class="step-number">3</span>
-                                <div class="step-line"></div>
+                    <div class="step-item-horizontal" data-step="3">
+                        <div class="step-header-horizontal">
+                            <div class="step-indicator-horizontal">
+                                <span class="step-number-horizontal">3</span>
                             </div>
-                            <div class="step-title-wrapper">
-                                <h5 class="step-title">Negosiasi</h5>
-                                <p class="step-subtitle">Hubungi dan negosiasikan langsung dengan pemasok.</p>
+                            <div class="step-title-wrapper-horizontal">
+                                <h5 class="step-title-horizontal">Negosiasi</h5>
+                                <p class="step-subtitle-horizontal">Hubungi dan negosiasikan langsung dengan pemasok.</p>
                             </div>
-                            <div class="step-arrow">
+                            <!-- <div class="step-arrow-horizontal">
                                 <i class="bi bi-chevron-down"></i>
-                            </div>
+                            </div> -->
                         </div>
-                        <div class="step-content">
-                            <!-- Isi konten step 3 Anda di sini -->
-                            <div class="step-details">
-                                <ul class="step-list">
-                                    <li>
-                                        <i class="bi bi-envelope"></i>
-                                        <span>Kirim pertanyaan dengan tombol “Hubungi Sekarang”.</span>
-                                    </li>
-                                    <li>
-                                        <i class="bi bi-chat-dots"></i>
-                                        <span>Mengobrol dengan pemasok secara real-time.</span>
-                                    </li>
-                                    <li>
-                                        <i class="bi bi-journal-medical"></i>
-                                        <span>Terima dan kelola penawaran harga di kantor virtual Anda.</span>
-                                    </li>
+                        <!-- <div class="step-dropdown-horizontal">
+                            <div class="step-content-horizontal">
+                                <ul class="step-list-horizontal">
+                                    <li><i class="bi bi-envelope"></i><span>Kirim pertanyaan dengan tombol "Hubungi Sekarang".</span></li>
+                                    <li><i class="bi bi-chat-dots"></i><span>Mengobrol dengan pemasok secara real-time.</span></li>
+                                    <li><i class="bi bi-journal-medical"></i><span>Terima dan kelola penawaran harga di kantor virtual Anda.</span></li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> -->
+                    </div>
+
+                    <div class="step-connector">
+                        <i class="bi bi-arrow-right-short"></i>
                     </div>
 
                     <!-- Step 4 -->
-                    <div class="step-item" data-step="4">
-                        <div class="step-header">
-                            <div class="step-indicator">
-                                <span class="step-number">4</span>
-                                <div class="step-line"></div>
+                    <div class="step-item-horizontal" data-step="4">
+                        <div class="step-header-horizontal">
+                            <div class="step-indicator-horizontal">
+                                <span class="step-number-horizontal">4</span>
                             </div>
-                            <div class="step-title-wrapper">
-                                <h5 class="step-title">Pemesanan</h5>
-                                <p class="step-subtitle">Lakukan pemesanan online dengan aman.</p>
+                            <div class="step-title-wrapper-horizontal">
+                                <h5 class="step-title-horizontal">Pemesanan</h5>
+                                <p class="step-subtitle-horizontal">Lakukan pemesanan online dengan aman.</p>
                             </div>
-                            <div class="step-arrow">
+                            <!-- <div class="step-arrow-horizontal">
                                 <i class="bi bi-chevron-down"></i>
-                            </div>
+                            </div> -->
                         </div>
-                        <div class="step-content">
-                            <!-- Isi konten step 4 Anda di sini -->
-                            <div class="step-details">
-                                <ul class="step-list">
-                                    <li>
-                                        <i class="bi bi-cart"></i>
-                                        <span>Cari produk dengan Layanan Perdagangan Aman.</span>
-                                    </li>
-                                    <li>
-                                        <i class="bi bi-lock"></i>
-                                        <span>Perlindungan escrow dan dukungan pengembalian dana.</span>
-                                    </li>
-                                    <li>
-                                        <i class="bi bi-truck"></i>
-                                        <span>Pembayaran aman dan pelacakan pesanan.</span>
-                                    </li>
+                        <!-- <div class="step-dropdown-horizontal">
+                            <div class="step-content-horizontal">
+                                <ul class="step-list-horizontal">
+                                    <li><i class="bi bi-cart"></i><span>Cari produk dengan Layanan Perdagangan Aman.</span></li>
+                                    <li><i class="bi bi-lock"></i><span>Perlindungan escrow dan dukungan pengembalian dana.</span></li>
+                                    <li><i class="bi bi-truck"></i><span>Pembayaran aman dan pelacakan pesanan.</span></li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
 
+
             <!-- Right Column: Video/Media Area -->
-            <div class="col-lg-9 h-100">
+            <div class="col-lg-12 h-100">
                 <div class="step-media-wrapper h-100">
 
                     <!-- <div class="video-container">
@@ -178,7 +147,7 @@
                     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="<?php echo base_url() ?>timthumb?h=450&src=<?php base_url(); ?>/public/banner/home-mobile/6.png" class="d-block w-100" alt="banner trumecs.com">
+                                <img src="<?php echo base_url() ?>timthumb?h=600&src=<?php base_url(); ?>/public/banner/home-mobile/6.png" class="d-block w-100" alt="banner trumecs.com">
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -223,55 +192,21 @@
 <section class="blueprint-categories">
     <div class="container">
         <p class="text-center mb-5 fw-bold fs-3">Kategori Produk</p>
-        <div class="blueprint-grid">
+        <div class="d-flex flex-wrap gap-3">
             <?php
             $categories = main_categories();
-
             foreach ($categories as $index => $i) :
-                if ($index < 8):
-                    $rotation = rand(-3, 3);
             ?>
-                    <div class="blueprint-item" style="--item-rotate: <?= $rotation ?>deg; --blueprint-color: #f59e0b;">
-                        <a href="<?php echo base_url(); ?>category/<?= $i['id'] ?>"
-                            class="blueprint-card click-category"
-                            data-google-tag="<?= $i['name'] ?>">
-
-                            <!-- Blueprint Background -->
-                            <div class="blueprint-bg"></div>
-                            <div class="blueprint-grid-pattern"></div>
-                            <div class="center-crosshair"></div>
-                            <div class="corner-markers">
-                                <div class="marker tl"></div>
-                                <div class="marker tr"></div>
-                                <div class="marker bl"></div>
-                                <div class="marker br"></div>
-                            </div>
-
-                            <!-- Image Container -->
-                            <div class="image-wrapper">
-
-                                <!-- <img src="/public/landing/category/<?= $i['name'] ?>.png"
-                                    alt="<?= $i['name'] ?>"> -->
-                                <img src="<?php echo base_url() ?>timthumb?h=400&src=<?php echo base_url() ?>/public/upload/categori/<?= $i['img'] ?>"
-                                    alt="<?= $i['name'] ?>">
-                            </div>
-
-                            <!-- Blueprint Content -->
-                            <div class="card-content">
-                                <p class="category-name mb-0 fs-5"><?= $i['name'] ?></p>
-                                <div class="card-footer">
-                                    <div class="action-arrow">
-                                        <i class="bi bi-arrow-right"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Engineering Lines -->
-                            <div class="dimension-horizontal"></div>
-                            <div class="dimension-vertical"></div>
-                        </a>
+                <div class="card" style="width: calc(33.333% - 1rem);">
+                    <div class="card-body p-2 d-flex justify-content-evenly align-items-center">
+                        <p class="fw-bold fs-3 mb-0 text-center"><?= $i['name'] ?></p>
+                        <img src="<?php echo base_url() ?>timthumb?h=400&src=<?php echo base_url() ?>/public/upload/categori/<?= $i['img'] ?>"
+                            class="img-fluid mb-2"
+                            style="height: 100px; width:auto; object-fit: contain; border-radius: 0.375rem;"
+                            alt="<?= $i['name'] ?>">
                     </div>
-            <?php endif;
+                </div>
+            <?php
             endforeach; ?>
         </div>
     </div>
@@ -970,164 +905,262 @@
         }
     }
 
-    /* Steps Accordion Styles - HOVER ONLY */
-    .steps-accordion-wrapper {
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    }
-
-    .step-item {
-        background: white;
-        border-bottom: 1px solid #eef0f3;
-        transition: all 0.3s ease;
-        position: relative;
-    }
-
-    .step-item:last-child {
-        border-bottom: none;
-    }
-
-    /* Hover State - BUKAN active state */
-    .step-item:hover {
-        background: #f8faff;
-        border-left: 4px solid #4a6cf7;
-    }
-
-    .step-header {
-        padding: 25px 30px;
+    .steps-horizontal-wrapper {
         display: flex;
+        justify-content: center;
+        align-items: stretch;
+        position: relative;
+        width: 100%;
+    }
+
+    /* Membuat semua card sama besar */
+    .step-item-horizontal {
+        flex: 1;
+        min-width: 0;
+        position: relative;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        margin: 0 5px;
+    }
+
+    .step-header-horizontal {
+        padding: 25px 15px;
+        display: flex;
+        flex-direction: column;
         align-items: center;
+        text-align: center;
         cursor: pointer;
         transition: all 0.3s ease;
-        position: relative;
+        border-radius: 12px;
     }
 
-    .step-item:hover .step-header {
-        background: #f8faff;
+    .step-item-horizontal.active .step-header-horizontal {
+        background: #f97316;
+        box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);
     }
 
-    .step-indicator {
-        position: relative;
-        margin-right: 20px;
+    .step-item-horizontal.active .step-title-horizontal,
+    .step-item-horizontal.active .step-subtitle-horizontal {
+        color: white;
     }
 
-    .step-number {
-        display: flex;
+    .step-item-horizontal.active .step-number-horizontal {
+        background: white;
+        color: #f97316;
+    }
+
+    .step-indicator-horizontal {
+        margin-bottom: 15px;
+    }
+
+    .step-number-horizontal {
+        display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 40px;
-        height: 40px;
-        background: #eef0f3;
-        color: #6c757d;
+        width: 45px;
+        height: 45px;
+        background: #e2e8f0;
         border-radius: 50%;
-        font-weight: 700;
-        font-size: 1.2rem;
+        font-weight: bold;
+        font-size: 20px;
+        color: #64748b;
         transition: all 0.3s ease;
     }
 
-    .step-item:hover .step-number {
-        background: #4a6cf7;
-        color: white;
-        transform: scale(1.1);
+    .step-title-horizontal {
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin: 10px 0 5px;
+        color: #1e293b;
     }
 
-    .step-line {
-        position: absolute;
-        top: 50px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 2px;
-        height: calc(100% - 40px);
-        background: #eef0f3;
-        z-index: 1;
-    }
-
-    .step-item:last-child .step-line {
-        display: none;
-    }
-
-    .step-title-wrapper {
-        flex: 1;
-    }
-
-    .step-title {
-        font-size: 1rem;
-        font-weight: 700;
-        color: #2d3748;
-        margin-bottom: 5px;
-        transition: all 0.3s ease;
-    }
-
-    .step-item:hover .step-title {
-        color: #4a6cf7;
-    }
-
-    .step-subtitle {
-        color: #6c757d;
-        font-size: 0.6rem;
+    .step-subtitle-horizontal {
+        font-size: 0.8rem;
+        color: #64748b;
         margin: 0;
     }
 
-    .step-item:hover .step-subtitle {
-        color: #4a6cf7;
-    }
-
-    .step-arrow {
-        color: #a0aec0;
-        font-size: 1.2rem;
-        transition: all 0.3s ease;
-        transform: rotate(0deg);
-    }
-
-    .step-item:hover .step-arrow {
-        transform: rotate(180deg);
-        color: #4a6cf7;
-    }
-
-    .step-content {
-        max-height: 0;
-        overflow: hidden;
-        transition: all 0.5s ease;
-        padding: 0 30px;
+    .step-arrow-horizontal {
+        position: absolute;
+        bottom: -12px;
+        left: 50%;
+        transform: translateX(-50%);
         background: white;
+        border-radius: 50%;
+        width: 26px;
+        height: 26px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        z-index: 10;
     }
 
-    .step-item:hover .step-content {
-        max-height: 500px;
-        padding: 0 30px 25px 30px;
-        background: #f8faff;
+    .step-arrow-horizontal i {
+        font-size: 14px;
+        color: #f97316;
+        transition: transform 0.3s ease;
     }
 
-    .step-details {
-        padding-left: 0px;
-        padding-top: 15px;
+    /* Dropdown */
+    .step-dropdown-horizontal {
+        position: absolute;
+        top: calc(100% - 10px);
+        left: 0;
+        right: 0;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+        display: none;
+        overflow: hidden;
     }
 
-    .step-list {
+    .step-item-horizontal.active .step-dropdown-horizontal {
+        display: block;
+    }
+
+    .step-content-horizontal {
+        padding: 20px;
+    }
+
+    .step-list-horizontal {
         list-style: none;
         padding: 0;
         margin: 0;
     }
 
-    .step-list li {
-        padding: 12px 0;
-        border-bottom: 1px dashed #e2e8f0;
-        color: #4a5568;
-        font-size: 0.7rem;
+    .step-list-horizontal li {
         display: flex;
         align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 12px;
+        font-size: 0.85rem;
+        color: #334155;
     }
 
-    .step-list li:last-child {
-        border-bottom: none;
+    .step-list-horizontal li:last-child {
+        margin-bottom: 0;
     }
 
-    .step-list li i {
-        margin-top: 3px;
-        color: #4a6cf7;
-        font-size: 1.1rem;
-        min-width: 24px;
+    .step-list-horizontal li i {
+        color: #f97316;
+        font-size: 1rem;
+        margin-top: 2px;
+        flex-shrink: 0;
+    }
+
+    .step-list-horizontal li span {
+        line-height: 1.4;
+    }
+
+    /* Connector */
+    .step-connector {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 10px;
+        flex-shrink: 0;
+    }
+
+    .step-connector i {
+        font-size: 32px;
+        color: #cbd5e1;
+    }
+
+    /* Step Preview */
+    .step-preview {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .preview-title {
+        color: #2d3748;
+        font-weight: 700;
+        margin-bottom: 15px;
+        font-size: 1.5rem;
+    }
+
+    .preview-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-top: 25px;
+    }
+
+    .stat-item {
+        text-align: center;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 8px;
+    }
+
+    .stat-item h4 {
+        color: #f97316;
+        font-weight: 800;
+        font-size: 1.8rem;
+        margin-bottom: 5px;
+    }
+
+    .stat-item p {
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin: 0;
+    }
+
+    /* Hover effect */
+    .step-item-horizontal:not(.active):hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+        .steps-horizontal-wrapper {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .step-connector {
+            transform: rotate(90deg);
+            margin: -5px 0;
+            padding: 0;
+        }
+
+        .step-connector i {
+            font-size: 28px;
+        }
+
+        .step-dropdown-horizontal {
+            position: relative;
+            top: auto;
+            margin-top: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-item-horizontal {
+            margin: 0;
+        }
+
+        .step-arrow-horizontal {
+            display: none;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .preview-stats {
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .step-header-horizontal {
+            padding: 20px 15px;
+        }
     }
 
     /* Media/Video Area */
@@ -1374,148 +1407,29 @@
 </style>
 
 <script>
-    // HOVER ACCORDION - Hanya hover, tidak ada yang aktif default
-    $(document).ready(function() {
-        console.log('Initializing hover-only accordion...');
+    document.querySelectorAll('.step-header-horizontal').forEach(header => {
+        header.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const stepItem = header.closest('.step-item-horizontal');
+            const isActive = stepItem.classList.contains('active');
 
-        const $stepItems = $('.step-item');
-        const $previewContents = $('.preview-content');
-
-        let activeStep = null;
-        let hoverTimer = null;
-
-        // Fungsi untuk membuka step
-        function openStep(stepNumber) {
-            // Reset semua step
-            $stepItems.removeClass('active');
-
-            // Reset semua preview
-            $previewContents.removeClass('active');
-
-            // Buka step yang dihover
-            const $stepToOpen = $(`.step-item[data-step="${stepNumber}"]`);
-            const $previewToShow = $(`.preview-content[data-preview="${stepNumber}"]`);
-
-            if ($stepToOpen.length) {
-                $stepToOpen.addClass('active');
-            }
-
-            if ($previewToShow.length) {
-                $previewToShow.addClass('active');
-            }
-
-            activeStep = stepNumber;
-            console.log('Opened step:', stepNumber);
-        }
-
-        // Fungsi untuk menutup semua step
-        function closeAllSteps() {
-            $stepItems.removeClass('active');
-            $previewContents.removeClass('active');
-
-            activeStep = null;
-            console.log('All steps closed');
-        }
-
-        // Setup hover events untuk desktop
-        function setupHoverAccordion() {
-            const isDesktop = $(window).width() > 768;
-
-            $stepItems.off('mouseenter mouseleave click'); // Hapus event listeners sebelumnya
-
-            $stepItems.each(function() {
-                const $item = $(this);
-                const stepNumber = $item.data('step');
-
-                // Hover masuk
-                $item.on('mouseenter', function() {
-                    if (isDesktop) {
-                        clearTimeout(hoverTimer);
-                        openStep(stepNumber);
-                    }
-                });
-
-                // Hover keluar
-                $item.on('mouseleave', function() {
-                    if (isDesktop) {
-                        hoverTimer = setTimeout(() => {
-                            if (activeStep === stepNumber) {
-                                closeAllSteps();
-                            }
-                        }, 300); // Delay 300ms sebelum tutup
-                    }
-                });
-
-                // Untuk mobile: click untuk buka/tutup
-                if (!isDesktop) {
-                    $item.on('click', function(e) {
-                        e.preventDefault();
-
-                        if (activeStep === stepNumber) {
-                            // Jika step yang sama diklik, tutup
-                            closeAllSteps();
-                        } else {
-                            // Jika step berbeda, buka yang baru
-                            openStep(stepNumber);
-                        }
-                    });
-                }
+            // Tutup semua step yang aktif
+            document.querySelectorAll('.step-item-horizontal').forEach(item => {
+                item.classList.remove('active');
             });
 
-            // Tutup semua saat mouse keluar dari container
-            const $accordionWrapper = $('.steps-accordion-wrapper');
-            if ($accordionWrapper.length && isDesktop) {
-                $accordionWrapper.off('mouseleave mouseenter');
-
-                $accordionWrapper.on('mouseleave', function() {
-                    hoverTimer = setTimeout(closeAllSteps, 500);
-                });
-
-                $accordionWrapper.on('mouseenter', function() {
-                    clearTimeout(hoverTimer);
-                });
+            // Buka step yang diklik jika belum aktif
+            if (!isActive) {
+                stepItem.classList.add('active');
             }
-        }
-
-        // Inisialisasi
-        setTimeout(() => {
-            if ($stepItems.length > 0) {
-                setupHoverAccordion();
-
-                // TIDAK ada step aktif default
-                console.log('Hover accordion initialized - No step active by default');
-
-                // Tampilkan pesan untuk user
-                const $previewContainer = $('.step-preview');
-                if ($previewContainer.length && !$previewContainer.find('.preview-content.active').length) {
-                    const defaultMessage = $(`
-                    <div class="preview-content default-message active">
-                        <h3 class="preview-title">Pilih Langkah</h3>
-                        <p>Hover pada langkah di sebelah kiri untuk melihat detail</p>
-                        <div class="mt-4">
-                            <div class="alert alert-info">
-                                <i class="bi bi-info-circle me-2"></i>
-                                <strong>Tips:</strong> Arahkan mouse ke langkah untuk melihat detail
-                            </div>
-                        </div>
-                    </div>
-                `);
-                    $previewContainer.prepend(defaultMessage);
-                }
-            }
-        }, 500);
-
-        // Handle window resize
-        $(window).on('resize', function() {
-            setTimeout(setupHoverAccordion, 100);
         });
+    });
 
-        // Video play button
-        const $playButton = $('.play-button');
-        if ($playButton.length) {
-            $playButton.off('click').on('click', function() {
-                // Ganti dengan video embed Anda
-                alert('Video player would open here. Replace with actual video embed.');
+    // Optional: Tutup dropdown saat klik di luar
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.step-item-horizontal')) {
+            document.querySelectorAll('.step-item-horizontal').forEach(item => {
+                item.classList.remove('active');
             });
         }
     });
