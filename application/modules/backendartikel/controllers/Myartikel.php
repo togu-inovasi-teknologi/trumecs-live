@@ -233,7 +233,11 @@ class Myartikel extends MX_Controller
                 redirect(base_url() . 'backendpage/myartikel/?status=all');
             }
         }
-        $data['content'] = 'form';
+        if (!$this->agent->is_mobile()) {
+            $data['content'] = 'desktop/form';
+        } else {
+            $data['content'] = 'mobile/form';
+        }
         $data['id'] = $id;
         $data["css"] = array(
             base_url() . 'asset/backend/dist/js/tinymce/skins/lightgray/skin.min.css',
