@@ -32,22 +32,9 @@
             $categories = main_categories();
             foreach ($categories as $index => $i) :
             ?>
-                <!-- <a href="<?php echo base_url(); ?>category/<?= $i['id'] ?>" class="card" style="width: calc(33.333% - 1rem);">
-                    <div class="card-body p-2 d-flex justify-content-evenly align-items-center">
-                        <p class="fw-bold fs-3 mb-0 text-center"><?= $i['name'] ?></p>
-                        <img src="<?php echo base_url() ?>timthumb?h=400&src=<?php echo base_url() ?>/public/upload/categori/<?= $i['img'] ?>"
-                            class="img-fluid mb-2"
-                            style="height: 100px; width:auto; object-fit: contain; border-radius: 0.375rem;"
-                            alt="<?= $i['name'] ?>">
-                    </div>
-                </a> -->
                 <a href="<?php echo base_url(); ?>category/<?= $i['id'] ?>" class="card" style="width: calc(16.666% - 1rem);">
                     <div class="card-body p-2 d-flex flex-column justify-content-end align-items-center" style="height: 250px; background-image: url(<?php echo base_url() ?>timthumb?h=400&src=<?php echo base_url() ?>/public/upload/categori/<?= $i['img'] ?>);background-size: cover;">
                         <div class="overlay-categori"></div>
-                        <!-- <img src="<?php echo base_url() ?>timthumb?h=400&src=<?php echo base_url() ?>/public/upload/categori/<?= $i['img'] ?>"
-                            class="img-fluid mb-2"
-                            style="height: 100px; width:auto; object-fit: contain; border-radius: 0.375rem;"
-                            alt="<?= $i['name'] ?>"> -->
                         <p class="fw-bold fs-6 mb-0 text-center text-white" style="z-index: 2;"><?= $i['name'] ?></p>
                     </div>
                 </a>
