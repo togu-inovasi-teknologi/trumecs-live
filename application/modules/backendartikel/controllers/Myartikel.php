@@ -237,11 +237,8 @@ class Myartikel extends MX_Controller
         $data['id'] = $id;
         $data["css"] = array(
             base_url() . 'asset/backend/dist/js/tinymce/skins/lightgray/skin.min.css',
-            "//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css",
-            "//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css"
         );
         $data["js"] = array(
-            "//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js",
             base_url() . "asset/js/number/jquery.number.min.js",
             base_url() . "asset/backend/dist/js/canvas/zepto.min.js",
             base_url() . "asset/backend/dist/js/canvas/binaryajax.js",
