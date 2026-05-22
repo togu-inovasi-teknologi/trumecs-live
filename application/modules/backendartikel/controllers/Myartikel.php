@@ -242,14 +242,16 @@ class Myartikel extends MX_Controller
         $data["css"] = array(
             base_url() . 'asset/backend/dist/js/tinymce/skins/lightgray/skin.min.css',
         );
-        $data["js"] = array(
-            base_url() . "asset/js/number/jquery.number.min.js",
+        $data["distjs"] = array(
             base_url() . "asset/backend/dist/js/canvas/zepto.min.js",
             base_url() . "asset/backend/dist/js/canvas/binaryajax.js",
             base_url() . "asset/backend/dist/js/canvas/exif.js",
             base_url() . "asset/backend/dist/js/canvas/canvasResize.js",
-            base_url() . "asset/js/member/datepick.js",
             base_url() . 'asset/backend/dist/js/tinymce/tinymce.min.js',
+            base_url() . 'asset/backend/dist/js/tinymce/tinymce.min.js',
+        );
+        $data["js"] = array(
+            base_url() . "asset/js/number/jquery.number.min.js",
             base_url() . 'asset/backend/js/form.pageandarticle.js'
         );
         $this->load->view('backend/template_front', $data);
