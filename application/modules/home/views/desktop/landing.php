@@ -90,7 +90,7 @@
                                                         <?php if ($key['type'] == "bundle") { ?>
                                                             <div class="d-flex justify-content-between align-items-center mt-2">
                                                                 <p class="small mb-0"><span class="fw-bold"><?= count($key['products']); ?> item</span> dengan harga</p>
-                                                                <span class="fw-bold text-warning fs-5">Rp <?php echo number_format($key["price"], 0, ',', '.'); ?></span>
+                                                                <span class="fw-bold text-danger fs-6">Rp <?php echo number_format($key["price"], 0, ',', '.'); ?></span>
                                                             </div>
                                                         <?php } ?>
 
