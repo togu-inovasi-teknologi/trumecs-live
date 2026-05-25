@@ -44,16 +44,96 @@
         <?php endforeach; ?>
     </div>
 </section>
-<!-- <section class="banner-ads mb-3">
-    <a href="https://www.trumecs.com" target="_blank" alt="link trumecs">
-        <div class="container">
+<?php if (count($listpromo) >= 1) { ?>
+    <section class="promo-landing mb-3 mt-5">
+        <div class="container d-flex flex-column gap-3 px-0">
+            <p class="text-center my-3 fw-bold fs-3">Promo Trumecs</p>
             <div class="row">
-                <img src="/public/banner/banner-nataru.png" width="100%" alt="Banner Nataru trumecs">
+                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <a href="https://www.trumecs.com" target="_blank" alt="link trumecs">
+                                <img src="/public/banner/category/banner-Unit.png" alt="Banner nataru" class="img-fluid w-100">
+                            </a>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
 
+            <div class="row mt-4">
+                <div id="carouselPromo" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <?php
+                        $imgonmobile = ($this->agent->is_mobile()) ? base_url() . 'timthumb?h=200&src=' : '';
+                        $chunkedPromo = array_chunk($listpromo, 1);
+
+                        foreach ($chunkedPromo as $index => $promoGroup) :
+                        ?>
+                            <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
+                                <div class="row g-3">
+                                    <?php foreach ($promoGroup as $key) : ?>
+                                        <div class="col-md-6">
+                                            <div class="card h-100 shadow-sm">
+                                                <div class="card-body p-3 d-flex flex-column">
+                                                    <a href="<?php echo base_url() ?>promo/<?php echo $key["url"] ?>" class="h6 text-dark fw-bold text-decoration-none border-start border-4 border-<?= $key['type'] == "promo" ? 'danger' : 'warning' ?> ps-3 d-inline-block mb-2 click-pilih-promo-home" data-google-tag="Home - <?php echo $key['name']; ?>">
+                                                        <?php $str_name = str_split($key["name"], 60); ?>
+                                                        <?php echo count($str_name) > 1 ? $str_name[0] . "..." : $str_name[0] ?>
+
+                                                        <?php if ($key['type'] == "bundle") { ?>
+                                                            <div class="text-start mt-2">
+                                                                <p class="small mb-0"><span class="fw-bold"><?= count($key['products']); ?> item</span> dengan harga</p>
+                                                                <span class="fw-bold text-warning fs-5">Rp <?php echo number_format($key["price"], 0, ',', '.'); ?></span>
+                                                            </div>
+                                                        <?php } ?>
+
+
+                                                        <img title="<?php echo $key["name"] ?>"
+                                                            src="<?php echo $imgonmobile ?><?php echo base_url() ?>timthumb?h=300&src=<?php echo base_url() ?>public/image/promo/<?php echo $key["img"] ?>"
+                                                            class="img-fluid w-100 mt-2"
+                                                            alt="<?php echo $key["name"] ?>"
+                                                            style="height: 150px; object-fit: contain; width: 100%;">
+
+                                                        <div class="mt-2 flex-grow-1">
+                                                            <?php $str = str_split($key["description"], 100); ?>
+                                                            <p class="text-secondary small mb-2"><?php echo count($str) > 1 ? $str[0] . "..." : $str[0] ?></p>
+                                                        </div>
+                                                        <div class="mt-2 flex-grow-1">
+                                                            <p class="text-warning small mb-2">Lihat Selengkapnya</p>
+                                                        </div>
+
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+
+                    <?php if (count($listpromo) > 1) : ?>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselPromo" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselPromo" data-bs-slide="next">
+                            <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
-    </a>
-</section> -->
+    </section>
+<?php } ?>
 
 <!--- Pelumas -->
 <section class="category-pelumas mb-2">
