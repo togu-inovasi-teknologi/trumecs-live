@@ -84,8 +84,8 @@
                                             <div class="card h-100 shadow-sm">
                                                 <div class="card-body p-3 d-flex flex-column">
                                                     <a href="<?php echo base_url() ?>promo/<?php echo $key["url"] ?>" class="h6 text-dark fw-bold text-decoration-none border-start border-4 border-<?= $key['type'] == "promo" ? 'danger' : 'warning' ?> ps-3 d-inline-block mb-2 click-pilih-promo-home" data-google-tag="Home - <?php echo $key['name']; ?>">
-                                                        <?php echo $key['name']; ?>
-
+                                                        <?php $str_name = str_split($key["name"], 60); ?>
+                                                        <?php echo count($str_name) > 1 ? $str_name[0] . "..." : $str_name[0] ?>
 
                                                         <?php if ($key['type'] == "bundle") { ?>
                                                             <div class="text-start mt-2">
@@ -103,6 +103,9 @@
 
                                                         <div class="mt-2 flex-grow-1">
                                                             <?php $str = str_split($key["description"], 100); ?>
+                                                            <p class="text-secondary small mb-2"><?php echo count($str) > 1 ? $str[0] . "..." : $str[0] ?></p>
+                                                        </div>
+                                                        <div class="mt-2 flex-grow-1">
                                                             <p class="text-secondary small mb-2"><?php echo count($str) > 1 ? $str[0] . "..." : $str[0] ?></p>
                                                         </div>
 
