@@ -83,32 +83,29 @@
                                         <div class="col-md-4">
                                             <div class="card h-100 shadow-sm">
                                                 <div class="card-body p-3 d-flex flex-column">
-                                                    <a href="<?php echo base_url() ?>promo/<?php echo $key["url"] ?>" class="h6 text-dark fw-bold text-decoration-none border-start border-4 border-<?= $key['type'] == "promo" ? 'danger' : 'warning' ?> ps-3 d-inline-block mb-2 click-pilih-promo" data-google-tag="<?php echo $key['name']; ?>">
+                                                    <a href="<?php echo base_url() ?>promo/<?php echo $key["url"] ?>" class="h6 text-dark fw-bold text-decoration-none border-start border-4 border-<?= $key['type'] == "promo" ? 'danger' : 'warning' ?> ps-3 d-inline-block mb-2 click-pilih-promo-home" data-google-tag="Home - <?php echo $key['name']; ?>">
                                                         <?php echo $key['name']; ?>
-                                                    </a>
 
-                                                    <?php if ($key['type'] == "bundle") { ?>
-                                                        <div class="d-flex justify-content-between align-items-center mt-2">
-                                                            <p class="small mb-0"><span class="fw-bold"><?= count($key['products']); ?> item</span> dengan harga</p>
-                                                            <span class="fw-bold text-warning fs-5">Rp <?php echo number_format($key["price"], 0, ',', '.'); ?></span>
-                                                        </div>
-                                                    <?php } ?>
 
-                                                    <a href="<?php echo base_url() ?>promo/<?php echo $key["url"] ?>" class="click-pilih-promo-image mt-2" data-google-tag="Image - <?php echo $key['name']; ?>">
+                                                        <?php if ($key['type'] == "bundle") { ?>
+                                                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                                                <p class="small mb-0"><span class="fw-bold"><?= count($key['products']); ?> item</span> dengan harga</p>
+                                                                <span class="fw-bold text-warning fs-5">Rp <?php echo number_format($key["price"], 0, ',', '.'); ?></span>
+                                                            </div>
+                                                        <?php } ?>
+
+
                                                         <img title="<?php echo $key["name"] ?>"
                                                             src="<?php echo $imgonmobile ?><?php echo base_url() ?>timthumb?h=300&src=<?php echo base_url() ?>public/image/promo/<?php echo $key["img"] ?>"
                                                             class="img-fluid w-100"
                                                             alt="<?php echo $key["name"] ?>"
                                                             style="height: 150px; object-fit: contain; width: 100%;">
-                                                    </a>
 
-                                                    <div class="mt-2 flex-grow-1">
-                                                        <?php $str = str_split($key["description"], 100); ?>
-                                                        <p class="text-secondary small mb-2"><?php echo count($str) > 1 ? $str[0] . "..." : $str[0] ?></p>
-                                                    </div>
+                                                        <div class="mt-2 flex-grow-1">
+                                                            <?php $str = str_split($key["description"], 100); ?>
+                                                            <p class="text-secondary small mb-2"><?php echo count($str) > 1 ? $str[0] . "..." : $str[0] ?></p>
+                                                        </div>
 
-                                                    <a href="<?php echo base_url() ?>promo/<?php echo $key["url"] ?>" class="text-warning fw-semibold text-decoration-none small click-pilih-promo-see mt-2" data-google-tag="See - <?php echo $key['name']; ?>">
-                                                        Lihat Selengkapnya <i class="bi bi-arrow-right"></i>
                                                     </a>
                                                 </div>
                                             </div>
