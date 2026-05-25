@@ -97,7 +97,7 @@
 
                                                         <img title="<?php echo $key["name"] ?>"
                                                             src="<?php echo $imgonmobile ?><?php echo base_url() ?>timthumb?h=300&src=<?php echo base_url() ?>public/image/promo/<?php echo $key["img"] ?>"
-                                                            class="img-fluid w-100"
+                                                            class="img-fluid w-100 mt-2"
                                                             alt="<?php echo $key["name"] ?>"
                                                             style="height: 150px; object-fit: contain; width: 100%;">
 
