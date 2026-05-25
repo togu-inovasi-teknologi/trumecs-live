@@ -106,7 +106,7 @@
                                                             <p class="text-secondary small mb-2"><?php echo count($str) > 1 ? $str[0] . "..." : $str[0] ?></p>
                                                         </div>
                                                         <div class="mt-2 flex-grow-1">
-                                                            <p class="text-secondary small mb-2"><?php echo count($str) > 1 ? $str[0] . "..." : $str[0] ?></p>
+                                                            <p class="text-warning small mb-2">Lihat Selengkapnya</p>
                                                         </div>
 
                                                     </a>
