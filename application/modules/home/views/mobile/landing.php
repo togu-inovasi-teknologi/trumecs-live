@@ -1,5 +1,5 @@
 <section style="background-color: #f8f9fa; height:450px;" class="mb-2">
-    <div class="container" style="background-color: #f8f9fa; height:450px;">
+    <div class="container px-0" style="background-color: #f8f9fa; height:450px;">
         <div id="carouselExample" class="carousel slide h-100" data-bs-ride="carousel">
             <div class="carousel-inner h-100">
                 <div class="carousel-item active h-100">
@@ -33,7 +33,7 @@
                 <?php foreach ($chunk as $i) : ?>
                     <div class="col-6">
                         <a href="<?php echo base_url(); ?>category/<?= $i['id'] ?>" class="card h-100 text-decoration-none">
-                            <div class="card-body p-2 d-flex flex-column justify-content-end align-items-center" style="height: 250px; background-image: url(<?php echo base_url() ?>timthumb?h=400&src=<?php echo base_url() ?>/public/upload/categori/<?= $i['img'] ?>); background-size: cover; background-position: center;">
+                            <div class="card-body p-2 d-flex flex-column justify-content-end align-items-center" style="height: 250px; background-image: url(<?php echo base_url() ?>timthumb?h=400&src=<?php echo base_url() ?>/public/upload/categori/<?= $i['img'] ?>); background-size: cover; background-position: center;position: relative; overflow: hidden;">
                                 <div class="overlay-categori"></div>
                                 <p class="fw-bold fs-6 mb-0 text-center text-white" style="z-index: 2;"><?= $i['name'] ?></p>
                             </div>
@@ -475,9 +475,10 @@
 <style>
     .overlay-categori {
         height: 250px;
-        width: 175px;
+        width: 250px;
         background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(255, 255, 255, 0.13) 45%);
         position: absolute;
+        overflow: hidden;
         top: 0;
         left: 0;
         z-index: 1;
