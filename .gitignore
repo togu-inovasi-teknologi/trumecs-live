@@ -83,6 +83,8 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /public/tmp/*
 !/public/tmp/.gitkeep
 
+/public/upload/categori/*
+
 /application/config/google.php
 /application/config/database.php
 /application/config/config.php
