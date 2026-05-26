@@ -60,17 +60,17 @@
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <a href="https://www.trumecs.com" target="_blank" class="click-banner-grease-wrnl-mobile" data-google-tag="Mobile - Banner Grease WR NL">
-                                <img src="/public/banner/promo-home/banner-promo-grease-wrnl.png" alt="Promo harga murah untuk Grease Pertamina WR NL" class="img-fluid w-100">
+                                <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/banner-promo-grease-wrnl.png" alt="Promo harga murah untuk Grease Pertamina WR NL" class="img-fluid w-100">
                             </a>
                         </div>
                         <div class="carousel-item">
                             <a href="<?php echo base_url(); ?>product/1872/Masri-Rg-460" target="_blank" class="click-banner-masri-mobile" data-google-tag="Mobile - Banner Masri RG 46">
-                                <img src="/public/banner/promo-home/banner-promo-masri.png" alt="Promo harga murah untuk Pertamina MASRI RG 460" class="img-fluid w-100">
+                                <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/banner-promo-masri.png" alt="Promo harga murah untuk Pertamina MASRI RG 460" class="img-fluid w-100">
                             </a>
                         </div>
                         <div class="carousel-item">
                             <a href="https://wa.me/6285176912338?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan Scrap alat berat, Saya mempunyai alat berat untuk di scrap, apa yang harus saya lakukan untuk menscrap alat berat saya?") ?>" target="_blank" class="click-wa-scrap-ab-sub-mobile" data-google-tag="Mobile - Banner Sub Scrap Alat Berat Bekas">
-                                <img src="/public/banner/promo-home/banner-scrap-sub.png" alt="Scrap alat berat di trumecs.com" class="img-fluid w-100">
+                                <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/banner-scrap-sub.png" alt="Scrap alat berat di trumecs.com" class="img-fluid w-100">
                             </a>
                         </div>
                     </div>
