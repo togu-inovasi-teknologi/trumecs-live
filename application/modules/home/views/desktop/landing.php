@@ -5,10 +5,17 @@
             <div id="carouselExample" class="carousel slide px-0" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="<?php echo base_url() ?>timthumb?h=600&src=<?php base_url(); ?>/public/banner/home-mobile/6.png" class="d-block w-100" alt="banner trumecs.com">
+                        <a href="<?php echo base_url(); ?>promo" target="_blank" class="click-banner-utama-ab-bekas" data-google-tag="Banner Alat Berat Bekas">
+                            <img src="<?php echo base_url() ?>timthumb?h=600&src=<?php echo base_url(); ?>/public/banner/home-mobile/6.png" class="d-block w-100" alt="banner trumecs.com">
+                        </a>
                     </div>
                     <div class="carousel-item">
-                        <img src="<?php echo base_url() ?>timthumb?h=800&src=<?php base_url(); ?>/public/banner/home-mobile/7.png" class="d-block w-100" alt="banner langkah">
+                        <img src="<?php echo base_url() ?>timthumb?h=800&src=<?php echo base_url(); ?>/public/banner/home-mobile/7.png" class="d-block w-100" alt="banner langkah">
+                    </div>
+                    <div class="carousel-item">
+                        <a href="https://wa.me/6285176912338?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan Scrap alat berat, Saya mempunyai alat berat untuk di scrap, apa yang harus saya lakukan untuk menscrap alat berat saya?") ?>" target="_blank" class="click-wa-scrap-ab" data-google-tag="Banner Scrap Alat Berat Bekas">
+                            <img src="<?php echo base_url() ?>timthumb?h=600&src=<?php echo base_url(); ?>/public/banner/promo-home/banner-scrap-utama.png" class="d-block w-100" alt="banner trumecs.com">
+                        </a>
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -49,19 +56,29 @@
         <div class="container d-flex flex-column gap-3 px-0">
             <p class="text-center my-3 fw-bold fs-3">Promo Trumecs</p>
             <div class="row">
-                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                <div id="carousel-banner-2" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <a href="https://www.trumecs.com" target="_blank" alt="link trumecs">
-                                <img src="/public/banner/category/banner-Unit.png" alt="Banner nataru" class="img-fluid w-100">
+                            <a href="https://www.trumecs.com" target="_blank" class="click-banner-grease-wrnl" data-google-tag="Banner Grease WR NL">
+                                <img src="/public/banner/promo-home/banner-promo-grease-wrnl.png" alt="Promo harga murah untuk Grease Pertamina WR NL" class="img-fluid w-100">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="<?php echo base_url(); ?>product/1872/Masri-Rg-460" target="_blank" class="click-banner-masri" data-google-tag="Banner Masri RG 46">
+                                <img src="/public/banner/promo-home/banner-promo-masri.png" alt="Promo harga murah untuk Pertamina MASRI RG 460" class="img-fluid w-100">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="https://wa.me/6285176912338?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan Scrap alat berat, Saya mempunyai alat berat untuk di scrap, apa yang harus saya lakukan untuk menscrap alat berat saya?") ?>" target="_blank" class="click-wa-scrap-ab-sub" data-google-tag="Banner Sub Scrap Alat Berat Bekas">
+                                <img src="/public/banner/promo-home/banner-scrap-sub.png" alt="Scrap alat berat di trumecs.com" class="img-fluid w-100">
                             </a>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel-banner-2" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#carousel-banner-2" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
