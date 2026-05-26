@@ -64,7 +64,7 @@
                             </a>
                         </div>
                         <div class="carousel-item">
-                            <a href="<?php echo base_url(); ?>product/1872/Masri-Rg-460" target="_blank" class="click-banner-masri" data-google-tag="Banner Masri RG 46">
+                            <a href="<?php echo base_url(); ?>product/1872/Masri-Rg-460" target="_blank" class="click-banner-masri-rg-460" data-google-tag="Banner Masri RG 46">
                                 <img src="<?php echo base_url() ?>timthumb?h=400&src=<?php base_url(); ?>/public/banner/promo-home/banner-promo-masri.png" alt="Promo harga murah untuk Pertamina MASRI RG 460" class="img-fluid w-100">
                             </a>
                         </div>
