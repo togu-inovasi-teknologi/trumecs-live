@@ -145,7 +145,7 @@ class Syncdatabasetrumecs
                     $database->trumecs_email ?? 'No Email',
                     $database->whatsapp ?? 'Unknown',
                     $database->point ?? 0,
-                    $database->created_at ?? date('Y-m-d H:i:s'),
+                    date('Y-m-d H:i:s', $database->created_at) ?? date('Y-m-d H:i:s'),
                     $database->updated_at ?? date('Y-m-d H:i:s'),
                 ];
             }
@@ -218,7 +218,7 @@ class Syncdatabasetrumecs
                         'trumecs_email' => $row[7] ?? 'No Email',
                         'whatsapp' => $row[8] ?? 'Unknown',
                         'point' => intval($row[9] ?? 0),
-                        'created_at' => intval($row[10] ?? 0),
+                        'created_at' => intval(strtotime($row[10]) ?? null),
                         'updated_at' => $updatedAt
                     ];
                 }
