@@ -59,17 +59,17 @@
                 <div id="carousel-banner-2" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <a href="<?php echo base_url(); ?>product/1770/Turalik-52" target="_blank" class="click-banner-turalik-52" data-google-tag="Banner Promo Turalik 52">
+                            <a href="<?php echo base_url(); ?>product/1770/Turalik-52" target="_blank" class="click-banner-turalik-52" data-google-tag="Banner Promo Turalik 52" style="height: 376px;">
                                 <img src="<?php echo base_url() ?>timthumb?h=400&src=<?php base_url(); ?>/public/banner/promo-home/turalik-52.png" alt="Promo harga murah untuk Pertamina Turalik 52" class="img-fluid w-100">
                             </a>
                         </div>
                         <div class="carousel-item">
-                            <a href="<?php echo base_url(); ?>product/2009/Meditran-Sx-Plus-15w-40-Ci4" target="_blank" class="click-banner-meditran-sx-plus" data-google-tag="Banner Promo Meditran SX Plus">
+                            <a href="<?php echo base_url(); ?>product/2009/Meditran-Sx-Plus-15w-40-Ci4" target="_blank" class="click-banner-meditran-sx-plus" data-google-tag="Banner Promo Meditran SX Plus" style="height: 376px;">
                                 <img src="<?php echo base_url() ?>timthumb?h=400&src=<?php base_url(); ?>/public/banner/promo-home/meditran-sx-plus.png" alt="Promo harga murah untuk Pertamina SX Plus 15w 40 CI4" class="img-fluid w-100">
                             </a>
                         </div>
                         <div class="carousel-item">
-                            <a href="https://wa.me/6285176912338?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan Scrap alat berat, Saya mempunyai alat berat untuk di scrap, apa yang harus saya lakukan untuk menscrap alat berat saya?") ?>" target="_blank" class="click-wa-scrap-ab-sub" data-google-tag="Banner Sub Scrap Alat Berat Bekas">
+                            <a href="https://wa.me/6285176912338?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan Scrap alat berat, Saya mempunyai alat berat untuk di scrap, apa yang harus saya lakukan untuk menscrap alat berat saya?") ?>" target="_blank" class="click-wa-scrap-ab-sub" data-google-tag="Banner Sub Scrap Alat Berat Bekas" style="height: 376px;">
                                 <img src="<?php echo base_url() ?>timthumb?h=400&src=<?php base_url(); ?>/public/banner/promo-home/banner-scrap-sub.png" alt="Scrap alat berat di trumecs.com" class="img-fluid w-100">
                             </a>
                         </div>
