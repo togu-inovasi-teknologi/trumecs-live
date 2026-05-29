@@ -88,7 +88,7 @@ class Backendproduct extends MX_Controller
     public function syncProductFromSheetToDB()
     {
 
-        $result = $this->spreadsheetapi->syncProductsFromSheetToDB('Product-list');
+        $result = $this->spreadsheetapi->syncProductsFromSheetToDB('Product-list-localhost');
 
         if ($result['success']) {
             $this->session->set_flashdata(

@@ -84,11 +84,9 @@ class Syncdatabasetrumecs
         try {
             $range = $sheet . '!' . $range;
 
-            // Handle single value or array
             if (!is_array($value)) {
                 $values = [[$value]];
             } else {
-                // Ensure it's 2D array
                 $values = is_array($value[0]) ? $value : [$value];
             }
 
