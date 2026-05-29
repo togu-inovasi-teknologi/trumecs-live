@@ -146,7 +146,6 @@ class Syncdatabasetrumecs
                     $database->whatsapp ?? 'Unknown',
                     $database->point ?? 0,
                     date('Y-m-d H:i:s', $database->created_at) ?? date('Y-m-d H:i:s'),
-                    $database->updated_at ?? date('Y-m-d H:i:s'),
                 ];
             }
 
