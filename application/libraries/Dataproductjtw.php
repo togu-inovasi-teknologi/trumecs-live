@@ -68,7 +68,7 @@ class Dataproductjtw
     {
         try {
             // Ambil semua data dari row 2 sampai kolom K
-            $range = $sheet . '!A2:K';
+            $range = $sheet . '!A2:L';
             $response = $this->service->spreadsheets_values->get($this->spreadsheetId, $range);
             $values = $response->getValues();
 
@@ -144,6 +144,7 @@ class Dataproductjtw
                 'Unit',
                 'Description',
                 'Price',
+                'Price Promo',
                 'Status',
                 'Store ID',
                 'Updated At'
@@ -162,13 +163,14 @@ class Dataproductjtw
                     $product->unit ?? 'pcs',
                     $product->description ?? 'No Description',
                     $product->price ?? 0,
+                    $product->price_promo ?? 0,
                     $product->status ?? 'Unknown',
                     $product->store_id ?? 0,
                     $product->updated_at ?? date('Y-m-d H:i:s')
                 ];
             }
 
-            $range = $sheet . '!A1:K';
+            $range = $sheet . '!A1:L';
             $body = new ValueRange([
                 'values' => $data
             ]);
@@ -202,7 +204,7 @@ class Dataproductjtw
     {
         date_default_timezone_set('Asia/Jakarta');
         try {
-            $range = $sheet . '!A2:K';
+            $range = $sheet . '!A2:L';
             $response = $this->service->spreadsheets_values->get(
                 $this->spreadsheetId,
                 $range
@@ -220,8 +222,8 @@ class Dataproductjtw
 
             $products = [];
             foreach ($values as $row) {
-                if (count($row) >= 11 && !empty($row[0])) {
-                    $updatedAt = $row[10] ?? date('Y-m-d H:i:s');
+                if (count($row) >= 12 && !empty($row[0])) {
+                    $updatedAt = $row[11] ?? date('Y-m-d H:i:s');
                     if (is_string($updatedAt) && !strtotime($updatedAt)) {
                         $updatedAt = date('Y-m-d H:i:s');
                     }
@@ -235,8 +237,9 @@ class Dataproductjtw
                         'unit' => $row[5] ?? 'pcs',
                         'description' => $row[6] ?? 'No Description',
                         'price' => $row[7] ?? 0,
-                        'status' => $row[8] ?? 'Unknown',
-                        'store_id' => intval($row[9] ?? 0),
+                        'price_promo' => $row[8] ?? 0,
+                        'status' => $row[9] ?? 'Unknown',
+                        'store_id' => intval($row[10] ?? 0),
                         'updated_at' => $updatedAt
                     ];
                 }
@@ -317,6 +320,7 @@ class Dataproductjtw
                             'unit' => $sheetProduct['unit'],
                             'description' => $sheetProduct['description'],
                             'price' => $sheetProduct['price'],
+                            'price_promo' => $sheetProduct['price_promo'],
                             'status' => $sheetProduct['status'],
                             'store_id' => $sheetProduct['store_id'],
                             'updated_at' => $sheetProduct['updated_at']
@@ -338,6 +342,7 @@ class Dataproductjtw
                         'unit' => $sheetProduct['unit'],
                         'description' => $sheetProduct['description'],
                         'price' => $sheetProduct['price'],
+                        'price_promo' => $sheetProduct['price_promo'],
                         'status' => $sheetProduct['status'],
                         'store_id' => $sheetProduct['store_id'],
                         'created_at' => $sheetProduct['updated_at'],
