@@ -200,8 +200,7 @@ class Spreadsheetapi
     public function getAllProductsFromSheet($sheet)
     {
         try {
-            $range = $sheet . '!A2:K'; // Mulai dari row 2 untuk menghindari header
-
+            $range = $sheet . '!A2:K';
             $response = $this->service->spreadsheets_values->get(
                 $this->spreadsheetId,
                 $range
@@ -219,9 +218,7 @@ class Spreadsheetapi
 
             $products = [];
             foreach ($values as $row) {
-                // Pastikan row memiliki minimal data yang diperlukan
-                if (count($row) >= 11 && !empty($row[0])) { // Skip row dengan ID kosong
-                    // Format updated_at ke timestamp yang konsisten
+                if (count($row) >= 11 && !empty($row[0])) {
                     $updatedAt = $row[10] ?? date('Y-m-d H:i:s');
                     if (is_string($updatedAt) && !strtotime($updatedAt)) {
                         $updatedAt = date('Y-m-d H:i:s');
@@ -260,7 +257,6 @@ class Spreadsheetapi
     public function syncProductsFromSheetToDB($sheet)
     {
         try {
-            // 1. Ambil data dari Google Sheet
             $sheetData = $this->getAllProductsFromSheet($sheet);
 
             if (!$sheetData['success']) {
@@ -269,7 +265,6 @@ class Spreadsheetapi
 
             $sheetProducts = $sheetData['products'];
 
-            // 2. Ambil semua data dari database
             $ci = &get_instance();
             $ci->load->database();
             $dbProducts = $ci->db->get('product')->result_array();
@@ -297,24 +292,20 @@ class Spreadsheetapi
                 'total_db_before' => count($dbProducts)
             ];
 
-            // 3. PROCESS UPDATE & CREATE
             foreach ($sheetProducts as $sheetProduct) {
                 $productId = $sheetProduct['id'];
 
-                // Skip jika ID = 0 atau kosong (baris baru tanpa ID)
                 if (empty($productId) || $productId == 0) {
                     $stats['skipped']++;
                     continue;
                 }
 
                 if (isset($dbProductsMap[$productId])) {
-                    // UPDATE: Cek jika updated_at di sheet lebih baru
                     $dbProduct = $dbProductsMap[$productId];
                     $sheetUpdated = strtotime($sheetProduct['updated_at']);
                     $dbUpdated = strtotime($dbProduct['updated_at']);
 
                     if ($sheetUpdated > $dbUpdated) {
-                        // Update database dengan data dari sheet
                         $ci->db->where('id', $productId);
                         $ci->db->update('product', [
                             'tittle' => $sheetProduct['tittle'],
@@ -336,9 +327,8 @@ class Spreadsheetapi
                         $stats['skipped']++;
                     }
                 } else {
-                    // CREATE: Product ada di sheet tapi tidak ada di database
                     $ci->db->insert('product', [
-                        'id' => $productId, // Insert dengan ID dari sheet
+                        'id' => $productId,
                         'tittle' => $sheetProduct['tittle'],
                         'partnumber' => $sheetProduct['partnumber'],
                         'sku_number' => $sheetProduct['sku_number'],

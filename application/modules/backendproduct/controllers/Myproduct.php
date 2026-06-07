@@ -607,6 +607,26 @@ class Myproduct extends MX_Controller
         redirect(base_url() . 'backendproduct/myproduct/listall');
     }
 
+    public function syncProductJtwFromSheetToDB()
+    {
+
+        $result = $this->dataproductjtw->syncProductsFromSheetToDB('data-product');
+
+        if ($result['success']) {
+            $this->session->set_flashdata(
+                'message',
+                'Berhasil Sinkronisasi dari sheet ke DB '
+            );
+        } else {
+            $this->session->set_flashdata(
+                'message',
+                'Gagal sync: '
+            );
+        }
+
+        redirect(base_url() . 'backendproduct/myproduct/listall');
+    }
+
     public function uploadProductLmpToSheetFromDB()
     {
         $product = $this->etx_product->gettableObjectWhere('product', ['created_by' => 16]);
