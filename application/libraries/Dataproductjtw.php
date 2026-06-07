@@ -133,6 +133,7 @@ class Dataproductjtw
 
     public function uploadAllProductsToSheet($sheet, $products)
     {
+        date_default_timezone_set('Asia/Jakarta');
         try {
             $headers = [
                 'ID',
@@ -199,6 +200,7 @@ class Dataproductjtw
 
     public function getAllProductsFromSheet($sheet)
     {
+        date_default_timezone_set('Asia/Jakarta');
         try {
             $range = $sheet . '!A2:K';
             $response = $this->service->spreadsheets_values->get(
@@ -256,6 +258,7 @@ class Dataproductjtw
 
     public function syncProductsFromSheetToDB($sheet)
     {
+        date_default_timezone_set('Asia/Jakarta');
         try {
             $sheetData = $this->getAllProductsFromSheet($sheet);
 
