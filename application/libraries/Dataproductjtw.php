@@ -163,7 +163,7 @@ class Dataproductjtw
                     $product->price ?? 0,
                     $product->status ?? 'Unknown',
                     $product->store_id ?? 0,
-                    date('Y-m-d H:i:s', $product->updated_at) ?? date('Y-m-d H:i:s')
+                    $product->updated_at ?? date('Y-m-d H:i:s')
                 ];
             }
 
