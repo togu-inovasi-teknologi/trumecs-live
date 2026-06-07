@@ -8,6 +8,7 @@ class Backendproduct extends MX_Controller
         // Call the Model constructor
         parent::__construct();
         $this->securitylog->cekadmin();
+        date_default_timezone_set('Asia/Jakarta');
         $this->load->model("etx_product");
         $this->load->model("backendproduct/grade_model");
         $this->load->model("backendproduct/attribute_model");
@@ -356,6 +357,9 @@ class Backendproduct extends MX_Controller
             'estimated_deliveryindent' => empty($this->input->post('estimated_deliveryindent')) ? "7" : $this->input->post('estimated_deliveryindent'),
             'description' => empty($this->input->post('description')) ? "" : nl2br($this->input->post('description')),
             'area' => empty($this->input->post('area')) ? "0" : $this->input->post('area'),
+            'created_by' => $this->sessionmember["id"],
+            'created_at' => strtotime(date('Y-m-d H:i:s')),
+            'updated_at' => strtotime(date('Y-m-d H:i:s'))
 
         );
         if (!empty($this->input->post('attribute[]')) && !empty($this->input->post('value[]'))) {
@@ -464,7 +468,8 @@ class Backendproduct extends MX_Controller
             'availability_at' => empty($this->input->post('availability_at')) ? "INDONESIA" : $this->input->post('availability_at'),
             'estimated_delivery' => empty($this->input->post('estimated_delivery')) ? "3" : $this->input->post('estimated_delivery'),
             'estimated_deliveryindent' => empty($this->input->post('estimated_deliveryindent')) ? "7" : $this->input->post('estimated_deliveryindent'),
-            'description' => empty($this->input->post('description')) ? "" : nl2br($this->input->post('description'))
+            'description' => empty($this->input->post('description')) ? "" : nl2br($this->input->post('description')),
+            'updated_at' => strtotime(date('Y-m-d H:i:s'))
         );
 
 

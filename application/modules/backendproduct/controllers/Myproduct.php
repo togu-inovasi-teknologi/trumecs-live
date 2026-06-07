@@ -8,6 +8,7 @@ class Myproduct extends MX_Controller
         // Call the Model constructor
         parent::__construct();
         $this->securitylog->cekadmin();
+        date_default_timezone_set('Asia/Jakarta');
         $this->load->model("etx_product");
         $session = $this->session->all_userdata();
         $this->sessionmember = array_key_exists("admin", $session) ? $session["admin"] : array('id' => 0);
@@ -370,7 +371,9 @@ class Myproduct extends MX_Controller
             'estimated_deliveryindent' => empty($this->input->post('estimated_deliveryindent')) ? "7" : $this->input->post('estimated_deliveryindent'),
             'description' => empty($this->input->post('description')) ? "" : nl2br($this->input->post('description')),
             'area' => empty($this->input->post('area')) ? "0" : $this->input->post('area'),
-            'created_by' => $this->sessionmember["id"]
+            'created_by' => $this->sessionmember["id"],
+            'created_at' => strtotime(date('Y-m-d H:i:s')),
+            'updated_at' => strtotime(date('Y-m-d H:i:s'))
         );
         $config['upload_path'] = './public/image/product/';
         $config['allowed_types'] = 'jpeg|jpg|png|JPG|PNG';
@@ -463,7 +466,8 @@ class Myproduct extends MX_Controller
             'availability_at' => empty($this->input->post('availability_at')) ? "INDONESIA" : $this->input->post('availability_at'),
             'estimated_delivery' => empty($this->input->post('estimated_delivery')) ? "3" : $this->input->post('estimated_delivery'),
             'estimated_deliveryindent' => empty($this->input->post('estimated_deliveryindent')) ? "7" : $this->input->post('estimated_deliveryindent'),
-            'description' => empty($this->input->post('description')) ? "" : nl2br($this->input->post('description'))
+            'description' => empty($this->input->post('description')) ? "" : nl2br($this->input->post('description')),
+            'updated_at' => strtotime(date('Y-m-d H:i:s'))
         );
 
         if (empty($_FILES['fileimg']['name'])) {
