@@ -67,7 +67,6 @@ class Dataproductjtw
     public function readAll($sheet)
     {
         try {
-            // Ambil semua data dari row 2 sampai kolom K
             $range = $sheet . '!A2:L';
             $response = $this->service->spreadsheets_values->get($this->spreadsheetId, $range);
             $values = $response->getValues();
@@ -323,7 +322,7 @@ class Dataproductjtw
                             'price_promo' => $sheetProduct['price_promo'],
                             'status' => $sheetProduct['status'],
                             'store_id' => $sheetProduct['store_id'],
-                            'updated_at' => $sheetProduct['updated_at']
+                            'updated_at' => strtotime($sheetProduct['updated_at'])
                         ]);
 
                         if ($ci->db->affected_rows() > 0) {
@@ -345,8 +344,8 @@ class Dataproductjtw
                         'price_promo' => $sheetProduct['price_promo'],
                         'status' => $sheetProduct['status'],
                         'store_id' => $sheetProduct['store_id'],
-                        'created_at' => $sheetProduct['updated_at'],
-                        'updated_at' => $sheetProduct['updated_at']
+                        'created_at' => strtotime($sheetProduct['updated_at']),
+                        'updated_at' => strtotime($sheetProduct['updated_at'])
                     ]);
 
                     if ($ci->db->insert_id()) {
