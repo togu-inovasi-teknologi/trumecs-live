@@ -200,10 +200,10 @@ function namectgr($id)
 				</a>
 			<?php } ?>
 			<?php if ($id_admin == 30) { ?>
-				<a href="<?= base_url() ?>backendproduct/myproduct/uploadProductJtwToSheetFromDB"
+				<!-- <a href="<?= base_url() ?>backendproduct/myproduct/uploadProductJtwToSheetFromDB"
 					class="btn btn-primary">
 					upload data DB
-				</a>
+				</a> -->
 				<a href="<?= base_url() ?>backendproduct/myproduct/syncProductJtwFromSheetToDB"
 					class="btn btn-primary">
 					Sync Data
