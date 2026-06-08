@@ -347,16 +347,8 @@ class Spreadsheetapi
                     }
                 }
             }
-            $dbProductIds = array_keys($dbProductsMap);
-            $productsToDelete = array_diff($dbProductIds, $sheetProductIds);
 
-            if (!empty($productsToDelete)) {
-                $ci->db->where_in('id', $productsToDelete);
-                $ci->db->delete('product');
-                $stats['deleted'] = $ci->db->affected_rows();
-            }
-
-            $stats['total_db_after'] = $stats['total_db_before'] + $stats['created'] - $stats['deleted'];
+            $stats['total_db_after'] = $stats['total_db_before'] + $stats['created'];
 
             return [
                 'success' => true,

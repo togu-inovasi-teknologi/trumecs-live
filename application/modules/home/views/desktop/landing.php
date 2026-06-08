@@ -69,8 +69,11 @@
                             </a>
                         </div>
                         <div class="carousel-item">
-                            <a href="https://wa.me/6285176912338?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan Scrap alat berat, Saya mempunyai alat berat untuk di scrap, apa yang harus saya lakukan untuk menscrap alat berat saya?") ?>" target="_blank" class="click-wa-scrap-ab-sub" data-google-tag="Banner Sub Scrap Alat Berat Bekas">
+                            <a href="https://wa.me/6285176912338?text=<?php echo urlencode("Alat berat tidak produktif? Jangan biarkan menganggur!
+                            Jual scrap alat berat Anda ke Trumecs dan ubah aset lama menjadi nilai nyata.") ?>" target="_blank" class="click-wa-scrap-ab-sub" data-google-tag="Banner Sub Scrap Alat Berat Bekas">
                                 <img src="<?php echo base_url() ?>timthumb?h=400&src=<?php base_url(); ?>/public/banner/promo-home/banner-scrap-sub.png" alt="Scrap alat berat di trumecs.com" class="img-fluid w-100" style="height: 376px;">
+                                <button class="btn btnnew btn-banner-main">Hubungi Kami</button>
+                                </img>
                             </a>
                         </div>
                     </div>
