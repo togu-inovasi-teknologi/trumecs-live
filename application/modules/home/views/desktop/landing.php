@@ -13,9 +13,10 @@
                         <img src="<?php echo base_url() ?>timthumb?h=800&src=<?php echo base_url(); ?>/public/banner/home-mobile/7.png" class="d-block w-100" alt="banner langkah">
                     </div>
                     <div class="carousel-item">
-                        <a href="https://wa.me/6285176912338?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan Scrap alat berat, Saya mempunyai alat berat untuk di scrap, apa yang harus saya lakukan untuk menscrap alat berat saya?") ?>" target="_blank" class="click-wa-scrap-ab" data-google-tag="Banner Scrap Alat Berat Bekas">
-                            <img src="<?php echo base_url() ?>timthumb?h=600&src=<?php echo base_url(); ?>/public/banner/promo-home/banner-scrap-utama.png" class="d-block w-100" alt="banner trumecs.com">
-                        </a>
+                        <div data-bs-toggle="modal" data-bs-target="#modalWhatsapp" class="click-wa-scrap-ab position-relative" data-google-tag="Banner Scrap Alat Berat Bekas" style="cursor: pointer">
+                            <img src="<?php echo base_url() ?>timthumb?h=800 &src=<?php base_url(); ?>/public/banner/promo-home/banner-scrap-utama.png" alt="Scrap alat berat di trumecs.com" class="img-fluid w-100">
+                            <button class="btn btnnew position-absolute translate-middle" style="right: 27%; bottom:15px;"><i class="bi bi-whatsapp"></i> Hubungi Kami</button>
+                        </div>
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -69,12 +70,10 @@
                             </a>
                         </div>
                         <div class="carousel-item">
-                            <a href="https://wa.me/6285176912338?text=<?php echo urlencode("Alat berat tidak produktif? Jangan biarkan menganggur!
-                            Jual scrap alat berat Anda ke Trumecs dan ubah aset lama menjadi nilai nyata.") ?>" target="_blank" class="click-wa-scrap-ab-sub" data-google-tag="Banner Sub Scrap Alat Berat Bekas">
+                            <div data-bs-toggle="modal" data-bs-target="#modalWhatsapp" class="click-wa-scrap-ab-sub position-relative" data-google-tag="Banner Sub Scrap Alat Berat Bekas" style="cursor: pointer;">
                                 <img src="<?php echo base_url() ?>timthumb?h=400&src=<?php base_url(); ?>/public/banner/promo-home/banner-scrap-sub.png" alt="Scrap alat berat di trumecs.com" class="img-fluid w-100" style="height: 376px;">
-                                <button class="btn btnnew btn-banner-main">Hubungi Kami</button>
-                                </img>
-                            </a>
+                                <button class="btn btnnewgreen position-absolute translate-middle" style="right: 42%; bottom:25%;"><i class="bi bi-whatsapp"></i> Hubungi Kami</button>
+                            </div>
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carousel-banner-2" data-bs-slide="prev">
@@ -87,6 +86,7 @@
                     </button>
                 </div>
             </div>
+
 
             <div class="row mt-4">
                 <div id="carouselPromo" class="carousel slide" data-bs-ride="carousel">
@@ -153,9 +153,60 @@
             </div>
         </div>
     </section>
+
 <?php } ?>
 
+<div class="modal fade" id="modalWhatsapp" tabindex="-1" aria-labelledby="modalWhatsappLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold" id="modalWhatsappLabel">
+                    <i class="bi bi-whatsapp text-success"></i> Form Jual Scrap Alat Berat
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="<?php echo base_url(); ?>home/submit_scrap" id="formScrapWa" method="POST">
+                <div class="modal-body">
+                    <p class="text-center fw-semibold mb-3">Alat berat tidak produktif? Jangan biarkan menganggur!</p>
+                    <p class="text-center text-muted small mb-3">Jual scrap alat berat Anda ke Trumecs dan ubah aset lama menjadi nilai nyata.</p>
 
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Nama Lengkap <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="scrapName" name="name" placeholder="Masukkan nama lengkap Anda" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Nomor WhatsApp / Telepon <span class="text-danger">*</span></label>
+                        <input type="tel" class="form-control" id="scrapPhone" name="phone" placeholder="Contoh: 08123456789" required>
+                        <small class="text-muted">Nomor akan digunakan untuk menghubungi Anda</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Email</label>
+                        <input type="email" class="form-control" id="scrapEmail" name="email" placeholder="contoh@email.com">
+                        <small class="text-muted">Opsional, untuk mengirimkan informasi lebih lanjut</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Type Unit <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="scrapUnitType" name="unit_type" placeholder="Contoh: Excavator PC 200, Bulldozer D85, Dump Truck, dll" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Lokasi Unit <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="scrapLocation" name="location" placeholder="Contoh: Jakarta, Surabaya, Balikpapan, dll" required>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-success" id="submitScrapBtn">
+                        <i class="bi bi-whatsapp"></i> Kirim via WhatsApp
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 <section class="category-pelumas my-3">

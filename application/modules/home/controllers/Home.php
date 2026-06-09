@@ -393,4 +393,49 @@ class Home extends MX_Controller
             $this->load->view('vcard', $data);
         }
     }
+
+    public function submit_scrap()
+    {
+        $this->form_validation->set_rules('name', 'Nama Lengkap', 'required|trim|min_length[3]|max_length[100]');
+        $this->form_validation->set_rules('phone', 'Nomor WhatsApp', 'required|trim|min_length[10]|max_length[15]');
+        $this->form_validation->set_rules('email', 'Email', 'trim|valid_email|max_length[100]');
+        $this->form_validation->set_rules('unit_type', 'Type Unit', 'required|trim|max_length[100]');
+        $this->form_validation->set_rules('location', 'Lokasi Unit', 'required|trim|max_length[100]');
+        $name = $this->input->post('name', TRUE);
+        $phone = $this->input->post('phone', TRUE);
+        $email = $this->input->post('email', TRUE);
+        $unit_type = $this->input->post('unit_type', TRUE);
+        $location = $this->input->post('location', TRUE);
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->session->set_flashdata('error', validation_errors());
+            redirect($this->input->server('HTTP_REFERER'));
+            return;
+        }
+
+        $data = array(
+            'name' => $name,
+            'phone' => $phone,
+            'email' => $email,
+            'unit_type' => $unit_type,
+            'location' => $location,
+            'created_at' => date('Y-m-d H:i:s'),
+            'status' => 'pending'
+        );
+        $wa_message = "*FORM JUAL SCRAP ALAT BERAT - TRUMECS*\n\n";
+        $wa_message .= "*Nama:* " . $name . "\n";
+        $wa_message .= "*No. WhatsApp:* " . $phone . "\n";
+        $wa_message .= "*Email:* " . ($email ? $email : "-") . "\n";
+        $wa_message .= "*Type Unit:* " . $unit_type . "\n";
+        $wa_message .= "*Lokasi:* " . $location . "\n\n";
+        $wa_message .= "Alat berat tidak produktif? Jangan biarkan menganggur! Jual scrap alat berat Anda ke Trumecs dan ubah aset lama menjadi nilai nyata.";
+        $wa_number = "6285176912338";
+
+        $wa_url = "https://wa.me/" . $wa_number . "?text=" . urlencode($wa_message);
+
+        $this->session->set_flashdata('success', 'Terima kasih! Anda akan diarahkan ke WhatsApp.');
+
+        $this->session->set_userdata('last_scrap_submit', $data);
+        redirect($wa_url);
+    }
 }
