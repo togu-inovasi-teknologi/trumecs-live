@@ -80,13 +80,6 @@ $productimgonmobile = base_url() . 'timthumb?h=200&src='
                 </div>
             </div>
         <?php endforeach ?>
-    <?php } else { ?>
-        <div class="col-12">
-            <div class="alert alert-warning text-center border-0 rounded-4 py-4">
-                <i class="bi bi-search fs-1 d-block mb-2"></i>
-                <h5 class="mb-0">Pencarian tidak ditemukan</h5>
-            </div>
-        </div>
     <?php } ?>
 </div>
 

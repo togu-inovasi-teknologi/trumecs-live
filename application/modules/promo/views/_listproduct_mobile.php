@@ -71,12 +71,5 @@ $productimgonmobile = base_url() . 'timthumb?h=160&src='
                 </div>
             </div>
         <?php endforeach ?>
-    <?php } else { ?>
-        <div class="col-12">
-            <div class="alert alert-warning text-center border-0 rounded-3 py-3">
-                <i class="bi bi-exclamation-triangle-fill fs-3 d-block mb-1"></i>
-                <p class="mb-0 small">Tidak ada produk dalam promo ini</p>
-            </div>
-        </div>
     <?php } ?>
 </div>
