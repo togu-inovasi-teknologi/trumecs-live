@@ -40,7 +40,9 @@
                     </span>
                 </a>
 
-                <?php if ($sessionmember["id"] != null) : ?>
+                <?php $session = $this->session->all_userdata();
+                $sessionmember = isset($session["member"]) ? $session["member"] : array('id' => null);
+                if ($sessionmember["id"] != null) : ?>
                     <a href="<?php echo base_url() ?>chat" class="text-white"><i class="bi bi-chat-dots fs-5"></i></a>
                     <a href="<?php echo base_url() ?>notification" class="text-white"><i class="bi bi-bell fs-5"></i></a>
                     <a href="<?php echo base_url() ?>member" class="text-white"><i class="bi bi-person fs-5"></i></a>
