@@ -1,11 +1,11 @@
 <!-- Banner Section Mobile -->
-<section class="banner" id="banner" style="background: #1a1a2e; padding: 20px 15px;">
+<section class="banner" id="banner" padding: 20px 15px;">
     <div class="container-fluid px-0">
         <div class="row g-0">
             <div class="col-12">
                 <p class="fw-bold text-warning mb-1" style="font-size: 12px;"><?= $this->lang->line('trumecs_is', FALSE) ?></p>
-                <h5 class="fw-bold text-white mb-2" style="font-size: 18px;"><?= $this->lang->line('trumecs_tagline', FALSE) ?></h5>
-                <p class="text-white mb-0" style="font-size: 11px;"><?= $this->lang->line('trumecs_description', FALSE) ?></p>
+                <h5 class="fw-bold mb-2" style="font-size: 18px;"><?= $this->lang->line('trumecs_tagline', FALSE) ?></h5>
+                <p class="mb-0" style="font-size: 11px;"><?= $this->lang->line('trumecs_description', FALSE) ?></p>
             </div>
         </div>
     </div>
