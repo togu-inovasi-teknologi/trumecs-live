@@ -4,8 +4,8 @@
         <div class="row">
             <div class="col-lg-6">
                 <p class="fw-bold text-warning mb-2"><?= $this->lang->line('trumecs_is', FALSE) ?></p>
-                <h1 class="fw-bold text-white display-4"><?= $this->lang->line('trumecs_tagline', FALSE) ?></h1>
-                <p class="text-white lead"><?= $this->lang->line('trumecs_description', FALSE) ?></p>
+                <h1 class="fw-bold  display-4"><?= $this->lang->line('trumecs_tagline', FALSE) ?></h1>
+                <p class=" lead"><?= $this->lang->line('trumecs_description', FALSE) ?></p>
             </div>
         </div>
     </div>
