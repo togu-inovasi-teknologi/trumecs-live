@@ -259,6 +259,7 @@ class Dataproductlmp
 
     public function syncProductsFromSheetToDB($sheet)
     {
+        date_default_timezone_set('Asia/Jakarta');
         try {
             $sheetData = $this->getAllProductsFromSheet($sheet);
 
@@ -272,43 +273,65 @@ class Dataproductlmp
             $ci->load->database();
             $dbProducts = $ci->db->get('product')->result_array();
 
-            // Convert ke map berdasarkan ID
             $dbProductsMap = [];
             foreach ($dbProducts as $product) {
                 $dbProductsMap[$product['id']] = $product;
             }
 
             $sheetProductsMap = [];
+            $sheetProductIds = [];
+
             foreach ($sheetProducts as $product) {
                 $sheetProductsMap[$product['id']] = $product;
+                $sheetProductIds[] = $product['id'];
             }
 
-            $sheetProductIds = array_keys($sheetProductsMap);
-            $dbProductIds = array_keys($dbProductsMap);
-
             $stats = [
-                'updated_db_from_sheet' => 0,
-                'updated_sheet_from_db' => 0,
-                'created_in_sheet' => 0,
-                'deleted_from_sheet' => 0,
+                'created' => 0,
+                'updated' => 0,
+                'deleted' => 0,
                 'skipped' => 0,
                 'total_sheet' => count($sheetProducts),
                 'total_db_before' => count($dbProducts)
             ];
 
-            $commonIds = array_intersect($sheetProductIds, $dbProductIds);
+            foreach ($sheetProducts as $sheetProduct) {
+                $productId = $sheetProduct['id'];
 
-            foreach ($commonIds as $id) {
-                $sheetProduct = $sheetProductsMap[$id];
-                $dbProduct = $dbProductsMap[$id];
+                if (empty($productId) || $productId == 0) {
+                    $stats['skipped']++;
+                    continue;
+                }
 
-                $sheetUpdated = strtotime($sheetProduct['updated_at']);
-                $dbUpdated = strtotime($dbProduct['updated_at']);
+                if (isset($dbProductsMap[$productId])) {
+                    $dbProduct = $dbProductsMap[$productId];
+                    $sheetUpdated = strtotime($sheetProduct['updated_at']);
+                    $dbUpdated = strtotime($dbProduct['updated_at']);
 
-                if ($sheetUpdated > $dbUpdated) {
-                    // Sheet lebih baru -> UPDATE DATABASE
-                    $ci->db->where('id', $id);
-                    $ci->db->update('product', [
+                    if ($sheetUpdated > $dbUpdated) {
+                        $ci->db->where('id', $productId);
+                        $ci->db->update('product', [
+                            'tittle' => $sheetProduct['tittle'],
+                            'partnumber' => $sheetProduct['partnumber'],
+                            'sku_number' => $sheetProduct['sku_number'],
+                            'stock' => $sheetProduct['stock'],
+                            'unit' => $sheetProduct['unit'],
+                            'description' => $sheetProduct['description'],
+                            'price' => $sheetProduct['price'],
+                            'status' => $sheetProduct['status'],
+                            'store_id' => $sheetProduct['store_id'],
+                            'updated_at' => strtotime($sheetProduct['updated_at'])
+                        ]);
+
+                        if ($ci->db->affected_rows() > 0) {
+                            $stats['updated']++;
+                        }
+                    } else {
+                        $stats['skipped']++;
+                    }
+                } else {
+                    $ci->db->insert('product', [
+                        'id' => $productId,
                         'tittle' => $sheetProduct['tittle'],
                         'partnumber' => $sheetProduct['partnumber'],
                         'sku_number' => $sheetProduct['sku_number'],
@@ -318,34 +341,17 @@ class Dataproductlmp
                         'price' => $sheetProduct['price'],
                         'status' => $sheetProduct['status'],
                         'store_id' => $sheetProduct['store_id'],
-                        'updated_at' => $sheetProduct['updated_at']
+                        'created_at' => strtotime($sheetProduct['updated_at']),
+                        'updated_at' => strtotime($sheetProduct['updated_at'])
                     ]);
-                    $stats['updated_db_from_sheet']++;
-                } elseif ($dbUpdated > $sheetUpdated) {
-                    // Database lebih baru -> UPDATE SHEET
-                    $this->updateProductToSheet($id, $dbProduct);
-                    $stats['updated_sheet_from_db']++;
-                } else {
-                    $stats['skipped']++;
+
+                    if ($ci->db->insert_id()) {
+                        $stats['created']++;
+                    }
                 }
             }
 
-            $onlyInDb = array_diff($dbProductIds, $sheetProductIds);
-
-            foreach ($onlyInDb as $id) {
-                $dbProduct = $dbProductsMap[$id];
-                $this->insertProductToSheet($dbProduct);
-                $stats['created_in_sheet']++;
-            }
-
-            $onlyInSheet = array_diff($sheetProductIds, $dbProductIds);
-
-            foreach ($onlyInSheet as $id) {
-                $this->deleteProductFromSheet($id);
-                $stats['deleted_from_sheet']++;
-            }
-
-            $stats['total_db_after'] = $ci->db->count_all('product');
+            $stats['total_db_after'] = $stats['total_db_before'] + $stats['created'];
 
             return [
                 'success' => true,
@@ -357,168 +363,6 @@ class Dataproductlmp
                 'success' => false,
                 'error' => $e->getMessage()
             ];
-        }
-    }
-
-    // Fungsi untuk insert produk baru ke sheet
-    private function insertProductToSheet($product)
-    {
-        try {
-            $range = 'data-product!A:A';
-            $response = $this->service->spreadsheets_values->get(
-                $this->spreadsheetId,
-                $range
-            );
-
-            $values = $response->getValues();
-            $newRowIndex = count($values) + 1;
-            $insertRange = 'data-product!A' . $newRowIndex . ':K' . $newRowIndex;
-            $body = new ValueRange([
-                'values' => [[
-                    $product['id'],
-                    $product['tittle'],
-                    $product['partnumber'],
-                    $product['sku_number'],
-                    $product['stock'],
-                    $product['unit'],
-                    $product['description'],
-                    $product['price'],
-                    $product['status'],
-                    $product['store_id'],
-                    date('Y-m-d H:i:s') // updated_at sekarang
-                ]]
-            ]);
-
-            $this->service->spreadsheets_values->update(
-                $this->spreadsheetId,
-                $insertRange,
-                $body,
-                ['valueInputOption' => 'RAW']
-            );
-
-            return true;
-        } catch (Exception $e) {
-            log_message('error', 'Insert Product To Sheet Error: ' . $e->getMessage());
-            return false;
-        }
-    }
-
-    private function updateProductToSheet($id, $product)
-    {
-        try {
-
-            $range = 'data-product!A:K';
-            $response = $this->service->spreadsheets_values->get(
-                $this->spreadsheetId,
-                $range
-            );
-
-            $values = $response->getValues();
-            $rowIndex = null;
-
-            foreach ($values as $index => $row) {
-                if (!empty($row) && intval($row[0]) === $id) {
-                    $rowIndex = $index + 1;
-                    break;
-                }
-            }
-
-            if ($rowIndex) {
-                // Update baris yang ada
-                $updateRange = 'data-product!A' . $rowIndex . ':K' . $rowIndex;
-                $body = new ValueRange([
-                    'values' => [[
-                        $product['id'],
-                        $product['tittle'],
-                        $product['partnumber'],
-                        $product['sku_number'],
-                        $product['stock'],
-                        $product['unit'],
-                        $product['description'],
-                        $product['price'],
-                        $product['status'],
-                        $product['store_id'],
-                        date('Y-m-d H:i:s') // updated_at sekarang
-                    ]]
-                ]);
-
-                $this->service->spreadsheets_values->update(
-                    $this->spreadsheetId,
-                    $updateRange,
-                    $body,
-                    ['valueInputOption' => 'RAW']
-                );
-            }
-
-            return true;
-        } catch (Exception $e) {
-            log_message('error', 'Update Product To Sheet Error: ' . $e->getMessage());
-            return false;
-        }
-    }
-
-    private function deleteProductFromSheet($id)
-    {
-        try {
-            $range = 'data-product!A:K';
-            $response = $this->service->spreadsheets_values->get(
-                $this->spreadsheetId,
-                $range
-            );
-
-            $values = $response->getValues();
-            $rowIndex = null;
-
-            foreach ($values as $index => $row) {
-                if (!empty($row) && intval($row[0]) === $id) {
-                    $rowIndex = $index;
-                    break;
-                }
-            }
-
-            if ($rowIndex !== null) {
-                $spreadsheet = $this->service->spreadsheets->get($this->spreadsheetId);
-                $sheetId = null;
-
-                foreach ($spreadsheet->getSheets() as $sheet) {
-                    if ($sheet->getProperties()->getTitle() == 'data-product') {
-                        $sheetId = $sheet->getProperties()->getSheetId();
-                        break;
-                    }
-                }
-
-                if (!$sheetId) {
-                    throw new Exception('Sheet data-product not found');
-                }
-
-                // Hapus baris menggunakan batchUpdate
-                $batchUpdateRequest = new Google_Service_Sheets_BatchUpdateSpreadsheetRequest([
-                    'requests' => [
-                        new Google_Service_Sheets_Request([
-                            'deleteDimension' => new Google_Service_Sheets_DeleteDimensionRequest([
-                                'range' => new Google_Service_Sheets_DimensionRange([
-                                    'sheetId' => $sheetId,
-                                    'dimension' => 'ROWS',
-                                    'startIndex' => $rowIndex,
-                                    'endIndex' => $rowIndex + 1
-                                ])
-                            ])
-                        ])
-                    ]
-                ]);
-
-                $this->service->spreadsheets->batchUpdate(
-                    $this->spreadsheetId,
-                    $batchUpdateRequest
-                );
-
-                return true;
-            }
-
-            return false;
-        } catch (Exception $e) {
-            log_message('error', 'Delete Product From Sheet Error: ' . $e->getMessage());
-            return false;
         }
     }
 }

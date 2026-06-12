@@ -651,4 +651,24 @@ class Myproduct extends MX_Controller
 
         redirect(base_url() . 'backendproduct/myproduct/listall');
     }
+
+    public function syncProductLmpFromSheetToDB()
+    {
+
+        $result = $this->dataproductlmp->syncProductsFromSheetToDB('data-product');
+
+        if ($result['success']) {
+            $this->session->set_flashdata(
+                'message',
+                'Berhasil Sinkronisasi dari sheet ke DB '
+            );
+        } else {
+            $this->session->set_flashdata(
+                'message',
+                'Gagal sync: '
+            );
+        }
+
+        redirect(base_url() . 'backendproduct/myproduct/listall');
+    }
 }
