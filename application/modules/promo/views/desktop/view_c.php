@@ -9,25 +9,22 @@
 				</ol>
 			</nav>
 		</div>
+		<div class="col-lg-12">
+			<div class="mb-4">
+				<?php foreach ($datalist["promo"] as $key) : ?>
+					<h5 class="fw-bold text-dark mb-0">
+						<span class="border-start border-4 border-warning ps-3"><?php echo $key["name"]; ?></span>
+					</h5>
+				<?php endforeach ?>
+			</div>
+		</div>
 
 		<div class="col-lg-4">
 			<div class="position-sticky top-2" style="top: 20px;">
 				<div class="card shadow-sm border-0 overflow-hidden">
-					<div class="mb-4">
-						<?php foreach ($datalist["promo"] as $key) : ?>
-							<h5 class="fw-bold text-dark mb-0">
-								<span class="border-start border-4 border-warning ps-3"><?php echo $key["name"]; ?></span>
-							</h5>
-						<?php endforeach ?>
-					</div>
+
 
 					<?php foreach ($datalist["promo"] as $key) : ?>
-						<div class="card-body p-0">
-							<img src="<?php echo base_url() ?>timthumb?h=400&src=<?php echo base_url() ?>public/image/promo/<?php echo $key["img"] ?>"
-								class="img-fluid w-100"
-								alt="<?php echo $key["name"]; ?>"
-								style="height: 200px; object-fit: contain;">
-						</div>
 
 						<div class="p-3 border-top">
 							<div class="mb-3">
@@ -62,12 +59,16 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="col-lg-8">
+			<?php foreach ($datalist["promo"] as $key) : ?>
+				<img src="<?php echo base_url() ?>timthumb?h=400&src=<?php echo base_url() ?>public/image/promo/<?php echo $key["img"] ?>"
+					class="img-fluid w-100"
+					alt="<?php echo $key["name"]; ?>"
+					style="height: 400px; object-fit: contain;">
+			<?php endforeach ?>
 			<div class="card border-0 bg-transparent">
 				<div class="card-body p-0">
 					<div class="mb-4">
-
 						<h5 class="fw-bold text-dark mb-0">
 							<span class="border-start border-4 border-warning ps-3">List Produk</span>
 						</h5>
