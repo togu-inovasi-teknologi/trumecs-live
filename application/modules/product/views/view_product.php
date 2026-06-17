@@ -359,7 +359,7 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                                 <td><a itemprop="url"
                                                         href="<?php echo base_url() ?>product/<?php echo $same["id"] ?>/<?php echo preg_replace("/[^a-zA-Z0-9]/", "-", ucwords(strtolower($same["tittle"]))) ?>"
                                                         style=" text-decoration:none;"><?php echo $same["tittle"] ?></a></td>
-                                                <td style="text-align:center"><?php echo $same["name"] ?></td>
+                                                <td style="text-align:center"><?php echo $same["brand_name"] ?></td>
                                                 <td style="text-align:center"><?php echo ($same["quality"] == 1 ? "Asli" : ($same["quality"] == 3 ? "Bekas" : ($same["quality"] == 3 ? "Tiruan" : ""))); ?></td>
                                                 <td style="text-align:right">Rp <?php echo number_format($same["price"], 0, ',', '.') ?></td>
                                             </tr>

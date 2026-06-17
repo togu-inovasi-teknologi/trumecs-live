@@ -97,10 +97,9 @@ class Product_model extends CI_Model
 
 
 
-    public function getsameproduct($value, $id,  $limit = 10, $brand_id = null)
+    public function getsameproduct($value, $id, $brand_id = null)
     {
-        $this->db->limit($limit)
-            ->from("product");
+        $this->db->from("product");
 
         if (!is_array($value) || empty($value)) {
             $value = []; // Set default sebagai array kosong
@@ -136,7 +135,7 @@ class Product_model extends CI_Model
                 // Jika $value kosong, tampilkan produk random
                 $this->db->select("product.*, categori.name AS brand_name, grade.grade AS grade_name");
                 $this->db->where("status", "show");
-                $this->db->order_by("product.id", "RAND");
+                $this->db->order_by("product.id", RAND());
             }
         else:
             $this->db->select("product.*, categori.name AS brand_name, grade.grade AS grade_name");
@@ -150,6 +149,8 @@ class Product_model extends CI_Model
         $this->db->join('categori', 'categori.id = product.brand', 'left');
         $this->db->group_by('product.id');
         $this->db->where_not_in("product.id", $id);
+
+        $this->db->limit(10);
 
         $query = $this->db->get();
         return $query->result_array();
