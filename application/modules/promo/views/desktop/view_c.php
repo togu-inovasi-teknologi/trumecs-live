@@ -12,9 +12,9 @@
 		<div class="col-lg-12">
 			<div class="mb-4">
 				<?php foreach ($datalist["promo"] as $key) : ?>
-					<h5 class="fw-bold text-dark mb-0">
+					<h3 class="fw-bold text-dark mb-0">
 						<span class="border-start border-4 border-warning ps-3"><?php echo $key["name"]; ?></span>
-					</h5>
+					</h3>
 				<?php endforeach ?>
 			</div>
 		</div>
@@ -64,7 +64,7 @@
 				<img src="<?php echo base_url() ?>timthumb?h=400&src=<?php echo base_url() ?>public/image/promo/<?php echo $key["img"] ?>"
 					class="img-fluid w-100"
 					alt="<?php echo $key["name"]; ?>"
-					style="height: 400px; object-fit: contain;">
+					style="height: 300px; object-fit: contain;">
 			<?php endforeach ?>
 			<div class="card border-0 bg-transparent">
 				<div class="card-body p-0">
