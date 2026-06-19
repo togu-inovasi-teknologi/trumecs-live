@@ -29,7 +29,6 @@ class Product extends MX_Controller
     }
     public function index($url)
     {
-
         $data["data_product"] = $this->product_model->getproduct($url);
 
         if (empty($data["data_product"])) {

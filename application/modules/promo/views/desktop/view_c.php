@@ -66,7 +66,7 @@
 					alt="<?php echo $key["name"]; ?>"
 					style="height: 300px; object-fit: contain;">
 			<?php endforeach ?>
-			<div class="card border-0 bg-transparent">
+			<div class="card border-0 bg-transparent mt-5">
 				<div class="card-body p-0">
 					<div class="mb-4">
 						<h5 class="fw-bold text-dark mb-0">
