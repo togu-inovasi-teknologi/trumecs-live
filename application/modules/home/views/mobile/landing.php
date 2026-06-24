@@ -56,7 +56,7 @@
         <div class="container d-flex flex-column gap-3 px-0">
             <p class="text-center my-3 fw-bold fs-3">Promo Trumecs</p>
             <div class="row">
-                <div id="carouselPromo" class="carousel slide" data-bs-ride="carousel">
+                <div id="carouselPromoBanner" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <a href="<?php echo base_url(); ?>product/1770/Turalik-52" target="_blank" class="click-banner-turalik-52-mobile" data-google-tag="Banner Promo Turalik 52">
@@ -75,11 +75,11 @@
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselPromo" data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselPromoBanner" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselPromo" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselPromoBanner" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>

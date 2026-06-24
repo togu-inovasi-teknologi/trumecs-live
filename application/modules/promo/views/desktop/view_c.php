@@ -50,10 +50,13 @@
 									<span class="fw-bold forange"> Rp <?php echo number_format($key["price"], 0, ',', '.'); ?> </span>
 								</p>
 							<?php } ?>
-							<a style="border:1px solid #ccc"
-								href="https://wa.me/<?= (isset($key['admin_phone'])) ? $key['admin_phone'] : '6285176912338' ?>?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["name"] . ". Apakah Promo ini masih berlaku?") ?>"
-								class="btn btn-lg btnnew fw-bold text-center f14 wa-button-promo" data-google-tag="WA Promo - <?= $key['name'] ?>"><i
-									class="fa fa-whatsapp fa-2x f18 me-1"></i><?php echo $this->lang->line('tombol_whatsapp', FALSE); ?></a>
+							<div class="d-flex flex-column gap-0 align-items-start mt-2">
+								<p class="fw-bold">Mau info lanjut Promo ini?</p>
+								<a style="border:1px solid #ccc"
+									href="https://wa.me/<?= (isset($key['admin_phone'])) ? $key['admin_phone'] : '6285176912338' ?>?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["name"] . ". Apakah Promo ini masih berlaku?") ?>"
+									class="btn btn-lg btnnew fw-bold text-center f14 wa-button-promo" data-google-tag="WA Promo - <?= $key['name'] ?>"><i
+										class="fa fa-whatsapp fa-2x f18 me-1"></i> Hubungi Kami</a>
+							</div>
 						</div>
 					<?php endforeach ?>
 				</div>
@@ -62,7 +65,7 @@
 		<div class="col-lg-8">
 			<?php foreach ($datalist["promo"] as $key) : ?>
 				<img src="<?php echo base_url() ?>timthumb?h=400&src=<?php echo base_url() ?>public/image/promo/<?php echo $key["img"] ?>"
-					class="img-fluid w-100"
+					class="img-fluid w-100 mb-3"
 					alt="<?php echo $key["name"]; ?>"
 					style="height: 300px; object-fit: contain;">
 			<?php endforeach ?>

@@ -140,12 +140,12 @@
                     </div>
 
                     <?php if (count($listpromo) > 3) : ?>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselPromo" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselPromo" data-bs-slide="prev" style="width: 30px; height: 30px; top: 50%; transform: translateY(-50%);">
+                            <span class="carousel-control-prev-icon bg-dark rounded-circle p-1" aria-hidden="true" style="background-size: 50%; width: 30px; height: 30px;"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselPromo" data-bs-slide="next">
-                            <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselPromo" data-bs-slide="next" style="width: 30px; height: 30px; top: 50%; transform: translateY(-50%);">
+                            <span class="carousel-control-next-icon bg-dark rounded-circle p-1" aria-hidden="true" style="background-size: 50%; width: 30px; height: 30px;"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
                     <?php endif; ?>
