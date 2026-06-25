@@ -188,7 +188,7 @@ function namectgr($id)
 		</div>
 	</div>
 </div> -->
-			<a href="<?php echo base_url() ?>backendproduct/<?php echo $this->uri->segment(2) == "myproduct" ? "myproduct/formMy" : "form"; ?>" class="btn btn-warning">Tambah Produk</a>
+			<a href="<?php echo base_url() ?>backendproduct/<?php echo $this->uri->segment(2) == "myproduct" ? "myproduct/" : ""; ?>form" class="btn btn-warning">Tambah Produk</a>
 			<?php if ($privileges_admin == 1) { ?>
 				<a href="<?= base_url() ?>backendproduct/uploadProductToSheetFromDB"
 					class="btn btn-primary">
