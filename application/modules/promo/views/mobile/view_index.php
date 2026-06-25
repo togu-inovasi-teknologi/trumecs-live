@@ -5,7 +5,6 @@
 		</div> -->
 	<?php $imgonmobile = ($this->agent->is_mobile()) ? base_url() . 'timthumb?h=200&src=' : ''; ?>
 	<?php foreach ($listpromo as $i => $key) : ?>
-
 		<?php if (count($key['products']) >= 1) { ?>
 			<div class="card pb-2 mb-3">
 				<div class="row g-0">

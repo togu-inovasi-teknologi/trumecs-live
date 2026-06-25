@@ -272,14 +272,14 @@ class Myproduct extends MX_Controller
         $this->load->view('backend/template_front', $data);
     }
 
-    public function form()
+    public function formMy()
     {
         $data['content'] = 'form';
         if ($this->input->get("id") != "") {
             $data["backingdata"] = $this->etx_product->getproduct(array('id' => $this->input->get("id")));
             if (empty($data["backingdata"])) {
                 $this->session->set_flashdata('message', 'Tidak ada produk dengan id ' . $this->input->get("id"));
-                redirect(base_url() . "backendproduct/myproduct/form");
+                redirect(base_url() . "backendproduct/myproduct/formMy");
                 exit();
             }
         }
@@ -393,7 +393,7 @@ class Myproduct extends MX_Controller
                             alert('Gambar tidak bisa di upload ');
                             window.history.back();
                         </script>";*/
-            redirect(base_url() . "backendproduct/myproduct/form");
+            redirect(base_url() . "backendproduct/myproduct/formMy");
             exit();
         } else {
 
@@ -417,7 +417,7 @@ class Myproduct extends MX_Controller
         $id = $this->input->post("id");
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message', 'Tidak ada data yang di inputkan , coba ulangi lagi');
-            redirect(base_url() . "backendproduct/myproduct/form");
+            redirect(base_url() . "backendproduct/myproduct/formMy");
             exit();
         }
         $where = array('id' => $this->input->post('id'));
@@ -490,7 +490,7 @@ class Myproduct extends MX_Controller
             if (! $this->upload->do_upload("fileimg")) {
                 $this->session->set_flashdata('message', 'Gambar tidak bisa di upload' . $this->upload->display_errors());
                 //$this->session->set_flashdata('backingdata', $datainput);
-                redirect(base_url() . "backendproduct/myproduct/form?id=" . $this->input->post('id'));
+                redirect(base_url() . "backendproduct/myproduct/formMy?id=" . $this->input->post('id'));
                 exit();
             } else {
                 $data = $this->upload->data();
