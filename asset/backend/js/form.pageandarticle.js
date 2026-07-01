@@ -1,3 +1,5 @@
+//
+
 var base__url = $("body").attr("baseurl");
 tinyMCE.baseURL = base__url + "asset/backend/dist/js/tinymce";
 tinymce.init({
