@@ -474,7 +474,6 @@ foreach ($jenis as $key) {
 					</div>
 				</div>
 
-				<!-- Description -->
 				<div class="col-md-7">
 					<div class="card border-0 shadow-sm h-100">
 						<div class="card-header bg-dark text-white">

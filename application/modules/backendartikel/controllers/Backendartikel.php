@@ -158,40 +158,57 @@ class Backendartikel extends MX_Controller
     {
         $this->form_validation->set_rules('title', 'Title', 'required');
         $this->form_validation->set_rules('content', 'Content', 'required');
-        $this->form_validation->set_rules('txtfilegambar', 'Txtfilegambar', 'required');
-        if ($this->form_validation->run() == FALSE) {
-            $this->session->set_flashdata('message', 'Tidak ada data, Ulangi input lagi!!' . validation_errors());
-            redirect(base_url() . 'backendartikel/form');
-        } else {
-            $file = "public/tmp/" . ($this->input->post("txtfilegambar"));
-            $newfile = "public/image/artikel/" . ($this->input->post("txtfilegambar"));
-            if (copy($file, $newfile)) {
-                unlink($file);
-                $set = array(
-                    'title' => $this->input->post("title"),
-                    'url' => preg_replace("/[^a-zA-Z0-9]/", "-", $this->input->post("title")),
-                    'value' => ($this->input->post("content")),
-                    'date' => date('m/d/Y', time()),
-                    'tag' => ($this->input->post("tag")),
-                    'seo_key' => ($this->input->post("seo_key")),
-                    'discription_seo' => ($this->input->post("discription_seo")),
-                    'img' => ($this->input->post("txtfilegambar")),
-                    'view' => 0,
-                    'created_by' => $this->sessionmember["id"],
-                    'display' => $this->input->post("save") == "reguler" ? 1 : 0,
-                    'created_at' => time()
-                );
-                $this->session->set_flashdata('message', 'Artikel baru telah ditambah');
-                $this->etx_model->input($set);
-                redirect(base_url() . "backendartikel/?status=all");
-                exit();
-            } else {
-                $this->session->set_flashdata('message', 'Sistem mengalami gangguan saat memproses data yang Anda inputkan.');
-                redirect(base_url() . "backendartikel/form");
-                exit();
-            }
+
+        if (empty($_FILES['filegambar']['name'])) {
+            $this->form_validation->set_rules('filegambar', 'Gambar', 'required');
         }
-        redirect(base_url() . 'backendartikel/?status=all');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->session->set_flashdata('message', 'Tidak ada data, Ulangi input lagi!! ' . validation_errors());
+            redirect(base_url() . 'backendartikel/form');
+            return;
+        }
+
+        // Proses upload file
+        $config['upload_path'] = './public/image/artikel/';
+        $config['allowed_types'] = 'gif|jpg|jpeg|png|webp';
+        $config['max_size'] = 2048;
+        $config['encrypt_name'] = true;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('filegambar')) {
+            $error = $this->upload->display_errors();
+            $this->session->set_flashdata('message', 'Upload gagal: ' . $error);
+            redirect(base_url() . 'backendartikel/form');
+            return;
+        }
+
+        $uploadData = $this->upload->data();
+        $fileName = $uploadData['file_name'];
+
+        $slug = preg_replace("/[^a-zA-Z0-9]/", "-", strtolower($this->input->post("title")));
+        $slug = preg_replace("/-+/", "-", $slug);
+        $slug = trim($slug, "-");
+
+        $set = array(
+            'title' => $this->input->post("title"),
+            'url' => $slug,
+            'value' => $this->input->post("content"),
+            'date' => date('m/d/Y', time()),
+            'tag' => $this->input->post("tag"),
+            'seo_key' => $this->input->post("seo_key"),
+            'discription_seo' => $this->input->post("discription_seo"),
+            'img' => $fileName,
+            'view' => 0,
+            'created_by' => $this->sessionmember["id"],
+            'display' => $this->input->post("save") == "reguler" ? 1 : 0,
+            'created_at' => time()
+        );
+
+        $this->session->set_flashdata('message', 'Artikel baru telah ditambah');
+        $this->etx_model->input($set);
+        redirect(base_url() . "backendartikel/?status=all");
     }
 
     public function update()
@@ -200,54 +217,59 @@ class Backendartikel extends MX_Controller
         $this->form_validation->set_rules('id', 'Id', 'required');
         $this->form_validation->set_rules('title', 'Title', 'required');
         $this->form_validation->set_rules('content', 'Content', 'required');
+
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message', 'Tidak ada data, Ulangi input lagi!!' . validation_errors());
             redirect(base_url() . 'backendartikel/form?id=' . $id);
-        } else {
-            if (!empty($this->input->post("asknew"))) {
-                $file = "public/tmp/" . ($this->input->post("txtfilegambar"));
-                $newfile = "public/image/artikel/" . ($this->input->post("txtfilegambar"));
-                if (copy($file, $newfile)) {
-                    unlink($file);
-                    $set = array(
-                        'title' => $this->input->post("title"),
-                        'url' => preg_replace("/[^a-zA-Z0-9]/", "-", $this->input->post("title")),
-                        'value' => ($this->input->post("content")),
-                        'tag' => ($this->input->post("tag")),
-                        'seo_key' => ($this->input->post("seo_key")),
-                        'display' => $this->input->post("save") == "reguler" ? 1 : 0,
-                        'discription_seo' => ($this->input->post("discription_seo")),
-                        'img' => ($this->input->post("txtfilegambar"))
-                    );
-                    $this->session->set_flashdata('message', 'Artikel telah di update');
-                    $this->etx_model->update(array('id' => $id), $set);
-                    redirect(base_url() . 'backendartikel/?status=all');
-                    exit();
-                } else {
-                    $this->session->set_flashdata('message', 'Sistem mengalami gangguan saat memproses data yang Anda inputkan.');
-                    redirect(base_url() . "backendartikel/form?id=" . $id);
-                    exit();
+            return;
+        }
+        if (!empty($_FILES['filegambar']['name'])) {
+            // Upload file baru
+            $config['upload_path'] = './public/image/artikel/';
+            $config['allowed_types'] = 'gif|jpg|jpeg|png|webp';
+            $config['max_size'] = 2048;
+            $config['encrypt_name'] = true;
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('filegambar')) {
+                $uploadData = $this->upload->data();
+                $fileName = $uploadData['file_name'];
+
+                // Hapus file lama jika ada
+                $oldFile = $this->input->post("txtfilegambarold");
+                if (!empty($oldFile) && file_exists('./public/image/artikel/' . $oldFile)) {
+                    unlink('./public/image/artikel/' . $oldFile);
                 }
             } else {
-                $set = array(
-                    'title' => $this->input->post("title"),
-                    'url' => preg_replace("/[^a-zA-Z0-9]/", "-", $this->input->post("title")),
-                    'value' => ($this->input->post("content")),
-                    'tag' => ($this->input->post("tag")),
-                    'seo_key' => ($this->input->post("seo_key")),
-                    'discription_seo' => ($this->input->post("discription_seo")),
-                    'img' => ($this->input->post("txtfilegambarold")),
-                    'display' => $this->input->post("save") == "reguler" ? 1 : 0,
-                    'updated_by' => $this->sessionmember["id"],
-                    'updated_at' => time()
-                );
-                $this->session->set_flashdata('message', 'Artikel telah di update');
-                $this->etx_model->update(array('id' => $id), $set);
-
-                redirect(base_url() . 'backendartikel/?status=all');
-                exit();
+                $this->session->set_flashdata('message', 'Upload gagal: ' . $this->upload->display_errors());
+                redirect(base_url() . "backendartikel/form?id=" . $id);
+                return;
             }
+        } else {
+            // Gunakan file lama
+            $fileName = $this->input->post("txtfilegambarold");
         }
+
+        $slug = preg_replace("/[^a-zA-Z0-9]/", "-", strtolower($this->input->post("title")));
+        $slug = preg_replace("/-+/", "-", $slug);
+        $slug = trim($slug, "-");
+
+        $set = array(
+            'title' => $this->input->post("title"),
+            'url' => $slug,
+            'value' => $this->input->post("content"),
+            'tag' => $this->input->post("tag"),
+            'seo_key' => $this->input->post("seo_key"),
+            'discription_seo' => $this->input->post("discription_seo"),
+            'img' => $fileName,
+            'display' => $this->input->post("save") == "reguler" ? 1 : 0,
+            'updated_by' => $this->sessionmember["id"],
+            'updated_at' => time()
+        );
+
+        $this->session->set_flashdata('message', 'Artikel telah di update');
+        $this->etx_model->update(array('id' => $id), $set);
         redirect(base_url() . 'backendartikel/?status=all');
     }
 

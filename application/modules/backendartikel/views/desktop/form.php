@@ -56,8 +56,15 @@
 						<label class="form-label fw-bold">Gambar</label>
 						<input type="file" id="file" name="filegambar" class="form-control" <?php echo (empty($id)) ? 'required' : ''; ?>>
 
+						<input type="hidden" name="txtfilegambar" id="txtfilegambar" value="">
+
 						<?php if (!empty($id)): ?>
-							<input type="hidden" name="asknew" value="">
+							<div class="tampung">
+								<?php if (!empty($detail["img"])): ?>
+									<img src="<?php echo base_url() . 'public/image/artikel/' . $detail["img"]; ?>" class="img-fluid mt-2" style="max-height: 150px;">
+								<?php endif; ?>
+								<input type="hidden" class="form-control" name="asknew" value="">
+							</div>
 							<input type="hidden" name="txtfilegambarold" value="<?php echo htmlspecialchars($detail["img"]); ?>">
 						<?php endif; ?>
 
