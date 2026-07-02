@@ -18,6 +18,11 @@
                             <button class="btn btnnew position-absolute translate-middle" style="right: 27%; bottom:15px;"><i class="bi bi-whatsapp"></i> Hubungi Kami</button>
                         </div>
                     </div>
+                    <div class="carousel-item">
+                        <a href="<?php echo base_url(); ?>article/pembayaran-transaksi-atau-invoice-dengan-kartu-kredit" target="_blank" class="click-banner-cc" data-google-tag="Banner Kartu Kredit Trumecs">
+                            <img src="<?php echo base_url() ?>timthumb?h=800&src=<?php base_url(); ?>/public/banner/promo-home/banner-cc.png" alt="Trumecs sudah bisa pakai kartu kredit" class="img-fluid w-100">
+                        </a>
+                    </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -74,6 +79,11 @@
                                 <img src="<?php echo base_url() ?>timthumb?h=400&src=<?php base_url(); ?>/public/banner/promo-home/banner-scrap-sub.png" alt="Scrap alat berat di trumecs.com" class="img-fluid w-100" style="height: 376px;">
                                 <button class="btn btnnewgreen position-absolute translate-middle" style="right: 42%; bottom:25%;"><i class="bi bi-whatsapp"></i> Hubungi Kami</button>
                             </div>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="<?php echo base_url(); ?>article/pembayaran-transaksi-atau-invoice-dengan-kartu-kredit" target="_blank" class="click-sub-banner-cc" data-google-tag="Banner Kartu Kredit Trumecs">
+                                <img src="<?php echo base_url() ?>timthumb?h=400&src=<?php base_url(); ?>/public/banner/promo-home/banner-cc.png" alt="Trumecs sudah bisa pakai kartu kredit" class="img-fluid w-100" style="height: 376px;">
+                            </a>
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carousel-banner-2" data-bs-slide="prev">

@@ -16,6 +16,11 @@
                         <button class="btn btn-sm btnnewgreen position-absolute translate-middle" style="right: -15%; bottom:20%;"><i class="bi bi-whatsapp"></i> Hubungi Kami</button>
                     </div>
                 </div>
+                <div class="carousel-item h-100">
+                    <a href="<?php echo base_url(); ?>article/pembayaran-transaksi-atau-invoice-dengan-kartu-kredit" target="_blank" class="click-banner-cc-mobile" data-google-tag="Mobile - Banner Kartu Kredit Trumecs">
+                        <img src="<?php echo base_url() ?>timthumb?h=600&src=<?php base_url(); ?>/public/banner/promo-home/banner-cc-mobile.png" alt="Sekarang di Trumecs sudah bisa pakai kartu kredit" class="img-fluid w-100">
+                    </a>
+                </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
@@ -73,6 +78,11 @@
                                 <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/banner-scrap-sub.png" alt="Scrap alat berat di trumecs.com" class="img-fluid w-100">
                                 <button class="btn btn-sm btnnewgreen position-absolute translate-middle" style="right: -15%; top:20%;"><i class="bi bi-whatsapp"></i> Hubungi Kami</button>
                             </div>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="<?php echo base_url(); ?>article/pembayaran-transaksi-atau-invoice-dengan-kartu-kredit" target="_blank" class="click-sub-banner-cc-mobile" data-google-tag="Mobile - Banner Kartu Kredit Trumecs">
+                                <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/banner-cc.png" alt="Sekarang di Trumecs sudah bisa pakai kartu kredit" class="img-fluid w-100">
+                            </a>
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselPromoBanner" data-bs-slide="prev">
