@@ -57,8 +57,33 @@ class general_model extends CI_Model
 
     public function getcategoribyname($name)
     {
-        $query = $this->db->where("name", $name)->get('categori');
-        return $query->result_array();
+        // Validasi input
+        if (empty($name)) {
+            return array();
+        }
+        $name = urldecode($name);
+
+        $name = $this->db->escape_like_str($name);
+
+        $this->db->like('LOWER(name)', strtolower($name));
+        $query = $this->db->get('categori');
+        $results = $query->result_array();
+
+        if (empty($results)) {
+            $keywords = explode(' ', $name);
+            $this->db->group_start();
+            foreach ($keywords as $keyword) {
+                $keyword = trim($keyword);
+                if (!empty($keyword)) {
+                    $this->db->or_like('LOWER(name)', strtolower($keyword));
+                }
+            }
+            $this->db->group_end();
+            $query = $this->db->get('categori');
+            $results = $query->result_array();
+        }
+
+        return $results;
     }
 
     public function getbrand($category_id = null, $empty = false)

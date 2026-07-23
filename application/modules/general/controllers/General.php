@@ -148,20 +148,32 @@ class General extends MX_Controller
 	{
 		// Validasi input
 		if (empty($idcomponent)) {
+			$idcomponent = $this->uri->segment(3);
+		}
+
+		if (empty($idcomponent)) {
 			echo '<option value="0">-- Parameter tidak valid --</option>';
 			return;
 		}
+
+		$idcomponent = urldecode($idcomponent);
 
 		if (!is_numeric($idcomponent)) {
 			$category = $this->general_model->getcategoribyname($idcomponent);
 
 			// Validasi hasil query
-			if (empty($category) || !isset($category[0]['id'])) {
-				echo '<option value="0">-- Kategori tidak ditemukan --</option>';
+			if (empty($category)) {
+				echo '<option value="0">-- Kategori "' . htmlspecialchars($idcomponent, ENT_QUOTES, 'UTF-8') . '" tidak ditemukan --</option>';
 				return;
 			}
 
+			// Ambil ID dari hasil pertama
 			$idcomponent = $category[0]['id'];
+		}
+
+		if (!is_numeric($idcomponent) || $idcomponent <= 0) {
+			echo '<option value="0">-- ID Kategori tidak valid --</option>';
+			return;
 		}
 
 		echo '<option value="0">-- Semua Komponen --</option>';
@@ -178,9 +190,11 @@ class General extends MX_Controller
 
 		foreach ($parentCategories as $key) {
 			if ($key["name"] != "Other") {
-				echo '<option value="' . $key["id"] . '">' . $key["name"] . '</option>';
+				echo '<option value="' . htmlspecialchars($key["id"], ENT_QUOTES, 'UTF-8') . '">'
+					. htmlspecialchars($key["name"], ENT_QUOTES, 'UTF-8') . '</option>';
 			} else {
-				$other = '<option value="' . $key["id"] . '">' . $key["name"] . '</option>';
+				$other = '<option value="' . htmlspecialchars($key["id"], ENT_QUOTES, 'UTF-8') . '">'
+					. htmlspecialchars($key["name"], ENT_QUOTES, 'UTF-8') . '</option>';
 			}
 
 			$condition = array(
@@ -192,7 +206,9 @@ class General extends MX_Controller
 
 			if (!empty($subCategories)) {
 				foreach ($subCategories as $keys) {
-					echo '<option value="' . $keys["id"] . '">' . $key["name"] . ' > ' . $keys["name"] . '</option>';
+					echo '<option value="' . htmlspecialchars($keys["id"], ENT_QUOTES, 'UTF-8') . '">'
+						. htmlspecialchars($key["name"] . ' > ' . $keys["name"], ENT_QUOTES, 'UTF-8')
+						. '</option>';
 
 					$conditions = array(
 						'parent' => $keys["id"],
@@ -203,7 +219,9 @@ class General extends MX_Controller
 
 					if (!empty($subSubCategories)) {
 						foreach ($subSubCategories as $keyss) {
-							echo '<option value="' . $keyss["id"] . '">' . $key["name"] . ' > ' . $keys["name"] . ' > ' . $keyss["name"] . '</option>';
+							echo '<option value="' . htmlspecialchars($keyss["id"], ENT_QUOTES, 'UTF-8') . '">'
+								. htmlspecialchars($key["name"] . ' > ' . $keys["name"] . ' > ' . $keyss["name"], ENT_QUOTES, 'UTF-8')
+								. '</option>';
 						}
 					}
 				}

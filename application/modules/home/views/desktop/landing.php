@@ -5,22 +5,28 @@
             <div id="carouselExample" class="carousel slide px-0" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <a href="<?php echo base_url(); ?>promo" target="_blank" class="click-banner-utama-ab-bekas" data-google-tag="Banner Alat Berat Bekas">
-                            <img src="<?php echo base_url() ?>timthumb?h=600&src=<?php echo base_url(); ?>/public/banner/home-mobile/6.png" class="d-block w-100" alt="banner trumecs.com">
+                        <a href="<?php echo base_url(); ?>c/all/query?q=on&nama=struman" target="_blank" class="click-banner-struman position-relative" data-google-tag="Banner Struman" style="cursor: pointer">
+                            <img src="<?php echo base_url() ?>timthumb?h=800 &src=<?php base_url(); ?>public/banner/promo-home/banner-struman.png" alt="Power Supply Struman" class="img-fluid w-100">
+                            <a href="https://wa.me/6285176912338?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan Produk Struman Apakah barang ini tersedia?") ?>" class="btn btnnewgreen position-absolute translate-middle btn-click-banner" data-google-tag="Click WA Banner Struman" style="left: 37%; bottom:14%;"><i class="bi bi-whatsapp"></i> Hubungi Kami</a>
                         </a>
                     </div>
                     <div class="carousel-item">
-                        <img src="<?php echo base_url() ?>timthumb?h=800&src=<?php echo base_url(); ?>/public/banner/home-mobile/7.png" class="d-block w-100" alt="banner langkah">
+                        <a href="<?php echo base_url(); ?>promo" target="_blank" class="click-banner-utama-ab-bekas" data-google-tag="Banner Alat Berat Bekas">
+                            <img src="<?php echo base_url() ?>timthumb?h=600&src=<?php echo base_url(); ?>public/banner/home-mobile/6.png" class="d-block w-100" alt="banner trumecs.com">
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="<?php echo base_url() ?>timthumb?h=800&src=<?php echo base_url(); ?>public/banner/home-mobile/7.png" class="d-block w-100" alt="banner langkah">
                     </div>
                     <div class="carousel-item">
                         <div data-bs-toggle="modal" data-bs-target="#modalWhatsapp" class="click-wa-scrap-ab position-relative" data-google-tag="Banner Scrap Alat Berat Bekas" style="cursor: pointer">
-                            <img src="<?php echo base_url() ?>timthumb?h=800 &src=<?php base_url(); ?>/public/banner/promo-home/banner-scrap-utama.png" alt="Scrap alat berat di trumecs.com" class="img-fluid w-100">
+                            <img src="<?php echo base_url() ?>timthumb?h=800 &src=<?php base_url(); ?>public/banner/promo-home/banner-scrap-utama.png" alt="Scrap alat berat di trumecs.com" class="img-fluid w-100">
                             <button class="btn btnnew position-absolute translate-middle" style="right: 27%; bottom:15px;"><i class="bi bi-whatsapp"></i> Hubungi Kami</button>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <a href="<?php echo base_url(); ?>article/pembayaran-transaksi-atau-invoice-dengan-kartu-kredit" target="_blank" class="click-banner-cc" data-google-tag="Banner Kartu Kredit Trumecs">
-                            <img src="<?php echo base_url() ?>timthumb?h=800&src=<?php base_url(); ?>/public/banner/promo-home/banner-cc.png" alt="Trumecs sudah bisa pakai kartu kredit" class="img-fluid w-100">
+                            <img src="<?php echo base_url() ?>timthumb?h=800&src=<?php base_url(); ?>public/banner/promo-home/banner-cc.png" alt="Trumecs sudah bisa pakai kartu kredit" class="img-fluid w-100">
                         </a>
                     </div>
                 </div>
@@ -46,7 +52,7 @@
             foreach ($categories as $index => $i) :
             ?>
                 <a href="<?php echo base_url(); ?>category/<?= $i['id'] ?>" class="card" style="width: calc(16.666% - 1rem);">
-                    <div class="card-body p-2 d-flex flex-column justify-content-end align-items-center" style="height: 250px; background-image: url(<?php echo base_url() ?>timthumb?h=400&src=<?php echo base_url() ?>/public/upload/categori/<?= $i['img'] ?>);background-size: cover; position: relative; overflow: hidden;">
+                    <div class="card-body p-2 d-flex flex-column justify-content-end align-items-center" style="height: 250px; background-image: url(<?php echo base_url() ?>timthumb?h=400&src=<?php echo base_url() ?>public/upload/categori/<?= $i['img'] ?>);background-size: cover; position: relative; overflow: hidden;">
                         <div class="overlay-categori"></div>
                         <p class="fw-bold fs-6 mb-0 text-center text-white" style="z-index: 2;"><?= $i['name'] ?></p>
                     </div>
@@ -66,23 +72,23 @@
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <a href="<?php echo base_url(); ?>product/1770/Turalik-52" target="_blank" class="click-banner-turalik-52" data-google-tag="Banner Promo Turalik 52">
-                                <img src="<?php echo base_url() ?>timthumb?h=400&src=<?php base_url(); ?>/public/banner/promo-home/turalik-52.png" alt="Promo harga murah untuk Pertamina Turalik 52" class="img-fluid w-100" style="height: 376px;">
+                                <img src="<?php echo base_url() ?>timthumb?h=400&src=<?php base_url(); ?>public/banner/promo-home/turalik-52.png" alt="Promo harga murah untuk Pertamina Turalik 52" class="img-fluid w-100" style="height: 376px;">
                             </a>
                         </div>
                         <div class="carousel-item">
                             <a href="<?php echo base_url(); ?>product/2009/Meditran-Sx-Plus-15w-40-Ci4" target="_blank" class="click-banner-meditran-sx-plus" data-google-tag="Banner Promo Meditran SX Plus">
-                                <img src="<?php echo base_url() ?>timthumb?h=400&src=<?php base_url(); ?>/public/banner/promo-home/meditran-sx-plus.png" alt="Promo harga murah untuk Pertamina SX Plus 15w 40 CI4" class="img-fluid w-100" style="height: 376px;">
+                                <img src="<?php echo base_url() ?>timthumb?h=400&src=<?php base_url(); ?>public/banner/promo-home/meditran-sx-plus.png" alt="Promo harga murah untuk Pertamina SX Plus 15w 40 CI4" class="img-fluid w-100" style="height: 376px;">
                             </a>
                         </div>
                         <div class="carousel-item">
                             <div data-bs-toggle="modal" data-bs-target="#modalWhatsapp" class="click-wa-scrap-ab-sub position-relative" data-google-tag="Banner Sub Scrap Alat Berat Bekas" style="cursor: pointer;">
-                                <img src="<?php echo base_url() ?>timthumb?h=400&src=<?php base_url(); ?>/public/banner/promo-home/banner-scrap-sub.png" alt="Scrap alat berat di trumecs.com" class="img-fluid w-100" style="height: 376px;">
+                                <img src="<?php echo base_url() ?>timthumb?h=400&src=<?php base_url(); ?>public/banner/promo-home/banner-scrap-sub.png" alt="Scrap alat berat di trumecs.com" class="img-fluid w-100" style="height: 376px;">
                                 <button class="btn btnnewgreen position-absolute translate-middle" style="right: 42%; bottom:25%;"><i class="bi bi-whatsapp"></i> Hubungi Kami</button>
                             </div>
                         </div>
                         <div class="carousel-item">
                             <a href="<?php echo base_url(); ?>article/pembayaran-transaksi-atau-invoice-dengan-kartu-kredit" target="_blank" class="click-sub-banner-cc" data-google-tag="Banner Kartu Kredit Trumecs">
-                                <img src="<?php echo base_url() ?>timthumb?h=400&src=<?php base_url(); ?>/public/banner/promo-home/banner-cc.png" alt="Trumecs sudah bisa pakai kartu kredit" class="img-fluid w-100" style="height: 376px;">
+                                <img src="<?php echo base_url() ?>timthumb?h=400&src=<?php base_url(); ?>public/banner/promo-home/banner-cc.png" alt="Trumecs sudah bisa pakai kartu kredit" class="img-fluid w-100" style="height: 376px;">
                             </a>
                         </div>
                     </div>
@@ -229,7 +235,7 @@
             <div class="col-lg ps-0">
                 <h2 class="fw-bold ps-2"><?= $mainCategory['name'] ?></h2>
             </div>
-            <div class="col-lg d-flex category-pelumas-base position-relative ps-0" style="background: url('/public/landing/category/background/<?= $mainCategory['name'] ?>.png') no-repeat 0% 0% / cover;">
+            <div class="col-lg d-flex category-pelumas-base position-relative ps-0" style="background: url('public/landing/category/background/<?= $mainCategory['name'] ?>.png') no-repeat 0% 0% / cover;">
                 <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[16]['url'] ?>" class="col-lg-4 p-2 item-sub h-full category-pelumas-base-kiri click-subcategory-home position-relative z-1" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[16]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
                     <div class="d-flex flex-column gap-3">
                         <h4 class="fw-bold text-white"><?= $subCategories[16]['name'] ?></h4>
@@ -289,7 +295,7 @@
                             <h3 class="fw-bold text-white">KETERSEDIAAN BAN TERJAMIN </h3>
                             <h5 class="text-white">Diskusikan dengan kami untuk qualitas dan quantity yang terjamin untuk perusahaanmu.</h5>
                         </div>
-                        <img src="/public/landing/ads/Trumecs-WI.gif" alt="Banner Water Indonesia 2025" class="img-fluid position-absolute top-0 end-0" style="width:100%">
+                        <img src="public/landing/ads/Trumecs-WI.gif" alt="Banner Water Indonesia 2025" class="img-fluid position-absolute top-0 end-0" style="width:100%">
                     </div>
                 </div>
             </a>
@@ -306,7 +312,7 @@
             <div class="col-lg ps-0">
                 <h2 class="fw-bold ps-2"><?= $mainCategory['name'] ?></h2>
             </div>
-            <div class="col-lg d-flex category-ban-base position-relative ps-0" style="background: url('/public/landing/category/background/<?= $mainCategory['name'] ?>.png') no-repeat 0% 0% / cover;">
+            <div class="col-lg d-flex category-ban-base position-relative ps-0" style="background: url('public/landing/category/background/<?= $mainCategory['name'] ?>.png') no-repeat 0% 0% / cover;">
                 <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-lg-4 p-2 item-sub h-full category-ban-base-kiri click-subcategory-home position-relative z-1" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
                     <div class="d-flex flex-column gap-3">
                         <h4 class="fw-bold text-white"><?= $subCategories[0]['name'] ?></h4>
@@ -367,7 +373,7 @@
                 <div class="col-lg">
                     <h2 class="fw-bold ps-2 my-1"><?= $mainCategory['name'] ?></h2>
                 </div>
-                <div class="col-lg d-flex category-ban-base position-relative" style="background: url('/public/landing/category/background/<?= $mainCategory['name'] ?>.png') no-repeat 0% 0% / cover;">
+                <div class="col-lg d-flex category-ban-base position-relative" style="background: url('public/landing/category/background/<?= $mainCategory['name'] ?>.png') no-repeat 0% 0% / cover;">
                     <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-lg-6 p-2 item-sub h-full category-ban-base-kiri click-subcategory-home position-relative z-1" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
                         <div class="d-flex flex-column gap-3">
                             <h4 class="fw-bold text-white"><?= $subCategories[0]['name'] ?></h4>
@@ -396,7 +402,7 @@
             <div class="col-lg ps-0">
                 <h2 class="fw-bold ps-2"><?= $mainCategory['name'] ?></h2>
             </div>
-            <div class="col-lg d-flex category-ban-base position-relative px-0" style="background: url('/public/landing/category/background/<?= $mainCategory['name'] ?>.png') no-repeat 0% 0% / cover;">
+            <div class="col-lg d-flex category-ban-base position-relative px-0" style="background: url('public/landing/category/background/<?= $mainCategory['name'] ?>.png') no-repeat 0% 0% / cover;">
                 <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-lg-6 p-2 item-sub h-full category-ban-base-kiri click-subcategory-home position-relative z-1" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
                     <div class="d-flex flex-column gap-3">
                         <h4 class="fw-bold text-white"><?= $subCategories[0]['name'] ?></h4>
@@ -425,7 +431,7 @@
             <div class="col-lg ps-0">
                 <h2 class="fw-bold ps-2"><?= $mainCategory['name'] ?></h2>
             </div>
-            <div class="col-lg d-flex category-ban-base position-relative ps-0" style="background: url('/public/landing/category/background/<?= $mainCategory['name'] ?>.png') no-repeat 0% 0% / cover;">
+            <div class="col-lg d-flex category-ban-base position-relative ps-0" style="background: url('public/landing/category/background/<?= $mainCategory['name'] ?>.png') no-repeat 0% 0% / cover;">
                 <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-lg-4 p-2 item-sub h-full category-ban-base-kiri click-subcategory-home position-relative z-1" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
                     <div class="d-flex flex-column gap-3">
                         <h4 class="fw-bold text-white"><?= $subCategories[0]['name'] ?></h4>
@@ -480,7 +486,7 @@
             <div class="col-lg ps-0">
                 <h2 class="fw-bold ps-2"><?= $mainCategory['name'] ?></h2>
             </div>
-            <div class="col-lg d-flex category-ban-base position-relative ps-0" style="background: url('/public/landing/category/background/<?= $mainCategory['name'] ?>.png') no-repeat 0% 0% / cover;">
+            <div class="col-lg d-flex category-ban-base position-relative ps-0" style="background: url('public/landing/category/background/<?= $mainCategory['name'] ?>.png') no-repeat 0% 0% / cover;">
                 <a href="<?php echo base_url(); ?>c/<?= $mainCategory['url'] . "/" . $subCategories[0]['url'] ?>" class="col-lg-4 p-2 item-sub h-full category-ban-base-kiri click-subcategory-home position-relative z-1" data-google-tag="<?= $mainCategory['name'] ?> - <?= $subCategories[0]['name'] ?>" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.1)); border-right: solid #fff 2px;">
                     <div class="d-flex flex-column gap-3">
                         <h4 class="fw-bold text-white"><?= $subCategories[0]['name'] ?></h4>

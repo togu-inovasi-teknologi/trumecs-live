@@ -1,76 +1,161 @@
 $(document).ready(function () {
   var base_url = $("body").attr("baseurl");
 
+  // ========== UTILITY FUNCTION UNTUK PARTIAL MATCH ==========
+  function setSelectPartialMatch($select, searchText) {
+    if (!searchText || searchText === "") {
+      $select.val("");
+      return false;
+    }
+
+    var matched = false;
+    var searchLower = String(searchText).toLowerCase().trim();
+
+    // Try exact match first
+    try {
+      $select.val(searchText);
+      if ($select.val() === searchText) {
+        return true;
+      }
+    } catch (e) {
+      console.warn("Error saat set value:", e);
+    }
+
+    // Try partial match
+    $select.find("option").each(function () {
+      var optionText = $(this).text().toLowerCase().trim();
+      var optionValue = $(this).val();
+
+      if (optionValue) {
+        optionValue = String(optionValue).toLowerCase().trim();
+      } else {
+        optionValue = "";
+      }
+
+      if (
+        optionText.indexOf(searchLower) !== -1 ||
+        optionValue.indexOf(searchLower) !== -1
+      ) {
+        $(this).prop("selected", true);
+        matched = true;
+        console.log("Matched:", $(this).val(), "dengan:", searchText);
+        return false;
+      }
+    });
+
+    if (!matched) {
+      $select.val("");
+      console.warn("Tidak ditemukan match untuk:", searchText);
+    }
+
+    return matched;
+  }
+
+  // ========== FUNCTION UNTUK ENCODE PARAMETER URL ==========
+  function encodeParam(value) {
+    if (!value) return "";
+    return encodeURIComponent(value);
+  }
+
+  // ========== FUNCTION UNTUK LOAD SELECT DENGAN AJAX ==========
+  function loadSelectData(selector, url, attrName, callback) {
+    $.ajax({
+      url: url,
+      type: "GET",
+      dataType: "html",
+      success: function (response) {
+        try {
+          $(selector).html(response);
+          var searchValue = $(selector).attr(attrName);
+          if (searchValue) {
+            setSelectPartialMatch($(selector), searchValue);
+          }
+          if (typeof callback === "function") {
+            callback.call($(selector));
+          }
+        } catch (e) {
+          console.error("Error processing response for " + selector + ":", e);
+          $(selector).html(
+            '<option value="0">-- Error processing data --</option>'
+          );
+        }
+      },
+      error: function (xhr, status, error) {
+        console.error("Error loading data from " + url + ":", error);
+        console.error("Status:", status);
+        console.error("Response:", xhr.responseText);
+        $(selector).html('<option value="0">-- Error loading data --</option>');
+      },
+    });
+  }
+
   // ========== LOAD DATA AWAL ==========
-  $("select[name=jenisproduct]").load(
+  var jenisProductTar = $("select[name=jenisproduct]").attr("tar") || "";
+  var encodedTar = encodeParam(jenisProductTar);
+
+  // Load jenisproduct
+  loadSelectData(
+    "select[name=jenisproduct]",
     base_url + "general/getcomponentall/back",
-    function (argument) {
-      var mustvalue = $(this).attr("tar");
-      $(this).val(mustvalue);
+    "tar",
+    function () {
+      // Set select lainnya setelah jenisproduct loaded
       var seletedgrade = $("select[name=quality]").attr("seletedgrade");
-      $("select[name=quality]").val(seletedgrade);
+      setSelectPartialMatch($("select[name=quality]"), seletedgrade);
+
       var seletedcomponent = $("select[name=component]").attr(
         "seletedcomponent"
       );
-      $("select[name=component]").val(seletedcomponent);
+      setSelectPartialMatch($("select[name=component]"), seletedcomponent);
 
-      // 🔥 TRIGGER CHANGE SETELAH LOAD UNTUK MENGATUR TAMPILAN
       $(this).trigger("change");
     }
   );
 
-  $("select[name=brand]").load(
-    base_url +
-      "general/getbrandform/" +
-      $("select[name=jenisproduct]").attr("tar"),
-    function (argument) {
-      var mustvalue = $(this).attr("seletedbrand");
-      $(this).val(mustvalue);
-    }
+  // Load brand
+  loadSelectData(
+    "select[name=brand]",
+    base_url + "general/getbrandform/" + encodedTar,
+    "seletedbrand"
   );
 
-  $("select[name=quality]").load(
-    base_url +
-      "general/getgradeform/" +
-      $("select[name=jenisproduct]").attr("tar"),
-    function (argument) {
-      var mustvalue = $(this).attr("seletedgrade");
-      $(this).val(mustvalue);
-    }
+  // Load quality
+  loadSelectData(
+    "select[name=quality]",
+    base_url + "general/getgradeform/" + encodedTar,
+    "seletedgrade"
   );
 
-  $("select[name=brand_unit]").load(
+  // Load brand_unit
+  loadSelectData(
+    "select[name=brand_unit]",
     base_url + "general/getbrandform/117",
-    function (argument) {
-      var mustvalue = $(this).attr("seletedbrandunit");
-      $(this).val(mustvalue);
-    }
+    "seletedbrandunit"
   );
 
-  $("select[name=component]").load(
-    base_url +
-      "general/getcomponentall_form/" +
-      $("select[name=jenisproduct]").attr("tar"),
-    function (argument) {
-      var mustvalue = $(this).attr("seletedcomponent");
-      $(this).val(mustvalue);
-    }
+  // Load component
+  loadSelectData(
+    "select[name=component]",
+    base_url + "general/getcomponentall_form/" + encodedTar,
+    "seletedcomponent"
   );
 
-  $("select[name=area]").load(
+  // Load area
+  loadSelectData(
+    "select[name=area]",
     base_url + "general/getareaall",
-    function (argument) {
-      var mustvalue = $(this).attr("seletedarea");
-      $(this).val(mustvalue);
-    }
+    "seletedarea"
   );
 
   // ========== EVENT BRAND UNIT CHANGE ==========
   $("select[name=brand_unit]").change(function (argument) {
     var value = $(this).val();
-    $("select[name=type]").load(
-      base_url + "general/gettype/" + value,
-      function (argument) {}
+    if (!value || value === "") return;
+
+    loadSelectData(
+      "select[name=type]",
+      base_url + "general/gettype/" + encodeParam(value),
+      "seletedtype"
     );
   });
 
@@ -102,58 +187,50 @@ $(document).ready(function () {
     var value = $(this).val();
     console.log("Jenis produk berubah menjadi:", value);
 
+    if (!value || value === "") {
+      toggleJenisProductFields(value);
+      return;
+    }
+
+    var encodedValue = encodeParam(value);
+
     // Load grade
-    $("select[name=quality]").load(
-      base_url + "general/getgradeform/" + value,
-      function (argument) {
-        if (
-          $(this).find("option[value='" + $(this).attr("seletedgrade") + "']")
-            .length > 0
-        ) {
-          $(this).val($(this).attr("seletedgrade"));
-        } else {
-          $(this).val("");
-        }
-      }
+    loadSelectData(
+      "select[name=quality]",
+      base_url + "general/getgradeform/" + encodedValue,
+      "seletedgrade"
     );
 
     // Load component
-    $("select[name=component]").load(
-      base_url + "general/getcomponentall_form/" + value,
-      function (argument) {
-        if (
-          $(this).find(
-            "option[value='" + $(this).attr("seletedcomponent") + "']"
-          ).length > 0
-        ) {
-          $(this).val($(this).attr("seletedcomponent"));
-        } else {
-          $(this).val("");
-        }
-      }
+    loadSelectData(
+      "select[name=component]",
+      base_url + "general/getcomponentall_form/" + encodedValue,
+      "seletedcomponent"
     );
 
     // Load brand
-    $("select[name=brand]").load(
-      base_url + "general/getbrandform/" + value,
-      function (argument) {
-        if (
-          $(this).find("option[value='" + $(this).attr("seletedbrand") + "']")
-            .length > 0
-        ) {
-          $(this).val($(this).attr("seletedbrand"));
-        } else {
-          $(this).val("");
-        }
-      }
+    loadSelectData(
+      "select[name=brand]",
+      base_url + "general/getbrandform/" + encodedValue,
+      "seletedbrand"
     );
 
     // Load attribute form jika tidak ada ID
     if ($("input[name='id']").length < 1) {
-      $(".attribute-card").load(base_url + "general/getattributeform/" + value);
+      $.ajax({
+        url: base_url + "general/getattributeform/" + encodedValue,
+        type: "GET",
+        dataType: "html",
+        success: function (response) {
+          $(".attribute-card").html(response);
+        },
+        error: function (xhr, status, error) {
+          console.error("Error loading attribute form:", error);
+        },
+      });
     }
 
-    // 🔥 PANGGIL FUNCTION TOGGLE
+    // Panggil function toggle
     toggleJenisProductFields(value);
   });
 
@@ -174,65 +251,93 @@ $(document).ready(function () {
     var value = $(this).attr("val");
     console.log("Choice jenis dipilih:", value);
 
-    // Set value ke select
+    if (!value || value === "") return;
+
+    var encodedValue = encodeParam(value);
+
+    // Set value ke input hidden dan select
     $(".input_choicejenis").val(value);
-    $("select[name=jenisproduct]").val(value);
+    setSelectPartialMatch($("select[name=jenisproduct]"), value);
     $(".pilihjenisproduk").modal("hide");
 
-    // Load data
-    $("select[name=quality]").load(
-      base_url + "general/getgradeform/" + value,
-      function (argument) {}
+    // Load grade
+    loadSelectData(
+      "select[name=quality]",
+      base_url + "general/getgradeform/" + encodedValue,
+      "seletedgrade"
     );
 
-    $("select[name=brand]").load(
-      base_url + "general/getbrandform/" + value,
-      function (argument) {}
+    // Load brand
+    loadSelectData(
+      "select[name=brand]",
+      base_url + "general/getbrandform/" + encodedValue,
+      "seletedbrand"
     );
 
-    $("select[name=component]").load(
-      base_url + "general/getcomponentall_form/" + value,
-      function (argument) {}
+    // Load component
+    loadSelectData(
+      "select[name=component]",
+      base_url + "general/getcomponentall_form/" + encodedValue,
+      "seletedcomponent"
     );
 
-    // 🔥 PANGGIL FUNCTION TOGGLE
+    // Panggil function toggle
     toggleJenisProductFields(value);
 
     // Load attribute form
     if ($("input[name='id']").length < 1) {
-      $(".attribute-card").load(base_url + "general/getattributeform/" + value);
+      $.ajax({
+        url: base_url + "general/getattributeform/" + encodedValue,
+        type: "GET",
+        dataType: "html",
+        success: function (response) {
+          $(".attribute-card").html(response);
+        },
+        error: function (xhr, status, error) {
+          console.error("Error loading attribute form:", error);
+        },
+      });
     }
   });
 
-  // ========== REST OF YOUR CODE ==========
+  // ========== NESTED DOCUMENT READY UNTUK LOAD DATA EDIT ==========
   $(document).ready(function (argument) {
     var seletedtype = $("select[name=type]").attr("seletedtype");
     var seletedgrade = $("select[name=quality]").attr("seletedgrade");
-    $("select[name=quality]").val(seletedgrade);
-    var seletedpackagine = $("select[name=packagin]").attr("seletedpackagine");
-    $("select[name=packagin]").val(seletedpackagine);
-    var seletedarea = $("select[name=area]").attr("seletedarea");
-    $("select[name=area]").val(seletedarea);
+    setSelectPartialMatch($("select[name=quality]"), seletedgrade);
 
-    if (seletedtype != "") {
+    var seletedpackagine = $("select[name=packagin]").attr("seletedpackagine");
+    setSelectPartialMatch($("select[name=packagin]"), seletedpackagine);
+
+    var seletedarea = $("select[name=area]").attr("seletedarea");
+    setSelectPartialMatch($("select[name=area]"), seletedarea);
+
+    if (seletedtype && seletedtype != "") {
       var mustvalue = $("select[name=brand_unit]").attr("seletedbrandunit");
-      $("select[name=type]").load(
-        base_url + "general/gettype/" + mustvalue,
-        function (argument) {
-          $(this).val(seletedtype);
-        }
-      );
+      if (mustvalue) {
+        loadSelectData(
+          "select[name=type]",
+          base_url + "general/gettype/" + encodeParam(mustvalue),
+          "seletedtype",
+          function () {
+            setSelectPartialMatch($(this), seletedtype);
+          }
+        );
+      }
     }
 
+    // Event add attribute
     $(".add-att").on("click", function () {
       $(".attribute-card").append($(".attr-form").html());
     });
 
+    // Event delete attribute
     $(document).on("click", ".del-att", function () {
       $(this).parent().parent().remove();
     });
   });
 
+  // ========== EVENT FILE INPUT ==========
   $("input[type=file]").on("change", function () {
     var str = $(this).val();
     readURL(this);
@@ -242,6 +347,7 @@ $(document).ready(function () {
     );
   });
 
+  // ========== EVENT CHANGE UNTUK UPDATE LABEL ==========
   $("select[name=brand]").on("change", function () {
     $("#changemerek").html($(this).find("option:selected").text());
   });
@@ -262,11 +368,13 @@ $(document).ready(function () {
     $("#changepackagin").html($(this).find("option:selected").text());
   });
 
+  // ========== JQ-MODEL UNTUK PREVIEW ==========
   $("*[jq-model]").on("change", function (argument) {
     var name = $(this).attr("jq-model");
     $('span[js-result="' + name + '"]').text($(this).val());
   });
 
+  // ========== FUNCTION READ URL UNTUK FILE UPLOAD ==========
   function readURL(input) {
     if (input.files && input.files[0]) {
       var reader = new FileReader();
@@ -281,7 +389,7 @@ $(document).ready(function () {
     readURL(this);
   });
 
-  // Tampilkan modal jika perlu
+  // ========== TAMPILKAN MODAL JIKA PERLU ==========
   if ($(".pilihjenisproduk").length > 0) {
     $(".pilihjenisproduk").modal("show");
   }
