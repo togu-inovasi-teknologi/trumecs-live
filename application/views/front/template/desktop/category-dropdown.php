@@ -7,7 +7,7 @@
             <a class="dropdown-toggle fw-bold" href="#" id="navbarDropdown-<?php echo $item['id'] ?>" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <?php echo $item['name'] ?>
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown-<?php echo $item['id'] ?>">
+            <ul class="dropdown-menu p-0" aria-labelledby="navbarDropdown-<?php echo $item['id'] ?>">
                 <li class="menu-item">
                     <div class="mega-menu">
                         <p class="d-flex gap-2 align-items-center fs-5 mb-1 fw-semibold">
@@ -16,7 +16,7 @@
                         </p>
                         <div class="menu-content">
                             <div class="section">
-                                <ul class="list-unstyled">
+                                <ul class="list-unstyled overflow-auto" style="max-height: 400px;">
                                     <?php $kategoris = $this->M_general->getcategori(['parent' => $item['id']]); ?>
                                     <?php if (count($kategoris) > 0): ?>
                                         <?php foreach ($kategoris as $items) : ?>
