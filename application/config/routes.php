@@ -67,6 +67,7 @@ $route['timthumb'] = 'timthumb';
 $route['product'] = 'product';
 $route['mechanic'] = 'mechanic';
 $route['article'] = 'article';
+$route['principal'] = 'principal';
 $route['agent'] = 'agent';
 $route['promo'] = 'promo';
 $route['jasa'] = 'jasa';

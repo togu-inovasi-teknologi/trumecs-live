@@ -5,9 +5,8 @@
             <div id="carouselExample" class="carousel slide px-0" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <a href="<?php echo base_url(); ?>c/all/query?q=on&nama=struman" target="_blank" class="click-banner-struman position-relative" data-google-tag="Banner Struman" style="cursor: pointer">
+                        <a href="<?php echo base_url(); ?>principal/struman" target="_blank" class="click-banner-struman position-relative" data-google-tag="Banner Struman" style="cursor: pointer">
                             <img src="<?php echo base_url() ?>timthumb?h=800 &src=<?php base_url(); ?>public/banner/promo-home/banner-struman.png" alt="Power Supply Struman" class="img-fluid w-100">
-                            <a href="https://wa.me/6285176912338?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan Produk Struman Apakah barang ini tersedia?") ?>" class="btn btnnewgreen position-absolute translate-middle btn-click-banner" data-google-tag="Click WA Banner Struman" style="left: 37%; bottom:14%;"><i class="bi bi-whatsapp"></i> Hubungi Kami</a>
                         </a>
                     </div>
                     <div class="carousel-item">

@@ -12,8 +12,25 @@ class Principal extends MX_Controller
         $this->load->language("partnership");
         $this->load->language("form");
     }
+    function _remap($param, $url)
+    {
+        $this->index($param);
+    }
 
-    function index()
+    public function index($url)
+    {
+        $targetUrl = 'https://migration.trumecs.com/' . $url;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $targetUrl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        echo $response;
+    }
+
+
+    function index2()
     {
         $data["seotitle"] = $this->lang->line('seo_title_principal');
         $data["seokeywords"] = "jual sparepart truk,sparepart truk";
@@ -402,5 +419,16 @@ class Principal extends MX_Controller
                 redirect('principal/dataequipment');
             }
         }
+    }
+    public function struman($url)
+    {
+        $targetUrl = 'https://migration.trumecs.com/' . $url;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $targetUrl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        echo $response;
     }
 }
