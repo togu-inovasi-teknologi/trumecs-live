@@ -228,7 +228,11 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                                 <a style="border:1px solid #ccc"
                                                     href="https://wa.me/<?= (isset($key['admin_phone'])) ? $key['admin_phone'] : '6285176912338' ?>?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["tittle"] . ". Apakah barang ini tersedia?") ?>"
                                                     class="btn btn-lg btnnew fw-bold text-center f14 wa-button-product"><i
-                                                        class="fa fa-whatsapp fa-2x f18 me-1"></i><?php echo $this->lang->line('tombol_whatsapp', FALSE); ?></a>
+                                                        class="fa fa-whatsapp fa-2x f18 me-1"></i><?php echo $this->lang->line('tombol_whatsapp', FALSE); ?> 1</a>
+                                                <a style="border:1px solid #ccc"
+                                                    href="https://wa.me/6285155406008?text=<?php echo urlencode("Hi Trumecs, saya tertarik dengan " . $key["tittle"] . ". Apakah barang ini tersedia?") ?>"
+                                                    class="btn btn-lg btnnew fw-bold text-center f14 wa-button-product"><i
+                                                        class="fa fa-whatsapp fa-2x f18 me-1"></i><?php echo $this->lang->line('tombol_whatsapp', FALSE); ?> 2</a>
                                                 <a style="border:1px solid #ccc"
                                                     href="mailto:info@trumecs.com?subject=<?php echo $key["tittle"] ?>&body=<?php echo "Hi Trumecs, saya tertarik dengan " . $key["tittle"] . ". \n \t Apakah barang ini tersedia?" ?>"
                                                     class="btn btn-lg btnnew fw-bold text-center f14 email-button-product"><i

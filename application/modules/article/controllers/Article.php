@@ -21,21 +21,12 @@ class article extends MX_Controller
 	public function index($url)
 	{
 		$targetUrl = 'https://migration.trumecs.com/' . $url;
-
-		// $targetUrl = 'http://localhost:3000/' . $url;
-
-		// Initialize cURL
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $targetUrl);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		// curl_setopt($ch, CURLOPT_REFERER, $targetUrl);
-		//https: //migration.trumecs.com/article
-
-		// Execute and get response
 		$response = curl_exec($ch);
 		curl_close($ch);
 
-		// Output the response
 		echo $response;
 	}
 

@@ -36,9 +36,12 @@
                         <div class="me-3">
                             <i class="bi bi-whatsapp icon-footer"></i>
                         </div>
-                        <div>
+                        <div class="d-flex flex-column gap-2">
                             <a href="https://wa.me/<?php echo platform_contact('whatsapp') ?>" target="_blank" rel="noopener noreferrer">
                                 <p class="fs-6 mb-0" style="color:#fff;">+<?php echo platform_contact('whatsapp') ?></p>
+                            </a>
+                            <a href="https://wa.me/6285155406008" target="_blank" rel="noopener noreferrer">
+                                <p class="fs-6 mb-0" style="color:#fff;">+6285155406008</p>
                             </a>
                         </div>
                     </div>
