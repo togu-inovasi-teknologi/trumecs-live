@@ -10,7 +10,7 @@
             <ul class="dropdown-menu p-0" aria-labelledby="navbarDropdown-<?php echo $item['id'] ?>">
                 <li class="menu-item">
                     <div class="mega-menu">
-                        <p class="d-flex gap-2 align-items-center fs-5 mb-1 fw-semibold">
+                        <p class="d-flex gap-2 align-items-center fs-5 mb-1 fw-semibold border-bottom pb-3">
                             <img src="<?php echo base_url() ?>public/icon/category/icon-<?php echo $item['url']; ?>.svg" alt="<?php echo $item['name'] ?>" />
                             <?php echo $item['name'] ?>
                         </p>
