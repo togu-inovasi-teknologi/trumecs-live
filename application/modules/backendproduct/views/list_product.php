@@ -210,10 +210,10 @@ function namectgr($id)
 				</a>
 			<?php } ?>
 			<?php if ($id_admin == 16) { ?>
-				<!-- <a href="<?= base_url() ?>backendproduct/myproduct/uploadProductLmpToSheetFromDB"
+				<a href="<?= base_url() ?>backendproduct/myproduct/uploadProductLmpToSheetFromDB"
 					class="btn btn-primary">
 					upload data DB
-				</a> -->
+				</a>
 				<a href="<?= base_url() ?>backendproduct/myproduct/syncProductLmpFromSheetToDB"
 					class="btn btn-primary">
 					Sync Data
