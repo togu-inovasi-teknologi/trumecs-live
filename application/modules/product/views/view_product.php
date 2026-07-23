@@ -182,10 +182,15 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                                         <span class="f22 nomt forange" style="font-size:24px;display:block;width:100%">
                                                             <span class="fw-bold" itemprop="priceCurrency" content="IDR">Rp</span>
                                                             <span class="fw-bold" itemprop="price">
-                                                                <?php echo number_format($display_price, 0, ',', '.'); ?>
+                                                                <?php if ($key['price'] != 0) : ?>
+                                                                    <?php echo number_format($display_price, 0, ',', '.'); ?>
+                                                                <?php else : ?>
+                                                                    Call
+                                                                <?php endif; ?>
                                                             </span>
                                                             <small class="f34" style="color:#999 !important">/ <?php echo strtolower($key["unit"]); ?></small>
                                                         </span>
+
 
                                                         <?php if ($promo_price > 0 && $original_price > $promo_price): ?>
                                                             <span class="fw-bold nomb label label-danger" style="font-weight:bold">
