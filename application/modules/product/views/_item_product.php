@@ -57,10 +57,14 @@
 
             <div class="mt-1">
                 <span class="<?php echo $key['price_promo'] != 0 ? 'text-danger fw-bold' : 'text-dark fw-bold' ?> fs-5">
-                    <span itemprop="priceCurrency" content="IDR">Rp</span>
-                    <span itemprop="price">
-                        <?php echo number_format(($key['price_promo'] == '0') ? $key['price'] : $key['price_promo'], 0, ',', '.'); ?>
-                    </span>
+                    <?php if ($key['price'] != 0) : ?>
+                        <span itemprop="priceCurrency" content="IDR">Rp</span>
+                        <span itemprop="price">
+                            <?php echo number_format(($key['price_promo'] == '0') ? $key['price'] : $key['price_promo'], 0, ',', '.'); ?>
+                        </span>
+                    <?php else : ?>
+                        Call
+                    <?php endif; ?>
                 </span>
             </div>
         </div>

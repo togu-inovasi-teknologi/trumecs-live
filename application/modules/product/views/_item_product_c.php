@@ -69,24 +69,29 @@
                     <!-- Harga Sekarang -->
                     <div class="current-price">
                         <h4 class="fs-6 fw-bold mb-0" style="color: #fa8420;">
-                            <span itemprop="priceCurrency" content="IDR">Rp</span>
-                            <span itemprop="price">
-                                <?php echo number_format(($key['price_promo'] == '0') ? $key['price'] : $key['price_promo'], 0, ',', '.'); ?>
-                            </span>
+                            <?php if ($key['price'] != 0) : ?>
+                                <span itemprop="priceCurrency" content="IDR">Rp</span>
+                                <span itemprop="price">
+                                    <?php echo number_format(($key['price_promo'] == '0') ? $key['price'] : $key['price_promo'], 0, ',', '.'); ?>
+                                </span>
+                            <?php else : ?>
+                                Call
+                            <?php endif; ?>
+
                         </h4>
                     </div>
                 </div>
             </div>
             <div class="card-footer border-0 p-0 mt-auto">
-            <button id="btnbuy<?php echo $key['id'] ?>"
-                class="btn btn-primary w-100 rounded-0 py-2">
-                <i class="bi bi-cart3 me-1"></i>
-                Beli
-            </button>
-        </div>
+                <button id="btnbuy<?php echo $key['id'] ?>"
+                    class="btn btn-primary w-100 rounded-0 py-2">
+                    <i class="bi bi-cart3 me-1"></i>
+                    Beli
+                </button>
+            </div>
         </a>
 
         <!-- Tombol Beli - Selalu di bawah -->
-        
+
     </div>
 </div>

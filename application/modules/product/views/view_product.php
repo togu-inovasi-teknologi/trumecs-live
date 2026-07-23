@@ -180,14 +180,15 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                                         ?>
 
                                                         <span class="f22 nomt forange" style="font-size:24px;display:block;width:100%">
-                                                            <span class="fw-bold" itemprop="priceCurrency" content="IDR">Rp</span>
-                                                            <span class="fw-bold" itemprop="price">
-                                                                <?php if ($key['price'] != 0) : ?>
+                                                            <?php if ($key['price'] != 0) : ?>
+                                                                <span class="fw-bold" itemprop="priceCurrency" content="IDR">Rp</span>
+                                                                <span class="fw-bold" itemprop="price">
                                                                     <?php echo number_format($display_price, 0, ',', '.'); ?>
-                                                                <?php else : ?>
-                                                                    Call
-                                                                <?php endif; ?>
-                                                            </span>
+                                                                </span>
+                                                            <?php else : ?>
+                                                                Call
+                                                            <?php endif; ?>
+
                                                             <small class="f34" style="color:#999 !important">/ <?php echo strtolower($key["unit"]); ?></small>
                                                         </span>
 
