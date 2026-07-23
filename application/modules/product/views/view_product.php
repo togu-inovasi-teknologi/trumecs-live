@@ -367,7 +367,13 @@ $img_promo = '<img class="labelimg hidden-sm-down" src="' . base_url() . '/publi
                                                         style=" text-decoration:none;"><?php echo $same["tittle"] ?></a></td>
                                                 <td style="text-align:center"><?php echo $same["brand_name"] ?></td>
                                                 <td style="text-align:center"><?php echo ($same["quality"] == 1 ? "Asli" : ($same["quality"] == 3 ? "Bekas" : ($same["quality"] == 3 ? "Tiruan" : ""))); ?></td>
-                                                <td style="text-align:right">Rp <?php echo number_format($same["price"], 0, ',', '.') ?></td>
+                                                <td style="text-align:right">
+                                                    <?php if ($key['price'] != 0) : ?>
+                                                        Rp <?php echo number_format($same["price"], 0, ',', '.') ?>
+                                                    <?php else : ?>
+                                                        Call
+                                                    <?php endif; ?>
+                                                </td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
