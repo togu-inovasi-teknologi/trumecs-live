@@ -29,6 +29,17 @@ class Product extends MX_Controller
     }
     public function index($url)
     {
+        $targetUrl = 'https://migration.trumecs.com/' . $url;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $targetUrl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        echo $response;
+    }
+    public function index2($url)
+    {
         $data["data_product"] = $this->product_model->getproduct($url);
 
         if (empty($data["data_product"])) {
