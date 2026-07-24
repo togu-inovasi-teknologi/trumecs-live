@@ -4,7 +4,7 @@
     <div class="card h-100 d-flex flex-column border-0 shadow" itemscope itemtype="http://schema.org/Product">
         <a class="<?php echo $this->uri->segment(1) == '' ? 'random-product' : 'related-product' ?> text-decoration-none flex-grow-1 d-flex flex-column"
             itemprop="url"
-            href="<?php echo base_url() ?>product/<?php echo $key['id'] ?>/<?php echo preg_replace('/[^a-zA-Z0-9]/', '-', ucwords(strtolower($key['tittle']))) ?>">
+            href="<?php echo base_url() ?>product/<?php echo $key['id'] ?>">
 
             <?php
             $lfp = strlen($key['img']);
@@ -79,13 +79,13 @@
                 </div>
             </div>
             <div class="card-footer border-0 p-0 mt-auto">
-            <button id="btnbuy<?php echo $key['id'] ?>"
-                class="btn btn-primary w-100 rounded-0 py-2">
-                <i class="bi bi-cart3 me-1"></i>
-                Beli
-            </button>
-        </div>
+                <button id="btnbuy<?php echo $key['id'] ?>"
+                    class="btn btn-primary w-100 rounded-0 py-2">
+                    <i class="bi bi-cart3 me-1"></i>
+                    Beli
+                </button>
+            </div>
         </a>
-        
+
     </div>
 </div>
