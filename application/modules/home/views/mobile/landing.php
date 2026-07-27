@@ -3,6 +3,11 @@
         <div id="carouselExample" class="carousel slide h-100" data-bs-ride="carousel">
             <div class="carousel-inner h-100">
                 <div class="carousel-item active h-100">
+                    <a href="<?php base_url(); ?>promo" target="_blank" class="click-banner-struman-mobile" data-google-tag="Mobile - Banner Struman">
+                        <img src="<?php echo base_url() ?>timthumb?h=600&src=<?php base_url(); ?>/public/banner/promo-home/banner-struman-mobile.png" class="d-block" style="width: 100%; height: 100%; max-height: 450px; object-fit: contain;" alt="banner trumecs.com">
+                    </a>
+                </div>
+                <div class="carousel-item h-100">
                     <a href="<?php base_url(); ?>promo" target="_blank" class="click-banner-utama-ab-bekas-mobile" data-google-tag="Mobile - Banner alat Berat Bekas">
                         <img src="<?php echo base_url() ?>timthumb?h=600&src=<?php base_url(); ?>/public/banner/home-mobile/1.png" class="d-block" style="width: 100%; height: 100%; max-height: 450px; object-fit: contain;" alt="banner trumecs.com">
                     </a>
