@@ -1,35 +1,17 @@
 DirectoryIndex index.php
 RewriteEngine on
 RewriteBase /
-
-# ========== 1. PROXY UNTUK NUXT ==========
-# Proxy untuk asset _nuxt (JS, CSS, dll)
-RewriteRule ^_nuxt/(.*)$ https://migration.trumecs.com/_nuxt/$1 [P,L]
-
-# Proxy untuk semua request yang mengandung prefix language
-# (en, zh, id, ja, ko, dll)
-RewriteRule ^(en|zh|id|ja|ko)/(.*)$ https://migration.trumecs.com/$1/$2 [P,L]
-
-# Proxy untuk request langsung ke migration (tanpa prefix)
-# Misal: /product/xxx atau /about
-# Tapi kita perlu mengecualikan beberapa path agar tidak bentrok dengan CI
-RewriteCond %{REQUEST_URI} !^/(principal|general|member|backend|home|cart|category|json|api)
-RewriteCond %{REQUEST_URI} !^/(index\.php|images|css|js|robots\.txt|favicon\.ico|asset)
-RewriteRule ^(.*)$ https://migration.trumecs.com/$1 [P,L]
-
-# ========== 2. CODEIGNITER ROUTES ==========
-# Aturan standar CodeIgniter untuk path yang tidak diproxy
-RewriteCond %{REQUEST_URI} !^/(_nuxt|en|zh|id|ja|ko)/
-RewriteCond $1 !^(index\.php|images|css|js|robots\.txt|favicon\.ico|asset)
+RewriteCond %{REQUEST_URI} !^/testnuxt
+RewriteCond %{REQUEST_URI} !^/simple
+RewriteCond $1 !^(index\.php|images|css|js|robots\.txt|favicon\.ico)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ ./index.php/$1 [L,QSA]
+RewriteRule ^_nuxt/(.*)$ https://migration.trumecs.com/_nuxt/$1 [P,L]
 
-# ========== 3. CORS HEADERS ==========
 <IfModule mod_headers.c>
     Header always set Access-Control-Allow-Origin "http://localhost:3000"
     Header always set Access-Control-Allow-Credentials "true"
 </IfModule>
 
-# ========== 4. SECURITY ==========
 Options -Indexes
