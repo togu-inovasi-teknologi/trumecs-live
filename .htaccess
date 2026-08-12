@@ -1,17 +1,29 @@
 DirectoryIndex index.php
 RewriteEngine on
 RewriteBase /
-RewriteCond %{REQUEST_URI} !^/testnuxt
-RewriteCond %{REQUEST_URI} !^/simple
-RewriteCond $1 !^(index\.php|images|css|js|robots\.txt|favicon\.ico)
+
+# ========== 1. PROXY UNTUK NUXT MIGRATION (HANYA PRODUCT) ==========
+
+# Proxy untuk asset _nuxt (JS, CSS, dll) - tetap diperlukan untuk Nuxt
+RewriteRule ^_nuxt/(.*)$ https://migration.trumecs.com/_nuxt/$1 [P,L]
+
+# Proxy khusus untuk product dengan prefix language
+# Contoh: /en/product/... atau /zh/product/... atau /id/product/...
+RewriteRule ^(en|zh|id|ja|ko)/product/(.*)$ https://migration.trumecs.com/$1/product/$2 [P,L]
+
+# ========== 2. CODEIGNITER ROUTES (UNTUK SEMUA YANG LAIN) ==========
+
+# Aturan standar CodeIgniter untuk semua request lainnya
+RewriteCond $1 !^(index\.php|images|css|js|robots\.txt|favicon\.ico|asset|uploads|_nuxt)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ ./index.php/$1 [L,QSA]
-RewriteRule ^_nuxt/(.*)$ https://migration.trumecs.com/_nuxt/$1 [P,L]
 
+# ========== 3. CORS HEADERS ==========
 <IfModule mod_headers.c>
     Header always set Access-Control-Allow-Origin "http://localhost:3000"
     Header always set Access-Control-Allow-Credentials "true"
 </IfModule>
 
+# ========== 4. SECURITY ==========
 Options -Indexes
