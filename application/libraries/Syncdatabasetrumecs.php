@@ -653,4 +653,209 @@ class Syncdatabasetrumecs
             ];
         }
     }
+
+    public function uploadAllDataGaleryToSheet($databases)
+    {
+        try {
+            $headers = [
+                'id',
+                'product',
+                'img',
+                'updated_at',
+            ];
+
+            $data = [];
+            $data[] = $headers;
+
+            foreach ($databases as $database) {
+                $data[] = [
+                    $database->id ?? 0,
+                    $database->product ?? null,
+                    $database->img ?? 'N/A',
+                    date('Y-m-d H:i:s', $database->created_at) ?? date('Y-m-d H:i:s'),
+                ];
+            }
+
+            $range = 'galery' . '!A1:D';
+            $body = new ValueRange([
+                'values' => $data
+            ]);
+
+            $params = [
+                'valueInputOption' => 'RAW'
+            ];
+
+            $response = $this->service->spreadsheets_values->update(
+                $this->spreadsheetId,
+                $range,
+                $body,
+                $params
+            );
+
+            return [
+                'success' => true,
+                'uploaded_rows' => count($databases),
+                'updated_cells' => $response->getUpdatedCells()
+            ];
+        } catch (Exception $e) {
+            return [
+                'success' => false,
+                'error' => $e->getMessage()
+            ];
+        }
+    }
+
+    public function getAllGaleryFromSheet()
+    {
+        try {
+            $range = 'galery' . '!A2:D';
+
+            $response = $this->service->spreadsheets_values->get(
+                $this->spreadsheetId,
+                $range
+            );
+
+            $values = $response->getValues();
+
+            if (empty($values)) {
+                return [
+                    'success' => true,
+                    'message' => 'No data found in sheet',
+                    'galerys' => []
+                ];
+            }
+
+            $galerys = [];
+            foreach ($values as $row) {
+                if (count($row) >= 11 && !empty($row[0])) {
+                    $updatedAt = $row[11] ?? date('Y-m-d H:i:s');
+                    if (is_string($updatedAt) && !strtotime($updatedAt)) {
+                        $updatedAt = date('Y-m-d H:i:s');
+                    }
+
+                    $galerys[] = [
+                        'id' => intval($row[0]),
+                        'product' => $row[1] ?? 'No Email',
+                        'img' => $row[2] ?? 'N/A',
+                        'updated_at' => $updatedAt
+                    ];
+                }
+            }
+
+            return [
+                'success' => true,
+                'galerys' => $galerys,
+                'total_rows' => count($galerys)
+            ];
+        } catch (Exception $e) {
+            log_message('error', 'Get galery From Sheet Error: ' . $e->getMessage());
+            return [
+                'success' => false,
+                'error' => $e->getMessage()
+            ];
+        }
+    }
+
+    public function syncGaleryFromSheetToDB()
+    {
+        try {
+            $sheetData = $this->getAllGaleryFromSheet();
+
+            if (!$sheetData['success']) {
+                throw new Exception('Failed to get data from sheet: ' . $sheetData['error']);
+            }
+
+            $sheetgalerys = $sheetData['galerys'];
+
+            $ci = &get_instance();
+            $ci->load->database();
+            $dbGalery = $ci->db->get('galery')->result_array();
+
+            // Convert ke format yang mudah diakses
+            $dbGaleryMap = [];
+            foreach ($dbGalery as $galery) {
+                $dbGaleryMap[$galery['id']] = $galery;
+            }
+
+            $sheetgalerysMap = [];
+            $sheetgaleryIds = [];
+
+            foreach ($sheetgalerys as $galery) {
+                $sheetgalerysMap[$galery['id']] = $galery;
+                $sheetgaleryIds[] = $galery['id'];
+            }
+
+            $stats = [
+                'created' => 0,
+                'updated' => 0,
+                'deleted' => 0,
+                'skipped' => 0,
+                'total_sheet' => count($sheetgalerys),
+                'total_db_before' => count($dbGalery)
+            ];
+
+            foreach ($sheetgalerys as $sheetgalery) {
+                $galeryId = $sheetgalery['id'];
+
+                if (empty($galeryId) || $galeryId == 0) {
+                    $stats['skipped']++;
+                    continue;
+                }
+
+                if (isset($dbGaleryMap[$galeryId])) {
+                    $dbgalery = $dbGaleryMap[$galeryId];
+                    $sheetUpdated = strtotime($sheetgalery['updated_at']);
+                    $dbUpdated = $dbgalery['updated_at'];
+                    if ($sheetUpdated > $dbUpdated) {
+
+                        $ci->db->where('id', $galeryId);
+                        $ci->db->update('galery', [
+                            'product' => $sheetgalery['product'],
+                            'img' => $sheetgalery['img'],
+                            'updated_at' => $sheetUpdated
+                        ]);
+
+                        if ($ci->db->affected_rows() > 0) {
+                            $stats['updated']++;
+                        }
+                    } else {
+                        $stats['skipped']++;
+                    }
+                } else {
+                    // CREATE: galery ada di sheet tapi tidak ada di database
+                    $ci->db->insert('galery', [
+                        'id' => $galeryId, // Insert dengan ID dari sheet
+                        'product' => $sheetgalery['product'],
+                        'img' => $sheetgalery['img'],
+                        'updated_at' => strtotime($sheetgalery['updated_at'])
+                    ]);
+
+                    if ($ci->db->insert_id()) {
+                        $stats['created']++;
+                    }
+                }
+            }
+            $dbgaleryIds = array_keys($dbGaleryMap);
+            $galerysToDelete = array_diff($dbgaleryIds, $sheetgaleryIds);
+
+            if (!empty($galerysToDelete)) {
+                $ci->db->where_in('id', $galerysToDelete);
+                $ci->db->delete('galery');
+                $stats['deleted'] = $ci->db->affected_rows();
+            }
+
+            $stats['total_db_after'] = $stats['total_db_before'] + $stats['created'] - $stats['deleted'];
+
+            return [
+                'success' => true,
+                'message' => 'Sync completed successfully',
+                'stats' => $stats
+            ];
+        } catch (Exception $e) {
+            return [
+                'success' => false,
+                'error' => $e->getMessage()
+            ];
+        }
+    }
 }
