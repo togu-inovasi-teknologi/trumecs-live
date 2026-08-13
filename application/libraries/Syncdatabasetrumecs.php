@@ -672,7 +672,7 @@ class Syncdatabasetrumecs
                     $database->id ?? 0,
                     $database->product ?? null,
                     $database->img ?? 'N/A',
-                    date('Y-m-d H:i:s', $database->created_at) ?? date('Y-m-d H:i:s'),
+                    date('Y-m-d H:i:s'),
                 ];
             }
 
@@ -728,7 +728,7 @@ class Syncdatabasetrumecs
             $galerys = [];
             foreach ($values as $row) {
                 if (count($row) >= 4 && !empty($row[0])) {
-                    $updatedAt = $row[3] ?? date('Y-m-d H:i:s');
+                    $updatedAt = date('Y-m-d H:i:s');
                     if (is_string($updatedAt) && !strtotime($updatedAt)) {
                         $updatedAt = date('Y-m-d H:i:s');
                     }
