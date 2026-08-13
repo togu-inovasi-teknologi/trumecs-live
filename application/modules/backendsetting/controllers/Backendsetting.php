@@ -535,7 +535,7 @@ class Backendsetting extends MX_Controller
         $result = $this->syncdatabasetrumecs->uploadAllDataAdminToSheet($admin);
 
         if ($result['success']) {
-            $this->session->set_flashdata('message', 'Berhasil Update ke Google Sheet');
+            $this->session->set_flashdata('message', 'Berhasil Update admin ke Google Sheet');
         } else {
             $this->session->set_flashdata('message', 'Gagal Update: ' . $result['error']);
         }
@@ -548,7 +548,7 @@ class Backendsetting extends MX_Controller
         $result = $this->syncdatabasetrumecs->syncAdminFromSheetToDB();
 
         if ($result['success']) {
-            $this->session->set_flashdata('message', 'Berhasil Sync ke DB dari Sheet');
+            $this->session->set_flashdata('message', 'Berhasil Sync admin ke DB dari Sheet');
         } else {
             $this->session->set_flashdata('message', 'Gagal Sync: ' . $result['error']);
         }
@@ -569,7 +569,7 @@ class Backendsetting extends MX_Controller
         $result = $this->syncdatabasetrumecs->uploadAllDataArtikelToSheet($artikel);
 
         if ($result['success']) {
-            $this->session->set_flashdata('message', 'Berhasil Update ke Google Sheet');
+            $this->session->set_flashdata('message', 'Berhasil Update Article ke Google Sheet');
         } else {
             $this->session->set_flashdata('message', 'Gagal Update: ' . $result['error']);
         }
@@ -582,7 +582,41 @@ class Backendsetting extends MX_Controller
         $result = $this->syncdatabasetrumecs->syncArtikelFromSheetToDB();
 
         if ($result['success']) {
-            $this->session->set_flashdata('message', 'Berhasil Sync ke DB dari Sheet');
+            $this->session->set_flashdata('message', 'Berhasil Sync Artikel ke DB dari Sheet');
+        } else {
+            $this->session->set_flashdata('message', 'Gagal Sync: ' . $result['error']);
+        }
+
+        redirect(base_url() . 'backendsetting/settingumum');
+    }
+
+    public function uploadGaleryToSheetFromDB()
+    {
+        $artikel = $this->etx_model->gettableObject('artikel');
+
+        if (empty($artikel)) {
+            $this->session->set_flashdata('message', 'Tidak ada data artikel yang ditemukan');
+            redirect(base_url() . 'backendsetting/settingumum');
+            return;
+        }
+
+        $result = $this->syncdatabasetrumecs->uploadAllDataGaleryToSheet($artikel);
+
+        if ($result['success']) {
+            $this->session->set_flashdata('message', 'Berhasil Update Galery ke Google Sheet');
+        } else {
+            $this->session->set_flashdata('message', 'Gagal Update: ' . $result['error']);
+        }
+
+        redirect(base_url() . 'backendsetting/settingumum');
+    }
+
+    public function syncDatabaseGalery()
+    {
+        $result = $this->syncdatabasetrumecs->syncGaleryFromSheetToDB();
+
+        if ($result['success']) {
+            $this->session->set_flashdata('message', 'Berhasil Sync Galery ke DB dari Sheet');
         } else {
             $this->session->set_flashdata('message', 'Gagal Sync: ' . $result['error']);
         }

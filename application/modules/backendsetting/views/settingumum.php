@@ -308,7 +308,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td>Sync Database Trumecs "Artikel"</td>
+								<td>Sync Database Trumecs "Galery"</td>
 								<td>
 									<div class="d-flex gap-2">
 										<a class="btn btn-orange" href="<?php echo base_url() ?>backendsetting/uploadGaleryToSheetFromDB"><i class="bi bi-upload"></i> DB To Sheet</a>
