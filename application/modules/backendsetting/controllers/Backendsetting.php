@@ -592,15 +592,15 @@ class Backendsetting extends MX_Controller
 
     public function uploadGaleryToSheetFromDB()
     {
-        $artikel = $this->etx_model->gettableObject('artikel');
+        $galery = $this->etx_model->gettableObject('galery');
 
-        if (empty($artikel)) {
-            $this->session->set_flashdata('message', 'Tidak ada data artikel yang ditemukan');
+        if (empty($galery)) {
+            $this->session->set_flashdata('message', 'Tidak ada data galery yang ditemukan');
             redirect(base_url() . 'backendsetting/settingumum');
             return;
         }
 
-        $result = $this->syncdatabasetrumecs->uploadAllDataGaleryToSheet($artikel);
+        $result = $this->syncdatabasetrumecs->uploadAllDataGaleryToSheet($galery);
 
         if ($result['success']) {
             $this->session->set_flashdata('message', 'Berhasil Update Galery ke Google Sheet');
