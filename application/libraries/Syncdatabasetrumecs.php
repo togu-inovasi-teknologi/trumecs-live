@@ -483,8 +483,8 @@ class Syncdatabasetrumecs
 
             $artikels = [];
             foreach ($values as $row) {
-                if (count($row) >= 11 && !empty($row[0])) {
-                    $updatedAt = $row[11] ?? date('Y-m-d H:i:s');
+                if (count($row) >= 27 && !empty($row[0])) {
+                    $updatedAt = $row[26] ?? date('Y-m-d H:i:s');
                     if (is_string($updatedAt) && !strtotime($updatedAt)) {
                         $updatedAt = date('Y-m-d H:i:s');
                     }
@@ -727,8 +727,8 @@ class Syncdatabasetrumecs
 
             $galerys = [];
             foreach ($values as $row) {
-                if (count($row) >= 11 && !empty($row[0])) {
-                    $updatedAt = $row[11] ?? date('Y-m-d H:i:s');
+                if (count($row) >= 4 && !empty($row[0])) {
+                    $updatedAt = $row[3] ?? date('Y-m-d H:i:s');
                     if (is_string($updatedAt) && !strtotime($updatedAt)) {
                         $updatedAt = date('Y-m-d H:i:s');
                     }
