@@ -150,36 +150,36 @@ $sessionmember = isset($session["member"]) ? $session["member"] : array('id' => 
                 </a>
 
                 <!-- Language Dropdown -->
-                <!-- <div class="dropdown">
-                                <a class="dropdown-toggle text-dark text-decoration-none d-flex align-items-center gap-1"
-                                    href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="<?php echo base_url() ?>public/icon/flag/<?php echo get_cookie('language'); ?>.png" width="20">
-                                    <?php echo $this->lang->line('bahasa'); ?>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item d-flex align-items-center gap-2"
-                                            href="<?php echo 'http://www.192.168.1.30:8080' . $_SERVER['REQUEST_URI']; ?>">
-                                            <img src="<?php echo base_url() ?>public/icon/flag/id.png" width="20">
-                                            <?php echo $this->lang->line('bahasa_indonesia'); ?>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item d-flex align-items-center gap-2"
-                                            href="<?php echo 'http://en.192.168.1.30:8080' . $_SERVER['REQUEST_URI']; ?>">
-                                            <img src="<?php echo base_url() ?>public/icon/flag/en.png" width="20">
-                                            <?php echo $this->lang->line('bahasa_inggris'); ?>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item d-flex align-items-center gap-2"
-                                            href="<?php echo 'http://cn.192.168.1.30:8080' . $_SERVER['REQUEST_URI']; ?>">
-                                            <img src="<?php echo base_url() ?>public/icon/flag/cn.png" width="20">
-                                            <?php echo $this->lang->line('bahasa_china'); ?>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div> -->
+                <div class="dropdown">
+                    <a class="dropdown-toggle text-dark text-decoration-none d-flex align-items-center gap-1"
+                        href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="<?php echo base_url() ?>public/icon/flag/<?php echo get_cookie('language'); ?>.png" width="20">
+                        <?php echo $this->lang->line('bahasa'); ?>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center gap-2"
+                                href="<?php echo 'https://www.trumecs.com' . $_SERVER['REQUEST_URI']; ?>">
+                                <img src="<?php echo base_url() ?>public/icon/flag/id.png" width="20">
+                                <?php echo $this->lang->line('bahasa_indonesia'); ?>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center gap-2"
+                                href="<?php echo 'https://en.trumecs.com' . $_SERVER['REQUEST_URI']; ?>">
+                                <img src="<?php echo base_url() ?>public/icon/flag/en.png" width="20">
+                                <?php echo $this->lang->line('bahasa_inggris'); ?>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center gap-2"
+                                href="<?php echo 'https://zn.trumecs.com' . $_SERVER['REQUEST_URI']; ?>">
+                                <img src="<?php echo base_url() ?>public/icon/flag/cn.png" width="20">
+                                <?php echo $this->lang->line('bahasa_china'); ?>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
