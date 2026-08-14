@@ -62,6 +62,8 @@ $route['introduction'] = 'home/introduction';
 $route['home/vcard/(:any)'] = 'home/vcard/$1';
 
 $route['_nuxt/(.*)'] = 'general/proxyAssets/$1';
+$route['zh/(.*)'] = '$1/zh';
+$route['en/(.*)'] = '$1/en';
 
 $route['timthumb'] = 'timthumb';
 $route['product'] = 'product';
