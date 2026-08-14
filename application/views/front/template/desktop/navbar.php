@@ -173,7 +173,7 @@ $sessionmember = isset($session["member"]) ? $session["member"] : array('id' => 
                         </li>
                         <li>
                             <a class="dropdown-item d-flex align-items-center gap-2"
-                                href="<?php echo 'https://zn.trumecs.com' . $_SERVER['REQUEST_URI']; ?>">
+                                href="<?php echo 'https://zh.trumecs.com' . $_SERVER['REQUEST_URI']; ?>">
                                 <img src="<?php echo base_url() ?>public/icon/flag/cn.png" width="20">
                                 <?php echo $this->lang->line('bahasa_china'); ?>
                             </a>
