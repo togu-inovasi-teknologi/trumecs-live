@@ -90,11 +90,12 @@ class Backendproduct extends MX_Controller
     {
 
         $result = $this->spreadsheetapi->syncProductsFromSheetToDB('Product-list');
+        var_dump($result);
 
         if ($result['success']) {
             $this->session->set_flashdata(
                 'message',
-                $result
+                "Berhasil Sync"
             );
         } else {
             $this->session->set_flashdata(
