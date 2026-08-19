@@ -91,6 +91,7 @@ class Backendproduct extends MX_Controller
 
         $result = $this->spreadsheetapi->syncProductsFromSheetToDB('Product-list');
         var_dump($result);
+        die;
 
         if ($result['success']) {
             $this->session->set_flashdata(
