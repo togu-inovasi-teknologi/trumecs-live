@@ -94,7 +94,7 @@ class Backendproduct extends MX_Controller
         if ($result['success']) {
             $this->session->set_flashdata(
                 'message',
-                'Berhasil Sync '
+                $result
             );
         } else {
             $this->session->set_flashdata(
