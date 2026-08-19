@@ -67,8 +67,7 @@ class Spreadsheetapi
     public function readAll($sheet)
     {
         try {
-            // Ambil semua data dari row 2 sampai kolom K
-            $range = $sheet . '!A2:K';
+            $range = $sheet . '!A2:CJ';
             $response = $this->service->spreadsheets_values->get($this->spreadsheetId, $range);
             $values = $response->getValues();
 
@@ -372,9 +371,7 @@ class Spreadsheetapi
 
             $products = [];
             foreach ($values as $row) {
-                // Validasi: minimal 88 kolom dan id tidak kosong
                 if (count($row) >= 88 && !empty($row[0])) {
-                    // Ambil updated_at dari kolom CJ (index 87)
                     $updatedAt = $row[87] ?? date('Y-m-d H:i:s');
                     if (is_string($updatedAt) && !strtotime($updatedAt)) {
                         $updatedAt = date('Y-m-d H:i:s');
@@ -502,7 +499,6 @@ class Spreadsheetapi
             $ci->load->database();
             $dbProducts = $ci->db->get('product')->result_array();
 
-            // Convert ke format yang mudah diakses
             $dbProductsMap = [];
             foreach ($dbProducts as $product) {
                 $dbProductsMap[$product['id']] = $product;
@@ -533,7 +529,6 @@ class Spreadsheetapi
                 if (isset($dbProductsMap[$productId])) {
                     $dbProduct = $dbProductsMap[$productId];
 
-                    // Konversi updated_at ke timestamp
                     $sheetUpdated = is_numeric($sheetProduct['updated_at'])
                         ? intval($sheetProduct['updated_at'])
                         : strtotime($sheetProduct['updated_at']);
@@ -640,7 +635,6 @@ class Spreadsheetapi
                         $stats['skipped']++;
                     }
                 } else {
-                    // CREATE: product ada di sheet tapi tidak di database
                     $ci->db->insert('product', [
                         'id' => $productId,
                         'tittle' => $sheetProduct['tittle'],
@@ -742,17 +736,8 @@ class Spreadsheetapi
                 }
             }
 
-            // Hapus data yang ada di database tapi tidak di sheet
-            $dbProductIds = array_keys($dbProductsMap);
-            $productsToDelete = array_diff($dbProductIds, $sheetProductIds);
-
-            if (!empty($productsToDelete)) {
-                $ci->db->where_in('id', $productsToDelete);
-                $ci->db->delete('product');
-                $stats['deleted'] = $ci->db->affected_rows();
-            }
-
-            $stats['total_db_after'] = $stats['total_db_before'] + $stats['created'] - $stats['deleted'];
+            $stats['total_db_after'] = $stats['total_db_before'] + $stats['created'];
+            var_dump($stats);
 
             return [
                 'success' => true,
