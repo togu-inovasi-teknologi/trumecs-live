@@ -354,7 +354,7 @@ class Spreadsheetapi
     public function getAllProductsFromSheet($sheet)
     {
         try {
-            $range = $sheet . '!A2:K';
+            $range = $sheet . '!A2:CJ'; // 88 kolom (A sampai CJ)
             $response = $this->service->spreadsheets_values->get(
                 $this->spreadsheetId,
                 $range
@@ -372,8 +372,10 @@ class Spreadsheetapi
 
             $products = [];
             foreach ($values as $row) {
-                if (count($row) >= 11 && !empty($row[0])) {
-                    $updatedAt = $row[10] ?? date('Y-m-d H:i:s');
+                // Validasi: minimal 88 kolom dan id tidak kosong
+                if (count($row) >= 88 && !empty($row[0])) {
+                    // Ambil updated_at dari kolom CJ (index 87)
+                    $updatedAt = $row[87] ?? date('Y-m-d H:i:s');
                     if (is_string($updatedAt) && !strtotime($updatedAt)) {
                         $updatedAt = date('Y-m-d H:i:s');
                     }
@@ -382,13 +384,90 @@ class Spreadsheetapi
                         'id' => intval($row[0]),
                         'tittle' => $row[1] ?? 'No Title',
                         'partnumber' => $row[2] ?? 'N/A',
-                        'sku_number' => $row[3] ?? 'N/A',
-                        'stock' => intval($row[4] ?? 0),
-                        'unit' => $row[5] ?? 'pcs',
-                        'description' => $row[6] ?? 'No Description',
-                        'price' => $row[7] ?? 0,
-                        'status' => $row[8] ?? 'Unknown',
-                        'store_id' => intval($row[9] ?? 0),
+                        'physicnumber' => $row[3] ?? 'N/A',
+                        'quality' => $row[4] ?? 'N/A',
+                        'stock' => intval($row[5] ?? 0),
+                        'moq' => intval($row[6] ?? 0),
+                        'price' => floatval($row[7] ?? 0),
+                        'price_promo' => floatval($row[8] ?? 0),
+                        'price_bigsale' => floatval($row[9] ?? 0),
+                        'img' => $row[10] ?? '',
+                        'promo' => $row[11] ?? '',
+                        'categori' => $row[12] ?? 'N/A',
+                        'jenisproduct' => $row[13] ?? 'N/A',
+                        'partnumber_trumecs' => $row[14] ?? 'N/A',
+                        'price_old' => floatval($row[15] ?? 0),
+                        'made' => $row[16] ?? 'N/A',
+                        'warranty' => $row[17] ?? 'N/A',
+                        'unit' => $row[18] ?? 'pcs',
+                        'warrantyvendor' => $row[19] ?? 'N/A',
+                        'livetime' => $row[20] ?? 'N/A',
+                        'dimention' => $row[21] ?? 'N/A',
+                        'packagin' => $row[22] ?? 'N/A',
+                        'weight' => floatval($row[23] ?? 0),
+                        'description' => $row[24] ?? 'No Description',
+                        'view' => intval($row[25] ?? 0),
+                        'sx' => $row[26] ?? 'N/A',
+                        'sy' => $row[27] ?? 'N/A',
+                        'sz' => $row[28] ?? 'N/A',
+                        'px' => $row[29] ?? 'N/A',
+                        'py' => $row[30] ?? 'N/A',
+                        'pz' => $row[31] ?? 'N/A',
+                        'brand' => $row[32] ?? 'N/A',
+                        'type' => $row[33] ?? 'N/A',
+                        'component' => $row[34] ?? 'N/A',
+                        'status' => $row[35] ?? 'Unknown',
+                        'availability_at' => $row[36] ?? 'N/A',
+                        'estimated_delivery' => $row[37] ?? 'N/A',
+                        'estimated_deliveryindent' => $row[38] ?? 'N/A',
+                        'ppn' => floatval($row[39] ?? 0),
+                        'link_tokped' => $row[40] ?? '',
+                        'link_bukalapak' => $row[41] ?? '',
+                        'link_shopee' => $row[42] ?? '',
+                        'link_blibli' => $row[43] ?? '',
+                        'area' => $row[44] ?? 'N/A',
+                        'youtube' => $row[45] ?? '',
+                        'brand_unit' => $row[46] ?? 'N/A',
+                        'created_by' => $row[47] ?? 'System',
+                        'updated_by' => $row[48] ?? 'System',
+                        'tittle_en' => $row[49] ?? 'No Title',
+                        'warranty_en' => $row[50] ?? 'N/A',
+                        'unit_en' => $row[51] ?? 'pcs',
+                        'warrantyvendor_en' => $row[52] ?? 'N/A',
+                        'livetime_en' => $row[53] ?? 'N/A',
+                        'packagin_en' => $row[54] ?? 'N/A',
+                        'description_en' => $row[55] ?? 'No Description',
+                        'tittle_ch' => $row[56] ?? 'No Title',
+                        'warranty_ch' => $row[57] ?? 'N/A',
+                        'unit_ch' => $row[58] ?? 'pcs',
+                        'warrantyvendor_ch' => $row[59] ?? 'N/A',
+                        'livetime_ch' => $row[60] ?? 'N/A',
+                        'packagin_ch' => $row[61] ?? 'N/A',
+                        'description_ch' => $row[62] ?? 'No Description',
+                        'promo_cbd_price' => floatval($row[63] ?? 0),
+                        'promo_volume' => intval($row[64] ?? 0),
+                        'promo_volume_price' => floatval($row[65] ?? 0),
+                        'promo_referral_price' => floatval($row[66] ?? 0),
+                        'store_id' => intval($row[67] ?? 0),
+                        'is_sell' => $row[68] ?? 'No',
+                        'is_rent' => $row[69] ?? 'No',
+                        'rent_description' => $row[70] ?? '',
+                        'operator_option' => $row[71] ?? 'N/A',
+                        'fuel_option' => $row[72] ?? 'N/A',
+                        'rent_description_en' => $row[73] ?? '',
+                        'rent_description_ch' => $row[74] ?? '',
+                        'rent_time_unit' => intval($row[75] ?? 0),
+                        'hour_meter' => floatval($row[76] ?? 0),
+                        'minimum_rent' => intval($row[77] ?? 0),
+                        'operator_price' => floatval($row[78] ?? 0),
+                        'rent_price' => floatval($row[79] ?? 0),
+                        'is_service' => $row[80] ?? 'No',
+                        'file' => $row[81] ?? '',
+                        'sku_number' => $row[82] ?? 'N/A',
+                        'price_description' => $row[83] ?? '',
+                        'last_medical' => $row[84] ?? 'N/A',
+                        'last_education' => $row[85] ?? 'N/A',
+                        'created_at' => $row[86] ?? date('Y-m-d H:i:s'),
                         'updated_at' => $updatedAt
                     ];
                 }
@@ -429,11 +508,8 @@ class Spreadsheetapi
                 $dbProductsMap[$product['id']] = $product;
             }
 
-            $sheetProductsMap = [];
             $sheetProductIds = [];
-
             foreach ($sheetProducts as $product) {
-                $sheetProductsMap[$product['id']] = $product;
                 $sheetProductIds[] = $product['id'];
             }
 
@@ -456,22 +532,105 @@ class Spreadsheetapi
 
                 if (isset($dbProductsMap[$productId])) {
                     $dbProduct = $dbProductsMap[$productId];
-                    $sheetUpdated = strtotime($sheetProduct['updated_at']);
-                    $dbUpdated = strtotime($dbProduct['updated_at']);
+
+                    // Konversi updated_at ke timestamp
+                    $sheetUpdated = is_numeric($sheetProduct['updated_at'])
+                        ? intval($sheetProduct['updated_at'])
+                        : strtotime($sheetProduct['updated_at']);
+
+                    $dbUpdated = is_numeric($dbProduct['updated_at'])
+                        ? intval($dbProduct['updated_at'])
+                        : strtotime($dbProduct['updated_at']);
 
                     if ($sheetUpdated > $dbUpdated) {
                         $ci->db->where('id', $productId);
                         $ci->db->update('product', [
                             'tittle' => $sheetProduct['tittle'],
                             'partnumber' => $sheetProduct['partnumber'],
-                            'sku_number' => $sheetProduct['sku_number'],
+                            'physicnumber' => $sheetProduct['physicnumber'],
+                            'quality' => $sheetProduct['quality'],
                             'stock' => $sheetProduct['stock'],
-                            'unit' => $sheetProduct['unit'],
-                            'description' => $sheetProduct['description'],
+                            'moq' => $sheetProduct['moq'],
                             'price' => $sheetProduct['price'],
+                            'price_promo' => $sheetProduct['price_promo'],
+                            'price_bigsale' => $sheetProduct['price_bigsale'],
+                            'img' => $sheetProduct['img'],
+                            'promo' => $sheetProduct['promo'],
+                            'categori' => $sheetProduct['categori'],
+                            'jenisproduct' => $sheetProduct['jenisproduct'],
+                            'partnumber_trumecs' => $sheetProduct['partnumber_trumecs'],
+                            'price_old' => $sheetProduct['price_old'],
+                            'made' => $sheetProduct['made'],
+                            'warranty' => $sheetProduct['warranty'],
+                            'unit' => $sheetProduct['unit'],
+                            'warrantyvendor' => $sheetProduct['warrantyvendor'],
+                            'livetime' => $sheetProduct['livetime'],
+                            'dimention' => $sheetProduct['dimention'],
+                            'packagin' => $sheetProduct['packagin'],
+                            'weight' => $sheetProduct['weight'],
+                            'description' => $sheetProduct['description'],
+                            'view' => $sheetProduct['view'],
+                            'sx' => $sheetProduct['sx'],
+                            'sy' => $sheetProduct['sy'],
+                            'sz' => $sheetProduct['sz'],
+                            'px' => $sheetProduct['px'],
+                            'py' => $sheetProduct['py'],
+                            'pz' => $sheetProduct['pz'],
+                            'brand' => $sheetProduct['brand'],
+                            'type' => $sheetProduct['type'],
+                            'component' => $sheetProduct['component'],
                             'status' => $sheetProduct['status'],
+                            'availability_at' => $sheetProduct['availability_at'],
+                            'estimated_delivery' => $sheetProduct['estimated_delivery'],
+                            'estimated_deliveryindent' => $sheetProduct['estimated_deliveryindent'],
+                            'ppn' => $sheetProduct['ppn'],
+                            'link_tokped' => $sheetProduct['link_tokped'],
+                            'link_bukalapak' => $sheetProduct['link_bukalapak'],
+                            'link_shopee' => $sheetProduct['link_shopee'],
+                            'link_blibli' => $sheetProduct['link_blibli'],
+                            'area' => $sheetProduct['area'],
+                            'youtube' => $sheetProduct['youtube'],
+                            'brand_unit' => $sheetProduct['brand_unit'],
+                            'created_by' => $sheetProduct['created_by'],
+                            'updated_by' => $sheetProduct['updated_by'],
+                            'tittle_en' => $sheetProduct['tittle_en'],
+                            'warranty_en' => $sheetProduct['warranty_en'],
+                            'unit_en' => $sheetProduct['unit_en'],
+                            'warrantyvendor_en' => $sheetProduct['warrantyvendor_en'],
+                            'livetime_en' => $sheetProduct['livetime_en'],
+                            'packagin_en' => $sheetProduct['packagin_en'],
+                            'description_en' => $sheetProduct['description_en'],
+                            'tittle_ch' => $sheetProduct['tittle_ch'],
+                            'warranty_ch' => $sheetProduct['warranty_ch'],
+                            'unit_ch' => $sheetProduct['unit_ch'],
+                            'warrantyvendor_ch' => $sheetProduct['warrantyvendor_ch'],
+                            'livetime_ch' => $sheetProduct['livetime_ch'],
+                            'packagin_ch' => $sheetProduct['packagin_ch'],
+                            'description_ch' => $sheetProduct['description_ch'],
+                            'promo_cbd_price' => $sheetProduct['promo_cbd_price'],
+                            'promo_volume' => $sheetProduct['promo_volume'],
+                            'promo_volume_price' => $sheetProduct['promo_volume_price'],
+                            'promo_referral_price' => $sheetProduct['promo_referral_price'],
                             'store_id' => $sheetProduct['store_id'],
-                            'updated_at' => $sheetProduct['updated_at']
+                            'is_sell' => $sheetProduct['is_sell'],
+                            'is_rent' => $sheetProduct['is_rent'],
+                            'rent_description' => $sheetProduct['rent_description'],
+                            'operator_option' => $sheetProduct['operator_option'],
+                            'fuel_option' => $sheetProduct['fuel_option'],
+                            'rent_description_en' => $sheetProduct['rent_description_en'],
+                            'rent_description_ch' => $sheetProduct['rent_description_ch'],
+                            'rent_time_unit' => $sheetProduct['rent_time_unit'],
+                            'hour_meter' => $sheetProduct['hour_meter'],
+                            'minimum_rent' => $sheetProduct['minimum_rent'],
+                            'operator_price' => $sheetProduct['operator_price'],
+                            'rent_price' => $sheetProduct['rent_price'],
+                            'is_service' => $sheetProduct['is_service'],
+                            'file' => $sheetProduct['file'],
+                            'sku_number' => $sheetProduct['sku_number'],
+                            'price_description' => $sheetProduct['price_description'],
+                            'last_medical' => $sheetProduct['last_medical'],
+                            'last_education' => $sheetProduct['last_education'],
+                            'updated_at' => $sheetUpdated
                         ]);
 
                         if ($ci->db->affected_rows() > 0) {
@@ -481,19 +640,100 @@ class Spreadsheetapi
                         $stats['skipped']++;
                     }
                 } else {
+                    // CREATE: product ada di sheet tapi tidak di database
                     $ci->db->insert('product', [
                         'id' => $productId,
                         'tittle' => $sheetProduct['tittle'],
                         'partnumber' => $sheetProduct['partnumber'],
-                        'sku_number' => $sheetProduct['sku_number'],
+                        'physicnumber' => $sheetProduct['physicnumber'],
+                        'quality' => $sheetProduct['quality'],
                         'stock' => $sheetProduct['stock'],
-                        'unit' => $sheetProduct['unit'],
-                        'description' => $sheetProduct['description'],
+                        'moq' => $sheetProduct['moq'],
                         'price' => $sheetProduct['price'],
+                        'price_promo' => $sheetProduct['price_promo'],
+                        'price_bigsale' => $sheetProduct['price_bigsale'],
+                        'img' => $sheetProduct['img'],
+                        'promo' => $sheetProduct['promo'],
+                        'categori' => $sheetProduct['categori'],
+                        'jenisproduct' => $sheetProduct['jenisproduct'],
+                        'partnumber_trumecs' => $sheetProduct['partnumber_trumecs'],
+                        'price_old' => $sheetProduct['price_old'],
+                        'made' => $sheetProduct['made'],
+                        'warranty' => $sheetProduct['warranty'],
+                        'unit' => $sheetProduct['unit'],
+                        'warrantyvendor' => $sheetProduct['warrantyvendor'],
+                        'livetime' => $sheetProduct['livetime'],
+                        'dimention' => $sheetProduct['dimention'],
+                        'packagin' => $sheetProduct['packagin'],
+                        'weight' => $sheetProduct['weight'],
+                        'description' => $sheetProduct['description'],
+                        'view' => $sheetProduct['view'],
+                        'sx' => $sheetProduct['sx'],
+                        'sy' => $sheetProduct['sy'],
+                        'sz' => $sheetProduct['sz'],
+                        'px' => $sheetProduct['px'],
+                        'py' => $sheetProduct['py'],
+                        'pz' => $sheetProduct['pz'],
+                        'brand' => $sheetProduct['brand'],
+                        'type' => $sheetProduct['type'],
+                        'component' => $sheetProduct['component'],
                         'status' => $sheetProduct['status'],
+                        'availability_at' => $sheetProduct['availability_at'],
+                        'estimated_delivery' => $sheetProduct['estimated_delivery'],
+                        'estimated_deliveryindent' => $sheetProduct['estimated_deliveryindent'],
+                        'ppn' => $sheetProduct['ppn'],
+                        'link_tokped' => $sheetProduct['link_tokped'],
+                        'link_bukalapak' => $sheetProduct['link_bukalapak'],
+                        'link_shopee' => $sheetProduct['link_shopee'],
+                        'link_blibli' => $sheetProduct['link_blibli'],
+                        'area' => $sheetProduct['area'],
+                        'youtube' => $sheetProduct['youtube'],
+                        'brand_unit' => $sheetProduct['brand_unit'],
+                        'created_by' => $sheetProduct['created_by'],
+                        'updated_by' => $sheetProduct['updated_by'],
+                        'tittle_en' => $sheetProduct['tittle_en'],
+                        'warranty_en' => $sheetProduct['warranty_en'],
+                        'unit_en' => $sheetProduct['unit_en'],
+                        'warrantyvendor_en' => $sheetProduct['warrantyvendor_en'],
+                        'livetime_en' => $sheetProduct['livetime_en'],
+                        'packagin_en' => $sheetProduct['packagin_en'],
+                        'description_en' => $sheetProduct['description_en'],
+                        'tittle_ch' => $sheetProduct['tittle_ch'],
+                        'warranty_ch' => $sheetProduct['warranty_ch'],
+                        'unit_ch' => $sheetProduct['unit_ch'],
+                        'warrantyvendor_ch' => $sheetProduct['warrantyvendor_ch'],
+                        'livetime_ch' => $sheetProduct['livetime_ch'],
+                        'packagin_ch' => $sheetProduct['packagin_ch'],
+                        'description_ch' => $sheetProduct['description_ch'],
+                        'promo_cbd_price' => $sheetProduct['promo_cbd_price'],
+                        'promo_volume' => $sheetProduct['promo_volume'],
+                        'promo_volume_price' => $sheetProduct['promo_volume_price'],
+                        'promo_referral_price' => $sheetProduct['promo_referral_price'],
                         'store_id' => $sheetProduct['store_id'],
-                        'created_at' => $sheetProduct['updated_at'],
-                        'updated_at' => $sheetProduct['updated_at']
+                        'is_sell' => $sheetProduct['is_sell'],
+                        'is_rent' => $sheetProduct['is_rent'],
+                        'rent_description' => $sheetProduct['rent_description'],
+                        'operator_option' => $sheetProduct['operator_option'],
+                        'fuel_option' => $sheetProduct['fuel_option'],
+                        'rent_description_en' => $sheetProduct['rent_description_en'],
+                        'rent_description_ch' => $sheetProduct['rent_description_ch'],
+                        'rent_time_unit' => $sheetProduct['rent_time_unit'],
+                        'hour_meter' => $sheetProduct['hour_meter'],
+                        'minimum_rent' => $sheetProduct['minimum_rent'],
+                        'operator_price' => $sheetProduct['operator_price'],
+                        'rent_price' => $sheetProduct['rent_price'],
+                        'is_service' => $sheetProduct['is_service'],
+                        'file' => $sheetProduct['file'],
+                        'sku_number' => $sheetProduct['sku_number'],
+                        'price_description' => $sheetProduct['price_description'],
+                        'last_medical' => $sheetProduct['last_medical'],
+                        'last_education' => $sheetProduct['last_education'],
+                        'created_at' => is_numeric($sheetProduct['created_at'])
+                            ? intval($sheetProduct['created_at'])
+                            : strtotime($sheetProduct['created_at']),
+                        'updated_at' => is_numeric($sheetProduct['updated_at'])
+                            ? intval($sheetProduct['updated_at'])
+                            : strtotime($sheetProduct['updated_at'])
                     ]);
 
                     if ($ci->db->insert_id()) {
@@ -502,7 +742,17 @@ class Spreadsheetapi
                 }
             }
 
-            $stats['total_db_after'] = $stats['total_db_before'] + $stats['created'];
+            // Hapus data yang ada di database tapi tidak di sheet
+            $dbProductIds = array_keys($dbProductsMap);
+            $productsToDelete = array_diff($dbProductIds, $sheetProductIds);
+
+            if (!empty($productsToDelete)) {
+                $ci->db->where_in('id', $productsToDelete);
+                $ci->db->delete('product');
+                $stats['deleted'] = $ci->db->affected_rows();
+            }
+
+            $stats['total_db_after'] = $stats['total_db_before'] + $stats['created'] - $stats['deleted'];
 
             return [
                 'success' => true,
@@ -510,6 +760,7 @@ class Spreadsheetapi
                 'stats' => $stats
             ];
         } catch (Exception $e) {
+            log_message('error', 'Sync Products Error: ' . $e->getMessage());
             return [
                 'success' => false,
                 'error' => $e->getMessage()
