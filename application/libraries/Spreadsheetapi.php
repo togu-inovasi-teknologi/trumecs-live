@@ -499,20 +499,15 @@ class Spreadsheetapi
             $ci->load->database();
             $dbProducts = $ci->db->get('product')->result_array();
 
+            // Convert ke format yang mudah diakses
             $dbProductsMap = [];
             foreach ($dbProducts as $product) {
                 $dbProductsMap[$product['id']] = $product;
             }
 
-            $sheetProductIds = [];
-            foreach ($sheetProducts as $product) {
-                $sheetProductIds[] = $product['id'];
-            }
-
             $stats = [
                 'created' => 0,
                 'updated' => 0,
-                'deleted' => 0,
                 'skipped' => 0,
                 'total_sheet' => count($sheetProducts),
                 'total_db_before' => count($dbProducts)
@@ -529,6 +524,7 @@ class Spreadsheetapi
                 if (isset($dbProductsMap[$productId])) {
                     $dbProduct = $dbProductsMap[$productId];
 
+                    // Konversi updated_at ke timestamp
                     $sheetUpdated = is_numeric($sheetProduct['updated_at'])
                         ? intval($sheetProduct['updated_at'])
                         : strtotime($sheetProduct['updated_at']);
@@ -537,6 +533,7 @@ class Spreadsheetapi
                         ? intval($dbProduct['updated_at'])
                         : strtotime($dbProduct['updated_at']);
 
+                    // Jika sheet lebih baru, update
                     if ($sheetUpdated > $dbUpdated) {
                         $ci->db->where('id', $productId);
                         $ci->db->update('product', [
@@ -635,6 +632,7 @@ class Spreadsheetapi
                         $stats['skipped']++;
                     }
                 } else {
+                    // CREATE: product ada di sheet tapi tidak di database
                     $ci->db->insert('product', [
                         'id' => $productId,
                         'tittle' => $sheetProduct['tittle'],
@@ -737,11 +735,10 @@ class Spreadsheetapi
             }
 
             $stats['total_db_after'] = $stats['total_db_before'] + $stats['created'];
-            var_dump($stats);
 
             return [
                 'success' => true,
-                'message' => $stats . 'Sync completed successfully',
+                'message' => 'Sync completed successfully',
                 'stats' => $stats
             ];
         } catch (Exception $e) {
