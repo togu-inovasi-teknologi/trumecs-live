@@ -741,7 +741,7 @@ class Spreadsheetapi
 
             return [
                 'success' => true,
-                'message' => 'Sync completed successfully',
+                'message' => $stats . 'Sync completed successfully',
                 'stats' => $stats
             ];
         } catch (Exception $e) {
