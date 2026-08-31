@@ -77,54 +77,57 @@
     </div>
 </section>
 <section class="mb-3 mt-5">
-    <div class="row">
-        <div id="carouselPromoBanner" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <a href="https://ers-id.informa-info.com/epi26?cid=trumecs" target="_blank" class="click-banner-battery-sub-mobile" data-google-tag="Banner Battery Pamerindo Sub Mobile">
-                        <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/banner-battery-sub-mobile.png" alt="Battery Pamerindo Sub Mobile" class="img-fluid w-100">
-                    </a>
-                </div>
-                <div class="carousel-item">
-                    <a href="https://ers-id.informa-info.com/adx26?cid=trumecs" target="_blank" class="click-banner-adexco-sub-mobile" data-google-tag="Banner Adexco Pamerindo Sub Mobile">
-                        <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/banner-adexco-sub-mobile.png" alt="Adexco Pamerindo Sub Mobile" class="img-fluid w-100">
-                    </a>
-                </div>
-                <div class="carousel-item">
-                    <a href="https://ers-id.informa-info.com/adx26?cid=trumecs" target="_blank" class="click-banner-water-sub-mobile" data-google-tag="Banner Water Pamerindo Sub Mobile">
-                        <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/banner-water-sub-mobile.png" alt="Water Pamerindo Sub Mobile" class="img-fluid w-100">
-                    </a>
-                </div>
-                <div class="carousel-item">
-                    <a href="<?php echo base_url(); ?>product/1770/Turalik-52" target="_blank" class="click-banner-turalik-52-mobile" data-google-tag="Banner Promo Turalik 52">
-                        <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/turalik-52.png" alt="Promo harga murah untuk Pertamina Turalik 52" class="img-fluid w-100">
-                    </a>
-                </div>
-                <div class="carousel-item">
-                    <a href="<?php echo base_url(); ?>product/2009/Meditran-Sx-Plus-15w-40-Ci4" target="_blank" class="click-banner-meditran-sx-plus-mobile" data-google-tag="Banner Promo Meditran SX Plus">
-                        <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/meditran-sx-plus.png" alt="Promo harga murah untuk Pertamina SX Plus 15w 40 CI4" class="img-fluid w-100">
-                    </a>
-                </div>
-                <div class="carousel-item">
-                    <div data-bs-toggle="modal" data-bs-target="#modalWhatsapp" class="click-wa-scrap-ab-sub-mobile position-relative" data-google-tag="Mobile - Banner Sub Scrap Alat Berat Bekas" style="cursor: pointer">
-                        <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/banner-scrap-sub.png" alt="Scrap alat berat di trumecs.com" class="img-fluid w-100">
-                        <button class="btn btn-sm btnnewgreen position-absolute translate-middle" style="right: -15%; top:20%;"><i class="bi bi-whatsapp"></i> Hubungi Kami</button>
+
+    <div class="container d-flex flex-column gap-3 px-0">
+        <div class="row">
+            <div id="carouselPromoBanner" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <a href="https://ers-id.informa-info.com/epi26?cid=trumecs" target="_blank" class="click-banner-battery-sub-mobile" data-google-tag="Banner Battery Pamerindo Sub Mobile">
+                            <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/banner-battery-sub-mobile.png" alt="Battery Pamerindo Sub Mobile" class="img-fluid w-100">
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="https://ers-id.informa-info.com/adx26?cid=trumecs" target="_blank" class="click-banner-adexco-sub-mobile" data-google-tag="Banner Adexco Pamerindo Sub Mobile">
+                            <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/banner-adexco-sub-mobile.png" alt="Adexco Pamerindo Sub Mobile" class="img-fluid w-100">
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="https://ers-id.informa-info.com/adx26?cid=trumecs" target="_blank" class="click-banner-water-sub-mobile" data-google-tag="Banner Water Pamerindo Sub Mobile">
+                            <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/banner-water-sub-mobile.png" alt="Water Pamerindo Sub Mobile" class="img-fluid w-100">
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="<?php echo base_url(); ?>product/1770/Turalik-52" target="_blank" class="click-banner-turalik-52-mobile" data-google-tag="Banner Promo Turalik 52">
+                            <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/turalik-52.png" alt="Promo harga murah untuk Pertamina Turalik 52" class="img-fluid w-100">
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="<?php echo base_url(); ?>product/2009/Meditran-Sx-Plus-15w-40-Ci4" target="_blank" class="click-banner-meditran-sx-plus-mobile" data-google-tag="Banner Promo Meditran SX Plus">
+                            <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/meditran-sx-plus.png" alt="Promo harga murah untuk Pertamina SX Plus 15w 40 CI4" class="img-fluid w-100">
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <div data-bs-toggle="modal" data-bs-target="#modalWhatsapp" class="click-wa-scrap-ab-sub-mobile position-relative" data-google-tag="Mobile - Banner Sub Scrap Alat Berat Bekas" style="cursor: pointer">
+                            <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/banner-scrap-sub.png" alt="Scrap alat berat di trumecs.com" class="img-fluid w-100">
+                            <button class="btn btn-sm btnnewgreen position-absolute translate-middle" style="right: -15%; top:20%;"><i class="bi bi-whatsapp"></i> Hubungi Kami</button>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="<?php echo base_url(); ?>article/pembayaran-transaksi-atau-invoice-dengan-kartu-kredit" target="_blank" class="click-sub-banner-cc-mobile" data-google-tag="Mobile - Banner Kartu Kredit Trumecs">
+                            <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/banner-cc.png" alt="Sekarang di Trumecs sudah bisa pakai kartu kredit" class="img-fluid w-100">
+                        </a>
                     </div>
                 </div>
-                <div class="carousel-item">
-                    <a href="<?php echo base_url(); ?>article/pembayaran-transaksi-atau-invoice-dengan-kartu-kredit" target="_blank" class="click-sub-banner-cc-mobile" data-google-tag="Mobile - Banner Kartu Kredit Trumecs">
-                        <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/banner-cc.png" alt="Sekarang di Trumecs sudah bisa pakai kartu kredit" class="img-fluid w-100">
-                    </a>
-                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselPromoBanner" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselPromoBanner" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselPromoBanner" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselPromoBanner" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
     </div>
 </section>
