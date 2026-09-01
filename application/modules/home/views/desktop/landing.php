@@ -6,7 +6,7 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <a href="https://ers-id.informa-info.com/epi26?cid=trumecs" target="_blank" class="click-banner-battery position-relative" data-google-tag="Banner Battery Pamerindo" style="cursor: pointer">
-                            <img src="<?php echo base_url() ?>timthumb?h=800 &src=<?php base_url(); ?>public/banner/promo-home/banner-battery-rev.png" alt="Pamerindo Battery" class="img-fluid w-100">
+                            <img src="<?php echo base_url() ?>timthumb?h=800 &src=<?php base_url(); ?>public/banner/promo-home/banner-battery-rev-01.png" alt="Pamerindo Battery" class="img-fluid w-100">
                         </a>
                     </div>
                     <div class="carousel-item">
