@@ -3,18 +3,13 @@
         <div id="carouselExample" class="carousel slide h-100" data-bs-ride="carousel">
             <div class="carousel-inner h-100">
                 <div class="carousel-item active h-100">
-                    <a href="https://ers-id.informa-info.com/epi26?cid=trumecs" target="_blank" class="click-banner-battery-mobile" data-google-tag="Mobile - Banner Battery">
-                        <img src="<?php echo base_url() ?>timthumb?h=600&src=<?php base_url(); ?>/public/banner/promo-home/banner-battery-mobile.png" class="d-block" style="width: 100%; height: 100%; max-height: 450px; object-fit: contain;" alt="Banner Battery Pamerindo Mobile">
-                    </a>
-                </div>
-                <div class="carousel-item h-100">
                     <a href="https://ers-id.informa-info.com/adx26?cid=trumecs" target="_blank" class="click-banner-adexco-mobile" data-google-tag="Mobile - Banner Adexco">
-                        <img src="<?php echo base_url() ?>timthumb?h=600&src=<?php base_url(); ?>/public/banner/promo-home/banner-adexco-mobile.png" class="d-block" style="width: 100%; height: 100%; max-height: 450px; object-fit: contain;" alt="Banner Adexco Pamerindo Mobile">
+                        <img src="<?php echo base_url() ?>timthumb?h=600&src=<?php base_url(); ?>/public/banner/promo-home/banner-adexco-mobile-rev.png" class="d-block" style="width: 100%; height: 100%; max-height: 450px; object-fit: contain;" alt="Banner Adexco Pamerindo Mobile">
                     </a>
                 </div>
                 <div class="carousel-item h-100">
                     <a href="https://ers-id.informa-info.com/adx26?cid=trumecs" target="_blank" class="click-banner-water-mobile" data-google-tag="Mobile - Banner Water">
-                        <img src="<?php echo base_url() ?>timthumb?h=600&src=<?php base_url(); ?>/public/banner/promo-home/banner-water-mobile.png" class="d-block" style="width: 100%; height: 100%; max-height: 450px; object-fit: contain;" alt="Banner Water Pamerindo Mobile">
+                        <img src="<?php echo base_url() ?>timthumb?h=600&src=<?php base_url(); ?>/public/banner/promo-home/banner-water-mobile-rev.png" class="d-block" style="width: 100%; height: 100%; max-height: 450px; object-fit: contain;" alt="Banner Water Pamerindo Mobile">
                     </a>
                 </div>
                 <div class="carousel-item h-100">
@@ -82,19 +77,14 @@
         <div class="row">
             <div id="carouselPromoBanner" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <a href="https://ers-id.informa-info.com/epi26?cid=trumecs" target="_blank" class="click-banner-battery-sub-mobile" data-google-tag="Banner Battery Pamerindo Sub Mobile">
-                            <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/banner-battery-sub-mobile.png" alt="Battery Pamerindo Sub Mobile" class="img-fluid w-100">
-                        </a>
-                    </div>
                     <div class="carousel-item">
                         <a href="https://ers-id.informa-info.com/adx26?cid=trumecs" target="_blank" class="click-banner-adexco-sub-mobile" data-google-tag="Banner Adexco Pamerindo Sub Mobile">
-                            <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/banner-adexco-sub-mobile.png" alt="Adexco Pamerindo Sub Mobile" class="img-fluid w-100">
+                            <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/banner-adexco-sub-mobile-rev.png" alt="Adexco Pamerindo Sub Mobile" class="img-fluid w-100">
                         </a>
                     </div>
                     <div class="carousel-item">
                         <a href="https://ers-id.informa-info.com/adx26?cid=trumecs" target="_blank" class="click-banner-water-sub-mobile" data-google-tag="Banner Water Pamerindo Sub Mobile">
-                            <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/banner-water-sub-mobile.png" alt="Water Pamerindo Sub Mobile" class="img-fluid w-100">
+                            <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/banner-water-sub-mobile-rev.png" alt="Water Pamerindo Sub Mobile" class="img-fluid w-100">
                         </a>
                     </div>
                     <div class="carousel-item">
