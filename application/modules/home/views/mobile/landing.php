@@ -2,7 +2,7 @@
     <div class="container px-0" style="background-color: #f8f9fa; height:450px;">
         <div id="carouselExample" class="carousel slide h-100" data-bs-ride="carousel">
             <div class="carousel-inner h-100">
-                <div class="carousel-item active h-100">
+                <!-- <div class="carousel-item active h-100">
                     <a href="https://ers-id.informa-info.com/adx26?cid=trumecs" target="_blank" class="click-banner-adexco-mobile" data-google-tag="Mobile - Banner Adexco">
                         <img src="<?php echo base_url() ?>timthumb?h=600&src=<?php base_url(); ?>/public/banner/promo-home/banner-adexco-mobile-rev.png" class="d-block" style="width: 100%; height: 100%; max-height: 450px; object-fit: contain;" alt="Banner Adexco Pamerindo Mobile">
                     </a>
@@ -11,8 +11,8 @@
                     <a href="https://ers-id.informa-info.com/adx26?cid=trumecs" target="_blank" class="click-banner-water-mobile" data-google-tag="Mobile - Banner Water">
                         <img src="<?php echo base_url() ?>timthumb?h=600&src=<?php base_url(); ?>/public/banner/promo-home/banner-water-mobile-rev.png" class="d-block" style="width: 100%; height: 100%; max-height: 450px; object-fit: contain;" alt="Banner Water Pamerindo Mobile">
                     </a>
-                </div>
-                <div class="carousel-item h-100">
+                </div> -->
+                <div class="carousel-item h-100 active">
                     <a href="<?php base_url(); ?>principal/struman" target="_blank" class="click-banner-struman-mobile" data-google-tag="Mobile - Banner Struman">
                         <img src="<?php echo base_url() ?>timthumb?h=600&src=<?php base_url(); ?>/public/banner/promo-home/banner-struman-mobile.png" class="d-block" style="width: 100%; height: 100%; max-height: 450px; object-fit: contain;" alt="banner trumecs.com">
                     </a>
@@ -77,7 +77,7 @@
         <div class="row">
             <div id="carouselPromoBanner" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item">
+                    <!-- <div class="carousel-item">
                         <a href="https://ers-id.informa-info.com/adx26?cid=trumecs" target="_blank" class="click-banner-adexco-sub-mobile" data-google-tag="Banner Adexco Pamerindo Sub Mobile">
                             <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/banner-adexco-sub-mobile-rev.png" alt="Adexco Pamerindo Sub Mobile" class="img-fluid w-100">
                         </a>
@@ -86,8 +86,8 @@
                         <a href="https://ers-id.informa-info.com/adx26?cid=trumecs" target="_blank" class="click-banner-water-sub-mobile" data-google-tag="Banner Water Pamerindo Sub Mobile">
                             <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/banner-water-sub-mobile-rev.png" alt="Water Pamerindo Sub Mobile" class="img-fluid w-100">
                         </a>
-                    </div>
-                    <div class="carousel-item">
+                    </div> -->
+                    <div class="carousel-item active">
                         <a href="<?php echo base_url(); ?>product/1770/Turalik-52" target="_blank" class="click-banner-turalik-52-mobile" data-google-tag="Banner Promo Turalik 52">
                             <img src="<?php echo base_url() ?>timthumb?h=250&src=<?php base_url(); ?>/public/banner/promo-home/turalik-52.png" alt="Promo harga murah untuk Pertamina Turalik 52" class="img-fluid w-100">
                         </a>
