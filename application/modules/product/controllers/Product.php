@@ -30,7 +30,7 @@ class Product extends MX_Controller
     public function index($url)
     {
         $data["data_product"] = $this->product_model->getproduct($url);
-        $targetUrl = 'https://migration.trumecs.com/' . $url;
+        $targetUrl = 'https://fe-migration.trumecs.com/' . $url;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $targetUrl);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

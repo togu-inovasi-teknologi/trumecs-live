@@ -20,7 +20,7 @@ class article extends MX_Controller
 
 	public function index($url)
 	{
-		$targetUrl = 'https://migration.trumecs.com/' . $url;
+		$targetUrl = 'https://fe-migration.trumecs.com/' . $url;
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $targetUrl);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
